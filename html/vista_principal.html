@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor</title>
+    <link rel="stylesheet" href="static/css/estilo.css">
+</head>
+
+
+<body>
+    <div class="contenedor-principal">
+        <!-- Panel Izquierda -->
+        <div class="panel-izquierda">
+            <!-- Controles Superiores -->
+            <div class="contenedor controles-superiores">
+                <button>Visibilidad</button>
+                <button>Tema</button>
+                <button>Ajustes</button>
+            </div>
+
+            <!-- Imagen Canción -->
+            <div class="contenedor imagen-cancion">
+                <span>Imagen de la Canción</span>
+            </div>
+
+            <!-- Información Canción -->
+            <div class="contenedor">
+                <span>Información de la Canción</span>
+            </div>
+
+            <!-- Espectro Audio -->
+            <div class="contenedor">
+                <span>Espectro de Audio</span>
+            </div>
+
+            <!-- Barra Progreso -->
+            <div class="contenedor">
+                <input type="range" min="0" max="100" value="0">
+            </div>
+
+            <!-- Controles Reproducción -->
+            <div class="contenedor controles-reproduccion">
+                <button>Anterior</button>
+                <button>Play</button>
+                <button>Siguiente</button>
+            </div>
+
+            <!-- Barra Volumen -->
+            <div class="contenedor">
+                <input type="range" min="0" max="100" value="50">
+            </div>
+        </div>
+
+        <!-- Panel Derecha -->
+        <div class="panel-derecha">
+            <!-- Búsqueda y Ordenamiento -->
+            <div class="contenedor busqueda-ordenamiento">
+                <input type="text" placeholder="Buscar...">
+                <select>
+                    <option>Nombre</option>
+                    <option>Artista</option>
+                    <option>Álbum</option>
+                    <option>Duración</option>
+                </select>
+            </div>
+
+            <!-- Lista Canciones -->
+            <div class="contenedor lista-canciones">
+                <span>Lista de Canciones</span>
+            </div>
+
+            <!-- Botones Inferiores -->
+            <div class="contenedor botones-inferiores">
+                <button>Agregar Canción</button>
+                <button>Agregar Directorio</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import ttk
+
 
 # dimensiones de la interfaz en altura y ancho en pixeles
 ancho = 1280
@@ -38,12 +40,13 @@ ventana_principal.title("Prototipo reproductor de música")
 
 # contenedor principal
 conenedor_principal = tk.Frame(ventana_principal)
-conenedor_principal.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
+conenedor_principal.configure(
+    padx=10,
+    pady=5,
+    bg="#%02x%02x%02x"
+    % tuple(max(0, int(claro.lstrip("#")[i : i + 2], 16) - 20) for i in (0, 2, 4)),
+)
 conenedor_principal.pack(fill="both", expand=True)
-
-# etiqueta del contenedor principal
-etiqueta = tk.Label(conenedor_principal, text="Contenedor principal", font=(letra, 16), bg=claro)
-etiqueta.pack()
 
 # ===============================================================================================
 
@@ -55,22 +58,23 @@ contenedor_izquierda = tk.Frame(conenedor_principal)
 contenedor_izquierda.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
 contenedor_izquierda.pack(side=tk.LEFT, fill="both", expand=True)
 
-# etiqueta izquierda
-etiqueta_izquierda = tk.Label(
-    contenedor_izquierda, text="Panel izquierda", font=(letra, 13), bg=claro
-)
-etiqueta_izquierda.pack()
+# ------------------------------- Seccion de controles superiores --------------------------------
 
-
-# ------------------------------- Seccion de botones superiores ---------------------------------
 # contenedor superior
 contenedor_superior = tk.Frame(contenedor_izquierda)
-contenedor_superior.configure(padx=10, relief="solid", borderwidth=1, bg=claro)
+contenedor_superior.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
 contenedor_superior.pack(pady=5, fill="both")
 
-# etiqueta del reproductor
-etiqueta = tk.Label(contenedor_superior, text="Botones superiores", font=(letra, 10), bg=claro)
-etiqueta.pack(expand=True)
+# botones de la parte superior
+boton_ajustes = tk.Button(contenedor_superior, text="Ajustes", font=(letra, 10), bg=claro)
+boton_ajustes.pack(side=tk.RIGHT)
+
+boton_tema = tk.Button(contenedor_superior, text="Tema", font=(letra, 10), bg=claro)
+boton_tema.pack(side=tk.RIGHT)
+
+boton_visibilidad = tk.Button(contenedor_superior, text="Visibilidad", font=(letra, 10), bg=claro)
+boton_visibilidad.pack(side=tk.RIGHT)
+
 # -----------------------------------------------------------------------------------------------
 
 
@@ -81,7 +85,7 @@ contenedor_imagen = tk.Frame(contenedor_izquierda)
 contenedor_imagen.configure(padx=10, relief="solid", borderwidth=1, bg=claro)
 contenedor_imagen.pack(pady=5, fill="both", expand=True)
 
-# etiqueta de imagen de la canción
+# etiqueta de la imagen de la canción
 etiqueta_imagen = tk.Label(
     contenedor_imagen, text="Imagen de la Canción", font=(letra, 10), bg=claro
 )
@@ -93,12 +97,12 @@ etiqueta_imagen.pack(expand=True)
 # ----------------------------- Seccion de información de la canción ----------------------------
 # contenedor de información de la canción
 contenedor_informacion = tk.Frame(contenedor_izquierda)
-contenedor_informacion.configure(padx=10, relief="solid", borderwidth=1, bg=claro)
+contenedor_informacion.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
 contenedor_informacion.pack(pady=5, fill="both")
 
 # etiqueta de información de la canción
 etiqueta_informacion = tk.Label(
-    contenedor_informacion, text="Informacion cancion ", font=(letra, 10), bg=claro
+    contenedor_informacion, text="Información de la Canción", font=(letra, 10), bg=claro
 )
 etiqueta_informacion.pack(expand=True)
 
@@ -108,7 +112,7 @@ etiqueta_informacion.pack(expand=True)
 # ------------------------------- Seccion de espectro de audio ----------------------------------
 # contenedor de espectro de audio
 contenedor_espectro = tk.Frame(contenedor_izquierda)
-contenedor_espectro.configure(padx=10, relief="solid", borderwidth=1, bg=claro)
+contenedor_espectro.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
 contenedor_espectro.pack(pady=5, fill="both")
 
 # etiqueta de espectro de audio
@@ -124,14 +128,26 @@ etiqueta_espectro.pack(expand=True)
 
 # contenedor de barra de progreso
 contenedor_progreso = tk.Frame(contenedor_izquierda)
-contenedor_progreso.configure(padx=10, relief="solid", borderwidth=1, bg=claro)
+contenedor_progreso.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
 contenedor_progreso.pack(pady=5, fill="both")
 
-# etiqueta de barra de progreso
-etiqueta_progreso = tk.Label(
-    contenedor_progreso, text="Barra de Progreso", font=(letra, 10), bg=claro
+# panel de progreso
+panel_progreso = tk.Frame(contenedor_progreso)
+panel_progreso.configure(bg=claro)
+panel_progreso.pack(expand=True, fill="x")
+
+# barra de progreso
+barra_progreso = tk.Scale(
+    panel_progreso,
+    from_=0,
+    to=100,
+    orient=tk.HORIZONTAL,
+    bg=claro,
+    highlightthickness=0,
+    sliderrelief="flat",
 )
-etiqueta_progreso.pack(expand=True)
+barra_progreso.set(0)
+barra_progreso.pack(pady=5, fill="x", padx=10)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -140,14 +156,23 @@ etiqueta_progreso.pack(expand=True)
 
 # contenedor de controles de reproducción
 contenedor_controles = tk.Frame(contenedor_izquierda)
-contenedor_controles.configure(padx=10, relief="solid", borderwidth=1, bg=claro)
+contenedor_controles.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
 contenedor_controles.pack(pady=5, fill="both")
 
-# etiqueta de controles de reproducción
-etiqueta_controles = tk.Label(
-    contenedor_controles, text="Controles de Reproducción", font=(letra, 10), bg=claro
-)
-etiqueta_controles.pack(expand=True)
+# panel de controles
+panel_controles = tk.Frame(contenedor_controles)
+panel_controles.configure(bg=claro)
+panel_controles.pack(expand=True)
+
+# botones de control
+boton_anterior = tk.Button(panel_controles, text="Anterior", font=(letra, 10), bg=claro)
+boton_anterior.pack(side=tk.LEFT, padx=5)
+
+boton_play = tk.Button(panel_controles, text="Play", font=(letra, 10), bg=claro)
+boton_play.pack(side=tk.LEFT, padx=5)
+
+boton_siguiente = tk.Button(panel_controles, text="Siguiente", font=(letra, 10), bg=claro)
+boton_siguiente.pack(side=tk.LEFT, padx=5)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -156,12 +181,27 @@ etiqueta_controles.pack(expand=True)
 
 # contenedor de barra de volumen
 contenedor_volumen = tk.Frame(contenedor_izquierda)
-contenedor_volumen.configure(padx=10, relief="solid", borderwidth=1, bg=claro)
+contenedor_volumen.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
 contenedor_volumen.pack(pady=5, fill="both")
 
-# etiqueta de barra de volumen
-etiqueta_volumen = tk.Label(contenedor_volumen, text="Barra de Volumen", font=(letra, 10), bg=claro)
-etiqueta_volumen.pack(expand=True)
+# panel de volumen
+panel_volumen = tk.Frame(contenedor_volumen)
+panel_volumen.configure(bg=claro)
+panel_volumen.pack(expand=True)
+
+# barra de volumen
+barra_volumen = tk.Scale(
+    panel_volumen,
+    from_=0,
+    to=100,
+    orient=tk.HORIZONTAL,
+    length=200,
+    bg=claro,
+    highlightthickness=0,
+    sliderrelief="flat",
+)
+barra_volumen.set(50)
+barra_volumen.pack(pady=5)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -177,22 +217,31 @@ contenedor_derecha.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=
 contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(10, 0))
 contenedor_derecha.pack_propagate(False)
 
-# etiqueta de panel derecha
-etiqueta_derecha = tk.Label(contenedor_derecha, text="Panel derecha", font=(letra, 13), bg=claro)
-etiqueta_derecha.pack()
-
 # ------------------------------ Seccion de busqueda y ordenamiento -----------------------------
 
 # contenedor de busqueda y ordenamiento
 contenedor_busqueda_ordenamiento = tk.Frame(contenedor_derecha)
-contenedor_busqueda_ordenamiento.configure(padx=10, relief="solid", borderwidth=1, bg=claro)
+contenedor_busqueda_ordenamiento.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
 contenedor_busqueda_ordenamiento.pack(pady=5, fill="both")
 
-# etiqueta de busqueda y ordenamiento
-etiqueta_busqueda_ordenamiento = tk.Label(
-    contenedor_busqueda_ordenamiento, text="Busqueda y Ordenamiento", font=(letra, 10), bg=claro
+# panel de busqueda y ordenamiento
+panel_elementos = tk.Frame(contenedor_busqueda_ordenamiento)
+panel_elementos.configure(bg=claro)
+panel_elementos.pack(expand=True)
+
+# entrada de busqueda
+entrada_busqueda = tk.Entry(panel_elementos, font=(letra, 10), bg=claro)
+entrada_busqueda.pack(side=tk.LEFT, fill="x", expand=True)
+
+# opciones de ordenamiento en combobox
+opciones_ordenamiento = ["Nombre", "Artista", "Álbum", "Duración"]
+
+# combobox de ordenamiento
+combo_ordenamiento = ttk.Combobox(
+    panel_elementos, values=opciones_ordenamiento, font=(letra, 10), state="readonly"
 )
-etiqueta_busqueda_ordenamiento.pack(expand=True)
+combo_ordenamiento.set("Nombre")
+combo_ordenamiento.pack(side=tk.LEFT, padx=5)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -200,14 +249,25 @@ etiqueta_busqueda_ordenamiento.pack(expand=True)
 # ------------------------------- Seccion de lista de canciones --------------------------------
 # contenedor de lista de canciones
 contenedor_lista_canciones = tk.Frame(contenedor_derecha)
-contenedor_lista_canciones.configure(padx=10, relief="solid", borderwidth=1, bg=claro)
+contenedor_lista_canciones.configure(relief="solid", borderwidth=1, bg=claro)
 contenedor_lista_canciones.pack(pady=5, fill="both", expand=True)
 
-# etiqueta de lista de canciones
-etiqueta_lista_canciones = tk.Label(
-    contenedor_lista_canciones, text="Lista de Canciones", font=(letra, 10), bg=claro
+# lista de canciones
+lista_canciones = tk.Listbox(
+    contenedor_lista_canciones,
+    font=(letra, 10),
+    bg=claro,
+    selectbackground=oscuro,
 )
-etiqueta_lista_canciones.pack(expand=True)
+
+# agregar canciones a la lista
+lista_canciones.insert(0, "Canción 1")
+lista_canciones.insert(1, "Canción 2")
+lista_canciones.insert(2, "Canción 3")
+lista_canciones.insert(3, "Canción 4")
+lista_canciones.insert(4, "Canción 5")
+
+lista_canciones.pack(fill="both", expand=True)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -215,14 +275,22 @@ etiqueta_lista_canciones.pack(expand=True)
 # ------------------------------- Seccion de botones inferiores ---------------------------------
 # contenedor de botones inferiores
 contenedor_inferior = tk.Frame(contenedor_derecha)
-contenedor_inferior.configure(padx=10, relief="solid", borderwidth=1, bg=claro)
+contenedor_inferior.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
 contenedor_inferior.pack(pady=5, fill="both")
 
-# etiqueta de botones inferiores
-etiqueta_inferior = tk.Label(
-    contenedor_inferior, text="Botones inferiores", font=(letra, 10), bg=claro
+# panel de botones
+panel_botones = tk.Frame(contenedor_inferior)
+panel_botones.configure(bg=claro)
+panel_botones.pack(expand=True)
+
+# botones inferiores
+boton_agregar_cancion = tk.Button(panel_botones, text="Agregar cancion", font=(letra, 10), bg=claro)
+boton_agregar_cancion.pack(side=tk.LEFT, padx=5)
+
+boton_agregar_directorio = tk.Button(
+    panel_botones, text="Agregar Directorio", font=(letra, 10), bg=claro
 )
-etiqueta_inferior.pack(expand=True)
+boton_agregar_directorio.pack(side=tk.LEFT, padx=5)
 
 # -----------------------------------------------------------------------------------------------
 

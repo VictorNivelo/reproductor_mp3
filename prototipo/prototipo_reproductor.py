@@ -1,14 +1,16 @@
 import tkinter as tk
 
-# Crear ventana
-ventana_principal = tk.Tk()
-
 # dimensiones de la interfaz en altura y ancho en pixeles
 ancho = 1280
 alto = 720
 
 # letra
 letra = "SF Pro Display"
+
+# ====================================== Ventana principal ======================================
+
+# Crear ventana
+ventana_principal = tk.Tk()
 
 # obtener las dimensiones de la pantalla
 ancho_pantalla = ventana_principal.winfo_screenwidth()
@@ -24,6 +26,11 @@ ventana_principal.geometry(f"{ancho}x{alto}+{posicion_ancho}+{posicion_alto}")
 # título de la ventana
 ventana_principal.title("Prototipo reproductor de música")
 
+# ===============================================================================================
+
+
+# ===================================== Contenedor superior =====================================
+
 # contenedor superior
 contenedor_superior = tk.Frame(ventana_principal)
 contenedor_superior.configure(relief="solid", borderwidth=1)
@@ -32,6 +39,11 @@ contenedor_superior.pack()
 # etiqueta del reproductor
 etiqueta = tk.Label(contenedor_superior, text="Botones superiores", font=(letra, 25))
 etiqueta.pack()
+
+# ===============================================================================================
+
+
+# ==================================== Contenedor principal =====================================
 
 # contenedor principal
 conenedor_principal = tk.Frame(ventana_principal)
@@ -42,6 +54,11 @@ conenedor_principal.pack()
 etiqueta = tk.Label(conenedor_principal, text="Contenedor principal", font=(letra, 15))
 etiqueta.pack()
 
+# ===============================================================================================
+
+
+# ======================================= Panel izquierda =======================================
+
 # contenedor izquierda
 contenedor_izquierda = tk.Frame(conenedor_principal)
 contenedor_izquierda.configure(relief="solid", borderwidth=1)
@@ -50,6 +67,8 @@ contenedor_izquierda.pack(side=tk.LEFT, padx=5)
 # etiqueta izquierda
 etiqueta_izquierda = tk.Label(contenedor_izquierda, text="Panel izquierda", font=(letra, 15))
 etiqueta_izquierda.pack()
+
+# ------------------------------- Seccion de imagen de la canción -------------------------------
 
 # contenedor de imagen de la canción
 contenedor_imagen = tk.Frame(contenedor_izquierda)
@@ -60,6 +79,10 @@ contenedor_imagen.pack()
 etiqueta_imagen = tk.Label(contenedor_imagen, text="Imagen de la Canción", font=(letra, 15))
 etiqueta_imagen.pack()
 
+# -----------------------------------------------------------------------------------------------
+
+
+# ----------------------------- Seccion de información de la canción ----------------------------
 # contenedor de información de la canción
 contenedor_informacion = tk.Frame(contenedor_izquierda)
 contenedor_informacion.configure(relief="solid", borderwidth=1)
@@ -71,6 +94,10 @@ etiqueta_informacion = tk.Label(
 )
 etiqueta_informacion.pack()
 
+# -----------------------------------------------------------------------------------------------
+
+
+# ------------------------------- Seccion de espectro de audio ----------------------------------
 # contenedor de espectro de audio
 contenedor_espectro = tk.Frame(contenedor_izquierda)
 contenedor_espectro.configure(relief="solid", borderwidth=1)
@@ -80,6 +107,11 @@ contenedor_espectro.pack()
 etiqueta_espectro = tk.Label(contenedor_espectro, text="Espectro de Audio", font=(letra, 15))
 etiqueta_espectro.pack()
 
+# -----------------------------------------------------------------------------------------------
+
+
+# ------------------------------- Seccion de barra de progreso ---------------------------------
+
 # contenedor de barra de progreso
 contenedor_progreso = tk.Frame(contenedor_izquierda)
 contenedor_progreso.configure(relief="solid", borderwidth=1)
@@ -88,6 +120,11 @@ contenedor_progreso.pack()
 # etiqueta de barra de progreso
 etiqueta_progreso = tk.Label(contenedor_progreso, text="Barra de Progreso", font=(letra, 15))
 etiqueta_progreso.pack()
+
+# -----------------------------------------------------------------------------------------------
+
+
+# ------------------------------- Seccion de controles de reproducción --------------------------
 
 # contenedor de controles de reproducción
 contenedor_controles = tk.Frame(contenedor_izquierda)
@@ -100,6 +137,11 @@ etiqueta_controles = tk.Label(
 )
 etiqueta_controles.pack()
 
+# -----------------------------------------------------------------------------------------------
+
+
+# ------------------------------- Seccion de barra de volumen -----------------------------------
+
 # contenedor de barra de volumen
 contenedor_volumen = tk.Frame(contenedor_izquierda)
 contenedor_volumen.configure(relief="solid", borderwidth=1)
@@ -109,6 +151,14 @@ contenedor_volumen.pack()
 etiqueta_volumen = tk.Label(contenedor_volumen, text="Barra de Volumen", font=(letra, 15))
 etiqueta_volumen.pack()
 
+# -----------------------------------------------------------------------------------------------
+
+
+# ===============================================================================================
+
+
+# ======================================== Panel derecha ========================================
+
 # contenedor de panel lateral
 contenedor_derecha = tk.Frame(conenedor_principal)
 contenedor_derecha.configure(relief="solid", borderwidth=1)
@@ -117,6 +167,8 @@ contenedor_derecha.pack(side=tk.LEFT, padx=5)
 # etiqueta de panel lateral
 etiqueta_derecha = tk.Label(contenedor_derecha, text="Panel derecha", font=(letra, 15))
 etiqueta_derecha.pack()
+
+# ------------------------------ Seccion de busqueda y ordenamiento -----------------------------
 
 # contenedor de busqueda y ordenamiento
 contenedor_busqueda_ordenamiento = tk.Frame(contenedor_derecha)
@@ -129,6 +181,10 @@ etiqueta_busqueda_ordenamiento = tk.Label(
 )
 etiqueta_busqueda_ordenamiento.pack()
 
+# -----------------------------------------------------------------------------------------------
+
+
+# ------------------------------- Seccion de lista de canciones --------------------------------
 # contenedor de lista de canciones
 contenedor_lista_canciones = tk.Frame(contenedor_derecha)
 contenedor_lista_canciones.configure(relief="solid", borderwidth=1)
@@ -140,6 +196,10 @@ etiqueta_lista_canciones = tk.Label(
 )
 etiqueta_lista_canciones.pack()
 
+# -----------------------------------------------------------------------------------------------
+
+
+# ------------------------------- Seccion de botones inferiores ---------------------------------
 # contenedor de botones inferiores
 contenedor_inferior = tk.Frame(contenedor_derecha)
 contenedor_inferior.configure(relief="solid", borderwidth=1)
@@ -148,6 +208,11 @@ contenedor_inferior.pack()
 # etiqueta de botones inferiores
 etiqueta_inferior = tk.Label(contenedor_inferior, text="Botones inferiores", font=(letra, 15))
 etiqueta_inferior.pack()
+
+# -----------------------------------------------------------------------------------------------
+
+
+# ===============================================================================================
 
 # mostrar la ventana
 ventana_principal.mainloop()

@@ -7,5 +7,6 @@ def main():
     vista = vista_principal(controlador)
     vista.iniciar()
 
+
 if __name__ == "__main__":
     main()

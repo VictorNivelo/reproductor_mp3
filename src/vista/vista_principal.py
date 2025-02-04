@@ -18,6 +18,12 @@ oscuro = "#333333"
 # tema inicial establecido como claro
 tema_inicial = "claro"
 
+
+# llama a la función cambiar_tema del controlador
+def cambiar_tema():
+    controlador.cambiar_tema()
+
+
 # ====================================== Ventana principal ======================================
 
 # Crear ventana
@@ -77,7 +83,9 @@ boton_ajustes = tk.Button(contenedor_superior, text="", font=(letra, 10), bg=cla
 boton_ajustes.pack(side=tk.RIGHT)
 controlador.registrar_botones("ajustes", boton_ajustes)
 
-boton_tema = tk.Button(contenedor_superior, text="", font=(letra, 10), bg=claro)
+boton_tema = tk.Button(
+    contenedor_superior, text="", font=(letra, 10), bg=claro, command=cambiar_tema
+)
 boton_tema.pack(side=tk.RIGHT)
 controlador.registrar_botones("modo_oscuro", boton_tema)
 

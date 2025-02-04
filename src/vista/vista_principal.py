@@ -1,3 +1,5 @@
+from controlador.controlador_tema import Controlador_tema
+import customtkinter as ctk
 from tkinter import ttk
 import tkinter as tk
 
@@ -13,10 +15,16 @@ letra = "SF Pro Display"
 claro = "#f0f0f0"
 oscuro = "#333333"
 
+# tema inicial establecido como claro
+tema_inicial = "claro"
+
 # ====================================== Ventana principal ======================================
 
 # Crear ventana
 ventana_principal = tk.Tk()
+
+# controlador de tema
+controlador = Controlador_tema()
 
 # obtener las dimensiones de la pantalla
 ancho_pantalla = ventana_principal.winfo_screenwidth()
@@ -65,14 +73,17 @@ contenedor_superior.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg
 contenedor_superior.pack(pady=5, fill="both")
 
 # botones de la parte superior
-boton_ajustes = tk.Button(contenedor_superior, text="Ajustes", font=(letra, 10), bg=claro)
+boton_ajustes = tk.Button(contenedor_superior, text="", font=(letra, 10), bg=claro)
 boton_ajustes.pack(side=tk.RIGHT)
+controlador.registrar_botones("ajustes", boton_ajustes)
 
-boton_tema = tk.Button(contenedor_superior, text="Tema", font=(letra, 10), bg=claro)
+boton_tema = tk.Button(contenedor_superior, text="", font=(letra, 10), bg=claro)
 boton_tema.pack(side=tk.RIGHT)
+controlador.registrar_botones("modo_oscuro", boton_tema)
 
-boton_visibilidad = tk.Button(contenedor_superior, text="Visibilidad", font=(letra, 10), bg=claro)
+boton_visibilidad = tk.Button(contenedor_superior, text="", font=(letra, 10), bg=claro)
 boton_visibilidad.pack(side=tk.RIGHT)
+controlador.registrar_botones("ocultar", boton_visibilidad)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -100,10 +111,44 @@ contenedor_informacion.configure(padx=10, pady=5, relief="solid", borderwidth=1,
 contenedor_informacion.pack(pady=5, fill="both")
 
 # etiqueta de información de la canción
-etiqueta_informacion = tk.Label(
-    contenedor_informacion, text="Información de la Canción", font=(letra, 10), bg=claro
+etiqueta_nombre_cancion = tk.Label(
+    contenedor_informacion, text="Nombre de la Canción", font=(letra, 10), bg=claro
 )
-etiqueta_informacion.pack(expand=True)
+etiqueta_nombre_cancion.pack(expand=True)
+
+etiqueta_artista_cancion = tk.Label(
+    contenedor_informacion, text="Artista de la Canción", font=(letra, 10), bg=claro
+)
+etiqueta_artista_cancion.pack(expand=True)
+
+etiqueta_album_cancion = tk.Label(
+    contenedor_informacion, text="Álbum de la Canción", font=(letra, 10), bg=claro
+)
+etiqueta_album_cancion.pack(expand=True)
+
+# -----------------------------------------------------------------------------------------------
+
+
+# ------------------------------- Seccion botones de gustos -------------------------------------
+
+# contenedor de botones de gustos
+contenedor_botones_gustos = tk.Frame(contenedor_izquierda)
+contenedor_botones_gustos.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
+contenedor_botones_gustos.pack(pady=5, fill="both")
+
+# panel de botones de gustos
+panel_botones_gustos = tk.Frame(contenedor_botones_gustos)
+panel_botones_gustos.configure(bg=claro)
+panel_botones_gustos.pack(expand=True)
+
+# botones de gustos
+boton_me_gusta = tk.Button(panel_botones_gustos, text="", font=(letra, 10), bg=claro)
+boton_me_gusta.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("me_gusta", boton_me_gusta)
+
+boton_favorito = tk.Button(panel_botones_gustos, text="", font=(letra, 10), bg=claro)
+boton_favorito.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("favorito", boton_favorito)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -111,8 +156,9 @@ etiqueta_informacion.pack(expand=True)
 # ------------------------------- Seccion de espectro de audio ----------------------------------
 # contenedor de espectro de audio
 contenedor_espectro = tk.Frame(contenedor_izquierda)
-contenedor_espectro.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
+contenedor_espectro.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro, height=90)
 contenedor_espectro.pack(pady=5, fill="both")
+contenedor_espectro.pack_propagate(False)
 
 # etiqueta de espectro de audio
 etiqueta_espectro = tk.Label(
@@ -136,17 +182,35 @@ panel_progreso.configure(bg=claro)
 panel_progreso.pack(expand=True, fill="x")
 
 # barra de progreso
-barra_progreso = tk.Scale(
-    panel_progreso,
-    from_=0,
-    to=100,
-    orient=tk.HORIZONTAL,
-    bg=claro,
-    highlightthickness=0,
-    sliderrelief="flat",
-)
-barra_progreso.set(0)
-barra_progreso.pack(pady=5, fill="x", padx=10)
+barra_progreso = ctk.CTkProgressBar(panel_progreso)
+barra_progreso.configure(progress_color="black", fg_color="lightgray")
+barra_progreso.pack(padx=10, pady=5, fill="x")
+
+# panel de tiempo
+panel_tiempo = tk.Frame(contenedor_progreso)
+panel_tiempo.configure(bg=claro)
+panel_tiempo.pack(expand=True, fill="x")
+
+# etiqueta de tiempo actual
+etiqueta_tiempo_actual = tk.Label(panel_tiempo, text="00:00", font=(letra, 9), bg=claro)
+etiqueta_tiempo_actual.pack(side=tk.LEFT)
+
+# etiqueta de tiempo total
+etiqueta_tiempo_total = tk.Label(panel_tiempo, text="00:00", font=(letra, 9), bg=claro)
+etiqueta_tiempo_total.pack(side=tk.RIGHT)
+
+# # barra de progreso
+# barra_progreso = tk.Scale(
+#     panel_progreso,
+#     from_=0,
+#     to=100,
+#     orient=tk.HORIZONTAL,
+#     bg=claro,
+#     highlightthickness=0,
+#     sliderrelief="flat",
+# )
+# barra_progreso.set(0)
+# barra_progreso.pack(pady=5, fill="x", padx=10)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -164,14 +228,41 @@ panel_controles.configure(bg=claro)
 panel_controles.pack(expand=True)
 
 # botones de control
-boton_anterior = tk.Button(panel_controles, text="Anterior", font=(letra, 10), bg=claro)
+boton_aleatorio = tk.Button(panel_controles, text="", font=(letra, 10), bg=claro)
+boton_aleatorio.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("aleatorio", boton_aleatorio)
+
+boton_repetir = tk.Button(panel_controles, text="", font=(letra, 10), bg=claro)
+boton_repetir.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("no_repetir", boton_repetir)
+
+boton_retroceder = tk.Button(panel_controles, text="", font=(letra, 10), bg=claro)
+boton_retroceder.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("retroceder", boton_retroceder)
+
+boton_anterior = tk.Button(panel_controles, text="", font=(letra, 10), bg=claro)
 boton_anterior.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("anterior", boton_anterior)
 
-boton_play = tk.Button(panel_controles, text="Play", font=(letra, 10), bg=claro)
-boton_play.pack(side=tk.LEFT, padx=5)
+boton_reproducir = tk.Button(panel_controles, text="", font=(letra, 10), bg=claro)
+boton_reproducir.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("reproducir", boton_reproducir)
 
-boton_siguiente = tk.Button(panel_controles, text="Siguiente", font=(letra, 10), bg=claro)
+boton_siguiente = tk.Button(panel_controles, text="", font=(letra, 10), bg=claro)
 boton_siguiente.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("siguiente", boton_siguiente)
+
+boton_adelantar = tk.Button(panel_controles, text="", font=(letra, 10), bg=claro)
+boton_adelantar.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("adelantar", boton_adelantar)
+
+boton_agregar_cola = tk.Button(panel_controles, text="", font=(letra, 10), bg=claro)
+boton_agregar_cola.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("agregar_cola", boton_agregar_cola)
+
+boton_minimizar = tk.Button(panel_controles, text="", font=(letra, 10), bg=claro)
+boton_minimizar.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("minimizar", boton_minimizar)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -188,19 +279,40 @@ panel_volumen = tk.Frame(contenedor_volumen)
 panel_volumen.configure(bg=claro)
 panel_volumen.pack(expand=True)
 
+# botón de silenciar
+boton_silenciar = tk.Button(panel_volumen, text="", font=(letra, 10), bg=claro)
+boton_silenciar.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("silencio", boton_silenciar)
+
+# panel de elementos de volumen
+panel_elementos_volumen = tk.Frame(panel_volumen, bg=claro)
+panel_elementos_volumen.pack(side=tk.LEFT, expand=True, fill="x", padx=5)
+
 # barra de volumen
-barra_volumen = tk.Scale(
-    panel_volumen,
-    from_=0,
-    to=100,
-    orient=tk.HORIZONTAL,
-    length=200,
-    bg=claro,
-    highlightthickness=0,
-    sliderrelief="flat",
+barra_volumen = ctk.CTkProgressBar(panel_elementos_volumen)
+barra_volumen.configure(progress_color="black", fg_color="lightgray")
+barra_volumen.pack(side=tk.LEFT, expand=True, fill="x", padx=(0, 5))
+
+# etiqueta de porcentaje de volumen
+etiqueta_porcentaje_volumen = tk.Label(
+    panel_elementos_volumen, text="50%", font=(letra, 10), bg=claro
 )
-barra_volumen.set(50)
-barra_volumen.pack(pady=5)
+etiqueta_porcentaje_volumen.pack(side=tk.LEFT)
+
+
+# # barra de volumen
+# barra_volumen = tk.Scale(
+#     panel_volumen,
+#     from_=0,
+#     to=100,
+#     orient=tk.HORIZONTAL,
+#     length=200,
+#     bg=claro,
+#     highlightthickness=0,
+#     sliderrelief="flat",
+# )
+# barra_volumen.set(50)
+# barra_volumen.pack(pady=5)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -285,11 +397,13 @@ panel_botones.pack(expand=True)
 # botones inferiores
 boton_agregar_cancion = tk.Button(panel_botones, text="Agregar cancion", font=(letra, 10), bg=claro)
 boton_agregar_cancion.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("agregar_cancion", boton_agregar_cancion)
 
 boton_agregar_directorio = tk.Button(
     panel_botones, text="Agregar Directorio", font=(letra, 10), bg=claro
 )
 boton_agregar_directorio.pack(side=tk.LEFT, padx=5)
+controlador.registrar_botones("agregar_carpeta", boton_agregar_directorio)
 
 # -----------------------------------------------------------------------------------------------
 

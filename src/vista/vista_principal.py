@@ -1,5 +1,5 @@
-import tkinter as tk
 from tkinter import ttk
+import tkinter as tk
 
 
 # dimensiones de la interfaz en altura y ancho en pixeles
@@ -10,7 +10,6 @@ alto = 720
 letra = "SF Pro Display"
 
 # fondos
-
 claro = "#f0f0f0"
 oscuro = "#333333"
 

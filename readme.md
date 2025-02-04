@@ -2,4 +2,4 @@
 
 ## Prototipo
 
-![Captura del reproductor](recursos/imagen/prototipo.png)
+![Captura del reproductor](recursos/imagenes/prototipo.png)

@@ -14,12 +14,12 @@ alto = 720
 letra = "SF Pro Display"
 
 # tamaños de letra
-tamanio_letra_tiempo = 9
+tamanio_letra_tiempo = 12
 tamanio_letra_boton = 12
-tamanio_letra_entrada = 12
-tamanio_letra_combobox = 12
-tamanio_letra_etiqueta = 12
-tamanio_letra_volumen = 10
+tamanio_letra_entrada = 12.5
+tamanio_letra_combobox = 12.5
+tamanio_letra_etiqueta = 13
+tamanio_letra_volumen = 13
 
 # tema inicial establecido como claro
 tema_inicial = "claro"
@@ -35,7 +35,7 @@ claro_texto = "#000000"
 oscuro_texto = "#ffffff"
 
 # colores de botones
-claro_boton = "#f0f0f0"
+claro_boton = "#c0c0c0"
 oscuro_boton = "#333333"
 
 # hovers
@@ -114,7 +114,7 @@ contenedor_izquierda.pack(side=tk.LEFT, fill="both", expand=True)
 
 # contenedor superior
 contenedor_superior = tk.Frame(contenedor_izquierda)
-contenedor_superior.configure(padx=10, pady=5, bg=claro)
+contenedor_superior.configure(padx=5, pady=5, bg=claro)
 contenedor_superior.pack(pady=5, fill="both")
 
 # botones de la parte superior
@@ -128,7 +128,7 @@ boton_ajustes = ctk.CTkButton(
     fg_color=claro_boton,
     hover_color=claro_hover,
 )
-boton_ajustes.pack(side=tk.RIGHT)
+boton_ajustes.pack(side=tk.RIGHT, padx=(5, 0))
 controlador.registrar_botones("ajustes", boton_ajustes)
 
 boton_tema = ctk.CTkButton(
@@ -141,7 +141,7 @@ boton_tema = ctk.CTkButton(
     hover_color=claro_hover,
     command=cambiar_tema,
 )
-boton_tema.pack(side=tk.RIGHT)
+boton_tema.pack(side=tk.RIGHT, padx=(5, 0))
 controlador.registrar_botones("modo_oscuro", boton_tema)
 
 boton_visibilidad = ctk.CTkButton(
@@ -167,10 +167,15 @@ contenedor_imagen.configure(padx=10, relief="solid", borderwidth=1, bg=claro)
 contenedor_imagen.pack(pady=5, fill="both", expand=True)
 
 # etiqueta de la imagen de la canción
-imagen_cancion = tk.Label(
-    contenedor_imagen, text="Imagen de la Canción", font=(letra, tamanio_letra_etiqueta), bg=claro
+imagen_cancion = ctk.CTkLabel(
+    contenedor_imagen,
+    fg_color=claro,
+    text="Imagen de la Canción",
+    font=(letra, tamanio_letra_volumen),
+    text_color=claro_texto,
 )
 imagen_cancion.pack(expand=True)
+
 
 # -----------------------------------------------------------------------------------------------
 
@@ -179,30 +184,33 @@ imagen_cancion.pack(expand=True)
 # contenedor de información de la canción
 contenedor_informacion = tk.Frame(contenedor_izquierda)
 contenedor_informacion.configure(padx=10, pady=5, bg=claro)
-contenedor_informacion.pack(pady=5, fill="both")
+contenedor_informacion.pack(fill="both")
 
 # etiqueta de información de la canción
-etiqueta_nombre_cancion = tk.Label(
+etiqueta_nombre_cancion = ctk.CTkLabel(
     contenedor_informacion,
+    fg_color=claro,
     text="Nombre de la Canción",
     font=(letra, tamanio_letra_etiqueta),
-    bg=claro,
+    text_color=claro_texto,
 )
 etiqueta_nombre_cancion.pack(expand=True)
 
-etiqueta_artista_cancion = tk.Label(
+etiqueta_artista_cancion = ctk.CTkLabel(
     contenedor_informacion,
+    fg_color=claro,
     text="Artista de la Canción",
     font=(letra, tamanio_letra_etiqueta),
-    bg=claro,
+    text_color=claro_texto,
 )
 etiqueta_artista_cancion.pack(expand=True)
 
-etiqueta_album_cancion = tk.Label(
+etiqueta_album_cancion = ctk.CTkLabel(
     contenedor_informacion,
+    fg_color=claro,
     text="Álbum de la Canción",
     font=(letra, tamanio_letra_etiqueta),
-    bg=claro,
+    text_color=claro_texto,
 )
 etiqueta_album_cancion.pack(expand=True)
 
@@ -213,7 +221,7 @@ etiqueta_album_cancion.pack(expand=True)
 
 # contenedor de botones de gustos
 contenedor_botones_gustos = tk.Frame(contenedor_izquierda)
-contenedor_botones_gustos.configure(padx=10, pady=5, bg=claro)
+contenedor_botones_gustos.configure(padx=10, bg=claro)
 contenedor_botones_gustos.pack(pady=5, fill="both")
 
 # panel de botones de gustos
@@ -231,7 +239,7 @@ boton_me_gusta = ctk.CTkButton(
     fg_color=claro_boton,
     hover_color=claro_hover,
 )
-boton_me_gusta.pack(side=tk.LEFT, padx=5)
+boton_me_gusta.pack(side=tk.LEFT, padx=(5, 0))
 controlador.registrar_botones("me_gusta", boton_me_gusta)
 
 boton_favorito = ctk.CTkButton(
@@ -243,7 +251,7 @@ boton_favorito = ctk.CTkButton(
     fg_color=claro_boton,
     hover_color=claro_hover,
 )
-boton_favorito.pack(side=tk.LEFT, padx=5)
+boton_favorito.pack(side=tk.LEFT, padx=(5, 0))
 controlador.registrar_botones("favorito", boton_favorito)
 
 # -----------------------------------------------------------------------------------------------
@@ -257,9 +265,14 @@ contenedor_espectro.pack(pady=5, fill="both")
 contenedor_espectro.pack_propagate(False)
 
 # etiqueta de espectro de audio
-etiqueta_espectro = tk.Label(
-    contenedor_espectro, text="Espectro de Audio", font=(letra, tamanio_letra_etiqueta), bg=claro
+etiqueta_espectro = ctk.CTkLabel(
+    contenedor_espectro,
+    fg_color=claro,
+    text="Espectro de Audio",
+    font=(letra, tamanio_letra_etiqueta),
+    text_color=claro_texto,
 )
+
 etiqueta_espectro.pack(expand=True)
 
 # -----------------------------------------------------------------------------------------------
@@ -269,7 +282,7 @@ etiqueta_espectro.pack(expand=True)
 
 # contenedor de barra de progreso
 contenedor_progreso = tk.Frame(contenedor_izquierda)
-contenedor_progreso.configure(padx=10, pady=5, bg=claro)
+contenedor_progreso.configure(padx=10, bg=claro)
 contenedor_progreso.pack(pady=5, fill="both")
 
 # panel de progreso
@@ -280,7 +293,7 @@ panel_progreso.pack(expand=True, fill="x")
 # barra de progreso
 barra_progreso = ctk.CTkProgressBar(panel_progreso)
 barra_progreso.configure(progress_color=oscuro, fg_color="lightgray", height=5)
-barra_progreso.pack(pady=5, fill="x")
+barra_progreso.pack(pady=3, fill="x")
 
 # panel de tiempo
 panel_tiempo = tk.Frame(contenedor_progreso)
@@ -288,29 +301,25 @@ panel_tiempo.configure(bg=claro)
 panel_tiempo.pack(expand=True, fill="x")
 
 # etiqueta de tiempo actual
-etiqueta_tiempo_actual = tk.Label(
-    panel_tiempo, text="00:00", font=(letra, tamanio_letra_tiempo), bg=claro
+etiqueta_tiempo_actual = ctk.CTkLabel(
+    panel_tiempo,
+    fg_color=claro,
+    text="00:00",
+    font=(letra, tamanio_letra_tiempo),
+    text_color=claro_texto,
 )
 etiqueta_tiempo_actual.pack(side=tk.LEFT)
 
 # etiqueta de tiempo total
-etiqueta_tiempo_total = tk.Label(
-    panel_tiempo, text="00:00", font=(letra, tamanio_letra_tiempo), bg=claro
+etiqueta_tiempo_total = ctk.CTkLabel(
+    panel_tiempo,
+    fg_color=claro,
+    text="00:00",
+    font=(letra, tamanio_letra_tiempo),
+    text_color=claro_texto,
 )
 etiqueta_tiempo_total.pack(side=tk.RIGHT)
 
-# # barra de progreso
-# barra_progreso = tk.Scale(
-#     panel_progreso,
-#     from_=0,
-#     to=100,
-#     orient=tk.HORIZONTAL,
-#     bg=claro,
-#     highlightthickness=0,
-#     sliderrelief="flat",
-# )
-# barra_progreso.set(0)
-# barra_progreso.pack(pady=5, fill="x", padx=10)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -319,8 +328,8 @@ etiqueta_tiempo_total.pack(side=tk.RIGHT)
 
 # contenedor de controles de reproducción
 contenedor_controles = tk.Frame(contenedor_izquierda)
-contenedor_controles.configure(padx=10, pady=5, bg=claro)
-contenedor_controles.pack(pady=5, fill="both")
+contenedor_controles.configure(padx=10, bg=claro)
+contenedor_controles.pack(fill="both")
 
 # panel de controles
 panel_controles = tk.Frame(contenedor_controles)
@@ -480,10 +489,14 @@ barra_volumen.configure(
 barra_volumen.pack(side=tk.LEFT, expand=True, fill="x", padx=(0, 5))
 
 # etiqueta de porcentaje de volumen
-etiqueta_porcentaje_volumen = tk.Label(
-    panel_elementos_volumen, text="50%", font=(letra, tamanio_letra_volumen), bg=claro
+etiqueta_porcentaje_volumen = ctk.CTkLabel(
+    panel_elementos_volumen,
+    fg_color=claro,
+    text="50%",
+    font=(letra, tamanio_letra_volumen),
+    text_color=claro_texto,
 )
-etiqueta_porcentaje_volumen.pack(side=tk.LEFT)
+etiqueta_porcentaje_volumen.pack(side="left")
 
 
 # -----------------------------------------------------------------------------------------------
@@ -518,6 +531,7 @@ panel_elementos.pack(fill="x", expand=True)
 entrada_busqueda = ctk.CTkEntry(
     panel_elementos,
     placeholder_text="Buscar cancion...",
+    placeholder_text_color=claro_texto,
     font=(letra, tamanio_letra_entrada),
     text_color=claro_texto,
     fg_color=claro,
@@ -599,7 +613,7 @@ paginas_canciones.add("Listas")
 # ------------------------------- Seccion de botones inferiores ---------------------------------
 # contenedor de botones inferiores
 contenedor_inferior = tk.Frame(contenedor_derecha)
-contenedor_inferior.configure(padx=10, pady=5, bg=claro)
+contenedor_inferior.configure(padx=10, bg=claro)
 contenedor_inferior.pack(pady=5, fill="both")
 
 # panel de botones

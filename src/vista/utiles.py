@@ -1,8 +1,9 @@
-from PIL import Image, ImageTk
+import customtkinter as ctk
+from PIL import Image
 import os
 
 
-tamaño = 20
+tamanio = 20
 
 
 def cargar_iconos(tema="claro"):
@@ -33,7 +34,7 @@ def cargar_iconos(tema="claro"):
         "ajustes": "ajustes",
         "agregar_carpeta": "agregar_carpeta",
         "agregar_cancion": "agregar_cancion",
-        # tamaño
+        # tamaño de la ventana
         "maximizar": "maximizar",
         "minimizar": "minimizar",
         # botones de volumen
@@ -53,9 +54,9 @@ def cargar_iconos(tema="claro"):
         try:
             nombre_archivo = f"{archivo}_{tema}.png"
             ruta = os.path.join(ruta_iconos, nombre_archivo)
-            imagen = Image.open(ruta)
-            imagen = imagen.resize((tamaño, tamaño), Image.Resampling.LANCZOS)
-            iconos[nombre] = ImageTk.PhotoImage(imagen)
+            iconos[nombre] = ctk.CTkImage(
+                light_image=Image.open(ruta), dark_image=Image.open(ruta), size=(tamanio, tamanio)
+            )
         except Exception as e:
             print(f"Error al cargar el icono {nombre_archivo}: {e}")
             iconos[nombre] = None

@@ -1,9 +1,7 @@
+from vista.constantes import alto_boton, ancho_boton
 import customtkinter as ctk
 from PIL import Image
 import os
-
-
-tamanio = 20
 
 
 def cargar_iconos(tema="claro"):
@@ -55,7 +53,9 @@ def cargar_iconos(tema="claro"):
             nombre_archivo = f"{archivo}_{tema}.png"
             ruta = os.path.join(ruta_iconos, nombre_archivo)
             iconos[nombre] = ctk.CTkImage(
-                light_image=Image.open(ruta), dark_image=Image.open(ruta), size=(tamanio, tamanio)
+                light_image=Image.open(ruta),
+                dark_image=Image.open(ruta),
+                size=(ancho_boton, alto_boton),
             )
         except Exception as e:
             print(f"Error al cargar el icono {nombre_archivo}: {e}")

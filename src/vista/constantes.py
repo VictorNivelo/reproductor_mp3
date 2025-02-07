@@ -11,6 +11,9 @@ alto = 720
 # tamaño panel derecha
 ancho_panel_derecha = 435
 
+# tamaño altura tabview
+alto_tabview = 400
+
 # tamaño de los botones
 ancho_boton = 20
 alto_boton = 20

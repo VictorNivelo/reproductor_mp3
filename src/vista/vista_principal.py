@@ -81,7 +81,7 @@ controlador.registrar_frame(contenedor_izquierda, es_ctk=True)
 # contenedor superior
 contenedor_superior = tk.Frame(contenedor_izquierda)
 contenedor_superior.configure(bg=fondo_claro)
-contenedor_superior.pack(fill="both", padx=10, pady=10)
+contenedor_superior.pack(fill="both", padx=10, pady=(10, 3))
 controlador.registrar_frame(contenedor_superior)
 
 # botones de la parte superior
@@ -134,7 +134,7 @@ controlador.registrar_botones("ocultar", boton_visibilidad)
 # contenedor de imagen de la canción
 contenedor_imagen = tk.Frame(contenedor_izquierda)
 contenedor_imagen.configure(bg=fondo_claro)
-contenedor_imagen.pack(fill="both", expand=True, padx=10, pady=10)
+contenedor_imagen.pack(fill="both", expand=True, padx=10, pady=3)
 controlador.registrar_frame(contenedor_imagen)
 
 # etiqueta de la imagen de la canción
@@ -156,7 +156,7 @@ controlador.registrar_etiqueta(imagen_cancion)
 # contenedor de información de la canción
 contenedor_informacion = tk.Frame(contenedor_izquierda)
 contenedor_informacion.configure(bg=fondo_claro)
-contenedor_informacion.pack(fill="both", padx=10, pady=10)
+contenedor_informacion.pack(fill="both", padx=10, pady=3)
 controlador.registrar_frame(contenedor_informacion)
 
 # etiqueta de información de la canción
@@ -198,7 +198,7 @@ controlador.registrar_etiqueta(etiqueta_album_cancion)
 # contenedor de botones de gustos
 contenedor_botones_gustos = tk.Frame(contenedor_izquierda)
 contenedor_botones_gustos.configure(bg=fondo_claro)
-contenedor_botones_gustos.pack(fill="both", padx=10, pady=10)
+contenedor_botones_gustos.pack(fill="both", padx=10, pady=3)
 controlador.registrar_frame(contenedor_botones_gustos)
 
 # panel de botones de gustos
@@ -241,7 +241,7 @@ controlador.registrar_botones("favorito", boton_favorito)
 # contenedor de espectro de audio
 contenedor_espectro = tk.Frame(contenedor_izquierda)
 contenedor_espectro.configure(height=90, bg=fondo_claro)
-contenedor_espectro.pack(fill="both", padx=10, pady=10)
+contenedor_espectro.pack(fill="both", padx=10, pady=3)
 contenedor_espectro.pack_propagate(False)
 controlador.registrar_frame(contenedor_espectro)
 
@@ -264,7 +264,7 @@ controlador.registrar_etiqueta(etiqueta_espectro)
 # contenedor de barra de progreso
 contenedor_progreso = tk.Frame(contenedor_izquierda)
 contenedor_progreso.configure(bg=fondo_claro)
-contenedor_progreso.pack(fill="both", padx=10, pady=10)
+contenedor_progreso.pack(fill="both", padx=10, pady=3)
 controlador.registrar_frame(contenedor_progreso)
 
 # panel de progreso
@@ -276,7 +276,7 @@ controlador.registrar_frame(panel_progreso)
 # barra de progreso
 barra_progreso = ctk.CTkProgressBar(panel_progreso)
 barra_progreso.configure(height=5, progress_color=fondo_oscuro, fg_color="lightgray")
-barra_progreso.pack(fill="x", pady=3)
+barra_progreso.pack(fill="x", padx=12, pady=(5, 0))
 controlador.registrar_progress_bar(barra_progreso)
 
 # panel de tiempo
@@ -315,7 +315,7 @@ controlador.registrar_etiqueta(etiqueta_tiempo_total)
 # contenedor de controles de reproducción
 contenedor_controles = tk.Frame(contenedor_izquierda)
 contenedor_controles.configure(bg=fondo_claro)
-contenedor_controles.pack(fill="both", padx=10, pady=10)
+contenedor_controles.pack(fill="both", padx=10, pady=3)
 controlador.registrar_frame(contenedor_controles)
 
 # panel de controles
@@ -449,7 +449,7 @@ controlador.registrar_botones("minimizar", boton_minimizar)
 # contenedor de barra de volumen
 contenedor_volumen = tk.Frame(contenedor_izquierda)
 contenedor_volumen.configure(bg=fondo_claro)
-contenedor_volumen.pack(fill="both", padx=10, pady=10)
+contenedor_volumen.pack(fill="both", padx=10, pady=(3, 10))
 controlador.registrar_frame(contenedor_volumen)
 
 # panel de volumen
@@ -584,9 +584,10 @@ controlador.registrar_combobox(combo_ordenamiento)
 
 # ------------------------------- Seccion de lista de canciones --------------------------------
 # contenedor de lista de canciones
-contenedor_lista_canciones = tk.Frame(contenedor_derecha)
-contenedor_lista_canciones.configure(bg=fondo_claro)
+contenedor_lista_canciones = tk.Frame(contenedor_derecha, relief="solid", borderwidth=1)
+contenedor_lista_canciones.configure(height=alto_tabview, bg=fondo_claro)
 contenedor_lista_canciones.pack(fill="both", expand=True, padx=10)
+contenedor_lista_canciones.pack_propagate(False)
 controlador.registrar_frame(contenedor_lista_canciones)
 
 # lista de canciones
@@ -615,16 +616,17 @@ paginas_canciones.add("Listas")
 tab_canciones = paginas_canciones.tab("Canciones")
 
 # Crear botón en la pestaña "Canciones"
-boton_en_canciones = ctk.CTkButton(
-    tab_canciones,
-    fg_color=boton_claro,
-    font=(letra, tamanio_letra_boton),
-    text_color=texto_claro,
-    text="Mi Botón",
-    hover_color=hover_claro,
-    command=lambda: print("Botón presionado"),
-)
-boton_en_canciones.pack(fill="both")
+for i in range(20):
+    boton_en_canciones = ctk.CTkButton(
+        tab_canciones,
+        fg_color=boton_claro,
+        font=(letra, tamanio_letra_boton),
+        text_color=texto_claro,
+        text=f"Cancion {i + 1}",
+        hover_color=hover_claro,
+        command=lambda: print("Botón presionado"),
+    )
+    boton_en_canciones.pack(fill="both", pady=2)
 
 
 # lista_canciones = tk.Listbox(
@@ -648,7 +650,7 @@ boton_en_canciones.pack(fill="both")
 # contenedor de botones inferiores
 contenedor_inferior = tk.Frame(contenedor_derecha)
 contenedor_inferior.configure(bg=fondo_claro)
-contenedor_inferior.pack(fill="both", padx=10, pady=10)
+contenedor_inferior.pack(fill="both", padx=10, pady=3)
 controlador.registrar_frame(contenedor_inferior)
 
 # panel de botones

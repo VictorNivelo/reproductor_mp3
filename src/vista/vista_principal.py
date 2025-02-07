@@ -49,6 +49,9 @@ alto_boton = 20
 # tamaño panel derecha
 ancho_panel_derecha = 450
 
+# bordes redondeados
+bordes_redondeados = 10
+
 # FUNCIONES DE LOS BOTONES
 
 
@@ -106,15 +109,21 @@ conenedor_principal.pack(fill="both", expand=True)
 # ======================================= Panel izquierda =======================================
 
 # contenedor izquierda
-contenedor_izquierda = tk.Frame(conenedor_principal)
-contenedor_izquierda.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
+# contenedor_izquierda = tk.Frame(conenedor_principal)
+# contenedor_izquierda.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
+# contenedor_izquierda.pack(side=tk.LEFT, fill="both", expand=True)
+
+# contenedor izquierda con customtkinter
+contenedor_izquierda = ctk.CTkFrame(
+    conenedor_principal, fg_color=claro, corner_radius=bordes_redondeados
+)
 contenedor_izquierda.pack(side=tk.LEFT, fill="both", expand=True)
 
 # ------------------------------- Seccion de controles superiores --------------------------------
 
 # contenedor superior
 contenedor_superior = tk.Frame(contenedor_izquierda)
-contenedor_superior.configure(padx=5, pady=5, bg=claro)
+contenedor_superior.configure(padx=5, bg=claro)
 contenedor_superior.pack(pady=5, fill="both")
 
 # botones de la parte superior
@@ -163,7 +172,7 @@ controlador.registrar_botones("ocultar", boton_visibilidad)
 
 # contenedor de imagen de la canción
 contenedor_imagen = tk.Frame(contenedor_izquierda)
-contenedor_imagen.configure(padx=10, relief="solid", borderwidth=1, bg=claro)
+contenedor_imagen.configure(padx=10, bg=claro)
 contenedor_imagen.pack(pady=5, fill="both", expand=True)
 
 # etiqueta de la imagen de la canción
@@ -260,7 +269,7 @@ controlador.registrar_botones("favorito", boton_favorito)
 # ------------------------------- Seccion de espectro de audio ----------------------------------
 # contenedor de espectro de audio
 contenedor_espectro = tk.Frame(contenedor_izquierda)
-contenedor_espectro.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro, height=90)
+contenedor_espectro.configure(padx=10, pady=5, bg=claro, height=90)
 contenedor_espectro.pack(pady=5, fill="both")
 contenedor_espectro.pack_propagate(False)
 
@@ -481,7 +490,7 @@ panel_elementos_volumen.pack(side=tk.LEFT, expand=True, fill="x", padx=5)
 barra_volumen = ctk.CTkSlider(panel_elementos_volumen)
 barra_volumen.configure(
     progress_color=oscuro,
-    fg_color="lightgray",
+    fg_color=claro_hover,
     button_color=oscuro,
     button_hover_color=oscuro_hover,
     number_of_steps=100,
@@ -508,19 +517,26 @@ etiqueta_porcentaje_volumen.pack(side="left")
 # ======================================== Panel derecha ========================================
 
 # contenedor de panel derecha
-contenedor_derecha = tk.Frame(conenedor_principal)
-contenedor_derecha.configure(
-    padx=10, pady=5, relief="solid", borderwidth=1, bg=claro, width=ancho_panel_derecha
+# contenedor_derecha = tk.Frame(conenedor_principal)
+# contenedor_derecha.configure(
+#     padx=10, pady=5, relief="solid", borderwidth=1, bg=claro, width=ancho_panel_derecha
+# )
+# contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(5, 0))
+# contenedor_derecha.pack_propagate(False)
+
+# contenedor de panel derecha con customtkinter
+contenedor_derecha = ctk.CTkFrame(
+    conenedor_principal, width=ancho_panel_derecha, fg_color=claro, corner_radius=bordes_redondeados
 )
-contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(5, 0))
+contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(6, 0))
 contenedor_derecha.pack_propagate(False)
 
 # ------------------------------ Seccion de busqueda y ordenamiento -----------------------------
 
 # contenedor de busqueda y ordenamiento
 contenedor_busqueda_ordenamiento = tk.Frame(contenedor_derecha)
-contenedor_busqueda_ordenamiento.configure(pady=5, bg=claro)
-contenedor_busqueda_ordenamiento.pack(fill="both")
+contenedor_busqueda_ordenamiento.configure(padx=5, bg=claro)
+contenedor_busqueda_ordenamiento.pack(pady=(5, 0), fill="both")
 
 # panel de busqueda y ordenamiento
 panel_elementos = tk.Frame(contenedor_busqueda_ordenamiento)
@@ -552,7 +568,7 @@ combo_ordenamiento = ctk.CTkComboBox(
     fg_color=claro,
     border_color=oscuro,
     border_width=1,
-    button_color=claro_boton,
+    button_color=claro,
     button_hover_color=claro_hover,
     dropdown_fg_color=claro,
     dropdown_hover_color=claro_hover,
@@ -568,7 +584,7 @@ combo_ordenamiento.pack(side=tk.LEFT, padx=(5, 0))
 # ------------------------------- Seccion de lista de canciones --------------------------------
 # contenedor de lista de canciones
 contenedor_lista_canciones = tk.Frame(contenedor_derecha)
-contenedor_lista_canciones.configure(bg=claro)
+contenedor_lista_canciones.configure(padx=5, bg=claro)
 contenedor_lista_canciones.pack(fill="both", expand=True)
 
 # lista de canciones
@@ -592,6 +608,20 @@ paginas_canciones.add("Me gusta")
 paginas_canciones.add("Favoritos")
 paginas_canciones.add("Listas")
 
+# boton de prueba en canciones
+tab_canciones = paginas_canciones.tab("Canciones")
+
+# Crear botón en la pestaña "Canciones"
+boton_en_canciones = ctk.CTkButton(
+    tab_canciones,
+    text="Mi Botón",
+    text_color=claro_texto,
+    font=(letra, tamanio_letra_boton),
+    fg_color=claro_boton,
+    hover_color=claro_hover,
+    command=lambda: print("Botón presionado"),
+)
+boton_en_canciones.pack(fill="both")
 
 # lista_canciones = tk.Listbox(
 #     contenedor_lista_canciones,
@@ -618,7 +648,7 @@ contenedor_inferior.pack(pady=5, fill="both")
 
 # panel de botones
 panel_botones = tk.Frame(contenedor_inferior)
-panel_botones.configure(bg=claro)
+panel_botones.configure(padx=5, bg=claro)
 panel_botones.pack(expand=True)
 
 # botones inferiores

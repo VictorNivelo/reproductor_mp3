@@ -24,6 +24,7 @@ bordes_redondeados = 10
 # ========== colores ==========
 # claro
 claro = "#ffffff"
+claro_segundario = "#f0f0f0"
 fondo_claro = "#f0f0f0"
 texto_claro = "#000000"
 boton_claro = "#c0c0c0"
@@ -31,6 +32,7 @@ hover_claro = "#e0e0e0"
 
 # oscuro
 oscuro = "#000000"
+oscuro_segundario = "#111111"
 fondo_oscuro = "#333333"
 texto_oscuro = "#ffffff"
 boton_oscuro = "#666666"

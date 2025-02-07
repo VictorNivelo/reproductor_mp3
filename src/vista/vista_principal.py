@@ -15,6 +15,39 @@ def cambiar_tema():
     controlador.cambiar_tema()
 
 
+# FUNCIONES DE LOS SCROLLS
+
+
+# Funciones para el scroll de la lista de canciones del panel
+def scroll_frame_configuracion(event):
+    canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
+    # Obtener dimensiones
+    contenido_altura = panel_botones_canciones.winfo_reqheight()
+    canvas_altura = canvas_canciones.winfo_height()
+    # Habilitar o deshabilitar el scroll
+    if contenido_altura <= canvas_altura:
+        canvas_canciones.unbind_all("<MouseWheel>")
+    else:
+        canvas_canciones.bind_all("<MouseWheel>", scroll_raton_configuracion)
+
+
+# Funciones para el scroll de la lista de canciones del canvas
+def scroll_canvas_configuracion(event):
+    canvas_width = event.width
+    canvas_canciones.itemconfig(canvas_window, width=canvas_width)
+    # Verificar scroll después de redimensionar
+    scroll_frame_configuracion(None)
+
+
+# Funciones para el scroll de la lista de canciones con el ratón
+def scroll_raton_configuracion(event):
+    contenido_altura = panel_botones_canciones.winfo_reqheight()
+    canvas_altura = canvas_canciones.winfo_height()
+
+    if contenido_altura > canvas_altura:
+        canvas_canciones.yview_scroll(int(-1 * (event.delta / 120)), "units")
+
+
 # ====================================== Ventana principal ======================================
 
 # Crear ventana
@@ -449,7 +482,7 @@ controlador.registrar_botones("minimizar", boton_minimizar)
 # contenedor de barra de volumen
 contenedor_volumen = tk.Frame(contenedor_izquierda)
 contenedor_volumen.configure(bg=fondo_claro)
-contenedor_volumen.pack(fill="both", padx=10, pady=(3, 10))
+contenedor_volumen.pack(fill="both", padx=10, pady=(7, 10))
 controlador.registrar_frame(contenedor_volumen)
 
 # panel de volumen
@@ -584,7 +617,10 @@ controlador.registrar_combobox(combo_ordenamiento)
 
 # ------------------------------- Seccion de lista de canciones --------------------------------
 # contenedor de lista de canciones
-contenedor_lista_canciones = tk.Frame(contenedor_derecha, relief="solid", borderwidth=1)
+contenedor_lista_canciones = tk.Frame(
+    contenedor_derecha
+    #   , relief="solid", borderwidth=1
+)
 contenedor_lista_canciones.configure(height=alto_tabview, bg=fondo_claro)
 contenedor_lista_canciones.pack(fill="both", expand=True, padx=10)
 contenedor_lista_canciones.pack_propagate(False)
@@ -605,6 +641,7 @@ paginas_canciones = ctk.CTkTabview(
 paginas_canciones.pack(fill="both", expand=True)
 controlador.registrar_frame(paginas_canciones, es_ctk=True)
 
+# paginas de la lista de canciones
 paginas_canciones.add("Canciones")
 paginas_canciones.add("Álbumes")
 paginas_canciones.add("Artistas")
@@ -615,10 +652,25 @@ paginas_canciones.add("Listas")
 # boton de prueba en canciones
 tab_canciones = paginas_canciones.tab("Canciones")
 
-# Crear botón en la pestaña "Canciones"
-for i in range(20):
+# Crear canvas sin scrollbar visible
+canvas_canciones = tk.Canvas(tab_canciones, bg=hover_claro, highlightthickness=0)
+canvas_canciones.pack(side="left", fill="both", expand=True)
+
+# Crear frame para los botones dentro del canvas
+panel_botones_canciones = tk.Frame(canvas_canciones, bg=hover_claro)
+
+# Vincular eventos
+panel_botones_canciones.bind("<Configure>", scroll_frame_configuracion)
+canvas_canciones.bind("<Configure>", scroll_canvas_configuracion)
+canvas_canciones.bind_all("<MouseWheel>", scroll_raton_configuracion)
+
+# Crear ventana en el canvas para el frame
+canvas_window = canvas_canciones.create_window((0, 0), window=panel_botones_canciones, anchor="nw")
+
+# Crear botones en el panel_botones_canciones
+for i in range(10):
     boton_en_canciones = ctk.CTkButton(
-        tab_canciones,
+        panel_botones_canciones,
         fg_color=boton_claro,
         font=(letra, tamanio_letra_boton),
         text_color=texto_claro,
@@ -627,6 +679,7 @@ for i in range(20):
         command=lambda: print("Botón presionado"),
     )
     boton_en_canciones.pack(fill="both", pady=2)
+    controlador.registrar_botones(f"cancion_{i}", boton_en_canciones)
 
 
 # lista_canciones = tk.Listbox(

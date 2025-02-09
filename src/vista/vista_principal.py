@@ -4,15 +4,135 @@ import customtkinter as ctk
 import tkinter as tk
 import os
 
-# tema inicial establecido como claro
-tema_inicial = "claro"
-
 # FUNCIONES DE LOS BOTONES
 
 
-# llama a la función cambiar_tema del controlador
 def cambiar_tema():
+    global tema_actual
+    tema_actual = "oscuro" if tema_actual == "claro" else "claro"
     controlador.cambiar_tema()
+    # cambiar iconos de los botones
+    if tema_actual == "oscuro":
+        controlador.registrar_botones("modo_claro", boton_tema)
+        # estado de reproducción
+        if reproduciendo:
+            controlador.registrar_botones("pausa", boton_reproducir)
+        else:
+            controlador.registrar_botones("reproducir", boton_reproducir)
+        # orden de reproducción
+        if orden:
+            controlador.registrar_botones("aleatorio", boton_aleatorio)
+        else:
+            controlador.registrar_botones("orden", boton_aleatorio)
+        # repeticion de reproducción
+        if repeticion == 0:
+            controlador.registrar_botones("no_repetir", boton_repetir)
+        elif repeticion == 1:
+            controlador.registrar_botones("repetir_actual", boton_repetir)
+        else:
+            controlador.registrar_botones("repetir_todo", boton_repetir)
+        # volumen
+        if silenciado:
+            controlador.registrar_botones("silencio", boton_silenciar)
+        else:
+            if volumen == 0:
+                controlador.registrar_botones("sin_volumen", boton_silenciar)
+            elif volumen <= 33:
+                controlador.registrar_botones("volumen_bajo", boton_silenciar)
+            elif volumen <= 66:
+                controlador.registrar_botones("volumen_medio", boton_silenciar)
+            else:
+                controlador.registrar_botones("volumen_alto", boton_silenciar)
+    else:
+        controlador.registrar_botones("modo_oscuro", boton_tema)
+        # estado de reproducción
+        if reproduciendo:
+            controlador.registrar_botones("pausa", boton_reproducir)
+        else:
+            controlador.registrar_botones("reproducir", boton_reproducir)
+        # orden de reproducción
+        if orden:
+            controlador.registrar_botones("aleatorio", boton_aleatorio)
+        else:
+            controlador.registrar_botones("orden", boton_aleatorio)
+        # repeticion de reproducción
+        if repeticion == 0:
+            controlador.registrar_botones("no_repetir", boton_repetir)
+        elif repeticion == 1:
+            controlador.registrar_botones("repetir_actual", boton_repetir)
+        else:
+            controlador.registrar_botones("repetir_todo", boton_repetir)
+        # volumen
+        if silenciado:
+            controlador.registrar_botones("silencio", boton_silenciar)
+        else:
+            if volumen == 0:
+                controlador.registrar_botones("sin_volumen", boton_silenciar)
+            elif volumen <= 33:
+                controlador.registrar_botones("volumen_bajo", boton_silenciar)
+            elif volumen <= 66:
+                controlador.registrar_botones("volumen_medio", boton_silenciar)
+            else:
+                controlador.registrar_botones("volumen_alto", boton_silenciar)
+
+
+# Función para cambiar el estado de reproducción
+def cambiar_estado_reproduccion():
+    global reproduciendo
+    reproduciendo = not reproduciendo
+    if reproduciendo:
+        controlador.registrar_botones("pausa", boton_reproducir)
+    else:
+        controlador.registrar_botones("reproducir", boton_reproducir)
+
+
+# Función para cambiar el volumen
+def cambiar_volumen(event=None):
+    global volumen, silenciado
+    if not silenciado:
+        nuevo_volumen = int(barra_volumen.get())
+        volumen = nuevo_volumen
+        etiqueta_porcentaje_volumen.configure(text=f"{volumen}%")
+        if volumen == 0:
+            controlador.registrar_botones("sin_volumen", boton_silenciar)
+        elif volumen <= 33:
+            controlador.registrar_botones("volumen_bajo", boton_silenciar)
+        elif volumen <= 66:
+            controlador.registrar_botones("volumen_medio", boton_silenciar)
+        else:
+            controlador.registrar_botones("volumen_alto", boton_silenciar)
+
+
+# Función para cambiar el estado de silencio
+def cambiar_silencio():
+    global silenciado
+    silenciado = not silenciado
+    if silenciado:
+        controlador.registrar_botones("silencio", boton_silenciar)
+    else:
+        cambiar_volumen()
+
+
+# Función para cambiar el orden de reproducción
+def cambiar_orden():
+    global orden
+    orden = not orden
+    if orden:
+        controlador.registrar_botones("aleatorio", boton_aleatorio)
+    else:
+        controlador.registrar_botones("orden", boton_aleatorio)
+
+
+# Función para cambiar la repetición de reproducción
+def cambiar_repeticion():
+    global repeticion
+    repeticion = (repeticion + 1) % 3
+    if repeticion == 0:
+        controlador.registrar_botones("no_repetir", boton_repetir)
+    elif repeticion == 1:
+        controlador.registrar_botones("repetir_actual", boton_repetir)
+    else:
+        controlador.registrar_botones("repetir_todo", boton_repetir)
 
 
 # FUNCIONES DE LOS SCROLLS
@@ -367,6 +487,7 @@ boton_aleatorio = ctk.CTkButton(
     text_color=texto_claro,
     text="",
     hover_color=hover_claro,
+    command=cambiar_orden,
 )
 boton_aleatorio.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("aleatorio", boton_aleatorio)
@@ -380,6 +501,7 @@ boton_repetir = ctk.CTkButton(
     text_color=texto_claro,
     text="",
     hover_color=hover_claro,
+    command=cambiar_repeticion,
 )
 boton_repetir.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("no_repetir", boton_repetir)
@@ -418,6 +540,7 @@ boton_reproducir = ctk.CTkButton(
     text_color=texto_claro,
     text="",
     hover_color=hover_claro,
+    command=cambiar_estado_reproduccion,
 )
 boton_reproducir.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("reproducir", boton_reproducir)
@@ -501,6 +624,7 @@ boton_silenciar = ctk.CTkButton(
     text_color=texto_claro,
     text="",
     hover_color=hover_claro,
+    command=cambiar_silencio,
 )
 boton_silenciar.pack(side=tk.LEFT)
 controlador.registrar_botones("silencio", boton_silenciar)
@@ -518,7 +642,11 @@ barra_volumen.configure(
     button_color=fondo_oscuro,
     button_hover_color=hover_oscuro,
     number_of_steps=100,
+    from_=0,
+    to=100,
+    command=cambiar_volumen,
 )
+barra_volumen.set(volumen)
 barra_volumen.pack(side=tk.LEFT, fill="x", expand=True, padx=(0, 5))
 controlador.registrar_slider(barra_volumen)
 
@@ -528,7 +656,7 @@ etiqueta_porcentaje_volumen = ctk.CTkLabel(
     fg_color=fondo_claro,
     font=(letra, tamanio_letra_volumen),
     text_color=texto_claro,
-    text="50%",
+    text=f"{volumen}%",
 )
 etiqueta_porcentaje_volumen.pack(side="left")
 controlador.registrar_etiqueta(etiqueta_porcentaje_volumen)
@@ -743,6 +871,9 @@ controlador.registrar_botones("agregar_carpeta", boton_agregar_directorio)
 
 
 # ===============================================================================================
+
+# muestre el icono del volumen actual de la barra de volumen
+cambiar_volumen(None)
 
 # mostrar la ventana
 ventana_principal.mainloop()

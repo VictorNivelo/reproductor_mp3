@@ -53,3 +53,11 @@ tamanio_letra_etiqueta = 13
 tamanio_letra_volumen = 13
 
 # =============================
+
+# ==== variables de estado ====
+tema_actual = "claro"
+reproduciendo = False
+silenciado = False
+orden = True
+repeticion = 0
+volumen = 100

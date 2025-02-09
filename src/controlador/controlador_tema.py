@@ -25,6 +25,7 @@ class Controlador_tema:
     def registrar_frame(self, frame, es_ctk=False):
         self.frames.append((frame, es_ctk))
 
+    # registrar etiquetas
     def registrar_etiqueta(self, etiqueta):
         self.etiquetas.append(etiqueta)
 
@@ -71,6 +72,7 @@ class Controlador_tema:
         for etiqueta in self.etiquetas:
             etiqueta.configure(fg_color=color_fondo, text_color=color_texto)
 
+    # actualizar colores de las entradas
     def actualizar_colores_entradas(self):
         color_fondo = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro
         color_texto = texto_oscuro if self.tema_interfaz == "oscuro" else texto_claro
@@ -109,6 +111,7 @@ class Controlador_tema:
         for boton in self.botones.values():
             boton.configure(fg_color=color_fondo, text_color=color_texto, hover_color=color_hover)
 
+    # actualizar colores de los sliders
     def actualizar_colores_sliders(self):
         color_fondo = hover_oscuro if self.tema_interfaz == "oscuro" else hover_claro
         color_progreso = texto_oscuro if self.tema_interfaz == "oscuro" else fondo_oscuro
@@ -129,6 +132,7 @@ class Controlador_tema:
         for progress_bar in self.progress_bars:
             progress_bar.configure(fg_color=color_fondo, progress_color=color_progreso)
 
+    # actualizar colores de los tabviews
     def actualizar_colores_tabviews(self):
         color_fondo = hover_oscuro if self.tema_interfaz == "oscuro" else hover_claro
         color_boton = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro

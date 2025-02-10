@@ -1,12 +1,10 @@
-from vista.constantes import alto_boton, ancho_boton
+from vista.constantes import alto_boton, ancho_boton, obtener_ruta_iconos
 import customtkinter as ctk
 from PIL import Image
-import os
 
 
 def cargar_iconos(tema="claro"):
     iconos = {}
-    ruta_iconos = os.path.join("recursos", "iconos", tema)
     archivos_iconos = {
         # botones de gustos
         "me_gusta": "me_gusta",
@@ -51,10 +49,10 @@ def cargar_iconos(tema="claro"):
     for nombre, archivo in archivos_iconos.items():
         try:
             nombre_archivo = f"{archivo}_{tema}.png"
-            ruta = os.path.join(ruta_iconos, nombre_archivo)
+            ruta_iconos = obtener_ruta_iconos(archivo, tema)
             iconos[nombre] = ctk.CTkImage(
-                light_image=Image.open(ruta),
-                dark_image=Image.open(ruta),
+                light_image=Image.open(ruta_iconos),
+                dark_image=Image.open(ruta_iconos),
                 size=(ancho_boton, alto_boton),
             )
         except Exception as e:

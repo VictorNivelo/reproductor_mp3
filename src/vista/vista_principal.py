@@ -2,7 +2,6 @@ from controlador.controlador_tema import Controlador_tema
 from vista.constantes import *
 import customtkinter as ctk
 import tkinter as tk
-import os
 
 # FUNCIONES DE LOS BOTONES
 
@@ -174,7 +173,7 @@ def scroll_raton_configuracion(event):
 ventana_principal = tk.Tk()
 
 # icono de la ventana
-icono = tk.PhotoImage(file=os.path.join(ruta_iconos, "reproductor.png"))
+icono = tk.PhotoImage(file=ruta_icono_aplicacion)
 
 # establecer el icono de la ventana
 ventana_principal.iconphoto(True, icono)

@@ -134,6 +134,22 @@ def cambiar_repeticion():
         controlador.registrar_botones("repetir_todo", boton_repetir)
 
 
+# Función para cambiar la visibilidad del panel
+def cambiar_visibilidad():
+    global panel_visible
+    panel_visible = not panel_visible
+    if panel_visible:
+        # Mostrar el panel
+        contenedor_derecha.configure(width=ancho_panel_derecha)
+        contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(5, 0))
+        controlador.registrar_botones("ocultar", boton_visibilidad)
+    else:
+        # Ocultar el panel
+        contenedor_derecha.pack_forget()
+        contenedor_derecha.configure(width=0)
+        controlador.registrar_botones("mostrar", boton_visibilidad)
+
+
 # FUNCIONES DE LOS SCROLLS
 
 
@@ -274,6 +290,7 @@ boton_visibilidad = ctk.CTkButton(
     text_color=texto_claro,
     text="",
     hover_color=hover_claro,
+    command=cambiar_visibilidad,
 )
 boton_visibilidad.pack(side=tk.RIGHT)
 controlador.registrar_botones("ocultar", boton_visibilidad)
@@ -680,11 +697,18 @@ controlador.registrar_etiqueta(etiqueta_porcentaje_volumen)
 # contenedor de panel derecha con customtkinter
 contenedor_derecha = ctk.CTkFrame(
     conenedor_principal,
-    width=ancho_panel_derecha,
+    width=ancho_panel_derecha if panel_visible else 0,
     fg_color=fondo_claro,
     corner_radius=bordes_redondeados,
 )
-contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(5, 0))
+
+# Configurar visibilidad inicial
+if panel_visible:
+    contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(5, 0))
+    controlador.registrar_botones("ocultar", boton_visibilidad)
+else:
+    controlador.registrar_botones("mostrar", boton_visibilidad)
+
 contenedor_derecha.pack_propagate(False)
 controlador.registrar_frame(contenedor_derecha, es_ctk=True)
 

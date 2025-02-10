@@ -73,6 +73,7 @@ tema_actual = "claro"
 
 # estados de los botones
 reproduciendo = False
+panel_visible = True
 silenciado = False
 orden = True
 repeticion = 0

@@ -1,4 +1,3 @@
-# ruta de los iconos
 import os
 
 # ruta del icono de la aplicacion

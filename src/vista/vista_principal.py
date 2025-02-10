@@ -656,7 +656,7 @@ etiqueta_porcentaje_volumen = ctk.CTkLabel(
     fg_color=fondo_claro,
     font=(letra, tamanio_letra_volumen),
     text_color=texto_claro,
-    text=f"{volumen}%",
+    text=f"{volumen} %",
 )
 etiqueta_porcentaje_volumen.pack(side="left")
 controlador.registrar_etiqueta(etiqueta_porcentaje_volumen)

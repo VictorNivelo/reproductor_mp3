@@ -1,11 +1,11 @@
-from controlador.controlador_tema import Controlador_tema
-from vista import vista_principal
+from controlador.controlador_tema import controlador_tema
+from vista.vista_principal import ventana_principal
 
 
 def main():
-    controlador = Controlador_tema()
-    vista = vista_principal(controlador)
-    vista.iniciar()
+    # controlador_tema = controlador_tema()
+    ventana = ventana_principal
+    ventana.mainloop()
 
 
 if __name__ == "__main__":

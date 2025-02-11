@@ -2,8 +2,12 @@ import os
 
 # ======================== constantes de la vista ========================
 # tamaño de la pantalla
-ancho = 1280
-alto = 720
+ancho_principal = 1280
+alto_principal = 720
+
+# tamaño de la ventana de configuración
+ancho_configuracion = 400
+alto_configuracion = 500
 
 # tamaño panel derecha
 ancho_panel_derecha = 435
@@ -30,26 +34,29 @@ ruta_iconos = os.path.join(ruta_recursos, "iconos")
 ruta_imagenes = os.path.join(ruta_recursos, "imagenes")
 
 # rutas del icono de la aplicación
-ruta_icono_aplicacion = os.path.join(ruta_iconos, "reproductor.png")
+ruta_icono_aplicacion_claro = os.path.join(ruta_iconos, "reproductor_claro.png")
+ruta_icono_aplicacion_oscuro = os.path.join(ruta_iconos, "reproductor_oscuro.png")
 
 # ========================================================================
 
 # ========================== colores y fuentes ===========================
 # claro
 claro = "#ffffff"
-claro_segundario = "#f0f0f0"
-fondo_claro = "#f0f0f0"
-texto_claro = "#000000"
-boton_claro = "#c0c0c0"
-hover_claro = "#e0e0e0"
+claro_segundario = "#f8f8f8"
+fondo_principal = "#dedede"
+fondo_claro = "#f2f2f2"
+texto_claro = "#1a1a1a"
+boton_claro = "#e6e6e6"
+hover_claro = "#d9d9d9"
 
 # oscuro
-oscuro = "#000000"
-oscuro_segundario = "#111111"
-fondo_oscuro = "#333333"
+oscuro = "#0a0a0a"
+oscuro_segundario = "#141414"
+fondo_principal_oscuro = "#181818"
+fondo_oscuro = "#1f1f1f"
 texto_oscuro = "#ffffff"
-boton_oscuro = "#666666"
-hover_oscuro = "#444444"
+boton_oscuro = "#2d2d2d"
+hover_oscuro = "#383838"
 
 # ========================================================================
 

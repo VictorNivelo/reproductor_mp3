@@ -2,7 +2,7 @@ from vista.utiles import cargar_iconos
 from vista.constantes import *
 
 
-class Controlador_tema:
+class controlador_tema:
     def __init__(self):
         self.tema_interfaz = "claro"
         self.tema_iconos = "oscuro"
@@ -22,8 +22,8 @@ class Controlador_tema:
         self.mostrar_icono_boton(nombre)
 
     # registrar frames
-    def registrar_frame(self, frame, es_ctk=False):
-        self.frames.append((frame, es_ctk))
+    def registrar_frame(self, frame, es_ctk=False, es_principal=False):
+        self.frames.append((frame, es_ctk, es_principal))
 
     # registrar etiquetas
     def registrar_etiqueta(self, etiqueta):
@@ -59,8 +59,13 @@ class Controlador_tema:
     # actualizar colores de los frames
     def actualizar_colores_frames(self):
         color_fondo = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro
-        for frame, es_ctk in self.frames:
-            if es_ctk:
+        color_principal = (
+            fondo_principal_oscuro if self.tema_interfaz == "oscuro" else fondo_principal
+        )
+        for frame, es_ctk, es_principal in self.frames:
+            if es_principal:
+                frame.configure(bg=color_principal)
+            elif es_ctk:
                 frame.configure(fg_color=color_fondo)
             else:
                 frame.configure(bg=color_fondo)
@@ -134,18 +139,19 @@ class Controlador_tema:
 
     # actualizar colores de los tabviews
     def actualizar_colores_tabviews(self):
-        color_fondo = hover_oscuro if self.tema_interfaz == "oscuro" else hover_claro
-        color_boton = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro
-        color_boton_seleccionado = hover_oscuro if self.tema_interfaz == "oscuro" else hover_claro
+        color_fondo = oscuro if self.tema_interfaz == "oscuro" else claro
+        color_barra = oscuro_segundario if self.tema_interfaz == "oscuro" else claro_segundario
+        color_pestaña = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro
+        color_hover = hover_oscuro if self.tema_interfaz == "oscuro" else hover_claro
         color_texto = texto_oscuro if self.tema_interfaz == "oscuro" else texto_claro
         for tabview in self.tabviews:
             tabview.configure(
                 fg_color=color_fondo,
-                segmented_button_fg_color=color_boton,
-                segmented_button_selected_color=color_boton_seleccionado,
-                segmented_button_selected_hover_color=color_boton_seleccionado,
-                segmented_button_unselected_color=color_boton,
-                segmented_button_unselected_hover_color=color_boton_seleccionado,
+                segmented_button_fg_color=color_barra,
+                segmented_button_selected_color=color_pestaña,
+                segmented_button_selected_hover_color=color_hover,
+                segmented_button_unselected_color=color_hover,
+                segmented_button_unselected_hover_color=color_pestaña,
                 text_color=color_texto,
             )
 

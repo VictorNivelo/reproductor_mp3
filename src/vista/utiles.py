@@ -1,5 +1,7 @@
 from vista.constantes import alto_boton, ancho_boton, obtener_ruta_iconos
+from vista.constantes import *
 import customtkinter as ctk
+import tkinter as tk
 from PIL import Image
 
 
@@ -59,3 +61,23 @@ def cargar_iconos(tema="claro"):
             print(f"Error al cargar el icono {nombre_archivo}: {e}")
             iconos[nombre] = None
     return iconos
+
+
+def establecer_icono_tema(ventana, tema="claro"):
+    try:
+        # Para Windows
+        if tema == "claro":
+            # Si el tema es claro, ponemos el icono oscuro
+            ventana.iconbitmap(ruta_icono_aplicacion_oscuro.replace(".png", ".ico"))
+        else:
+            # Si el tema es oscuro, ponemos el icono claro
+            ventana.iconbitmap(ruta_icono_aplicacion_claro.replace(".png", ".ico"))
+    except:
+        # Para otros sistemas o como respaldo usando PhotoImage
+        if tema == "claro":
+            # Si el tema es claro, ponemos el icono oscuro
+            icono = tk.PhotoImage(file=ruta_icono_aplicacion_oscuro)
+        else:
+            # Si el tema es oscuro, ponemos el icono claro
+            icono = tk.PhotoImage(file=ruta_icono_aplicacion_claro)
+        ventana.iconphoto(True, icono)

@@ -1,4 +1,6 @@
-from controlador.controlador_tema import Controlador_tema
+from vista.componentes.configuracion import ventana_configuracion
+from controlador.controlador_tema import controlador_tema
+from vista.utiles import establecer_icono_tema
 from vista.constantes import *
 import customtkinter as ctk
 import tkinter as tk
@@ -9,6 +11,12 @@ import tkinter as tk
 def cambiar_tema():
     global tema_actual
     tema_actual = "oscuro" if tema_actual == "claro" else "claro"
+    if tema_actual == "oscuro":
+        ctk.set_appearance_mode("dark")
+        cambiar_icono_tema("oscuro")
+    else:
+        ctk.set_appearance_mode("light")
+        cambiar_icono_tema("claro")
     controlador.cambiar_tema()
     # cambiar iconos de los botones
     if tema_actual == "oscuro":
@@ -126,10 +134,13 @@ def cambiar_orden():
 def cambiar_repeticion():
     global repeticion
     repeticion = (repeticion + 1) % 3
+    # icono de no repetir
     if repeticion == 0:
         controlador.registrar_botones("no_repetir", boton_repetir)
+    # icono de repetir actual
     elif repeticion == 1:
         controlador.registrar_botones("repetir_actual", boton_repetir)
+    # icono de repetir todo
     else:
         controlador.registrar_botones("repetir_todo", boton_repetir)
 
@@ -148,6 +159,16 @@ def cambiar_visibilidad():
         contenedor_derecha.pack_forget()
         contenedor_derecha.configure(width=0)
         controlador.registrar_botones("mostrar", boton_visibilidad)
+
+
+# Función para establecer el icono del tema
+def cambiar_icono_tema(tema="claro"):
+    establecer_icono_tema(ventana_principal, tema)
+
+
+# Función para abrir la ventana de configuración
+def abrir_configuracion():
+    ventana_configuracion(ventana_principal, controlador)
 
 
 # FUNCIONES DE LOS SCROLLS
@@ -186,27 +207,27 @@ def scroll_raton_configuracion(event):
 # ====================================== Ventana principal ======================================
 
 # Crear ventana
-ventana_principal = tk.Tk()
+ventana_principal = ctk.CTk()
+
+# apariencia de la interfaz por defecto es claro
+ctk.set_appearance_mode("light")
 
 # icono de la ventana
-icono = tk.PhotoImage(file=ruta_icono_aplicacion)
-
-# establecer el icono de la ventana
-ventana_principal.iconphoto(True, icono)
+cambiar_icono_tema()
 
 # controlador de tema
-controlador = Controlador_tema()
+controlador = controlador_tema()
 
 # obtener las dimensiones de la pantalla
 ancho_pantalla = ventana_principal.winfo_screenwidth()
 alto_pantalla = ventana_principal.winfo_screenheight()
 
 # calcular la posición x,y para la ventana
-posicion_ancho = (ancho_pantalla - ancho) // 2
-posicion_alto = (alto_pantalla - alto) // 2
+posicion_ancho = (ancho_pantalla - ancho_principal) // 2
+posicion_alto = (alto_pantalla - alto_principal) // 3
 
 # establecer la geometría de la ventana
-ventana_principal.geometry(f"{ancho}x{alto}+{posicion_ancho}+{posicion_alto}")
+ventana_principal.geometry(f"{ancho_principal}x{alto_principal}+{posicion_ancho}+{posicion_alto}")
 
 # título de la ventana
 ventana_principal.title("Reproductor de música")
@@ -219,12 +240,12 @@ ventana_principal.title("Reproductor de música")
 # contenedor principal
 conenedor_principal = tk.Frame(ventana_principal)
 conenedor_principal.configure(
-    bg="#%02x%02x%02x"
-    % tuple(max(0, int(fondo_claro.lstrip("#")[i : i + 2], 16) - 20) for i in (0, 2, 4)),
+    bg=fondo_principal,
     padx=5,
     pady=5,
 )
 conenedor_principal.pack(fill="both", expand=True)
+controlador.registrar_frame(conenedor_principal, es_principal=True)
 
 # ===============================================================================================
 
@@ -263,6 +284,7 @@ boton_ajustes = ctk.CTkButton(
     text_color=texto_claro,
     text="",
     hover_color=hover_claro,
+    command=abrir_configuracion,
 )
 boton_ajustes.pack(side=tk.RIGHT, padx=(5, 0))
 controlador.registrar_botones("ajustes", boton_ajustes)
@@ -445,7 +467,7 @@ controlador.registrar_frame(panel_progreso)
 # barra de progreso
 barra_progreso = ctk.CTkProgressBar(panel_progreso)
 barra_progreso.configure(height=5, progress_color=fondo_oscuro, fg_color="lightgray")
-barra_progreso.pack(fill="x", padx=12, pady=(5, 0))
+barra_progreso.pack(fill="x", padx=12, pady=(5, 5))
 controlador.registrar_progress_bar(barra_progreso)
 
 # panel de tiempo
@@ -647,7 +669,7 @@ controlador.registrar_botones("silencio", boton_silenciar)
 
 # panel de elementos de volumen
 panel_elementos_volumen = tk.Frame(panel_volumen, bg=fondo_claro)
-panel_elementos_volumen.pack(side=tk.LEFT, fill="x", expand=True, padx=5)
+panel_elementos_volumen.pack(side=tk.LEFT, fill="x", expand=True)
 controlador.registrar_frame(panel_elementos_volumen)
 
 # barra de volumen
@@ -669,6 +691,7 @@ controlador.registrar_slider(barra_volumen)
 # etiqueta de porcentaje de volumen
 etiqueta_porcentaje_volumen = ctk.CTkLabel(
     panel_elementos_volumen,
+    width=35,
     fg_color=fondo_claro,
     font=(letra, tamanio_letra_volumen),
     text_color=texto_claro,
@@ -781,16 +804,16 @@ controlador.registrar_frame(contenedor_lista_canciones)
 
 paginas_canciones = ctk.CTkTabview(
     contenedor_lista_canciones,
-    fg_color=hover_claro,
-    segmented_button_fg_color=fondo_claro,
-    segmented_button_selected_color=hover_claro,
+    fg_color=claro,
+    segmented_button_fg_color=claro_segundario,
+    segmented_button_selected_color=fondo_claro,
     segmented_button_selected_hover_color=hover_claro,
-    segmented_button_unselected_color=fondo_claro,
-    segmented_button_unselected_hover_color=hover_claro,
+    segmented_button_unselected_color=hover_claro,
+    segmented_button_unselected_hover_color=fondo_claro,
     text_color=texto_claro,
 )
 paginas_canciones.pack(fill="both", expand=True)
-controlador.registrar_frame(paginas_canciones, es_ctk=True)
+controlador.registrar_tabview(paginas_canciones)
 
 # paginas de la lista de canciones
 paginas_canciones.add("Canciones")
@@ -804,11 +827,12 @@ paginas_canciones.add("Listas")
 tab_canciones = paginas_canciones.tab("Canciones")
 
 # Crear canvas sin scrollbar visible
-canvas_canciones = tk.Canvas(tab_canciones, bg=hover_claro, highlightthickness=0)
+canvas_canciones = tk.Canvas(tab_canciones, highlightthickness=0)
 canvas_canciones.pack(side="left", fill="both", expand=True)
 
 # Crear frame para los botones dentro del canvas
-panel_botones_canciones = tk.Frame(canvas_canciones, bg=hover_claro)
+panel_botones_canciones = tk.Frame(canvas_canciones, bg=claro_segundario)
+controlador.registrar_frame(panel_botones_canciones)
 
 # Vincular eventos
 panel_botones_canciones.bind("<Configure>", scroll_frame_configuracion)
@@ -819,9 +843,10 @@ canvas_canciones.bind_all("<MouseWheel>", scroll_raton_configuracion)
 canvas_window = canvas_canciones.create_window((0, 0), window=panel_botones_canciones, anchor="nw")
 
 # Crear botones en el panel_botones_canciones
-for i in range(10):
+for i in range(30):
     boton_en_canciones = ctk.CTkButton(
         panel_botones_canciones,
+        height=27,
         fg_color=boton_claro,
         font=(letra, tamanio_letra_boton),
         text_color=texto_claro,

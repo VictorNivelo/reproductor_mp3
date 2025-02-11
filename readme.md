@@ -6,4 +6,12 @@
 
 ## Interfaz grafica
 
-![Captura de la interfaz](recursos/imagenes/interfaz.png)
+### Modo claro
+
+![Captura de la interfaz modo claro](recursos/imagenes/interfaz_claro.png)
+
+### Modo oscuro
+
+![Captura de la interfaz modo oscuro](recursos/imagenes/interfaz_oscuro.png)
+
+### Ajustes

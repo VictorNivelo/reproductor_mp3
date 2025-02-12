@@ -1,4 +1,3 @@
-from vista.utiles import establecer_icono_tema
 from vista.constantes import *
 import customtkinter as ctk
 
@@ -17,7 +16,16 @@ class ventana_configuracion:
         ctk.set_appearance_mode("dark" if es_oscuro else "light")
 
         # Establecer el icono según el tema
-        establecer_icono_tema(self.ventana_configuracion, "oscuro" if es_oscuro else "claro")
+
+        """
+        establecer el icono de la ventana de configuración después de 200 ms
+        uso cuando no se modifica el CTkToplevel de customtkinter
+        """
+        # if system() == "Windows":
+        #     self.ventana_configuracion.after(
+        #         200,
+        #         lambda: self.ventana_configuracion.iconbitmap("recursos/iconos/reproductor.ico"),
+        #     )
 
         color_fondo = fondo_oscuro if self.controlador.tema_interfaz == "oscuro" else fondo_claro
 
@@ -35,7 +43,7 @@ class ventana_configuracion:
         self._crear_widgets()
         self.ventana_configuracion.configure(bg=color_fondo)
         # Evento para cerrar la ventana de configuración
-        self.ventana_configuracion.protocol("WM_DELETE_WINDOW", self._cerrar_ventana)
+        self.ventana_configuracion.protocol("WM_DELETE_WINDOW", self.cerrar_ventana)
 
     def _crear_widgets(self):
         # colores de componentes
@@ -71,7 +79,7 @@ class ventana_configuracion:
                 text_color=color_texto,
                 hover_color=color_hover,
                 height=35,
-                command=lambda s=seccion: self._abrir_seccion(s),
+                command=lambda s=seccion: self.abrir_seccion(s),
             )
             boton_seccion.pack(fill="x", pady=3, padx=5)
             self.widgets.append(boton_seccion)
@@ -84,17 +92,17 @@ class ventana_configuracion:
             text_color=color_texto,
             hover_color=color_hover,
             height=35,
-            command=self._cerrar_ventana,
+            command=self.cerrar_ventana,
         )
         boton_cerrar.pack(fill="x", pady=(200, 0), padx=5)
         self.widgets.append(boton_cerrar)
 
     # abrir sección de configuración
-    def _abrir_seccion(self, seccion):
+    def abrir_seccion(self, seccion):
         print(f"Configuración de {seccion}")
 
     # cerrar ventana de configuración
-    def _cerrar_ventana(self):
+    def cerrar_ventana(self):
         # Eliminar widgets de la ventana de configuración
         for widget in self.widgets:
             if widget in self.controlador.frames:

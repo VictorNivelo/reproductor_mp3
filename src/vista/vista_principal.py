@@ -1,4 +1,5 @@
 from vista.componentes.configuracion import ventana_configuracion
+from vista.componentes.mini_reproductor import MiniReproductor
 from controlador.controlador_tema import controlador_tema
 from vista.utiles import establecer_icono_tema
 from vista.constantes import *
@@ -171,6 +172,10 @@ def abrir_configuracion():
     ventana_configuracion(ventana_principal, controlador)
 
 
+def minimizar_ventana():
+    mini_reproductor.mostrar()
+
+
 # FUNCIONES DE LOS SCROLLS
 
 
@@ -217,6 +222,9 @@ cambiar_icono_tema()
 
 # controlador de tema
 controlador = controlador_tema()
+
+# mini reproductor
+mini_reproductor = MiniReproductor(ventana_principal)
 
 # obtener las dimensiones de la pantalla
 ancho_pantalla = ventana_principal.winfo_screenwidth()
@@ -631,6 +639,7 @@ boton_minimizar = ctk.CTkButton(
     text_color=texto_claro,
     text="",
     hover_color=hover_claro,
+    command=minimizar_ventana,
 )
 boton_minimizar.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("minimizar", boton_minimizar)
@@ -827,8 +836,9 @@ paginas_canciones.add("Listas")
 tab_canciones = paginas_canciones.tab("Canciones")
 
 # Crear canvas sin scrollbar visible
-canvas_canciones = tk.Canvas(tab_canciones, highlightthickness=0)
+canvas_canciones = tk.Canvas(tab_canciones, bg=claro_segundario, highlightthickness=0)
 canvas_canciones.pack(side="left", fill="both", expand=True)
+controlador.registrar_canvas(canvas_canciones)
 
 # Crear frame para los botones dentro del canvas
 panel_botones_canciones = tk.Frame(canvas_canciones, bg=claro_segundario)
@@ -843,10 +853,10 @@ canvas_canciones.bind_all("<MouseWheel>", scroll_raton_configuracion)
 canvas_window = canvas_canciones.create_window((0, 0), window=panel_botones_canciones, anchor="nw")
 
 # Crear botones en el panel_botones_canciones
-for i in range(30):
+for i in range(10):
     boton_en_canciones = ctk.CTkButton(
         panel_botones_canciones,
-        height=27,
+        height=28,
         fg_color=boton_claro,
         font=(letra, tamanio_letra_boton),
         text_color=texto_claro,

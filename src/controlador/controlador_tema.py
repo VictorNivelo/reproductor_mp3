@@ -15,6 +15,7 @@ class controlador_tema:
         self.sliders = []
         self.progress_bars = []
         self.tabviews = []
+        self.canvas = []
 
     # registrar botones
     def registrar_botones(self, nombre, boton):
@@ -48,6 +49,10 @@ class controlador_tema:
     # registrar tabviews
     def registrar_tabview(self, tabview):
         self.tabviews.append(tabview)
+
+    # registrar canvas
+    def registrar_canvas(self, canvas):
+        self.canvas.append(canvas)
 
     # mostrar icono de botones
     def mostrar_icono_boton(self, nombre):
@@ -155,6 +160,12 @@ class controlador_tema:
                 text_color=color_texto,
             )
 
+    # actualizar colores de los canvas
+    def actualizar_colores_canvas(self):
+        color_fondo = oscuro_segundario if self.tema_interfaz == "oscuro" else claro_segundario
+        for canvas in self.canvas:
+            canvas.configure(bg=color_fondo)
+
     # cambiar tema
     def cambiar_tema(self):
         self.tema_interfaz = "oscuro" if self.tema_interfaz == "claro" else "claro"
@@ -188,3 +199,6 @@ class controlador_tema:
 
         # Actualizar colores de tabviews
         self.actualizar_colores_tabviews()
+
+        # Actualizar colores de canvas
+        self.actualizar_colores_canvas()

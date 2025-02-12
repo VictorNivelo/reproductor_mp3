@@ -9,6 +9,10 @@ alto_principal = 720
 ancho_configuracion = 400
 alto_configuracion = 500
 
+# tamaño minireproductor
+ancho_minireproductor = 450
+alto_minireproductor = 175
+
 # tamaño panel derecha
 ancho_panel_derecha = 435
 

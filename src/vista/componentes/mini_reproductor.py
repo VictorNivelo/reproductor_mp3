@@ -1,15 +1,18 @@
+from vista.utiles import establecer_icono_tema
 from vista.constantes import *
 import customtkinter as ctk
 
 
-ctk.set_appearance_mode("light")
 tamanio_minireproductor = f"{ancho_minireproductor}x{alto_minireproductor}"
 
 
 class MiniReproductor:
-    def __init__(self, ventana_principal):
+    def __init__(self, ventana_principal, controlador):
         self.ventana_principal = ventana_principal
+        self.controlador = controlador
         self.ventana_principal_mini_reproductor = None
+        # Establecer el modo de apariencia según el tema actual
+        ctk.set_appearance_mode("dark" if self.controlador.tema_interfaz == "oscuro" else "light")
 
     def mostrar(self):
         if self.ventana_principal_mini_reproductor is None:
@@ -23,11 +26,17 @@ class MiniReproductor:
             self.ventana_principal.deiconify()
 
     def crear_ventana(self):
-        self.ventana_principal_mini_reproductor = ctk.CTk()
+        self.ventana_principal_mini_reproductor = ctk.CTkToplevel(self.ventana_principal)
         self.ventana_principal_mini_reproductor.title("Minireproductor de música")
-        self.ventana_principal_mini_reproductor.iconbitmap("recursos/iconos/reproductor.ico")
+        # self.ventana_principal_mini_reproductor.iconbitmap("recursos/iconos/reproductor.ico")
         self.ventana_principal_mini_reproductor.geometry(tamanio_minireproductor)
         self.ventana_principal_mini_reproductor.resizable(False, False)
+        self.ventana_principal_mini_reproductor.protocol("WM_DELETE_WINDOW", self.ocultar)
+
+        establecer_icono_tema(
+            self.ventana_principal_mini_reproductor,
+            "oscuro" if self.controlador.tema_interfaz == "oscuro" else "claro",
+        )
 
         panel_principal_mini_reproductor = ctk.CTkFrame(
             self.ventana_principal_mini_reproductor, fg_color=fondo_principal
@@ -102,10 +111,11 @@ class MiniReproductor:
             fg_color=boton_claro,
             font=(letra, tamanio_letra_boton),
             text_color=texto_claro,
-            text="⏮",
+            text="",
             hover_color=hover_claro,
         )
         boton_anterior.pack(side="left", padx=5)
+        self.controlador.registrar_botones("anterior", boton_anterior)
         # self.controlador.registrar_botones("anterior", boton_anterior)
 
         boton_reproducir = ctk.CTkButton(
@@ -115,10 +125,11 @@ class MiniReproductor:
             fg_color=boton_claro,
             font=(letra, tamanio_letra_boton),
             text_color=texto_claro,
-            text="▶",
+            text="",
             hover_color=hover_claro,
         )
         boton_reproducir.pack(side="left", padx=5)
+        self.controlador.registrar_botones("reproducir", boton_reproducir)
         # self.controlador.registrar_botones("reproducir", boton_reproducir)
 
         boton_siguiente = ctk.CTkButton(
@@ -128,10 +139,11 @@ class MiniReproductor:
             fg_color=boton_claro,
             font=(letra, tamanio_letra_boton),
             text_color=texto_claro,
-            text="⏭",
+            text="",
             hover_color=hover_claro,
         )
         boton_siguiente.pack(side="left", padx=5)
+        self.controlador.registrar_botones("siguiente", boton_siguiente)
         # self.controlador.registrar_botones("siguiente", boton_siguiente)
 
         boton_maximizar = ctk.CTkButton(
@@ -141,11 +153,12 @@ class MiniReproductor:
             fg_color=boton_claro,
             font=(letra, tamanio_letra_boton),
             text_color=texto_claro,
-            text="⬆",
+            text="",
             hover_color=hover_claro,
             command=self.ocultar,
         )
         boton_maximizar.pack(side="left", padx=5)
+        self.controlador.registrar_botones("maximizar", boton_maximizar)
         # self.controlador.registrar_botones("maximizar", boton_maximizar)
 
         panel_izquierda = ctk.CTkFrame(

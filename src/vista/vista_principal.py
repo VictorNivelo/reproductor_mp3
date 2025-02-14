@@ -224,7 +224,7 @@ cambiar_icono_tema()
 controlador = controlador_tema()
 
 # mini reproductor
-mini_reproductor = MiniReproductor(ventana_principal)
+mini_reproductor = MiniReproductor(ventana_principal, controlador)
 
 # obtener las dimensiones de la pantalla
 ancho_pantalla = ventana_principal.winfo_screenwidth()

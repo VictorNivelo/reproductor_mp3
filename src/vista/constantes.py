@@ -89,6 +89,11 @@ silenciado = False
 orden = True
 repeticion = 0
 volumen = 100
+me_gusta = False
+favorito = False
+arrastrando_progreso = False
+duracion_total = 0
+tiempo_actual = 0
 
 # ========================================================================
 
@@ -96,4 +101,9 @@ volumen = 100
 # ======================== funciones de utilidad =========================
 # obtener la ruta de un icono
 def obtener_ruta_iconos(nombre_icono, tema):
+    # Iconos especiales que son independientes del tema
+    iconos_especiales = ["me_gusta_rojo", "favorito_amarillo"]
+    if nombre_icono in iconos_especiales:
+        return os.path.join(ruta_iconos, f"{nombre_icono}.png")
+    # Iconos normales que dependen del tema
     return os.path.join(ruta_iconos, tema, f"{nombre_icono}_{tema}.png")

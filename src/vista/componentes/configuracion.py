@@ -1,3 +1,4 @@
+from vista.utiles import establecer_icono_tema
 from vista.constantes import *
 import customtkinter as ctk
 
@@ -17,6 +18,11 @@ class ventana_configuracion:
         ctk.set_appearance_mode("dark" if es_oscuro else "light")
 
         # Establecer el icono según el tema
+
+        establecer_icono_tema(
+            self.ventana_configuracion,
+            "oscuro" if self.controlador.tema_interfaz == "oscuro" else "claro",
+        )
 
         """
         establecer el icono de la ventana de configuración después de 200 ms

@@ -15,6 +15,7 @@ def cambiar_tema():
     if tema_actual == "oscuro":
         ctk.set_appearance_mode("dark")
         cambiar_icono_tema("oscuro")
+        controlador.registrar_botones("modo_claro", boton_tema)
     else:
         ctk.set_appearance_mode("light")
         cambiar_icono_tema("claro")
@@ -51,7 +52,17 @@ def cambiar_tema():
                 controlador.registrar_botones("volumen_medio", boton_silenciar)
             else:
                 controlador.registrar_botones("volumen_alto", boton_silenciar)
+        if me_gusta:
+            controlador.registrar_botones("me_gusta_rojo", boton_me_gusta)
+        else:
+            controlador.registrar_botones("me_gusta", boton_me_gusta)
+        if favorito:
+            controlador.registrar_botones("favorito_amarillo", boton_favorito)
+        else:
+            controlador.registrar_botones("favorito", boton_favorito)
     else:
+        ctk.set_appearance_mode("light")
+        cambiar_icono_tema("claro")
         controlador.registrar_botones("modo_oscuro", boton_tema)
         # estado de reproducción
         if reproduciendo:
@@ -82,6 +93,14 @@ def cambiar_tema():
                 controlador.registrar_botones("volumen_medio", boton_silenciar)
             else:
                 controlador.registrar_botones("volumen_alto", boton_silenciar)
+        if me_gusta:
+            controlador.registrar_botones("me_gusta_rojo", boton_me_gusta)
+        else:
+            controlador.registrar_botones("me_gusta", boton_me_gusta)
+        if favorito:
+            controlador.registrar_botones("favorito_amarillo", boton_favorito)
+        else:
+            controlador.registrar_botones("favorito", boton_favorito)
 
 
 # Función para cambiar el estado de reproducción
@@ -160,6 +179,70 @@ def cambiar_visibilidad():
         contenedor_derecha.pack_forget()
         contenedor_derecha.configure(width=0)
         controlador.registrar_botones("mostrar", boton_visibilidad)
+
+
+def cambiar_me_gusta():
+    global me_gusta
+    me_gusta = not me_gusta
+    if me_gusta:
+        controlador.registrar_botones("me_gusta_rojo", boton_me_gusta)
+    else:
+        controlador.registrar_botones("me_gusta", boton_me_gusta)
+
+
+def cambiar_favorito():
+    global favorito
+    favorito = not favorito
+    if favorito:
+        controlador.registrar_botones("favorito_amarillo", boton_favorito)
+    else:
+        controlador.registrar_botones("favorito", boton_favorito)
+
+
+def iniciar_arrastre_progreso(event):
+    global arrastrando_progreso
+    arrastrando_progreso = True
+    actualizar_progreso(event)
+
+
+def durante_arrastre_progreso(event):
+    if arrastrando_progreso:
+        actualizar_progreso(event)
+
+
+def finalizar_arrastre_progreso(event):
+    global arrastrando_progreso
+    arrastrando_progreso = False
+    actualizar_progreso(event)
+
+
+def actualizar_progreso(event):
+    global tiempo_actual
+    # Obtener dimensiones y calcular posición
+    ancho_total = barra_progreso.winfo_width()
+    posicion_relativa = max(0, min(1, event.x / ancho_total))
+
+    # Actualizar barra de progreso
+    barra_progreso.set(posicion_relativa)
+
+    # Calcular y actualizar tiempo
+    tiempo_actual = int(duracion_total * posicion_relativa)
+    actualizar_etiqueta_tiempo()
+
+    # TODO: Actualizar posición de reproducción real
+    # controlador.establecer_posicion(tiempo_actual)
+
+
+def actualizar_etiqueta_tiempo():
+    # Convertir segundos a formato mm:ss
+    minutos_actual = tiempo_actual // 60
+    segundos_actual = tiempo_actual % 60
+    minutos_total = duracion_total // 60
+    segundos_total = duracion_total % 60
+
+    # Actualizar etiquetas
+    etiqueta_tiempo_actual.configure(text=f"{minutos_actual:02d}:{segundos_actual:02d}")
+    etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
 
 
 # Función para establecer el icono del tema
@@ -416,6 +499,7 @@ boton_me_gusta = ctk.CTkButton(
     text_color=texto_claro,
     text="",
     hover_color=hover_claro,
+    command=cambiar_me_gusta,
 )
 boton_me_gusta.pack(side=tk.LEFT, padx=(5, 0))
 controlador.registrar_botones("me_gusta", boton_me_gusta)
@@ -429,6 +513,7 @@ boton_favorito = ctk.CTkButton(
     text_color=texto_claro,
     text="",
     hover_color=hover_claro,
+    command=cambiar_favorito,
 )
 boton_favorito.pack(side=tk.LEFT, padx=(5, 0))
 controlador.registrar_botones("favorito", boton_favorito)
@@ -474,8 +559,12 @@ controlador.registrar_frame(panel_progreso)
 
 # barra de progreso
 barra_progreso = ctk.CTkProgressBar(panel_progreso)
-barra_progreso.configure(height=5, progress_color=fondo_oscuro, fg_color="lightgray")
-barra_progreso.pack(fill="x", padx=12, pady=(5, 5))
+barra_progreso.configure(height=6, progress_color=fondo_oscuro, fg_color="lightgray")
+barra_progreso.pack(fill="x", padx=12, pady=(0, 3))
+barra_progreso.set(0)
+barra_progreso.bind("<Button-1>", iniciar_arrastre_progreso)
+barra_progreso.bind("<B1-Motion>", durante_arrastre_progreso)
+barra_progreso.bind("<ButtonRelease-1>", finalizar_arrastre_progreso)
 controlador.registrar_progress_bar(barra_progreso)
 
 # panel de tiempo

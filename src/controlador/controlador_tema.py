@@ -56,10 +56,11 @@ class controlador_tema:
 
     # mostrar icono de botones
     def mostrar_icono_boton(self, nombre):
-        if nombre in self.botones and nombre in self.iconos:
+        if nombre in self.botones:
             boton = self.botones[nombre]
-            if self.iconos[nombre]:
-                boton.configure(image=self.iconos[nombre], compound="left")
+            nombre_icono = nombre.replace("_mini", "")
+            if nombre_icono in self.iconos and self.iconos[nombre_icono]:
+                boton.configure(image=self.iconos[nombre_icono], compound="left")
 
     # actualizar colores de los frames
     def actualizar_colores_frames(self):

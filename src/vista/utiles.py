@@ -11,6 +11,8 @@ def cargar_iconos(tema="claro"):
         # botones de gustos
         "me_gusta": "me_gusta",
         "favorito": "favorito",
+        "me_gusta_rojo": "me_gusta_rojo",
+        "favorito_amarillo": "favorito_amarillo",
         # botones de reproducción
         "retroceder": "retroceder",
         "anterior": "anterior",
@@ -50,15 +52,17 @@ def cargar_iconos(tema="claro"):
     }
     for nombre, archivo in archivos_iconos.items():
         try:
-            nombre_archivo = f"{archivo}_{tema}.png"
-            ruta_iconos = obtener_ruta_iconos(archivo, tema)
+            if archivo in ["me_gusta_rojo", "favorito_amarillo"]:
+                ruta_iconos = obtener_ruta_iconos(archivo, None)
+            else:
+                ruta_iconos = obtener_ruta_iconos(archivo, tema)
             iconos[nombre] = ctk.CTkImage(
                 light_image=Image.open(ruta_iconos),
                 dark_image=Image.open(ruta_iconos),
                 size=(ancho_boton, alto_boton),
             )
         except Exception as e:
-            print(f"Error al cargar el icono {nombre_archivo}: {e}")
+            print(f"Error al cargar el icono {nombre}: {e}")
             iconos[nombre] = None
     return iconos
 

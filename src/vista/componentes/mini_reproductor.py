@@ -17,9 +17,6 @@ class MiniReproductor:
         if self.ventana_principal_mini_reproductor is None:
             self.crear_ventana()
         else:
-            ctk.set_appearance_mode(
-                "dark" if self.controlador.tema_interfaz == "oscuro" else "light"
-            )
             establecer_icono_tema(
                 self.ventana_principal_mini_reproductor, self.controlador.tema_interfaz
             )
@@ -37,7 +34,9 @@ class MiniReproductor:
         color_texto = texto_oscuro if self.controlador.tema_interfaz == "oscuro" else texto_claro
         color_boton = boton_oscuro if self.controlador.tema_interfaz == "oscuro" else boton_claro
         color_hover = hover_oscuro if self.controlador.tema_interfaz == "oscuro" else hover_claro
-        color_progreso = texto_oscuro if self.controlador.tema_interfaz == "oscuro" else fondo_oscuro
+        color_progreso = (
+            texto_oscuro if self.controlador.tema_interfaz == "oscuro" else fondo_oscuro
+        )
         for widget in self.widgets:
             if isinstance(widget, ctk.CTkFrame):
                 widget.configure(fg_color=color_fondo)
@@ -51,7 +50,11 @@ class MiniReproductor:
                 widget.configure(progress_color=color_progreso, fg_color=color_fondo)
 
     def crear_ventana(self):
-        color_fondo_principal = fondo_principal_claro if self.controlador.tema_interfaz == "claro" else fondo_principal_oscuro
+        color_fondo_principal = (
+            fondo_principal_claro
+            if self.controlador.tema_interfaz == "claro"
+            else fondo_principal_oscuro
+        )
         color_fondo = fondo_oscuro if self.controlador.tema_interfaz == "oscuro" else fondo_claro
         color_texto = texto_oscuro if self.controlador.tema_interfaz == "oscuro" else texto_claro
         color_boton = boton_oscuro if self.controlador.tema_interfaz == "oscuro" else boton_claro

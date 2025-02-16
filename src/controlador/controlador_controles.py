@@ -1,4 +1,4 @@
-class Controlador_botones:
+class ControladorBotones:
     def __init__(self, vista, controlador_tema):
         self.vista = vista
         self.controlador_tema = controlador_tema

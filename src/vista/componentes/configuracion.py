@@ -3,7 +3,7 @@ from vista.constantes import *
 import customtkinter as ctk
 
 
-class ventana_configuracion:
+class VentanaConfiguracion:
     def __init__(self, ventana_padre, controlador):
         self.ventana_padre = ventana_padre
         self.ventana_configuracion = ctk.CTkToplevel(ventana_padre)
@@ -11,14 +11,7 @@ class ventana_configuracion:
         self.controlador = controlador
         self.widgets = []
 
-        # Verificar si el tema de la interfaz es oscuro
-        es_oscuro = self.controlador.tema_interfaz == "oscuro"
-
-        # Establecer el modo de apariencia de la ventana de configuración
-        ctk.set_appearance_mode("dark" if es_oscuro else "light")
-
-        # Establecer el icono según el tema
-
+        # icono de la ventana
         establecer_icono_tema(
             self.ventana_configuracion,
             "oscuro" if self.controlador.tema_interfaz == "oscuro" else "claro",

@@ -1,8 +1,9 @@
 from vista.utiles import cargar_iconos
 from vista.constantes import *
+import customtkinter as ctk
 
 
-class controlador_tema:
+class ControladorTema:
     def __init__(self):
         self.tema_interfaz = "claro"
         self.tema_iconos = "oscuro"
@@ -16,6 +17,7 @@ class controlador_tema:
         self.progress_bars = []
         self.tabviews = []
         self.canvas = []
+        self.establecer_tema_global()
 
     # registrar botones
     def registrar_botones(self, nombre, boton):
@@ -171,11 +173,16 @@ class controlador_tema:
             else:
                 canvas.configure(bg=color_normal)
 
+    # establecer tema global
+    def establecer_tema_global(self):
+        ctk.set_appearance_mode("dark" if self.tema_interfaz == "oscuro" else "light")
+
     # cambiar tema
     def cambiar_tema(self):
         self.tema_interfaz = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.tema_iconos = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.iconos = cargar_iconos(self.tema_iconos)
+        self.establecer_tema_global()
 
         # Actualizar iconos de botones
         for nombre in self.botones:

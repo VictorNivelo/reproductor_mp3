@@ -1,6 +1,6 @@
-from vista.componentes.configuracion import ventana_configuracion
+from vista.componentes.configuracion import VentanaConfiguracion
 from vista.componentes.mini_reproductor import MiniReproductor
-from controlador.controlador_tema import controlador_tema
+from controlador.controlador_tema import ControladorTema
 from vista.utiles import establecer_icono_tema
 from vista.constantes import *
 import customtkinter as ctk
@@ -30,13 +30,6 @@ def medir_consumo_memoria(func):
 def cambiar_tema():
     global tema_actual
     tema_actual = "oscuro" if tema_actual == "claro" else "claro"
-    if tema_actual == "oscuro":
-        ctk.set_appearance_mode("dark")
-        cambiar_icono_tema("oscuro")
-        controlador.registrar_botones("modo_claro", boton_tema)
-    else:
-        ctk.set_appearance_mode("light")
-        cambiar_icono_tema("claro")
     controlador.cambiar_tema()
     color_barra = texto_claro if tema_actual == "claro" else texto_oscuro
     for barra in barras_espectro:
@@ -329,7 +322,7 @@ def cambiar_icono_tema(tema="claro"):
 
 # Función para abrir la ventana de configuración
 def abrir_configuracion():
-    ventana_configuracion(ventana_principal, controlador)
+    VentanaConfiguracion(ventana_principal, controlador)
 
 
 def minimizar_ventana():
@@ -381,7 +374,7 @@ ctk.set_appearance_mode("light")
 cambiar_icono_tema()
 
 # controlador de tema
-controlador = controlador_tema()
+controlador = ControladorTema()
 
 # mini reproductor
 mini_reproductor = MiniReproductor(ventana_principal, controlador)

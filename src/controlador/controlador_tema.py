@@ -51,8 +51,8 @@ class controlador_tema:
         self.tabviews.append(tabview)
 
     # registrar canvas
-    def registrar_canvas(self, canvas):
-        self.canvas.append(canvas)
+    def registrar_canvas(self, canvas, es_tabview=False):
+        self.canvas.append((canvas, es_tabview))
 
     # mostrar icono de botones
     def mostrar_icono_boton(self, nombre):
@@ -66,7 +66,7 @@ class controlador_tema:
     def actualizar_colores_frames(self):
         color_fondo = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro
         color_principal = (
-            fondo_principal_oscuro if self.tema_interfaz == "oscuro" else fondo_principal
+            fondo_principal_oscuro if self.tema_interfaz == "oscuro" else fondo_principal_claro
         )
         for frame, es_ctk, es_principal in self.frames:
             if es_principal:
@@ -163,9 +163,13 @@ class controlador_tema:
 
     # actualizar colores de los canvas
     def actualizar_colores_canvas(self):
-        color_fondo = oscuro_segundario if self.tema_interfaz == "oscuro" else claro_segundario
-        for canvas in self.canvas:
-            canvas.configure(bg=color_fondo)
+        color_tabview = oscuro_segundario if self.tema_interfaz == "oscuro" else claro_segundario
+        color_normal = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro
+        for canvas, es_tabview in self.canvas:
+            if es_tabview:
+                canvas.configure(bg=color_tabview)
+            else:
+                canvas.configure(bg=color_normal)
 
     # cambiar tema
     def cambiar_tema(self):

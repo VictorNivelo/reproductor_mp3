@@ -5,6 +5,24 @@ from vista.utiles import establecer_icono_tema
 from vista.constantes import *
 import customtkinter as ctk
 import tkinter as tk
+import tracemalloc
+import random
+
+# decorador para medir el consumo de memoria
+
+
+def medir_consumo_memoria(func):
+    def wrapper(*args, **kwargs):
+        tracemalloc.start()
+        resultado = func(*args, **kwargs)
+        actual, pico = tracemalloc.get_traced_memory()
+        print(f"{func.__name__} - Memoria actual: {actual / 1024:.2f} KB")
+        print(f"{func.__name__} - Pico de memoria: {pico / 1024:.2f} KB")
+        tracemalloc.stop()
+        return resultado
+
+    return wrapper
+
 
 # FUNCIONES DE LOS BOTONES
 
@@ -20,6 +38,9 @@ def cambiar_tema():
         ctk.set_appearance_mode("light")
         cambiar_icono_tema("claro")
     controlador.cambiar_tema()
+    color_barra = texto_claro if tema_actual == "claro" else texto_oscuro
+    for barra in barras_espectro:
+        canvas_espectro.itemconfig(barra, fill=color_barra)
     # cambiar iconos de los botones
     if tema_actual == "oscuro":
         controlador.registrar_botones("modo_claro", boton_tema)
@@ -52,6 +73,7 @@ def cambiar_tema():
                 controlador.registrar_botones("volumen_medio", boton_silenciar)
             else:
                 controlador.registrar_botones("volumen_alto", boton_silenciar)
+        # me gusta y favorito
         if me_gusta:
             controlador.registrar_botones("me_gusta_rojo", boton_me_gusta)
         else:
@@ -93,6 +115,7 @@ def cambiar_tema():
                 controlador.registrar_botones("volumen_medio", boton_silenciar)
             else:
                 controlador.registrar_botones("volumen_alto", boton_silenciar)
+        # me gusta y favorito
         if me_gusta:
             controlador.registrar_botones("me_gusta_rojo", boton_me_gusta)
         else:
@@ -109,6 +132,7 @@ def cambiar_estado_reproduccion():
     reproduciendo = not reproduciendo
     if reproduciendo:
         controlador.registrar_botones("pausa", boton_reproducir)
+        actualizar_espectro()
     else:
         controlador.registrar_botones("reproducir", boton_reproducir)
 
@@ -197,6 +221,59 @@ def cambiar_favorito():
         controlador.registrar_botones("favorito_amarillo", boton_favorito)
     else:
         controlador.registrar_botones("favorito", boton_favorito)
+
+
+# Función para crear las barras iniciales
+def crear_barras_espectro():
+    global barras_espectro, ancho_barra, espacio_entre_barras
+    # Limpiar barras existentes
+    for barra in barras_espectro:
+        canvas_espectro.delete(barra)
+    barras_espectro.clear()
+    # Obtener dimensiones del canvas
+    ancho_canvas = canvas_espectro.winfo_width()
+    alto_canvas = canvas_espectro.winfo_height()
+    # Calcular ancho de barra y espacio entre barras dinámicamente
+    espacio_total = ancho_canvas  # Usar 90% del ancho para dejar márgenes
+    ancho_barra = max(2, (espacio_total / numero_barras) * 0.7)  # 70% para la barra
+    espacio_entre_barras = (espacio_total / numero_barras) * 0.3  # 30% para el espacio
+    # Calcular posición inicial para centrar las barras
+    x_inicial = (
+        ancho_canvas - (numero_barras * (ancho_barra + espacio_entre_barras) - espacio_entre_barras)
+    ) // 2
+    # Color según el tema
+    color_barra = texto_claro if tema_actual == "claro" else texto_oscuro
+    # Crear barras
+    for i in range(numero_barras):
+        x1 = x_inicial + i * (ancho_barra + espacio_entre_barras)
+        x2 = x1 + ancho_barra
+        y1 = alto_canvas
+        y2 = alto_canvas - alturas_barras[i]
+        barra = canvas_espectro.create_rectangle(x1, y1, x2, y2, fill=color_barra, width=0)
+        barras_espectro.append(barra)
+
+
+# Función para actualizar la animación del espectro
+def actualizar_espectro():
+    if not canvas_espectro.winfo_exists():  # Verificar si el canvas existe
+        return
+    alto_canvas = canvas_espectro.winfo_height()
+    # Generar alturas aleatorias para simular el espectro
+    for i in range(numero_barras):
+        if i < len(barras_espectro):  # Verificar que la barra existe
+            altura_objetivo = random.randint(10, int(alto_canvas * 0.8))
+            alturas_barras[i] = alturas_barras[i] * 0.7 + altura_objetivo * 0.3
+            # Actualizar altura de la barra
+            try:
+                x1, _, x2, _ = canvas_espectro.coords(barras_espectro[i])
+                canvas_espectro.coords(
+                    barras_espectro[i], x1, alto_canvas, x2, alto_canvas - alturas_barras[i]
+                )
+            except:
+                return  # Si hay error al actualizar, detener la animación
+    # Llamar a la función nuevamente después de un delay
+    if reproduciendo:
+        ventana_principal.after(50, actualizar_espectro)
 
 
 def iniciar_arrastre_progreso(event):
@@ -331,7 +408,7 @@ ventana_principal.title("Reproductor de música")
 # contenedor principal
 conenedor_principal = tk.Frame(ventana_principal)
 conenedor_principal.configure(
-    bg=fondo_principal,
+    bg=fondo_principal_claro,
     padx=5,
     pady=5,
 )
@@ -438,12 +515,13 @@ controlador.registrar_etiqueta(imagen_cancion)
 # contenedor de información de la canción
 contenedor_informacion = tk.Frame(contenedor_izquierda)
 contenedor_informacion.configure(bg=fondo_claro)
-contenedor_informacion.pack(fill="both", padx=10, pady=3)
+contenedor_informacion.pack(fill="both", padx=10, pady=5)
 controlador.registrar_frame(contenedor_informacion)
 
 # etiqueta de información de la canción
 etiqueta_nombre_cancion = ctk.CTkLabel(
     contenedor_informacion,
+    height=23,
     fg_color=fondo_claro,
     font=(letra, tamanio_letra_etiqueta),
     text_color=texto_claro,
@@ -454,6 +532,7 @@ controlador.registrar_etiqueta(etiqueta_nombre_cancion)
 
 etiqueta_artista_cancion = ctk.CTkLabel(
     contenedor_informacion,
+    height=23,
     fg_color=fondo_claro,
     font=(letra, tamanio_letra_etiqueta),
     text_color=texto_claro,
@@ -464,6 +543,7 @@ controlador.registrar_etiqueta(etiqueta_artista_cancion)
 
 etiqueta_album_cancion = ctk.CTkLabel(
     contenedor_informacion,
+    height=23,
     fg_color=fondo_claro,
     font=(letra, tamanio_letra_etiqueta),
     text_color=texto_claro,
@@ -524,21 +604,22 @@ controlador.registrar_botones("favorito", boton_favorito)
 # ------------------------------- Seccion de espectro de audio ----------------------------------
 # contenedor de espectro de audio
 contenedor_espectro = tk.Frame(contenedor_izquierda)
-contenedor_espectro.configure(height=90, bg=fondo_claro)
+contenedor_espectro.configure(height=100, bg=fondo_claro)
 contenedor_espectro.pack(fill="both", padx=10, pady=3)
 contenedor_espectro.pack_propagate(False)
 controlador.registrar_frame(contenedor_espectro)
 
-# etiqueta de espectro de audio
-etiqueta_espectro = ctk.CTkLabel(
-    contenedor_espectro,
-    fg_color=fondo_claro,
-    font=(letra, tamanio_letra_etiqueta),
-    text_color=texto_claro,
-    text="Espectro de Audio",
-)
-etiqueta_espectro.pack(expand=True)
-controlador.registrar_etiqueta(etiqueta_espectro)
+# Canvas para el espectro
+canvas_espectro = tk.Canvas(contenedor_espectro, bg=fondo_claro, highlightthickness=0)
+canvas_espectro.pack(fill="both", expand=True)
+controlador.registrar_canvas(canvas_espectro, es_tabview=False)
+
+# Variables para el espectro
+alturas_barras = [0] * numero_barras
+barras_espectro = []
+
+# Vincular la creación de barras al evento de configuración del canvas
+canvas_espectro.bind("<Configure>", lambda e: crear_barras_espectro())
 
 # -----------------------------------------------------------------------------------------------
 
@@ -927,7 +1008,7 @@ tab_canciones = paginas_canciones.tab("Canciones")
 # Crear canvas sin scrollbar visible
 canvas_canciones = tk.Canvas(tab_canciones, bg=claro_segundario, highlightthickness=0)
 canvas_canciones.pack(side="left", fill="both", expand=True)
-controlador.registrar_canvas(canvas_canciones)
+controlador.registrar_canvas(canvas_canciones, es_tabview=True)
 
 # Crear frame para los botones dentro del canvas
 panel_botones_canciones = tk.Frame(canvas_canciones, bg=claro_segundario)

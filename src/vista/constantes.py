@@ -10,8 +10,8 @@ ancho_configuracion = 400
 alto_configuracion = 500
 
 # tamaño minireproductor
-ancho_minireproductor = 450
-alto_minireproductor = 175
+ancho_minireproductor = 355
+alto_minireproductor = 125
 
 # tamaño panel derecha
 ancho_panel_derecha = 435
@@ -25,6 +25,11 @@ alto_boton = 20
 
 # bordes redondeados
 bordes_redondeados = 10
+
+# tamaño de barras del espectro
+numero_barras = 150
+ancho_barra = 3
+espacio_entre_barras = 2
 
 # ========================================================================
 
@@ -47,7 +52,7 @@ ruta_icono_aplicacion_oscuro = os.path.join(ruta_iconos, "reproductor_oscuro.png
 # claro
 claro = "#ffffff"
 claro_segundario = "#f8f8f8"
-fondo_principal = "#dedede"
+fondo_principal_claro = "#dedede"
 fondo_claro = "#f2f2f2"
 texto_claro = "#1a1a1a"
 boton_claro = "#e6e6e6"

@@ -105,7 +105,7 @@ class ventana_configuracion:
             height=35,
             command=self.cerrar_ventana,
         )
-        boton_cerrar.pack(fill="x", pady=(200, 0), padx=5)
+        boton_cerrar.pack(fill="x", pady=(215, 0), padx=5)
         self.widgets.append(boton_cerrar)
 
     # abrir sección de configuración

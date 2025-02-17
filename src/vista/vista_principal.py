@@ -8,9 +8,8 @@ import tkinter as tk
 import tracemalloc
 import random
 
+
 # decorador para medir el consumo de memoria
-
-
 def medir_consumo_memoria(func):
     def wrapper(*args, **kwargs):
         tracemalloc.start()
@@ -27,6 +26,7 @@ def medir_consumo_memoria(func):
 # FUNCIONES DE LOS BOTONES
 
 
+# Función para cambiar el tema de la interfaz
 def cambiar_tema():
     global tema_actual
     tema_actual = "oscuro" if tema_actual == "claro" else "claro"
@@ -76,7 +76,6 @@ def cambiar_tema():
         else:
             controlador.registrar_botones("favorito", boton_favorito)
     else:
-        ctk.set_appearance_mode("light")
         cambiar_icono_tema("claro")
         controlador.registrar_botones("modo_oscuro", boton_tema)
         # estado de reproducción
@@ -198,6 +197,7 @@ def cambiar_visibilidad():
         controlador.registrar_botones("mostrar", boton_visibilidad)
 
 
+# Función para cambiar el estado de me gusta
 def cambiar_me_gusta():
     global me_gusta
     me_gusta = not me_gusta
@@ -207,6 +207,7 @@ def cambiar_me_gusta():
         controlador.registrar_botones("me_gusta", boton_me_gusta)
 
 
+# Función para cambiar el estado de favorito
 def cambiar_favorito():
     global favorito
     favorito = not favorito
@@ -269,47 +270,46 @@ def actualizar_espectro():
         ventana_principal.after(50, actualizar_espectro)
 
 
+# Función para iniciar el arrastre del progreso de la canción
 def iniciar_arrastre_progreso(event):
     global arrastrando_progreso
     arrastrando_progreso = True
     actualizar_progreso(event)
 
 
+# Función para arrastrar el progreso de la canción
 def durante_arrastre_progreso(event):
     if arrastrando_progreso:
         actualizar_progreso(event)
 
 
+# Función para finalizar el arrastre del progreso
 def finalizar_arrastre_progreso(event):
     global arrastrando_progreso
     arrastrando_progreso = False
     actualizar_progreso(event)
 
 
+# Función para actualizar el progreso de la canción
 def actualizar_progreso(event):
     global tiempo_actual
     # Obtener dimensiones y calcular posición
     ancho_total = barra_progreso.winfo_width()
     posicion_relativa = max(0, min(1, event.x / ancho_total))
-
     # Actualizar barra de progreso
     barra_progreso.set(posicion_relativa)
-
     # Calcular y actualizar tiempo
     tiempo_actual = int(duracion_total * posicion_relativa)
     actualizar_etiqueta_tiempo()
 
-    # TODO: Actualizar posición de reproducción real
-    # controlador.establecer_posicion(tiempo_actual)
 
-
+# Función para actualizar la etiqueta de tiempo
 def actualizar_etiqueta_tiempo():
     # Convertir segundos a formato mm:ss
     minutos_actual = tiempo_actual // 60
     segundos_actual = tiempo_actual % 60
     minutos_total = duracion_total // 60
     segundos_total = duracion_total % 60
-
     # Actualizar etiquetas
     etiqueta_tiempo_actual.configure(text=f"{minutos_actual:02d}:{segundos_actual:02d}")
     etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
@@ -325,6 +325,7 @@ def abrir_configuracion():
     VentanaConfiguracion(ventana_principal, controlador)
 
 
+# Función para minimizar la ventana
 def minimizar_ventana():
     mini_reproductor.mostrar()
 
@@ -420,7 +421,7 @@ controlador.registrar_frame(conenedor_principal, es_principal=True)
 
 # contenedor izquierda con customtkinter
 contenedor_izquierda = ctk.CTkFrame(
-    conenedor_principal, fg_color=fondo_claro, corner_radius=bordes_redondeados
+    conenedor_principal, fg_color=fondo_claro, corner_radius=bordes_redondeados_frame
 )
 contenedor_izquierda.pack(side=tk.LEFT, fill="both", expand=True)
 controlador.registrar_frame(contenedor_izquierda, es_ctk=True)
@@ -440,6 +441,7 @@ boton_ajustes = ctk.CTkButton(
     contenedor_superior,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -454,6 +456,7 @@ boton_tema = ctk.CTkButton(
     contenedor_superior,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -468,6 +471,7 @@ boton_visibilidad = ctk.CTkButton(
     contenedor_superior,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -567,6 +571,7 @@ boton_me_gusta = ctk.CTkButton(
     panel_botones_gustos,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -581,6 +586,7 @@ boton_favorito = ctk.CTkButton(
     panel_botones_gustos,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -691,6 +697,7 @@ boton_aleatorio = ctk.CTkButton(
     panel_controles,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -705,6 +712,7 @@ boton_repetir = ctk.CTkButton(
     panel_controles,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -717,11 +725,13 @@ controlador.registrar_botones("no_repetir", boton_repetir)
 
 boton_retroceder = ctk.CTkButton(
     panel_controles,
-    text="",
-    font=(letra, tamanio_letra_boton),
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
+    font=(letra, tamanio_letra_boton),
+    text_color=texto_claro,
+    text="",
     hover_color=hover_claro,
 )
 boton_retroceder.pack(side=tk.LEFT, padx=5)
@@ -731,6 +741,7 @@ boton_anterior = ctk.CTkButton(
     panel_controles,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -744,6 +755,7 @@ boton_reproducir = ctk.CTkButton(
     panel_controles,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -758,6 +770,7 @@ boton_siguiente = ctk.CTkButton(
     panel_controles,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -771,6 +784,7 @@ boton_adelantar = ctk.CTkButton(
     panel_controles,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -784,6 +798,7 @@ boton_agregar_cola = ctk.CTkButton(
     panel_controles,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -797,6 +812,7 @@ boton_minimizar = ctk.CTkButton(
     panel_controles,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -829,6 +845,7 @@ boton_silenciar = ctk.CTkButton(
     panel_volumen,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -867,7 +884,7 @@ etiqueta_porcentaje_volumen = ctk.CTkLabel(
     fg_color=fondo_claro,
     font=(letra, tamanio_letra_volumen),
     text_color=texto_claro,
-    text=f"{volumen} %",
+    text=f"{volumen}%",
 )
 etiqueta_porcentaje_volumen.pack(side="left")
 controlador.registrar_etiqueta(etiqueta_porcentaje_volumen)
@@ -894,7 +911,7 @@ contenedor_derecha = ctk.CTkFrame(
     conenedor_principal,
     width=ancho_panel_derecha if panel_visible else 0,
     fg_color=fondo_claro,
-    corner_radius=bordes_redondeados,
+    corner_radius=bordes_redondeados_frame,
 )
 
 # Configurar visibilidad inicial
@@ -1066,6 +1083,7 @@ boton_agregar_cancion = ctk.CTkButton(
     panel_botones,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,
@@ -1079,6 +1097,7 @@ boton_agregar_directorio = ctk.CTkButton(
     panel_botones,
     width=ancho_boton,
     height=alto_boton,
+    corner_radius=borde_redondeado_boton,
     fg_color=boton_claro,
     font=(letra, tamanio_letra_boton),
     text_color=texto_claro,

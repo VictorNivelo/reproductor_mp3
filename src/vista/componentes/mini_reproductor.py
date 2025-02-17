@@ -3,9 +3,6 @@ from vista.constantes import *
 import customtkinter as ctk
 
 
-tamanio_minireproductor = f"{ancho_minireproductor}x{alto_minireproductor}"
-
-
 class MiniReproductor:
     def __init__(self, ventana_principal, controlador):
         self.ventana_principal = ventana_principal
@@ -13,6 +10,7 @@ class MiniReproductor:
         self.ventana_principal_mini_reproductor = None
         self.widgets = []
 
+    # metodo para mostrar la ventana del mini reproductor
     def mostrar(self):
         if self.ventana_principal_mini_reproductor is None:
             self.crear_ventana()
@@ -24,11 +22,13 @@ class MiniReproductor:
         self.ventana_principal_mini_reproductor.deiconify()
         self.ventana_principal.withdraw()
 
+    # metodo para ocultar la ventana del mini reproductor
     def ocultar(self):
         if self.ventana_principal_mini_reproductor:
             self.ventana_principal_mini_reproductor.withdraw()
             self.ventana_principal.deiconify()
 
+    # metodo para actualizar los colores de los componentes del mini reproductor
     def actualizar_colores(self):
         color_fondo = fondo_oscuro if self.controlador.tema_interfaz == "oscuro" else fondo_claro
         color_texto = texto_oscuro if self.controlador.tema_interfaz == "oscuro" else texto_claro
@@ -49,6 +49,7 @@ class MiniReproductor:
             elif isinstance(widget, ctk.CTkProgressBar):
                 widget.configure(progress_color=color_progreso, fg_color=color_fondo)
 
+    # metodo para crear la ventana del mini reproductors
     def crear_ventana(self):
         color_fondo_principal = (
             fondo_principal_claro
@@ -59,8 +60,7 @@ class MiniReproductor:
         color_texto = texto_oscuro if self.controlador.tema_interfaz == "oscuro" else texto_claro
         color_boton = boton_oscuro if self.controlador.tema_interfaz == "oscuro" else boton_claro
         color_hover = hover_oscuro if self.controlador.tema_interfaz == "oscuro" else hover_claro
-        ctk.set_appearance_mode("dark" if self.controlador.tema_interfaz == "oscuro" else "light")
-
+        tamanio_minireproductor = f"{ancho_minireproductor}x{alto_minireproductor}"
         self.ventana_principal_mini_reproductor = ctk.CTkToplevel(self.ventana_principal)
         self.ventana_principal_mini_reproductor.title("Minireproductor de música")
         # self.ventana_principal_mini_reproductor.iconbitmap("recursos/iconos/reproductor.ico")
@@ -167,13 +167,29 @@ class MiniReproductor:
         contenedor_botones.pack(pady=(0, 3), expand=True)
         self.widgets.append(contenedor_botones)
 
+        boton_me_gusta = ctk.CTkButton(
+            contenedor_botones,
+            width=ancho_boton,
+            height=alto_boton,
+            corner_radius=borde_redondeado_boton,
+            fg_color=color_boton,
+            font=(letra, tamanio_letra_boton),
+            text_color=texto_claro,
+            text="",
+            hover_color=color_hover,
+        )
+        boton_me_gusta.pack(side="left", padx=5)
+        self.controlador.registrar_botones("me_gusta_mini", boton_me_gusta)
+        # self.controlador.registrar_botones("me_gusta", boton_me_gusta)
+
         boton_anterior = ctk.CTkButton(
             contenedor_botones,
             width=ancho_boton,
             height=alto_boton,
+            corner_radius=borde_redondeado_boton,
             fg_color=color_boton,
             font=(letra, tamanio_letra_boton),
-            text_color=color_texto,
+            text_color=texto_claro,
             text="",
             hover_color=color_hover,
         )
@@ -185,9 +201,10 @@ class MiniReproductor:
             contenedor_botones,
             width=ancho_boton,
             height=alto_boton,
+            corner_radius=borde_redondeado_boton,
             fg_color=color_boton,
             font=(letra, tamanio_letra_boton),
-            text_color=color_texto,
+            text_color=texto_claro,
             text="",
             hover_color=color_hover,
         )
@@ -199,9 +216,10 @@ class MiniReproductor:
             contenedor_botones,
             width=ancho_boton,
             height=alto_boton,
+            corner_radius=borde_redondeado_boton,
             fg_color=color_boton,
             font=(letra, tamanio_letra_boton),
-            text_color=color_texto,
+            text_color=texto_claro,
             text="",
             hover_color=color_hover,
         )
@@ -213,9 +231,10 @@ class MiniReproductor:
             contenedor_botones,
             width=ancho_boton,
             height=alto_boton,
+            corner_radius=borde_redondeado_boton,
             fg_color=color_boton,
             font=(letra, tamanio_letra_boton),
-            text_color=color_texto,
+            text_color=texto_claro,
             text="",
             hover_color=color_hover,
             command=self.ocultar,

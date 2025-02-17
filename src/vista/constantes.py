@@ -23,13 +23,18 @@ alto_tabview = 400
 ancho_boton = 20
 alto_boton = 20
 
+# tamaño de las imagenes de los botones
+ancho_imagen = 18
+alto_imagen = 18
+
 # bordes redondeados
-bordes_redondeados = 10
+bordes_redondeados_frame = 10
+borde_redondeado_boton = 5
 
 # tamaño de barras del espectro
 numero_barras = 150
-ancho_barra = 3
-espacio_entre_barras = 2
+ancho_barra = 2
+espacio_entre_barras = 1
 
 # ========================================================================
 
@@ -45,6 +50,10 @@ ruta_imagenes = os.path.join(ruta_recursos, "imagenes")
 # rutas del icono de la aplicación
 ruta_icono_aplicacion_claro = os.path.join(ruta_iconos, "reproductor_claro.png")
 ruta_icono_aplicacion_oscuro = os.path.join(ruta_iconos, "reproductor_oscuro.png")
+
+# ruta del ucono de la aplicacion en ico
+ruta_icono_aplicacion_claro_ico = os.path.join(ruta_iconos, "reproductor_claro.ico")
+ruta_icono_aplicacion_oscuro_ico = os.path.join(ruta_iconos, "reproductor_oscuro.ico")
 
 # ========================================================================
 
@@ -96,6 +105,8 @@ repeticion = 0
 volumen = 100
 me_gusta = False
 favorito = False
+
+# estado de la barra de progreso
 arrastrando_progreso = False
 duracion_total = 0
 tiempo_actual = 0

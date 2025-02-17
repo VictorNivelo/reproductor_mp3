@@ -1,8 +1,7 @@
-from vista.constantes import alto_boton, ancho_boton, obtener_ruta_iconos
 from vista.constantes import *
 import customtkinter as ctk
-import tkinter as tk
 from PIL import Image
+import tkinter as tk
 
 
 def cargar_iconos(tema="claro"):
@@ -52,14 +51,19 @@ def cargar_iconos(tema="claro"):
     }
     for nombre, archivo in archivos_iconos.items():
         try:
+            # Cargar los iconos
             if archivo in ["me_gusta_rojo", "favorito_amarillo"]:
+                # Si el icono es me_gusta_rojo o favorito_amarillo, no se necesita el tema
                 ruta_iconos = obtener_ruta_iconos(archivo, None)
             else:
+                # Si el icono no es me_gusta_rojo o favorito_amarillo, se necesita el tema
                 ruta_iconos = obtener_ruta_iconos(archivo, tema)
+            # cargar el icono en una instancia de CTkImage
             iconos[nombre] = ctk.CTkImage(
+                # modo de imagen y tamaño
                 light_image=Image.open(ruta_iconos),
                 dark_image=Image.open(ruta_iconos),
-                size=(ancho_boton, alto_boton),
+                size=(ancho_imagen, alto_imagen),
             )
         except Exception as e:
             print(f"Error al cargar el icono {nombre}: {e}")

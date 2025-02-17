@@ -56,7 +56,7 @@ class VentanaConfiguracion:
         color_boton = boton_oscuro if self.controlador.tema_interfaz == "oscuro" else boton_claro
         color_hover = hover_oscuro if self.controlador.tema_interfaz == "oscuro" else hover_claro
         self.panel_principal_configuracion = ctk.CTkFrame(
-            self.ventana_configuracion, fg_color=color_fondo, corner_radius=bordes_redondeados
+            self.ventana_configuracion, fg_color=color_fondo, corner_radius=bordes_redondeados_frame
         )
         self.panel_principal_configuracion.pack(fill="both", expand=True)
         self.widgets.append(self.panel_principal_configuracion)
@@ -77,12 +77,12 @@ class VentanaConfiguracion:
             # botones de las secciones
             boton_seccion = ctk.CTkButton(
                 self.panel_principal_configuracion,
-                text=seccion,
-                font=(letra, tamanio_letra_boton),
-                fg_color=color_boton,
-                text_color=color_texto,
-                hover_color=color_hover,
                 height=35,
+                fg_color=color_boton,
+                font=(letra, tamanio_letra_boton),
+                text_color=color_texto,
+                text=seccion,
+                hover_color=color_hover,
                 command=lambda s=seccion: self.abrir_seccion(s),
             )
             boton_seccion.pack(fill="x", pady=3, padx=5)
@@ -90,12 +90,12 @@ class VentanaConfiguracion:
         # botón de cerrar la ventana
         boton_cerrar = ctk.CTkButton(
             self.panel_principal_configuracion,
-            text="Cerrar",
-            font=(letra, tamanio_letra_boton),
-            fg_color=color_boton,
-            text_color=color_texto,
-            hover_color=color_hover,
             height=35,
+            fg_color=color_boton,
+            font=(letra, tamanio_letra_boton),
+            text_color=color_texto,
+            text="Cerrar",
+            hover_color=color_hover,
             command=self.cerrar_ventana,
         )
         boton_cerrar.pack(fill="x", pady=(215, 0), padx=5)

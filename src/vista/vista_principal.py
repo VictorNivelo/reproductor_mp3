@@ -31,7 +31,7 @@ def cambiar_tema():
     global tema_actual
     tema_actual = "oscuro" if tema_actual == "claro" else "claro"
     controlador.cambiar_tema()
-    color_barra = texto_claro if tema_actual == "claro" else texto_oscuro
+    color_barra = hover_claro if tema_actual == "claro" else hover_oscuro
     for barra in barras_espectro:
         canvas_espectro.itemconfig(barra, fill=color_barra)
     # cambiar iconos de los botones
@@ -236,7 +236,7 @@ def crear_barras_espectro():
         ancho_canvas - (numero_barras * (ancho_barra + espacio_entre_barras) - espacio_entre_barras)
     ) // 2
     # Color según el tema
-    color_barra = texto_claro if tema_actual == "claro" else texto_oscuro
+    color_barra = hover_claro if tema_actual == "claro" else hover_oscuro
     # Crear barras
     for i in range(numero_barras):
         x1 = x_inicial + i * (ancho_barra + espacio_entre_barras)
@@ -255,7 +255,7 @@ def actualizar_espectro():
     # Generar alturas aleatorias para simular el espectro
     for i in range(numero_barras):
         if i < len(barras_espectro):  # Verificar que la barra existe
-            altura_objetivo = random.randint(10, int(alto_canvas * 0.8))
+            altura_objetivo = random.randint(10, int(alto_canvas))
             alturas_barras[i] = alturas_barras[i] * 0.7 + altura_objetivo * 0.3
             # Actualizar altura de la barra
             try:

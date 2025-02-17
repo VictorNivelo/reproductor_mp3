@@ -2,7 +2,7 @@ import os
 
 # ======================== constantes de la vista ========================
 # tamaño de la pantalla
-ancho_principal = 1280
+ancho_principal = 1200
 alto_principal = 720
 
 # tamaño de la ventana de configuración
@@ -24,15 +24,15 @@ ancho_boton = 20
 alto_boton = 20
 
 # tamaño de las imagenes de los botones
-ancho_imagen = 18
-alto_imagen = 18
+ancho_imagen = 20
+alto_imagen = 20
 
 # bordes redondeados
 bordes_redondeados_frame = 10
 borde_redondeado_boton = 5
 
 # tamaño de barras del espectro
-numero_barras = 150
+numero_barras = 125
 ancho_barra = 2
 espacio_entre_barras = 1
 

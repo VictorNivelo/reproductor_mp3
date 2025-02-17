@@ -61,7 +61,7 @@ class ControladorBotones:
         self.reproduciendo = not self.reproduciendo
         self._actualizar_icono_reproduccion()
 
-    def cambiar_volumen(self, event=None):
+    def cambiar_volumen(self):
         if not self.silenciado:
             self.volumen = int(self.vista.barra_volumen.get())
             self.vista.etiqueta_porcentaje_volumen.configure(text=f"{self.volumen}%")

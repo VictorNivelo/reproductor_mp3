@@ -197,7 +197,7 @@ def cambiar_visibilidad():
         controlador.registrar_botones("mostrar", boton_visibilidad)
 
 
-# Función para cambiar el estado de me gusta
+# Función para cambiar el estado de boton me gusta
 def cambiar_me_gusta():
     global me_gusta
     me_gusta = not me_gusta
@@ -264,7 +264,7 @@ def actualizar_espectro():
                     barras_espectro[i], x1, alto_canvas, x2, alto_canvas - alturas_barras[i]
                 )
             except:
-                return  # Si hay error al actualizar, detener la animación
+                return  # Sí hay error al actualizar, detener la animación
     # Llamar a la función nuevamente después de un delay
     if reproduciendo:
         ventana_principal.after(50, actualizar_espectro)
@@ -419,7 +419,7 @@ controlador.registrar_frame(conenedor_principal, es_principal=True)
 # contenedor_izquierda.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=fondo_claro)
 # contenedor_izquierda.pack(side=tk.LEFT, fill="both", expand=True)
 
-# contenedor izquierda con customtkinter
+# contenedor izquierdo hecho con customtkinter
 contenedor_izquierda = ctk.CTkFrame(
     conenedor_principal, fg_color=fondo_claro, corner_radius=bordes_redondeados_frame
 )
@@ -906,7 +906,7 @@ controlador.registrar_etiqueta(etiqueta_porcentaje_volumen)
 # contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(5, 0))
 # contenedor_derecha.pack_propagate(False)
 
-# contenedor de panel derecha con customtkinter
+# contenedor de panel derecho hecho con customtkinter
 contenedor_derecha = ctk.CTkFrame(
     conenedor_principal,
     width=ancho_panel_derecha if panel_visible else 0,

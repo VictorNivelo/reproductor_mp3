@@ -1032,20 +1032,20 @@ canvas_canciones.bind_all("<MouseWheel>", scroll_raton_configuracion)
 # Crear ventana en el canvas para el frame
 canvas_window = canvas_canciones.create_window((0, 0), window=panel_botones_canciones, anchor="nw")
 
-# Crear botones en el panel_botones_canciones
-for i in range(10):
-    boton_en_canciones = ctk.CTkButton(
-        panel_botones_canciones,
-        height=28,
-        fg_color=boton_claro,
-        font=(letra, tamanio_letra_boton),
-        text_color=texto_claro,
-        text=f"Cancion {i + 1}",
-        hover_color=hover_claro,
-        command=lambda: print("Botón presionado"),
-    )
-    boton_en_canciones.pack(fill="both", pady=2)
-    controlador.registrar_botones(f"cancion_{i}", boton_en_canciones)
+# # Crear botones en el panel_botones_canciones
+# for i in range(10):
+#     boton_en_canciones = ctk.CTkButton(
+#         panel_botones_canciones,
+#         height=28,
+#         fg_color=boton_claro,
+#         font=(letra, tamanio_letra_boton),
+#         text_color=texto_claro,
+#         text=f"Cancion {i + 1}",
+#         hover_color=hover_claro,
+#         command=lambda: print("Botón presionado"),
+#     )
+#     boton_en_canciones.pack(fill="both", pady=2)
+#     controlador.registrar_botones(f"cancion_{i}", boton_en_canciones)
 
 
 # lista_canciones = tk.Listbox(

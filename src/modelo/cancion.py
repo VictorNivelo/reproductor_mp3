@@ -4,6 +4,7 @@ import mutagen
 
 class Cancion:
     ruta_cancion: Path
+    caratula_cancion = None
     titulo_cancion: str
     artista: str = "Desconocido"
     album: str = "Desconocido"

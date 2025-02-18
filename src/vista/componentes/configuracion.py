@@ -9,7 +9,7 @@ class VentanaConfiguracion:
         self.ventana_configuracion = ctk.CTkToplevel(ventana_padre)
         self.ventana_configuracion.title("Configuración")
         self.controlador = controlador
-        self.widgets = []
+        self.componentes = []
 
         # icono de la ventana
         establecer_icono_tema(
@@ -42,14 +42,14 @@ class VentanaConfiguracion:
         self.ventana_configuracion.geometry(
             f"{ancho_configuracion}x{alto_configuracion}+{posicion_ancho}+{posicion_alto}"
         )
-        # Crear los widgets de la ventana de configuración
-        self._crear_widgets()
+        # Crear los componentes de la ventana de configuración
+        self.crear_componentes()
         # Establecer el color de fondo de la ventana de configuración
         self.ventana_configuracion.configure(bg=color_fondo)
         # Evento para cerrar la ventana de configuración
         self.ventana_configuracion.protocol("WM_DELETE_WINDOW", self.cerrar_ventana)
 
-    def _crear_widgets(self):
+    def crear_componentes(self):
         # colores de componentes
         color_fondo = fondo_oscuro if self.controlador.tema_interfaz == "oscuro" else fondo_claro
         color_texto = texto_oscuro if self.controlador.tema_interfaz == "oscuro" else texto_claro
@@ -59,7 +59,7 @@ class VentanaConfiguracion:
             self.ventana_configuracion, fg_color=color_fondo, corner_radius=bordes_redondeados_frame
         )
         self.panel_principal_configuracion.pack(fill="both", expand=True)
-        self.widgets.append(self.panel_principal_configuracion)
+        self.componentes.append(self.panel_principal_configuracion)
         # titulo del modal
         etiqueta_titulo = ctk.CTkLabel(
             self.panel_principal_configuracion,
@@ -69,7 +69,7 @@ class VentanaConfiguracion:
             fg_color=color_fondo,
         )
         etiqueta_titulo.pack(pady=5)
-        self.widgets.append(etiqueta_titulo)
+        self.componentes.append(etiqueta_titulo)
         # secciones de configuración
         secciones = ["General", "Audio", "Reproductor", "Interfaz", "Acerca de"]
         # creacion de los botones para cada una de las secciones
@@ -86,7 +86,7 @@ class VentanaConfiguracion:
                 command=lambda s=seccion: self.abrir_seccion(s),
             )
             boton_seccion.pack(fill="x", pady=3, padx=5)
-            self.widgets.append(boton_seccion)
+            self.componentes.append(boton_seccion)
         # botón de cerrar la ventana
         boton_cerrar = ctk.CTkButton(
             self.panel_principal_configuracion,
@@ -99,7 +99,7 @@ class VentanaConfiguracion:
             command=self.cerrar_ventana,
         )
         boton_cerrar.pack(fill="x", pady=(215, 0), padx=5)
-        self.widgets.append(boton_cerrar)
+        self.componentes.append(boton_cerrar)
 
     # abrir sección de configuración
     def abrir_seccion(self, seccion):
@@ -107,10 +107,10 @@ class VentanaConfiguracion:
 
     # cerrar ventana de configuración
     def cerrar_ventana(self):
-        # Eliminar widgets de la ventana de configuración
+        # Eliminar componentes de la ventana de configuración
         try:
-            # Eliminar referencias de los widgets en el controlador
-            for widget in self.widgets:
+            # Eliminar referencias de los componentes en el controlador
+            for widget in self.componentes:
                 if widget in self.controlador.frames:
                     self.controlador.frames.remove(widget)
                 if widget in self.controlador.etiquetas:
@@ -118,8 +118,8 @@ class VentanaConfiguracion:
                 for nombre in list(self.controlador.botones.keys()):
                     if self.controlador.botones[nombre] == widget:
                         del self.controlador.botones[nombre]
-            # Limpiar lista de widgets
-            self.widgets.clear()
+            # Limpiar lista de componentes
+            self.componentes.clear()
             # Liberar el modo modal
             self.ventana_configuracion.grab_release()
             # Destruir la ventana

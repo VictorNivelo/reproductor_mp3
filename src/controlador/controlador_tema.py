@@ -183,34 +183,24 @@ class ControladorTema:
         self.tema_iconos = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.iconos = cargar_iconos(self.tema_iconos)
         self.establecer_tema_global()
-
         # Actualizar iconos de botones
         for nombre in self.botones:
             self.mostrar_icono_boton(nombre)
-
         # Actualizar colores de frames
         self.actualizar_colores_frames()
-
         # Actualizar colores de etiquetas
         self.actualizar_colores_etiquetas()
-
         # Actualizar colores de entradas
         self.actualizar_colores_entradas()
-
         # Actualizar colores de comboboxes
         self.actualizar_colores_comboboxes()
-
         # Actualizar colores de botones
         self.actualizar_colores_botones()
-
         # Actualizar colores de sliders
         self.actualizar_colores_sliders()
-
         # Actualizar colores de progress bars
         self.actualizar_colores_progress_bars()
-
         # Actualizar colores de tabviews
         self.actualizar_colores_tabviews()
-
         # Actualizar colores de canvas
         self.actualizar_colores_canvas()

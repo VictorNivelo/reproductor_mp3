@@ -4,13 +4,12 @@ from pathlib import Path
 
 
 class Biblioteca:
-    def __init__(self):
-        self.canciones: List[Cancion] = []
-        self.por_titulo: Dict[str, Cancion] = {}
-        self.por_artista: Dict[str, List[Cancion]] = {}
-        self.por_album: Dict[str, List[Cancion]] = {}
-        self.me_gusta: List[Cancion] = []
-        self.favoritos: List[Cancion] = []
+    canciones: List[Cancion]
+    por_titulo: Dict[str, Cancion]
+    por_artista: Dict[str, List[Cancion]]
+    por_album: Dict[str, List[Cancion]]
+    me_gusta: List[Cancion]
+    favoritos: List[Cancion]
 
     # Agregar una canción a la biblioteca
     def agregar_cancion(self, ruta: Path) -> Cancion:

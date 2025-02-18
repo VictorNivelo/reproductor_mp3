@@ -1,4 +1,4 @@
-from vista.utiles import cargar_iconos
+from vista.utiles_vista import cargar_iconos
 from vista.constantes import *
 import customtkinter as ctk
 
@@ -66,9 +66,9 @@ class ControladorTema:
 
     # actualizar colores de los frames
     def actualizar_colores_frames(self):
-        color_fondo = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro
+        color_fondo = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
         color_principal = (
-            fondo_principal_oscuro if self.tema_interfaz == "oscuro" else fondo_principal_claro
+            FONDO_PRINCIPAL_OSCURO if self.tema_interfaz == "oscuro" else FONDO_PRINCIPAL_CLARO
         )
         for frame, es_ctk, es_principal in self.frames:
             if es_principal:
@@ -80,16 +80,16 @@ class ControladorTema:
 
     # actualizar colores de las etiquetas
     def actualizar_colores_etiquetas(self):
-        color_fondo = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro
-        color_texto = texto_oscuro if self.tema_interfaz == "oscuro" else texto_claro
+        color_fondo = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
+        color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
         for etiqueta in self.etiquetas:
             etiqueta.configure(fg_color=color_fondo, text_color=color_texto)
 
     # actualizar colores de las entradas
     def actualizar_colores_entradas(self):
-        color_fondo = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro
-        color_texto = texto_oscuro if self.tema_interfaz == "oscuro" else texto_claro
-        color_borde = fondo_claro if self.tema_interfaz == "oscuro" else fondo_oscuro
+        color_fondo = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
+        color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
+        color_borde = FONDO_CLARO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
         for entrada in self.entradas:
             entrada.configure(
                 fg_color=color_fondo,
@@ -100,10 +100,10 @@ class ControladorTema:
 
     # actualizar colores de los comboboxes
     def actualizar_colores_comboboxes(self):
-        color_fondo = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro
-        color_texto = texto_oscuro if self.tema_interfaz == "oscuro" else texto_claro
-        color_borde = fondo_claro if self.tema_interfaz == "oscuro" else fondo_oscuro
-        color_hover = hover_oscuro if self.tema_interfaz == "oscuro" else hover_claro
+        color_fondo = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
+        color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
+        color_borde = FONDO_CLARO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
+        color_hover = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_CLARO
         for combobox in self.comboboxes:
             combobox.configure(
                 fg_color=color_fondo,
@@ -118,18 +118,18 @@ class ControladorTema:
 
     # actualizar colores de los botones
     def actualizar_colores_botones(self):
-        color_fondo = boton_oscuro if self.tema_interfaz == "oscuro" else boton_claro
-        color_texto = texto_oscuro if self.tema_interfaz == "oscuro" else texto_claro
-        color_hover = hover_oscuro if self.tema_interfaz == "oscuro" else hover_claro
+        color_fondo = BOTON_OSCURO if self.tema_interfaz == "oscuro" else BOTON_CLARO
+        color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
+        color_hover = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_CLARO
         for boton in self.botones.values():
             boton.configure(fg_color=color_fondo, text_color=color_texto, hover_color=color_hover)
 
     # actualizar colores de los sliders
     def actualizar_colores_sliders(self):
-        color_fondo = hover_oscuro if self.tema_interfaz == "oscuro" else hover_claro
-        color_progreso = texto_oscuro if self.tema_interfaz == "oscuro" else fondo_oscuro
-        color_boton = texto_oscuro if self.tema_interfaz == "oscuro" else fondo_oscuro
-        color_boton_hover = hover_oscuro if self.tema_interfaz == "oscuro" else hover_oscuro
+        color_fondo = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_CLARO
+        color_progreso = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
+        color_boton = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
+        color_boton_hover = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_OSCURO
         for slider in self.sliders:
             slider.configure(
                 fg_color=color_fondo,
@@ -140,18 +140,18 @@ class ControladorTema:
 
     # actualizar colores de las progress bars
     def actualizar_colores_progress_bars(self):
-        color_fondo = hover_oscuro if self.tema_interfaz == "oscuro" else "lightgray"
-        color_progreso = texto_oscuro if self.tema_interfaz == "oscuro" else fondo_oscuro
+        color_fondo = HOVER_OSCURO if self.tema_interfaz == "oscuro" else "lightgray"
+        color_progreso = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
         for progress_bar in self.progress_bars:
             progress_bar.configure(fg_color=color_fondo, progress_color=color_progreso)
 
     # actualizar colores de los tabviews
     def actualizar_colores_tabviews(self):
-        color_fondo = oscuro if self.tema_interfaz == "oscuro" else claro
-        color_barra = oscuro_segundario if self.tema_interfaz == "oscuro" else claro_segundario
-        color_pestania = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro
-        color_hover = hover_oscuro if self.tema_interfaz == "oscuro" else hover_claro
-        color_texto = texto_oscuro if self.tema_interfaz == "oscuro" else texto_claro
+        color_fondo = OSCURO if self.tema_interfaz == "oscuro" else CLARO
+        color_barra = OSCURO_SEGUNDARIO if self.tema_interfaz == "oscuro" else CLARO_SEGUNDARIO
+        color_pestania = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
+        color_hover = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_CLARO
+        color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
         for tabview in self.tabviews:
             tabview.configure(
                 fg_color=color_fondo,
@@ -165,8 +165,8 @@ class ControladorTema:
 
     # actualizar colores de los canvas
     def actualizar_colores_canvas(self):
-        color_tabview = oscuro_segundario if self.tema_interfaz == "oscuro" else claro_segundario
-        color_normal = fondo_oscuro if self.tema_interfaz == "oscuro" else fondo_claro
+        color_tabview = OSCURO_SEGUNDARIO if self.tema_interfaz == "oscuro" else CLARO_SEGUNDARIO
+        color_normal = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
         for canvas, es_tabview in self.canvas:
             if es_tabview:
                 canvas.configure(bg=color_tabview)

@@ -63,7 +63,7 @@ def cargar_iconos(tema="claro"):
                 # modo de imagen y tamaño
                 light_image=Image.open(ruta_iconos),
                 dark_image=Image.open(ruta_iconos),
-                size=(ancho_imagen, alto_imagen),
+                size=(ANCHO_IMAGEN, ALTO_IMAGEN),
             )
         except Exception as e:
             print(f"Error al cargar el icono {nombre}: {e}")
@@ -76,16 +76,16 @@ def establecer_icono_tema(ventana, tema="claro"):
         # Para Windows
         if tema == "claro":
             # Si el tema es claro, ponemos el icono oscuro
-            ventana.iconbitmap(ruta_icono_aplicacion_oscuro.replace(".png", ".ico"))
+            ventana.iconbitmap(RUTA_ICONO_APLICACION_OSCURO.replace(".png", ".ico"))
         else:
             # Si el tema es oscuro, ponemos el icono claro
-            ventana.iconbitmap(ruta_icono_aplicacion_claro.replace(".png", ".ico"))
+            ventana.iconbitmap(RUTA_ICONO_APLICACION_CLARO.replace(".png", ".ico"))
     except:
         # Para otros sistemas o como respaldo usando PhotoImage
         if tema == "claro":
             # Si el tema es claro, ponemos el icono oscuro
-            icono = tk.PhotoImage(file=ruta_icono_aplicacion_oscuro)
+            icono = tk.PhotoImage(file=RUTA_ICONO_APLICACION_OSCURO)
         else:
             # Si el tema es oscuro, ponemos el icono claro
-            icono = tk.PhotoImage(file=ruta_icono_aplicacion_claro)
+            icono = tk.PhotoImage(file=RUTA_ICONO_APLICACION_CLARO)
         ventana.iconphoto(True, icono)

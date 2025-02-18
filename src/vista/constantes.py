@@ -2,114 +2,114 @@ import os
 
 # ======================== constantes de la vista ========================
 # tamaño de la pantalla
-ancho_principal = 1200
-alto_principal = 720
+ANCHO_PRINCIPAL = 1200
+ALTO_PRINCIPAL = 720
 
 # tamaño de la ventana de configuración
-ancho_configuracion = 400
-alto_configuracion = 500
+ANCHO_CONFIGURACION = 400
+ALTO_CONFIGURACION = 500
 
 # tamaño minireproductor
-ancho_minireproductor = 355
-alto_minireproductor = 125
+ANCHO_MINI_REPRODUCTOR = 355
+ALTO_MINI_REPRODUCTOR = 125
 
 # tamaño panel derecha
-ancho_panel_derecha = 435
+ANCHO_PANEL_DERECHA = 435
 
 # tamaño altura tabview
-alto_tabview = 400
+ALTO_TABVIEW = 400
 
 # tamaño de los botones
-ancho_boton = 20
-alto_boton = 20
+ANCHO_BOTON = 20
+ALTO_BOTON = 20
 
 # tamaño de las imagenes de los botones
-ancho_imagen = 20
-alto_imagen = 20
+ANCHO_IMAGEN = 20
+ALTO_IMAGEN = 20
 
 # bordes redondeados
-bordes_redondeados_frame = 10
-borde_redondeado_boton = 5
+BORDES_REDONDEADOS_PANEL = 10
+BORDES_REDONDEADOS_BOTON = 5
 
 # tamaño de barras del espectro
-numero_barras = 125
-ancho_barra = 2
-espacio_entre_barras = 1
+NUMERO_BARRA = 125
+ANCHO_BARRA = 2
+ESPACIO_ENTRE_BARRA = 1
 
 # ========================================================================
 
 # ========================= ruta de los recursos =========================
 # ruta base del proyecto
-ruta_base = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+RUTA_BASE = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 # ruta de los recursos
-ruta_recursos = os.path.join(ruta_base, "recursos")
-ruta_iconos = os.path.join(ruta_recursos, "iconos")
-ruta_imagenes = os.path.join(ruta_recursos, "imagenes")
+RUTA_RECURSOS = os.path.join(RUTA_BASE, "recursos")
+RUTA_ICONOS = os.path.join(RUTA_RECURSOS, "iconos")
+RUTA_IMAGENES = os.path.join(RUTA_RECURSOS, "imagenes")
 
 # rutas del icono de la aplicación
-ruta_icono_aplicacion_claro = os.path.join(ruta_iconos, "reproductor_claro.png")
-ruta_icono_aplicacion_oscuro = os.path.join(ruta_iconos, "reproductor_oscuro.png")
+RUTA_ICONO_APLICACION_CLARO = os.path.join(RUTA_ICONOS, "reproductor_claro.png")
+RUTA_ICONO_APLICACION_OSCURO = os.path.join(RUTA_ICONOS, "reproductor_oscuro.png")
 
 # ruta del ucono de la aplicacion en ico
-ruta_icono_aplicacion_claro_ico = os.path.join(ruta_iconos, "reproductor_claro.ico")
-ruta_icono_aplicacion_oscuro_ico = os.path.join(ruta_iconos, "reproductor_oscuro.ico")
+RUTA_ICONO_APLICACION_CLARO_ICO = os.path.join(RUTA_ICONOS, "reproductor_claro.ico")
+RUTA_ICONO_APLICACION_OSCURO_ICO = os.path.join(RUTA_ICONOS, "reproductor_oscuro.ico")
 
 # ========================================================================
 
 # ========================== colores y fuentes ===========================
 # claro
-claro = "#ffffff"
-claro_segundario = "#f8f8f8"
-fondo_principal_claro = "#dedede"
-fondo_claro = "#f2f2f2"
-texto_claro = "#1a1a1a"
-boton_claro = "#e6e6e6"
-hover_claro = "#d9d9d9"
+CLARO = "#ffffff"
+CLARO_SEGUNDARIO = "#f8f8f8"
+FONDO_PRINCIPAL_CLARO = "#dedede"
+FONDO_CLARO = "#f2f2f2"
+TEXTO_CLARO = "#1a1a1a"
+BOTON_CLARO = "#e6e6e6"
+HOVER_CLARO = "#d9d9d9"
 
 # oscuro
-oscuro = "#0a0a0a"
-oscuro_segundario = "#141414"
-fondo_principal_oscuro = "#181818"
-fondo_oscuro = "#1f1f1f"
-texto_oscuro = "#ffffff"
-boton_oscuro = "#2d2d2d"
-hover_oscuro = "#383838"
+OSCURO = "#0a0a0a"
+OSCURO_SEGUNDARIO = "#141414"
+FONDO_PRINCIPAL_OSCURO = "#181818"
+FONDO_OSCURO = "#1f1f1f"
+TEXTO_OSCURO = "#ffffff"
+BOTON_OSCURO = "#2d2d2d"
+HOVER_OSCURO = "#383838"
 
 # ========================================================================
 
 # =============================== fuentes ================================
 # letra
-letra = "SF Pro Display"
+LETRA = "SF Pro Display"
 
 # tamaños de las letras
-tamanio_letra_tiempo = 12
-tamanio_letra_boton = 12
-tamanio_letra_entrada = 12.5
-tamanio_letra_combobox = 12.5
-tamanio_letra_etiqueta = 13
-tamanio_letra_volumen = 13
+TAMANIO_LETRA_TIEMPO = 12
+TAMANIO_LETRA_BOTON = 12
+TAMANIO_LETRA_ENTRADA = 12.5
+TAMANIO_LETRA_COMBOBOX = 12.5
+TAMANIO_LETRA_ETIQUETA = 13
+TAMANIO_LETRA_VOLUMEN = 13
 
 # ========================================================================
 
 # ========================= variables de estado ==========================
 # tema actual
-tema_actual = "claro"
+TEMA_ACTUAL = "claro"
 
 # estados de los botones
-reproduciendo = False
-panel_visible = True
-silenciado = False
-orden = True
-repeticion = 0
-volumen = 100
-me_gusta = False
-favorito = False
+REPRODUCIENDO = False
+SILENCIADO = False
+PANEL_VISIBLE = True
+ORDEN = True
+REPETICION = 0
+VOLUMEN = 100
+ME_GUSTA = False
+FAVORITO = False
 
 # estado de la barra de progreso
-arrastrando_progreso = False
-duracion_total = 0
-tiempo_actual = 0
+ARRASTRANDO_PROGRESO = False
+DURACION_TOTAL = 0
+TIEMPO_ACTUAL = 0
 
 # ========================================================================
 
@@ -120,6 +120,6 @@ def obtener_ruta_iconos(nombre_icono, tema):
     # Iconos especiales que son independientes del tema
     iconos_especiales = ["me_gusta_rojo", "favorito_amarillo"]
     if nombre_icono in iconos_especiales:
-        return os.path.join(ruta_iconos, f"{nombre_icono}.png")
+        return os.path.join(RUTA_ICONOS, f"{nombre_icono}.png")
     # Iconos normales que dependen del tema
-    return os.path.join(ruta_iconos, tema, f"{nombre_icono}_{tema}.png")
+    return os.path.join(RUTA_ICONOS, tema, f"{nombre_icono}_{tema}.png")

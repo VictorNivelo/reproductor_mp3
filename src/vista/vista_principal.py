@@ -2,7 +2,7 @@ from vista.componentes.mini_reproductor import MiniReproductor
 from vista.componentes.configuracion import Configuracion
 from controlador.controlador_tema import ControladorTema
 from vista.utiles_vista import establecer_icono_tema
-from vista.constantes import *
+from constantes import *
 import customtkinter as ctk
 import tkinter as tk
 import tracemalloc
@@ -29,93 +29,57 @@ def medir_consumo_memoria(func):
 # Función para cambiar el tema de la interfaz
 def cambiar_tema():
     global TEMA_ACTUAL
+    # Cambiar tema
     TEMA_ACTUAL = "oscuro" if TEMA_ACTUAL == "claro" else "claro"
     controlador.cambiar_tema()
+    # Actualizar barras del espectro
     color_barra = HOVER_CLARO if TEMA_ACTUAL == "claro" else HOVER_OSCURO
     for barra in barras_espectro:
         canvas_espectro.itemconfig(barra, fill=color_barra)
-    # cambiar iconos de los botones
-    if TEMA_ACTUAL == "oscuro":
-        controlador.registrar_botones("modo_claro", boton_tema)
-        # estado de reproducción
-        if REPRODUCIENDO:
-            controlador.registrar_botones("pausa", boton_reproducir)
-        else:
-            controlador.registrar_botones("reproducir", boton_reproducir)
-        # orden de reproducción
-        if ORDEN:
-            controlador.registrar_botones("aleatorio", boton_aleatorio)
-        else:
-            controlador.registrar_botones("orden", boton_aleatorio)
-        # repeticion de reproducción
-        if REPETICION == 0:
-            controlador.registrar_botones("no_repetir", boton_repetir)
-        elif REPETICION == 1:
-            controlador.registrar_botones("repetir_actual", boton_repetir)
-        else:
-            controlador.registrar_botones("repetir_todo", boton_repetir)
-        # volumen
-        if SILENCIADO:
-            controlador.registrar_botones("silencio", boton_silenciar)
-        else:
-            if VOLUMEN == 0:
-                controlador.registrar_botones("sin_volumen", boton_silenciar)
-            elif VOLUMEN <= 33:
-                controlador.registrar_botones("volumen_bajo", boton_silenciar)
-            elif VOLUMEN <= 66:
-                controlador.registrar_botones("volumen_medio", boton_silenciar)
-            else:
-                controlador.registrar_botones("volumen_alto", boton_silenciar)
-        # me gusta y favorito
-        if ME_GUSTA:
-            controlador.registrar_botones("me_gusta_rojo", boton_me_gusta)
-        else:
-            controlador.registrar_botones("me_gusta", boton_me_gusta)
-        if FAVORITO:
-            controlador.registrar_botones("favorito_amarillo", boton_favorito)
-        else:
-            controlador.registrar_botones("favorito", boton_favorito)
-    else:
+    # Actualizar icono de tema
+    if TEMA_ACTUAL == "claro":
         cambiar_icono_tema("claro")
         controlador.registrar_botones("modo_oscuro", boton_tema)
-        # estado de reproducción
-        if REPRODUCIENDO:
-            controlador.registrar_botones("pausa", boton_reproducir)
-        else:
-            controlador.registrar_botones("reproducir", boton_reproducir)
-        # orden de reproducción
-        if TIEMPO_ACTUAL:
-            controlador.registrar_botones("aleatorio", boton_aleatorio)
-        else:
-            controlador.registrar_botones("orden", boton_aleatorio)
-        # repeticion de reproducción
+    else:
+        controlador.registrar_botones("modo_claro", boton_tema)
+
+    # Función auxiliar para actualizar iconos según estado
+    def actualizar_iconos():
+        # Estado de reproducción
+        icon_reproduccion = "pausa" if REPRODUCIENDO else "reproducir"
+        controlador.registrar_botones(icon_reproduccion, boton_reproducir)
+        # Orden de reproducción
+        icon_orden = "aleatorio" if ORDEN else "orden"
+        controlador.registrar_botones(icon_orden, boton_aleatorio)
+        # Repetición
         if REPETICION == 0:
-            controlador.registrar_botones("no_repetir", boton_repetir)
+            icon_repeticion = "no_repetir"
         elif REPETICION == 1:
-            controlador.registrar_botones("repetir_actual", boton_repetir)
+            icon_repeticion = "repetir_actual"
         else:
-            controlador.registrar_botones("repetir_todo", boton_repetir)
-        # volumen
+            icon_repeticion = "repetir_todo"
+        controlador.registrar_botones(icon_repeticion, boton_repetir)
+        # Volumen
         if SILENCIADO:
-            controlador.registrar_botones("silencio", boton_silenciar)
+            icon_volumen = "silencio"
         else:
             if VOLUMEN == 0:
-                controlador.registrar_botones("sin_volumen", boton_silenciar)
+                icon_volumen = "sin_volumen"
             elif VOLUMEN <= 33:
-                controlador.registrar_botones("volumen_bajo", boton_silenciar)
+                icon_volumen = "volumen_bajo"
             elif VOLUMEN <= 66:
-                controlador.registrar_botones("volumen_medio", boton_silenciar)
+                icon_volumen = "volumen_medio"
             else:
-                controlador.registrar_botones("volumen_alto", boton_silenciar)
-        # me gusta y favorito
-        if ME_GUSTA:
-            controlador.registrar_botones("me_gusta_rojo", boton_me_gusta)
-        else:
-            controlador.registrar_botones("me_gusta", boton_me_gusta)
-        if FAVORITO:
-            controlador.registrar_botones("favorito_amarillo", boton_favorito)
-        else:
-            controlador.registrar_botones("favorito", boton_favorito)
+                icon_volumen = "volumen_alto"
+        controlador.registrar_botones(icon_volumen, boton_silenciar)
+        # Me gusta y favoritos
+        icon_me_gusta = "me_gusta_rojo" if ME_GUSTA else "me_gusta"
+        icon_favorito = "favorito_amarillo" if FAVORITO else "favorito"
+        controlador.registrar_botones(icon_me_gusta, boton_me_gusta)
+        controlador.registrar_botones(icon_favorito, boton_favorito)
+
+    # Actualizar todos los iconos
+    actualizar_iconos()
 
 
 # Función para cambiar el estado de reproducción

@@ -1,5 +1,5 @@
 from vista.utiles_vista import cargar_iconos
-from vista.constantes import *
+from constantes import *
 import customtkinter as ctk
 
 

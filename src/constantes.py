@@ -40,7 +40,7 @@ ESPACIO_ENTRE_BARRA = 1
 
 # ========================= ruta de los recursos =========================
 # ruta base del proyecto
-RUTA_BASE = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+RUTA_BASE = os.path.dirname(os.path.dirname(__file__))
 
 # ruta de los recursos
 RUTA_RECURSOS = os.path.join(RUTA_BASE, "recursos")

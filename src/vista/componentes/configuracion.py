@@ -1,5 +1,5 @@
 from vista.utiles_vista import establecer_icono_tema
-from vista.constantes import *
+from constantes import *
 import customtkinter as ctk
 
 

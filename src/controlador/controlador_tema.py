@@ -1,13 +1,15 @@
 from vista.utiles_vista import cargar_iconos
-from constantes import *
 import customtkinter as ctk
+from constantes import *
 
 
 class ControladorTema:
     def __init__(self):
+        # tema de la interfaz
         self.tema_interfaz = "claro"
         self.tema_iconos = "oscuro"
         self.iconos = cargar_iconos(self.tema_iconos)
+        # diccionario de componentes
         self.botones = {}
         self.frames = []
         self.etiquetas = []
@@ -17,7 +19,9 @@ class ControladorTema:
         self.progress_bars = []
         self.tabviews = []
         self.canvas = []
-        self.establecer_tema_global()
+        # establecer apariencia global
+        self.establecer_apariencia_global()
+        self.colores()
 
     # registrar botones
     def registrar_botones(self, nombre, boton):
@@ -64,117 +68,108 @@ class ControladorTema:
             if nombre_icono in self.iconos and self.iconos[nombre_icono]:
                 boton.configure(image=self.iconos[nombre_icono], compound="left")
 
-    # actualizar colores de los frames
-    def actualizar_colores_frames(self):
-        color_fondo = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
-        color_principal = (
+    # colores de la interfaz
+    def colores(self):
+        self.color_principal = (
             FONDO_PRINCIPAL_OSCURO if self.tema_interfaz == "oscuro" else FONDO_PRINCIPAL_CLARO
         )
+        self.color_base = OSCURO if self.tema_interfaz == "oscuro" else CLARO
+        self.color_fondo = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
+        self.color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
+        self.color_borde = FONDO_CLARO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
+        self.color_boton = BOTON_OSCURO if self.tema_interfaz == "oscuro" else BOTON_CLARO
+        self.color_hover = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_CLARO
+        self.color_slider = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
+        self.color_hover_oscuro = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_OSCURO
+        self.barra_progreso = HOVER_OSCURO if self.tema_interfaz == "oscuro" else "lightgray"
+        self.color_segundario = (
+            OSCURO_SEGUNDARIO if self.tema_interfaz == "oscuro" else CLARO_SEGUNDARIO
+        )
+
+    # actualizar colores de los frames
+    def actualizar_colores_frames(self):
         for frame, es_ctk, es_principal in self.frames:
             if es_principal:
-                frame.configure(bg=color_principal)
+                frame.configure(bg=self.color_principal)
             elif es_ctk:
-                frame.configure(fg_color=color_fondo)
+                frame.configure(fg_color=self.color_fondo)
             else:
-                frame.configure(bg=color_fondo)
+                frame.configure(bg=self.color_fondo)
 
     # actualizar colores de las etiquetas
     def actualizar_colores_etiquetas(self):
-        color_fondo = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
-        color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
         for etiqueta in self.etiquetas:
-            etiqueta.configure(fg_color=color_fondo, text_color=color_texto)
+            etiqueta.configure(fg_color=self.color_fondo, text_color=self.color_texto)
 
     # actualizar colores de las entradas
     def actualizar_colores_entradas(self):
-        color_fondo = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
-        color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
-        color_borde = FONDO_CLARO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
         for entrada in self.entradas:
             entrada.configure(
-                fg_color=color_fondo,
-                text_color=color_texto,
-                placeholder_text_color=color_texto,
-                border_color=color_borde,
+                fg_color=self.color_fondo,
+                text_color=self.color_texto,
+                placeholder_text_color=self.color_texto,
+                border_color=self.color_borde,
             )
 
     # actualizar colores de los comboboxes
     def actualizar_colores_comboboxes(self):
-        color_fondo = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
-        color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
-        color_borde = FONDO_CLARO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
-        color_hover = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_CLARO
         for combobox in self.comboboxes:
             combobox.configure(
-                fg_color=color_fondo,
-                text_color=color_texto,
-                border_color=color_borde,
-                button_color=color_fondo,
-                button_hover_color=color_hover,
-                dropdown_fg_color=color_fondo,
-                dropdown_hover_color=color_hover,
-                dropdown_text_color=color_texto,
+                fg_color=self.color_fondo,
+                text_color=self.color_texto,
+                border_color=self.color_borde,
+                button_color=self.color_fondo,
+                button_hover_color=self.color_hover,
+                dropdown_fg_color=self.color_fondo,
+                dropdown_hover_color=self.color_hover,
+                dropdown_text_color=self.color_texto,
             )
 
     # actualizar colores de los botones
     def actualizar_colores_botones(self):
-        color_fondo = BOTON_OSCURO if self.tema_interfaz == "oscuro" else BOTON_CLARO
-        color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
-        color_hover = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_CLARO
         for boton in self.botones.values():
-            boton.configure(fg_color=color_fondo, text_color=color_texto, hover_color=color_hover)
+            boton.configure(
+                fg_color=self.color_boton, text_color=self.color_texto, hover_color=self.color_hover
+            )
 
     # actualizar colores de los sliders
     def actualizar_colores_sliders(self):
-        color_fondo = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_CLARO
-        color_progreso = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
-        color_boton = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
-        color_boton_hover = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_OSCURO
         for slider in self.sliders:
             slider.configure(
-                fg_color=color_fondo,
-                progress_color=color_progreso,
-                button_color=color_boton,
-                button_hover_color=color_boton_hover,
+                fg_color=self.color_hover,
+                progress_color=self.color_slider,
+                button_color=self.color_slider,
+                button_hover_color=self.color_hover_oscuro,
             )
 
     # actualizar colores de las progress bars
     def actualizar_colores_progress_bars(self):
-        color_fondo = HOVER_OSCURO if self.tema_interfaz == "oscuro" else "lightgray"
-        color_progreso = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
         for progress_bar in self.progress_bars:
-            progress_bar.configure(fg_color=color_fondo, progress_color=color_progreso)
+            progress_bar.configure(fg_color=self.barra_progreso, progress_color=self.color_slider)
 
     # actualizar colores de los tabviews
     def actualizar_colores_tabviews(self):
-        color_fondo = OSCURO if self.tema_interfaz == "oscuro" else CLARO
-        color_barra = OSCURO_SEGUNDARIO if self.tema_interfaz == "oscuro" else CLARO_SEGUNDARIO
-        color_pestania = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
-        color_hover = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_CLARO
-        color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
         for tabview in self.tabviews:
             tabview.configure(
-                fg_color=color_fondo,
-                segmented_button_fg_color=color_barra,
-                segmented_button_selected_color=color_pestania,
-                segmented_button_selected_hover_color=color_hover,
-                segmented_button_unselected_color=color_hover,
-                segmented_button_unselected_hover_color=color_pestania,
-                text_color=color_texto,
+                fg_color=self.color_base,
+                segmented_button_fg_color=self.color_segundario,
+                segmented_button_selected_color=self.color_fondo,
+                segmented_button_selected_hover_color=self.color_hover,
+                segmented_button_unselected_color=self.color_hover,
+                segmented_button_unselected_hover_color=self.color_fondo,
+                text_color=self.color_texto,
             )
 
     # actualizar colores de los canvas
     def actualizar_colores_canvas(self):
-        color_tabview = OSCURO_SEGUNDARIO if self.tema_interfaz == "oscuro" else CLARO_SEGUNDARIO
-        color_normal = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
         for canvas, es_tabview in self.canvas:
             if es_tabview:
-                canvas.configure(bg=color_tabview)
+                canvas.configure(bg=self.color_segundario)
             else:
-                canvas.configure(bg=color_normal)
+                canvas.configure(bg=self.color_fondo)
 
     # establecer tema global
-    def establecer_tema_global(self):
+    def establecer_apariencia_global(self):
         ctk.set_appearance_mode("dark" if self.tema_interfaz == "oscuro" else "light")
 
     # cambiar tema
@@ -182,7 +177,8 @@ class ControladorTema:
         self.tema_interfaz = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.tema_iconos = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.iconos = cargar_iconos(self.tema_iconos)
-        self.establecer_tema_global()
+        self.establecer_apariencia_global()
+        self.colores()
         # Actualizar iconos de botones
         for nombre in self.botones:
             self.mostrar_icono_boton(nombre)

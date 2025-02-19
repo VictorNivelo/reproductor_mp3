@@ -1,5 +1,5 @@
-from constantes import *
 import customtkinter as ctk
+from constantes import *
 from PIL import Image
 import tkinter as tk
 

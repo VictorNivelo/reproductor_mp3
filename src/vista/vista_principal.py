@@ -2,8 +2,8 @@ from vista.componentes.mini_reproductor import MiniReproductor
 from vista.componentes.configuracion import Configuracion
 from controlador.controlador_tema import ControladorTema
 from vista.utiles_vista import establecer_icono_tema
-from constantes import *
 import customtkinter as ctk
+from constantes import *
 import tkinter as tk
 import tracemalloc
 import random

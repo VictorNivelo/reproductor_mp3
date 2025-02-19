@@ -1,6 +1,6 @@
 from vista.utiles_vista import establecer_icono_tema
-from constantes import *
 import customtkinter as ctk
+from constantes import *
 
 
 class MiniReproductor:

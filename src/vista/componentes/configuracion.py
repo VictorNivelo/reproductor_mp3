@@ -1,6 +1,6 @@
 from vista.utiles_vista import establecer_icono_tema
-from constantes import *
 import customtkinter as ctk
+from constantes import *
 
 
 class Configuracion:
@@ -123,7 +123,7 @@ class Configuracion:
                 establecer_icono_tema(self.ventana_configuracion, self.controlador.tema_interfaz)
                 self.ventana_configuracion.deiconify()
             except:
-                # Si hay error, recrear la ventana
+                # Sí hay error, recrear la ventana
                 self.ventana_configuracion = None
                 self.crear_ventana_configuracion()
 

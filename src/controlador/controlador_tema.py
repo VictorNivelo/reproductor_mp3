@@ -1,10 +1,11 @@
+from controlador.utiles_contolador import UtilesControlador
 from vista.utiles_vista import cargar_iconos
 import customtkinter as ctk
-from constantes import *
 
 
-class ControladorTema:
+class ControladorTema(UtilesControlador):
     def __init__(self):
+        super().__init__()
         # tema de la interfaz
         self.tema_interfaz = "claro"
         self.tema_iconos = "oscuro"
@@ -21,7 +22,6 @@ class ControladorTema:
         self.canvas = []
         # establecer apariencia global
         self.establecer_apariencia_global()
-        self.colores()
 
     # registrar botones
     def registrar_botones(self, nombre, boton):
@@ -67,24 +67,6 @@ class ControladorTema:
             nombre_icono = nombre.replace("_mini", "")
             if nombre_icono in self.iconos and self.iconos[nombre_icono]:
                 boton.configure(image=self.iconos[nombre_icono], compound="left")
-
-    # colores de la interfaz
-    def colores(self):
-        self.color_principal = (
-            FONDO_PRINCIPAL_OSCURO if self.tema_interfaz == "oscuro" else FONDO_PRINCIPAL_CLARO
-        )
-        self.color_base = OSCURO if self.tema_interfaz == "oscuro" else CLARO
-        self.color_fondo = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
-        self.color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
-        self.color_borde = FONDO_CLARO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
-        self.color_boton = BOTON_OSCURO if self.tema_interfaz == "oscuro" else BOTON_CLARO
-        self.color_hover = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_CLARO
-        self.color_slider = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
-        self.color_hover_oscuro = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_OSCURO
-        self.barra_progreso = HOVER_OSCURO if self.tema_interfaz == "oscuro" else "lightgray"
-        self.color_segundario = (
-            OSCURO_SEGUNDARIO if self.tema_interfaz == "oscuro" else CLARO_SEGUNDARIO
-        )
 
     # actualizar colores de los frames
     def actualizar_colores_frames(self):

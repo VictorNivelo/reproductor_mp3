@@ -80,7 +80,7 @@ def establecer_icono_tema(ventana, tema="claro"):
         else:
             # Si el tema es oscuro, ponemos el icono claro
             ventana.iconbitmap(RUTA_ICONO_APLICACION_CLARO.replace(".png", ".ico"))
-    except:
+    except tk.TclError:
         # Para otros sistemas o como respaldo usando PhotoImage
         if tema == "claro":
             # Si el tema es claro, ponemos el icono oscuro

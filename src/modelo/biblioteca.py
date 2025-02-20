@@ -84,7 +84,7 @@ class Biblioteca:
                     canciones_eliminadas.append(cancion)
         return canciones_eliminadas
 
-    # Agrega una canción a la lista de me gusta
+    # Agrega una canción a la lista me gusta
     def marcar_me_gusta(self, cancion: Cancion):
         cancion.me_gusta = not cancion.me_gusta
         if cancion.me_gusta:

@@ -220,15 +220,21 @@ def actualizar_espectro():
     for i in range(NUMERO_BARRA):
         if i < len(barras_espectro):  # Verificar que la barra existe
             altura_objetivo = random.randint(10, int(alto_canvas))
-            alturas_barras[i] = alturas_barras[i] * 0.7 + altura_objetivo * 0.3
+            alturas_barras[i] = int(alturas_barras[i] * 0.7 + altura_objetivo * 0.3)
             # Actualizar altura de la barra
             try:
                 x1, _, x2, _ = canvas_espectro.coords(barras_espectro[i])
                 canvas_espectro.coords(
                     barras_espectro[i], x1, alto_canvas, x2, alto_canvas - alturas_barras[i]
                 )
-            except:
-                return  # Sí hay error al actualizar, detener la animación
+            except tk.TclError:
+                # Error cuando el widget del canvas ha sido destruido o no está disponible
+                print("Error: El canvas del espectro no está disponible")
+                return
+            except IndexError:
+                # Error cuando se intenta acceder a una barra que no existe
+                print(f"Error: No se encontró la barra {i} en el espectro")
+                return
     # Llamar a la función nuevamente después de un delay
     if REPRODUCIENDO:
         ventana_principal.after(50, actualizar_espectro)
@@ -298,7 +304,7 @@ def minimizar_ventana():
 
 
 # Funciones para el scroll de la lista de canciones del panel
-def scroll_frame_configuracion(event):
+def scroll_frame_configuracion(even=None):
     canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
     # Obtener dimensiones
     contenido_altura = panel_botones_canciones.winfo_reqheight()

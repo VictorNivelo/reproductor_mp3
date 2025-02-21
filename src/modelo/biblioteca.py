@@ -50,8 +50,8 @@ class Biblioteca:
             # Eliminar de la lista principal
             self.canciones.remove(cancion)
             # Eliminar del diccionario por título
-            if cancion.titulo in self.por_titulo:
-                del self.por_titulo[cancion.titulo]
+            if cancion.titulo_cancion in self.por_titulo:
+                del self.por_titulo[cancion.titulo_cancion]
             # Eliminar de la lista de artistas
             if cancion.artista in self.por_artista:
                 self.por_artista[cancion.artista].remove(cancion)
@@ -79,7 +79,7 @@ class Biblioteca:
         canciones_eliminadas = []
         # Encontrar todas las canciones del directorio
         for cancion in self.canciones[:]:  # Creamos una copia para iterar
-            if str(ruta) in str(cancion.ruta):
+            if str(ruta) in str(cancion.ruta_cancion):
                 if self.eliminar_cancion(cancion):
                     canciones_eliminadas.append(cancion)
         return canciones_eliminadas
@@ -106,7 +106,7 @@ class Biblioteca:
         return [
             cancion
             for cancion in self.canciones
-            if texto in cancion.titulo.lower()
+            if texto in cancion.titulo_cancion.lower()
             or texto in cancion.artista.lower()
             or texto in cancion.album.lower()
         ]

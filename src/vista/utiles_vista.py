@@ -7,45 +7,45 @@ import tkinter as tk
 def cargar_iconos(tema="claro"):
     iconos = {}
     archivos_iconos = {
-        # botones de gustos
+        # Botones de gustos
         "me_gusta": "me_gusta",
         "favorito": "favorito",
         "me_gusta_rojo": "me_gusta_rojo",
         "favorito_amarillo": "favorito_amarillo",
-        # botones de reproducción
+        # Botones de reproducción
         "retroceder": "retroceder",
         "anterior": "anterior",
         "reproducir": "reproducir",
         "pausa": "pausa",
         "siguiente": "siguiente",
         "adelantar": "adelantar",
-        # botones de repeticion
+        # Botones de repeticion
         "no_repetir": "no_repetir",
         "repetir_actual": "repetir_actual",
         "repetir_todo": "repetir_todo",
-        # botones de orden
+        # Botones de orden
         "aleatorio": "aleatorio",
         "orden": "orden",
-        # botones de cola
+        # Botones de cola
         "lista_cancion": "lista_cancion",
         "agregar_cola": "agregar_cola",
-        # botones varios
+        # Botones varios
         "ajustes": "ajustes",
         "agregar_carpeta": "agregar_carpeta",
         "agregar_cancion": "agregar_cancion",
-        # tamaño de la ventana
+        # Tamaño de la ventana
         "maximizar": "maximizar",
         "minimizar": "minimizar",
-        # botones de volumen
+        # Botones de volumen
         "silencio": "silencio",
         "sin_volumen": "sin_volumen",
         "volumen_bajo": "volumen_bajo",
         "volumen_medio": "volumen_medio",
         "volumen_alto": "volumen_alto",
-        # botones de tema
+        # Botones de tema
         "modo_claro": "modo_claro",
         "modo_oscuro": "modo_oscuro",
-        # botones de visibilidad
+        # Botones de visibilidad
         "mostrar": "mostrar",
         "ocultar": "ocultar",
     }
@@ -60,7 +60,7 @@ def cargar_iconos(tema="claro"):
                 ruta_iconos = obtener_ruta_iconos(archivo, tema)
             # cargar el icono en una instancia de CTkImage
             iconos[nombre] = ctk.CTkImage(
-                # modo de imagen y tamaño
+                # Modo de imagen y tamaño
                 light_image=Image.open(ruta_iconos),
                 dark_image=Image.open(ruta_iconos),
                 size=(ANCHO_IMAGEN, ALTO_IMAGEN),

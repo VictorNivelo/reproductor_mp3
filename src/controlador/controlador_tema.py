@@ -6,11 +6,9 @@ import customtkinter as ctk
 class ControladorTema(UtilesControlador):
     def __init__(self):
         super().__init__()
-        # tema de la interfaz
-        self.tema_interfaz = "claro"
-        self.tema_iconos = "oscuro"
+        # Iconos de la interfaz
         self.iconos = cargar_iconos(self.tema_iconos)
-        # diccionario de componentes
+        # Diccionario de botones
         self.botones = {}
         self.frames = []
         self.etiquetas = []
@@ -20,47 +18,47 @@ class ControladorTema(UtilesControlador):
         self.progress_bars = []
         self.tabviews = []
         self.canvas = []
-        # establecer apariencia global
+        # Establecer apariencia global
         self.establecer_apariencia_global()
 
-    # registrar botones
+    # Registrar botones
     def registrar_botones(self, nombre, boton):
         self.botones[nombre] = boton
         self.mostrar_icono_boton(nombre)
 
-    # registrar frames
+    # Registrar frames
     def registrar_frame(self, frame, es_ctk=False, es_principal=False):
         self.frames.append((frame, es_ctk, es_principal))
 
-    # registrar etiquetas
+    # Registrar etiquetas
     def registrar_etiqueta(self, etiqueta):
         self.etiquetas.append(etiqueta)
 
-    # registrar entradas
+    # Registrar entradas
     def registrar_entrada(self, entrada):
         self.entradas.append(entrada)
 
-    # registrar comboboxes
+    # Registrar comboboxes
     def registrar_combobox(self, combobox):
         self.comboboxes.append(combobox)
 
-    # registrar sliders
+    # Registrar sliders
     def registrar_slider(self, slider):
         self.sliders.append(slider)
 
-    # registrar progress bars
+    # Registrar progress bars
     def registrar_progress_bar(self, progress_bar):
         self.progress_bars.append(progress_bar)
 
-    # registrar tabviews
+    # Registrar tabviews
     def registrar_tabview(self, tabview):
         self.tabviews.append(tabview)
 
-    # registrar canvas
+    # Registrar canvas
     def registrar_canvas(self, canvas, es_tabview=False):
         self.canvas.append((canvas, es_tabview))
 
-    # mostrar icono de botones
+    # Mostrar icono de botones
     def mostrar_icono_boton(self, nombre):
         if nombre in self.botones:
             boton = self.botones[nombre]
@@ -68,7 +66,7 @@ class ControladorTema(UtilesControlador):
             if nombre_icono in self.iconos and self.iconos[nombre_icono]:
                 boton.configure(image=self.iconos[nombre_icono], compound="left")
 
-    # actualizar colores de los frames
+    # Actualizar colores de los frames
     def actualizar_colores_frames(self):
         for frame, es_ctk, es_principal in self.frames:
             if es_principal:
@@ -78,12 +76,12 @@ class ControladorTema(UtilesControlador):
             else:
                 frame.configure(bg=self.color_fondo)
 
-    # actualizar colores de las etiquetas
+    # Actualizar colores de las etiquetas
     def actualizar_colores_etiquetas(self):
         for etiqueta in self.etiquetas:
             etiqueta.configure(fg_color=self.color_fondo, text_color=self.color_texto)
 
-    # actualizar colores de las entradas
+    # Actualizar colores de las entradas
     def actualizar_colores_entradas(self):
         for entrada in self.entradas:
             entrada.configure(
@@ -93,7 +91,7 @@ class ControladorTema(UtilesControlador):
                 border_color=self.color_borde,
             )
 
-    # actualizar colores de los comboboxes
+    # Actualizar colores de los comboboxes
     def actualizar_colores_comboboxes(self):
         for combobox in self.comboboxes:
             combobox.configure(
@@ -107,14 +105,14 @@ class ControladorTema(UtilesControlador):
                 dropdown_text_color=self.color_texto,
             )
 
-    # actualizar colores de los botones
+    # Actualizar colores de los botones
     def actualizar_colores_botones(self):
         for boton in self.botones.values():
             boton.configure(
                 fg_color=self.color_boton, text_color=self.color_texto, hover_color=self.color_hover
             )
 
-    # actualizar colores de los sliders
+    # Actualizar colores de los sliders
     def actualizar_colores_sliders(self):
         for slider in self.sliders:
             slider.configure(
@@ -124,12 +122,12 @@ class ControladorTema(UtilesControlador):
                 button_hover_color=self.color_hover_oscuro,
             )
 
-    # actualizar colores de las progress bars
+    # Actualizar colores de las progress bars
     def actualizar_colores_progress_bars(self):
         for progress_bar in self.progress_bars:
             progress_bar.configure(fg_color=self.barra_progreso, progress_color=self.color_slider)
 
-    # actualizar colores de los tabviews
+    # Actualizar colores de los tabviews
     def actualizar_colores_tabviews(self):
         for tabview in self.tabviews:
             tabview.configure(
@@ -142,7 +140,7 @@ class ControladorTema(UtilesControlador):
                 text_color=self.color_texto,
             )
 
-    # actualizar colores de los canvas
+    # Actualizar colores de los canvas
     def actualizar_colores_canvas(self):
         for canvas, es_tabview in self.canvas:
             if es_tabview:
@@ -150,11 +148,11 @@ class ControladorTema(UtilesControlador):
             else:
                 canvas.configure(bg=self.color_fondo)
 
-    # establecer tema global
+    # Establecer tema global
     def establecer_apariencia_global(self):
         ctk.set_appearance_mode("dark" if self.tema_interfaz == "oscuro" else "light")
 
-    # cambiar tema
+    # Cambiar tema
     def cambiar_tema(self):
         self.tema_interfaz = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.tema_iconos = "oscuro" if self.tema_interfaz == "claro" else "claro"

@@ -3,7 +3,10 @@ from constantes import *
 
 class UtilesControlador:
     def __init__(self):
+        # Tema de la interfaz y de los iconos
         self.tema_interfaz = "claro"
+        self.tema_iconos = "oscuro"
+        # Initializar colores
         self.color_principal = None
         self.color_base = None
         self.color_fondo = None
@@ -17,7 +20,7 @@ class UtilesControlador:
         self.color_segundario = None
 
     def colores(self):
-        # colores base
+        # Colores base
         self.color_principal = (
             FONDO_PRINCIPAL_OSCURO if self.tema_interfaz == "oscuro" else FONDO_PRINCIPAL_CLARO
         )

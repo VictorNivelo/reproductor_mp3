@@ -155,7 +155,7 @@ class Configuracion(UtilesComponentes):
         except Exception as e:
             print(f"Error durante la limpieza: {e}")
 
-    # abrir sección de configuración
+    # Abrir sección de configuración
     @staticmethod
     def abrir_seccion(seccion):
         print(f"Configuración de {seccion}")

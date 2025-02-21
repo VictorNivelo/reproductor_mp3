@@ -12,7 +12,7 @@ class UtilesComponentes:
         self.color_progreso = None
 
     def colores(self):
-        # colores base
+        # Colores base
         self.color_fondo_principal = (
             FONDO_PRINCIPAL_OSCURO
             if self.controlador.tema_interfaz == "oscuro"

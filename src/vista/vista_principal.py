@@ -41,6 +41,7 @@ def cambiar_tema():
         cambiar_icono_tema("claro")
         controlador.registrar_botones("modo_oscuro", boton_tema)
     else:
+        cambiar_icono_tema("oscuro")
         controlador.registrar_botones("modo_claro", boton_tema)
 
     # Función auxiliar para actualizar iconos según estado

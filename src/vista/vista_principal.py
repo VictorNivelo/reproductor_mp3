@@ -653,20 +653,20 @@ controlador.registrar_etiqueta(etiqueta_tiempo_total)
 # ------------------------------- Seccion de controles de reproducción --------------------------
 
 # Contenedor de controles de reproducción
-contenedor_controles = tk.Frame(contenedor_izquierda)
-contenedor_controles.configure(bg=FONDO_CLARO)
-contenedor_controles.pack(fill="both", padx=10, pady=3)
-controlador.registrar_frame(contenedor_controles)
+contenedor_controles_reproduccion = tk.Frame(contenedor_izquierda)
+contenedor_controles_reproduccion.configure(bg=FONDO_CLARO)
+contenedor_controles_reproduccion.pack(fill="both", padx=10, pady=3)
+controlador.registrar_frame(contenedor_controles_reproduccion)
 
 # Panel de controles
-panel_controles = tk.Frame(contenedor_controles)
-panel_controles.configure(bg=FONDO_CLARO)
-panel_controles.pack(expand=True)
-controlador.registrar_frame(panel_controles)
+panel_controles_reproduccion = tk.Frame(contenedor_controles_reproduccion)
+panel_controles_reproduccion.configure(bg=FONDO_CLARO)
+panel_controles_reproduccion.pack(expand=True)
+controlador.registrar_frame(panel_controles_reproduccion)
 
 # Botones de control
 boton_aleatorio = ctk.CTkButton(
-    panel_controles,
+    panel_controles_reproduccion,
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
@@ -681,7 +681,7 @@ boton_aleatorio.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("aleatorio", boton_aleatorio)
 
 boton_repetir = ctk.CTkButton(
-    panel_controles,
+    panel_controles_reproduccion,
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
@@ -696,7 +696,7 @@ boton_repetir.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("no_repetir", boton_repetir)
 
 boton_retroceder = ctk.CTkButton(
-    panel_controles,
+    panel_controles_reproduccion,
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
@@ -710,7 +710,7 @@ boton_retroceder.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("retroceder", boton_retroceder)
 
 boton_anterior = ctk.CTkButton(
-    panel_controles,
+    panel_controles_reproduccion,
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
@@ -724,7 +724,7 @@ boton_anterior.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("anterior", boton_anterior)
 
 boton_reproducir = ctk.CTkButton(
-    panel_controles,
+    panel_controles_reproduccion,
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
@@ -739,7 +739,7 @@ boton_reproducir.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("reproducir", boton_reproducir)
 
 boton_siguiente = ctk.CTkButton(
-    panel_controles,
+    panel_controles_reproduccion,
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
@@ -753,7 +753,7 @@ boton_siguiente.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("siguiente", boton_siguiente)
 
 boton_adelantar = ctk.CTkButton(
-    panel_controles,
+    panel_controles_reproduccion,
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
@@ -767,7 +767,7 @@ boton_adelantar.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("adelantar", boton_adelantar)
 
 boton_agregar_cola = ctk.CTkButton(
-    panel_controles,
+    panel_controles_reproduccion,
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
@@ -781,7 +781,7 @@ boton_agregar_cola.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("agregar_cola", boton_agregar_cola)
 
 boton_minimizar = ctk.CTkButton(
-    panel_controles,
+    panel_controles_reproduccion,
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
@@ -1044,14 +1044,14 @@ contenedor_inferior.pack(fill="both", padx=10, pady=3)
 controlador.registrar_frame(contenedor_inferior)
 
 # Panel de botones
-panel_botones = tk.Frame(contenedor_inferior)
-panel_botones.configure(bg=FONDO_CLARO, padx=5)
-panel_botones.pack(expand=True)
-controlador.registrar_frame(panel_botones)
+panel_botones_inferiores = tk.Frame(contenedor_inferior)
+panel_botones_inferiores.configure(bg=FONDO_CLARO, padx=5)
+panel_botones_inferiores.pack(expand=True)
+controlador.registrar_frame(panel_botones_inferiores)
 
 # Botones inferiores
 boton_agregar_cancion = ctk.CTkButton(
-    panel_botones,
+    panel_botones_inferiores,
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
@@ -1065,7 +1065,7 @@ boton_agregar_cancion.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("agregar_cancion", boton_agregar_cancion)
 
 boton_agregar_directorio = ctk.CTkButton(
-    panel_botones,
+    panel_botones_inferiores,
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,

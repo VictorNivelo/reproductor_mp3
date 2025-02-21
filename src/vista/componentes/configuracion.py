@@ -43,9 +43,7 @@ class Configuracion(UtilesComponentes):
         )
 
         # Tamaño de la ventana de configuración
-        tamanio_configuracion = (
-            f"{ANCHO_CONFIGURACION}x{ALTO_CONFIGURACION}+{posicion_ancho}+{posicion_alto}"
-        )
+        tamanio_configuracion = f"{ANCHO_CONFIGURACION}x{ALTO_CONFIGURACION}+{posicion_ancho}+{posicion_alto}"
 
         # Establecer la geometría de la ventana de configuración
         self.ventana_configuracion.geometry(tamanio_configuracion)

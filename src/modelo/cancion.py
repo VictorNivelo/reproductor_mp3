@@ -32,9 +32,7 @@ class Cancion:
             artista = audio.get("artist", ["Desconocido"])[0]
             album = audio.get("album", ["Desconocido"])[0]
             duracion = audio.info.length
-            return cls(
-                ruta=ruta_archivo, titulo=titulo, artista=artista, album=album, duracion=duracion
-            )
+            return cls(ruta=ruta_archivo, titulo=titulo, artista=artista, album=album, duracion=duracion)
         except (mutagen.MutagenError, OSError) as e:
             print(f"Error al procesar el archivo {ruta_archivo}: {str(e)}")
             return cls(ruta=ruta_archivo, titulo=ruta_archivo.stem)

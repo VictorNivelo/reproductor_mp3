@@ -12,24 +12,12 @@ class UtilesComponentes:
         self.color_progreso = None
 
     def colores(self):
+        # Tema de la interfaz
+        tema_componentes = self.controlador.tema_componentes_interfaz == "oscuro"
         # Colores base
-        self.color_fondo_principal = (
-            FONDO_PRINCIPAL_OSCURO
-            if self.controlador.tema_interfaz == "oscuro"
-            else FONDO_PRINCIPAL_CLARO
-        )
-        self.color_fondo = (
-            FONDO_OSCURO if self.controlador.tema_interfaz == "oscuro" else FONDO_CLARO
-        )
-        self.color_texto = (
-            TEXTO_OSCURO if self.controlador.tema_interfaz == "oscuro" else TEXTO_CLARO
-        )
-        self.color_boton = (
-            BOTON_OSCURO if self.controlador.tema_interfaz == "oscuro" else BOTON_CLARO
-        )
-        self.color_hover = (
-            HOVER_OSCURO if self.controlador.tema_interfaz == "oscuro" else HOVER_CLARO
-        )
-        self.color_progreso = (
-            TEXTO_OSCURO if self.controlador.tema_interfaz == "oscuro" else FONDO_OSCURO
-        )
+        self.color_fondo_principal = FONDO_PRINCIPAL_OSCURO if tema_componentes else FONDO_PRINCIPAL_CLARO
+        self.color_fondo = FONDO_OSCURO if tema_componentes else FONDO_CLARO
+        self.color_texto = TEXTO_OSCURO if tema_componentes else TEXTO_CLARO
+        self.color_boton = BOTON_OSCURO if tema_componentes else BOTON_CLARO
+        self.color_hover = HOVER_OSCURO if tema_componentes else HOVER_CLARO
+        self.color_progreso = TEXTO_OSCURO if tema_componentes else FONDO_OSCURO

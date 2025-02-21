@@ -20,19 +20,17 @@ class UtilesControlador:
         self.color_segundario = None
 
     def colores(self):
+        # Tema de la interfaz
+        tema_controlador = self.tema_interfaz == "oscuro"
         # Colores base
-        self.color_principal = (
-            FONDO_PRINCIPAL_OSCURO if self.tema_interfaz == "oscuro" else FONDO_PRINCIPAL_CLARO
-        )
-        self.color_base = OSCURO if self.tema_interfaz == "oscuro" else CLARO
-        self.color_fondo = FONDO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_CLARO
-        self.color_texto = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else TEXTO_CLARO
-        self.color_borde = FONDO_CLARO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
-        self.color_boton = BOTON_OSCURO if self.tema_interfaz == "oscuro" else BOTON_CLARO
-        self.color_hover = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_CLARO
-        self.color_slider = TEXTO_OSCURO if self.tema_interfaz == "oscuro" else FONDO_OSCURO
-        self.color_hover_oscuro = HOVER_OSCURO if self.tema_interfaz == "oscuro" else HOVER_OSCURO
-        self.barra_progreso = HOVER_OSCURO if self.tema_interfaz == "oscuro" else "lightgray"
-        self.color_segundario = (
-            OSCURO_SEGUNDARIO if self.tema_interfaz == "oscuro" else CLARO_SEGUNDARIO
-        )
+        self.color_principal = FONDO_PRINCIPAL_OSCURO if tema_controlador else FONDO_PRINCIPAL_CLARO
+        self.color_base = OSCURO if tema_controlador else CLARO
+        self.color_fondo = FONDO_OSCURO if tema_controlador else FONDO_CLARO
+        self.color_texto = TEXTO_OSCURO if tema_controlador else TEXTO_CLARO
+        self.color_borde = FONDO_CLARO if tema_controlador else FONDO_OSCURO
+        self.color_boton = BOTON_OSCURO if tema_controlador else BOTON_CLARO
+        self.color_hover = HOVER_OSCURO if tema_controlador else HOVER_CLARO
+        self.color_slider = TEXTO_OSCURO if tema_controlador else FONDO_OSCURO
+        self.color_hover_oscuro = HOVER_OSCURO if tema_controlador else HOVER_OSCURO
+        self.barra_progreso = HOVER_OSCURO if tema_controlador else "lightgray"
+        self.color_segundario = OSCURO_SEGUNDARIO if tema_controlador else CLARO_SEGUNDARIO

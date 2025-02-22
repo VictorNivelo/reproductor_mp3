@@ -118,6 +118,23 @@ class Cancion:
         }
         return info
 
+    # Método que convierte la canción a un diccionario
+    def convertir_diccionario(self) -> dict:
+        return {
+            "ruta": str(self.ruta_cancion),
+            "titulo": self.titulo_cancion,
+            "artista": self.artista,
+            "artista_album": self.artista_album,
+            "album": self.album,
+            "duracion": self.duracion,
+            "duracion_formato": self.duracion_formato,
+            "anio": self.anio,
+            "numero_pista": self.numero_pista,
+            "tiene_caratula": self.caratula_cancion is not None,
+            "me_gusta": self.me_gusta,
+            "favorito": self.favorito,
+        }
+
 
 # # Ejemplo de uso
 # cancion = Cancion.desde_archivo(Path("C:/Users/Victor/Music/Musica/3 Am.mp3"))

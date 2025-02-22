@@ -92,6 +92,8 @@ class Biblioteca:
 
     # Agrega una canción a la lista me gusta
     def marcar_me_gusta(self, cancion: Cancion):
+        if cancion not in self.canciones:
+            raise ValueError("La canción no existe en la biblioteca")
         cancion.me_gusta = not cancion.me_gusta
         if cancion.me_gusta:
             self.me_gusta.append(cancion)
@@ -100,6 +102,8 @@ class Biblioteca:
 
     # Agrega una canción a la lista de favoritos
     def marcar_favorito(self, cancion: Cancion):
+        if cancion not in self.canciones:
+            raise ValueError("La canción no existe en la biblioteca")
         cancion.favorito = not cancion.favorito
         if cancion.favorito:
             self.favorito.append(cancion)
@@ -129,21 +133,11 @@ class Biblioteca:
             return sorted(self.canciones, key=lambda x: x.duracion)
         return self.canciones
 
-    # Metodo para exportar la biblioteca a un diccionario
+    # Metodo que convierte la biblioteca a un diccionario
     def convertir_diccionario(self) -> dict:
         return {
-            "ruta": str(self.ruta_cancion),
-            "titulo": self.titulo_cancion,
-            "artista": self.artista,
-            "artista_album": self.artista_album,
-            "album": self.album,
-            "duracion": self.duracion,
-            "duracion_formato": self.duracion_formato,
-            "anio": self.anio,
-            "numero_pista": self.numero_pista,
-            "tiene_caratula": self.caratula_cancion is not None,
-            "me_gusta": self.me_gusta,
-            "favorito": self.favorito,
+            "canciones": [cancion.convertir_diccionario() for cancion in self.canciones],
+            "estadisticas": self.obtener_estadisticas(),
         }
 
     # Obtener las estadísticas de la biblioteca

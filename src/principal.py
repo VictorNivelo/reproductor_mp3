@@ -1,3 +1,7 @@
+import os
+
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"
+
 from vista.vista_principal import ventana_principal
 
 

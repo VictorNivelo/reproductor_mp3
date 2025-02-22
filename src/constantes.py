@@ -116,6 +116,11 @@ TIEMPO_ACTUAL = 0
 
 # ========================================================================
 
+# =================== Formatos de archivos soportados ====================
+# Formatos de archivos soportados
+FORMATOS_SOPORTADOS = {'.mp3', '.flac', '.m4a', '.mp4', '.wav', '.ogg'}
+
+# ========================================================================
 
 # ======================== Funciones de utilidad =========================
 # Obtener la ruta de un icono

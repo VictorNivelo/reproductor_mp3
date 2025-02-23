@@ -12,6 +12,7 @@ class Biblioteca:
         self.me_gusta = []
         self.favorito = []
 
+    # Verificar si una canción ya existe en la biblioteca
     def existe_cancion(self, ruta: Path) -> bool:
         return any(cancion.ruta_cancion == ruta for cancion in self.canciones)
 

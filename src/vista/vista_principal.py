@@ -1,8 +1,13 @@
+from controlador.controlador_reproductor import ControladorReproductor
+from controlador.controlador_biblioteca import ControladorBiblioteca
 from vista.componentes.mini_reproductor import MiniReproductor
 from vista.componentes.configuracion import Configuracion
 from controlador.controlador_tema import ControladorTema
 from vista.utiles_vista import establecer_icono_tema
+from modelo.biblioteca import Biblioteca
+from tkinter import filedialog
 import customtkinter as ctk
+from pathlib import Path
 from constantes import *
 import tkinter as tk
 import tracemalloc
@@ -89,9 +94,11 @@ def cambiar_estado_reproduccion():
     REPRODUCIENDO = not REPRODUCIENDO
     if REPRODUCIENDO:
         controlador.registrar_botones("pausa", boton_reproducir)
+        controlador_reproductor.reanudar_reproduccion()
         actualizar_espectro()
     else:
         controlador.registrar_botones("reproducir", boton_reproducir)
+        controlador_reproductor.pausar_reproduccion()
 
 
 # Función para cambiar el volumen
@@ -180,6 +187,31 @@ def cambiar_favorito():
         controlador.registrar_botones("favorito_amarillo", boton_favorito)
     else:
         controlador.registrar_botones("favorito", boton_favorito)
+
+
+# Función para agregar canciones (puede ser llamada desde un botón)
+def agregar_canciones():
+    rutas = filedialog.askopenfilenames(
+        title="Seleccionar canciones",
+        filetypes=[("Archivos de audio", "*.mp3 *.wav *.flac *.m4a *.ogg"), ("Todos los archivos", "*.*")],
+    )
+    for ruta in rutas:
+        cancion = controlador_biblioteca.agregar_cancion(Path(ruta))
+        if cancion:
+            controlador_biblioteca.actualizar_vista_canciones(
+                panel_botones_canciones, controlador, controlador_reproductor
+            )
+
+
+# Función para agregar directorio (puede ser llamada desde un botón)
+def agregar_directorio():
+    ruta = filedialog.askdirectory(title="Seleccionar directorio de música")
+    if ruta:
+        canciones = controlador_biblioteca.agregar_directorio(Path(ruta))
+        if canciones:
+            controlador_biblioteca.actualizar_vista_canciones(
+                panel_botones_canciones, controlador, controlador_reproductor
+            )
 
 
 # Función para crear las barras iniciales
@@ -329,7 +361,7 @@ def scroll_canvas_configuracion(event):
 def scroll_raton_configuracion(event):
     contenido_altura = panel_botones_canciones.winfo_reqheight()
     canvas_altura = canvas_canciones.winfo_height()
-
+    # Desplazar el canvas
     if contenido_altura > canvas_altura:
         canvas_canciones.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
@@ -348,11 +380,20 @@ cambiar_icono_tema()
 # Controlador de tema
 controlador = ControladorTema()
 
+# Biblioteca de canciones
+biblioteca = Biblioteca()
+
 # Mini reproductor
 mini_reproductor = MiniReproductor(ventana_principal, controlador)
 
 # Configuración
 configuracion = Configuracion(ventana_principal, controlador)
+
+# Controlador de la biblioteca
+controlador_biblioteca = ControladorBiblioteca(biblioteca)
+
+# Controlador del reproductor
+controlador_reproductor = ControladorReproductor()
 
 # Obtener las dimensiones de la pantalla
 ancho_pantalla = ventana_principal.winfo_screenwidth()
@@ -469,10 +510,12 @@ controlador.registrar_frame(contenedor_imagen)
 # Etiqueta de la imagen de la canción
 imagen_cancion = ctk.CTkLabel(
     contenedor_imagen,
+    width=300,
+    height=300,
     fg_color=FONDO_CLARO,
     font=(LETRA, TAMANIO_LETRA_VOLUMEN),
     text_color=TEXTO_CLARO,
-    text="Imagen de la Canción",
+    text="Sin carátula",
 )
 imagen_cancion.pack(expand=True)
 controlador.registrar_etiqueta(imagen_cancion)
@@ -521,6 +564,25 @@ etiqueta_album_cancion = ctk.CTkLabel(
 )
 etiqueta_album_cancion.pack(expand=True)
 controlador.registrar_etiqueta(etiqueta_album_cancion)
+
+etiqueta_anio_cancion = ctk.CTkLabel(
+    contenedor_informacion,
+    height=23,
+    fg_color=FONDO_CLARO,
+    font=(LETRA, TAMANIO_LETRA_ETIQUETA),
+    text_color=TEXTO_CLARO,
+    text="Año de la Canción",
+)
+etiqueta_anio_cancion.pack(expand=True)
+controlador.registrar_etiqueta(etiqueta_anio_cancion)
+
+controlador_reproductor.establecer_informacion_interfaz(
+    etiqueta_nombre_cancion,
+    etiqueta_artista_cancion,
+    etiqueta_album_cancion,
+    etiqueta_anio_cancion,
+    imagen_cancion,
+)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -1061,6 +1123,7 @@ boton_agregar_cancion = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="Agregar Canción",
     hover_color=HOVER_CLARO,
+    command=agregar_canciones,
 )
 boton_agregar_cancion.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("agregar_cancion", boton_agregar_cancion)
@@ -1075,6 +1138,7 @@ boton_agregar_directorio = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="Agregar Carpeta",
     hover_color=HOVER_CLARO,
+    command=agregar_directorio,
 )
 boton_agregar_directorio.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("agregar_carpeta", boton_agregar_directorio)

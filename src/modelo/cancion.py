@@ -137,7 +137,7 @@ class Cancion:
 
 
 # # Ejemplo de uso
-# cancion = Cancion.desde_archivo(Path("C:/Users/Victor/Music/Musica/3 Am.mp3"))
+# cancion = Cancion.desde_archivo(Path("C:/Users/Victor/Musica/3 Am.mp3"))
 # print(f"Título: {cancion.titulo_cancion}")
 # print(f"Artista: {cancion.artista}")
 # print(f"Artista del Álbum: {cancion.artista_album}")

@@ -1,3 +1,4 @@
+from vista.tooltip import ToolTip
 import customtkinter as ctk
 from constantes import *
 from PIL import Image
@@ -89,3 +90,7 @@ def establecer_icono_tema(ventana, tema="claro"):
             # Si el tema es oscuro, ponemos el icono claro
             icono = tk.PhotoImage(file=RUTA_ICONO_APLICACION_CLARO)
         ventana.iconphoto(True, icono)
+
+
+def crear_tooltip(widget, text):
+    return ToolTip(widget, text)

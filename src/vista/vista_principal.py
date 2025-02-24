@@ -1,9 +1,9 @@
 from controlador.controlador_reproductor import ControladorReproductor
 from controlador.controlador_biblioteca import ControladorBiblioteca
+from vista.utiles_vista import establecer_icono_tema, crear_tooltip
 from vista.componentes.mini_reproductor import MiniReproductor
 from vista.componentes.configuracion import Configuracion
 from controlador.controlador_tema import ControladorTema
-from vista.utiles_vista import establecer_icono_tema
 from modelo.biblioteca import Biblioteca
 from tkinter import filedialog
 import customtkinter as ctk
@@ -11,7 +11,6 @@ from pathlib import Path
 from constantes import *
 import tkinter as tk
 import random
-
 
 # FUNCIONES DE LOS BOTONES
 
@@ -34,44 +33,6 @@ def cambiar_tema_vista():
         cambiar_icono_tema("oscuro")
         controlador.registrar_botones("modo_claro", boton_tema)
 
-    # Función auxiliar para actualizar iconos según estado
-    def actualizar_iconos():
-        # Estado de reproducción
-        icon_reproduccion = "pausa" if REPRODUCIENDO else "reproducir"
-        controlador.registrar_botones(icon_reproduccion, boton_reproducir)
-        # Orden de reproducción
-        icon_orden = "aleatorio" if ORDEN else "orden"
-        controlador.registrar_botones(icon_orden, boton_aleatorio)
-        # Repetición
-        if REPETICION == 0:
-            icon_repeticion = "no_repetir"
-        elif REPETICION == 1:
-            icon_repeticion = "repetir_actual"
-        else:
-            icon_repeticion = "repetir_todo"
-        controlador.registrar_botones(icon_repeticion, boton_repetir)
-        # Volumen
-        if SILENCIADO:
-            icon_volumen = "silencio"
-        else:
-            if VOLUMEN == 0:
-                icon_volumen = "sin_volumen"
-            elif VOLUMEN <= 33:
-                icon_volumen = "volumen_bajo"
-            elif VOLUMEN <= 66:
-                icon_volumen = "volumen_medio"
-            else:
-                icon_volumen = "volumen_alto"
-        controlador.registrar_botones(icon_volumen, boton_silenciar)
-        # Me gusta y favoritos
-        icon_me_gusta = "me_gusta_rojo" if ME_GUSTA else "me_gusta"
-        icon_favorito = "favorito_amarillo" if FAVORITO else "favorito"
-        controlador.registrar_botones(icon_me_gusta, boton_me_gusta)
-        controlador.registrar_botones(icon_favorito, boton_favorito)
-
-    # Actualizar todos los iconos
-    actualizar_iconos()
-
 
 # Función para cambiar el estado de reproducción
 def reproducir_vista():
@@ -87,7 +48,7 @@ def reproducir_vista():
 
 
 # Función para cambiar el volumen
-def cambiar_volumen_vista(event=None):
+def cambiar_volumen_vista(_event=None):
     global VOLUMEN, SILENCIADO
     if not SILENCIADO:
         nuevo_volumen = int(barra_volumen.get())
@@ -322,7 +283,7 @@ def minimizar_ventana():
 
 
 # Funciones para el scroll de la lista de canciones del panel
-def scroll_frame_configuracion(even=None):
+def scroll_frame_configuracion(_even=None):
     canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
     # Obtener dimensiones
     contenido_altura = panel_botones_canciones.winfo_reqheight()
@@ -445,6 +406,7 @@ boton_ajustes = ctk.CTkButton(
 )
 boton_ajustes.pack(side=tk.RIGHT, padx=(5, 0))
 controlador.registrar_botones("ajustes", boton_ajustes)
+crear_tooltip(boton_ajustes, "Configuración")
 
 boton_tema = ctk.CTkButton(
     contenedor_superior,
@@ -460,6 +422,7 @@ boton_tema = ctk.CTkButton(
 )
 boton_tema.pack(side=tk.RIGHT, padx=(5, 0))
 controlador.registrar_botones("modo_oscuro", boton_tema)
+crear_tooltip(boton_tema, "Cambiar a oscuro")
 
 boton_visibilidad = ctk.CTkButton(
     contenedor_superior,
@@ -475,6 +438,7 @@ boton_visibilidad = ctk.CTkButton(
 )
 boton_visibilidad.pack(side=tk.RIGHT)
 controlador.registrar_botones("ocultar", boton_visibilidad)
+crear_tooltip(boton_visibilidad, "Ocultar lateral")
 
 # -----------------------------------------------------------------------------------------------
 

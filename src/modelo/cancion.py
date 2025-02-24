@@ -1,3 +1,4 @@
+from datetime import datetime
 from mutagen.flac import FLAC
 from mutagen.id3 import ID3
 from mutagen.mp3 import MP3
@@ -37,6 +38,40 @@ class Cancion:
         minutos = int(self.duracion // 60)
         segundos = int(self.duracion % 60)
         return f"{minutos:02d}:{segundos:02d}"
+
+    # Propiedad que devuelve la fecha de la canción en formato DD/MM/YYYY
+    @property
+    def fecha_formateada(self) -> str:
+        try:
+            if self.anio == "Desconocido":
+                return "Desconocido"
+            formatos = ["%Y", "%Y-%m-%d", "%d/%m/%Y", "%Y/%m/%d"]
+            for formato in formatos:
+                try:
+                    fecha = datetime.strptime(str(self.anio), formato)
+                    return fecha.strftime("%d/%m/%Y")
+                except ValueError:
+                    continue
+            return self.anio
+        except Exception as e:
+            print(f"Error al formatear fecha: {e}")
+            return "Desconocido"
+
+    # Propiedad que devuelve el año de la canción
+    @property
+    def fecha_anio(self) -> str:
+        try:
+            if self.anio == "Desconocido":
+                return "Desconocido"
+            if str(self.anio).isdigit() and len(str(self.anio)) == 4:
+                return str(self.anio)
+            partes_fecha = str(self.anio).split("-")[0]
+            if partes_fecha.isdigit() and len(partes_fecha) == 4:
+                return partes_fecha
+            return "Desconocido"
+        except Exception as e:
+            print(f"Error al obtener año: {e}")
+            return "Desconocido"
 
     # Método que crea una instancia de Cancion a partir de un archivo de audio
     @classmethod
@@ -137,12 +172,14 @@ class Cancion:
 
 
 # # Ejemplo de uso
-# cancion = Cancion.desde_archivo(Path("C:/Users/Victor/Musica/3 Am.mp3"))
+# cancion = Cancion.desde_archivo(Path("C:/Users/Victor/Music/pm/530.mp3"))
 # print(f"Título: {cancion.titulo_cancion}")
 # print(f"Artista: {cancion.artista}")
 # print(f"Artista del Álbum: {cancion.artista_album}")
 # print(f"Álbum: {cancion.album}")
-# print(f"Año: {cancion.anio}")
+# print(f"Año: {cancion.fecha_anio}")
+# print(f"Lanzamiento: {cancion.anio}")
+# print(f"Fecha formateada: {cancion.fecha_formateada}")
 # print(f"Número de pista: {cancion.numero_pista}")
 # print(f"Duración: {cancion.duracion} segundos")
 # print(f"Duración formateada: {cancion.duracion_formato}")

@@ -17,24 +17,33 @@ class Biblioteca:
         return any(cancion.ruta_cancion == ruta for cancion in self.canciones)
 
     # Agregar una canción a la biblioteca
-    def agregar_cancion(self, ruta: Path) -> Cancion:
-        if not ruta.exists():
-            raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
-        if self.existe_cancion(ruta):
-            raise ValueError(f"La canción ya existe en la biblioteca: {ruta}")
-        cancion = Cancion.desde_archivo(ruta)
-        # Agregar a las colecciones
-        self.canciones.append(cancion)
-        self.por_titulo[cancion.titulo_cancion] = cancion
-        # Agregar a artistas
-        if cancion.artista not in self.por_artista:
-            self.por_artista[cancion.artista] = []
-        self.por_artista[cancion.artista].append(cancion)
-        # Agregar a álbumes
-        if cancion.album not in self.por_album:
-            self.por_album[cancion.album] = []
-        self.por_album[cancion.album].append(cancion)
-        return cancion
+    def agregar_cancion(self, ruta: Path) -> Cancion | None:
+        try:
+            # Verificar si el archivo existe
+            if not ruta.exists():
+                print(f"No se encontró el archivo: {ruta}")
+                return None
+            # Verificar si la canción ya existe
+            if self.existe_cancion(ruta):
+                print(f"La canción ya existe en la biblioteca: {ruta.name}")
+                return None
+            # Crear nueva canción
+            cancion = Cancion.desde_archivo(ruta)
+            # Agregar a las colecciones principales
+            self.canciones.append(cancion)
+            self.por_titulo[cancion.titulo_cancion] = cancion
+            # Agregar a la colección de artistas
+            if cancion.artista not in self.por_artista:
+                self.por_artista[cancion.artista] = []
+            self.por_artista[cancion.artista].append(cancion)
+            # Agregar a la colección de álbumes
+            if cancion.album not in self.por_album:
+                self.por_album[cancion.album] = []
+            self.por_album[cancion.album].append(cancion)
+            return cancion
+        except Exception as e:
+            print(f"Error al procesar la canción {ruta.name}: {str(e)}")
+            return None
 
     # Agregar todas las canciones de un directorio
     def agregar_directorio(self, ruta: Path) -> List[Cancion]:
@@ -46,7 +55,8 @@ class Biblioteca:
             if archivo.suffix.lower() in formatos:
                 try:
                     cancion = self.agregar_cancion(archivo)
-                    canciones_agregadas.append(cancion)
+                    if cancion is not None:
+                        canciones_agregadas.append(cancion)
                 except Exception as e:
                     print(f"Error al agregar {archivo}: {e}")
         return canciones_agregadas

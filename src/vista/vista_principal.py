@@ -571,7 +571,7 @@ etiqueta_anio_cancion = ctk.CTkLabel(
     fg_color=FONDO_CLARO,
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=TEXTO_CLARO,
-    text="Año de la Canción",
+    text="Lanzamiento de la Canción",
 )
 etiqueta_anio_cancion.pack(expand=True)
 controlador.registrar_etiqueta(etiqueta_anio_cancion)
@@ -682,6 +682,12 @@ barra_progreso.bind("<B1-Motion>", durante_arrastre_progreso)
 barra_progreso.bind("<ButtonRelease-1>", finalizar_arrastre_progreso)
 controlador.registrar_progress_bar(barra_progreso)
 
+controlador_reproductor.establecer_barra_progreso(barra_progreso)
+
+# -----------------------------------------------------------------------------------------------
+
+# ------------------------------- Seccion de tiempo de la canción -------------------------------
+
 # Panel de tiempo
 panel_tiempo = tk.Frame(contenedor_progreso)
 panel_tiempo.configure(bg=FONDO_CLARO)
@@ -709,6 +715,8 @@ etiqueta_tiempo_total = ctk.CTkLabel(
 )
 etiqueta_tiempo_total.pack(side=tk.RIGHT)
 controlador.registrar_etiqueta(etiqueta_tiempo_total)
+
+controlador_reproductor.establecer_etiquetas_tiempo(etiqueta_tiempo_actual, etiqueta_tiempo_total)
 
 # -----------------------------------------------------------------------------------------------
 

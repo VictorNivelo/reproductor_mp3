@@ -15,6 +15,13 @@ class ControladorReproductor:
         self.etiqueta_album = None
         self.etiqueta_anio = None
         self.etiqueta_imagen = None
+        # Etiquetas de tiempo
+        self.etiqueta_tiempo_actual = None
+        self.etiqueta_tiempo_total = None
+        self.timer_id = None
+        # Barra de progreso
+        self.barra_progreso = None
+        # Inicializar pygame
         pygame.mixer.init()
 
     # Método que establece las etiquetas de la interfaz
@@ -26,10 +33,19 @@ class ControladorReproductor:
         self.etiqueta_imagen = imagen
         # Establecer texto inicial
         self.etiqueta_nombre.configure(text="Sin reproducción")
-        self.etiqueta_artista.configure(text="Artista: --")
-        self.etiqueta_album.configure(text="Álbum: --")
-        self.etiqueta_anio.configure(text="Año: --")
+        self.etiqueta_artista.configure(text="Artista: ")
+        self.etiqueta_album.configure(text="Álbum: ")
+        self.etiqueta_anio.configure(text="Lanzamiento: ")
         self.etiqueta_imagen.configure(text="Sin carátula")
+
+    # Método que establece las etiquetas de tiempo
+    def establecer_etiquetas_tiempo(self, etiqueta_actual, etiqueta_total):
+        self.etiqueta_tiempo_actual = etiqueta_actual
+        self.etiqueta_tiempo_total = etiqueta_total
+
+    # Método que establece la barra de progreso
+    def establecer_barra_progreso(self, barra):
+        self.barra_progreso = barra
 
     # Método que actualiza la información de la interfaz
     def actualizar_informacion_interfaz(self):
@@ -38,7 +54,7 @@ class ControladorReproductor:
             self.etiqueta_nombre.configure(text=self.cancion_actual.titulo_cancion)
             self.etiqueta_artista.configure(text=f"Artista: {self.cancion_actual.artista}")
             self.etiqueta_album.configure(text=f"Álbum: {self.cancion_actual.album}")
-            self.etiqueta_anio.configure(text=f"Año: {self.cancion_actual.anio}")
+            self.etiqueta_anio.configure(text=f"Lanzamiento: {self.cancion_actual.fecha_formateada}")
             # Actualizar carátula
             if self.cancion_actual.caratula_cancion:
                 try:
@@ -59,13 +75,51 @@ class ControladorReproductor:
             else:
                 self.etiqueta_imagen.configure(image=None, text="Sin carátula")
 
+    # Método que actualiza el tiempo de reproducción de la canción
+    def actualizar_tiempo(self):
+        if self.reproduciendo and self.cancion_actual:
+            try:
+                # Obtener tiempo actual y total en segundos
+                tiempo_total = self.cancion_actual.duracion
+                tiempo_actual = pygame.mixer.music.get_pos() / 1000
+                # Verificar si la canción ha terminado
+                if tiempo_actual < 0:
+                    self.detener_reproduccion()
+                    return
+                # Actualizar barra de progreso
+                if self.barra_progreso:
+                    progreso = tiempo_actual / tiempo_total if tiempo_total > 0 else 0
+                    self.barra_progreso.set(progreso)
+                # Convertir a formato mm:ss
+                minutos_actual = int(tiempo_actual // 60)
+                segundos_actual = int(tiempo_actual % 60)
+                minutos_total = int(tiempo_total // 60)
+                segundos_total = int(tiempo_total % 60)
+                # Actualizar etiquetas
+                if self.etiqueta_tiempo_actual:
+                    self.etiqueta_tiempo_actual.configure(text=f"{minutos_actual:02d}:{segundos_actual:02d}")
+                if self.etiqueta_tiempo_total:
+                    self.etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
+                # Programar próxima actualización solo si está reproduciendo
+                if self.reproduciendo:
+                    if self.timer_id:
+                        self.etiqueta_tiempo_actual.after_cancel(self.timer_id)
+                    self.timer_id = self.etiqueta_tiempo_actual.after(100, self.actualizar_tiempo)
+            except Exception as e:
+                print(f"Error al actualizar tiempo: {e}")
+
     # Método que reproduce una canción
     def reproducir_cancion(self, cancion: Cancion) -> None:
+        if self.timer_id:
+            self.etiqueta_tiempo_actual.after_cancel(self.timer_id)
+            self.timer_id = None
         self.cancion_actual = cancion
         pygame.mixer.music.load(str(cancion.ruta_cancion))
         pygame.mixer.music.play()
         self.reproduciendo = True
         self.actualizar_informacion_interfaz()
+        # Iniciar actualización de tiempo
+        self.actualizar_tiempo()
 
     # Métodos que controlan la reproducción de la canción
     def pausar_reproduccion(self) -> None:
@@ -81,8 +135,18 @@ class ControladorReproductor:
 
     # Método que detiene la reproducción de la canción
     def detener_reproduccion(self) -> None:
+        if self.timer_id:
+            self.etiqueta_tiempo_actual.after_cancel(self.timer_id)
+            self.timer_id = None
         pygame.mixer.music.stop()
         self.reproduciendo = False
+        # Resetear etiquetas de tiempo y barra de progreso
+        if self.etiqueta_tiempo_actual:
+            self.etiqueta_tiempo_actual.configure(text="00:00")
+        if self.etiqueta_tiempo_total:
+            self.etiqueta_tiempo_total.configure(text="00:00")
+        if self.barra_progreso:
+            self.barra_progreso.set(0)
 
     # Método que ajusta el volumen de la canción
     @staticmethod

@@ -4,7 +4,7 @@ from vista.componentes.mini_reproductor import MiniReproductor
 from vista.componentes.configuracion import Configuracion
 from controlador.controlador_tema import ControladorTema
 from modelo.biblioteca import Biblioteca
-from vista.utiles_vista import *
+from vista.utiles.utiles_vista import *
 from tkinter import filedialog
 import customtkinter as ctk
 from pathlib import Path

@@ -1,5 +1,5 @@
-from vista.componentes.utiles_componentes import UtilesComponentes
-from vista.utiles_vista import establecer_icono_tema
+from vista.componentes.utiles.utiles_componentes import UtilesComponentes
+from vista.utiles.utiles_vista import establecer_icono_tema
 import customtkinter as ctk
 from constantes import *
 import tkinter as tk

@@ -1,5 +1,5 @@
-from controlador.utiles_contolador import UtilesControlador
-from vista.utiles_vista import cargar_iconos
+from controlador.utiles.utiles_contolador import UtilesControlador
+from vista.utiles.utiles_vista import cargar_iconos
 import customtkinter as ctk
 
 

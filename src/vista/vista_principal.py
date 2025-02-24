@@ -1,10 +1,10 @@
 from controlador.controlador_reproductor import ControladorReproductor
 from controlador.controlador_biblioteca import ControladorBiblioteca
-from vista.utiles_vista import establecer_icono_tema, crear_tooltip
 from vista.componentes.mini_reproductor import MiniReproductor
 from vista.componentes.configuracion import Configuracion
 from controlador.controlador_tema import ControladorTema
 from modelo.biblioteca import Biblioteca
+from vista.utiles_vista import *
 from tkinter import filedialog
 import customtkinter as ctk
 from pathlib import Path
@@ -19,19 +19,60 @@ import random
 def cambiar_tema_vista():
     global TEMA_ACTUAL
     # Cambiar tema
-    TEMA_ACTUAL = "oscuro" if TEMA_ACTUAL == "claro" else "claro"
+    tema_actual_vista = "oscuro" if TEMA_ACTUAL == "claro" else "claro"
     controlador.cambiar_tema()
     # Actualizar barras del espectro
-    color_barra = HOVER_CLARO if TEMA_ACTUAL == "claro" else HOVER_OSCURO
+    color_barra = HOVER_CLARO if tema_actual_vista == "claro" else HOVER_OSCURO
     for barra in barras_espectro:
         canvas_espectro.itemconfig(barra, fill=color_barra)
     # Actualizar icono de tema
-    if TEMA_ACTUAL == "claro":
+    if tema_actual_vista == "claro":
         cambiar_icono_tema("claro")
         controlador.registrar_botones("modo_oscuro", boton_tema)
     else:
         cambiar_icono_tema("oscuro")
         controlador.registrar_botones("modo_claro", boton_tema)
+    actualizar_iconos()
+
+
+# Función para cambiar el tema de la interfaz
+def actualizar_iconos():
+    # Estado de reproducción
+    icon_reproduccion = "pausa" if REPRODUCIENDO else "reproducir"
+    controlador.registrar_botones(icon_reproduccion, boton_reproducir)
+    # Orden de reproducción
+    icon_orden = "aleatorio" if ORDEN else "orden"
+    controlador.registrar_botones(icon_orden, boton_aleatorio)
+    # Repetición
+    if REPETICION == 0:
+        icon_repeticion = "no_repetir"
+    elif REPETICION == 1:
+        icon_repeticion = "repetir_actual"
+    else:
+        icon_repeticion = "repetir_todo"
+    controlador.registrar_botones(icon_repeticion, boton_repetir)
+    # Volumen
+    if SILENCIADO:
+        icon_volumen = "silencio"
+    else:
+        if VOLUMEN == 0:
+            icon_volumen = "sin_volumen"
+        elif VOLUMEN <= 33:
+            icon_volumen = "volumen_bajo"
+        elif VOLUMEN <= 66:
+            icon_volumen = "volumen_medio"
+        else:
+            icon_volumen = "volumen_alto"
+    if PANEL_VISIBLE:
+        controlador.registrar_botones("ocultar", boton_visibilidad)
+    else:
+        controlador.registrar_botones("mostrar", boton_visibilidad)
+    controlador.registrar_botones(icon_volumen, boton_silenciar)
+    # Me gusta y favoritos
+    icon_me_gusta = "me_gusta_rojo" if ME_GUSTA else "me_gusta"
+    icon_favorito = "favorito_amarillo" if FAVORITO else "favorito"
+    controlador.registrar_botones(icon_me_gusta, boton_me_gusta)
+    controlador.registrar_botones(icon_favorito, boton_favorito)
 
 
 # Función para cambiar el estado de reproducción
@@ -110,8 +151,8 @@ def cambiar_visibilidad_vista():
         controlador.registrar_botones("ocultar", boton_visibilidad)
     else:
         # Ocultar el panel
-        contenedor_derecha.pack_forget()
         contenedor_derecha.configure(width=0)
+        contenedor_derecha.pack_forget()
         controlador.registrar_botones("mostrar", boton_visibilidad)
 
 
@@ -283,7 +324,7 @@ def minimizar_ventana():
 
 
 # Funciones para el scroll de la lista de canciones del panel
-def scroll_frame_configuracion(_even=None):
+def scroll_frame_configuracion(_event=None):
     canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
     # Obtener dimensiones
     contenido_altura = panel_botones_canciones.winfo_reqheight()
@@ -312,8 +353,7 @@ def scroll_raton_configuracion(event):
         canvas_canciones.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
 
-# ====================================== Ventana principal ======================================
-
+# ************************************** Ventana principal **************************************
 # Crear ventana
 ventana_principal = ctk.CTk()
 
@@ -355,8 +395,7 @@ ventana_principal.geometry(f"{ANCHO_PRINCIPAL}x{ALTO_PRINCIPAL}+{posicion_ancho}
 # Título de la ventana
 ventana_principal.title("Reproductor de música")
 
-# ===============================================================================================
-
+# ***********************************************************************************************
 
 # ==================================== Contenedor principal =====================================
 
@@ -372,7 +411,6 @@ controlador.registrar_frame(conenedor_principal, es_principal=True)
 
 # ===============================================================================================
 
-
 # ======================================= Panel izquierda =======================================
 
 # Contenedor izquierdo hecho con customtkinter
@@ -381,7 +419,6 @@ contenedor_izquierda = ctk.CTkFrame(
 )
 contenedor_izquierda.pack(side=tk.LEFT, fill="both", expand=True)
 controlador.registrar_frame(contenedor_izquierda, es_ctk=True)
-
 
 # ------------------------------- Seccion de controles superiores --------------------------------
 
@@ -442,7 +479,6 @@ crear_tooltip(boton_visibilidad, "Ocultar lateral")
 
 # -----------------------------------------------------------------------------------------------
 
-
 # ------------------------------- Seccion de imagen de la canción -------------------------------
 
 # Contenedor de imagen de la canción
@@ -466,7 +502,6 @@ controlador.registrar_etiqueta(imagen_cancion)
 
 
 # -----------------------------------------------------------------------------------------------
-
 
 # ----------------------------- Seccion de información de la canción ----------------------------
 # Contenedor de información de la canción
@@ -530,7 +565,6 @@ controlador_reproductor.establecer_informacion_interfaz(
 
 # -----------------------------------------------------------------------------------------------
 
-
 # ------------------------------- Seccion botones de gustos -------------------------------------
 
 # Contenedor de botones de gustos
@@ -578,7 +612,6 @@ controlador.registrar_botones("favorito", boton_favorito)
 
 # -----------------------------------------------------------------------------------------------
 
-
 # ------------------------------- Seccion de espectro de audio ----------------------------------
 # Contenedor de espectro de audio
 contenedor_espectro = tk.Frame(contenedor_izquierda)
@@ -600,7 +633,6 @@ barras_espectro = []
 canvas_espectro.bind("<Configure>", lambda e: crear_barras_espectro())
 
 # -----------------------------------------------------------------------------------------------
-
 
 # ------------------------------- Seccion de barra de progreso ---------------------------------
 
@@ -663,7 +695,6 @@ controlador.registrar_etiqueta(etiqueta_tiempo_total)
 controlador_reproductor.establecer_etiquetas_tiempo(etiqueta_tiempo_actual, etiqueta_tiempo_total)
 
 # -----------------------------------------------------------------------------------------------
-
 
 # ------------------------------- Seccion de controles de reproducción --------------------------
 
@@ -812,7 +843,6 @@ controlador.registrar_botones("minimizar", boton_minimizar)
 
 # -----------------------------------------------------------------------------------------------
 
-
 # ------------------------------- Seccion de barra de volumen -----------------------------------
 
 # Contenedor de barra de volumen
@@ -878,10 +908,7 @@ controlador.registrar_etiqueta(etiqueta_porcentaje_volumen)
 
 
 # -----------------------------------------------------------------------------------------------
-
-
 # =============================================================================s==================
-
 
 # ======================================== Panel derecha ========================================
 
@@ -892,14 +919,7 @@ contenedor_derecha = ctk.CTkFrame(
     fg_color=FONDO_CLARO,
     corner_radius=BORDES_REDONDEADOS_PANEL,
 )
-
-# Configurar visibilidad inicial
-if PANEL_VISIBLE:
-    contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(5, 0))
-    controlador.registrar_botones("ocultar", boton_visibilidad)
-else:
-    controlador.registrar_botones("mostrar", boton_visibilidad)
-
+contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(5, 0))
 contenedor_derecha.pack_propagate(False)
 controlador.registrar_frame(contenedor_derecha, es_ctk=True)
 
@@ -955,7 +975,6 @@ combo_ordenamiento.pack(side=tk.LEFT, padx=(5, 0))
 controlador.registrar_combobox(combo_ordenamiento)
 
 # -----------------------------------------------------------------------------------------------
-
 
 # ------------------------------- Seccion de lista de canciones --------------------------------
 # Contenedor de lista de canciones
@@ -1028,7 +1047,6 @@ canvas_window = canvas_canciones.create_window((0, 0), window=panel_botones_canc
 
 # -----------------------------------------------------------------------------------------------
 
-
 # ------------------------------- Seccion de botones inferiores ---------------------------------
 # Contenedor de botones inferiores
 contenedor_inferior = tk.Frame(contenedor_derecha)
@@ -1074,12 +1092,13 @@ boton_agregar_directorio.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("agregar_carpeta", boton_agregar_directorio)
 
 # -----------------------------------------------------------------------------------------------
-
-
 # ===============================================================================================
 
 # Muestre el icono del volumen actual de la barra de volumen
 cambiar_volumen_vista(None)
+
+# Actualizar los botones de la interfaz al iniciar la ejecución
+actualizar_iconos()
 
 # Mostrar la ventana
 ventana_principal.mainloop()

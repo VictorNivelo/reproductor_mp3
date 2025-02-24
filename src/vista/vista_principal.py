@@ -10,29 +10,14 @@ import customtkinter as ctk
 from pathlib import Path
 from constantes import *
 import tkinter as tk
-import tracemalloc
 import random
-
-
-# Decorador para medir el consumo de memoria
-def medir_consumo_memoria(func):
-    def wrapper(*args, **kwargs):
-        tracemalloc.start()
-        resultado = func(*args, **kwargs)
-        actual, pico = tracemalloc.get_traced_memory()
-        print(f"{func.__name__} - Memoria actual: {actual / 1024:.2f} KB")
-        print(f"{func.__name__} - Pico de memoria: {pico / 1024:.2f} KB")
-        tracemalloc.stop()
-        return resultado
-
-    return wrapper
 
 
 # FUNCIONES DE LOS BOTONES
 
 
 # Función para cambiar el tema de la interfaz
-def cambiar_tema():
+def cambiar_tema_vista():
     global TEMA_ACTUAL
     # Cambiar tema
     TEMA_ACTUAL = "oscuro" if TEMA_ACTUAL == "claro" else "claro"
@@ -89,7 +74,7 @@ def cambiar_tema():
 
 
 # Función para cambiar el estado de reproducción
-def cambiar_estado_reproduccion():
+def reproducir_vista():
     global REPRODUCIENDO
     REPRODUCIENDO = not REPRODUCIENDO
     if REPRODUCIENDO:
@@ -102,7 +87,7 @@ def cambiar_estado_reproduccion():
 
 
 # Función para cambiar el volumen
-def cambiar_volumen(event=None):
+def cambiar_volumen_vista(event=None):
     global VOLUMEN, SILENCIADO
     if not SILENCIADO:
         nuevo_volumen = int(barra_volumen.get())
@@ -119,17 +104,17 @@ def cambiar_volumen(event=None):
 
 
 # Función para cambiar el estado de silencio
-def cambiar_silencio():
+def cambiar_silencio_vista():
     global SILENCIADO
     SILENCIADO = not SILENCIADO
     if SILENCIADO:
         controlador.registrar_botones("silencio", boton_silenciar)
     else:
-        cambiar_volumen()
+        cambiar_volumen_vista()
 
 
 # Función para cambiar el orden de reproducción
-def cambiar_orden():
+def cambiar_orden_vista():
     global ORDEN
     ORDEN = not ORDEN
     if ORDEN:
@@ -139,7 +124,7 @@ def cambiar_orden():
 
 
 # Función para cambiar la repetición de reproducción
-def cambiar_repeticion():
+def cambiar_repeticion_vista():
     global REPETICION
     REPETICION = (REPETICION + 1) % 3
     # Icono de no repetir
@@ -154,7 +139,7 @@ def cambiar_repeticion():
 
 
 # Función para cambiar la visibilidad del panel
-def cambiar_visibilidad():
+def cambiar_visibilidad_vista():
     global PANEL_VISIBLE
     PANEL_VISIBLE = not PANEL_VISIBLE
     if PANEL_VISIBLE:
@@ -170,7 +155,7 @@ def cambiar_visibilidad():
 
 
 # Función para cambiar el estado de boton me gusta
-def cambiar_me_gusta():
+def cambiar_me_gusta_vista():
     global ME_GUSTA
     ME_GUSTA = not ME_GUSTA
     if ME_GUSTA:
@@ -180,7 +165,7 @@ def cambiar_me_gusta():
 
 
 # Función para cambiar el estado de favorito
-def cambiar_favorito():
+def cambiar_favorito_vista():
     global FAVORITO
     FAVORITO = not FAVORITO
     if FAVORITO:
@@ -190,7 +175,7 @@ def cambiar_favorito():
 
 
 # Función para agregar canciones (puede ser llamada desde un botón)
-def agregar_canciones():
+def agregar_cancion_vista():
     rutas = filedialog.askopenfilenames(
         title="Seleccionar canciones",
         filetypes=[("Archivos de audio", "*.mp3 *.wav *.flac *.m4a *.ogg"), ("Todos los archivos", "*.*")],
@@ -204,7 +189,7 @@ def agregar_canciones():
 
 
 # Función para agregar directorio (puede ser llamada desde un botón)
-def agregar_directorio():
+def agregar_directorio_vista():
     ruta = filedialog.askdirectory(title="Seleccionar directorio de música")
     if ruta:
         canciones = controlador_biblioteca.agregar_directorio(Path(ruta))
@@ -212,6 +197,51 @@ def agregar_directorio():
             controlador_biblioteca.actualizar_vista_canciones(
                 panel_botones_canciones, controlador, controlador_reproductor
             )
+
+
+# Función para actualizar el progreso de la canción
+def actualizar_progreso_vista(event):
+    global TIEMPO_ACTUAL
+    # Obtener dimensiones y calcular posición
+    ancho_total = barra_progreso.winfo_width()
+    posicion_relativa = max(0, min(1, event.x / ancho_total))
+    # Actualizar barra de progreso
+    barra_progreso.set(posicion_relativa)
+    # Calcular y actualizar tiempo
+    TIEMPO_ACTUAL = int(DURACION_TOTAL * posicion_relativa)
+    actualizar_etiqueta_tiempo_vista()
+
+
+# Función para actualizar la etiqueta de tiempo
+def actualizar_etiqueta_tiempo_vista():
+    # Convertir segundos a formato mm:ss
+    minutos_actual = TIEMPO_ACTUAL // 60
+    segundos_actual = TIEMPO_ACTUAL % 60
+    minutos_total = DURACION_TOTAL // 60
+    segundos_total = DURACION_TOTAL % 60
+    # Actualizar etiquetas
+    etiqueta_tiempo_actual.configure(text=f"{minutos_actual:02d}:{segundos_actual:02d}")
+    etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
+
+
+# Función para iniciar el arrastre del progreso de la canción
+def iniciar_arrastre_progreso(event):
+    global ARRASTRANDO_PROGRESO
+    ARRASTRANDO_PROGRESO = True
+    actualizar_progreso_vista(event)
+
+
+# Función para arrastrar el progreso de la canción
+def durante_arrastre_progreso(event):
+    if ARRASTRANDO_PROGRESO:
+        actualizar_progreso_vista(event)
+
+
+# Función para finalizar el arrastre del progreso
+def finalizar_arrastre_progreso(event):
+    global ARRASTRANDO_PROGRESO
+    ARRASTRANDO_PROGRESO = False
+    actualizar_progreso_vista(event)
 
 
 # Función para crear las barras iniciales
@@ -271,51 +301,6 @@ def actualizar_espectro():
     # Llamar a la función nuevamente después de un delay
     if REPRODUCIENDO:
         ventana_principal.after(50, actualizar_espectro)
-
-
-# Función para iniciar el arrastre del progreso de la canción
-def iniciar_arrastre_progreso(event):
-    global ARRASTRANDO_PROGRESO
-    ARRASTRANDO_PROGRESO = True
-    actualizar_progreso(event)
-
-
-# Función para arrastrar el progreso de la canción
-def durante_arrastre_progreso(event):
-    if ARRASTRANDO_PROGRESO:
-        actualizar_progreso(event)
-
-
-# Función para finalizar el arrastre del progreso
-def finalizar_arrastre_progreso(event):
-    global ARRASTRANDO_PROGRESO
-    ARRASTRANDO_PROGRESO = False
-    actualizar_progreso(event)
-
-
-# Función para actualizar el progreso de la canción
-def actualizar_progreso(event):
-    global TIEMPO_ACTUAL
-    # Obtener dimensiones y calcular posición
-    ancho_total = barra_progreso.winfo_width()
-    posicion_relativa = max(0, min(1, event.x / ancho_total))
-    # Actualizar barra de progreso
-    barra_progreso.set(posicion_relativa)
-    # Calcular y actualizar tiempo
-    TIEMPO_ACTUAL = int(DURACION_TOTAL * posicion_relativa)
-    actualizar_etiqueta_tiempo()
-
-
-# Función para actualizar la etiqueta de tiempo
-def actualizar_etiqueta_tiempo():
-    # Convertir segundos a formato mm:ss
-    minutos_actual = TIEMPO_ACTUAL // 60
-    segundos_actual = TIEMPO_ACTUAL % 60
-    minutos_total = DURACION_TOTAL // 60
-    segundos_total = DURACION_TOTAL % 60
-    # Actualizar etiquetas
-    etiqueta_tiempo_actual.configure(text=f"{minutos_actual:02d}:{segundos_actual:02d}")
-    etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
 
 
 # Función para establecer el icono del tema
@@ -429,11 +414,6 @@ controlador.registrar_frame(conenedor_principal, es_principal=True)
 
 # ======================================= Panel izquierda =======================================
 
-# contenedor izquierda
-# contenedor_izquierda = tk.Frame(conenedor_principal)
-# contenedor_izquierda.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=FONDO_CLARO)
-# contenedor_izquierda.pack(side=tk.LEFT, fill="both", expand=True)
-
 # Contenedor izquierdo hecho con customtkinter
 contenedor_izquierda = ctk.CTkFrame(
     conenedor_principal, fg_color=FONDO_CLARO, corner_radius=BORDES_REDONDEADOS_PANEL
@@ -476,7 +456,7 @@ boton_tema = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
-    command=cambiar_tema,
+    command=cambiar_tema_vista,
 )
 boton_tema.pack(side=tk.RIGHT, padx=(5, 0))
 controlador.registrar_botones("modo_oscuro", boton_tema)
@@ -491,7 +471,7 @@ boton_visibilidad = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
-    command=cambiar_visibilidad,
+    command=cambiar_visibilidad_vista,
 )
 boton_visibilidad.pack(side=tk.RIGHT)
 controlador.registrar_botones("ocultar", boton_visibilidad)
@@ -612,7 +592,7 @@ boton_me_gusta = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
-    command=cambiar_me_gusta,
+    command=cambiar_me_gusta_vista,
 )
 boton_me_gusta.pack(side=tk.LEFT, padx=(5, 0))
 controlador.registrar_botones("me_gusta", boton_me_gusta)
@@ -627,7 +607,7 @@ boton_favorito = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
-    command=cambiar_favorito,
+    command=cambiar_favorito_vista,
 )
 boton_favorito.pack(side=tk.LEFT, padx=(5, 0))
 controlador.registrar_botones("favorito", boton_favorito)
@@ -746,7 +726,7 @@ boton_aleatorio = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
-    command=cambiar_orden,
+    command=cambiar_orden_vista,
 )
 boton_aleatorio.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("aleatorio", boton_aleatorio)
@@ -761,7 +741,7 @@ boton_repetir = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
-    command=cambiar_repeticion,
+    command=cambiar_repeticion_vista,
 )
 boton_repetir.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("no_repetir", boton_repetir)
@@ -804,7 +784,7 @@ boton_reproducir = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
-    command=cambiar_estado_reproduccion,
+    command=reproducir_vista,
 )
 boton_reproducir.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("reproducir", boton_reproducir)
@@ -894,7 +874,7 @@ boton_silenciar = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
-    command=cambiar_silencio,
+    command=cambiar_silencio_vista,
 )
 boton_silenciar.pack(side=tk.LEFT)
 controlador.registrar_botones("silencio", boton_silenciar)
@@ -914,7 +894,7 @@ barra_volumen.configure(
     number_of_steps=100,
     from_=0,
     to=100,
-    command=cambiar_volumen,
+    command=cambiar_volumen_vista,
 )
 barra_volumen.set(VOLUMEN)
 barra_volumen.pack(side=tk.LEFT, fill="x", expand=True, padx=(0, 5))
@@ -936,18 +916,10 @@ controlador.registrar_etiqueta(etiqueta_porcentaje_volumen)
 # -----------------------------------------------------------------------------------------------
 
 
-# ===============================================================================================
+# =============================================================================s==================
 
 
 # ======================================== Panel derecha ========================================
-
-# Contenedor de panel derecha
-# contenedor_derecha = tk.Frame(conenedor_principal)
-# contenedor_derecha.configure(
-#     padx=10, pady=5, relief="solid", borderwidth=1, bg=FONDO_CLARO, width=ancho_panel_derecha
-# )
-# contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(5, 0))
-# contenedor_derecha.pack_propagate(False)
 
 # Contenedor de panel derecho hecho con customtkinter
 contenedor_derecha = ctk.CTkFrame(
@@ -1090,20 +1062,6 @@ canvas_window = canvas_canciones.create_window((0, 0), window=panel_botones_canc
 #     controlador.registrar_botones(f"cancion_{i}", boton_en_canciones)
 
 
-# lista_canciones = tk.Listbox(
-#     contenedor_lista_canciones,
-#     font=(LETRA, 10),
-#     bg=FONDO_CLARO,
-#     selectbackground=FONDO_OSCURO,
-# )
-
-# # agregar canciones a la lista
-# lista_canciones.insert(0, "Canción 1")
-# lista_canciones.insert(1, "Canción 2")
-# lista_canciones.insert(2, "Canción 3")
-# lista_canciones.insert(3, "Canción 4")
-# lista_canciones.insert(4, "Canción 5")
-
 # -----------------------------------------------------------------------------------------------
 
 
@@ -1131,7 +1089,7 @@ boton_agregar_cancion = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="Agregar Canción",
     hover_color=HOVER_CLARO,
-    command=agregar_canciones,
+    command=agregar_cancion_vista,
 )
 boton_agregar_cancion.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("agregar_cancion", boton_agregar_cancion)
@@ -1146,7 +1104,7 @@ boton_agregar_directorio = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="Agregar Carpeta",
     hover_color=HOVER_CLARO,
-    command=agregar_directorio,
+    command=agregar_directorio_vista,
 )
 boton_agregar_directorio.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("agregar_carpeta", boton_agregar_directorio)
@@ -1157,7 +1115,7 @@ controlador.registrar_botones("agregar_carpeta", boton_agregar_directorio)
 # ===============================================================================================
 
 # Muestre el icono del volumen actual de la barra de volumen
-cambiar_volumen(None)
+cambiar_volumen_vista(None)
 
 # Mostrar la ventana
 ventana_principal.mainloop()

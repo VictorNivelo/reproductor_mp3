@@ -69,84 +69,111 @@ class ControladorTema(UtilesControlador):
     # Actualizar colores de los frames
     def actualizar_colores_frames(self):
         for frame, es_ctk, es_principal in self.frames:
-            if es_principal:
-                frame.configure(bg=self.color_principal)
-            elif es_ctk:
-                frame.configure(fg_color=self.color_fondo)
-            else:
-                frame.configure(bg=self.color_fondo)
+            try:
+                if es_principal:
+                    frame.configure(bg=self.color_principal)
+                elif es_ctk:
+                    frame.configure(fg_color=self.color_fondo)
+                else:
+                    frame.configure(bg=self.color_fondo)
+            except Exception as e:
+                print(f"Error al configurar el frame: {e}")
 
     # Actualizar colores de las etiquetas
     def actualizar_colores_etiquetas(self):
         for etiqueta in self.etiquetas:
-            etiqueta.configure(fg_color=self.color_fondo, text_color=self.color_texto)
+            try:
+                etiqueta.configure(fg_color=self.color_fondo, text_color=self.color_texto)
+            except Exception as e:
+                print(f"Error al configurar la etiqueta: {e}")
 
     # Actualizar colores de las entradas
     def actualizar_colores_entradas(self):
         for entrada in self.entradas:
-            entrada.configure(
-                fg_color=self.color_fondo,
-                text_color=self.color_texto,
-                placeholder_text_color=self.color_texto,
-                border_color=self.color_borde,
-            )
+            try:
+                entrada.configure(
+                    fg_color=self.color_fondo,
+                    text_color=self.color_texto,
+                    placeholder_text_color=self.color_texto,
+                    border_color=self.color_borde,
+                )
+            except Exception as e:
+                print(f"Error al configurar la entrada: {e}")
 
     # Actualizar colores de los comboboxes
     def actualizar_colores_comboboxes(self):
         for combobox in self.comboboxes:
-            combobox.configure(
-                fg_color=self.color_fondo,
-                text_color=self.color_texto,
-                border_color=self.color_borde,
-                button_color=self.color_fondo,
-                button_hover_color=self.color_hover,
-                dropdown_fg_color=self.color_fondo,
-                dropdown_hover_color=self.color_hover,
-                dropdown_text_color=self.color_texto,
-            )
+            try:
+                combobox.configure(
+                    fg_color=self.color_fondo,
+                    text_color=self.color_texto,
+                    border_color=self.color_borde,
+                    button_color=self.color_fondo,
+                    button_hover_color=self.color_hover,
+                    dropdown_fg_color=self.color_fondo,
+                    dropdown_hover_color=self.color_hover,
+                    dropdown_text_color=self.color_texto,
+                )
+            except Exception as e:
+                print(f"Error al configurar el combobox: {e}")
 
     # Actualizar colores de los botones
     def actualizar_colores_botones(self):
         for boton in self.botones.values():
-            boton.configure(
-                fg_color=self.color_boton, text_color=self.color_texto, hover_color=self.color_hover
-            )
+            try:
+                boton.configure(
+                    fg_color=self.color_boton, text_color=self.color_texto, hover_color=self.color_hover
+                )
+            except Exception as e:
+                print(f"Error al configurar el botón: {e}")
 
     # Actualizar colores de los sliders
     def actualizar_colores_sliders(self):
         for slider in self.sliders:
-            slider.configure(
-                fg_color=self.color_hover,
-                progress_color=self.color_slider,
-                button_color=self.color_slider,
-                button_hover_color=self.color_hover_oscuro,
-            )
+            try:
+                slider.configure(
+                    fg_color=self.color_hover,
+                    progress_color=self.color_slider,
+                    button_color=self.color_slider,
+                    button_hover_color=self.color_hover_oscuro,
+                )
+            except Exception as e:
+                print(f"Error al configurar el slider: {e}")
 
     # Actualizar colores de las progress bars
     def actualizar_colores_progress_bars(self):
         for progress_bar in self.progress_bars:
-            progress_bar.configure(fg_color=self.barra_progreso, progress_color=self.color_slider)
+            try:
+                progress_bar.configure(fg_color=self.barra_progreso, progress_color=self.color_slider)
+            except Exception as e:
+                print(f"Error al configurar la progress bar: {e}")
 
     # Actualizar colores de los tabviews
     def actualizar_colores_tabviews(self):
         for tabview in self.tabviews:
-            tabview.configure(
-                fg_color=self.color_base,
-                segmented_button_fg_color=self.color_segundario,
-                segmented_button_selected_color=self.color_fondo,
-                segmented_button_selected_hover_color=self.color_hover,
-                segmented_button_unselected_color=self.color_hover,
-                segmented_button_unselected_hover_color=self.color_fondo,
-                text_color=self.color_texto,
-            )
+            try:
+                tabview.configure(
+                    fg_color=self.color_base,
+                    segmented_button_fg_color=self.color_segundario,
+                    segmented_button_selected_color=self.color_fondo,
+                    segmented_button_selected_hover_color=self.color_hover,
+                    segmented_button_unselected_color=self.color_hover,
+                    segmented_button_unselected_hover_color=self.color_fondo,
+                    text_color=self.color_texto,
+                )
+            except Exception as e:
+                print(f"Error al configurar el tabview: {e}")
 
     # Actualizar colores de los canvas
     def actualizar_colores_canvas(self):
         for canvas, es_tabview in self.canvas:
-            if es_tabview:
-                canvas.configure(bg=self.color_segundario)
-            else:
-                canvas.configure(bg=self.color_fondo)
+            try:
+                if es_tabview:
+                    canvas.configure(bg=self.color_segundario)
+                else:
+                    canvas.configure(bg=self.color_fondo)
+            except Exception as e:
+                print(f"Error al configurar el canvas: {e}")
 
     # Establecer tema global
     def establecer_apariencia_global(self):

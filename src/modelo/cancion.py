@@ -34,7 +34,7 @@ class Cancion:
 
     # Propiedad que devuelve la duración de la canción en formato MM:SS
     @property
-    def duracion_formato(self) -> str:
+    def duracion_formateada(self) -> str:
         minutos = int(self.duracion // 60)
         segundos = int(self.duracion % 60)
         return f"{minutos:02d}:{segundos:02d}"
@@ -59,7 +59,7 @@ class Cancion:
 
     # Propiedad que devuelve el año de la canción
     @property
-    def fecha_anio(self) -> str:
+    def fecha_formateada_anio(self) -> str:
         try:
             if self.anio == "Desconocido":
                 return "Desconocido"
@@ -80,13 +80,13 @@ class Cancion:
             audio = mutagen.File(ruta_archivo)
             if audio is None:
                 return cls(ruta=ruta_archivo, titulo=ruta_archivo.stem)
-            info = cls.obtener_info_base(ruta_archivo)
+            info = cls.obtener_informacion_base(ruta_archivo)
             if isinstance(audio, MP3):
-                info.update(cls.obtener_info_mp3(ruta_archivo))
+                info.update(cls.obtener_informacion_mp3(ruta_archivo))
             elif isinstance(audio, FLAC):
-                info.update(cls.obtener_info_flac(audio))
+                info.update(cls.obtener_informacion_flac(audio))
             elif isinstance(audio, MP4):
-                info.update(cls.obtener_info_mp4(audio))
+                info.update(cls.obtener_informacion_mp4(audio))
             return cls(ruta=ruta_archivo, **info)
         except Exception as e:
             print(f"Error al procesar el archivo {ruta_archivo}: {str(e)}")
@@ -94,7 +94,7 @@ class Cancion:
 
     # Método que obtiene la información base de la canción
     @staticmethod
-    def obtener_info_base(ruta_archivo: Path) -> dict:
+    def obtener_informacion_base(ruta_archivo: Path) -> dict:
         return {
             "titulo": ruta_archivo.stem,
             "artista": "Desconocido",
@@ -108,7 +108,7 @@ class Cancion:
 
     # Método que obtiene la información de un archivo MP3
     @staticmethod
-    def obtener_info_mp3(ruta_archivo: Path) -> dict:
+    def obtener_informacion_mp3(ruta_archivo: Path) -> dict:
         tags = ID3(ruta_archivo)
         audio = MP3(ruta_archivo)
         info = {
@@ -125,7 +125,7 @@ class Cancion:
 
     # Método que obtiene la información de un archivo FLAC
     @staticmethod
-    def obtener_info_flac(audio: FLAC) -> dict:
+    def obtener_informacion_flac(audio: FLAC) -> dict:
         info = {
             "titulo": str(audio.get("title", [""])[0] or audio.filename),
             "artista": str(audio.get("artist", ["Desconocido"])[0]),
@@ -140,7 +140,7 @@ class Cancion:
 
     # Método que obtiene la información de un archivo MP4
     @staticmethod
-    def obtener_info_mp4(audio: MP4) -> dict:
+    def obtener_informacion_mp4(audio: MP4) -> dict:
         info = {
             "titulo": str(audio.get("\xa9nam", [""])[0] or audio.filename),
             "artista": str(audio.get("\xa9ART", ["Desconocido"])[0]),
@@ -162,7 +162,7 @@ class Cancion:
             "artista_album": self.artista_album,
             "album": self.album,
             "duracion": self.duracion,
-            "duracion_formato": self.duracion_formato,
+            "duracion_formateada": self.duracion_formateada,
             "anio": self.anio,
             "numero_pista": self.numero_pista,
             "tiene_caratula": self.caratula_cancion is not None,
@@ -177,10 +177,10 @@ class Cancion:
 # print(f"Artista: {cancion.artista}")
 # print(f"Artista del Álbum: {cancion.artista_album}")
 # print(f"Álbum: {cancion.album}")
-# print(f"Año: {cancion.fecha_anio}")
+# print(f"Año: {cancion.fecha_formateada_anio}")
 # print(f"Lanzamiento: {cancion.anio}")
 # print(f"Fecha formateada: {cancion.fecha_formateada}")
 # print(f"Número de pista: {cancion.numero_pista}")
 # print(f"Duración: {cancion.duracion} segundos")
-# print(f"Duración formateada: {cancion.duracion_formato}")
+# print(f"Duración formateada: {cancion.duracion_formateada}")
 # print(f"Tiene carátula: {cancion.caratula_cancion is not None}")

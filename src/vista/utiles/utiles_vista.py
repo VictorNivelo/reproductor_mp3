@@ -5,6 +5,7 @@ from PIL import Image
 import tkinter as tk
 
 
+# Método para obtener la ruta de los iconos de la aplicación
 def cargar_iconos(tema="claro"):
     iconos = {}
     archivos_iconos = {
@@ -72,6 +73,7 @@ def cargar_iconos(tema="claro"):
     return iconos
 
 
+# Método para obtener la ruta de los iconos de la aplicación
 def establecer_icono_tema(ventana, tema="claro"):
     try:
         # Para Windows
@@ -92,5 +94,6 @@ def establecer_icono_tema(ventana, tema="claro"):
         ventana.iconphoto(True, icono)
 
 
+# Método para crear un tooltip en un widget de la aplicación
 def crear_tooltip(widget, text):
     return ToolTip(widget, text)

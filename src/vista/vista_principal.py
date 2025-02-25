@@ -19,14 +19,9 @@ import random
 def cambiar_tema_vista():
     global TEMA_ACTUAL
     # Cambiar tema
-    tema_actual_vista = "oscuro" if TEMA_ACTUAL == "claro" else "claro"
     controlador.cambiar_tema()
-    # Actualizar barras del espectro
-    color_barra = HOVER_CLARO if tema_actual_vista == "claro" else HOVER_OSCURO
-    for barra in barras_espectro:
-        canvas_espectro.itemconfig(barra, fill=color_barra)
     # Actualizar icono de tema
-    if tema_actual_vista == "claro":
+    if TEMA_ACTUAL == "claro":
         cambiar_icono_tema("claro")
         controlador.registrar_botones("modo_oscuro", boton_tema)
     else:
@@ -38,41 +33,41 @@ def cambiar_tema_vista():
 # Función para cambiar el tema de la interfaz
 def actualizar_iconos():
     # Estado de reproducción
-    icon_reproduccion = "pausa" if REPRODUCIENDO else "reproducir"
-    controlador.registrar_botones(icon_reproduccion, boton_reproducir)
+    icono_reproduccion = "pausa" if REPRODUCIENDO else "reproducir"
+    controlador.registrar_botones(icono_reproduccion, boton_reproducir)
     # Orden de reproducción
-    icon_orden = "aleatorio" if ORDEN else "orden"
-    controlador.registrar_botones(icon_orden, boton_aleatorio)
+    icono_orden = "aleatorio" if ORDEN else "orden"
+    controlador.registrar_botones(icono_orden, boton_aleatorio)
     # Repetición
     if REPETICION == 0:
-        icon_repeticion = "no_repetir"
+        icono_repeticion = "no_repetir"
     elif REPETICION == 1:
-        icon_repeticion = "repetir_actual"
+        icono_repeticion = "repetir_actual"
     else:
-        icon_repeticion = "repetir_todo"
-    controlador.registrar_botones(icon_repeticion, boton_repetir)
+        icono_repeticion = "repetir_todo"
+    controlador.registrar_botones(icono_repeticion, boton_repetir)
     # Volumen
     if SILENCIADO:
-        icon_volumen = "silencio"
+        icono_volumen = "silencio"
     else:
         if VOLUMEN == 0:
-            icon_volumen = "sin_volumen"
+            icono_volumen = "sin_volumen"
         elif VOLUMEN <= 33:
-            icon_volumen = "volumen_bajo"
+            icono_volumen = "volumen_bajo"
         elif VOLUMEN <= 66:
-            icon_volumen = "volumen_medio"
+            icono_volumen = "volumen_medio"
         else:
-            icon_volumen = "volumen_alto"
+            icono_volumen = "volumen_alto"
     if PANEL_VISIBLE:
         controlador.registrar_botones("ocultar", boton_visibilidad)
     else:
         controlador.registrar_botones("mostrar", boton_visibilidad)
-    controlador.registrar_botones(icon_volumen, boton_silenciar)
+    controlador.registrar_botones(icono_volumen, boton_silenciar)
     # Me gusta y favoritos
-    icon_me_gusta = "me_gusta_rojo" if ME_GUSTA else "me_gusta"
-    icon_favorito = "favorito_amarillo" if FAVORITO else "favorito"
-    controlador.registrar_botones(icon_me_gusta, boton_me_gusta)
-    controlador.registrar_botones(icon_favorito, boton_favorito)
+    icono_me_gusta = "me_gusta_rojo" if ME_GUSTA else "me_gusta"
+    icono_favorito = "favorito_amarillo" if FAVORITO else "favorito"
+    controlador.registrar_botones(icono_me_gusta, boton_me_gusta)
+    controlador.registrar_botones(icono_favorito, boton_favorito)
 
 
 # Función para cambiar el estado de reproducción
@@ -316,7 +311,7 @@ def abrir_configuracion():
 
 
 # Función para minimizar la ventana
-def minimizar_ventana():
+def abrir_minireproductor():
     mini_reproductor.mostrar_ventana_mini_reproductor()
 
 
@@ -650,7 +645,7 @@ controlador.registrar_frame(panel_progreso)
 
 # Barra de progreso
 barra_progreso = ctk.CTkProgressBar(panel_progreso)
-barra_progreso.configure(height=6, progress_color=FONDO_OSCURO, fg_color="lightgray")
+barra_progreso.configure(height=5, progress_color=FONDO_OSCURO, fg_color="lightgray")
 barra_progreso.pack(fill="x", padx=12, pady=(0, 3))
 barra_progreso.set(0)
 barra_progreso.bind("<Button-1>", iniciar_arrastre_progreso)
@@ -836,7 +831,7 @@ boton_minimizar = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
-    command=minimizar_ventana,
+    command=abrir_minireproductor,
 )
 boton_minimizar.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("minimizar", boton_minimizar)

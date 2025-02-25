@@ -23,6 +23,7 @@ class Configuracion(UtilesComponentes):
         #         lambda: self.ventana_configuracion.iconbitmap("recursos/iconos/reproductor.ico"),
         #     )
 
+    # Crear ventana de configuración de la aplicación
     def crear_ventana_configuracion(self):
         self.colores()
         # ======================================= Ventana principal =======================================

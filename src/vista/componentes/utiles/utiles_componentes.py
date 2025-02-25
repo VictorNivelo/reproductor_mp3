@@ -11,6 +11,7 @@ class UtilesComponentes:
         self.color_hover = None
         self.color_progreso = None
 
+    # Colores de la interfaz de usuario de los componentes
     def colores(self):
         # Tema de la interfaz
         tema_componentes = self.controlador.tema_interfaz == "oscuro"

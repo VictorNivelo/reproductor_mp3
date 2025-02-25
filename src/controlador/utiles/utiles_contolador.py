@@ -19,6 +19,7 @@ class UtilesControlador:
         self.barra_progreso = None
         self.color_segundario = None
 
+    # Colores de la interfaz de usuario
     def colores(self):
         # Tema de la interfaz
         tema_controlador = self.tema_interfaz == "oscuro"

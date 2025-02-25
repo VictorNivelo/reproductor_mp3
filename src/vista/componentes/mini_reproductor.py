@@ -285,13 +285,18 @@ class MiniReproductor(UtilesComponentes):
                 self.ventana_principal_mini_reproductor = None
                 self.crear_ventana_mini_reproductor()
         # Mostrar la ventana del mini reproductor
-        self.ventana_principal_mini_reproductor.deiconify()
-        self.ventana_principal.withdraw()
+        if self.ventana_principal_mini_reproductor.winfo_exists():
+            self.ventana_principal_mini_reproductor.deiconify()
+            self.ventana_principal.withdraw()
 
     # Metodo para ocultar la ventana del mini reproductor
     def ocultar(self):
         if self.ventana_principal_mini_reproductor:
-            self.ventana_principal_mini_reproductor.withdraw()
+            try:
+                if self.ventana_principal_mini_reproductor.winfo_exists():
+                    self.ventana_principal_mini_reproductor.withdraw()
+            except tk.TclError:
+                pass
             self.ventana_principal.deiconify()
 
     # Metodo para actualizar los colores de los componentes del mini reproductor

@@ -178,11 +178,14 @@ def agregar_cancion_vista():
         filetypes=[("Archivos de audio", "*.mp3 *.wav *.flac *.m4a *.ogg"), ("Todos los archivos", "*.*")],
     )
     for ruta in rutas:
-        cancion = controlador_biblioteca.agregar_cancion(Path(ruta))
-        if cancion:
-            controlador_biblioteca.actualizar_vista_canciones(
-                panel_botones_canciones, controlador, controlador_reproductor
-            )
+        try:
+            cancion = controlador_biblioteca.agregar_cancion(Path(ruta))
+            if cancion:
+                controlador_biblioteca.actualizar_vista_canciones(
+                    panel_botones_canciones, controlador, controlador_reproductor
+                )
+        except Exception as e:
+            print(f"Error al agregar la canción: {e}")
 
 
 # Función para agregar directorio (puede ser llamada desde un botón)
@@ -246,7 +249,12 @@ def crear_barras_espectro():
     global barras_espectro, ANCHO_BARRA, ESPACIO_ENTRE_BARRA
     # Limpiar barras existentes
     for barra in barras_espectro:
-        canvas_espectro.delete(barra)
+        try:
+            canvas_espectro.delete(barra)
+        except tk.TclError:
+            # Error cuando el widget del canvas ha sido destruido o no está disponible
+            print("Error: El canvas del espectro no está disponible")
+            return
     barras_espectro.clear()
     # Obtener dimensiones del canvas
     ancho_canvas = canvas_espectro.winfo_width()

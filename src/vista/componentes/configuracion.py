@@ -89,18 +89,21 @@ class Configuracion(UtilesComponentes):
         # creacion de los botones para cada una de las secciones
         for seccion in secciones:
             # botones de las secciones
-            boton_seccion = ctk.CTkButton(
-                panel_principal_configuracion,
-                height=35,
-                fg_color=self.color_boton,
-                font=(LETRA, TAMANIO_LETRA_BOTON),
-                text_color=self.color_texto,
-                text=seccion,
-                hover_color=self.color_hover,
-                command=lambda s=seccion: self.abrir_seccion(s),
-            )
-            boton_seccion.pack(fill="x", pady=3, padx=5)
-            self.componentes.append(boton_seccion)
+            try:
+                boton_seccion = ctk.CTkButton(
+                    panel_principal_configuracion,
+                    height=35,
+                    fg_color=self.color_boton,
+                    font=(LETRA, TAMANIO_LETRA_BOTON),
+                    text_color=self.color_texto,
+                    text=seccion,
+                    hover_color=self.color_hover,
+                    command=lambda s=seccion: self.abrir_seccion(s),
+                )
+                boton_seccion.pack(fill="x", pady=3, padx=5)
+                self.componentes.append(boton_seccion)
+            except Exception as e:
+                print(f"Error al crear el botón de la sección {seccion}: {e}")
         # botón de cerrar la ventana
         boton_cerrar = ctk.CTkButton(
             panel_principal_configuracion,

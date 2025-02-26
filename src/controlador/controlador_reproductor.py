@@ -3,12 +3,16 @@ import customtkinter as ctk
 from io import BytesIO
 from PIL import Image
 import pygame
+import time
 
 
 class ControladorReproductor:
     def __init__(self):
         self.cancion_actual = None
         self.reproduciendo = False
+        # Tiempo de reproducción
+        self.tiempo_inicio = None
+        self.tiempo_acumulado = 0
         # Etiquetas de la interfaz
         self.etiqueta_nombre = None
         self.etiqueta_artista = None
@@ -77,36 +81,36 @@ class ControladorReproductor:
 
     # Método que actualiza el tiempo de reproducción de la canción
     def actualizar_tiempo(self):
-        if self.reproduciendo and self.cancion_actual:
-            try:
-                # Obtener tiempo actual y total en segundos
-                tiempo_total = self.cancion_actual.duracion
-                tiempo_actual = pygame.mixer.music.get_pos() / 1000
-                # Verificar si la canción ha terminado
-                if tiempo_actual < 0:
-                    self.detener_reproduccion()
-                    return
-                # Actualizar barra de progreso
+        if self.cancion_actual:
+            if self.tiempo_inicio is not None:
+                tiempo_actual = self.tiempo_acumulado + (time.perf_counter() - self.tiempo_inicio)
+            else:
+                tiempo_actual = self.tiempo_acumulado
+            tiempo_total = self.cancion_actual.duracion
+            # Si el tiempo alcanzó o superó la duración, fijarlo en el total y detener la reproducción.
+            if tiempo_actual >= tiempo_total:
                 if self.barra_progreso:
-                    progreso = tiempo_actual / tiempo_total if tiempo_total > 0 else 0
-                    self.barra_progreso.set(progreso)
-                # Convertir a formato mm:ss
-                minutos_actual = int(tiempo_actual // 60)
-                segundos_actual = int(tiempo_actual % 60)
+                    self.barra_progreso.set(1)
                 minutos_total = int(tiempo_total // 60)
                 segundos_total = int(tiempo_total % 60)
-                # Actualizar etiquetas
                 if self.etiqueta_tiempo_actual:
-                    self.etiqueta_tiempo_actual.configure(text=f"{minutos_actual:02d}:{segundos_actual:02d}")
+                    self.etiqueta_tiempo_actual.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
                 if self.etiqueta_tiempo_total:
                     self.etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
-                # Programar próxima actualización solo si está reproduciendo
-                if self.reproduciendo:
-                    if self.timer_id:
-                        self.etiqueta_tiempo_actual.after_cancel(self.timer_id)
-                    self.timer_id = self.etiqueta_tiempo_actual.after(100, self.actualizar_tiempo)
-            except Exception as e:
-                print(f"Error al actualizar tiempo: {e}")
+                self.detener_reproduccion()
+                return
+            if self.barra_progreso:
+                progreso = tiempo_actual / tiempo_total if tiempo_total > 0 else 0
+                self.barra_progreso.set(progreso)
+            minutos_actual = int(tiempo_actual // 60)
+            segundos_actual = int(tiempo_actual % 60)
+            minutos_total = int(tiempo_total // 60)
+            segundos_total = int(tiempo_total % 60)
+            if self.etiqueta_tiempo_actual:
+                self.etiqueta_tiempo_actual.configure(text=f"{minutos_actual:02d}:{segundos_actual:02d}")
+            if self.etiqueta_tiempo_total:
+                self.etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
+            self.timer_id = self.etiqueta_tiempo_actual.after(100, self.actualizar_tiempo)
 
     # Método que reproduce una canción
     def reproducir_cancion(self, cancion: Cancion) -> None:
@@ -117,21 +121,29 @@ class ControladorReproductor:
         pygame.mixer.music.load(str(cancion.ruta_cancion))
         pygame.mixer.music.play()
         self.reproduciendo = True
+        # Reiniciar cronómetro
+        self.tiempo_acumulado = 0
+        self.tiempo_inicio = time.perf_counter()
         self.actualizar_informacion_interfaz()
-        # Iniciar actualización de tiempo
         self.actualizar_tiempo()
 
     # Métodos que controlan la reproducción de la canción
     def pausar_reproduccion(self) -> None:
         if self.reproduciendo:
             pygame.mixer.music.pause()
+            # Acumular tiempo transcurrido hasta el momento de la pausa
+            self.tiempo_acumulado += time.perf_counter() - self.tiempo_inicio
+            self.tiempo_inicio = None
+            # En este caso no cancelamos el timer para que la interfaz siga actualizándose
             self.reproduciendo = False
 
     # Método que reanuda la reproducción de la canción
     def reanudar_reproduccion(self) -> None:
-        if not self.reproduciendo:
+        if not self.reproduciendo and self.cancion_actual:
             pygame.mixer.music.unpause()
+            self.tiempo_inicio = time.perf_counter()
             self.reproduciendo = True
+            self.actualizar_tiempo()
 
     # Método que detiene la reproducción de la canción
     def detener_reproduccion(self) -> None:

@@ -188,7 +188,10 @@ class ControladorTema(UtilesControlador):
         self.colores()
         # Actualizar iconos de botones
         for nombre in self.botones:
-            self.mostrar_icono_boton(nombre)
+            try:
+                self.mostrar_icono_boton(nombre)
+            except Exception as e:
+                print(f"Error al mostrar el icono del botón {nombre}: {e}")
         # Actualizar colores de frames
         self.actualizar_colores_frames()
         # Actualizar colores de etiquetas

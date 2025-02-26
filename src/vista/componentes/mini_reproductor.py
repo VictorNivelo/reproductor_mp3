@@ -304,18 +304,21 @@ class MiniReproductor(UtilesComponentes):
         self.colores()
         # Actualizar colores de los componentes
         for widget in self.componentes:
-            if isinstance(widget, ctk.CTkFrame):
-                if widget.winfo_parent() == str(self.ventana_principal_mini_reproductor):
-                    widget.configure(fg_color=self.color_fondo_principal)
-                else:
-                    widget.configure(fg_color=self.color_fondo)
-            elif isinstance(widget, ctk.CTkLabel):
-                widget.configure(fg_color=self.color_fondo, text_color=self.color_texto)
-            elif isinstance(widget, ctk.CTkButton):
-                widget.configure(
-                    fg_color=self.color_boton,
-                    text_color=self.color_texto,
-                    hover_color=self.color_hover,
-                )
-            elif isinstance(widget, ctk.CTkProgressBar):
-                widget.configure(progress_color=self.color_progreso, fg_color=self.color_fondo)
+            try:
+                if isinstance(widget, ctk.CTkFrame):
+                    if widget.winfo_parent() == str(self.ventana_principal_mini_reproductor):
+                        widget.configure(fg_color=self.color_fondo_principal)
+                    else:
+                        widget.configure(fg_color=self.color_fondo)
+                elif isinstance(widget, ctk.CTkLabel):
+                    widget.configure(fg_color=self.color_fondo, text_color=self.color_texto)
+                elif isinstance(widget, ctk.CTkButton):
+                    widget.configure(
+                        fg_color=self.color_boton,
+                        text_color=self.color_texto,
+                        hover_color=self.color_hover,
+                    )
+                elif isinstance(widget, ctk.CTkProgressBar):
+                    widget.configure(progress_color=self.color_progreso, fg_color=self.color_fondo)
+            except tk.TclError:
+                print("Error al actualizar colores del mini reproductor")

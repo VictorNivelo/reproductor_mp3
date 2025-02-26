@@ -14,6 +14,9 @@ import random
 
 # FUNCIONES DE LOS BOTONES
 
+# Diccionario para almacenar los botones de canciones
+botones_canciones = {}
+
 
 # Función para cambiar el tema de la interfaz
 def cambiar_tema_vista():
@@ -173,17 +176,18 @@ def cambiar_favorito_vista():
 
 # Función para agregar canciones (puede ser llamada desde un botón)
 def agregar_cancion_vista():
-    rutas = filedialog.askopenfilenames(
-        title="Seleccionar canciones",
-        filetypes=[("Archivos de audio", "*.mp3 *.wav *.flac *.m4a *.ogg"), ("Todos los archivos", "*.*")],
+    ruta_archivo = filedialog.askopenfilename(
+        filetypes=[("Archivos de audio", "*.mp3 *.flac *.m4a *.mp4 *.wav *.ogg")]
     )
-    for ruta in rutas:
+    if ruta_archivo:
         try:
-            cancion = controlador_biblioteca.agregar_cancion(Path(ruta))
-            if cancion:
-                controlador_biblioteca.actualizar_vista_canciones(
-                    panel_botones_canciones, controlador, controlador_reproductor
-                )
+            controlador_biblioteca.agregar_cancion(Path(ruta_archivo))
+            actualizar_vista_canciones(
+                controlador_biblioteca.biblioteca,
+                panel_botones_canciones,
+                controlador,
+                controlador_reproductor,
+            )
         except Exception as e:
             print(f"Error al agregar la canción: {e}")
 
@@ -194,8 +198,11 @@ def agregar_directorio_vista():
     if ruta:
         canciones = controlador_biblioteca.agregar_directorio(Path(ruta))
         if canciones:
-            controlador_biblioteca.actualizar_vista_canciones(
-                panel_botones_canciones, controlador, controlador_reproductor
+            actualizar_vista_canciones(
+                controlador_biblioteca.biblioteca,
+                panel_botones_canciones,
+                controlador,
+                controlador_reproductor,
             )
 
 
@@ -306,6 +313,42 @@ def actualizar_espectro():
     # Llamar a la función nuevamente después de un delay
     if REPRODUCIENDO:
         ventana_principal.after(50, actualizar_espectro)
+
+
+# Función para actualizar la vista de las canciones en la biblioteca
+def actualizar_vista_canciones(biblioteca, panel_botones, controlador_tema, controlador_reproductor):
+    # Limpiar botones existentes
+    for boton in botones_canciones.values():
+        try:
+            if boton.winfo_exists():
+                boton.destroy()
+        except tk.TclError:
+            print("Error: El botón de la canción no está disponible")
+    botones_canciones.clear()
+    # Crear nuevos botones para cada canción
+    for cancion in biblioteca.canciones:
+        crear_boton_cancion(cancion, panel_botones, controlador_tema, controlador_reproductor)
+
+
+# Función para crear botones para cada canción en la biblioteca
+def crear_boton_cancion(cancion, panel_botones, controlador_tema, controlador_reproductor):
+    # Crear una función específica para cada canción que captura el valor por parámetro
+    def reproducir_esta_cancion(c=cancion):
+        controlador_reproductor.reproducir_cancion(c)
+
+    boton = ctk.CTkButton(
+        panel_botones,
+        height=28,
+        fg_color=BOTON_CLARO,
+        font=(LETRA, TAMANIO_LETRA_BOTON),
+        text_color=TEXTO_CLARO,
+        text=f"{cancion.titulo_cancion} - {cancion.artista}",
+        hover_color=HOVER_CLARO,
+        command=reproducir_esta_cancion,  # Usamos la función específica en lugar de lambda
+    )
+    boton.pack(fill="both", pady=2)
+    controlador_tema.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton)
+    botones_canciones[cancion] = boton
 
 
 # Función para establecer el icono del tema

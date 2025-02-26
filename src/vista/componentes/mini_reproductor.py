@@ -272,22 +272,41 @@ class MiniReproductor(UtilesComponentes):
 
     # Metodo para mostrar la ventana del mini reproductor
     def mostrar_ventana_mini_reproductor(self):
-        if self.ventana_principal_mini_reproductor is None:
+        # Verificar si la ventana del mini reproductor es None o fue destruida
+        ventana_destruida = False
+        if self.ventana_principal_mini_reproductor is not None:
+            try:
+                existe = self.ventana_principal_mini_reproductor.winfo_exists()
+                if not existe:
+                    ventana_destruida = True
+            except tk.TclError:
+                ventana_destruida = True
+        # Crear o recrear la ventana si es necesario
+        if self.ventana_principal_mini_reproductor is None or ventana_destruida:
+            self.ventana_principal_mini_reproductor = (
+                None  # Asegurarse de que sea None antes de crear una nueva
+            )
             self.crear_ventana_mini_reproductor()
         else:
+            # La ventana existe, actualizar colores e icono
             try:
-                # Verificar si la ventana del mini reproductor fue destruida
                 self.colores()
                 establecer_icono_tema(self.ventana_principal_mini_reproductor, self.controlador.tema_interfaz)
                 self.actualizar_colores()
             except tk.TclError:
-                # Si la ventana fue destruida, crear una nueva
+                # Si hay un error al actualizar, recrear la ventana
                 self.ventana_principal_mini_reproductor = None
                 self.crear_ventana_mini_reproductor()
-        # Mostrar la ventana del mini reproductor
-        if self.ventana_principal_mini_reproductor.winfo_exists():
-            self.ventana_principal_mini_reproductor.deiconify()
-            self.ventana_principal.withdraw()
+        # Mostrar la ventana del mini reproductor de forma segura
+        try:
+            if (
+                self.ventana_principal_mini_reproductor
+                and self.ventana_principal_mini_reproductor.winfo_exists()
+            ):
+                self.ventana_principal_mini_reproductor.deiconify()
+                self.ventana_principal.withdraw()
+        except tk.TclError as e:
+            print(f"Error al mostrar el mini reproductor: {e}")
 
     # Metodo para ocultar la ventana del mini reproductor
     def ocultar(self):

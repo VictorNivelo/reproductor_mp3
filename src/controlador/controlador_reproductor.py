@@ -3,6 +3,7 @@ import customtkinter as ctk
 from io import BytesIO
 from PIL import Image
 import pygame
+import random
 import time
 
 
@@ -25,6 +26,15 @@ class ControladorReproductor:
         self.timer_id = None
         # Barra de progreso
         self.barra_progreso = None
+        # Lista de reproducción
+        self.lista_reproduccion = []
+        self.indice_actual = -1
+        # Modo de repetición
+        self.modo_repeticion = 0
+        # Modo aleatorio
+        self.modo_aleatorio = False
+        # Historial de reproducción aleatoria
+        self.historial_aleatorio = []
         # Inicializar pygame
         pygame.mixer.init()
 
@@ -50,6 +60,21 @@ class ControladorReproductor:
     # Método que establece la barra de progreso
     def establecer_barra_progreso(self, barra):
         self.barra_progreso = barra
+
+    # Método que establece la lista de reproducción actual
+    def establecer_lista_reproduccion(self, canciones, indice=0):
+        self.lista_reproduccion = canciones
+        self.indice_actual = indice if 0 <= indice < len(canciones) else 0
+
+    # Método que establece el modo de repetición
+    def establecer_modo_repeticion(self, modo):
+        self.modo_repeticion = modo
+
+    # Método para establecer el modo de reproducción (aleatorio o secuencial)
+    def establecer_modo_aleatorio(self, aleatorio: bool):
+        self.modo_aleatorio = aleatorio
+        # Resetear el historial cuando cambiamos de modo
+        self.historial_aleatorio = []
 
     # Método que actualiza la información de la interfaz
     def actualizar_informacion_interfaz(self):
@@ -97,8 +122,24 @@ class ControladorReproductor:
                     self.etiqueta_tiempo_actual.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
                 if self.etiqueta_tiempo_total:
                     self.etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
-                self.detener_reproduccion()
-                return
+                # Manejar el final de la canción según el modo de repetición
+                if self.modo_repeticion == 1:  # Repetir canción actual
+                    # Reiniciar la misma canción
+                    self.reproducir_cancion(self.cancion_actual)
+                    return
+                elif self.lista_reproduccion and (
+                    self.indice_actual < len(self.lista_reproduccion) - 1 or self.modo_repeticion == 2
+                ):
+                    # Reproducir siguiente canción
+                    self.reproducir_siguiente()
+                    return
+                else:
+                    # No hay más canciones o no está activada la repetición
+                    self.detener_reproduccion()
+                    # Señalizar a la vista que terminó la reproducción
+                    self.reproduciendo = False
+                    return True
+            # Actualización normal del progreso
             if self.barra_progreso:
                 progreso = tiempo_actual / tiempo_total if tiempo_total > 0 else 0
                 self.barra_progreso.set(progreso)
@@ -111,6 +152,7 @@ class ControladorReproductor:
             if self.etiqueta_tiempo_total:
                 self.etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
             self.timer_id = self.etiqueta_tiempo_actual.after(100, self.actualizar_tiempo)
+        return False
 
     # Método que reproduce una canción
     def reproducir_cancion(self, cancion: Cancion) -> None:
@@ -118,6 +160,21 @@ class ControladorReproductor:
             self.etiqueta_tiempo_actual.after_cancel(self.timer_id)
             self.timer_id = None
         self.cancion_actual = cancion
+        # Actualizar el índice si la canción está en la lista de reproducción
+        if self.lista_reproduccion:
+            try:
+                nuevo_indice = self.lista_reproduccion.index(cancion)
+                # Si cambiamos el índice y estamos en modo aleatorio, actualizar historial
+                if nuevo_indice != self.indice_actual and self.modo_aleatorio:
+                    self.indice_actual = nuevo_indice
+                    # Agregar al historial si no está ya
+                    if self.indice_actual not in self.historial_aleatorio:
+                        self.historial_aleatorio.append(self.indice_actual)
+                else:
+                    self.indice_actual = nuevo_indice
+            except ValueError:
+                # Si la canción no está en la lista, mantener el índice actual
+                pass
         pygame.mixer.music.load(str(cancion.ruta_cancion))
         pygame.mixer.music.play()
         self.reproduciendo = True
@@ -159,6 +216,120 @@ class ControladorReproductor:
             self.etiqueta_tiempo_total.configure(text="00:00")
         if self.barra_progreso:
             self.barra_progreso.set(0)
+        return False
+
+    # Método que reproduce la siguiente canción
+    def reproducir_siguiente(self):
+        if not self.lista_reproduccion:
+            return False
+        # Determinar el siguiente índice dependiendo del modo
+        if self.modo_aleatorio:
+            # Modo aleatorio
+            if len(self.historial_aleatorio) >= len(self.lista_reproduccion):
+                # Hemos reproducido todas las canciones
+                if self.modo_repeticion == 2:  # Si está activado repetir todo
+                    # Limpiar completamente el historial para permitir reproducir todas las canciones de nuevo
+                    self.historial_aleatorio = []
+                    # Elegir una nueva canción aleatoria
+                    self.indice_actual = random.randint(0, len(self.lista_reproduccion) - 1)
+                    self.historial_aleatorio.append(self.indice_actual)
+                else:
+                    # No repetir, detener reproducción
+                    self.detener_reproduccion()
+                    return False
+            else:
+                # Generar índice aleatorio que no esté en el historial
+                indices_disponibles = [
+                    i for i in range(len(self.lista_reproduccion)) if i not in self.historial_aleatorio
+                ]
+                if indices_disponibles:
+                    self.indice_actual = random.choice(indices_disponibles)
+                    self.historial_aleatorio.append(self.indice_actual)
+                else:
+                    return False
+        else:
+            # Modo secuencial
+            if self.indice_actual < len(self.lista_reproduccion) - 1:
+                self.indice_actual += 1
+            else:
+                # Si estamos en modo repetición todo (2), volver al principio
+                if self.modo_repeticion == 2:
+                    self.indice_actual = 0
+                else:
+                    # Si no hay repetición, detener la reproducción
+                    self.detener_reproduccion()
+                    return False
+        cancion = self.lista_reproduccion[self.indice_actual]
+        self.reproducir_cancion(cancion)
+        return True
+
+    # Método que reproduce la canción anterior
+    def reproducir_anterior(self):
+        if not self.lista_reproduccion:
+            return False
+        if self.modo_aleatorio:
+            # En modo aleatorio, retrocedemos en el historial
+            if len(self.historial_aleatorio) > 1:
+                self.historial_aleatorio.pop()  # Quitar la canción actual
+                self.indice_actual = self.historial_aleatorio[-1]  # Volver a la anterior
+            else:
+                self.indice_actual = random.randint(0, len(self.lista_reproduccion) - 1)
+        else:
+            # Modo secuencial
+            if self.indice_actual > 0:
+                self.indice_actual -= 1
+            else:
+                # Ir al final si es la primera canción
+                self.indice_actual = len(self.lista_reproduccion) - 1
+        cancion = self.lista_reproduccion[self.indice_actual]
+        self.reproducir_cancion(cancion)
+        return True
+
+    # Método para adelantar la reproducción en segundos
+    def adelantar_reproduccion(self, segundos=10):
+        if self.reproduciendo and self.cancion_actual:
+            # Obtener la posición actual
+            if self.tiempo_inicio is not None:
+                tiempo_actual = self.tiempo_acumulado + (time.perf_counter() - self.tiempo_inicio)
+            else:
+                tiempo_actual = self.tiempo_acumulado
+            # Calcular nueva posición
+            nuevo_tiempo = min(tiempo_actual + segundos, self.cancion_actual.duracion)
+            # Detener reproducción actual
+            pygame.mixer.music.stop()
+            # Cargar y reproducir desde la nueva posición
+            pygame.mixer.music.load(str(self.cancion_actual.ruta_cancion))
+            pygame.mixer.music.play(start=nuevo_tiempo)
+            # Actualizar tiempo acumulado
+            self.tiempo_acumulado = nuevo_tiempo
+            self.tiempo_inicio = time.perf_counter()
+            # Actualizar interfaz
+            if self.barra_progreso:
+                progreso = nuevo_tiempo / self.cancion_actual.duracion
+                self.barra_progreso.set(progreso)
+
+    # Método para retroceder la reproducción en segundos
+    def retroceder_reproduccion(self, segundos=10):
+        if self.reproduciendo and self.cancion_actual:
+            # Obtener la posición actual
+            if self.tiempo_inicio is not None:
+                tiempo_actual = self.tiempo_acumulado + (time.perf_counter() - self.tiempo_inicio)
+            else:
+                tiempo_actual = self.tiempo_acumulado
+            # Calcular nueva posición
+            nuevo_tiempo = max(0, tiempo_actual - segundos)
+            # Detener reproducción actual
+            pygame.mixer.music.stop()
+            # Cargar y reproducir desde la nueva posición
+            pygame.mixer.music.load(str(self.cancion_actual.ruta_cancion))
+            pygame.mixer.music.play(start=nuevo_tiempo)
+            # Actualizar tiempo acumulado
+            self.tiempo_acumulado = nuevo_tiempo
+            self.tiempo_inicio = time.perf_counter()
+            # Actualizar interfaz
+            if self.barra_progreso:
+                progreso = nuevo_tiempo / self.cancion_actual.duracion
+                self.barra_progreso.set(progreso)
 
     # Método que ajusta el volumen de la canción
     @staticmethod

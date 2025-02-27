@@ -27,9 +27,11 @@ def cambiar_tema_vista():
     if TEMA_ACTUAL == "claro":
         cambiar_icono_tema("claro")
         controlador.registrar_botones("modo_oscuro", boton_tema)
+        actualizar_tooltip(boton_tema, "Cambiar a claro")
     else:
         cambiar_icono_tema("oscuro")
         controlador.registrar_botones("modo_claro", boton_tema)
+        actualizar_tooltip(boton_tema, "Cambiar a oscuro")
     actualizar_iconos()
 
 
@@ -73,17 +75,66 @@ def actualizar_iconos():
     controlador.registrar_botones(icono_favorito, boton_favorito)
 
 
-# Función para cambiar el estado de reproducción
+# Función para reproducir o pausar la canción
 def reproducir_vista():
     global REPRODUCIENDO
-    REPRODUCIENDO = not REPRODUCIENDO
-    if REPRODUCIENDO:
+    if not REPRODUCIENDO:
+        # Iniciar reproducción
+        REPRODUCIENDO = True
         controlador.registrar_botones("pausa", boton_reproducir)
         controlador_reproductor.reanudar_reproduccion()
+        actualizar_tooltip(boton_reproducir, "Pausar")
         actualizar_espectro()
     else:
+        # Pausar reproducción
+        REPRODUCIENDO = False
         controlador.registrar_botones("reproducir", boton_reproducir)
         controlador_reproductor.pausar_reproduccion()
+        actualizar_tooltip(boton_reproducir, "Repoducir")
+
+
+# Función para reproducir la canción seleccionada
+def reproducir_cancion_desde_lista(cancion):
+    global REPRODUCIENDO, biblioteca
+    # Establecer la lista de reproducción actual
+    controlador_reproductor.establecer_lista_reproduccion(
+        biblioteca.canciones, biblioteca.canciones.index(cancion)
+    )
+    # Reproducir la canción
+    controlador_reproductor.reproducir_cancion(cancion)
+    # Actualizar estado de reproducción
+    REPRODUCIENDO = True
+    # Cambiar icono del botón a pausa
+    controlador.registrar_botones("pausa", boton_reproducir)
+    # Iniciar animación del espectro
+    actualizar_espectro()
+
+
+# Función para reproducir la canción siguiente
+def reproducir_siguiente_vista():
+    global controlador_reproductor, REPRODUCIENDO
+    resultado = controlador_reproductor.reproducir_siguiente()
+    if not resultado:
+        REPRODUCIENDO = False
+        controlador.registrar_botones("reproducir", boton_reproducir)
+
+
+# Función para reproducir la canción anterior
+def reproducir_anterior_vista():
+    global controlador_reproductor
+    controlador_reproductor.reproducir_anterior()
+
+
+# Función para adelantar la reproducción
+def adelantar_reproduccion_vista():
+    global controlador_reproductor
+    controlador_reproductor.adelantar_reproduccion(10)
+
+
+# Función para retroceder la reproducción
+def retroceder_reproduccion_vista():
+    global controlador_reproductor
+    controlador_reproductor.retroceder_reproduccion(10)
 
 
 # Función para cambiar el volumen
@@ -93,6 +144,9 @@ def cambiar_volumen_vista(_event=None):
         nuevo_volumen = int(barra_volumen.get())
         VOLUMEN = nuevo_volumen
         etiqueta_porcentaje_volumen.configure(text=f"{VOLUMEN}%")
+        # Aplicar el cambio de volumen al reproductor
+        controlador_reproductor.ajustar_volumen(VOLUMEN)
+        # Actualizar el icono según el nivel de volumen
         if VOLUMEN == 0:
             controlador.registrar_botones("sin_volumen", boton_silenciar)
         elif VOLUMEN <= 33:
@@ -108,8 +162,14 @@ def cambiar_silencio_vista():
     global SILENCIADO
     SILENCIADO = not SILENCIADO
     if SILENCIADO:
+        # Guardar volumen actual y silenciar
+        controlador_reproductor.ajustar_volumen(0)
         controlador.registrar_botones("silencio", boton_silenciar)
+        actualizar_tooltip(boton_silenciar, "Quitar silencio")
     else:
+        # Restaurar volumen anterior
+        controlador_reproductor.ajustar_volumen(VOLUMEN)
+        actualizar_tooltip(boton_silenciar, "Silenciar")
         cambiar_volumen_vista()
 
 
@@ -117,25 +177,33 @@ def cambiar_silencio_vista():
 def cambiar_orden_vista():
     global ORDEN
     ORDEN = not ORDEN
+    # Informar al controlador sobre el cambio en el modo de reproducción
+    controlador_reproductor.establecer_modo_aleatorio(ORDEN)
     if ORDEN:
         controlador.registrar_botones("aleatorio", boton_aleatorio)
+        actualizar_tooltip(boton_aleatorio, "Reproducción aleatoria")
     else:
         controlador.registrar_botones("orden", boton_aleatorio)
+        actualizar_tooltip(boton_aleatorio, "Reproducción en orden")
 
 
 # Función para cambiar la repetición de reproducción
 def cambiar_repeticion_vista():
     global REPETICION
     REPETICION = (REPETICION + 1) % 3
+    controlador_reproductor.establecer_modo_repeticion(REPETICION)
     # Icono de no repetir
     if REPETICION == 0:
         controlador.registrar_botones("no_repetir", boton_repetir)
+        actualizar_tooltip(boton_repetir, "No repetir")
     # Icono de repetir actual
     elif REPETICION == 1:
         controlador.registrar_botones("repetir_actual", boton_repetir)
+        actualizar_tooltip(boton_repetir, "Repetir actual")
     # Icono de repetir todo
     else:
         controlador.registrar_botones("repetir_todo", boton_repetir)
+        actualizar_tooltip(boton_repetir, "Repetir todo")
 
 
 # Función para cambiar la visibilidad del panel
@@ -147,11 +215,13 @@ def cambiar_visibilidad_vista():
         contenedor_derecha.configure(width=ANCHO_PANEL_DERECHA)
         contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(5, 0))
         controlador.registrar_botones("ocultar", boton_visibilidad)
+        actualizar_tooltip(boton_visibilidad, "Ocultar lateral")
     else:
         # Ocultar el panel
         contenedor_derecha.configure(width=0)
         contenedor_derecha.pack_forget()
         controlador.registrar_botones("mostrar", boton_visibilidad)
+        actualizar_tooltip(boton_visibilidad, "Mostrar lateral")
 
 
 # Función para cambiar el estado de boton me gusta
@@ -160,8 +230,10 @@ def cambiar_me_gusta_vista():
     ME_GUSTA = not ME_GUSTA
     if ME_GUSTA:
         controlador.registrar_botones("me_gusta_rojo", boton_me_gusta)
+        actualizar_tooltip(boton_me_gusta, "Quitar de me gusta")
     else:
         controlador.registrar_botones("me_gusta", boton_me_gusta)
+        actualizar_tooltip(boton_me_gusta, "Agregar a me gusta")
 
 
 # Función para cambiar el estado de favorito
@@ -170,8 +242,10 @@ def cambiar_favorito_vista():
     FAVORITO = not FAVORITO
     if FAVORITO:
         controlador.registrar_botones("favorito_amarillo", boton_favorito)
+        actualizar_tooltip(boton_favorito, "Quitar de favorito")
     else:
         controlador.registrar_botones("favorito", boton_favorito)
+        actualizar_tooltip(boton_favorito, "Agregar a favorito")
 
 
 # Función para agregar canciones (puede ser llamada desde un botón)
@@ -223,6 +297,17 @@ def actualizar_etiqueta_tiempo_vista():
     # Actualizar etiquetas
     etiqueta_tiempo_actual.configure(text=f"{minutos_actual:02d}:{segundos_actual:02d}")
     etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
+
+
+# Función para verificar el estado de reproducción
+def verificar_estado_reproduccion():
+    global REPRODUCIENDO
+    # Verificar si la reproducción ha terminado naturalmente
+    if REPRODUCIENDO and not controlador_reproductor.reproduciendo:
+        REPRODUCIENDO = False
+        controlador.registrar_botones("reproducir", boton_reproducir)
+    # Llamar a esta función nuevamente después de un breve retraso
+    ventana_principal.after(500, verificar_estado_reproduccion)
 
 
 # Función para iniciar el arrastre del progreso de la canción
@@ -306,7 +391,7 @@ def actualizar_espectro():
                 return
     # Llamar a la función nuevamente después de un delay
     if REPRODUCIENDO:
-        ventana_principal.after(50, actualizar_espectro)
+        ventana_principal.after(75, actualizar_espectro)
 
 
 # Función para actualizar la vista de las canciones en la biblioteca
@@ -334,7 +419,7 @@ def crear_boton_cancion(cancion, panel_botones):
         text_color=TEXTO_CLARO,
         text=f"{cancion.titulo_cancion} - {cancion.artista}",
         hover_color=HOVER_CLARO,
-        command=lambda c=cancion: controlador_reproductor.reproducir_cancion(c),
+        command=lambda c=cancion: reproducir_cancion_desde_lista(c),
     )
     boton.pack(fill="both", pady=2)
     controlador.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton)
@@ -630,6 +715,7 @@ boton_me_gusta = ctk.CTkButton(
 )
 boton_me_gusta.pack(side=tk.LEFT, padx=(5, 0))
 controlador.registrar_botones("me_gusta", boton_me_gusta)
+crear_tooltip(boton_me_gusta, "Agregar a Me Gusta")
 
 boton_favorito = ctk.CTkButton(
     panel_botones_gustos,
@@ -645,6 +731,7 @@ boton_favorito = ctk.CTkButton(
 )
 boton_favorito.pack(side=tk.LEFT, padx=(5, 0))
 controlador.registrar_botones("favorito", boton_favorito)
+crear_tooltip(boton_favorito, "Agregar a Favoritos")
 
 # -----------------------------------------------------------------------------------------------
 
@@ -761,6 +848,7 @@ boton_aleatorio = ctk.CTkButton(
 )
 boton_aleatorio.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("aleatorio", boton_aleatorio)
+crear_tooltip(boton_aleatorio, "Reproducción aleatoria")
 
 boton_repetir = ctk.CTkButton(
     panel_controles_reproduccion,
@@ -776,6 +864,7 @@ boton_repetir = ctk.CTkButton(
 )
 boton_repetir.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("no_repetir", boton_repetir)
+crear_tooltip(boton_repetir, "No repetir")
 
 boton_retroceder = ctk.CTkButton(
     panel_controles_reproduccion,
@@ -787,9 +876,11 @@ boton_retroceder = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
+    command=retroceder_reproduccion_vista,
 )
 boton_retroceder.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("retroceder", boton_retroceder)
+crear_tooltip(boton_retroceder, "Retrocede 10 segundos")
 
 boton_anterior = ctk.CTkButton(
     panel_controles_reproduccion,
@@ -801,9 +892,11 @@ boton_anterior = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
+    command=reproducir_anterior_vista,
 )
 boton_anterior.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("anterior", boton_anterior)
+crear_tooltip(boton_anterior, "Reproucir anterior")
 
 boton_reproducir = ctk.CTkButton(
     panel_controles_reproduccion,
@@ -819,6 +912,7 @@ boton_reproducir = ctk.CTkButton(
 )
 boton_reproducir.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("reproducir", boton_reproducir)
+crear_tooltip(boton_reproducir, "Reproducir")
 
 boton_siguiente = ctk.CTkButton(
     panel_controles_reproduccion,
@@ -830,9 +924,11 @@ boton_siguiente = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
+    command=reproducir_siguiente_vista,
 )
 boton_siguiente.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("siguiente", boton_siguiente)
+crear_tooltip(boton_siguiente, "Reproducir siguiente")
 
 boton_adelantar = ctk.CTkButton(
     panel_controles_reproduccion,
@@ -844,9 +940,11 @@ boton_adelantar = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
+    command=adelantar_reproduccion_vista,
 )
 boton_adelantar.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("adelantar", boton_adelantar)
+crear_tooltip(boton_adelantar, "Adelanta 10 segundos")
 
 boton_agregar_cola = ctk.CTkButton(
     panel_controles_reproduccion,
@@ -861,6 +959,7 @@ boton_agregar_cola = ctk.CTkButton(
 )
 boton_agregar_cola.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("agregar_cola", boton_agregar_cola)
+crear_tooltip(boton_agregar_cola, "Agregar a la cola")
 
 boton_minimizar = ctk.CTkButton(
     panel_controles_reproduccion,
@@ -876,6 +975,7 @@ boton_minimizar = ctk.CTkButton(
 )
 boton_minimizar.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("minimizar", boton_minimizar)
+crear_tooltip(boton_minimizar, "Minimizar")
 
 # -----------------------------------------------------------------------------------------------
 
@@ -908,6 +1008,7 @@ boton_silenciar = ctk.CTkButton(
 )
 boton_silenciar.pack(side=tk.LEFT)
 controlador.registrar_botones("silencio", boton_silenciar)
+crear_tooltip(boton_silenciar, "Silenciar")
 
 # Panel de elementos de volumen
 panel_elementos_volumen = tk.Frame(panel_volumen, bg=FONDO_CLARO)
@@ -1111,6 +1212,7 @@ boton_agregar_cancion = ctk.CTkButton(
 )
 boton_agregar_cancion.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("agregar_cancion", boton_agregar_cancion)
+crear_tooltip(boton_agregar_cancion, "Agregar canción")
 
 boton_agregar_directorio = ctk.CTkButton(
     panel_botones_inferiores,
@@ -1126,15 +1228,22 @@ boton_agregar_directorio = ctk.CTkButton(
 )
 boton_agregar_directorio.pack(side=tk.LEFT, padx=5)
 controlador.registrar_botones("agregar_carpeta", boton_agregar_directorio)
+crear_tooltip(boton_agregar_directorio, "Agregar carpeta")
 
 # -----------------------------------------------------------------------------------------------
 # ===============================================================================================
+
+# Establecer volumen inicial
+controlador_reproductor.ajustar_volumen(VOLUMEN)
 
 # Muestre el icono del volumen actual de la barra de volumen
 cambiar_volumen_vista(None)
 
 # Actualizar los botones de la interfaz al iniciar la ejecución
 actualizar_iconos()
+
+# Verificar el estado de la reproducción
+verificar_estado_reproduccion()
 
 # Mostrar la ventana
 ventana_principal.mainloop()

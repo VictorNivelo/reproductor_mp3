@@ -5,11 +5,24 @@ from constantes import *
 class ToolTip:
     def __init__(self, widget, text):
         self.widget = widget
-        self.text = text
+        self._text = text
         self.tooltip = None
         self.timer_id = None
         self.widget.bind("<Enter>", self.iniciar_temporizador)
         self.widget.bind("<Leave>", self.ocultar_tooltip)
+
+    # Obtener el texto del tooltip
+    @property
+    def text(self):
+        return self._text
+
+    # Actualizar el texto del tooltip
+    @text.setter
+    def text(self, value):
+        self._text = value
+        if self.tooltip:
+            self.ocultar_tooltip()
+            self.mostrar_tooltip()
 
     # Iniciar temporizador para mostrar el tooltip
     def iniciar_temporizador(self, _event=None):

@@ -4,6 +4,9 @@ from constantes import *
 from PIL import Image
 import tkinter as tk
 
+# Diccionario para guardar los tooltips de los widgets
+tooltips = {}
+
 
 # Método para obtener la ruta de los iconos de la aplicación
 def cargar_iconos(tema="claro"):
@@ -96,4 +99,17 @@ def establecer_icono_tema(ventana, tema="claro"):
 
 # Método para crear un tooltip en un widget de la aplicación
 def crear_tooltip(widget, text):
-    return ToolTip(widget, text)
+    # Guardar referencia al tooltip en el diccionario
+    tooltip = ToolTip(widget, text)
+    tooltips[widget] = tooltip
+    return tooltip
+
+
+# Método para actualizar el texto de un tooltip existente
+def actualizar_tooltip(widget, nuevo_texto):
+    if widget in tooltips:
+        # Si el tooltip existe, actualizar su texto
+        tooltips[widget].text = nuevo_texto
+    else:
+        # Si no existe, crear uno nuevo
+        crear_tooltip(widget, nuevo_texto)

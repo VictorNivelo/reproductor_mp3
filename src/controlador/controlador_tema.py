@@ -188,7 +188,14 @@ class ControladorTema(UtilesControlador):
     # Eliminar botones del diccionario
     def eliminar_boton(self, nombre):
         if nombre in self.botones:
-            del self.botones[nombre]
+            try:
+                # Eliminar la referencia al botón sin intentar acceder a él
+                del self.botones[nombre]
+                return True
+            except Exception as e:
+                print(f"Error al eliminar el botón {nombre} del controlador: {e}")
+                return False
+        return False
 
     # Establecer tema global
     def establecer_apariencia_global(self):

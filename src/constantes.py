@@ -118,11 +118,11 @@ TIEMPO_ACTUAL = 0
 
 # =================== Formatos de archivos soportados ====================
 # Formatos de archivos soportados
-FORMATOS_SOPORTADOS = {'.mp3', '.flac', '.m4a', '.mp4', '.wav', '.ogg'}
+FORMATOS_SOPORTADOS = {".mp3", ".flac", ".m4a", ".mp4", ".wav", ".ogg"}
 
 # ========================================================================
 
-# ======================== Funciones de utilidad =========================
+
 # Obtener la ruta de un icono
 def obtener_ruta_iconos(nombre_icono, tema):
     # Iconos especiales que son independientes del tema

@@ -70,14 +70,15 @@ class ControladorTema(UtilesControlador):
     def actualizar_colores_frames(self):
         for frame, es_ctk, es_principal in self.frames:
             try:
-                if es_principal:
-                    frame.configure(bg=self.color_principal)
-                elif es_ctk:
-                    frame.configure(fg_color=self.color_fondo)
-                else:
-                    frame.configure(bg=self.color_fondo)
+                if frame.winfo_exists():
+                    if es_principal:
+                        frame.configure(bg=self.color_principal)
+                    elif es_ctk:
+                        frame.configure(fg_color=self.color_fondo)
+                    else:
+                        frame.configure(bg=self.color_fondo)
             except Exception as e:
-                print(f"Error al configurar el frame: {e}")
+                print(f"Error al configurar el color del frame: {e}")
 
     # Actualizar colores de las etiquetas
     def actualizar_colores_etiquetas(self):
@@ -119,13 +120,22 @@ class ControladorTema(UtilesControlador):
 
     # Actualizar colores de los botones
     def actualizar_colores_botones(self):
-        for boton in self.botones.values():
+        botones_a_eliminar = []
+        for nombre, boton in self.botones.items():
             try:
-                boton.configure(
-                    fg_color=self.color_boton, text_color=self.color_texto, hover_color=self.color_hover
-                )
+                if boton.winfo_exists():
+                    boton.configure(
+                        fg_color=self.color_boton, text_color=self.color_texto, hover_color=self.color_hover
+                    )
+                else:
+                    botones_a_eliminar.append(nombre)
             except Exception as e:
-                print(f"Error al configurar el botón: {e}")
+                print(f"Error al configurar el botón {nombre}: {e}")
+                botones_a_eliminar.append(nombre)
+        # Eliminar los botones que ya no existen
+        for nombre in botones_a_eliminar:
+            if nombre in self.botones:
+                del self.botones[nombre]
 
     # Actualizar colores de los sliders
     def actualizar_colores_sliders(self):
@@ -174,6 +184,11 @@ class ControladorTema(UtilesControlador):
                     canvas.configure(bg=self.color_fondo)
             except Exception as e:
                 print(f"Error al configurar el canvas: {e}")
+
+    # Eliminar botones del diccionario
+    def eliminar_boton(self, nombre):
+        if nombre in self.botones:
+            del self.botones[nombre]
 
     # Establecer tema global
     def establecer_apariencia_global(self):

@@ -15,7 +15,9 @@ class MiniReproductor(UtilesComponentes):
 
     # Metodo para crear la ventana del mini reproductors
     def crear_ventana_mini_reproductor(self):
+        # Actualizar colores
         self.colores()
+
         # ======================================= Ventana principal =======================================
         # Crear la ventana del mini reproductor
         self.ventana_principal_mini_reproductor = ctk.CTkToplevel(self.ventana_principal)

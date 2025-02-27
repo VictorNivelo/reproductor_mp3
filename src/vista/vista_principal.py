@@ -397,12 +397,17 @@ def actualizar_espectro():
 # Función para actualizar la vista de las canciones en la biblioteca
 def actualizar_vista_canciones(panel_botones):
     # Limpiar botones existentes
-    for boton in botones_canciones.values():
+    for cancion, boton in botones_canciones.items():
         try:
-            if boton.winfo_exists():
-                boton.destroy()
+            # Eliminar el botón del controlador de tema
+            nombre_boton = f"cancion_{cancion.titulo_cancion}"
+            if nombre_boton in controlador.botones:
+                del controlador.botones[nombre_boton]
+            # Destruir el botón
+            boton.destroy()
         except tk.TclError:
             print("Error: El botón de la canción no está disponible")
+            pass
     botones_canciones.clear()
     # Crear nuevos botones para cada canción
     for cancion in biblioteca.canciones:
@@ -433,12 +438,18 @@ def cambiar_icono_tema(tema="claro"):
 
 # Función para abrir la ventana de configuración
 def abrir_configuracion():
-    configuracion.mostrar_ventana_configuracion()
+    try:
+        configuracion.mostrar_ventana_configuracion()
+    except Exception as e:
+        print(f"Error al abrir la configuración: {e}")
 
 
 # Función para minimizar la ventana
 def abrir_minireproductor():
-    mini_reproductor.mostrar_ventana_mini_reproductor()
+    try:
+        mini_reproductor.mostrar_ventana_mini_reproductor()
+    except Exception as e:
+        print(f"Error al abrir el mini reproductor: {e}")
 
 
 # FUNCIONES DE LOS SCROLLS

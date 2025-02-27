@@ -183,10 +183,7 @@ def agregar_cancion_vista():
         try:
             controlador_biblioteca.agregar_cancion(Path(ruta_archivo))
             actualizar_vista_canciones(
-                controlador_biblioteca.biblioteca,
                 panel_botones_canciones,
-                controlador,
-                controlador_reproductor,
             )
         except Exception as e:
             print(f"Error al agregar la canción: {e}")
@@ -199,10 +196,7 @@ def agregar_directorio_vista():
         canciones = controlador_biblioteca.agregar_directorio(Path(ruta))
         if canciones:
             actualizar_vista_canciones(
-                controlador_biblioteca.biblioteca,
                 panel_botones_canciones,
-                controlador,
-                controlador_reproductor,
             )
 
 
@@ -316,7 +310,7 @@ def actualizar_espectro():
 
 
 # Función para actualizar la vista de las canciones en la biblioteca
-def actualizar_vista_canciones(biblioteca, panel_botones, controlador_tema, controlador_reproductor):
+def actualizar_vista_canciones(panel_botones):
     # Limpiar botones existentes
     for boton in botones_canciones.values():
         try:
@@ -327,15 +321,11 @@ def actualizar_vista_canciones(biblioteca, panel_botones, controlador_tema, cont
     botones_canciones.clear()
     # Crear nuevos botones para cada canción
     for cancion in biblioteca.canciones:
-        crear_boton_cancion(cancion, panel_botones, controlador_tema, controlador_reproductor)
+        crear_boton_cancion(cancion, panel_botones)
 
 
 # Función para crear botones para cada canción en la biblioteca
-def crear_boton_cancion(cancion, panel_botones, controlador_tema, controlador_reproductor):
-    # Crear una función específica para cada canción que captura el valor por parámetro
-    def reproducir_esta_cancion(c=cancion):
-        controlador_reproductor.reproducir_cancion(c)
-
+def crear_boton_cancion(cancion, panel_botones):
     boton = ctk.CTkButton(
         panel_botones,
         height=28,
@@ -344,10 +334,10 @@ def crear_boton_cancion(cancion, panel_botones, controlador_tema, controlador_re
         text_color=TEXTO_CLARO,
         text=f"{cancion.titulo_cancion} - {cancion.artista}",
         hover_color=HOVER_CLARO,
-        command=reproducir_esta_cancion,  # Usamos la función específica en lugar de lambda
+        command=lambda c=cancion: controlador_reproductor.reproducir_cancion(c),
     )
     boton.pack(fill="both", pady=2)
-    controlador_tema.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton)
+    controlador.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton)
     botones_canciones[cancion] = boton
 
 

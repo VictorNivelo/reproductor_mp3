@@ -1,6 +1,7 @@
 from modelo.cancion import Cancion
 from typing import List, Dict
 from pathlib import Path
+from constantes import *
 
 
 class Biblioteca:
@@ -22,6 +23,10 @@ class Biblioteca:
             # Verificar si el archivo existe
             if not ruta.exists():
                 print(f"No se encontró el archivo: {ruta}")
+                return None
+            # Verificar si el formato es soportado
+            if ruta.suffix.lower() not in FORMATOS_SOPORTADOS:
+                print(f"Formato no soportado: {ruta.suffix}")
                 return None
             # Verificar si la canción ya existe
             if self.existe_cancion(ruta):
@@ -50,9 +55,8 @@ class Biblioteca:
         if not ruta.is_dir():
             raise NotADirectoryError(f"No es un directorio: {ruta}")
         canciones_agregadas = []
-        formatos = (".mp3", ".wav", ".flac", ".m4a", ".ogg")
         for archivo in ruta.rglob("*"):
-            if archivo.suffix.lower() in formatos:
+            if archivo.suffix.lower() in FORMATOS_SOPORTADOS:
                 try:
                     cancion = self.agregar_cancion(archivo)
                     if cancion is not None:

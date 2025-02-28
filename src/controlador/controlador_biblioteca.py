@@ -1,8 +1,6 @@
 from modelo.biblioteca import Biblioteca
-from customtkinter import CTkButton
 from modelo.cancion import Cancion
 from pathlib import Path
-from constantes import *
 
 
 class ControladorBiblioteca:
@@ -24,3 +22,21 @@ class ControladorBiblioteca:
         except Exception as e:
             print(f"Error al agregar el directorio: {e}")
             return []
+
+    # Métodos que marcan canciones como me gusta
+    def marcar_me_gusta_controlador(self, cancion):
+        try:
+            self.biblioteca.marcar_me_gusta(cancion)
+            return True
+        except Exception as e:
+            print(f"Error al marcar como me gusta: {e}")
+            return False
+
+    # Métodos que marcan canciones como favoritas
+    def marcar_favorito_controlador(self, cancion):
+        try:
+            self.biblioteca.marcar_favorito(cancion)
+            return True
+        except Exception as e:
+            print(f"Error al marcar como favorito: {e}")
+            return False

@@ -1,0 +1,46 @@
+{
+    "me_gusta": [
+        {
+            "ruta": "D:\\pm\\0 Sentimientos (Remix).mp3",
+            "titulo": "0 Sentimientos (Remix)",
+            "artista": "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN",
+            "artista_album": "Boy Wonder CF",
+            "album": "Chosen Few: New Generation",
+            "duracion": 335.7779591836735,
+            "duracion_formateada": "05:35",
+            "anio": "2023-11-21",
+            "numero_pista": "13/13",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "D:\\pm\\100 MILLONES.mp3",
+            "titulo": "100 MILLONES",
+            "artista": "Bad Bunny ft Luar La L",
+            "artista_album": "Bad Bunny",
+            "album": "100 MILLONES",
+            "duracion": 237.50530612244899,
+            "duracion_formateada": "03:57",
+            "anio": "2021-05-28",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "D:\\pm\\120.mp3",
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "artista_album": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO",
+            "duracion": 151.53632653061226,
+            "duracion_formateada": "02:31",
+            "anio": "2020-11-27",
+            "numero_pista": "14",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
+        }
+    ]
+}

@@ -1,35 +1,7 @@
 {
     "canciones": [
         {
-            "ruta": "D:\\Musica\\¡Corre!.mp3",
-            "titulo": "¡Corre!",
-            "artista": "Jesse & Joy",
-            "artista_album": "Jesse & Joy",
-            "album": "¿Con Quién Se Queda El Perro?",
-            "duracion": 288.9404081632653,
-            "duracion_formateada": "04:48",
-            "anio": "2011-12-06",
-            "numero_pista": "4",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "ruta": "D:\\Musica\\¿Por Qué Les Mientes.mp3",
-            "titulo": "¿Por Qué Les Mientes?",
-            "artista": "Tito \"El Bambino\" ft Marc Anthony",
-            "artista_album": "Tito \"El Bambino\"",
-            "album": "Invicto (El Patrón)",
-            "duracion": 213.34204081632652,
-            "duracion_formateada": "03:33",
-            "anio": "2017-04-10",
-            "numero_pista": "1/14",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "ruta": "D:\\pm\\0 Sentimientos (Remix).mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\0 Sentimientos (Remix).mp3",
             "titulo": "0 Sentimientos (Remix)",
             "artista": "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN",
             "artista_album": "Boy Wonder CF",
@@ -39,11 +11,11 @@
             "anio": "2023-11-21",
             "numero_pista": "13/13",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\10 Bands.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\10 Bands.mp3",
             "titulo": "10 Bands",
             "artista": "Drake",
             "artista_album": "Drake",
@@ -57,7 +29,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\10 Freaky Girls (ft 21 Savage).mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\10 Freaky Girls (ft 21 Savage).mp3",
             "titulo": "10 Freaky Girls (ft 21 Savage)",
             "artista": "Metro Boomin ft 21 Savage",
             "artista_album": "Metro Boomin ft 21 Savage",
@@ -71,7 +43,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\100 MILLONES.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\100 MILLONES.mp3",
             "titulo": "100 MILLONES",
             "artista": "Bad Bunny ft Luar La L",
             "artista_album": "Bad Bunny",
@@ -81,11 +53,11 @@
             "anio": "2021-05-28",
             "numero_pista": "1",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\105 Freestyle.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\105 Freestyle.mp3",
             "titulo": "105 Freestyle",
             "artista": "Young Miko ft Caleb Calloway",
             "artista_album": "Young Miko",
@@ -99,7 +71,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\11 PM.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\11 PM.mp3",
             "titulo": "11 PM",
             "artista": "Maluma",
             "artista_album": "Maluma",
@@ -113,7 +85,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\11 Y ONCE.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "artista_album": "Tainy",
@@ -127,7 +99,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\120.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
             "titulo": "120",
             "artista": "Bad Bunny",
             "artista_album": "Bad Bunny",
@@ -137,11 +109,11 @@
             "anio": "2020-11-27",
             "numero_pista": "14",
             "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
+            "me_gusta": false,
+            "favorito": false
         },
         {
-            "ruta": "D:\\pm\\530.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\530.mp3",
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "artista_album": "¥$ ft Kanye West, Ty Dolla $ign",
@@ -151,11 +123,11 @@
             "anio": "2024-08-03",
             "numero_pista": "7/16",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\Chill Bae.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Chill Bae.mp3",
             "titulo": "Chill Bae",
             "artista": "Lil Uzi Vert",
             "artista_album": "Lil Uzi Vert",
@@ -169,7 +141,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\Cinderella.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Cinderella.mp3",
             "titulo": "Cinderella",
             "artista": "Future  ft Metro Boomin, Travis Scott",
             "artista_album": "Future ft Metro Boomin",
@@ -183,7 +155,21 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\EXACTLY WHAT YOU RUN FROM YOU END UP CHASING.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Emociones.mp3",
+            "titulo": "Emociones",
+            "artista": "Hades66",
+            "artista_album": "Hades66",
+            "album": "Emociones",
+            "duracion": 124.42122448979592,
+            "duracion_formateada": "02:04",
+            "anio": "2024-01-18",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\EXACTLY WHAT YOU RUN FROM YOU END UP CHASING.mp3",
             "titulo": "EXACTLY WHAT YOU RUN FROM YOU END UP CHASING",
             "artista": "Tyler, The Creator",
             "artista_album": "Tyler, The Creator",
@@ -197,7 +183,21 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\Gangster Pain.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Flawlëss (ft Lil Uzi Vert).mp3",
+            "titulo": "Flawlëss (ft Lil Uzi Vert)",
+            "artista": "Yeat ft Lil Uzi Vert",
+            "artista_album": "Yeat",
+            "album": "Lyfë",
+            "duracion": 176.16979591836736,
+            "duracion_formateada": "02:56",
+            "anio": "2022-09-09",
+            "numero_pista": "1/12",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Gangster Pain.mp3",
             "titulo": "Gangster Pain",
             "artista": "The Notorious B.I.G.",
             "artista_album": "Dropout Music",
@@ -211,7 +211,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\ISABELLA.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\ISABELLA.mp3",
             "titulo": "ISABELLA",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "artista_album": "¥$ ft Kanye West, Ty Dolla $ign",
@@ -225,7 +225,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\Just Wanna Rock.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Just Wanna Rock.mp3",
             "titulo": "Just Wanna Rock",
             "artista": "Lil Uzi Vert",
             "artista_album": "Lil Uzi Vert",
@@ -239,7 +239,35 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\pop ur shit.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Life Goes On..mp3",
+            "titulo": "Life Goes On",
+            "artista": "Lil Baby ft Gunna, Lil Uzi Vert",
+            "artista_album": "Lil Baby",
+            "album": "Harder Than Ever",
+            "duracion": 247.09224489795918,
+            "duracion_formateada": "04:07",
+            "anio": "2018-05-18",
+            "numero_pista": "13/17",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Overdue (ft Travis Scott).mp3",
+            "titulo": "Overdue (ft Travis Scott)",
+            "artista": "Metro Boomin ft Travis Scott",
+            "artista_album": "Metro Boomin ft 21 Savage",
+            "album": "NOT ALL HEROES WEAR CAPES (Deluxe)",
+            "duracion": 166.16489795918366,
+            "duracion_formateada": "02:46",
+            "anio": "2018-11-06",
+            "numero_pista": "2/26",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\pop ur shit.mp3",
             "titulo": "pop ur shit",
             "artista": "21 Savage ft Young Thug, Metro Boomin",
             "artista_album": "21 Savage",
@@ -253,7 +281,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\Ric Flair Drip (ft Metro Boomin).mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3",
             "titulo": "Ric Flair Drip (ft Metro Boomin)",
             "artista": "Offset ft Metro Boomin",
             "artista_album": "21 Savage ft Offset, Metro Boomin",
@@ -263,11 +291,11 @@
             "anio": "2017-10-30",
             "numero_pista": "3/10",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
+            "me_gusta": true,
+            "favorito": true
         },
         {
-            "ruta": "D:\\pm\\Self Love.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3",
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "artista_album": "Metro Boomin",
@@ -281,7 +309,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\Sometimes....mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Sometimes....mp3",
             "titulo": "Sometimes",
             "artista": "Tyler, The Creator",
             "artista_album": "Tyler, The Creator",
@@ -295,7 +323,21 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\TELEKINESIS (ft SZA, Future).mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Super Gremlin.mp3",
+            "titulo": "Super Gremlin",
+            "artista": "Kodak Black",
+            "artista_album": "Kodak Black",
+            "album": "Back For Everything",
+            "duracion": 200.59428571428572,
+            "duracion_formateada": "03:20",
+            "anio": "2022-02-25",
+            "numero_pista": "17/19",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3",
             "titulo": "TELEKINESIS (ft SZA, Future)",
             "artista": "Travis Scott ft SZA, Future",
             "artista_album": "Travis Scott",
@@ -309,7 +351,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\Touch The Sky.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Touch The Sky.mp3",
             "titulo": "Touch The Sky",
             "artista": "Kanye West ft Lupe Fiasco",
             "artista_album": "Kanye West",
@@ -323,7 +365,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\Type Shit.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Type Shit.mp3",
             "titulo": "Type Shit",
             "artista": "Future ft Metro Boomin, Travis Scott, Playboi Carti",
             "artista_album": "Future ft Metro Boomin",
@@ -337,7 +379,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\Wake Up in the Sky.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3",
             "titulo": "Wake Up in the Sky",
             "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
             "artista_album": "Gucci Mane",
@@ -351,7 +393,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\Wasted (ft Lil Uzi Vert).mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Wasted (ft Lil Uzi Vert).mp3",
             "titulo": "Wasted (ft Lil Uzi Vert)",
             "artista": "Juice WRLD ft Lil Uzi Vert",
             "artista_album": "Juice WRLD",
@@ -365,7 +407,7 @@
             "favorito": false
         },
         {
-            "ruta": "D:\\pm\\Watch This (Remix).mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Watch This (Remix).mp3",
             "titulo": "Watch This (Remix)",
             "artista": "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS",
             "artista_album": "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS",
@@ -380,10 +422,10 @@
         }
     ],
     "estadisticas": {
-        "total_canciones": 27,
-        "total_artistas": 24,
-        "total_albumes": 25,
-        "me_gusta": 3,
+        "total_canciones": 30,
+        "total_artistas": 43,
+        "total_albumes": 27,
+        "me_gusta": 2,
         "favorito": 1
     }
 }

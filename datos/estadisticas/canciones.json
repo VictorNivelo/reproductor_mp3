@@ -25,15 +25,15 @@
             "anio": "2020-11-27",
             "numero_pista": "14",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
+            "me_gusta": true,
+            "favorito": true
         }
     ],
     "estadisticas": {
         "total_canciones": 2,
         "total_artistas": 3,
         "total_albumes": 2,
-        "me_gusta": 0,
-        "favorito": 0
+        "me_gusta": 1,
+        "favorito": 1
     }
 }

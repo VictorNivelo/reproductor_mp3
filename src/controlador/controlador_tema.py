@@ -1,6 +1,7 @@
 from controlador.utiles.utiles_contolador import UtilesControlador
 from vista.utiles.utiles_vista import cargar_iconos
 import customtkinter as ctk
+import tkinter as tk
 
 
 class ControladorTema(UtilesControlador):
@@ -28,6 +29,10 @@ class ControladorTema(UtilesControlador):
 
     # Registrar frames
     def registrar_frame(self, frame, es_ctk=False, es_principal=False):
+        # Verificar si el frame no está ya en la lista
+        for f, _, _ in self.frames:
+            if f == frame:
+                return
         self.frames.append((frame, es_ctk, es_principal))
 
     # Registrar etiquetas
@@ -129,7 +134,7 @@ class ControladorTema(UtilesControlador):
                     )
                 else:
                     botones_a_eliminar.append(nombre)
-            except Exception as e:
+            except (Exception, tk.TclError) as e:
                 print(f"Error al configurar el botón {nombre}: {e}")
                 botones_a_eliminar.append(nombre)
         # Eliminar los botones que ya no existen
@@ -201,19 +206,22 @@ class ControladorTema(UtilesControlador):
     def establecer_apariencia_global(self):
         ctk.set_appearance_mode("dark" if self.tema_interfaz == "oscuro" else "light")
 
-    # Cambiar tema
     def cambiar_tema(self):
         self.tema_interfaz = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.tema_iconos = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.iconos = cargar_iconos(self.tema_iconos)
         self.establecer_apariencia_global()
         self.colores()
+        # Limpiar widgets destruidos antes de actualizar
+        self.limpiar_widgets_destruidos()
         # Actualizar iconos de botones
-        for nombre in self.botones:
+        for nombre in list(self.botones.keys()):
             try:
                 self.mostrar_icono_boton(nombre)
             except Exception as e:
                 print(f"Error al mostrar el icono del botón {nombre}: {e}")
+                if nombre in self.botones:
+                    del self.botones[nombre]
         try:
             # Actualizar colores de frames
             self.actualizar_colores_frames()
@@ -235,3 +243,50 @@ class ControladorTema(UtilesControlador):
             self.actualizar_colores_canvas()
         except Exception as e:
             print(f"Error al cambiar el tema: {e}")
+
+    def limpiar_widgets_destruidos(self):
+        # Limpiar botones destruidos
+        botones_a_eliminar = []
+        for nombre, boton in self.botones.items():
+            try:
+                if not boton.winfo_exists():
+                    botones_a_eliminar.append(nombre)
+            except (Exception, tk.TclError):
+                botones_a_eliminar.append(nombre)
+        for nombre in botones_a_eliminar:
+            if nombre in self.botones:
+                del self.botones[nombre]
+        # Limpiar frames destruidos
+        self.frames = [(frame, es_ctk, es_principal) 
+                    for frame, es_ctk, es_principal in self.frames 
+                    if self.widget_existe(frame)]
+        # Limpiar etiquetas destruidas
+        self.etiquetas = [etiqueta for etiqueta in self.etiquetas 
+                        if self.widget_existe(etiqueta)]
+        # Limpiar entradas destruidas
+        self.entradas = [entrada for entrada in self.entradas 
+                        if self.widget_existe(entrada)]
+        # Limpiar comboboxes destruidos
+        self.comboboxes = [combobox for combobox in self.comboboxes 
+                        if self.widget_existe(combobox)]
+        # Limpiar sliders destruidos
+        self.sliders = [slider for slider in self.sliders 
+                    if self.widget_existe(slider)]
+        # Limpiar progress_bars destruidas
+        self.progress_bars = [bar for bar in self.progress_bars 
+                            if self.widget_existe(bar)]
+        # Limpiar tabviews destruidos
+        self.tabviews = [tabview for tabview in self.tabviews 
+                        if self.widget_existe(tabview)]
+        # Limpiar canvas destruidos
+        self.canvas = [(canvas, es_tabview) for canvas, es_tabview in self.canvas 
+                    if self.widget_existe(canvas)]
+
+    # Método auxiliar para verificar si un widget existe
+    def widget_existe(self, widget):
+        try:
+            if widget is None:
+                return False
+            return widget.winfo_exists()
+        except (Exception, tk.TclError):
+            return False

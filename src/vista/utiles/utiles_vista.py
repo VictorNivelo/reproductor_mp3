@@ -32,7 +32,7 @@ def cargar_iconos(tema="claro"):
         "aleatorio": "aleatorio",
         "orden": "orden",
         # Botones de cola
-        "lista_cancion": "lista_cancion",
+        "mostrar_cola": "mostrar_cola",
         "agregar_cola": "agregar_cola",
         # Botones varios
         "ajustes": "ajustes",

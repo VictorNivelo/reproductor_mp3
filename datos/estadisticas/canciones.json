@@ -109,7 +109,7 @@
             "anio": "2020-11-27",
             "numero_pista": "14",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {
@@ -425,7 +425,7 @@
         "total_canciones": 30,
         "total_artistas": 43,
         "total_albumes": 27,
-        "me_gusta": 2,
+        "me_gusta": 3,
         "favorito": 1
     }
 }

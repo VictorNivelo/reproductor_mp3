@@ -1,0 +1,25 @@
+{
+    "tiempo_total": 303.0726530612245,
+    "canciones_escuchadas": 2,
+    "artistas": {
+        "Bad Bunny": 2
+    },
+    "albumes": {
+        "EL ÚLTIMO TOUR DEL MUNDO": 2
+    },
+    "ultima_cancion": {
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
+        "titulo": "120",
+        "artista": "Bad Bunny",
+        "album": "EL ÚLTIMO TOUR DEL MUNDO",
+        "timestamp": "2025-03-02T11:25:52.900260"
+    },
+    "canciones": {
+        "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
+            "contador": 2,
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
+        }
+    }
+}

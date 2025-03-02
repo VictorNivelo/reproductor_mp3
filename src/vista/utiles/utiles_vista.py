@@ -36,6 +36,8 @@ def cargar_iconos(tema="claro"):
         "agregar_cola": "agregar_cola",
         # Botones varios
         "ajustes": "ajustes",
+        "opcion": "opcion",
+        "estadistica": "estadistica",
         "agregar_carpeta": "agregar_carpeta",
         "agregar_cancion": "agregar_cancion",
         # Tamaño de la ventana
@@ -53,6 +55,14 @@ def cargar_iconos(tema="claro"):
         # Botones de visibilidad
         "mostrar": "mostrar",
         "ocultar": "ocultar",
+        # Botones de creación, edición y eliminación
+        "crear": "crear",
+        "editar": "editar",
+        "eliminar": "eliminar",
+        # Botones de reproducción de video
+        "microfono": "microfono",
+        "audifonos": "audifonos",
+        "sonido": "sonido",
     }
     for nombre, archivo in archivos_iconos.items():
         try:

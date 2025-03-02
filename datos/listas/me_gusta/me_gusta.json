@@ -12,7 +12,7 @@
             "numero_pista": "14",
             "tiene_caratula": true,
             "me_gusta": true,
-            "favorito": true
+            "favorito": false
         }
     ]
 }

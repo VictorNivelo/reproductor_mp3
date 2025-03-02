@@ -1,25 +1,49 @@
 {
-    "tiempo_total": 303.0726530612245,
-    "canciones_escuchadas": 2,
+    "tiempo_total": 933.7208163265308,
+    "canciones_escuchadas": 6,
     "artistas": {
-        "Bad Bunny": 2
+        "Bad Bunny": 3,
+        "Young Miko ft Caleb Calloway": 1,
+        "Lil Uzi Vert": 1,
+        "Offset ft Metro Boomin": 1
     },
     "albumes": {
-        "EL ÚLTIMO TOUR DEL MUNDO": 2
+        "EL ÚLTIMO TOUR DEL MUNDO": 3,
+        "105 Freestyle": 1,
+        "Eternal Atake 2": 1,
+        "Without Warning": 1
     },
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
-        "titulo": "120",
-        "artista": "Bad Bunny",
-        "album": "EL ÚLTIMO TOUR DEL MUNDO",
-        "timestamp": "2025-03-02T11:25:52.900260"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3",
+        "titulo": "Ric Flair Drip (ft Metro Boomin)",
+        "artista": "Offset ft Metro Boomin",
+        "album": "Without Warning",
+        "timestamp": "2025-03-02T16:21:35.631430"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\105 Freestyle.mp3": {
+            "contador": 1,
+            "titulo": "105 Freestyle",
+            "artista": "Young Miko ft Caleb Calloway",
+            "album": "105 Freestyle"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Chill Bae.mp3": {
+            "contador": 1,
+            "titulo": "Chill Bae",
+            "artista": "Lil Uzi Vert",
+            "album": "Eternal Atake 2"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3": {
+            "contador": 1,
+            "titulo": "Ric Flair Drip (ft Metro Boomin)",
+            "artista": "Offset ft Metro Boomin",
+            "album": "Without Warning"
         }
     }
 }

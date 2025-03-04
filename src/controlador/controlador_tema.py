@@ -89,7 +89,7 @@ class ControladorTema(UtilesControlador):
     def actualizar_colores_etiquetas(self):
         for etiqueta in self.etiquetas:
             try:
-                etiqueta.configure(fg_color=self.color_fondo, text_color=self.color_texto)
+                etiqueta.configure(text_color=self.color_texto)
             except Exception as e:
                 print(f"Error al configurar la etiqueta: {e}")
 
@@ -184,7 +184,7 @@ class ControladorTema(UtilesControlador):
         for canvas, es_tabview in self.canvas:
             try:
                 if es_tabview:
-                    canvas.configure(bg=self.color_segundario)
+                    canvas.configure(bg=self.color_base)
                 else:
                     canvas.configure(bg=self.color_fondo)
             except Exception as e:
@@ -257,30 +257,27 @@ class ControladorTema(UtilesControlador):
             if nombre in self.botones:
                 del self.botones[nombre]
         # Limpiar frames destruidos
-        self.frames = [(frame, es_ctk, es_principal) 
-                    for frame, es_ctk, es_principal in self.frames 
-                    if self.widget_existe(frame)]
+        self.frames = [
+            (frame, es_ctk, es_principal)
+            for frame, es_ctk, es_principal in self.frames
+            if self.widget_existe(frame)
+        ]
         # Limpiar etiquetas destruidas
-        self.etiquetas = [etiqueta for etiqueta in self.etiquetas 
-                        if self.widget_existe(etiqueta)]
+        self.etiquetas = [etiqueta for etiqueta in self.etiquetas if self.widget_existe(etiqueta)]
         # Limpiar entradas destruidas
-        self.entradas = [entrada for entrada in self.entradas 
-                        if self.widget_existe(entrada)]
+        self.entradas = [entrada for entrada in self.entradas if self.widget_existe(entrada)]
         # Limpiar comboboxes destruidos
-        self.comboboxes = [combobox for combobox in self.comboboxes 
-                        if self.widget_existe(combobox)]
+        self.comboboxes = [combobox for combobox in self.comboboxes if self.widget_existe(combobox)]
         # Limpiar sliders destruidos
-        self.sliders = [slider for slider in self.sliders 
-                    if self.widget_existe(slider)]
+        self.sliders = [slider for slider in self.sliders if self.widget_existe(slider)]
         # Limpiar progress_bars destruidas
-        self.progress_bars = [bar for bar in self.progress_bars 
-                            if self.widget_existe(bar)]
+        self.progress_bars = [bar for bar in self.progress_bars if self.widget_existe(bar)]
         # Limpiar tabviews destruidos
-        self.tabviews = [tabview for tabview in self.tabviews 
-                        if self.widget_existe(tabview)]
+        self.tabviews = [tabview for tabview in self.tabviews if self.widget_existe(tabview)]
         # Limpiar canvas destruidos
-        self.canvas = [(canvas, es_tabview) for canvas, es_tabview in self.canvas 
-                    if self.widget_existe(canvas)]
+        self.canvas = [
+            (canvas, es_tabview) for canvas, es_tabview in self.canvas if self.widget_existe(canvas)
+        ]
 
     # Método auxiliar para verificar si un widget existe
     def widget_existe(self, widget):

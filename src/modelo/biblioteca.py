@@ -17,6 +17,23 @@ class Biblioteca:
     def existe_cancion(self, ruta: Path) -> bool:
         return any(cancion.ruta_cancion == ruta for cancion in self.canciones)
 
+    # Método adicional para detectar posibles duplicados (mismo título y artista)
+    def detectar_duplicado(self, ruta: Path) -> list:
+        try:
+            # Crear una canción temporal para extraer metadatos
+            cancion_temp = Cancion.desde_archivo(ruta)
+            # Buscar canciones con el mismo título y artista
+            duplicados = [
+                cancion
+                for cancion in self.canciones
+                if cancion.titulo_cancion.lower() == cancion_temp.titulo_cancion.lower()
+                and cancion.artista.lower() == cancion_temp.artista.lower()
+            ]
+            return duplicados
+        except Exception as e:
+            print(f"Error al detectar duplicado: {str(e)}")
+            return []
+
     # Agregar una canción a la biblioteca
     def agregar_cancion(self, ruta: Path) -> Cancion | None:
         try:
@@ -28,23 +45,43 @@ class Biblioteca:
             if ruta.suffix.lower() not in FORMATOS_SOPORTADOS:
                 print(f"Formato no soportado: {ruta.suffix}")
                 return None
-            # Verificar si la canción ya existe
+            # Verificar si la canción ya existe por ruta
             if self.existe_cancion(ruta):
                 print(f"La canción ya existe en la biblioteca: {ruta.name}")
                 return None
+            # Crear canción temporal para verificar duplicados por metadatos
+            cancion_temp = Cancion.desde_archivo(ruta)
+            duplicados = [
+                cancion
+                for cancion in self.canciones
+                if cancion.titulo_cancion.lower() == cancion_temp.titulo_cancion.lower()
+                and cancion.artista.lower() == cancion_temp.artista.lower()
+                and cancion.album.lower() == cancion_temp.album.lower()
+            ]
+            # Si hay duplicados, no agregar la canción
+            if duplicados:
+                print(
+                    f"Ya existe una canción con el mismo título, artista y álbum: {cancion_temp.titulo_cancion}"
+                )
+                return None
             # Crear nueva canción
-            cancion = Cancion.desde_archivo(ruta)
+            cancion = cancion_temp
             # Agregar a las colecciones principales
             self.canciones.append(cancion)
             self.por_titulo[cancion.titulo_cancion] = cancion
-            # Agregar a la colección de artistas
-            if cancion.artista not in self.por_artista:
-                self.por_artista[cancion.artista] = []
-            self.por_artista[cancion.artista].append(cancion)
+            # Procesar y separar múltiples artistas
+            artistas = self.separar_artistas(cancion.artista)
+            # Agregar a la colección de artistas, para cada uno de los artistas detectados
+            for artista in artistas:
+                if artista not in self.por_artista:
+                    self.por_artista[artista] = []
+                self.por_artista[artista].append(cancion)
             # Agregar a la colección de álbumes
             if cancion.album not in self.por_album:
                 self.por_album[cancion.album] = []
             self.por_album[cancion.album].append(cancion)
+            # Ordenar canciones por título después de agregar
+            self.ordenar_colecciones()
             return cancion
         except Exception as e:
             print(f"Error al procesar la canción {ruta.name}: {str(e)}")
@@ -154,6 +191,81 @@ class Biblioteca:
             "canciones": [cancion.convertir_diccionario() for cancion in self.canciones],
             "estadisticas": self.obtener_estadisticas(),
         }
+
+    # Método para separar múltiples artistas de una cadena
+    def separar_artistas(self, texto_artista: str) -> list:
+        # Lista de separadores comunes para artistas
+        separadores = [
+            " ft ",
+            " feat ",
+            " feat. ",
+            " featuring ",
+            " with ",
+            " & ",
+            " and ",
+            " con ",
+            " junto a ",
+            " x ",
+            " vs ",
+            " vs. ",
+            ",",
+            " + ",
+        ]
+        # Convertir a minúsculas para búsqueda insensible a mayúsculas
+        texto_lower = texto_artista.lower()
+        # Identificar separadores presentes
+        separadores_encontrados = []
+        for sep in separadores:
+            if sep in texto_lower:
+                separadores_encontrados.append(sep)
+        # Si no hay separadores, devolver el artista original
+        if not separadores_encontrados:
+            return [texto_artista.strip()]
+        # Separar artistas según los separadores encontrados
+        artistas = [texto_artista]
+        for sep in separadores_encontrados:
+            nuevos_artistas = []
+            for artista in artistas:
+                partes = artista.split(sep)
+                for parte in partes:
+                    # Solo agregar si no está vacío
+                    if parte.strip():
+                        nuevos_artistas.append(parte.strip())
+            artistas = nuevos_artistas
+        # Eliminar duplicados y devolver lista limpia
+        return list(set(artistas))
+
+    # Método para reconstruir la organización de artistas
+    def reinicializar_artistas(self):
+        # Guardar todas las canciones actuales
+        canciones_actuales = self.canciones.copy()
+        # Limpiar la estructura de artistas
+        self.por_artista.clear()
+        # Volver a procesar cada canción para actualizar la estructura de artistas
+        for cancion in canciones_actuales:
+            # Procesar y separar múltiples artistas
+            artistas = self.separar_artistas(cancion.artista)
+            # Agregar a la colección de artistas actualizada
+            for artista in artistas:
+                if artista not in self.por_artista:
+                    self.por_artista[artista] = []
+                self.por_artista[artista].append(cancion)
+        return True
+
+    def ordenar_colecciones(self):
+        # Ordenar la lista principal de canciones
+        self.canciones.sort(key=lambda x: x.titulo_cancion.lower())
+        # Ordenar las listas por artistas
+        for artista in self.por_artista:
+            self.por_artista[artista].sort(key=lambda x: x.titulo_cancion.lower())
+        # Ordenar las listas por álbumes
+        for album in self.por_album:
+            self.por_album[album].sort(key=lambda x: x.titulo_cancion.lower())
+        # Ordenar listas especiales
+        if hasattr(self, "me_gusta") and self.me_gusta:
+            self.me_gusta.sort(key=lambda x: x.titulo_cancion.lower())
+        if hasattr(self, "favorito") and self.favorito:
+            self.favorito.sort(key=lambda x: x.titulo_cancion.lower())
 
     # Obtener las estadísticas de la biblioteca
     def obtener_estadisticas(self) -> Dict[str, int]:

@@ -25,6 +25,7 @@ class Configuracion(UtilesComponentes):
 
     # Crear ventana de configuración de la aplicación
     def crear_ventana_configuracion(self):
+        # Establecer los colores de la interfaz
         self.colores()
         # ======================================= Ventana principal =======================================
         # Crear el panel principal de la ventana de configuración
@@ -56,7 +57,7 @@ class Configuracion(UtilesComponentes):
         self.ventana_configuracion.grab_set()
 
         # Evento para cerrar la ventana de configuración
-        self.ventana_configuracion.protocol("WM_DELETE_WINDOW", self.cerrar_ventana)
+        self.ventana_configuracion.protocol("WM_DELETE_WINDOW", self.cerrar_ventana_configuracion)
 
         # icono de la ventana
         establecer_icono_tema(self.ventana_configuracion, self.controlador.tema_interfaz)
@@ -113,13 +114,13 @@ class Configuracion(UtilesComponentes):
             text_color=self.color_texto,
             text="Cerrar",
             hover_color=self.color_hover,
-            command=self.cerrar_ventana,
+            command=self.cerrar_ventana_configuracion,
         )
         boton_cerrar.pack(fill="x", pady=(215, 0), padx=5)
         self.componentes.append(boton_cerrar)
         # ==============================================================================================
 
-    # mostrar ventana de configuración
+    # Metodo para mostrar ventana de configuración
     def mostrar_ventana_configuracion(self):
         if not hasattr(self, "ventana_configuracion") or self.ventana_configuracion is None:
             self.crear_ventana_configuracion()
@@ -135,8 +136,8 @@ class Configuracion(UtilesComponentes):
                 self.ventana_configuracion = None
                 self.crear_ventana_configuracion()
 
-    # cerrar ventana de configuración
-    def cerrar_ventana(self):
+    # Metodo para cerrar ventana de configuración
+    def cerrar_ventana_configuracion(self):
         # Eliminar componentes de la ventana de configuración
         try:
             # Eliminar referencias de los componentes en el controlador

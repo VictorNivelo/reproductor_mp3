@@ -1,0 +1,287 @@
+from datetime import datetime
+from pathlib import Path
+import json
+import os
+
+
+class ControladorArchivos:
+    def __init__(self):
+        # Directorios base
+        self.dir_datos = "datos"
+        self.dir_estadisticas = os.path.join(self.dir_datos, "estadisticas")
+        self.dir_listas = os.path.join(self.dir_datos, "listas")
+        self.dir_favoritos = os.path.join(self.dir_listas, "favorito")
+        self.dir_me_gusta = os.path.join(self.dir_listas, "me_gusta")
+        # Rutas de archivos
+        self.ruta_canciones = os.path.join(self.dir_estadisticas, "canciones.json")
+        self.ruta_favoritos = os.path.join(self.dir_favoritos, "favorito.json")
+        self.ruta_me_gusta = os.path.join(self.dir_me_gusta, "me_gusta.json")
+        self.ruta_reproduccion = os.path.join(self.dir_estadisticas, "reproduccion.json")
+        # Crear la estructura de directorios
+        self.crear_estructura_directorios()
+
+    def verificar_archivo_json(self, ruta, estructura_predeterminada):
+        try:
+            # Verificar si el directorio existe
+            directorio = os.path.dirname(ruta)
+            if not os.path.exists(directorio):
+                os.makedirs(directorio)
+            # Si el archivo no existe o está vacío, crear la estructura básica
+            if not os.path.exists(ruta) or os.path.getsize(ruta) == 0:
+                with open(ruta, "w", encoding="utf-8") as archivo:
+                    json.dump(estructura_predeterminada, archivo, ensure_ascii=False, indent=4)
+            # Intentar cargar el archivo para verificar que es JSON válido
+            with open(ruta, "r", encoding="utf-8") as archivo:
+                try:
+                    json.load(archivo)
+                except json.JSONDecodeError:
+                    # Si hay un error al decodificar, sobrescribir con la estructura predeterminada
+                    with open(ruta, "w", encoding="utf-8") as archivo_escritura:
+                        json.dump(estructura_predeterminada, archivo_escritura, ensure_ascii=False, indent=4)
+        except Exception as e:
+            print(f"Error al verificar/crear archivo JSON {ruta}: {e}")
+
+    # Crear la estructura de directorios necesaria
+    def crear_estructura_directorios(self):
+        directorios = [
+            self.dir_datos,
+            self.dir_estadisticas,
+            self.dir_listas,
+            self.dir_favoritos,
+            self.dir_me_gusta,
+        ]
+        for directorio in directorios:
+            if not os.path.exists(directorio):
+                os.makedirs(directorio)
+
+    # Guardar la biblioteca en archivos JSON
+    def guardar_biblioteca(self, biblioteca):
+        try:
+            # Guardar todas las canciones
+            self.guardar_canciones(biblioteca)
+            # Guardar listas especiales
+            self.guardar_me_gusta(biblioteca)
+            self.guardar_favoritos(biblioteca)
+            return True
+        except Exception as e:
+            print(f"Error al guardar biblioteca: {str(e)}")
+            return False
+
+    # Guardar las canciones en un archivo JSON
+    def guardar_canciones(self, biblioteca):
+        datos = {
+            "estadisticas": biblioteca.obtener_estadisticas(),
+            "canciones": [cancion.convertir_diccionario() for cancion in biblioteca.canciones],
+        }
+        with open(self.ruta_canciones, "w", encoding="utf-8") as archivo:
+            json.dump(datos, archivo, ensure_ascii=False, indent=4)
+
+    # Guardar la lista de me gusta en un archivo JSON
+    def guardar_me_gusta(self, biblioteca):
+        datos = {"me_gusta": [cancion.convertir_diccionario() for cancion in biblioteca.me_gusta]}
+        with open(self.ruta_me_gusta, "w", encoding="utf-8") as archivo:
+            json.dump(datos, archivo, ensure_ascii=False, indent=4)
+
+    # Guardar la lista de favoritos en un archivo JSON
+    def guardar_favoritos(self, biblioteca):
+        datos = {"favoritos": [cancion.convertir_diccionario() for cancion in biblioteca.favorito]}
+        with open(self.ruta_favoritos, "w", encoding="utf-8") as archivo:
+            json.dump(datos, archivo, ensure_ascii=False, indent=4)
+
+    # Cargar la biblioteca desde los archivos JSON
+    def cargar_biblioteca(self, biblioteca):
+        # Estructuras predeterminadas
+        estructura_canciones = {
+            "estadisticas": {
+                "total_canciones": 0,
+                "total_artistas": 0,
+                "total_albumes": 0,
+                "me_gusta": 0,
+                "favorito": 0,
+            },
+            "canciones": [],
+        }
+        estructura_me_gusta = {"me_gusta": []}
+        estructura_favoritos = {"favoritos": []}
+        # Verificar y preparar archivos
+        self.verificar_archivo_json(self.ruta_canciones, estructura_canciones)
+        self.verificar_archivo_json(self.ruta_me_gusta, estructura_me_gusta)
+        self.verificar_archivo_json(self.ruta_favoritos, estructura_favoritos)
+        try:
+            # Limpiar la biblioteca actual
+            biblioteca.limpiar_biblioteca()
+            # Cargar las canciones principales
+            canciones_cargadas = self.cargar_canciones(biblioteca)
+            # Actualizar estado me gusta y favoritos
+            self.actualizar_estados_desde_listas(biblioteca)
+            # print(f"Se cargaron {canciones_cargadas} canciones")
+            return canciones_cargadas > 0
+        except Exception as e:
+            print(f"Error al cargar la biblioteca: {str(e)}")
+            return False
+
+    # Cargar las canciones desde un archivo JSON
+    def cargar_canciones(self, biblioteca):
+        canciones_cargadas = 0
+        with open(self.ruta_canciones, "r", encoding="utf-8") as archivo:
+            datos = json.load(archivo)
+        for cancion_dict in datos.get("canciones", []):
+            try:
+                ruta_cancion = Path(cancion_dict.get("ruta"))
+                if ruta_cancion.exists():
+                    cancion = biblioteca.agregar_cancion(ruta_cancion)
+                    if cancion:
+                        canciones_cargadas += 1
+                else:
+                    print(f"No se encontró el archivo: {ruta_cancion}")
+            except Exception as e:
+                print(f"Error al cargar canción: {str(e)}")
+        # Ordenar todas las colecciones después de cargar
+        biblioteca.ordenar_colecciones()
+        return canciones_cargadas
+
+    # Actualizar los estados me gusta y favoritos desde los archivos JSON
+    def actualizar_estados_desde_listas(self, biblioteca):
+        try:
+            # Actualizar me gusta
+            if os.path.exists(self.ruta_me_gusta):
+                with open(self.ruta_me_gusta, "r", encoding="utf-8") as archivo:
+                    datos_me_gusta = json.load(archivo)
+                for cancion_dict in datos_me_gusta.get("me_gusta", []):
+                    try:
+                        ruta = Path(cancion_dict.get("ruta"))
+                        for cancion in biblioteca.canciones:
+                            if cancion.ruta_cancion == ruta:
+                                biblioteca.marcar_me_gusta(cancion)
+                                break
+                    except Exception as e:
+                        print(f"Error al actualizar me gusta: {str(e)}")
+            # Actualizar favoritos
+            if os.path.exists(self.ruta_favoritos):
+                with open(self.ruta_favoritos, "r", encoding="utf-8") as archivo:
+                    datos_favoritos = json.load(archivo)
+                for cancion_dict in datos_favoritos.get("favoritos", []):
+                    try:
+                        ruta = Path(cancion_dict.get("ruta"))
+                        for cancion in biblioteca.canciones:
+                            if cancion.ruta_cancion == ruta:
+                                biblioteca.marcar_favorito(cancion)
+                                break
+                    except Exception as e:
+                        print(f"Error al actualizar favoritos: {str(e)}")
+        except Exception as e:
+            print(f"Error al actualizar estados: {str(e)}")
+
+    # Guardar la lista de me gusta en un archivo JSON
+    def registrar_reproduccion(self, cancion):
+        estructura_reproduccion = {
+            "tiempo_total": 0.0,
+            "canciones_escuchadas": 0,
+            "artistas": {},
+            "albumes": {},
+            "ultima_cancion": None,
+            "canciones": {},
+        }
+        # Verificar archivo de estadísticas de reproducción
+        self.verificar_archivo_json(self.ruta_reproduccion, estructura_reproduccion)
+        try:
+            # Cargar las estadísticas actuales
+            with open(self.ruta_reproduccion, "r", encoding="utf-8") as archivo:
+                estadisticas = json.load(archivo)
+            # Actualizar estadísticas generales
+            estadisticas["tiempo_total"] += cancion.duracion
+            estadisticas["canciones_escuchadas"] += 1
+            # Registrar última canción reproducida
+            estadisticas["ultima_cancion"] = {
+                "ruta": str(cancion.ruta_cancion),
+                "titulo": cancion.titulo_cancion,
+                "artista": cancion.artista,
+                "album": cancion.album,
+                "timestamp": datetime.now().isoformat(),
+            }
+            # Actualizar contador de la canción
+            ruta_str = str(cancion.ruta_cancion)
+            if ruta_str not in estadisticas["canciones"]:
+                estadisticas["canciones"][ruta_str] = {
+                    "contador": 0,
+                    "titulo": cancion.titulo_cancion,
+                    "artista": cancion.artista,
+                    "album": cancion.album,
+                }
+            estadisticas["canciones"][ruta_str]["contador"] += 1
+            # Actualizar contador del artista
+            if cancion.artista not in estadisticas["artistas"]:
+                estadisticas["artistas"][cancion.artista] = 0
+            estadisticas["artistas"][cancion.artista] += 1
+            # Actualizar contador del álbum
+            if cancion.album not in estadisticas["albumes"]:
+                estadisticas["albumes"][cancion.album] = 0
+            estadisticas["albumes"][cancion.album] += 1
+            # Guardar las estadísticas
+            with open(self.ruta_reproduccion, "w", encoding="utf-8") as archivo:
+                json.dump(estadisticas, archivo, ensure_ascii=False, indent=4)
+            return True
+        except Exception as e:
+            print(f"Error al registrar reproducción: {str(e)}")
+            return False
+
+    # Obtener las estadísticas de reproducción
+    def obtener_estadisticas_reproduccion(self):
+        estructura_reproduccion = {
+            "tiempo_total": 0.0,
+            "canciones_escuchadas": 0,
+            "artistas": {},
+            "albumes": {},
+            "ultima_cancion": None,
+            "canciones": {},
+        }
+        # Verificar archivo de estadísticas
+        self.verificar_archivo_json(self.ruta_reproduccion, estructura_reproduccion)
+        try:
+            with open(self.ruta_reproduccion, "r", encoding="utf-8") as archivo:
+                estadisticas = json.load(archivo)
+            # Convertir tiempo total a formato legible
+            tiempo_total = estadisticas["tiempo_total"]
+            horas = int(tiempo_total // 3600)
+            minutos = int((tiempo_total % 3600) // 60)
+            segundos = int(tiempo_total % 60)
+            tiempo_formateado = f"{horas:02d}:{minutos:02d}:{segundos:02d}"
+            # Encontrar la canción más reproducida
+            cancion_mas_reproducida = None
+            reproducciones_max = 0
+            for ruta, datos in estadisticas["canciones"].items():
+                if datos["contador"] > reproducciones_max:
+                    reproducciones_max = datos["contador"]
+                    cancion_mas_reproducida = {
+                        "titulo": datos["titulo"],
+                        "artista": datos["artista"],
+                        "album": datos["album"],
+                        "reproducciones": datos["contador"],
+                    }
+            # Encontrar el artista más escuchado
+            artista_mas_escuchado = None
+            max_artista = 0
+            for artista, contador in estadisticas["artistas"].items():
+                if contador > max_artista:
+                    max_artista = contador
+                    artista_mas_escuchado = {"nombre": artista, "reproducciones": contador}
+            # Encontrar el álbum más escuchado
+            album_mas_escuchado = None
+            max_album = 0
+            for album, contador in estadisticas["albumes"].items():
+                if contador > max_album:
+                    max_album = contador
+                    album_mas_escuchado = {"nombre": album, "reproducciones": contador}
+            # Compilar resumen de estadísticas
+            resumen = {
+                "tiempo_total_reproduccion": tiempo_formateado,
+                "canciones_escuchadas": estadisticas["canciones_escuchadas"],
+                "cancion_mas_reproducida": cancion_mas_reproducida,
+                "artista_mas_escuchado": artista_mas_escuchado,
+                "album_mas_escuchado": album_mas_escuchado,
+                "ultima_cancion": estadisticas["ultima_cancion"],
+            }
+            return resumen
+        except Exception as e:
+            print(f"Error al obtener estadísticas de reproducción: {str(e)}")
+            return None

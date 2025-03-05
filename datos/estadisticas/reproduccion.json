@@ -1,6 +1,6 @@
 {
-    "tiempo_total": 2352.404897959184,
-    "canciones_escuchadas": 13,
+    "tiempo_total": 2665.9787755102043,
+    "canciones_escuchadas": 14,
     "artistas": {
         "Bad Bunny": 6,
         "Young Miko ft Caleb Calloway": 1,
@@ -8,7 +8,7 @@
         "Offset ft Metro Boomin": 1,
         "Metro Boomin ft 21 Savage": 1,
         "The Notorious B.I.G.": 1,
-        "Future ft The Weeknd": 2
+        "Future ft The Weeknd": 3
     },
     "albumes": {
         "EL ÚLTIMO TOUR DEL MUNDO": 6,
@@ -17,14 +17,14 @@
         "Without Warning": 1,
         "NOT ALL HEROES WEAR CAPES (Deluxe)": 1,
         "Gangster Pain": 1,
-        "EVOL": 2
+        "EVOL": 3
     },
     "ultima_cancion": {
         "ruta": "C:\\Users\\Victor\\Music\\Musica\\Low Life (ft The Weeknd).mp3",
         "titulo": "Low Life (ft The Weeknd)",
         "artista": "Future ft The Weeknd",
         "album": "EVOL",
-        "timestamp": "2025-03-03T19:14:17.197423"
+        "timestamp": "2025-03-05T16:27:22.370607"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
@@ -64,7 +64,7 @@
             "album": "Gangster Pain"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Low Life (ft The Weeknd).mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "Low Life (ft The Weeknd)",
             "artista": "Future ft The Weeknd",
             "album": "EVOL"

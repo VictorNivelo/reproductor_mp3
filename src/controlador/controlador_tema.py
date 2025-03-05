@@ -60,8 +60,8 @@ class ControladorTema(UtilesControlador):
         self.tabviews.append(tabview)
 
     # Registrar canvas
-    def registrar_canvas(self, canvas, es_tabview=False):
-        self.canvas.append((canvas, es_tabview))
+    def registrar_canvas(self, canvas, es_tabview=False, tabview_parent=None):
+        self.canvas.append((canvas, es_tabview, tabview_parent))
 
     # Mostrar icono de botones
     def mostrar_icono_boton(self, nombre):
@@ -181,9 +181,15 @@ class ControladorTema(UtilesControlador):
 
     # Actualizar colores de los canvas
     def actualizar_colores_canvas(self):
-        for canvas, es_tabview in self.canvas:
+        for canvas_info in self.canvas:
             try:
-                if es_tabview:
+                canvas = canvas_info[0]
+                es_tabview = canvas_info[1]
+                tabview_parent = canvas_info[2] if len(canvas_info) > 2 else None
+                if es_tabview and tabview_parent and tabview_parent.winfo_exists():
+                    # Obtener el color directamente del tabview padre
+                    canvas.configure(bg=tabview_parent.cget("fg_color"))
+                elif es_tabview:
                     canvas.configure(bg=self.color_base)
                 else:
                     canvas.configure(bg=self.color_fondo)
@@ -206,6 +212,7 @@ class ControladorTema(UtilesControlador):
     def establecer_apariencia_global(self):
         ctk.set_appearance_mode("dark" if self.tema_interfaz == "oscuro" else "light")
 
+    # Cambiar tema
     def cambiar_tema(self):
         self.tema_interfaz = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.tema_iconos = "oscuro" if self.tema_interfaz == "claro" else "claro"
@@ -244,6 +251,7 @@ class ControladorTema(UtilesControlador):
         except Exception as e:
             print(f"Error al cambiar el tema: {e}")
 
+    # Limpiar widgets destruidos
     def limpiar_widgets_destruidos(self):
         # Limpiar botones destruidos
         botones_a_eliminar = []
@@ -275,9 +283,7 @@ class ControladorTema(UtilesControlador):
         # Limpiar tabviews destruidos
         self.tabviews = [tabview for tabview in self.tabviews if self.widget_existe(tabview)]
         # Limpiar canvas destruidos
-        self.canvas = [
-            (canvas, es_tabview) for canvas, es_tabview in self.canvas if self.widget_existe(canvas)
-        ]
+        self.canvas = [canvas_info for canvas_info in self.canvas if self.widget_existe(canvas_info[0])]
 
     # Método auxiliar para verificar si un widget existe
     def widget_existe(self, widget):

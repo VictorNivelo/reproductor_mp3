@@ -52,30 +52,6 @@ class ControladorReproductor:
         self.etiqueta_anio.configure(text="Lanzamiento: ")
         self.etiqueta_imagen.configure(text="Sin carátula")
 
-    # Método que establece las etiquetas de tiempo
-    def establecer_etiquetas_tiempo(self, etiqueta_actual, etiqueta_total):
-        self.etiqueta_tiempo_actual = etiqueta_actual
-        self.etiqueta_tiempo_total = etiqueta_total
-
-    # Método que establece la barra de progreso
-    def establecer_barra_progreso(self, barra):
-        self.barra_progreso = barra
-
-    # Método que establece la lista de reproducción actual
-    def establecer_lista_reproduccion(self, canciones, indice=0):
-        self.lista_reproduccion = canciones
-        self.indice_actual = indice if 0 <= indice < len(canciones) else 0
-
-    # Método que establece el modo de repetición
-    def establecer_modo_repeticion(self, modo):
-        self.modo_repeticion = modo
-
-    # Método para establecer el modo de reproducción (aleatorio o secuencial)
-    def establecer_modo_aleatorio(self, aleatorio: bool):
-        self.modo_aleatorio = aleatorio
-        # Resetear el historial cuando cambiamos de modo
-        self.historial_aleatorio = []
-
     # Método que actualiza la información de la interfaz
     def actualizar_informacion_interfaz(self):
         if self.cancion_actual and self.etiqueta_nombre:
@@ -103,6 +79,11 @@ class ControladorReproductor:
                     self.etiqueta_imagen.configure(image=None, text="Sin carátula")
             else:
                 self.etiqueta_imagen.configure(image=None, text="Sin carátula")
+
+    # Método que establece las etiquetas de tiempo
+    def establecer_etiquetas_tiempo(self, etiqueta_actual, etiqueta_total):
+        self.etiqueta_tiempo_actual = etiqueta_actual
+        self.etiqueta_tiempo_total = etiqueta_total
 
     # Método que actualiza el tiempo de reproducción de la canción
     def actualizar_tiempo(self):
@@ -153,6 +134,25 @@ class ControladorReproductor:
                 self.etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
             self.timer_id = self.etiqueta_tiempo_actual.after(100, self.actualizar_tiempo)
         return False
+
+    # Método que establece la barra de progreso
+    def establecer_barra_progreso(self, barra):
+        self.barra_progreso = barra
+
+    # Método que establece la lista de reproducción actual
+    def establecer_lista_reproduccion(self, canciones, indice=0):
+        self.lista_reproduccion = canciones
+        self.indice_actual = indice if 0 <= indice < len(canciones) else 0
+
+    # Método que establece el modo de repetición
+    def establecer_modo_repeticion(self, modo):
+        self.modo_repeticion = modo
+
+    # Método para establecer el modo de reproducción (aleatorio o secuencial)
+    def establecer_modo_aleatorio(self, aleatorio: bool):
+        self.modo_aleatorio = aleatorio
+        # Resetear el historial cuando cambiamos de modo
+        self.historial_aleatorio = []
 
     # Método que reproduce una canción
     def reproducir_cancion(self, cancion: Cancion) -> None:

@@ -1,3 +1,18 @@
 {
-    "me_gusta": []
+    "me_gusta": [
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Low Life (ft The Weeknd).mp3",
+            "titulo": "Low Life (ft The Weeknd)",
+            "artista": "Future ft The Weeknd",
+            "artista_album": "Future",
+            "album": "EVOL",
+            "duracion": 313.5738775510204,
+            "duracion_formateada": "05:13",
+            "anio": "2016-04-13",
+            "numero_pista": "10/12",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        }
+    ]
 }

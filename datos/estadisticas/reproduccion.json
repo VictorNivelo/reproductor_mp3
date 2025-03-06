@@ -1,14 +1,15 @@
 {
-    "tiempo_total": 2665.9787755102043,
-    "canciones_escuchadas": 14,
+    "tiempo_total": 4181.133061224489,
+    "canciones_escuchadas": 21,
     "artistas": {
         "Bad Bunny": 6,
         "Young Miko ft Caleb Calloway": 1,
         "Lil Uzi Vert": 1,
         "Offset ft Metro Boomin": 1,
         "Metro Boomin ft 21 Savage": 1,
-        "The Notorious B.I.G.": 1,
-        "Future ft The Weeknd": 3
+        "The Notorious B.I.G.": 2,
+        "Future ft The Weeknd": 6,
+        "Kanye West ft XXXTENTACION": 3
     },
     "albumes": {
         "EL ÚLTIMO TOUR DEL MUNDO": 6,
@@ -16,15 +17,16 @@
         "Eternal Atake 2": 1,
         "Without Warning": 1,
         "NOT ALL HEROES WEAR CAPES (Deluxe)": 1,
-        "Gangster Pain": 1,
-        "EVOL": 3
+        "Gangster Pain": 2,
+        "EVOL": 6,
+        "True Love": 3
     },
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Low Life (ft The Weeknd).mp3",
-        "titulo": "Low Life (ft The Weeknd)",
-        "artista": "Future ft The Weeknd",
-        "album": "EVOL",
-        "timestamp": "2025-03-05T16:27:22.370607"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3",
+        "titulo": "Gangster Pain",
+        "artista": "The Notorious B.I.G.",
+        "album": "Gangster Pain",
+        "timestamp": "2025-03-05T20:04:38.428597"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
@@ -64,10 +66,22 @@
             "album": "Gangster Pain"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Low Life (ft The Weeknd).mp3": {
-            "contador": 3,
+            "contador": 6,
             "titulo": "Low Life (ft The Weeknd)",
             "artista": "Future ft The Weeknd",
             "album": "EVOL"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\True Love.mp3": {
+            "contador": 3,
+            "titulo": "True Love",
+            "artista": "Kanye West ft XXXTENTACION",
+            "album": "True Love"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3": {
+            "contador": 1,
+            "titulo": "Gangster Pain",
+            "artista": "The Notorious B.I.G.",
+            "album": "Gangster Pain"
         }
     }
 }

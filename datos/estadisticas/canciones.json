@@ -1,36 +1,36 @@
 {
     "estadisticas": {
         "total_canciones": 2,
-        "total_artistas": 4,
+        "total_artistas": 5,
         "total_albumes": 2,
         "me_gusta": 1,
-        "favorito": 0
+        "favorito": 1
     },
     "canciones": [
         {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Low Life (ft The Weeknd).mp3",
-            "titulo": "Low Life (ft The Weeknd)",
-            "artista": "Future ft The Weeknd",
-            "artista_album": "Future",
-            "album": "EVOL",
-            "duracion": 313.5738775510204,
-            "duracion_formateada": "05:13",
-            "anio": "2016-04-13",
-            "numero_pista": "10/12",
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3",
+            "titulo": "Gangster Pain",
+            "artista": "The Notorious B.I.G.",
+            "artista_album": "Dropout Music",
+            "album": "Gangster Pain",
+            "duracion": 128.6008163265306,
+            "duracion_formateada": "02:08",
+            "anio": "2020-05-08",
+            "numero_pista": "1/1",
             "tiene_caratula": true,
             "me_gusta": true,
-            "favorito": false
+            "favorito": true
         },
         {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\True Love.mp3",
-            "titulo": "True Love",
-            "artista": "Kanye West ft XXXTENTACION",
-            "artista_album": "Kanye West ft XXXTENTACION",
-            "album": "True Love",
-            "duracion": 148.61061224489796,
-            "duracion_formateada": "02:28",
-            "anio": "2022-05-27",
-            "numero_pista": "1/1",
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Type Shit.mp3",
+            "titulo": "Type Shit",
+            "artista": "Future ft Metro Boomin, Travis Scott, Playboi Carti",
+            "artista_album": "Future ft Metro Boomin",
+            "album": "WE DON'T TRUST YOU",
+            "duracion": 228.31020408163266,
+            "duracion_formateada": "03:48",
+            "anio": "2024-03-22",
+            "numero_pista": "4/17",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false

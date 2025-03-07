@@ -1,3 +1,18 @@
 {
-    "me_gusta": []
+    "me_gusta": [
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Type Shit.mp3",
+            "titulo": "Type Shit",
+            "artista": "Future ft Metro Boomin, Travis Scott, Playboi Carti",
+            "artista_album": "Future ft Metro Boomin",
+            "album": "WE DON'T TRUST YOU",
+            "duracion": 228.31020408163266,
+            "duracion_formateada": "03:48",
+            "anio": "2024-03-22",
+            "numero_pista": "4/17",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
+        }
+    ]
 }

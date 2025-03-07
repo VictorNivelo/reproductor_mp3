@@ -106,6 +106,7 @@ def guardar_todos_ajustes():
     controlador_archivos.guardar_ajustes(configuracion)
 
 
+# Función para cargar todos los ajustes
 def cargar_todos_ajustes():
     global TEMA_ACTUAL, VOLUMEN, ORDEN, REPETICION, SILENCIADO, PANEL_VISIBLE
     # Cargar configuración desde archivo

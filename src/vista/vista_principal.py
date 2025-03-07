@@ -426,6 +426,43 @@ def cargar_biblioteca():
             pestanas_cargadas[key] = False
 
 
+# Función para actualizar la vista de las canciones en la biblioteca
+def actualizar_vista_canciones(panel_botones):
+    # Limpiar botones existentes
+    for cancion, boton in botones_canciones.items():
+        try:
+            # Eliminar el botón del controlador_tema de tema
+            nombre_boton = f"cancion_{cancion.titulo_cancion}"
+            if nombre_boton in controlador_tema.botones:
+                del controlador_tema.botones[nombre_boton]
+            # Destruir el botón
+            boton.destroy()
+        except tk.TclError:
+            print("Error: El botón de la canción no está disponible")
+            pass
+    botones_canciones.clear()
+    # Crear nuevos botones para cada canción
+    for cancion in biblioteca.canciones:
+        crear_boton_cancion(cancion, panel_botones)
+
+
+# Función para crear botones para cada canción en la biblioteca
+def crear_boton_cancion(cancion, panel_botones):
+    boton = ctk.CTkButton(
+        panel_botones,
+        height=28,
+        fg_color=BOTON_CLARO,
+        font=(LETRA, TAMANIO_LETRA_BOTON),
+        text_color=TEXTO_CLARO,
+        text=f"{cancion.titulo_cancion} - {cancion.artista}",
+        hover_color=HOVER_CLARO,
+        command=lambda c=cancion: reproducir_cancion_desde_lista(c),
+    )
+    boton.pack(fill="both", pady=(0, 2), expand=True)
+    controlador_tema.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton)
+    botones_canciones[cancion] = boton
+
+
 # Función para manejar cambios de pestaña
 def actualizar_pestana_seleccionada():
     # Obtener nombre de la pestaña activa
@@ -609,6 +646,53 @@ def mostrar_canciones_album(album):
         crear_boton_cancion(cancion, panel_canciones_album)
 
 
+def mostrar_albumes_filtrados(texto_busqueda):
+    # Obtener la pestaña de álbumes
+    tab_albumes = paginas_canciones.tab("Álbumes")
+    # Limpiar la pestaña
+    for widget in tab_albumes.winfo_children():
+        widget.destroy()
+    # Crear el contenedor para mostrar la lista de álbumes filtrados
+    contenedor_albumes = ctk.CTkFrame(tab_albumes, fg_color="transparent")
+    contenedor_albumes.pack(side="left", fill="both", expand=True)
+    # Crear canvas con scrollbar
+    canvas_albumes = tk.Canvas(contenedor_albumes, bg=CLARO_SEGUNDARIO, highlightthickness=0)
+    canvas_albumes.pack(side="left", fill="both", expand=True)
+    controlador_tema.registrar_canvas(canvas_albumes, es_tabview=True)
+    # Crear panel para los botones
+    panel_botones_albumes = ctk.CTkFrame(canvas_albumes, fg_color="transparent")
+    panel_botones_albumes.bind(
+        "<Configure>", lambda e: canvas_albumes.configure(scrollregion=canvas_albumes.bbox("all"))
+    )
+    # Configurar el scroll
+    canvas_albumes.bind_all(
+        "<MouseWheel>", lambda e: canvas_albumes.yview_scroll(int(-1 * (e.delta / 120)), "units")
+    )
+    # Crear ventana en el canvas
+    window_albumes = canvas_albumes.create_window(
+        (0, 0), window=panel_botones_albumes, anchor="nw", width=canvas_albumes.winfo_width()
+    )
+    # Actualizar ancho
+    canvas_albumes.bind("<Configure>", lambda e: canvas_albumes.itemconfig(window_albumes, width=e.width))
+    # Filtrar álbumes
+    albumes_filtrados = [album for album in biblioteca.por_album.keys() if texto_busqueda in album.lower()]
+    for album in sorted(albumes_filtrados):
+        if album == "" or album == "Unknown Album" or album.lower() == "desconocido":
+            continue
+        boton_album = ctk.CTkButton(
+            panel_botones_albumes,
+            height=28,
+            fg_color=BOTON_CLARO,
+            font=(LETRA, TAMANIO_LETRA_BOTON),
+            text_color=TEXTO_CLARO,
+            text=album,
+            hover_color=HOVER_CLARO,
+            command=lambda a=album: mostrar_canciones_album(a),
+        )
+        boton_album.pack(fill="both", pady=(0, 2), expand=True)
+        controlador_tema.registrar_botones(f"album_{album}", boton_album)
+
+
 def actualizar_vista_artistas():
     # Obtener la pestaña de artistas
     tab_artistas = paginas_canciones.tab("Artistas")
@@ -720,6 +804,55 @@ def mostrar_canciones_artista(artista):
     # Mostrar las canciones del artista
     for cancion in biblioteca.por_artista.get(artista, []):
         crear_boton_cancion(cancion, panel_canciones_artista)
+
+
+def mostrar_artistas_filtrados(texto_busqueda):
+    # Obtener la pestaña de artistas
+    tab_artistas = paginas_canciones.tab("Artistas")
+    # Limpiar la pestaña
+    for widget in tab_artistas.winfo_children():
+        widget.destroy()
+    # Crear el contenedor para mostrar la lista de artistas filtrados
+    contenedor_artistas = ctk.CTkFrame(tab_artistas, fg_color="transparent")
+    contenedor_artistas.pack(side="left", fill="both", expand=True)
+    # Crear canvas con scrollbar
+    canvas_artistas = tk.Canvas(contenedor_artistas, bg=CLARO_SEGUNDARIO, highlightthickness=0)
+    canvas_artistas.pack(side="left", fill="both", expand=True)
+    controlador_tema.registrar_canvas(canvas_artistas, es_tabview=True)
+    # Crear panel para los botones
+    panel_botones_artistas = ctk.CTkFrame(canvas_artistas, fg_color="transparent")
+    panel_botones_artistas.bind(
+        "<Configure>", lambda e: canvas_artistas.configure(scrollregion=canvas_artistas.bbox("all"))
+    )
+    # Configurar el scroll
+    canvas_artistas.bind_all(
+        "<MouseWheel>", lambda e: canvas_artistas.yview_scroll(int(-1 * (e.delta / 120)), "units")
+    )
+    # Crear ventana en el canvas
+    window_artistas = canvas_artistas.create_window(
+        (0, 0), window=panel_botones_artistas, anchor="nw", width=canvas_artistas.winfo_width()
+    )
+    # Actualizar ancho
+    canvas_artistas.bind("<Configure>", lambda e: canvas_artistas.itemconfig(window_artistas, width=e.width))
+    # Filtrar artistas
+    artistas_filtrados = [
+        artista for artista in biblioteca.por_artista.keys() if texto_busqueda in artista.lower()
+    ]
+    for artista in sorted(artistas_filtrados):
+        if artista == "" or artista == "Unknown Artist" or artista.lower() == "desconocido":
+            continue
+        boton_artista = ctk.CTkButton(
+            panel_botones_artistas,
+            height=28,
+            fg_color=BOTON_CLARO,
+            font=(LETRA, TAMANIO_LETRA_BOTON),
+            text_color=TEXTO_CLARO,
+            text=artista,
+            hover_color=HOVER_CLARO,
+            command=lambda a=artista: mostrar_canciones_artista(a),
+        )
+        boton_artista.pack(fill="both", pady=(0, 2), expand=True)
+        controlador_tema.registrar_botones(f"artista_{artista}", boton_artista)
 
 
 def actualizar_vista_me_gusta():
@@ -900,102 +1033,6 @@ def buscar_canciones(_event=None):
         mostrar_artistas_filtrados(texto_busqueda)
 
 
-def mostrar_albumes_filtrados(texto_busqueda):
-    # Obtener la pestaña de álbumes
-    tab_albumes = paginas_canciones.tab("Álbumes")
-    # Limpiar la pestaña
-    for widget in tab_albumes.winfo_children():
-        widget.destroy()
-    # Crear el contenedor para mostrar la lista de álbumes filtrados
-    contenedor_albumes = ctk.CTkFrame(tab_albumes, fg_color="transparent")
-    contenedor_albumes.pack(side="left", fill="both", expand=True)
-    # Crear canvas con scrollbar
-    canvas_albumes = tk.Canvas(contenedor_albumes, bg=CLARO_SEGUNDARIO, highlightthickness=0)
-    canvas_albumes.pack(side="left", fill="both", expand=True)
-    controlador_tema.registrar_canvas(canvas_albumes, es_tabview=True)
-    # Crear panel para los botones
-    panel_botones_albumes = ctk.CTkFrame(canvas_albumes, fg_color="transparent")
-    panel_botones_albumes.bind(
-        "<Configure>", lambda e: canvas_albumes.configure(scrollregion=canvas_albumes.bbox("all"))
-    )
-    # Configurar el scroll
-    canvas_albumes.bind_all(
-        "<MouseWheel>", lambda e: canvas_albumes.yview_scroll(int(-1 * (e.delta / 120)), "units")
-    )
-    # Crear ventana en el canvas
-    window_albumes = canvas_albumes.create_window(
-        (0, 0), window=panel_botones_albumes, anchor="nw", width=canvas_albumes.winfo_width()
-    )
-    # Actualizar ancho
-    canvas_albumes.bind("<Configure>", lambda e: canvas_albumes.itemconfig(window_albumes, width=e.width))
-    # Filtrar álbumes
-    albumes_filtrados = [album for album in biblioteca.por_album.keys() if texto_busqueda in album.lower()]
-    for album in sorted(albumes_filtrados):
-        if album == "" or album == "Unknown Album" or album.lower() == "desconocido":
-            continue
-        boton_album = ctk.CTkButton(
-            panel_botones_albumes,
-            height=28,
-            fg_color=BOTON_CLARO,
-            font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=TEXTO_CLARO,
-            text=album,
-            hover_color=HOVER_CLARO,
-            command=lambda a=album: mostrar_canciones_album(a),
-        )
-        boton_album.pack(fill="both", pady=(0, 2), expand=True)
-        controlador_tema.registrar_botones(f"album_{album}", boton_album)
-
-
-def mostrar_artistas_filtrados(texto_busqueda):
-    # Obtener la pestaña de artistas
-    tab_artistas = paginas_canciones.tab("Artistas")
-    # Limpiar la pestaña
-    for widget in tab_artistas.winfo_children():
-        widget.destroy()
-    # Crear el contenedor para mostrar la lista de artistas filtrados
-    contenedor_artistas = ctk.CTkFrame(tab_artistas, fg_color="transparent")
-    contenedor_artistas.pack(side="left", fill="both", expand=True)
-    # Crear canvas con scrollbar
-    canvas_artistas = tk.Canvas(contenedor_artistas, bg=CLARO_SEGUNDARIO, highlightthickness=0)
-    canvas_artistas.pack(side="left", fill="both", expand=True)
-    controlador_tema.registrar_canvas(canvas_artistas, es_tabview=True)
-    # Crear panel para los botones
-    panel_botones_artistas = ctk.CTkFrame(canvas_artistas, fg_color="transparent")
-    panel_botones_artistas.bind(
-        "<Configure>", lambda e: canvas_artistas.configure(scrollregion=canvas_artistas.bbox("all"))
-    )
-    # Configurar el scroll
-    canvas_artistas.bind_all(
-        "<MouseWheel>", lambda e: canvas_artistas.yview_scroll(int(-1 * (e.delta / 120)), "units")
-    )
-    # Crear ventana en el canvas
-    window_artistas = canvas_artistas.create_window(
-        (0, 0), window=panel_botones_artistas, anchor="nw", width=canvas_artistas.winfo_width()
-    )
-    # Actualizar ancho
-    canvas_artistas.bind("<Configure>", lambda e: canvas_artistas.itemconfig(window_artistas, width=e.width))
-    # Filtrar artistas
-    artistas_filtrados = [
-        artista for artista in biblioteca.por_artista.keys() if texto_busqueda in artista.lower()
-    ]
-    for artista in sorted(artistas_filtrados):
-        if artista == "" or artista == "Unknown Artist" or artista.lower() == "desconocido":
-            continue
-        boton_artista = ctk.CTkButton(
-            panel_botones_artistas,
-            height=28,
-            fg_color=BOTON_CLARO,
-            font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=TEXTO_CLARO,
-            text=artista,
-            hover_color=HOVER_CLARO,
-            command=lambda a=artista: mostrar_canciones_artista(a),
-        )
-        boton_artista.pack(fill="both", pady=(0, 2), expand=True)
-        controlador_tema.registrar_botones(f"artista_{artista}", boton_artista)
-
-
 # Función para crear las barras iniciales
 def crear_barras_espectro():
     global barras_espectro, ANCHO_BARRA, ESPACIO_ENTRE_BARRA
@@ -1058,43 +1095,6 @@ def actualizar_espectro():
     # Llamar a la función nuevamente después de un delay
     if REPRODUCIENDO:
         ventana_principal.after(75, actualizar_espectro)
-
-
-# Función para actualizar la vista de las canciones en la biblioteca
-def actualizar_vista_canciones(panel_botones):
-    # Limpiar botones existentes
-    for cancion, boton in botones_canciones.items():
-        try:
-            # Eliminar el botón del controlador_tema de tema
-            nombre_boton = f"cancion_{cancion.titulo_cancion}"
-            if nombre_boton in controlador_tema.botones:
-                del controlador_tema.botones[nombre_boton]
-            # Destruir el botón
-            boton.destroy()
-        except tk.TclError:
-            print("Error: El botón de la canción no está disponible")
-            pass
-    botones_canciones.clear()
-    # Crear nuevos botones para cada canción
-    for cancion in biblioteca.canciones:
-        crear_boton_cancion(cancion, panel_botones)
-
-
-# Función para crear botones para cada canción en la biblioteca
-def crear_boton_cancion(cancion, panel_botones):
-    boton = ctk.CTkButton(
-        panel_botones,
-        height=28,
-        fg_color=BOTON_CLARO,
-        font=(LETRA, TAMANIO_LETRA_BOTON),
-        text_color=TEXTO_CLARO,
-        text=f"{cancion.titulo_cancion} - {cancion.artista}",
-        hover_color=HOVER_CLARO,
-        command=lambda c=cancion: reproducir_cancion_desde_lista(c),
-    )
-    boton.pack(fill="both", pady=(0, 2), expand=True)
-    controlador_tema.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton)
-    botones_canciones[cancion] = boton
 
 
 # Función para establecer el icono del tema

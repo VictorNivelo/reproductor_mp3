@@ -1,6 +1,6 @@
 {
-    "tiempo_total": 4181.133061224489,
-    "canciones_escuchadas": 21,
+    "tiempo_total": 4409.443265306122,
+    "canciones_escuchadas": 22,
     "artistas": {
         "Bad Bunny": 6,
         "Young Miko ft Caleb Calloway": 1,
@@ -9,7 +9,8 @@
         "Metro Boomin ft 21 Savage": 1,
         "The Notorious B.I.G.": 2,
         "Future ft The Weeknd": 6,
-        "Kanye West ft XXXTENTACION": 3
+        "Kanye West ft XXXTENTACION": 3,
+        "Future ft Metro Boomin, Travis Scott, Playboi Carti": 1
     },
     "albumes": {
         "EL ÚLTIMO TOUR DEL MUNDO": 6,
@@ -19,14 +20,15 @@
         "NOT ALL HEROES WEAR CAPES (Deluxe)": 1,
         "Gangster Pain": 2,
         "EVOL": 6,
-        "True Love": 3
+        "True Love": 3,
+        "WE DON'T TRUST YOU": 1
     },
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3",
-        "titulo": "Gangster Pain",
-        "artista": "The Notorious B.I.G.",
-        "album": "Gangster Pain",
-        "timestamp": "2025-03-05T20:04:38.428597"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Type Shit.mp3",
+        "titulo": "Type Shit",
+        "artista": "Future ft Metro Boomin, Travis Scott, Playboi Carti",
+        "album": "WE DON'T TRUST YOU",
+        "timestamp": "2025-03-07T14:29:18.263602"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
@@ -82,6 +84,12 @@
             "titulo": "Gangster Pain",
             "artista": "The Notorious B.I.G.",
             "album": "Gangster Pain"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Type Shit.mp3": {
+            "contador": 1,
+            "titulo": "Type Shit",
+            "artista": "Future ft Metro Boomin, Travis Scott, Playboi Carti",
+            "album": "WE DON'T TRUST YOU"
         }
     }
 }

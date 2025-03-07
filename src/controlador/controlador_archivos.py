@@ -12,11 +12,13 @@ class ControladorArchivos:
         self.dir_listas = os.path.join(self.dir_datos, "listas")
         self.dir_favoritos = os.path.join(self.dir_listas, "favorito")
         self.dir_me_gusta = os.path.join(self.dir_listas, "me_gusta")
+        self.dir_configuracion = os.path.join(self.dir_datos, "configuracion")
         # Rutas de archivos
         self.ruta_canciones = os.path.join(self.dir_estadisticas, "canciones.json")
         self.ruta_favoritos = os.path.join(self.dir_favoritos, "favorito.json")
         self.ruta_me_gusta = os.path.join(self.dir_me_gusta, "me_gusta.json")
         self.ruta_reproduccion = os.path.join(self.dir_estadisticas, "reproduccion.json")
+        self.ruta_configuracion = os.path.join(self.dir_configuracion, "ajustes.json")
         # Crear la estructura de directorios
         self.crear_estructura_directorios()
 
@@ -49,6 +51,7 @@ class ControladorArchivos:
             self.dir_listas,
             self.dir_favoritos,
             self.dir_me_gusta,
+            self.dir_configuracion,
         ]
         for directorio in directorios:
             if not os.path.exists(directorio):
@@ -285,3 +288,50 @@ class ControladorArchivos:
         except Exception as e:
             print(f"Error al obtener estadísticas de reproducción: {str(e)}")
             return None
+
+    # Guardar la configuración en un archivo JSON
+    def guardar_ajustes(self, configuracion):
+        try:
+            # Asegurarse de que exista el directorio
+            if not os.path.exists(self.dir_configuracion):
+                os.makedirs(self.dir_configuracion)
+            # Crear o actualizar el archivo de configuración
+            if os.path.exists(self.ruta_configuracion):
+                # Si existe, cargar la configuración actual y actualizar
+                try:
+                    with open(self.ruta_configuracion, "r", encoding="utf-8") as archivo:
+                        datos = json.load(archivo)
+                        # Actualizar todos los valores proporcionados
+                        for clave, valor in configuracion.items():
+                            datos[clave] = valor
+                        configuracion = datos
+                except Exception as e:
+                    print(f"Error al leer la configuración existente: {str(e)}")
+            # Guardar la configuración
+            with open(self.ruta_configuracion, "w", encoding="utf-8") as archivo:
+                json.dump(configuracion, archivo, ensure_ascii=False, indent=4)
+            return True
+        except Exception as e:
+            print(f"Error al guardar la configuración: {str(e)}")
+            return False
+
+    # Cargar la configuración desde un archivo JSON
+    def cargar_ajustes(self):
+        try:
+            # Estructura predeterminada con valores por defecto
+            configuracion_por_defecto = {
+                "tema": "claro",
+                "volumen": 80,
+                "orden": False,
+                "repeticion": 0,
+                "silenciado": False,
+                "panel_visible": True,
+            }
+            # Verificar que exista el archivo
+            self.verificar_archivo_json(self.ruta_configuracion, configuracion_por_defecto)
+            # Cargar la configuración
+            with open(self.ruta_configuracion, "r", encoding="utf-8") as archivo:
+                return json.load(archivo)
+        except Exception as e:
+            print(f"Error al cargar la configuración: {str(e)}")
+            return configuracion_por_defecto

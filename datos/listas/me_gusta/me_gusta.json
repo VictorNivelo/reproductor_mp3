@@ -1,18 +1,3 @@
 {
-    "me_gusta": [
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3",
-            "titulo": "Gangster Pain",
-            "artista": "The Notorious B.I.G.",
-            "artista_album": "Dropout Music",
-            "album": "Gangster Pain",
-            "duracion": 128.6008163265306,
-            "duracion_formateada": "02:08",
-            "anio": "2020-05-08",
-            "numero_pista": "1/1",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
-        }
-    ]
+    "me_gusta": []
 }

@@ -81,7 +81,7 @@ class ControladorTema(UtilesControlador):
                     elif es_ctk:
                         frame.configure(fg_color=self.color_fondo)
                     else:
-                        frame.configure(bg=self.color_fondo)
+                        frame.configure(fg_color=self.color_base)
             except Exception as e:
                 print(f"Error al configurar el color del frame: {e}")
 

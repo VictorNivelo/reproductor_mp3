@@ -1,25 +1,25 @@
 {
     "estadisticas": {
         "total_canciones": 2,
-        "total_artistas": 5,
+        "total_artistas": 4,
         "total_albumes": 2,
-        "me_gusta": 1,
-        "favorito": 1
+        "me_gusta": 0,
+        "favorito": 0
     },
     "canciones": [
         {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3",
-            "titulo": "Gangster Pain",
-            "artista": "The Notorious B.I.G.",
-            "artista_album": "Dropout Music",
-            "album": "Gangster Pain",
-            "duracion": 128.6008163265306,
-            "duracion_formateada": "02:08",
-            "anio": "2020-05-08",
-            "numero_pista": "1/1",
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Overdue (ft Travis Scott).mp3",
+            "titulo": "Overdue (ft Travis Scott)",
+            "artista": "Metro Boomin ft Travis Scott",
+            "artista_album": "Metro Boomin ft 21 Savage",
+            "album": "NOT ALL HEROES WEAR CAPES (Deluxe)",
+            "duracion": 166.16489795918366,
+            "duracion_formateada": "02:46",
+            "anio": "2018-11-06",
+            "numero_pista": "2/26",
             "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
+            "me_gusta": false,
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\Type Shit.mp3",

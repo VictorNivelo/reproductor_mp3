@@ -1702,15 +1702,23 @@ controlador_tema.registrar_etiqueta(etiqueta_porcentaje_volumen)
 # =============================================================================s==================
 
 # ======================================== Panel derecha ========================================
-# Contenedor de panel derecho hecho con customtkinter
-contenedor_derecha = ctk.CTkFrame(
+# Contenedor principal de panel derecho
+contenedor_derecha_principal = ctk.CTkFrame(
     conenedor_principal,
     width=ANCHO_PANEL_DERECHA if PANEL_VISIBLE else 0,
-    fg_color=FONDO_CLARO,
-    corner_radius=BORDES_REDONDEADOS_PANEL,
+    fg_color="transparent",
+    corner_radius=0,
 )
-contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(5, 0))
-contenedor_derecha.pack_propagate(False)
+contenedor_derecha_principal.pack(side=tk.LEFT, fill="both")
+contenedor_derecha_principal.pack_propagate(False)
+
+# Contentedor de panel derecho interno
+contenedor_derecha = ctk.CTkFrame(
+    contenedor_derecha_principal,
+    fg_color=FONDO_CLARO,
+    corner_radius=0,
+)
+contenedor_derecha.pack(side=tk.LEFT, fill="both", expand=True, padx=(5, 0))
 controlador_tema.registrar_frame(contenedor_derecha, es_ctk=True)
 
 # ------------------------------ Seccion de busqueda y ordenamiento -----------------------------
@@ -1808,6 +1816,7 @@ controlador_tema.registrar_canvas(canvas_canciones, es_tabview=True, tabview_par
 # Crear panel para los botones dentro del canvas
 panel_botones_canciones = ctk.CTkFrame(canvas_canciones, fg_color="transparent", corner_radius=0)
 panel_botones_canciones.pack(fill="both")
+controlador_tema.registrar_frame(panel_botones_canciones)
 
 # Crear ventana en el canvas para el panel
 canvas_window = canvas_canciones.create_window((0, 0), window=panel_botones_canciones)

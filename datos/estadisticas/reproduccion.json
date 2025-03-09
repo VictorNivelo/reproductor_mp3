@@ -1,39 +1,51 @@
 {
-    "tiempo_total": 5032.228571428572,
-    "canciones_escuchadas": 25,
+    "tiempo_total": 7225.547755102042,
+    "canciones_escuchadas": 35,
     "artistas": {
-        "Bad Bunny": 6,
+        "Bad Bunny": 7,
         "Young Miko ft Caleb Calloway": 1,
         "Lil Uzi Vert": 1,
-        "Offset ft Metro Boomin": 1,
-        "Metro Boomin ft 21 Savage": 1,
+        "Offset ft Metro Boomin": 2,
+        "Metro Boomin ft 21 Savage": 2,
         "The Notorious B.I.G.": 2,
         "Future ft The Weeknd": 6,
         "Kanye West ft XXXTENTACION": 3,
-        "Future ft Metro Boomin, Travis Scott, Playboi Carti": 3,
-        "Metro Boomin ft Travis Scott": 1
+        "Future ft Metro Boomin, Travis Scott, Playboi Carti": 4,
+        "Metro Boomin ft Travis Scott": 1,
+        "¥$ ft Kanye West, Ty Dolla $ign": 1,
+        "Drake": 1,
+        "Metro Boomin ft Coi Leray": 1,
+        "Juice WRLD ft Lil Uzi Vert": 1,
+        "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 1,
+        "Travis Scott ft SZA, Future": 1
     },
     "albumes": {
-        "EL ÚLTIMO TOUR DEL MUNDO": 6,
+        "EL ÚLTIMO TOUR DEL MUNDO": 7,
         "105 Freestyle": 1,
         "Eternal Atake 2": 1,
-        "Without Warning": 1,
-        "NOT ALL HEROES WEAR CAPES (Deluxe)": 2,
+        "Without Warning": 2,
+        "NOT ALL HEROES WEAR CAPES (Deluxe)": 3,
         "Gangster Pain": 2,
         "EVOL": 6,
         "True Love": 3,
-        "WE DON'T TRUST YOU": 3
+        "WE DON'T TRUST YOU": 4,
+        "VULTURES 2": 1,
+        "If You're Reading This It's Too Late": 1,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
+        "Goodbye & Good Riddance": 1,
+        "Watch This (ARIZONATEARS Pluggnb Remix)": 1,
+        "UTOPIA": 1
     },
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Type Shit.mp3",
-        "titulo": "Type Shit",
-        "artista": "Future ft Metro Boomin, Travis Scott, Playboi Carti",
-        "album": "WE DON'T TRUST YOU",
-        "timestamp": "2025-03-07T15:51:38.354763"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3",
+        "titulo": "TELEKINESIS (ft SZA, Future)",
+        "artista": "Travis Scott ft SZA, Future",
+        "album": "UTOPIA",
+        "timestamp": "2025-03-08T20:26:07.444834"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
-            "contador": 6,
+            "contador": 7,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
@@ -51,13 +63,13 @@
             "album": "Eternal Atake 2"
         },
         "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "Ric Flair Drip (ft Metro Boomin)",
             "artista": "Offset ft Metro Boomin",
             "album": "Without Warning"
         },
         "C:\\Users\\Victor\\Music\\pm\\10 Freaky Girls (ft 21 Savage).mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "10 Freaky Girls (ft 21 Savage)",
             "artista": "Metro Boomin ft 21 Savage",
             "album": "NOT ALL HEROES WEAR CAPES (Deluxe)"
@@ -87,7 +99,7 @@
             "album": "Gangster Pain"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Type Shit.mp3": {
-            "contador": 3,
+            "contador": 4,
             "titulo": "Type Shit",
             "artista": "Future ft Metro Boomin, Travis Scott, Playboi Carti",
             "album": "WE DON'T TRUST YOU"
@@ -97,6 +109,42 @@
             "titulo": "Overdue (ft Travis Scott)",
             "artista": "Metro Boomin ft Travis Scott",
             "album": "NOT ALL HEROES WEAR CAPES (Deluxe)"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\530.mp3": {
+            "contador": 1,
+            "titulo": "530",
+            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
+            "album": "VULTURES 2"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\10 Bands.mp3": {
+            "contador": 1,
+            "titulo": "10 Bands",
+            "artista": "Drake",
+            "album": "If You're Reading This It's Too Late"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3": {
+            "contador": 1,
+            "titulo": "Self Love",
+            "artista": "Metro Boomin ft Coi Leray",
+            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Wasted (ft Lil Uzi Vert).mp3": {
+            "contador": 1,
+            "titulo": "Wasted (ft Lil Uzi Vert)",
+            "artista": "Juice WRLD ft Lil Uzi Vert",
+            "album": "Goodbye & Good Riddance"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Watch This (Remix).mp3": {
+            "contador": 1,
+            "titulo": "Watch This (Remix)",
+            "artista": "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS",
+            "album": "Watch This (ARIZONATEARS Pluggnb Remix)"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3": {
+            "contador": 1,
+            "titulo": "TELEKINESIS (ft SZA, Future)",
+            "artista": "Travis Scott ft SZA, Future",
+            "album": "UTOPIA"
         }
     }
 }

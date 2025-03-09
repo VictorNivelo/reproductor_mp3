@@ -13,6 +13,62 @@
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "artista_album": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO",
+            "duracion": 151.53632653061226,
+            "duracion_formateada": "02:31",
+            "anio": "2020-11-27",
+            "numero_pista": "14",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\530.mp3",
+            "titulo": "530",
+            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
+            "artista_album": "¥$ ft Kanye West, Ty Dolla $ign",
+            "album": "VULTURES 2",
+            "duracion": 289.5412244897959,
+            "duracion_formateada": "04:49",
+            "anio": "2024-08-03",
+            "numero_pista": "7/16",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3",
+            "titulo": "Ric Flair Drip (ft Metro Boomin)",
+            "artista": "Offset ft Metro Boomin",
+            "artista_album": "21 Savage ft Offset, Metro Boomin",
+            "album": "Without Warning",
+            "duracion": 172.8261224489796,
+            "duracion_formateada": "02:52",
+            "anio": "2017-10-30",
+            "numero_pista": "3/10",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3",
+            "titulo": "TELEKINESIS (ft SZA, Future)",
+            "artista": "Travis Scott ft SZA, Future",
+            "artista_album": "Travis Scott",
+            "album": "UTOPIA",
+            "duracion": 353.8024489795918,
+            "duracion_formateada": "05:53",
+            "anio": "2023-07-28",
+            "numero_pista": "18/19",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": true
         }
     ]
 }

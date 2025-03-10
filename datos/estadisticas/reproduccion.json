@@ -1,51 +1,64 @@
 {
-    "tiempo_total": 7225.547755102042,
-    "canciones_escuchadas": 35,
+    "tiempo_total": 15249.502040816315,
+    "canciones_escuchadas": 80,
     "artistas": {
-        "Bad Bunny": 7,
+        "Bad Bunny": 10,
         "Young Miko ft Caleb Calloway": 1,
-        "Lil Uzi Vert": 1,
-        "Offset ft Metro Boomin": 2,
+        "Lil Uzi Vert": 6,
+        "Offset ft Metro Boomin": 11,
         "Metro Boomin ft 21 Savage": 2,
-        "The Notorious B.I.G.": 2,
+        "The Notorious B.I.G.": 6,
         "Future ft The Weeknd": 6,
         "Kanye West ft XXXTENTACION": 3,
-        "Future ft Metro Boomin, Travis Scott, Playboi Carti": 4,
-        "Metro Boomin ft Travis Scott": 1,
-        "¥$ ft Kanye West, Ty Dolla $ign": 1,
+        "Future ft Metro Boomin, Travis Scott, Playboi Carti": 9,
+        "Metro Boomin ft Travis Scott": 3,
+        "¥$ ft Kanye West, Ty Dolla $ign": 4,
         "Drake": 1,
-        "Metro Boomin ft Coi Leray": 1,
-        "Juice WRLD ft Lil Uzi Vert": 1,
+        "Metro Boomin ft Coi Leray": 2,
+        "Juice WRLD ft Lil Uzi Vert": 3,
         "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 1,
-        "Travis Scott ft SZA, Future": 1
+        "Travis Scott ft SZA, Future": 3,
+        "Tyler, The Creator": 3,
+        "Gucci Mane ft Bruno Mars, Kodak Black": 2,
+        "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN": 1,
+        "Maluma": 1,
+        "Future  ft Metro Boomin, Travis Scott": 1,
+        "Tainy ft Sech, E.VAX": 1
     },
     "albumes": {
-        "EL ÚLTIMO TOUR DEL MUNDO": 7,
+        "EL ÚLTIMO TOUR DEL MUNDO": 10,
         "105 Freestyle": 1,
-        "Eternal Atake 2": 1,
-        "Without Warning": 2,
-        "NOT ALL HEROES WEAR CAPES (Deluxe)": 3,
-        "Gangster Pain": 2,
+        "Eternal Atake 2": 3,
+        "Without Warning": 11,
+        "NOT ALL HEROES WEAR CAPES (Deluxe)": 5,
+        "Gangster Pain": 6,
         "EVOL": 6,
         "True Love": 3,
-        "WE DON'T TRUST YOU": 4,
-        "VULTURES 2": 1,
+        "WE DON'T TRUST YOU": 10,
+        "VULTURES 2": 4,
         "If You're Reading This It's Too Late": 1,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
-        "Goodbye & Good Riddance": 1,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 2,
+        "Goodbye & Good Riddance": 3,
         "Watch This (ARIZONATEARS Pluggnb Remix)": 1,
-        "UTOPIA": 1
+        "UTOPIA": 3,
+        "Pink Tape": 3,
+        "Flower Boy": 2,
+        "Evil Genius": 2,
+        "Chosen Few: New Generation": 1,
+        "11:11": 1,
+        "IGOR": 1,
+        "DATA": 1
     },
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3",
-        "titulo": "TELEKINESIS (ft SZA, Future)",
-        "artista": "Travis Scott ft SZA, Future",
-        "album": "UTOPIA",
-        "timestamp": "2025-03-08T20:26:07.444834"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
+        "titulo": "120",
+        "artista": "Bad Bunny",
+        "album": "EL ÚLTIMO TOUR DEL MUNDO",
+        "timestamp": "2025-03-09T21:04:18.706497"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
-            "contador": 7,
+            "contador": 10,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
@@ -57,13 +70,13 @@
             "album": "105 Freestyle"
         },
         "C:\\Users\\Victor\\Music\\pm\\Chill Bae.mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "Chill Bae",
             "artista": "Lil Uzi Vert",
             "album": "Eternal Atake 2"
         },
         "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3": {
-            "contador": 2,
+            "contador": 11,
             "titulo": "Ric Flair Drip (ft Metro Boomin)",
             "artista": "Offset ft Metro Boomin",
             "album": "Without Warning"
@@ -75,7 +88,7 @@
             "album": "NOT ALL HEROES WEAR CAPES (Deluxe)"
         },
         "C:\\Users\\Victor\\Music\\pm\\Gangster Pain.mp3": {
-            "contador": 1,
+            "contador": 5,
             "titulo": "Gangster Pain",
             "artista": "The Notorious B.I.G.",
             "album": "Gangster Pain"
@@ -99,19 +112,19 @@
             "album": "Gangster Pain"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Type Shit.mp3": {
-            "contador": 4,
+            "contador": 9,
             "titulo": "Type Shit",
             "artista": "Future ft Metro Boomin, Travis Scott, Playboi Carti",
             "album": "WE DON'T TRUST YOU"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Overdue (ft Travis Scott).mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "Overdue (ft Travis Scott)",
             "artista": "Metro Boomin ft Travis Scott",
             "album": "NOT ALL HEROES WEAR CAPES (Deluxe)"
         },
         "C:\\Users\\Victor\\Music\\pm\\530.mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"
@@ -123,13 +136,13 @@
             "album": "If You're Reading This It's Too Late"
         },
         "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
         },
         "C:\\Users\\Victor\\Music\\pm\\Wasted (ft Lil Uzi Vert).mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "Wasted (ft Lil Uzi Vert)",
             "artista": "Juice WRLD ft Lil Uzi Vert",
             "album": "Goodbye & Good Riddance"
@@ -141,10 +154,64 @@
             "album": "Watch This (ARIZONATEARS Pluggnb Remix)"
         },
         "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "TELEKINESIS (ft SZA, Future)",
             "artista": "Travis Scott ft SZA, Future",
             "album": "UTOPIA"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Just Wanna Rock.mp3": {
+            "contador": 3,
+            "titulo": "Just Wanna Rock",
+            "artista": "Lil Uzi Vert",
+            "album": "Pink Tape"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Sometimes....mp3": {
+            "contador": 2,
+            "titulo": "Sometimes",
+            "artista": "Tyler, The Creator",
+            "album": "Flower Boy"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3": {
+            "contador": 2,
+            "titulo": "Wake Up in the Sky",
+            "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
+            "album": "Evil Genius"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\0 Sentimientos (Remix).mp3": {
+            "contador": 1,
+            "titulo": "0 Sentimientos (Remix)",
+            "artista": "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN",
+            "album": "Chosen Few: New Generation"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\11 PM.mp3": {
+            "contador": 1,
+            "titulo": "11 PM",
+            "artista": "Maluma",
+            "album": "11:11"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Cinderella.mp3": {
+            "contador": 1,
+            "titulo": "Cinderella",
+            "artista": "Future  ft Metro Boomin, Travis Scott",
+            "album": "WE DON'T TRUST YOU"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\EXACTLY WHAT YOU RUN FROM YOU END UP CHASING.mp3": {
+            "contador": 1,
+            "titulo": "EXACTLY WHAT YOU RUN FROM YOU END UP CHASING",
+            "artista": "Tyler, The Creator",
+            "album": "IGOR"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\ISABELLA.mp3": {
+            "contador": 1,
+            "titulo": "ISABELLA",
+            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
+            "album": "VULTURES 2"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3": {
+            "contador": 1,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
         }
     }
 }

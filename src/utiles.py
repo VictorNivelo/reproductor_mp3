@@ -1,3 +1,4 @@
+from constantes import *
 import tracemalloc
 
 
@@ -13,3 +14,48 @@ def medir_consumo_memoria(func):
         return resultado
 
     return wrapper
+
+
+class Utiles:
+    def __init__(self, controlador_externo=None):
+        # Si no hay controlador externo, esta instancia actúa como controlador
+        self.es_controlador = controlador_externo is None
+        # Almacena la referencia al controlador (self si es controlador)
+        self.controlador = self if self.es_controlador else controlador_externo
+        # Tema de la interfaz y de los iconos (solo inicializa si es controlador)
+        if self.es_controlador:
+            self.tema_interfaz = "claro"
+            self.tema_iconos = "oscuro"
+        # Inicializar todos los colores
+        self.color_fondo_principal = None
+        self.color_fondo = None
+        self.color_texto = None
+        self.color_boton = None
+        self.color_hover = None
+        self.color_base = None
+        self.color_borde = None
+        self.color_slider = None
+        self.color_hover_oscuro = None
+        self.barra_progreso = None
+        self.color_segundario = None
+        self.color_progreso = None
+
+    # Método para obtener los colores de la interfaz
+    def colores(self):
+        # Obtiene el tema del controlador (propio o externo)
+        tema = self.controlador.tema_interfaz == "oscuro"
+        # Colores base compartidos
+        self.color_fondo_principal = FONDO_PRINCIPAL_OSCURO if tema else FONDO_PRINCIPAL_CLARO
+        self.color_fondo = FONDO_OSCURO if tema else FONDO_CLARO
+        self.color_texto = TEXTO_OSCURO if tema else TEXTO_CLARO
+        self.color_boton = BOTON_OSCURO if tema else BOTON_CLARO
+        self.color_hover = HOVER_OSCURO if tema else HOVER_CLARO
+        # Colores exclusivos de UtilesControlador
+        self.color_base = OSCURO if tema else CLARO
+        self.color_borde = FONDO_CLARO if tema else FONDO_OSCURO
+        self.color_slider = TEXTO_OSCURO if tema else FONDO_OSCURO
+        self.color_hover_oscuro = HOVER_OSCURO if tema else HOVER_OSCURO
+        self.barra_progreso = HOVER_OSCURO if tema else "lightgray"
+        self.color_segundario = OSCURO_SEGUNDARIO if tema else CLARO_SEGUNDARIO
+        # Color exclusivo de UtilesComponentes
+        self.color_progreso = TEXTO_OSCURO if tema else FONDO_OSCURO

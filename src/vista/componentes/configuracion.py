@@ -1,13 +1,13 @@
-from vista.componentes.utiles.utiles_componentes import UtilesComponentes
 from vista.utiles.utiles_vista import establecer_icono_tema
 import customtkinter as ctk
+from utiles import Utiles
 from constantes import *
 import tkinter as tk
 
 
-class Configuracion(UtilesComponentes):
+class Configuracion(Utiles):
     def __init__(self, ventana_principal, controlador):
-        super().__init__(controlador)
+        super().__init__(controlador_externo=controlador)
         self.ventana_configuracion = None
         self.ventana_principal = ventana_principal
         self.controlador = controlador

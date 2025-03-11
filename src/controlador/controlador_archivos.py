@@ -22,6 +22,7 @@ class ControladorArchivos:
         # Crear la estructura de directorios
         self.crear_estructura_directorios()
 
+    # Verificar y crear un archivo JSON con estructura predeterminada
     def verificar_archivo_json(self, ruta, estructura_predeterminada):
         try:
             # Verificar si el directorio existe

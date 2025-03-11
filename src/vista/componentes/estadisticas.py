@@ -1,13 +1,13 @@
-from vista.componentes.utiles.utiles_componentes import UtilesComponentes
 from vista.utiles.utiles_vista import establecer_icono_tema
 import customtkinter as ctk
+from utiles import Utiles
 from constantes import *
 import tkinter as tk
 
 
-class Estadisticas(UtilesComponentes):
+class Estadisticas(Utiles):
     def __init__(self, ventana_principal, controlador, controlador_archivos):
-        super().__init__(controlador)
+        super().__init__(controlador_externo=controlador)
         self.ventana_estadisticas = None
         self.ventana_principal = ventana_principal
         self.controlador = controlador
@@ -24,17 +24,17 @@ class Estadisticas(UtilesComponentes):
         self.ventana_estadisticas.title("Estadísticas")
 
         # Establecer el tamaño de la ventana de estadísticas
-        posicion_ancho = (
+        posicion_ancho_estadisticas = (
             self.ventana_principal.winfo_x()
             + (self.ventana_principal.winfo_width() - ANCHO_ESTADISTICAS) // 2
         )
-        posicion_alto = (
+        posicion_alto_estadisticas = (
             self.ventana_principal.winfo_y()
             + (self.ventana_principal.winfo_height() - ALTO_ESTADISTICAS) // 2
         )
 
         # Tamaño de la ventana de estadísticas
-        tamanio_estadisticas = f"{ANCHO_ESTADISTICAS}x{ALTO_ESTADISTICAS}+{posicion_ancho}+{posicion_alto}"
+        tamanio_estadisticas = f"{ANCHO_ESTADISTICAS}x{ALTO_ESTADISTICAS}+{posicion_ancho_estadisticas}+{posicion_alto_estadisticas}"
 
         # Establecer la geometría de la ventana de estadísticas
         self.ventana_estadisticas.geometry(tamanio_estadisticas)

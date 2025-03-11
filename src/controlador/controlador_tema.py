@@ -1,10 +1,10 @@
-from controlador.utiles.utiles_contolador import UtilesControlador
 from vista.utiles.utiles_vista import cargar_iconos
 import customtkinter as ctk
+from utiles import Utiles
 import tkinter as tk
 
 
-class ControladorTema(UtilesControlador):
+class ControladorTema(Utiles):
     def __init__(self):
         super().__init__()
         # Iconos de la interfaz
@@ -77,7 +77,7 @@ class ControladorTema(UtilesControlador):
             try:
                 if frame.winfo_exists():
                     if es_principal:
-                        frame.configure(bg=self.color_principal)
+                        frame.configure(bg=self.color_fondo_principal)
                     elif es_ctk:
                         frame.configure(fg_color=self.color_fondo)
                     else:

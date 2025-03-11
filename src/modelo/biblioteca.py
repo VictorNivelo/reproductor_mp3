@@ -193,7 +193,8 @@ class Biblioteca:
         }
 
     # Método para separar múltiples artistas de una cadena
-    def separar_artistas(self, texto_artista: str) -> list:
+    @staticmethod
+    def separar_artistas(texto_artista: str) -> list:
         # Lista de separadores comunes para artistas
         separadores = [
             " ft ",

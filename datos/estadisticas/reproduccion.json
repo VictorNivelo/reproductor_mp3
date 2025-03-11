@@ -1,60 +1,62 @@
 {
-    "tiempo_total": 15249.502040816315,
-    "canciones_escuchadas": 80,
+    "tiempo_total": 16630.360816326516,
+    "canciones_escuchadas": 88,
     "artistas": {
         "Bad Bunny": 10,
         "Young Miko ft Caleb Calloway": 1,
-        "Lil Uzi Vert": 6,
+        "Lil Uzi Vert": 7,
         "Offset ft Metro Boomin": 11,
         "Metro Boomin ft 21 Savage": 2,
         "The Notorious B.I.G.": 6,
         "Future ft The Weeknd": 6,
         "Kanye West ft XXXTENTACION": 3,
         "Future ft Metro Boomin, Travis Scott, Playboi Carti": 9,
-        "Metro Boomin ft Travis Scott": 3,
-        "¥$ ft Kanye West, Ty Dolla $ign": 4,
+        "Metro Boomin ft Travis Scott": 4,
+        "¥$ ft Kanye West, Ty Dolla $ign": 6,
         "Drake": 1,
-        "Metro Boomin ft Coi Leray": 2,
+        "Metro Boomin ft Coi Leray": 3,
         "Juice WRLD ft Lil Uzi Vert": 3,
         "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 1,
         "Travis Scott ft SZA, Future": 3,
         "Tyler, The Creator": 3,
-        "Gucci Mane ft Bruno Mars, Kodak Black": 2,
+        "Gucci Mane ft Bruno Mars, Kodak Black": 4,
         "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN": 1,
         "Maluma": 1,
         "Future  ft Metro Boomin, Travis Scott": 1,
-        "Tainy ft Sech, E.VAX": 1
+        "Tainy ft Sech, E.VAX": 1,
+        "21 Savage ft Young Thug, Metro Boomin": 1
     },
     "albumes": {
         "EL ÚLTIMO TOUR DEL MUNDO": 10,
         "105 Freestyle": 1,
         "Eternal Atake 2": 3,
         "Without Warning": 11,
-        "NOT ALL HEROES WEAR CAPES (Deluxe)": 5,
+        "NOT ALL HEROES WEAR CAPES (Deluxe)": 6,
         "Gangster Pain": 6,
         "EVOL": 6,
         "True Love": 3,
         "WE DON'T TRUST YOU": 10,
-        "VULTURES 2": 4,
+        "VULTURES 2": 6,
         "If You're Reading This It's Too Late": 1,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 2,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 3,
         "Goodbye & Good Riddance": 3,
         "Watch This (ARIZONATEARS Pluggnb Remix)": 1,
         "UTOPIA": 3,
-        "Pink Tape": 3,
+        "Pink Tape": 4,
         "Flower Boy": 2,
-        "Evil Genius": 2,
+        "Evil Genius": 4,
         "Chosen Few: New Generation": 1,
         "11:11": 1,
         "IGOR": 1,
-        "DATA": 1
+        "DATA": 1,
+        "american dream": 1
     },
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
-        "titulo": "120",
-        "artista": "Bad Bunny",
-        "album": "EL ÚLTIMO TOUR DEL MUNDO",
-        "timestamp": "2025-03-09T21:04:18.706497"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3",
+        "titulo": "Wake Up in the Sky",
+        "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
+        "album": "Evil Genius",
+        "timestamp": "2025-03-10T18:34:46.054642"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
@@ -118,13 +120,13 @@
             "album": "WE DON'T TRUST YOU"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Overdue (ft Travis Scott).mp3": {
-            "contador": 3,
+            "contador": 4,
             "titulo": "Overdue (ft Travis Scott)",
             "artista": "Metro Boomin ft Travis Scott",
             "album": "NOT ALL HEROES WEAR CAPES (Deluxe)"
         },
         "C:\\Users\\Victor\\Music\\pm\\530.mp3": {
-            "contador": 3,
+            "contador": 4,
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"
@@ -136,7 +138,7 @@
             "album": "If You're Reading This It's Too Late"
         },
         "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
@@ -160,7 +162,7 @@
             "album": "UTOPIA"
         },
         "C:\\Users\\Victor\\Music\\pm\\Just Wanna Rock.mp3": {
-            "contador": 3,
+            "contador": 4,
             "titulo": "Just Wanna Rock",
             "artista": "Lil Uzi Vert",
             "album": "Pink Tape"
@@ -172,7 +174,7 @@
             "album": "Flower Boy"
         },
         "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3": {
-            "contador": 2,
+            "contador": 4,
             "titulo": "Wake Up in the Sky",
             "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
             "album": "Evil Genius"
@@ -202,7 +204,7 @@
             "album": "IGOR"
         },
         "C:\\Users\\Victor\\Music\\pm\\ISABELLA.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "ISABELLA",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"
@@ -212,6 +214,12 @@
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\pop ur shit.mp3": {
+            "contador": 1,
+            "titulo": "pop ur shit",
+            "artista": "21 Savage ft Young Thug, Metro Boomin",
+            "album": "american dream"
         }
     }
 }

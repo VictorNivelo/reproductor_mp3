@@ -11,8 +11,10 @@ def rgb_a_hex(rgb: Tuple[int, int, int]) -> str:
 
 def hex_a_rgb(hex_color: str) -> Tuple[int, int, int]:
     hex_color = hex_color.lstrip("#")
-    return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
-
+    r = int(hex_color[0:2], 16)
+    g = int(hex_color[2:4], 16)
+    b = int(hex_color[4:6], 16)
+    return r, g, b
 
 def extraer_colores_dominantes(imagen_bytes: bytes, num_colores: int = 6) -> List[str]:
     try:
@@ -34,7 +36,7 @@ def extraer_colores_dominantes(imagen_bytes: bytes, num_colores: int = 6) -> Lis
         colores = kmeans.cluster_centers_
         # Convertir a enteros y luego a hex
         colores = colores.astype(int)
-        colores_hex = [rgb_a_hex(tuple(color)) for color in colores]
+        colores_hex = [rgb_a_hex((int(color[0]), int(color[1]), int(color[2]))) for color in colores]
         return colores_hex
     except Exception as e:
         print(f"Error al extraer los colores dominantes: {e}")

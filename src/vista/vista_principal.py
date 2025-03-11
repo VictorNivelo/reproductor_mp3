@@ -113,7 +113,7 @@ def cargar_todos_ajustes():
     configuracion = controlador_archivos.cargar_ajustes()
     # Aplicar valores a las variables globales
     TEMA_ACTUAL = configuracion.get("tema", "claro")
-    VOLUMEN = configuracion.get("volumen", 80)
+    VOLUMEN = configuracion.get("volumen", 100)
     ORDEN = configuracion.get("orden", False)
     REPETICION = configuracion.get("repeticion", 0)
     SILENCIADO = configuracion.get("silenciado", False)

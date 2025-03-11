@@ -1,8 +1,8 @@
 {
-    "tiempo_total": 16630.360816326516,
-    "canciones_escuchadas": 88,
+    "tiempo_total": 16781.897142857128,
+    "canciones_escuchadas": 89,
     "artistas": {
-        "Bad Bunny": 10,
+        "Bad Bunny": 11,
         "Young Miko ft Caleb Calloway": 1,
         "Lil Uzi Vert": 7,
         "Offset ft Metro Boomin": 11,
@@ -27,7 +27,7 @@
         "21 Savage ft Young Thug, Metro Boomin": 1
     },
     "albumes": {
-        "EL ÚLTIMO TOUR DEL MUNDO": 10,
+        "EL ÚLTIMO TOUR DEL MUNDO": 11,
         "105 Freestyle": 1,
         "Eternal Atake 2": 3,
         "Without Warning": 11,
@@ -52,15 +52,15 @@
         "american dream": 1
     },
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3",
-        "titulo": "Wake Up in the Sky",
-        "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
-        "album": "Evil Genius",
-        "timestamp": "2025-03-10T18:34:46.054642"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
+        "titulo": "120",
+        "artista": "Bad Bunny",
+        "album": "EL ÚLTIMO TOUR DEL MUNDO",
+        "timestamp": "2025-03-11T09:38:30.254877"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
-            "contador": 10,
+            "contador": 11,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"

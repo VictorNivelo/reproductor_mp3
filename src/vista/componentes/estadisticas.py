@@ -1,3 +1,4 @@
+from vista.componentes.utiles.utiles_componentes import cerrar_ventana_modal
 from vista.utiles.utiles_vista import establecer_icono_tema
 import customtkinter as ctk
 from utiles import Utiles
@@ -77,22 +78,4 @@ class Estadisticas(Utiles):
 
     # Metodo para cerrar la ventana de estadisticas
     def cerrar_ventana_estadistica(self):
-        # Eliminar componentes de la ventana de configuración
-        try:
-            # Eliminar referencias de los componentes en el controlador
-            for widget in self.componentes:
-                if widget in self.controlador.frames:
-                    self.controlador.frames.remove(widget)
-                if widget in self.controlador.etiquetas:
-                    self.controlador.etiquetas.remove(widget)
-                for nombre in list(self.controlador.botones.keys()):
-                    if self.controlador.botones[nombre] == widget:
-                        del self.controlador.botones[nombre]
-            # Limpiar lista de componentes
-            self.componentes.clear()
-            # Liberar el modo modal
-            self.ventana_estadisticas.grab_release()
-            # Destruir la ventana
-            self.ventana_estadisticas.destroy()
-        except Exception as e:
-            print(f"Error durante la limpieza: {e}")
+        cerrar_ventana_modal(self.ventana_estadisticas, self.componentes, self.controlador)

@@ -3,7 +3,6 @@ from vista.utiles.utiles_vista import establecer_icono_tema
 import customtkinter as ctk
 from utiles import Utiles
 from constantes import *
-import tkinter as tk
 
 
 class Configuracion(Utiles):
@@ -132,7 +131,8 @@ class Configuracion(Utiles):
                 self.ventana_configuracion.winfo_exists()
                 establecer_icono_tema(self.ventana_configuracion, self.controlador.tema_interfaz)
                 self.ventana_configuracion.deiconify()
-            except tk.TclError:
+            except Exception as e:
+                print(f"Error al mostrar la ventana de configuración: {e}")
                 # Sí hay error, recrear la ventana
                 self.ventana_configuracion = None
                 self.crear_ventana_configuracion()

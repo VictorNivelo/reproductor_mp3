@@ -3,7 +3,6 @@ from vista.utiles.utiles_vista import establecer_icono_tema
 import customtkinter as ctk
 from utiles import Utiles
 from constantes import *
-import tkinter as tk
 
 
 class Estadisticas(Utiles):
@@ -72,7 +71,8 @@ class Estadisticas(Utiles):
                 self.ventana_estadisticas.winfo_exists()
                 establecer_icono_tema(self.ventana_estadisticas, self.controlador.tema_interfaz)
                 self.ventana_estadisticas.deiconify()
-            except tk.TclError:
+            except Exception as e:
+                print(f"Error al mostrar la ventana de estadisticas: {e}")
                 self.ventana_estadisticas = None
                 self.crear_ventana_estadisticas()
 

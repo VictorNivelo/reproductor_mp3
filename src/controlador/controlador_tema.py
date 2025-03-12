@@ -1,7 +1,6 @@
 from vista.utiles.utiles_vista import cargar_iconos
 import customtkinter as ctk
 from utiles import Utiles
-import tkinter as tk
 
 
 class ControladorTema(Utiles):
@@ -134,7 +133,7 @@ class ControladorTema(Utiles):
                     )
                 else:
                     botones_a_eliminar.append(nombre)
-            except (Exception, tk.TclError) as e:
+            except Exception as e:
                 print(f"Error al configurar el botón {nombre}: {e}")
                 botones_a_eliminar.append(nombre)
         # Eliminar los botones que ya no existen
@@ -259,7 +258,8 @@ class ControladorTema(Utiles):
             try:
                 if not boton.winfo_exists():
                     botones_a_eliminar.append(nombre)
-            except (Exception, tk.TclError):
+            except Exception as e:
+                print(f"Error al verificar si el botón {nombre} existe: {e}")
                 botones_a_eliminar.append(nombre)
         for nombre in botones_a_eliminar:
             if nombre in self.botones:
@@ -291,5 +291,6 @@ class ControladorTema(Utiles):
             if widget is None:
                 return False
             return widget.winfo_exists()
-        except (Exception, tk.TclError):
+        except Exception as e:
+            print(f"Error al verificar si el widget existe: {e}")
             return False

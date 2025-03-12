@@ -293,7 +293,7 @@ def cambiar_visibilidad_vista():
     if PANEL_VISIBLE:
         # Mostrar el panel
         contenedor_derecha_principal.configure(width=ANCHO_PANEL_DERECHA)
-        contenedor_derecha_principal.pack(side=tk.LEFT, fill="both")
+        contenedor_derecha_principal.pack(side="left", fill="both")
         controlador_tema.registrar_botones("ocultar", boton_visibilidad)
         actualizar_tooltip(boton_visibilidad, "Ocultar lateral")
     else:
@@ -496,8 +496,8 @@ def actualizar_vista_canciones(panel_botones):
                 del controlador_tema.botones[nombre_boton]
             # Destruir el botón
             boton.destroy()
-        except tk.TclError:
-            print("Error: El botón de la canción no está disponible")
+        except Exception as e:
+            print(f"Error al destruir el botón {cancion.titulo_cancion}: {e}")
             pass
     botones_canciones.clear()
     # Crear nuevos botones para cada canción
@@ -1081,9 +1081,9 @@ def crear_barras_espectro():
     for barra in barras_espectro:
         try:
             canvas_espectro.delete(barra)
-        except tk.TclError:
+        except Exception as e:
             # Error cuando el widget del canvas ha sido destruido o no está disponible
-            print("Error: El canvas del espectro no está disponible")
+            print(f"Error al eliminar la barra del espectro: {e}")
             return
     barras_espectro.clear()
     # Obtener dimensiones del canvas
@@ -1125,9 +1125,9 @@ def actualizar_espectro():
                 canvas_espectro.coords(
                     barras_espectro[i], x1, alto_canvas, x2, alto_canvas - alturas_barras[i]
                 )
-            except tk.TclError:
+            except Exception as e:
                 # Error cuando el widget del canvas ha sido destruido o no está disponible
-                print("Error: El canvas del espectro no está disponible")
+                print(f"Error al actualizar la barra del espectro: {e}")
                 return
             except IndexError:
                 # Error cuando se intenta acceder a una barra que no existe
@@ -1235,7 +1235,7 @@ controlador_tema.registrar_frame(conenedor_principal, es_principal=True)
 contenedor_izquierda = ctk.CTkFrame(
     conenedor_principal, fg_color=FONDO_CLARO, corner_radius=BORDES_REDONDEADOS_PANEL
 )
-contenedor_izquierda.pack(side=tk.LEFT, fill="both", expand=True)
+contenedor_izquierda.pack(side="left", fill="both", expand=True)
 controlador_tema.registrar_frame(contenedor_izquierda, es_ctk=True)
 
 # ------------------------------- Seccion de controles superiores --------------------------------
@@ -1414,7 +1414,7 @@ boton_me_gusta = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=cambiar_me_gusta_vista,
 )
-boton_me_gusta.pack(side=tk.LEFT, padx=(5, 0))
+boton_me_gusta.pack(side="left", padx=(5, 0))
 controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
 crear_tooltip(boton_me_gusta, "Agregar a Me Gusta")
 
@@ -1430,7 +1430,7 @@ boton_favorito = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=cambiar_favorito_vista,
 )
-boton_favorito.pack(side=tk.LEFT, padx=(5, 0))
+boton_favorito.pack(side="left", padx=(5, 0))
 controlador_tema.registrar_botones("favorito", boton_favorito)
 crear_tooltip(boton_favorito, "Agregar a Favoritos")
 
@@ -1492,7 +1492,7 @@ etiqueta_tiempo_actual = ctk.CTkLabel(
     text_color=TEXTO_CLARO,
     text="00:00",
 )
-etiqueta_tiempo_actual.pack(side=tk.LEFT)
+etiqueta_tiempo_actual.pack(side="left")
 controlador_tema.registrar_etiqueta(etiqueta_tiempo_actual)
 
 # Etiqueta de tiempo total
@@ -1532,7 +1532,7 @@ boton_aleatorio = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=cambiar_orden_vista,
 )
-boton_aleatorio.pack(side=tk.LEFT, padx=5)
+boton_aleatorio.pack(side="left", padx=5)
 controlador_tema.registrar_botones("aleatorio", boton_aleatorio)
 crear_tooltip(boton_aleatorio, "Reproducción aleatoria")
 
@@ -1548,7 +1548,7 @@ boton_repetir = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=cambiar_repeticion_vista,
 )
-boton_repetir.pack(side=tk.LEFT, padx=5)
+boton_repetir.pack(side="left", padx=5)
 controlador_tema.registrar_botones("no_repetir", boton_repetir)
 crear_tooltip(boton_repetir, "No repetir")
 
@@ -1564,7 +1564,7 @@ boton_retroceder = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=retroceder_reproduccion_vista,
 )
-boton_retroceder.pack(side=tk.LEFT, padx=5)
+boton_retroceder.pack(side="left", padx=5)
 controlador_tema.registrar_botones("retroceder", boton_retroceder)
 crear_tooltip(boton_retroceder, "Retrocede 10 segundos")
 
@@ -1580,7 +1580,7 @@ boton_anterior = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=reproducir_anterior_vista,
 )
-boton_anterior.pack(side=tk.LEFT, padx=5)
+boton_anterior.pack(side="left", padx=5)
 controlador_tema.registrar_botones("anterior", boton_anterior)
 crear_tooltip(boton_anterior, "Reproucir anterior")
 
@@ -1596,7 +1596,7 @@ boton_reproducir = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=reproducir_vista,
 )
-boton_reproducir.pack(side=tk.LEFT, padx=5)
+boton_reproducir.pack(side="left", padx=5)
 controlador_tema.registrar_botones("reproducir", boton_reproducir)
 crear_tooltip(boton_reproducir, "Reproducir")
 
@@ -1612,7 +1612,7 @@ boton_siguiente = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=reproducir_siguiente_vista,
 )
-boton_siguiente.pack(side=tk.LEFT, padx=5)
+boton_siguiente.pack(side="left", padx=5)
 controlador_tema.registrar_botones("siguiente", boton_siguiente)
 crear_tooltip(boton_siguiente, "Reproducir siguiente")
 
@@ -1628,7 +1628,7 @@ boton_adelantar = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=adelantar_reproduccion_vista,
 )
-boton_adelantar.pack(side=tk.LEFT, padx=5)
+boton_adelantar.pack(side="left", padx=5)
 controlador_tema.registrar_botones("adelantar", boton_adelantar)
 crear_tooltip(boton_adelantar, "Adelanta 10 segundos")
 
@@ -1643,7 +1643,7 @@ boton_mostrar_cola = ctk.CTkButton(
     text="",
     hover_color=HOVER_CLARO,
 )
-boton_mostrar_cola.pack(side=tk.LEFT, padx=5)
+boton_mostrar_cola.pack(side="left", padx=5)
 controlador_tema.registrar_botones("mostrar_cola", boton_mostrar_cola)
 crear_tooltip(boton_mostrar_cola, "Mostrar la cola")
 
@@ -1658,7 +1658,7 @@ boton_agregar_cola = ctk.CTkButton(
     text="",
     hover_color=HOVER_CLARO,
 )
-boton_agregar_cola.pack(side=tk.LEFT, padx=5)
+boton_agregar_cola.pack(side="left", padx=5)
 controlador_tema.registrar_botones("agregar_cola", boton_agregar_cola)
 crear_tooltip(boton_agregar_cola, "Agregar a la cola")
 
@@ -1674,7 +1674,7 @@ boton_minimizar = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=abrir_minireproductor,
 )
-boton_minimizar.pack(side=tk.LEFT, padx=5)
+boton_minimizar.pack(side="left", padx=5)
 controlador_tema.registrar_botones("minimizar", boton_minimizar)
 crear_tooltip(boton_minimizar, "Minimizar")
 
@@ -1702,13 +1702,13 @@ boton_silenciar = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=cambiar_silencio_vista,
 )
-boton_silenciar.pack(side=tk.LEFT)
+boton_silenciar.pack(side="left")
 controlador_tema.registrar_botones("silencio", boton_silenciar)
 crear_tooltip(boton_silenciar, "Silenciar")
 
 # Panel de elementos de volumen
 panel_elementos_volumen = ctk.CTkFrame(panel_volumen, fg_color="transparent")
-panel_elementos_volumen.pack(side=tk.LEFT, fill="x", expand=True)
+panel_elementos_volumen.pack(side="left", fill="x", expand=True)
 
 # Barra de volumen
 barra_volumen = ctk.CTkSlider(panel_elementos_volumen)
@@ -1723,7 +1723,7 @@ barra_volumen.configure(
     command=cambiar_volumen_vista,
 )
 barra_volumen.set(VOLUMEN)
-barra_volumen.pack(side=tk.LEFT, fill="x", expand=True, padx=(0, 5))
+barra_volumen.pack(side="left", fill="x", expand=True, padx=(0, 5))
 controlador_tema.registrar_slider(barra_volumen)
 
 # Etiqueta de porcentaje de volumen
@@ -1750,7 +1750,7 @@ contenedor_derecha_principal = ctk.CTkFrame(
     fg_color=FONDO_CLARO,
     corner_radius=BORDES_REDONDEADOS_PANEL,
 )
-contenedor_derecha_principal.pack(side=tk.LEFT, fill="both", padx=(5, 0))
+contenedor_derecha_principal.pack(side="left", fill="both", padx=(5, 0))
 contenedor_derecha_principal.pack_propagate(False)
 controlador_tema.registrar_frame(contenedor_derecha_principal, es_ctk=True)
 
@@ -1759,7 +1759,7 @@ contenedor_derecha = ctk.CTkFrame(
     contenedor_derecha_principal,
     fg_color="transparent",
 )
-contenedor_derecha.pack(side=tk.LEFT, fill="both", expand=True, padx=3, pady=3)
+contenedor_derecha.pack(side="left", fill="both", expand=True, padx=3, pady=3)
 
 # ------------------------------ Seccion de busqueda y ordenamiento -----------------------------
 # Contenedor de busqueda y ordenamiento
@@ -1781,7 +1781,7 @@ entrada_busqueda = ctk.CTkEntry(
     placeholder_text_color=TEXTO_CLARO,
     text_color=TEXTO_CLARO,
 )
-entrada_busqueda.pack(side=tk.LEFT, fill="x", expand=True)
+entrada_busqueda.pack(side="left", fill="x", expand=True)
 controlador_tema.registrar_entrada(entrada_busqueda)
 
 # Vincular el evento de liberación de tecla con la función de búsqueda
@@ -1807,7 +1807,7 @@ combo_ordenamiento = ctk.CTkComboBox(
     state="readonly",
 )
 combo_ordenamiento.set("Elija una opcion")
-combo_ordenamiento.pack(side=tk.LEFT, padx=(5, 0))
+combo_ordenamiento.pack(side="left", padx=(5, 0))
 controlador_tema.registrar_combobox(combo_ordenamiento)
 
 # -----------------------------------------------------------------------------------------------
@@ -1888,7 +1888,7 @@ boton_agregar_cancion = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=agregar_cancion_vista,
 )
-boton_agregar_cancion.pack(side=tk.LEFT, padx=(0, 5))
+boton_agregar_cancion.pack(side="left", padx=(0, 5))
 controlador_tema.registrar_botones("agregar_cancion", boton_agregar_cancion)
 crear_tooltip(boton_agregar_cancion, "Agregar canción")
 
@@ -1904,7 +1904,7 @@ boton_agregar_directorio = ctk.CTkButton(
     hover_color=HOVER_CLARO,
     command=agregar_directorio_vista,
 )
-boton_agregar_directorio.pack(side=tk.LEFT, padx=(0, 5))
+boton_agregar_directorio.pack(side="left", padx=(0, 5))
 controlador_tema.registrar_botones("agregar_carpeta", boton_agregar_directorio)
 crear_tooltip(boton_agregar_directorio, "Agregar carpeta")
 

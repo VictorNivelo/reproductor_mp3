@@ -2,7 +2,6 @@ from vista.utiles.utiles_vista import establecer_icono_tema
 import customtkinter as ctk
 from utiles import Utiles
 from constantes import *
-import tkinter as tk
 
 
 class MiniReproductor(Utiles):
@@ -281,7 +280,8 @@ class MiniReproductor(Utiles):
                 existe = self.ventana_principal_mini_reproductor.winfo_exists()
                 if not existe:
                     ventana_destruida = True
-            except tk.TclError:
+            except Exception as e:
+                print(f"Error al verificar si la ventana del mini reproductor existe: {e}")
                 ventana_destruida = True
         # Crear o recrear la ventana si es necesario
         if self.ventana_principal_mini_reproductor is None or ventana_destruida:
@@ -295,7 +295,8 @@ class MiniReproductor(Utiles):
                 self.colores()
                 establecer_icono_tema(self.ventana_principal_mini_reproductor, self.controlador.tema_interfaz)
                 self.actualizar_colores()
-            except tk.TclError:
+            except Exception as e:
+                print(f"Error al mostrar la ventana del mini reproductor: {e}")
                 # Si hay un error al actualizar, recrear la ventana
                 self.ventana_principal_mini_reproductor = None
                 self.crear_ventana_mini_reproductor()
@@ -307,7 +308,7 @@ class MiniReproductor(Utiles):
             ):
                 self.ventana_principal_mini_reproductor.deiconify()
                 self.ventana_principal.withdraw()
-        except tk.TclError as e:
+        except Exception as e:
             print(f"Error al mostrar el mini reproductor: {e}")
 
     # Metodo para ocultar la ventana del mini reproductor
@@ -316,7 +317,8 @@ class MiniReproductor(Utiles):
             try:
                 if self.ventana_principal_mini_reproductor.winfo_exists():
                     self.ventana_principal_mini_reproductor.withdraw()
-            except tk.TclError:
+            except Exception as e:
+                print(f"Error al ocultar el mini reproductor: {e}")
                 pass
             self.ventana_principal.deiconify()
 
@@ -341,5 +343,5 @@ class MiniReproductor(Utiles):
                     )
                 elif isinstance(widget, ctk.CTkProgressBar):
                     widget.configure(progress_color=self.color_progreso, fg_color=self.color_fondo)
-            except tk.TclError:
-                print("Error al actualizar colores del mini reproductor")
+            except Exception as e:
+                print(f"Error al actualizar los colores del mini reproductor: {e}")

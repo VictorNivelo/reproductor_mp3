@@ -66,13 +66,13 @@ class ControladorBotones:
             actualizar_tooltip(self.boton_repetir, "Repetir todo")
         return REPETICION
 
-    def cambiar_visibilidad(self, tk):
+    def cambiar_visibilidad(self):
         global PANEL_VISIBLE
         PANEL_VISIBLE = not PANEL_VISIBLE
         if PANEL_VISIBLE:
             # Mostrar el panel
             self.contenedor_derecha.configure(width=ANCHO_PANEL_DERECHA)
-            self.contenedor_derecha.pack(side=tk.LEFT, fill="both", padx=(5, 0))
+            self.contenedor_derecha.pack(side="left", fill="both", padx=(5, 0))
             self.controlador.registrar_botones("ocultar", self.boton_visibilidad)
             actualizar_tooltip(self.boton_visibilidad, "Ocultar lateral")
         else:

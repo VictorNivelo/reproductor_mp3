@@ -53,7 +53,7 @@ etiqueta.pack()
 # contenedor izquierda
 contenedor_izquierda_prototipo = tk.Frame(conenedor_principal_prototipo)
 contenedor_izquierda_prototipo.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
-contenedor_izquierda_prototipo.pack(side=tk.LEFT, fill="both", expand=True)
+contenedor_izquierda_prototipo.pack(side="left", fill="both", expand=True)
 
 # etiqueta izquierda
 etiqueta_izquierda_prototipo = tk.Label(
@@ -178,7 +178,7 @@ etiqueta_volumen_prototipo.pack(expand=True)
 # contenedor de panel derecha
 contenedor_derecha_prototipo = tk.Frame(conenedor_principal_prototipo)
 contenedor_derecha_prototipo.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro, width=425)
-contenedor_derecha_prototipo.pack(side=tk.LEFT, fill="both", padx=(10, 0))
+contenedor_derecha_prototipo.pack(side="left", fill="both", padx=(10, 0))
 contenedor_derecha_prototipo.pack_propagate(False)
 
 # etiqueta de panel derecha

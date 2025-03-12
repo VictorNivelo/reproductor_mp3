@@ -1,6 +1,6 @@
 {
-    "tiempo_total": 16781.897142857128,
-    "canciones_escuchadas": 89,
+    "tiempo_total": 17156.466938775495,
+    "canciones_escuchadas": 91,
     "artistas": {
         "Bad Bunny": 11,
         "Young Miko ft Caleb Calloway": 1,
@@ -19,10 +19,10 @@
         "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 1,
         "Travis Scott ft SZA, Future": 3,
         "Tyler, The Creator": 3,
-        "Gucci Mane ft Bruno Mars, Kodak Black": 4,
+        "Gucci Mane ft Bruno Mars, Kodak Black": 5,
         "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN": 1,
         "Maluma": 1,
-        "Future  ft Metro Boomin, Travis Scott": 1,
+        "Future  ft Metro Boomin, Travis Scott": 2,
         "Tainy ft Sech, E.VAX": 1,
         "21 Savage ft Young Thug, Metro Boomin": 1
     },
@@ -35,7 +35,7 @@
         "Gangster Pain": 6,
         "EVOL": 6,
         "True Love": 3,
-        "WE DON'T TRUST YOU": 10,
+        "WE DON'T TRUST YOU": 11,
         "VULTURES 2": 6,
         "If You're Reading This It's Too Late": 1,
         "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 3,
@@ -44,7 +44,7 @@
         "UTOPIA": 3,
         "Pink Tape": 4,
         "Flower Boy": 2,
-        "Evil Genius": 4,
+        "Evil Genius": 5,
         "Chosen Few: New Generation": 1,
         "11:11": 1,
         "IGOR": 1,
@@ -52,11 +52,11 @@
         "american dream": 1
     },
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
-        "titulo": "120",
-        "artista": "Bad Bunny",
-        "album": "EL ÚLTIMO TOUR DEL MUNDO",
-        "timestamp": "2025-03-11T09:38:30.254877"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3",
+        "titulo": "Wake Up in the Sky",
+        "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
+        "album": "Evil Genius",
+        "timestamp": "2025-03-11T21:07:00.928937"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
@@ -174,7 +174,7 @@
             "album": "Flower Boy"
         },
         "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3": {
-            "contador": 4,
+            "contador": 5,
             "titulo": "Wake Up in the Sky",
             "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
             "album": "Evil Genius"
@@ -192,7 +192,7 @@
             "album": "11:11"
         },
         "C:\\Users\\Victor\\Music\\pm\\Cinderella.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "Cinderella",
             "artista": "Future  ft Metro Boomin, Travis Scott",
             "album": "WE DON'T TRUST YOU"

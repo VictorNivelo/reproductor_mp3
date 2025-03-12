@@ -286,7 +286,8 @@ class ControladorTema(Utiles):
         self.canvas = [canvas_info for canvas_info in self.canvas if self.widget_existe(canvas_info[0])]
 
     # Método auxiliar para verificar si un widget existe
-    def widget_existe(self, widget):
+    @staticmethod
+    def widget_existe(widget):
         try:
             if widget is None:
                 return False

@@ -83,7 +83,7 @@ class ControladorBotones:
             actualizar_tooltip(self.boton_visibilidad, "Mostrar lateral")
         return PANEL_VISIBLE
 
-    def cambiar_volumen(self, event=None):
+    def cambiar_volumen(self, _event=None):
         global VOLUMEN, SILENCIADO
         if not SILENCIADO:
             nuevo_volumen = int(self.barra_volumen.get())

@@ -1,20 +1,20 @@
 {
-    "tiempo_total": 17156.466938775495,
-    "canciones_escuchadas": 91,
+    "tiempo_total": 17835.546122448966,
+    "canciones_escuchadas": 96,
     "artistas": {
-        "Bad Bunny": 11,
+        "Bad Bunny": 12,
         "Young Miko ft Caleb Calloway": 1,
         "Lil Uzi Vert": 7,
         "Offset ft Metro Boomin": 11,
         "Metro Boomin ft 21 Savage": 2,
-        "The Notorious B.I.G.": 6,
+        "The Notorious B.I.G.": 7,
         "Future ft The Weeknd": 6,
         "Kanye West ft XXXTENTACION": 3,
-        "Future ft Metro Boomin, Travis Scott, Playboi Carti": 9,
+        "Future ft Metro Boomin, Travis Scott, Playboi Carti": 10,
         "Metro Boomin ft Travis Scott": 4,
-        "¥$ ft Kanye West, Ty Dolla $ign": 6,
+        "¥$ ft Kanye West, Ty Dolla $ign": 7,
         "Drake": 1,
-        "Metro Boomin ft Coi Leray": 3,
+        "Metro Boomin ft Coi Leray": 4,
         "Juice WRLD ft Lil Uzi Vert": 3,
         "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 1,
         "Travis Scott ft SZA, Future": 3,
@@ -32,13 +32,13 @@
         "Eternal Atake 2": 3,
         "Without Warning": 11,
         "NOT ALL HEROES WEAR CAPES (Deluxe)": 6,
-        "Gangster Pain": 6,
+        "Gangster Pain": 7,
         "EVOL": 6,
         "True Love": 3,
-        "WE DON'T TRUST YOU": 11,
-        "VULTURES 2": 6,
+        "WE DON'T TRUST YOU": 12,
+        "VULTURES 2": 7,
         "If You're Reading This It's Too Late": 1,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 3,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 4,
         "Goodbye & Good Riddance": 3,
         "Watch This (ARIZONATEARS Pluggnb Remix)": 1,
         "UTOPIA": 3,
@@ -49,14 +49,15 @@
         "11:11": 1,
         "IGOR": 1,
         "DATA": 1,
-        "american dream": 1
+        "american dream": 1,
+        "nadie sabe lo que va a pasar mañana": 1
     },
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3",
-        "titulo": "Wake Up in the Sky",
-        "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
-        "album": "Evil Genius",
-        "timestamp": "2025-03-11T21:07:00.928937"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Type Shit.mp3",
+        "titulo": "Type Shit",
+        "artista": "Future ft Metro Boomin, Travis Scott, Playboi Carti",
+        "album": "WE DON'T TRUST YOU",
+        "timestamp": "2025-03-11T21:15:29.121346"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
@@ -90,7 +91,7 @@
             "album": "NOT ALL HEROES WEAR CAPES (Deluxe)"
         },
         "C:\\Users\\Victor\\Music\\pm\\Gangster Pain.mp3": {
-            "contador": 5,
+            "contador": 6,
             "titulo": "Gangster Pain",
             "artista": "The Notorious B.I.G.",
             "album": "Gangster Pain"
@@ -114,7 +115,7 @@
             "album": "Gangster Pain"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Type Shit.mp3": {
-            "contador": 9,
+            "contador": 10,
             "titulo": "Type Shit",
             "artista": "Future ft Metro Boomin, Travis Scott, Playboi Carti",
             "album": "WE DON'T TRUST YOU"
@@ -138,7 +139,7 @@
             "album": "If You're Reading This It's Too Late"
         },
         "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3": {
-            "contador": 3,
+            "contador": 4,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
@@ -204,7 +205,7 @@
             "album": "IGOR"
         },
         "C:\\Users\\Victor\\Music\\pm\\ISABELLA.mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "ISABELLA",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"
@@ -220,6 +221,12 @@
             "titulo": "pop ur shit",
             "artista": "21 Savage ft Young Thug, Metro Boomin",
             "album": "american dream"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\VOU 787.mp3": {
+            "contador": 1,
+            "titulo": "VOU 787",
+            "artista": "Bad Bunny",
+            "album": "nadie sabe lo que va a pasar mañana"
         }
     }
 }

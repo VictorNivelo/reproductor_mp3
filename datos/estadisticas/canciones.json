@@ -1,8 +1,8 @@
 {
     "estadisticas": {
-        "total_canciones": 26,
+        "total_canciones": 27,
         "total_artistas": 39,
-        "total_albumes": 23,
+        "total_albumes": 24,
         "me_gusta": 3,
         "favorito": 5
     },
@@ -328,6 +328,20 @@
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\VOU 787.mp3",
+            "titulo": "VOU 787",
+            "artista": "Bad Bunny",
+            "artista_album": "Bad Bunny",
+            "album": "nadie sabe lo que va a pasar mañana",
+            "duracion": 123.68979591836735,
+            "duracion_formateada": "02:03",
+            "anio": "2023-10-13",
+            "numero_pista": "7/22",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3",

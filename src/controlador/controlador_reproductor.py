@@ -203,7 +203,7 @@ class ControladorReproductor:
             self.actualizar_tiempo()
 
     # Método que detiene la reproducción de la canción
-    def detener_reproduccion(self) -> None:
+    def detener_reproduccion(self) -> bool:
         if self.timer_id:
             self.etiqueta_tiempo_actual.after_cancel(self.timer_id)
             self.timer_id = None

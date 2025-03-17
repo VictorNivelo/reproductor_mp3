@@ -5,10 +5,12 @@ from PIL import Image
 import numpy as np
 
 
+# Metodo para convertir un color RGB a hexadecimal
 def rgb_a_hex(rgb: Tuple[int, int, int]) -> str:
     return "#{:02x}{:02x}{:02x}".format(rgb[0], rgb[1], rgb[2])
 
 
+# Metodo para convertir un color hexadecimal a RGB
 def hex_a_rgb(hex_color: str) -> Tuple[int, int, int]:
     hex_color = hex_color.lstrip("#")
     r = int(hex_color[0:2], 16)
@@ -16,6 +18,8 @@ def hex_a_rgb(hex_color: str) -> Tuple[int, int, int]:
     b = int(hex_color[4:6], 16)
     return r, g, b
 
+
+# Metodo para extraer los colores dominantes de una imagen
 def extraer_colores_dominantes(imagen_bytes: bytes, num_colores: int = 6) -> List[str]:
     try:
         # Cargar imagen desde bytes
@@ -43,11 +47,13 @@ def extraer_colores_dominantes(imagen_bytes: bytes, num_colores: int = 6) -> Lis
         return ["#ffffff", "#000000", "#cccccc", "#333333", "#666666", "#999999"]
 
 
+# Metodo para calcular el brillo de un color
 def calcular_brillo(color_hex: str) -> float:
     r, g, b = hex_a_rgb(color_hex)
     return (r * 299 + g * 587 + b * 114) / 1000
 
 
+# Metodo para calcular la saturación de un color
 def calcular_saturacion(color_hex: str) -> float:
     r, g, b = hex_a_rgb(color_hex)
     r, g, b = r / 255.0, g / 255.0, b / 255.0
@@ -58,14 +64,17 @@ def calcular_saturacion(color_hex: str) -> float:
     return (max_val - min_val) / max_val
 
 
+# Metodo para ordenar colores por brillo
 def ordenar_colores_por_brillo(colores_hex: List[str]) -> List[str]:
     return sorted(colores_hex, key=calcular_brillo)
 
 
+# Metodo para ordenar colores por saturación
 def ordenar_colores_por_saturacion(colores_hex: List[str]) -> List[str]:
     return sorted(colores_hex, key=calcular_saturacion)
 
 
+# Metodo para crear una paleta de colores a partir de una lista de colores
 def crear_paleta_tema(colores_hex: List[str]) -> Dict[str, str]:
     if not colores_hex or len(colores_hex) < 4:
         # Colores por defecto si no hay suficientes
@@ -101,10 +110,10 @@ def crear_paleta_tema(colores_hex: List[str]) -> Dict[str, str]:
         "color_borde": colores_por_brillo[2],  # Color para bordes
         "barra_progreso": colores_por_brillo[1],  # Color para barra de progreso
     }
-
     return colores_tema
 
 
+# Metodo para ajustar el contraste de una paleta de colores
 def ajustar_contraste_paleta(paleta: Dict[str, str]) -> Dict[str, str]:
     paleta_ajustada = paleta.copy()
     # Calcular brillo del texto
@@ -121,6 +130,7 @@ def ajustar_contraste_paleta(paleta: Dict[str, str]) -> Dict[str, str]:
     return paleta_ajustada
 
 
+# Metodo para crear la paleta de colores desde la caratula
 def crear_paleta_desde_caratula(caratula_bytes: bytes) -> Dict[str, str]:
     try:
         if not caratula_bytes:
@@ -135,27 +145,3 @@ def crear_paleta_desde_caratula(caratula_bytes: bytes) -> Dict[str, str]:
     except Exception as e:
         print(f"Error al crear paleta desde carátula: {e}")
         return {}
-
-
-def aplicar_paleta_a_tema(controlador_tema, paleta: Dict[str, str]) -> bool:
-    try:
-        if not paleta:
-            return False
-        # Aplicar cada color de la paleta al controlador
-        for clave, valor in paleta.items():
-            if hasattr(controlador_tema, clave):
-                setattr(controlador_tema, clave, valor)
-        # Actualizar la interfaz con los nuevos colores
-        controlador_tema.actualizar_colores_frames()
-        controlador_tema.actualizar_colores_etiquetas()
-        controlador_tema.actualizar_colores_entradas()
-        controlador_tema.actualizar_colores_comboboxes()
-        controlador_tema.actualizar_colores_botones()
-        controlador_tema.actualizar_colores_sliders()
-        controlador_tema.actualizar_colores_progress_bars()
-        controlador_tema.actualizar_colores_tabviews()
-        controlador_tema.actualizar_colores_canvas()
-        return True
-    except Exception as e:
-        print(f"Error al aplicar paleta al tema: {e}")
-        return False

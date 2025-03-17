@@ -1,5 +1,6 @@
 from modelo.cancion import Cancion
 import customtkinter as ctk
+from constantes import *
 from io import BytesIO
 from PIL import Image
 import pygame
@@ -285,8 +286,8 @@ class ControladorReproductor:
         self.reproducir_cancion(cancion)
         return True
 
-    # Método para adelantar la reproducción en segundos
-    def adelantar_reproduccion(self, segundos=10):
+    # Método auxiliar para cambiar la posición de reproducción
+    def cambiar_posicion_reproduccion(self, tiempo_segundos):
         if self.reproduciendo and self.cancion_actual:
             # Obtener la posición actual
             if self.tiempo_inicio is not None:
@@ -294,7 +295,7 @@ class ControladorReproductor:
             else:
                 tiempo_actual = self.tiempo_acumulado
             # Calcular nueva posición
-            nuevo_tiempo = min(tiempo_actual + segundos, self.cancion_actual.duracion)
+            nuevo_tiempo = max(0, min(tiempo_actual + tiempo_segundos, self.cancion_actual.duracion))
             # Detener reproducción actual
             pygame.mixer.music.stop()
             # Cargar y reproducir desde la nueva posición
@@ -308,28 +309,17 @@ class ControladorReproductor:
                 progreso = nuevo_tiempo / self.cancion_actual.duracion
                 self.barra_progreso.set(progreso)
 
+    # Método para adelantar la reproducción en segundos
+    def adelantar_reproduccion(self, segundos=None):
+        if segundos is None:
+            segundos = TIEMPO_AJUSTE
+        self.cambiar_posicion_reproduccion(segundos)
+
     # Método para retroceder la reproducción en segundos
-    def retroceder_reproduccion(self, segundos=10):
-        if self.reproduciendo and self.cancion_actual:
-            # Obtener la posición actual
-            if self.tiempo_inicio is not None:
-                tiempo_actual = self.tiempo_acumulado + (time.perf_counter() - self.tiempo_inicio)
-            else:
-                tiempo_actual = self.tiempo_acumulado
-            # Calcular nueva posición
-            nuevo_tiempo = max(0, tiempo_actual - segundos)
-            # Detener reproducción actual
-            pygame.mixer.music.stop()
-            # Cargar y reproducir desde la nueva posición
-            pygame.mixer.music.load(str(self.cancion_actual.ruta_cancion))
-            pygame.mixer.music.play(start=nuevo_tiempo)
-            # Actualizar tiempo acumulado
-            self.tiempo_acumulado = nuevo_tiempo
-            self.tiempo_inicio = time.perf_counter()
-            # Actualizar interfaz
-            if self.barra_progreso:
-                progreso = nuevo_tiempo / self.cancion_actual.duracion
-                self.barra_progreso.set(progreso)
+    def retroceder_reproduccion(self, segundos=None):
+        if segundos is None:
+            segundos = TIEMPO_AJUSTE
+        self.cambiar_posicion_reproduccion(-segundos)
 
     # Método que ajusta el volumen de la canción
     @staticmethod

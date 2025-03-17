@@ -11,4 +11,13 @@
     <orderEntry type="jdk" jdkName="Python 3.13 virtualenv at C:\Users\Victor\Documents\Proyectos\reproductor_mp3\venv" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="PyNamespacePackagesService">
+    <option name="namespacePackageFolders">
+      <list>
+        <option value="$MODULE_DIR$/src/controlador" />
+        <option value="$MODULE_DIR$/src/modelo" />
+        <option value="$MODULE_DIR$/src/vista" />
+      </list>
+    </option>
+  </component>
 </module>

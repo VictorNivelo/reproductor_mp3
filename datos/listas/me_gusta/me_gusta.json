@@ -41,6 +41,20 @@
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\VOU 787.mp3",
+            "titulo": "VOU 787",
+            "artista": "Bad Bunny",
+            "artista_album": "Bad Bunny",
+            "album": "nadie sabe lo que va a pasar mañana",
+            "duracion": 123.68979591836735,
+            "duracion_formateada": "02:03",
+            "anio": "2023-10-13",
+            "numero_pista": "7/22",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
         }
     ]
 }

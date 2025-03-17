@@ -113,6 +113,9 @@ VOLUMEN = 100
 ME_GUSTA = False
 FAVORITO = False
 
+# Tiempo de retoceso y avance
+TIEMPO_AJUSTE = 10
+
 # Estado de la barra de progreso
 ARRASTRANDO_PROGRESO = False
 DURACION_TOTAL = 0

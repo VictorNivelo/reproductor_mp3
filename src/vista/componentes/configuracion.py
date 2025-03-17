@@ -1,5 +1,5 @@
-from vista.componentes.utiles.utiles_componentes import cerrar_ventana_modal
-from vista.utiles.utiles_vista import establecer_icono_tema
+from vista.componentes.utiles.utiles_componentes import *
+from vista.utiles.utiles_vista import *
 import customtkinter as ctk
 from utiles import Utiles
 from constantes import *
@@ -31,36 +31,17 @@ class Configuracion(Utiles):
         # Crear el panel principal de la ventana de configuración
         self.ventana_configuracion = ctk.CTkToplevel(self.ventana_principal)
 
-        # Establecer el título de la ventana de configuración
-        self.ventana_configuracion.title("Configuración")
-
-        # Establecer el tamaño de la ventana de configuración
-        posicion_ancho = (
-            self.ventana_principal.winfo_x()
-            + (self.ventana_principal.winfo_width() - ANCHO_CONFIGURACION) // 2
+        # Configurar la ventana de configuración
+        configurar_ventana_modal(
+            ventana_principal=self.ventana_principal,
+            ventana_modal=self.ventana_configuracion,
+            ancho=ANCHO_CONFIGURACION,
+            alto=ALTO_CONFIGURACION,
+            titulo="Configuración",
+            color_fondo=self.color_fondo,
+            funcion_cierre=self.cerrar_ventana_configuracion,
+            controlador=self.controlador,
         )
-        posicion_alto = (
-            self.ventana_principal.winfo_y()
-            + (self.ventana_principal.winfo_height() - ALTO_CONFIGURACION) // 2
-        )
-
-        # Tamaño de la ventana de configuración
-        tamanio_configuracion = f"{ANCHO_CONFIGURACION}x{ALTO_CONFIGURACION}+{posicion_ancho}+{posicion_alto}"
-
-        # Establecer la geometría de la ventana de configuración
-        self.ventana_configuracion.geometry(tamanio_configuracion)
-
-        # Establecer el color de fondo de la ventana de configuración
-        self.ventana_configuracion.configure(bg=self.color_fondo)
-
-        # Configuración de la ventana como un modal
-        self.ventana_configuracion.grab_set()
-
-        # Evento para cerrar la ventana de configuración
-        self.ventana_configuracion.protocol("WM_DELETE_WINDOW", self.cerrar_ventana_configuracion)
-
-        # icono de la ventana
-        establecer_icono_tema(self.ventana_configuracion, self.controlador.tema_interfaz)
         # ===========================================================================================
 
         # ======================= Panel principal de la ventana de configuración ===================

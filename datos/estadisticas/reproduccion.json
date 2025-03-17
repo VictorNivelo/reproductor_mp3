@@ -1,63 +1,65 @@
 {
-    "tiempo_total": 17835.546122448966,
-    "canciones_escuchadas": 96,
+    "tiempo_total": 19713.22775510203,
+    "canciones_escuchadas": 109,
     "artistas": {
-        "Bad Bunny": 12,
+        "Bad Bunny": 13,
         "Young Miko ft Caleb Calloway": 1,
-        "Lil Uzi Vert": 7,
-        "Offset ft Metro Boomin": 11,
+        "Lil Uzi Vert": 9,
+        "Offset ft Metro Boomin": 12,
         "Metro Boomin ft 21 Savage": 2,
         "The Notorious B.I.G.": 7,
         "Future ft The Weeknd": 6,
         "Kanye West ft XXXTENTACION": 3,
         "Future ft Metro Boomin, Travis Scott, Playboi Carti": 10,
-        "Metro Boomin ft Travis Scott": 4,
-        "¥$ ft Kanye West, Ty Dolla $ign": 7,
+        "Metro Boomin ft Travis Scott": 5,
+        "¥$ ft Kanye West, Ty Dolla $ign": 10,
         "Drake": 1,
-        "Metro Boomin ft Coi Leray": 4,
+        "Metro Boomin ft Coi Leray": 6,
         "Juice WRLD ft Lil Uzi Vert": 3,
         "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 1,
         "Travis Scott ft SZA, Future": 3,
-        "Tyler, The Creator": 3,
+        "Tyler, The Creator": 4,
         "Gucci Mane ft Bruno Mars, Kodak Black": 5,
         "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN": 1,
         "Maluma": 1,
         "Future  ft Metro Boomin, Travis Scott": 2,
         "Tainy ft Sech, E.VAX": 1,
-        "21 Savage ft Young Thug, Metro Boomin": 1
+        "21 Savage ft Young Thug, Metro Boomin": 2,
+        "Kanye West ft Lupe Fiasco": 1
     },
     "albumes": {
         "EL ÚLTIMO TOUR DEL MUNDO": 11,
         "105 Freestyle": 1,
-        "Eternal Atake 2": 3,
-        "Without Warning": 11,
-        "NOT ALL HEROES WEAR CAPES (Deluxe)": 6,
+        "Eternal Atake 2": 4,
+        "Without Warning": 12,
+        "NOT ALL HEROES WEAR CAPES (Deluxe)": 7,
         "Gangster Pain": 7,
         "EVOL": 6,
         "True Love": 3,
         "WE DON'T TRUST YOU": 12,
-        "VULTURES 2": 7,
+        "VULTURES 2": 10,
         "If You're Reading This It's Too Late": 1,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 4,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 6,
         "Goodbye & Good Riddance": 3,
         "Watch This (ARIZONATEARS Pluggnb Remix)": 1,
         "UTOPIA": 3,
-        "Pink Tape": 4,
-        "Flower Boy": 2,
+        "Pink Tape": 5,
+        "Flower Boy": 3,
         "Evil Genius": 5,
         "Chosen Few: New Generation": 1,
         "11:11": 1,
         "IGOR": 1,
         "DATA": 1,
-        "american dream": 1,
-        "nadie sabe lo que va a pasar mañana": 1
+        "american dream": 2,
+        "nadie sabe lo que va a pasar mañana": 2,
+        "Late Registration": 1
     },
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Type Shit.mp3",
-        "titulo": "Type Shit",
-        "artista": "Future ft Metro Boomin, Travis Scott, Playboi Carti",
-        "album": "WE DON'T TRUST YOU",
-        "timestamp": "2025-03-11T21:15:29.121346"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3",
+        "titulo": "Self Love",
+        "artista": "Metro Boomin ft Coi Leray",
+        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
+        "timestamp": "2025-03-17T10:33:51.559122"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
@@ -73,13 +75,13 @@
             "album": "105 Freestyle"
         },
         "C:\\Users\\Victor\\Music\\pm\\Chill Bae.mp3": {
-            "contador": 3,
+            "contador": 4,
             "titulo": "Chill Bae",
             "artista": "Lil Uzi Vert",
             "album": "Eternal Atake 2"
         },
         "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3": {
-            "contador": 11,
+            "contador": 12,
             "titulo": "Ric Flair Drip (ft Metro Boomin)",
             "artista": "Offset ft Metro Boomin",
             "album": "Without Warning"
@@ -121,13 +123,13 @@
             "album": "WE DON'T TRUST YOU"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Overdue (ft Travis Scott).mp3": {
-            "contador": 4,
+            "contador": 5,
             "titulo": "Overdue (ft Travis Scott)",
             "artista": "Metro Boomin ft Travis Scott",
             "album": "NOT ALL HEROES WEAR CAPES (Deluxe)"
         },
         "C:\\Users\\Victor\\Music\\pm\\530.mp3": {
-            "contador": 4,
+            "contador": 5,
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"
@@ -139,7 +141,7 @@
             "album": "If You're Reading This It's Too Late"
         },
         "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3": {
-            "contador": 4,
+            "contador": 6,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
@@ -163,13 +165,13 @@
             "album": "UTOPIA"
         },
         "C:\\Users\\Victor\\Music\\pm\\Just Wanna Rock.mp3": {
-            "contador": 4,
+            "contador": 5,
             "titulo": "Just Wanna Rock",
             "artista": "Lil Uzi Vert",
             "album": "Pink Tape"
         },
         "C:\\Users\\Victor\\Music\\pm\\Sometimes....mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "Sometimes",
             "artista": "Tyler, The Creator",
             "album": "Flower Boy"
@@ -205,7 +207,7 @@
             "album": "IGOR"
         },
         "C:\\Users\\Victor\\Music\\pm\\ISABELLA.mp3": {
-            "contador": 3,
+            "contador": 5,
             "titulo": "ISABELLA",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"
@@ -217,16 +219,22 @@
             "album": "DATA"
         },
         "C:\\Users\\Victor\\Music\\pm\\pop ur shit.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "pop ur shit",
             "artista": "21 Savage ft Young Thug, Metro Boomin",
             "album": "american dream"
         },
         "C:\\Users\\Victor\\Music\\Musica\\VOU 787.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "VOU 787",
             "artista": "Bad Bunny",
             "album": "nadie sabe lo que va a pasar mañana"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Touch The Sky.mp3": {
+            "contador": 1,
+            "titulo": "Touch The Sky",
+            "artista": "Kanye West ft Lupe Fiasco",
+            "album": "Late Registration"
         }
     }
 }

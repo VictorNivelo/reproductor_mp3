@@ -1,5 +1,5 @@
-from vista.componentes.utiles.utiles_componentes import cerrar_ventana_modal
-from vista.utiles.utiles_vista import establecer_icono_tema
+from vista.componentes.utiles.utiles_componentes import *
+from vista.utiles.utiles_vista import *
 import customtkinter as ctk
 from utiles import Utiles
 from constantes import *
@@ -20,36 +20,17 @@ class Estadisticas(Utiles):
         # Crear el panel principal de la ventana de estadísticas
         self.ventana_estadisticas = ctk.CTkToplevel(self.ventana_principal)
 
-        # Establecer el título de la ventana de estadísticas
-        self.ventana_estadisticas.title("Estadísticas")
-
-        # Establecer el tamaño de la ventana de estadísticas
-        posicion_ancho_estadisticas = (
-            self.ventana_principal.winfo_x()
-            + (self.ventana_principal.winfo_width() - ANCHO_ESTADISTICAS) // 2
+        # Configurar la ventana de estadísticas
+        configurar_ventana_modal(
+            ventana_principal=self.ventana_principal,
+            ventana_modal=self.ventana_estadisticas,
+            ancho=ANCHO_ESTADISTICAS,
+            alto=ALTO_ESTADISTICAS,
+            titulo="Estadísticas",
+            color_fondo=self.color_fondo,
+            funcion_cierre=self.cerrar_ventana_estadistica,
+            controlador=self.controlador,
         )
-        posicion_alto_estadisticas = (
-            self.ventana_principal.winfo_y()
-            + (self.ventana_principal.winfo_height() - ALTO_ESTADISTICAS) // 2
-        )
-
-        # Tamaño de la ventana de estadísticas
-        tamanio_estadisticas = f"{ANCHO_ESTADISTICAS}x{ALTO_ESTADISTICAS}+{posicion_ancho_estadisticas}+{posicion_alto_estadisticas}"
-
-        # Establecer la geometría de la ventana de estadísticas
-        self.ventana_estadisticas.geometry(tamanio_estadisticas)
-
-        # Establecer el color de fondo de la ventana de estadísticas
-        self.ventana_estadisticas.configure(fg_color=self.color_fondo)
-
-        # Configuración de la ventana como un modal
-        self.ventana_estadisticas.grab_set()
-
-        # Evento para cerrar la ventana de estadísticas
-        self.ventana_estadisticas.protocol("WM_DELETE_WINDOW", self.cerrar_ventana_estadistica)
-
-        # Establecer el icono de la ventana de estadísticas
-        establecer_icono_tema(self.ventana_estadisticas, self.controlador.tema_interfaz)
         # =================================================================================================
 
         # ======================================== Panel principal ========================================

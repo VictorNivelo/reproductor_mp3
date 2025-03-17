@@ -206,14 +206,16 @@ def reproducir_anterior_vista():
 
 # Función para adelantar la reproducción
 def adelantar_reproduccion_vista():
-    global controlador_reproductor
-    controlador_reproductor.adelantar_reproduccion(10)
+    controlador_reproductor.adelantar_reproduccion(TIEMPO_AJUSTE)
+    # Actualizar tooltip con el valor actual
+    crear_tooltip(boton_adelantar, f"Adelanta {TIEMPO_AJUSTE} segundos")
 
 
 # Función para retroceder la reproducción
 def retroceder_reproduccion_vista():
-    global controlador_reproductor
-    controlador_reproductor.retroceder_reproduccion(10)
+    controlador_reproductor.retroceder_reproduccion(TIEMPO_AJUSTE)
+    # Actualizar tooltip con el valor actual
+    crear_tooltip(boton_retroceder, f"Retrocede {TIEMPO_AJUSTE} segundos")
 
 
 # Función para cambiar el volumen
@@ -293,7 +295,7 @@ def cambiar_visibilidad_vista():
     if PANEL_VISIBLE:
         # Mostrar el panel
         contenedor_derecha_principal.configure(width=ANCHO_PANEL_DERECHA)
-        contenedor_derecha_principal.pack(side="left", fill="both")
+        contenedor_derecha_principal.pack(side="left", fill="both", padx=(5, 0))
         controlador_tema.registrar_botones("ocultar", boton_visibilidad)
         actualizar_tooltip(boton_visibilidad, "Ocultar lateral")
     else:
@@ -1566,7 +1568,7 @@ boton_retroceder = ctk.CTkButton(
 )
 boton_retroceder.pack(side="left", padx=5)
 controlador_tema.registrar_botones("retroceder", boton_retroceder)
-crear_tooltip(boton_retroceder, "Retrocede 10 segundos")
+crear_tooltip(boton_retroceder, f"Retrocede {TIEMPO_AJUSTE} segundos")
 
 boton_anterior = ctk.CTkButton(
     panel_controles_reproduccion,
@@ -1630,7 +1632,7 @@ boton_adelantar = ctk.CTkButton(
 )
 boton_adelantar.pack(side="left", padx=5)
 controlador_tema.registrar_botones("adelantar", boton_adelantar)
-crear_tooltip(boton_adelantar, "Adelanta 10 segundos")
+crear_tooltip(boton_adelantar, f"Adelanta {TIEMPO_AJUSTE} segundos")
 
 boton_mostrar_cola = ctk.CTkButton(
     panel_controles_reproduccion,

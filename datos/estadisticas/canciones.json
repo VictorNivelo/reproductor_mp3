@@ -3,7 +3,7 @@
         "total_canciones": 27,
         "total_artistas": 39,
         "total_albumes": 24,
-        "me_gusta": 3,
+        "me_gusta": 4,
         "favorito": 5
     },
     "canciones": [
@@ -340,7 +340,7 @@
             "anio": "2023-10-13",
             "numero_pista": "7/22",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {

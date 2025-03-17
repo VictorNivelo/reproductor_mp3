@@ -59,6 +59,21 @@ RUTA_ICONO_APLICACION_OSCURO = os.path.join(RUTA_ICONOS, "reproductor_oscuro.png
 RUTA_ICONO_APLICACION_CLARO_ICO = os.path.join(RUTA_ICONOS, "reproductor_claro.ico")
 RUTA_ICONO_APLICACION_OSCURO_ICO = os.path.join(RUTA_ICONOS, "reproductor_oscuro.ico")
 
+# Ruta de los datos de la aplicación
+RUTA_CARPETA_DATOS = "datos"
+RUTA_CARPETA_LISTAS = os.path.join(RUTA_CARPETA_DATOS, "listas")
+RUTA_CARPETA_FAVORITOS = os.path.join(RUTA_CARPETA_LISTAS, "favorito")
+RUTA_CARPETA_ME_GUSTA = os.path.join(RUTA_CARPETA_LISTAS, "me_gusta")
+RUTA_CARPETA_ESTADISTICAS = os.path.join(RUTA_CARPETA_DATOS, "estadisticas")
+RUTA_CARPETA_CONFIGURACION = os.path.join(RUTA_CARPETA_DATOS, "configuracion")
+
+# Rutas de archivos
+RUTA_CANCIONES = os.path.join(RUTA_CARPETA_ESTADISTICAS, "canciones.json")
+RUTA_FAVORITOS = os.path.join(RUTA_CARPETA_FAVORITOS, "favorito.json")
+RUTA_ME_GUSTA = os.path.join(RUTA_CARPETA_ME_GUSTA, "me_gusta.json")
+RUTA_REPRODUCCION = os.path.join(RUTA_CARPETA_ESTADISTICAS, "reproduccion.json")
+RUTA_CONFIGURACION = os.path.join(RUTA_CARPETA_CONFIGURACION, "ajustes.json")
+
 # ========================================================================
 
 # ========================== Colores y fuentes ===========================

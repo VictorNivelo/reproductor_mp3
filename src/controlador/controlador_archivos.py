@@ -1,5 +1,6 @@
 from datetime import datetime
 from pathlib import Path
+from constantes import *
 import json
 import os
 
@@ -7,18 +8,18 @@ import os
 class ControladorArchivos:
     def __init__(self):
         # Directorios base
-        self.dir_datos = "datos"
-        self.dir_estadisticas = os.path.join(self.dir_datos, "estadisticas")
-        self.dir_listas = os.path.join(self.dir_datos, "listas")
-        self.dir_favoritos = os.path.join(self.dir_listas, "favorito")
-        self.dir_me_gusta = os.path.join(self.dir_listas, "me_gusta")
-        self.dir_configuracion = os.path.join(self.dir_datos, "configuracion")
+        self.dir_datos = RUTA_CARPETA_DATOS
+        self.dir_listas = RUTA_CARPETA_LISTAS
+        self.dir_me_gusta = RUTA_CARPETA_ME_GUSTA
+        self.dir_favoritos = RUTA_CARPETA_FAVORITOS
+        self.dir_estadisticas = RUTA_CARPETA_ESTADISTICAS
+        self.dir_configuracion = RUTA_CARPETA_CONFIGURACION
         # Rutas de archivos
-        self.ruta_canciones = os.path.join(self.dir_estadisticas, "canciones.json")
-        self.ruta_favoritos = os.path.join(self.dir_favoritos, "favorito.json")
-        self.ruta_me_gusta = os.path.join(self.dir_me_gusta, "me_gusta.json")
-        self.ruta_reproduccion = os.path.join(self.dir_estadisticas, "reproduccion.json")
-        self.ruta_configuracion = os.path.join(self.dir_configuracion, "ajustes.json")
+        self.ruta_canciones = RUTA_CANCIONES
+        self.ruta_favoritos = RUTA_FAVORITOS
+        self.ruta_me_gusta = RUTA_ME_GUSTA
+        self.ruta_reproduccion = RUTA_REPRODUCCION
+        self.ruta_configuracion = RUTA_CONFIGURACION
         # Crear la estructura de directorios
         self.crear_estructura_directorios()
 

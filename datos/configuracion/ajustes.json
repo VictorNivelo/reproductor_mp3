@@ -1,8 +1,8 @@
 {
-    "tema": "oscuro",
-    "volumen": 42,
+    "tema": "claro",
+    "volumen": 80,
     "orden": false,
-    "repeticion": 2,
+    "repeticion": 0,
     "silenciado": false,
     "panel_visible": true
 }

@@ -474,8 +474,10 @@ def guardar_biblioteca():
 
 
 # Función para cargar la biblioteca al iniciar
-def cargar_biblioteca():
+def cargar_biblioteca_vista():
     if controlador_archivos.cargar_biblioteca(biblioteca):
+        # Cargar ajustes primero para tener el tema correcto
+        cargar_todos_ajustes()
         # Reinicializar la estructura de artistas para separar colaboraciones
         biblioteca.reinicializar_artistas()
         # Actualizar vista principal de canciones
@@ -487,15 +489,33 @@ def cargar_biblioteca():
             pestanas_cargadas[key] = False
 
 
+# Función para crear botones para cada canción en la biblioteca
+def crear_boton_cancion(cancion, panel_botones_canciones):
+    # Obtener colores del tema actual
+    controlador_tema.colores()  # Actualiza los colores según el tema actual
+    boton = ctk.CTkButton(
+        panel_botones_canciones,
+        height=28,
+        fg_color=controlador_tema.color_boton,
+        font=(LETRA, TAMANIO_LETRA_BOTON),
+        text_color=controlador_tema.color_texto,
+        text=f"{cancion.titulo_cancion} - {cancion.artista}",
+        hover_color=controlador_tema.color_hover,
+        command=lambda c=cancion: reproducir_cancion_desde_lista(c),
+    )
+    boton.pack(fill="both", pady=(0, 2), expand=True)
+    controlador_tema.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton)
+    botones_canciones[cancion] = boton
+
+
 # Función para actualizar la vista de las canciones en la biblioteca
-def actualizar_vista_canciones(panel_botones):
+def actualizar_vista_canciones(panel_botones_canciones):
     # Limpiar botones existentes
     for cancion, boton in botones_canciones.items():
         try:
             # Eliminar el botón del controlador_tema de tema
             nombre_boton = f"cancion_{cancion.titulo_cancion}"
-            if nombre_boton in controlador_tema.botones:
-                del controlador_tema.botones[nombre_boton]
+            controlador_tema.eliminar_boton(nombre_boton)
             # Destruir el botón
             boton.destroy()
         except Exception as e:
@@ -504,24 +524,7 @@ def actualizar_vista_canciones(panel_botones):
     botones_canciones.clear()
     # Crear nuevos botones para cada canción
     for cancion in biblioteca.canciones:
-        crear_boton_cancion(cancion, panel_botones)
-
-
-# Función para crear botones para cada canción en la biblioteca
-def crear_boton_cancion(cancion, panel_botones):
-    boton = ctk.CTkButton(
-        panel_botones,
-        height=28,
-        fg_color=BOTON_CLARO,
-        font=(LETRA, TAMANIO_LETRA_BOTON),
-        text_color=TEXTO_CLARO,
-        text=f"{cancion.titulo_cancion} - {cancion.artista}",
-        hover_color=HOVER_CLARO,
-        command=lambda c=cancion: reproducir_cancion_desde_lista(c),
-    )
-    boton.pack(fill="both", pady=(0, 2), expand=True)
-    controlador_tema.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton)
-    botones_canciones[cancion] = boton
+        crear_boton_cancion(cancion, panel_botones_canciones)
 
 
 # Función para manejar cambios de pestaña
@@ -598,6 +601,8 @@ def actualizar_todas_vistas_canciones():
 
 # Función para actualizar la vista de albumes
 def actualizar_vista_albumes():
+    # Obtener colores actualizados del tema
+    controlador_tema.colores()
     # Obtener la pestaña de álbumes
     tab_albumes = paginas_canciones.tab("Álbumes")
     # Limpiar la pestaña
@@ -624,11 +629,11 @@ def actualizar_vista_albumes():
         boton_album = ctk.CTkButton(
             panel_botones_albumes,
             height=28,
-            fg_color=BOTON_CLARO,
+            fg_color=controlador_tema.color_boton,
             font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=TEXTO_CLARO,
+            text_color=controlador_tema.color_texto,
             text=album,
-            hover_color=HOVER_CLARO,
+            hover_color=controlador_tema.color_hover,
             command=lambda a=album: mostrar_canciones_album(a),
         )
         boton_album.pack(fill="both", pady=(0, 2), expand=True)
@@ -640,6 +645,8 @@ def actualizar_vista_albumes():
 
 # Función para mostrar las canciones de un álbum
 def mostrar_canciones_album(album):
+    # Obtener colores actualizados del tema
+    controlador_tema.colores()
     # Obtener la pestaña de álbumes
     tab_albumes = paginas_canciones.tab("Álbumes")
     # Limpiar la pestaña
@@ -656,11 +663,11 @@ def mostrar_canciones_album(album):
         panel_superior,
         width=50,
         height=28,
-        fg_color=BOTON_CLARO,
+        fg_color=controlador_tema.color_boton,
         text="Volver",
         font=(LETRA, TAMANIO_LETRA_BOTON),
-        text_color=TEXTO_CLARO,
-        hover_color=HOVER_CLARO,
+        text_color=controlador_tema.color_texto,
+        hover_color=controlador_tema.color_hover,
         command=lambda: actualizar_vista_albumes(),
     )
     boton_volver.pack(side="left")
@@ -669,11 +676,12 @@ def mostrar_canciones_album(album):
     etiqueta_album = ctk.CTkLabel(
         panel_superior,
         fg_color="transparent",
-        text=f"Álbum: {album}",
+        text=album,
         font=(LETRA, TAMANIO_LETRA_ETIQUETA, "bold"),
-        text_color=TEXTO_CLARO,
+        text_color=controlador_tema.color_texto,
+        anchor="center",
     )
-    etiqueta_album.pack(side="left", padx=10)
+    etiqueta_album.pack(side="top", fill="x", expand=True)
     controlador_tema.registrar_etiqueta(etiqueta_album)
     # Crear canvas sin scrollbar visible
     canvas_canciones_album = tk.Canvas(contenedor_detalles_album, highlightthickness=0)
@@ -700,6 +708,8 @@ def mostrar_canciones_album(album):
 
 # Función para actualizar la vista de albunes filtrados
 def mostrar_albumes_filtrados(texto_busqueda):
+    # Obtener colores actualizados del tema
+    controlador_tema.colores()
     # Obtener la pestaña de álbumes
     tab_albumes = paginas_canciones.tab("Álbumes")
     # Limpiar la pestaña
@@ -729,11 +739,11 @@ def mostrar_albumes_filtrados(texto_busqueda):
         boton_album = ctk.CTkButton(
             panel_botones_albumes,
             height=28,
-            fg_color=BOTON_CLARO,
+            fg_color=controlador_tema.color_boton,
             font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=TEXTO_CLARO,
+            text_color=controlador_tema.color_texto,
             text=album,
-            hover_color=HOVER_CLARO,
+            hover_color=controlador_tema.color_hover,
             command=lambda a=album: mostrar_canciones_album(a),
         )
         boton_album.pack(fill="both", pady=(0, 2), expand=True)
@@ -745,6 +755,8 @@ def mostrar_albumes_filtrados(texto_busqueda):
 
 # Función para actualizar la vista de Me gusta
 def actualizar_vista_artistas():
+    # Obtener colores actualizados del tema
+    controlador_tema.colores()
     # Obtener la pestaña de artistas
     tab_artistas = paginas_canciones.tab("Artistas")
     # Limpiar la pestaña
@@ -771,11 +783,11 @@ def actualizar_vista_artistas():
         boton_artista = ctk.CTkButton(
             panel_botones_artistas,
             height=28,
-            fg_color=BOTON_CLARO,
+            fg_color=controlador_tema.color_boton,
             font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=TEXTO_CLARO,
+            text_color=controlador_tema.color_texto,
             text=artista,
-            hover_color=HOVER_CLARO,
+            hover_color=controlador_tema.color_hover,
             command=lambda a=artista: mostrar_canciones_artista(a),
         )
         boton_artista.pack(fill="both", pady=(0, 2), expand=True)
@@ -787,6 +799,8 @@ def actualizar_vista_artistas():
 
 # Función para mostrar las canciones de un artista
 def mostrar_canciones_artista(artista):
+    # Obtener colores actualizados del tema
+    controlador_tema.colores()
     # Obtener la pestaña de artistas
     tab_artistas = paginas_canciones.tab("Artistas")
     # Limpiar la pestaña
@@ -803,11 +817,11 @@ def mostrar_canciones_artista(artista):
         panel_superior,
         width=50,
         height=28,
-        fg_color=BOTON_CLARO,
+        fg_color=controlador_tema.color_boton,
         text="Volver",
         font=(LETRA, TAMANIO_LETRA_BOTON),
-        text_color=TEXTO_CLARO,
-        hover_color=HOVER_CLARO,
+        text_color=controlador_tema.color_texto,
+        hover_color=controlador_tema.color_hover,
         command=lambda: actualizar_vista_artistas(),
     )
     boton_volver.pack(side="left")
@@ -816,11 +830,12 @@ def mostrar_canciones_artista(artista):
     etiqueta_artista = ctk.CTkLabel(
         panel_superior,
         fg_color="transparent",
-        text=f"Artista: {artista}",
+        text=artista,
         font=(LETRA, TAMANIO_LETRA_ETIQUETA, "bold"),
-        text_color=TEXTO_CLARO,
+        text_color=controlador_tema.color_texto,
+        anchor="center",
     )
-    etiqueta_artista.pack(side="left", padx=10)
+    etiqueta_artista.pack(side="top", fill="x", expand=True)
     controlador_tema.registrar_etiqueta(etiqueta_artista)
     # Crear canvas sin scrollbar visible
     canvas_canciones_artista = tk.Canvas(contenedor_detalles_artista, highlightthickness=0)
@@ -847,6 +862,8 @@ def mostrar_canciones_artista(artista):
 
 # Función para mostrar las canciones de un artista filtradas
 def mostrar_artistas_filtrados(texto_busqueda):
+    # Obtener colores actualizados del tema
+    controlador_tema.colores()
     # Obtener la pestaña de artistas
     tab_artistas = paginas_canciones.tab("Artistas")
     # Limpiar la pestaña
@@ -876,11 +893,11 @@ def mostrar_artistas_filtrados(texto_busqueda):
         boton_artista = ctk.CTkButton(
             panel_botones_artistas,
             height=28,
-            fg_color=BOTON_CLARO,
+            fg_color=controlador_tema.color_boton,
             font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=TEXTO_CLARO,
+            text_color=controlador_tema.color_texto,
             text=artista,
-            hover_color=HOVER_CLARO,
+            hover_color=controlador_tema.color_hover,
             command=lambda a=artista: mostrar_canciones_artista(a),
         )
         boton_artista.pack(fill="both", pady=(0, 2), expand=True)
@@ -1929,7 +1946,7 @@ actualizar_iconos()
 verificar_estado_reproduccion()
 
 # Cargar las canciones de biblioteca al iniciar
-cargar_biblioteca()
+cargar_biblioteca_vista()
 
 # Mostrar la ventana
 ventana_principal.mainloop()

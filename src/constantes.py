@@ -117,15 +117,15 @@ TAMANIO_LETRA_VOLUMEN = 13
 
 # ========================= Variables de estado ==========================
 # Tema actual
-TEMA_ACTUAL = "claro"
+APARIENCIA = "claro"
 
 # Estados de los botones
-REPRODUCIENDO = False
-SILENCIADO = False
-PANEL_VISIBLE = True
-ORDEN = True
-REPETICION = 0
-VOLUMEN = 100
+ESTADO_REPRODUCCION = False
+ESTADO_SILENCIO = False
+PANEL_LATERAL_VISIBLE = True
+MODO_ALEATORIO = True
+MODO_REPETICION = 0
+NIVEL_VOLUMEN = 100
 ME_GUSTA = False
 FAVORITO = False
 

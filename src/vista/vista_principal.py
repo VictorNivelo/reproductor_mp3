@@ -30,13 +30,13 @@ pestanas_cargadas = {
 
 # Función para cambiar el tema de la interfaz
 def cambiar_tema_vista():
-    global TEMA_ACTUAL
+    global APARIENCIA
     # Cambiar tema
     controlador_tema.cambiar_tema()
-    # Actualizar la variable global TEMA_ACTUAL
-    TEMA_ACTUAL = "oscuro" if TEMA_ACTUAL == "claro" else "claro"
+    # Actualizar la variable global APARIENCIA
+    APARIENCIA = "oscuro" if APARIENCIA == "claro" else "claro"
     # Actualizar icono de tema
-    if TEMA_ACTUAL == "claro":
+    if APARIENCIA == "claro":
         cambiar_icono_tema("claro")
         controlador_tema.registrar_botones("modo_oscuro", boton_tema)
         actualizar_tooltip(boton_tema, "Cambiar a claro")
@@ -53,33 +53,33 @@ def cambiar_tema_vista():
 # Función para cambiar el tema de la interfaz
 def actualizar_iconos():
     # Estado de reproducción
-    icono_reproduccion = "pausa" if REPRODUCIENDO else "reproducir"
+    icono_reproduccion = "pausa" if ESTADO_REPRODUCCION else "reproducir"
     controlador_tema.registrar_botones(icono_reproduccion, boton_reproducir)
     # Orden de reproducción
-    icono_orden = "aleatorio" if ORDEN else "orden"
+    icono_orden = "aleatorio" if MODO_ALEATORIO else "orden"
     controlador_tema.registrar_botones(icono_orden, boton_aleatorio)
     # Repetición
-    if REPETICION == 0:
+    if MODO_REPETICION == 0:
         icono_repeticion = "no_repetir"
-    elif REPETICION == 1:
+    elif MODO_REPETICION == 1:
         icono_repeticion = "repetir_actual"
     else:
         icono_repeticion = "repetir_todo"
     controlador_tema.registrar_botones(icono_repeticion, boton_repetir)
     # Volumen
-    if SILENCIADO:
+    if ESTADO_SILENCIO:
         icono_volumen = "silencio"
     else:
-        if VOLUMEN == 0:
+        if NIVEL_VOLUMEN == 0:
             icono_volumen = "sin_volumen"
-        elif VOLUMEN <= 33:
+        elif NIVEL_VOLUMEN <= 33:
             icono_volumen = "volumen_bajo"
-        elif VOLUMEN <= 66:
+        elif NIVEL_VOLUMEN <= 66:
             icono_volumen = "volumen_medio"
         else:
             icono_volumen = "volumen_alto"
     # Panel visible
-    if PANEL_VISIBLE:
+    if PANEL_LATERAL_VISIBLE:
         controlador_tema.registrar_botones("ocultar", boton_visibilidad)
     else:
         controlador_tema.registrar_botones("mostrar", boton_visibilidad)
@@ -90,52 +90,51 @@ def actualizar_iconos():
     controlador_tema.registrar_botones(icono_me_gusta, boton_me_gusta)
     controlador_tema.registrar_botones(icono_favorito, boton_favorito)
     # Actualizar el porcentaje de volumen
-    etiqueta_porcentaje_volumen.configure(text=f"{VOLUMEN}%")
+    etiqueta_porcentaje_volumen.configure(text=f"{NIVEL_VOLUMEN}%")
 
 
 # Función para guardar todos los ajustes
 def guardar_todos_ajustes():
     configuracion = {
-        "tema": TEMA_ACTUAL,
-        "volumen": VOLUMEN,
-        "orden": ORDEN,
-        "repeticion": REPETICION,
-        "silenciado": SILENCIADO,
-        "panel_visible": PANEL_VISIBLE,
+        "apariencia": APARIENCIA,
+        "nivel_volumen": NIVEL_VOLUMEN,
+        "modo_aleatorio": MODO_ALEATORIO,
+        "modo_repeticion": MODO_REPETICION,
+        "estado_silenciado": ESTADO_SILENCIO,
+        "panel_lateral_visible": PANEL_LATERAL_VISIBLE,
     }
     controlador_archivos.guardar_ajustes(configuracion)
 
 
 # Función para cargar todos los ajustes
 def cargar_todos_ajustes():
-    global TEMA_ACTUAL, VOLUMEN, ORDEN, REPETICION, SILENCIADO, PANEL_VISIBLE
+    global APARIENCIA, NIVEL_VOLUMEN, MODO_ALEATORIO, MODO_REPETICION, ESTADO_SILENCIO, PANEL_LATERAL_VISIBLE
     # Cargar configuración desde archivo
     configuracion = controlador_archivos.cargar_ajustes()
     # Aplicar valores a las variables globales
-    TEMA_ACTUAL = configuracion.get("tema", "claro")
-    VOLUMEN = configuracion.get("volumen", 100)
-    ORDEN = configuracion.get("orden", False)
-    REPETICION = configuracion.get("repeticion", 0)
-    SILENCIADO = configuracion.get("silenciado", False)
-    PANEL_VISIBLE = configuracion.get("panel_visible", True)
-    # Actualizar interfaz según los valores cargados
+    APARIENCIA = configuracion.get("apariencia", "claro")
+    NIVEL_VOLUMEN = configuracion.get("nivel_volumen", 100)
+    MODO_ALEATORIO = configuracion.get("modo_aleatorio", False)
+    MODO_REPETICION = configuracion.get("modo_repeticion", 0)
+    ESTADO_SILENCIO = configuracion.get("estado_silenciado", False)
+    PANEL_LATERAL_VISIBLE = configuracion.get("panel_lateral_visible", True)
     # Ajustar tema
-    if TEMA_ACTUAL == "oscuro":
+    if APARIENCIA == "oscuro":
         cambiar_icono_tema("oscuro")
         controlador_tema.registrar_botones("modo_claro", boton_tema)
     else:
         cambiar_icono_tema("claro")
         controlador_tema.registrar_botones("modo_oscuro", boton_tema)
     # Ajustar volumen
-    barra_volumen.set(VOLUMEN)
-    etiqueta_porcentaje_volumen.configure(text=f"{VOLUMEN}%")
-    controlador_reproductor.ajustar_volumen(VOLUMEN if not SILENCIADO else 0)
+    barra_volumen.set(NIVEL_VOLUMEN)
+    etiqueta_porcentaje_volumen.configure(text=f"{NIVEL_VOLUMEN}%")
+    controlador_reproductor.ajustar_volumen(NIVEL_VOLUMEN if not ESTADO_SILENCIO else 0)
     # Ajustar orden de reproducción
-    controlador_reproductor.establecer_modo_aleatorio(ORDEN)
+    controlador_reproductor.establecer_modo_aleatorio(MODO_ALEATORIO)
     # Ajustar modo de repetición
-    controlador_reproductor.establecer_modo_repeticion(REPETICION)
+    controlador_reproductor.establecer_modo_repeticion(MODO_REPETICION)
     # Ajustar panel visible
-    if not PANEL_VISIBLE:
+    if not PANEL_LATERAL_VISIBLE:
         contenedor_derecha_principal.configure(width=0)
     # Actualizar todos los iconos según los estados cargados
     actualizar_iconos()
@@ -143,17 +142,17 @@ def cargar_todos_ajustes():
 
 # Función para reproducir o pausar la canción
 def reproducir_vista():
-    global REPRODUCIENDO
-    if not REPRODUCIENDO:
+    global ESTADO_REPRODUCCION
+    if not ESTADO_REPRODUCCION:
         # Iniciar reproducción
-        REPRODUCIENDO = True
+        ESTADO_REPRODUCCION = True
         controlador_tema.registrar_botones("pausa", boton_reproducir)
         controlador_reproductor.reanudar_reproduccion()
         actualizar_tooltip(boton_reproducir, "Pausar")
         actualizar_espectro()
     else:
         # Pausar reproducción
-        REPRODUCIENDO = False
+        ESTADO_REPRODUCCION = False
         controlador_tema.registrar_botones("reproducir", boton_reproducir)
         controlador_reproductor.pausar_reproduccion()
         actualizar_tooltip(boton_reproducir, "Repoducir")
@@ -161,7 +160,7 @@ def reproducir_vista():
 
 # Función para reproducir la canción seleccionada
 def reproducir_cancion_desde_lista(cancion):
-    global REPRODUCIENDO, biblioteca
+    global ESTADO_REPRODUCCION, biblioteca
     # Establecer la lista de reproducción actual
     controlador_reproductor.establecer_lista_reproduccion(
         biblioteca.canciones, biblioteca.canciones.index(cancion)
@@ -171,7 +170,7 @@ def reproducir_cancion_desde_lista(cancion):
     # Registrar la reproducción en las estadísticas
     controlador_archivos.registrar_reproduccion(cancion)
     # Actualizar estado de reproducción
-    REPRODUCIENDO = True
+    ESTADO_REPRODUCCION = True
     # Cambiar icono del botón a pausa
     controlador_tema.registrar_botones("pausa", boton_reproducir)
     # Actualizar tooltip del botón
@@ -184,14 +183,14 @@ def reproducir_cancion_desde_lista(cancion):
 
 # Función para reproducir la canción siguiente
 def reproducir_siguiente_vista():
-    global controlador_reproductor, REPRODUCIENDO
+    global controlador_reproductor, ESTADO_REPRODUCCION
     resultado = controlador_reproductor.reproducir_siguiente()
     if resultado:
         # Canción reproducida exitosamente
         actualizar_estado_botones_gustos()
     else:
         # No se pudo reproducir la siguiente (fin de lista)
-        REPRODUCIENDO = False
+        ESTADO_REPRODUCCION = False
         controlador_tema.registrar_botones("reproducir", boton_reproducir)
         actualizar_tooltip(boton_reproducir, "Reproducir")
 
@@ -220,14 +219,14 @@ def retroceder_reproduccion_vista():
 
 # Función para cambiar el volumen
 def cambiar_volumen_vista(_event=None):
-    global VOLUMEN, SILENCIADO
-    VOLUMEN = int(barra_volumen.get())
-    etiqueta_porcentaje_volumen.configure(text=f"{VOLUMEN}%")
+    global NIVEL_VOLUMEN, ESTADO_SILENCIO
+    NIVEL_VOLUMEN = int(barra_volumen.get())
+    etiqueta_porcentaje_volumen.configure(text=f"{NIVEL_VOLUMEN}%")
     # Si el volumen es ajustado manualmente, desactivamos el silencio
-    if SILENCIADO and VOLUMEN > 0:
-        SILENCIADO = False
+    if ESTADO_SILENCIO and NIVEL_VOLUMEN > 0:
+        ESTADO_SILENCIO = False
     # Ajustamos el volumen real
-    controlador_reproductor.ajustar_volumen(VOLUMEN if not SILENCIADO else 0)
+    controlador_reproductor.ajustar_volumen(NIVEL_VOLUMEN if not ESTADO_SILENCIO else 0)
     # Actualizamos el icono
     actualizar_iconos()
     # Guardamos los ajustes
@@ -236,16 +235,16 @@ def cambiar_volumen_vista(_event=None):
 
 # Función para cambiar el estado de silencio
 def cambiar_silencio_vista():
-    global SILENCIADO
-    SILENCIADO = not SILENCIADO
-    if SILENCIADO:
+    global ESTADO_SILENCIO
+    ESTADO_SILENCIO = not ESTADO_SILENCIO
+    if ESTADO_SILENCIO:
         # Guardar volumen actual y silenciar
         controlador_reproductor.ajustar_volumen(0)
         controlador_tema.registrar_botones("silencio", boton_silenciar)
         actualizar_tooltip(boton_silenciar, "Quitar silencio")
     else:
         # Restaurar volumen anterior
-        controlador_reproductor.ajustar_volumen(VOLUMEN)
+        controlador_reproductor.ajustar_volumen(NIVEL_VOLUMEN)
         actualizar_tooltip(boton_silenciar, "Silenciar")
         cambiar_volumen_vista()
     guardar_todos_ajustes()
@@ -253,11 +252,11 @@ def cambiar_silencio_vista():
 
 # Función para cambiar el orden de reproducción
 def cambiar_orden_vista():
-    global ORDEN
-    ORDEN = not ORDEN
+    global MODO_ALEATORIO
+    MODO_ALEATORIO = not MODO_ALEATORIO
     # Informar al controlador_tema sobre el cambio en el modo de reproducción
-    controlador_reproductor.establecer_modo_aleatorio(ORDEN)
-    if ORDEN:
+    controlador_reproductor.establecer_modo_aleatorio(MODO_ALEATORIO)
+    if MODO_ALEATORIO:
         controlador_tema.registrar_botones("aleatorio", boton_aleatorio)
         actualizar_tooltip(boton_aleatorio, "Reproducción aleatoria")
     else:
@@ -269,15 +268,15 @@ def cambiar_orden_vista():
 
 # Función para cambiar la repetición de reproducción
 def cambiar_repeticion_vista():
-    global REPETICION
-    REPETICION = (REPETICION + 1) % 3
-    controlador_reproductor.establecer_modo_repeticion(REPETICION)
+    global MODO_REPETICION
+    MODO_REPETICION = (MODO_REPETICION + 1) % 3
+    controlador_reproductor.establecer_modo_repeticion(MODO_REPETICION)
     # Icono de no repetir
-    if REPETICION == 0:
+    if MODO_REPETICION == 0:
         controlador_tema.registrar_botones("no_repetir", boton_repetir)
         actualizar_tooltip(boton_repetir, "No repetir")
     # Icono de repetir actual
-    elif REPETICION == 1:
+    elif MODO_REPETICION == 1:
         controlador_tema.registrar_botones("repetir_actual", boton_repetir)
         actualizar_tooltip(boton_repetir, "Repetir actual")
     # Icono de repetir todo
@@ -290,9 +289,9 @@ def cambiar_repeticion_vista():
 
 # Función para cambiar la visibilidad del panel
 def cambiar_visibilidad_vista():
-    global PANEL_VISIBLE
-    PANEL_VISIBLE = not PANEL_VISIBLE
-    if PANEL_VISIBLE:
+    global PANEL_LATERAL_VISIBLE
+    PANEL_LATERAL_VISIBLE = not PANEL_LATERAL_VISIBLE
+    if PANEL_LATERAL_VISIBLE:
         # Mostrar el panel
         contenedor_derecha_principal.configure(width=ANCHO_PANEL_DERECHA)
         contenedor_derecha_principal.pack(side="left", fill="both", padx=(5, 0))
@@ -439,10 +438,10 @@ def actualizar_etiqueta_tiempo_vista():
 
 # Función para verificar el estado de reproducción
 def verificar_estado_reproduccion():
-    global REPRODUCIENDO
+    global ESTADO_REPRODUCCION
     # Verificar si la reproducción ha terminado naturalmente
-    if REPRODUCIENDO and not controlador_reproductor.reproduciendo:
-        REPRODUCIENDO = False
+    if ESTADO_REPRODUCCION and not controlador_reproductor.reproduciendo:
+        ESTADO_REPRODUCCION = False
         controlador_tema.registrar_botones("reproducir", boton_reproducir)
     # Llamar a esta función nuevamente después de un breve retraso
     ventana_principal.after(500, verificar_estado_reproduccion)
@@ -1091,7 +1090,7 @@ def crear_barras_espectro():
         ancho_canvas - (NUMERO_BARRA * (ANCHO_BARRA + ESPACIO_ENTRE_BARRA) - ESPACIO_ENTRE_BARRA)
     ) // 2
     # Color según el tema
-    color_barra = HOVER_CLARO if TEMA_ACTUAL == "claro" else HOVER_OSCURO
+    color_barra = HOVER_CLARO if APARIENCIA == "claro" else HOVER_OSCURO
     # Crear barras
     for i in range(NUMERO_BARRA):
         x1 = x_inicial + i * (ANCHO_BARRA + ESPACIO_ENTRE_BARRA)
@@ -1127,7 +1126,7 @@ def actualizar_espectro():
                 print(f"Error: No se encontró la barra {i} en el espectro")
                 return
     # Llamar a la función nuevamente después de un delay
-    if REPRODUCIENDO:
+    if ESTADO_REPRODUCCION:
         ventana_principal.after(75, actualizar_espectro)
 
 
@@ -1715,7 +1714,7 @@ barra_volumen.configure(
     to=100,
     command=cambiar_volumen_vista,
 )
-barra_volumen.set(VOLUMEN)
+barra_volumen.set(NIVEL_VOLUMEN)
 barra_volumen.pack(side="left", fill="x", expand=True, padx=(0, 5))
 controlador_tema.registrar_slider(barra_volumen)
 
@@ -1726,7 +1725,7 @@ etiqueta_porcentaje_volumen = ctk.CTkLabel(
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_VOLUMEN),
     text_color=TEXTO_CLARO,
-    text=f"{VOLUMEN}%",
+    text=f"{NIVEL_VOLUMEN}%",
 )
 etiqueta_porcentaje_volumen.pack(side="left")
 controlador_tema.registrar_etiqueta(etiqueta_porcentaje_volumen)
@@ -1739,7 +1738,7 @@ controlador_tema.registrar_etiqueta(etiqueta_porcentaje_volumen)
 # Contenedor principal de panel derecho
 contenedor_derecha_principal = ctk.CTkFrame(
     conenedor_principal,
-    width=ANCHO_PANEL_DERECHA + 5 if PANEL_VISIBLE else 0,
+    width=ANCHO_PANEL_DERECHA + 5 if PANEL_LATERAL_VISIBLE else 0,
     fg_color=FONDO_CLARO,
     corner_radius=BORDES_REDONDEADOS_PANEL,
 )
@@ -1908,7 +1907,7 @@ crear_tooltip(boton_agregar_directorio, "Agregar carpeta")
 cargar_todos_ajustes()
 
 # Establecer volumen inicial
-controlador_reproductor.ajustar_volumen(VOLUMEN if not SILENCIADO else 0)
+controlador_reproductor.ajustar_volumen(NIVEL_VOLUMEN if not ESTADO_SILENCIO else 0)
 
 # Muestre el icono del volumen actual de la barra de volumen
 # cambiar_volumen_vista(None)

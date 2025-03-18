@@ -1,8 +1,8 @@
 {
-    "tema": "claro",
-    "volumen": 50,
-    "orden": false,
-    "repeticion": 0,
-    "silenciado": false,
-    "panel_visible": true
+    "apariencia": "claro",
+    "nivel_volumen": 100,
+    "modo_aleatorio": false,
+    "modo_repeticion": 0,
+    "estado_silenciado": false,
+    "panel_lateral_visible": true
 }

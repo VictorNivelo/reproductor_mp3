@@ -1,21 +1,23 @@
 {
     "artistas": {
-        "Bad Bunny": 2,
-        "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 1
+        "Bad Bunny": 4,
+        "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 1,
+        "Lil Uzi Vert": 1
     },
     "albumes": {
         "EL ÚLTIMO TOUR DEL MUNDO": 1,
-        "YHLQMDLG": 1,
-        "Watch This (ARIZONATEARS Pluggnb Remix)": 1
+        "YHLQMDLG": 3,
+        "Watch This (ARIZONATEARS Pluggnb Remix)": 1,
+        "Pink Tape": 1
     },
-    "tiempo_total": 472.7640816326531,
-    "canciones_escuchadas": 3,
+    "tiempo_total": 912.770612244898,
+    "canciones_escuchadas": 6,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\Watch This (Remix).mp3",
-        "titulo": "Watch This (Remix)",
-        "artista": "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS",
-        "album": "Watch This (ARIZONATEARS Pluggnb Remix)",
-        "timestamp": "2025-03-17T20:01:16.188896"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\3.mp3",
+        "titulo": "<3",
+        "artista": "Bad Bunny",
+        "album": "YHLQMDLG",
+        "timestamp": "2025-03-17T20:18:21.802604"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
@@ -25,7 +27,7 @@
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\Musica\\3.mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "<3",
             "artista": "Bad Bunny",
             "album": "YHLQMDLG"
@@ -35,6 +37,12 @@
             "titulo": "Watch This (Remix)",
             "artista": "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS",
             "album": "Watch This (ARIZONATEARS Pluggnb Remix)"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Just Wanna Rock.mp3": {
+            "contador": 1,
+            "titulo": "Just Wanna Rock",
+            "artista": "Lil Uzi Vert",
+            "album": "Pink Tape"
         }
     }
 }

@@ -75,13 +75,13 @@ class TestConstantes(unittest.TestCase):
 
     # Método que testea si las rutas de los iconos de los botones existen
     def test_variables_estado_inicial(self):
-        self.assertEqual(TEMA_ACTUAL, "claro")
-        self.assertFalse(REPRODUCIENDO)
-        self.assertFalse(SILENCIADO)
-        self.assertTrue(PANEL_VISIBLE)
-        self.assertTrue(ORDEN)
-        self.assertEqual(REPETICION, 0)
-        self.assertEqual(VOLUMEN, 100)
+        self.assertEqual(APARIENCIA, "claro")
+        self.assertFalse(ESTADO_REPRODUCCION)
+        self.assertFalse(ESTADO_SILENCIO)
+        self.assertTrue(PANEL_LATERAL_VISIBLE)
+        self.assertTrue(MODO_ALEATORIO)
+        self.assertEqual(MODO_REPETICION, 0)
+        self.assertEqual(NIVEL_VOLUMEN, 100)
         self.assertFalse(ME_GUSTA)
         self.assertFalse(FAVORITO)
         self.assertFalse(ARRASTRANDO_PROGRESO)

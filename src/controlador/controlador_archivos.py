@@ -329,12 +329,12 @@ class ControladorArchivos:
     def cargar_ajustes(self):
         # Estructura predeterminada con valores por defecto
         configuracion_por_defecto = {
-            "tema": "claro",
-            "volumen": 100,
-            "orden": False,
-            "repeticion": 0,
-            "silenciado": False,
-            "panel_visible": True,
+            "apariencia": "claro",
+            "nivel_volumen": 100,
+            "modo_aleatorio": False,
+            "modo_repeticion": 0,
+            "estado_silenciado": False,
+            "panel_lateral_visible": True,
         }
         try:
             # Verificar que exista el archivo

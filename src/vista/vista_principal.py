@@ -599,8 +599,8 @@ def actualizar_todas_vistas_canciones():
     guardar_biblioteca()
 
 
-# Función para actualizar la vista de albumes
-def actualizar_vista_albumes():
+# Función para configurar la interfaz de albumes
+def configurar_interfaz_albumes():
     # Obtener colores actualizados del tema
     controlador_tema.colores()
     # Obtener la pestaña de álbumes
@@ -608,7 +608,7 @@ def actualizar_vista_albumes():
     # Limpiar la pestaña
     for widget in tab_albumes.winfo_children():
         widget.destroy()
-    # Crear canvas sin scrollbar visible (similar a la vista de canciones)
+    # Crear canvas sin scrollbar visible
     canvas_albumes = tk.Canvas(tab_albumes, highlightthickness=0)
     canvas_albumes.pack(fill="both", expand=True)
     canvas_albumes.configure(bg=paginas_canciones.cget("fg_color"))
@@ -619,8 +619,14 @@ def actualizar_vista_albumes():
     controlador_tema.registrar_frame(panel_botones_albumes)
     # Crear ventana en el canvas para el panel
     canvas_window = canvas_albumes.create_window((0, 0), window=panel_botones_albumes)
-    # Usar el GestorScroll igual que en la pestaña de canciones
+    # Usar GestorScroll para manejar el scrolling
     GestorScroll(canvas_albumes, panel_botones_albumes, canvas_window)
+    return canvas_albumes, panel_botones_albumes
+
+
+# Función para actualizar la vista de albumes
+def actualizar_vista_albumes():
+    canvas_albumes, panel_botones_albumes = configurar_interfaz_albumes()
     # Crear botones para cada álbum
     for album in sorted(biblioteca.por_album.keys()):
         # Ignorar álbumes vacíos o sin nombre
@@ -708,26 +714,7 @@ def mostrar_canciones_album(album):
 
 # Función para actualizar la vista de albunes filtrados
 def mostrar_albumes_filtrados(texto_busqueda):
-    # Obtener colores actualizados del tema
-    controlador_tema.colores()
-    # Obtener la pestaña de álbumes
-    tab_albumes = paginas_canciones.tab("Álbumes")
-    # Limpiar la pestaña
-    for widget in tab_albumes.winfo_children():
-        widget.destroy()
-    # Crear canvas sin scrollbar visible
-    canvas_albumes = tk.Canvas(tab_albumes, highlightthickness=0)
-    canvas_albumes.pack(fill="both", expand=True)
-    canvas_albumes.configure(bg=paginas_canciones.cget("fg_color"))
-    controlador_tema.registrar_canvas(canvas_albumes, es_tabview=True, tabview_parent=paginas_canciones)
-    # Crear panel para los botones dentro del canvas
-    panel_botones_albumes = ctk.CTkFrame(canvas_albumes, fg_color="transparent", corner_radius=0)
-    panel_botones_albumes.pack(fill="both")
-    controlador_tema.registrar_frame(panel_botones_albumes)
-    # Crear ventana en el canvas para el panel
-    canvas_window = canvas_albumes.create_window((0, 0), window=panel_botones_albumes)
-    # Vincular eventos con GestorScroll
-    GestorScroll(canvas_albumes, panel_botones_albumes, canvas_window)
+    canvas_albumes, panel_botones_albumes = configurar_interfaz_albumes()
     # Filtrar álbumes
     albumes_filtrados = [
         album for album in biblioteca.por_album.keys() if texto_busqueda.lower() in album.lower()
@@ -753,8 +740,8 @@ def mostrar_albumes_filtrados(texto_busqueda):
     canvas_albumes.configure(scrollregion=canvas_albumes.bbox("all"))
 
 
-# Función para actualizar la vista de Me gusta
-def actualizar_vista_artistas():
+# Función para configurar la interfaz artistas
+def configurar_interfaz_artistas():
     # Obtener colores actualizados del tema
     controlador_tema.colores()
     # Obtener la pestaña de artistas
@@ -762,7 +749,7 @@ def actualizar_vista_artistas():
     # Limpiar la pestaña
     for widget in tab_artistas.winfo_children():
         widget.destroy()
-    # Crear canvas sin scrollbar visible (similar a las otras vistas)
+    # Crear canvas sin scrollbar visible
     canvas_artistas = tk.Canvas(tab_artistas, highlightthickness=0)
     canvas_artistas.pack(fill="both", expand=True)
     canvas_artistas.configure(bg=paginas_canciones.cget("fg_color"))
@@ -775,6 +762,12 @@ def actualizar_vista_artistas():
     canvas_window = canvas_artistas.create_window((0, 0), window=panel_botones_artistas)
     # Usar GestorScroll para manejar el scrolling
     GestorScroll(canvas_artistas, panel_botones_artistas, canvas_window)
+    return canvas_artistas, panel_botones_artistas
+
+
+# Función para actualizar la vista de Me gusta
+def actualizar_vista_artistas():
+    canvas_artistas, panel_botones_artistas = configurar_interfaz_artistas()
     # Crear botones para cada artista
     for artista in sorted(biblioteca.por_artista.keys()):
         # Ignorar artistas sin nombre o desconocidos
@@ -862,26 +855,7 @@ def mostrar_canciones_artista(artista):
 
 # Función para mostrar las canciones de un artista filtradas
 def mostrar_artistas_filtrados(texto_busqueda):
-    # Obtener colores actualizados del tema
-    controlador_tema.colores()
-    # Obtener la pestaña de artistas
-    tab_artistas = paginas_canciones.tab("Artistas")
-    # Limpiar la pestaña
-    for widget in tab_artistas.winfo_children():
-        widget.destroy()
-    # Crear canvas sin scrollbar visible
-    canvas_artistas = tk.Canvas(tab_artistas, highlightthickness=0)
-    canvas_artistas.pack(fill="both", expand=True)
-    canvas_artistas.configure(bg=paginas_canciones.cget("fg_color"))
-    controlador_tema.registrar_canvas(canvas_artistas, es_tabview=True, tabview_parent=paginas_canciones)
-    # Crear panel para los botones dentro del canvas
-    panel_botones_artistas = ctk.CTkFrame(canvas_artistas, fg_color="transparent", corner_radius=0)
-    panel_botones_artistas.pack(fill="both")
-    controlador_tema.registrar_frame(panel_botones_artistas)
-    # Crear ventana en el canvas para el panel
-    canvas_window = canvas_artistas.create_window((0, 0), window=panel_botones_artistas)
-    # Usar GestorScroll para manejar el scrolling
-    GestorScroll(canvas_artistas, panel_botones_artistas, canvas_window)
+    canvas_artistas, panel_botones_artistas = configurar_interfaz_artistas()
     # Filtrar artistas
     artistas_filtrados = [
         artista for artista in biblioteca.por_artista.keys() if texto_busqueda.lower() in artista.lower()

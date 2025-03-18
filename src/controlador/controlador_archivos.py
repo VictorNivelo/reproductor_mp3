@@ -33,16 +33,18 @@ class ControladorArchivos:
                 os.makedirs(directorio)
             # Si el archivo no existe o está vacío, crear la estructura básica
             if not os.path.exists(ruta) or os.path.getsize(ruta) == 0:
+                contenido = json.dumps(estructura_predeterminada, ensure_ascii=False, indent=4)
                 with open(ruta, "w", encoding="utf-8") as archivo:
-                    json.dump(estructura_predeterminada, archivo, ensure_ascii=False, indent=4)
+                    archivo.write(contenido)
             # Intentar cargar el archivo para verificar que es JSON válido
-            with open(ruta, "r", encoding="utf-8") as archivo:
-                try:
+            try:
+                with open(ruta, "r", encoding="utf-8") as archivo:
                     json.load(archivo)
-                except json.JSONDecodeError:
-                    # Si hay un error al decodificar, sobrescribir con la estructura predeterminada
-                    with open(ruta, "w", encoding="utf-8") as archivo_escritura:
-                        json.dump(estructura_predeterminada, archivo_escritura, ensure_ascii=False, indent=4)
+            except json.JSONDecodeError:
+                # Si hay un error al decodificar, sobrescribir con la estructura predeterminada
+                contenido = json.dumps(estructura_predeterminada, ensure_ascii=False, indent=4)
+                with open(ruta, "w", encoding="utf-8") as archivo:
+                    archivo.write(contenido)
         except Exception as e:
             print(f"Error al verificar/crear archivo JSON {ruta}: {e}")
 
@@ -79,20 +81,23 @@ class ControladorArchivos:
             "estadisticas": biblioteca.obtener_estadisticas(),
             "canciones": [cancion.convertir_diccionario() for cancion in biblioteca.canciones],
         }
+        contenido = json.dumps(datos, ensure_ascii=False, indent=4)
         with open(self.ruta_canciones, "w", encoding="utf-8") as archivo:
-            json.dump(datos, archivo, ensure_ascii=False, indent=4)
+            archivo.write(contenido)
 
     # Guardar la lista de me gusta en un archivo JSON
     def guardar_me_gusta(self, biblioteca):
         datos = {"me_gusta": [cancion.convertir_diccionario() for cancion in biblioteca.me_gusta]}
+        contenido = json.dumps(datos, ensure_ascii=False, indent=4)
         with open(self.ruta_me_gusta, "w", encoding="utf-8") as archivo:
-            json.dump(datos, archivo, ensure_ascii=False, indent=4)
+            archivo.write(contenido)
 
     # Guardar la lista de favoritos en un archivo JSON
     def guardar_favoritos(self, biblioteca):
         datos = {"favoritos": [cancion.convertir_diccionario() for cancion in biblioteca.favorito]}
+        contenido = json.dumps(datos, ensure_ascii=False, indent=4)
         with open(self.ruta_favoritos, "w", encoding="utf-8") as archivo:
-            json.dump(datos, archivo, ensure_ascii=False, indent=4)
+            archivo.write(contenido)
 
     # Cargar la biblioteca desde los archivos JSON
     def cargar_biblioteca(self, biblioteca):
@@ -181,10 +186,10 @@ class ControladorArchivos:
     # Guardar la lista de me gusta en un archivo JSON
     def registrar_reproduccion(self, cancion):
         estructura_reproduccion = {
-            "tiempo_total": 0.0,
-            "canciones_escuchadas": 0,
             "artistas": {},
             "albumes": {},
+            "tiempo_total": 0.0,
+            "canciones_escuchadas": 0,
             "ultima_cancion": None,
             "canciones": {},
         }
@@ -224,8 +229,9 @@ class ControladorArchivos:
                 estadisticas["albumes"][cancion.album] = 0
             estadisticas["albumes"][cancion.album] += 1
             # Guardar las estadísticas
+            contenido = json.dumps(estadisticas, ensure_ascii=False, indent=4)
             with open(self.ruta_reproduccion, "w", encoding="utf-8") as archivo:
-                json.dump(estadisticas, archivo, ensure_ascii=False, indent=4)
+                archivo.write(contenido)
             return True
         except Exception as e:
             print(f"Error al registrar reproducción: {str(e)}")
@@ -311,8 +317,9 @@ class ControladorArchivos:
                 except Exception as e:
                     print(f"Error al leer la configuración existente: {str(e)}")
             # Guardar la configuración
+            contenido = json.dumps(configuracion, ensure_ascii=False, indent=4)
             with open(self.ruta_configuracion, "w", encoding="utf-8") as archivo:
-                json.dump(configuracion, archivo, ensure_ascii=False, indent=4)
+                archivo.write(contenido)
             return True
         except Exception as e:
             print(f"Error al guardar la configuración: {str(e)}")
@@ -320,16 +327,16 @@ class ControladorArchivos:
 
     # Cargar la configuración desde un archivo JSON
     def cargar_ajustes(self):
+        # Estructura predeterminada con valores por defecto
+        configuracion_por_defecto = {
+            "tema": "claro",
+            "volumen": 100,
+            "orden": False,
+            "repeticion": 0,
+            "silenciado": False,
+            "panel_visible": True,
+        }
         try:
-            # Estructura predeterminada con valores por defecto
-            configuracion_por_defecto = {
-                "tema": "claro",
-                "volumen": 80,
-                "orden": False,
-                "repeticion": 0,
-                "silenciado": False,
-                "panel_visible": True,
-            }
             # Verificar que exista el archivo
             self.verificar_archivo_json(self.ruta_configuracion, configuracion_por_defecto)
             # Cargar la configuración

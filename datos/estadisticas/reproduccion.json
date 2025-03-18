@@ -1,25 +1,40 @@
 {
-    "tiempo_total": 172.8261224489796,
-    "canciones_escuchadas": 1,
     "artistas": {
-        "Offset ft Metro Boomin": 1
+        "Bad Bunny": 2,
+        "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 1
     },
     "albumes": {
-        "Without Warning": 1
+        "EL ÚLTIMO TOUR DEL MUNDO": 1,
+        "YHLQMDLG": 1,
+        "Watch This (ARIZONATEARS Pluggnb Remix)": 1
     },
+    "tiempo_total": 472.7640816326531,
+    "canciones_escuchadas": 3,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Ric Flair Drip (ft Metro Boomin).mp3",
-        "titulo": "Ric Flair Drip (ft Metro Boomin)",
-        "artista": "Offset ft Metro Boomin",
-        "album": "Without Warning",
-        "timestamp": "2025-03-17T18:01:16.862379"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\Watch This (Remix).mp3",
+        "titulo": "Watch This (Remix)",
+        "artista": "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS",
+        "album": "Watch This (ARIZONATEARS Pluggnb Remix)",
+        "timestamp": "2025-03-17T20:01:16.188896"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\Musica\\Ric Flair Drip (ft Metro Boomin).mp3": {
+        "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
             "contador": 1,
-            "titulo": "Ric Flair Drip (ft Metro Boomin)",
-            "artista": "Offset ft Metro Boomin",
-            "album": "Without Warning"
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\3.mp3": {
+            "contador": 1,
+            "titulo": "<3",
+            "artista": "Bad Bunny",
+            "album": "YHLQMDLG"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Watch This (Remix).mp3": {
+            "contador": 1,
+            "titulo": "Watch This (Remix)",
+            "artista": "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS",
+            "album": "Watch This (ARIZONATEARS Pluggnb Remix)"
         }
     }
 }

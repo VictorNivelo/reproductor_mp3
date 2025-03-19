@@ -1,23 +1,23 @@
 {
     "artistas": {
-        "Bad Bunny": 4,
+        "Bad Bunny": 5,
         "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 1,
         "Lil Uzi Vert": 1
     },
     "albumes": {
         "EL ÚLTIMO TOUR DEL MUNDO": 1,
-        "YHLQMDLG": 3,
+        "YHLQMDLG": 4,
         "Watch This (ARIZONATEARS Pluggnb Remix)": 1,
         "Pink Tape": 1
     },
-    "tiempo_total": 912.770612244898,
-    "canciones_escuchadas": 6,
+    "tiempo_total": 1070.8114285714287,
+    "canciones_escuchadas": 7,
     "ultima_cancion": {
         "ruta": "C:\\Users\\Victor\\Music\\Musica\\3.mp3",
         "titulo": "<3",
         "artista": "Bad Bunny",
         "album": "YHLQMDLG",
-        "timestamp": "2025-03-17T20:18:21.802604"
+        "timestamp": "2025-03-17T20:55:10.270433"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
@@ -27,7 +27,7 @@
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\Musica\\3.mp3": {
-            "contador": 3,
+            "contador": 4,
             "titulo": "<3",
             "artista": "Bad Bunny",
             "album": "YHLQMDLG"

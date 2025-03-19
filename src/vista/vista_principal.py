@@ -623,11 +623,10 @@ def configurar_interfaz_albumes():
     return canvas_albumes, panel_botones_albumes
 
 
-# Función para actualizar la vista de albumes
-def actualizar_vista_albumes():
-    canvas_albumes, panel_botones_albumes = configurar_interfaz_albumes()
+# Función auxiliar para crear botones de álbumes
+def crear_botones_albumes(albumes, canvas_albumes, panel_botones_albumes):
     # Crear botones para cada álbum
-    for album in sorted(biblioteca.por_album.keys()):
+    for album in sorted(albumes):
         # Ignorar álbumes vacíos o sin nombre
         if album == "" or album == "Unknown Album" or album.lower() == "desconocido":
             continue
@@ -646,6 +645,14 @@ def actualizar_vista_albumes():
     panel_botones_albumes.update_idletasks()
     canvas_albumes.yview_moveto(0)
     canvas_albumes.configure(scrollregion=canvas_albumes.bbox("all"))
+
+
+# Función para actualizar la vista de álbumes
+def actualizar_vista_albumes():
+    canvas_albumes, panel_botones_albumes = configurar_interfaz_albumes()
+    # Obtener todos los álbumes
+    albumes = biblioteca.por_album.keys()
+    crear_botones_albumes(albumes, canvas_albumes, panel_botones_albumes)
 
 
 # Función para mostrar las canciones de un álbum
@@ -718,25 +725,7 @@ def mostrar_albumes_filtrados(texto_busqueda):
     albumes_filtrados = [
         album for album in biblioteca.por_album.keys() if texto_busqueda.lower() in album.lower()
     ]
-    # Crear botones para cada álbum filtrado
-    for album in sorted(albumes_filtrados):
-        if album == "" or album == "Unknown Album" or album.lower() == "desconocido":
-            continue
-        boton_album = ctk.CTkButton(
-            panel_botones_albumes,
-            height=28,
-            fg_color=controlador_tema.color_boton,
-            font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=controlador_tema.color_texto,
-            text=album,
-            hover_color=controlador_tema.color_hover,
-            command=lambda a=album: mostrar_canciones_album(a),
-        )
-        boton_album.pack(fill="both", pady=(0, 2), expand=True)
-        controlador_tema.registrar_botones(f"album_{album}", boton_album)
-    panel_botones_albumes.update_idletasks()
-    canvas_albumes.yview_moveto(0)
-    canvas_albumes.configure(scrollregion=canvas_albumes.bbox("all"))
+    crear_botones_albumes(albumes_filtrados, canvas_albumes, panel_botones_albumes)
 
 
 # Función para configurar la interfaz artistas
@@ -764,11 +753,10 @@ def configurar_interfaz_artistas():
     return canvas_artistas, panel_botones_artistas
 
 
-# Función para actualizar la vista de Me gusta
-def actualizar_vista_artistas():
-    canvas_artistas, panel_botones_artistas = configurar_interfaz_artistas()
+# Función auxiliar para crear botones de artistas
+def crear_botones_artistas(artistas, canvas_artistas, panel_botones_artistas):
     # Crear botones para cada artista
-    for artista in sorted(biblioteca.por_artista.keys()):
+    for artista in sorted(artistas):
         # Ignorar artistas sin nombre o desconocidos
         if artista == "" or artista == "Unknown Artist" or artista.lower() == "desconocido":
             continue
@@ -787,6 +775,15 @@ def actualizar_vista_artistas():
     panel_botones_artistas.update_idletasks()
     canvas_artistas.yview_moveto(0)
     canvas_artistas.configure(scrollregion=canvas_artistas.bbox("all"))
+
+
+# Función para actualizar la vista de artistas
+def actualizar_vista_artistas():
+    canvas_artistas, panel_botones_artistas = configurar_interfaz_artistas()
+    # Obtener todos los artistas
+    artistas = biblioteca.por_artista.keys()
+    # Usar la función auxiliar para crear botones
+    crear_botones_artistas(artistas, canvas_artistas, panel_botones_artistas)
 
 
 # Función para mostrar las canciones de un artista
@@ -852,32 +849,15 @@ def mostrar_canciones_artista(artista):
     canvas_canciones_artista.configure(scrollregion=canvas_canciones_artista.bbox("all"))
 
 
-# Función para mostrar las canciones de un artista filtradas
+# Función para mostrar artistas filtrados
 def mostrar_artistas_filtrados(texto_busqueda):
     canvas_artistas, panel_botones_artistas = configurar_interfaz_artistas()
     # Filtrar artistas
     artistas_filtrados = [
         artista for artista in biblioteca.por_artista.keys() if texto_busqueda.lower() in artista.lower()
     ]
-    # Crear botones para cada artista filtrado
-    for artista in sorted(artistas_filtrados):
-        if artista == "" or artista == "Unknown Artist" or artista.lower() == "desconocido":
-            continue
-        boton_artista = ctk.CTkButton(
-            panel_botones_artistas,
-            height=28,
-            fg_color=controlador_tema.color_boton,
-            font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=controlador_tema.color_texto,
-            text=artista,
-            hover_color=controlador_tema.color_hover,
-            command=lambda a=artista: mostrar_canciones_artista(a),
-        )
-        boton_artista.pack(fill="both", pady=(0, 2), expand=True)
-        controlador_tema.registrar_botones(f"artista_{artista}", boton_artista)
-    panel_botones_artistas.update_idletasks()
-    canvas_artistas.yview_moveto(0)
-    canvas_artistas.configure(scrollregion=canvas_artistas.bbox("all"))
+    # Usar la función auxiliar para crear botones
+    crear_botones_artistas(artistas_filtrados, canvas_artistas, panel_botones_artistas)
 
 
 # Función para actualizar la vista de Me gusta

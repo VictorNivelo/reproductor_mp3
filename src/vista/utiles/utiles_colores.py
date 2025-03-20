@@ -96,19 +96,19 @@ def crear_paleta_tema(colores_hex: List[str]) -> Dict[str, str]:
     colores_por_saturacion = ordenar_colores_por_saturacion(colores_hex)
     # Seleccionar colores específicos para el tema
     colores_tema = {
-        "color_principal": colores_por_brillo[0],  # Color más oscuro como fondo principal
-        "color_segundario": colores_por_brillo[1],  # Segundo más oscuro como fondo secundario
-        "color_fondo": colores_por_brillo[2],  # Tercer más oscuro como fondo
-        "color_base": colores_por_brillo[3 % len(colores_por_brillo)],  # Otro color oscuro como base
-        "color_texto": colores_por_brillo[-1],  # Color más claro como texto
+        "color_principal": colores_por_brillo[0],
+        "color_segundario": colores_por_brillo[1],
+        "color_fondo": colores_por_brillo[2],
+        "color_base": colores_por_brillo[3 % len(colores_por_brillo)],
+        "color_texto": colores_por_brillo[-1],
         "color_boton": colores_por_saturacion[
             -2 % len(colores_por_saturacion)
         ],  # Color saturado para botones
-        "color_hover": colores_por_saturacion[-1],  # Color más saturado para hover
-        "color_hover_oscuro": colores_por_brillo[1],  # Segunda opción de hover
-        "color_slider": colores_por_saturacion[-3 % len(colores_por_saturacion)],  # Color para slider
-        "color_borde": colores_por_brillo[2],  # Color para bordes
-        "barra_progreso": colores_por_brillo[1],  # Color para barra de progreso
+        "color_hover": colores_por_saturacion[-1],
+        "color_hover_oscuro": colores_por_brillo[1],
+        "color_slider": colores_por_saturacion[-3 % len(colores_por_saturacion)],
+        "color_borde": colores_por_brillo[2],
+        "barra_progreso": colores_por_brillo[1],
     }
     return colores_tema
 
@@ -124,9 +124,9 @@ def ajustar_contraste_paleta(paleta: Dict[str, str]) -> Dict[str, str]:
     if abs(brillo_texto - brillo_fondo) < 128:
         # Invertir color del texto para máximo contraste
         if brillo_fondo > 128:
-            paleta_ajustada["color_texto"] = "#000000"  # Negro para fondos claros
+            paleta_ajustada["color_texto"] = "#000000"
         else:
-            paleta_ajustada["color_texto"] = "#ffffff"  # Blanco para fondos oscuros
+            paleta_ajustada["color_texto"] = "#ffffff"
     return paleta_ajustada
 
 

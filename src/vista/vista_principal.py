@@ -491,7 +491,7 @@ def cargar_biblioteca_vista():
 # Función para crear botones para cada canción en la biblioteca
 def crear_boton_cancion(cancion, panel_botones_canciones):
     # Obtener colores del tema actual
-    controlador_tema.colores()  # Actualiza los colores según el tema actual
+    controlador_tema.colores()
     boton = ctk.CTkButton(
         panel_botones_canciones,
         height=28,

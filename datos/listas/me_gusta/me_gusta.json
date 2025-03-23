@@ -1,35 +1,7 @@
 {
     "me_gusta": [
         {
-            "ruta": "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "artista_album": "Tainy",
-            "album": "DATA",
-            "duracion": 197.01551020408164,
-            "duracion_formateada": "03:17",
-            "anio": "2023",
-            "numero_pista": "6",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": false
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "artista_album": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO",
-            "duracion": 151.53632653061226,
-            "duracion_formateada": "02:31",
-            "anio": "2020-11-27",
-            "numero_pista": "14",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\pm\\Gangster Pain.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3",
             "titulo": "Gangster Pain",
             "artista": "The Notorious B.I.G.",
             "artista_album": "Dropout Music",
@@ -40,7 +12,7 @@
             "numero_pista": "1/1",
             "tiene_caratula": true,
             "me_gusta": true,
-            "favorito": false
+            "favorito": true
         }
     ]
 }

@@ -1,5 +1,6 @@
 from controlador.controlador_reproductor import ControladorReproductor
 from controlador.controlador_biblioteca import ControladorBiblioteca
+from vista.componentes.cola_reproduccion import ColaReproduccion
 from controlador.controlador_archivos import ControladorArchivos
 from vista.componentes.mini_reproductor import MiniReproductor
 from vista.componentes.configuracion import Configuracion
@@ -119,6 +120,9 @@ def cargar_todos_ajustes():
     ESTADO_SILENCIO = configuracion.get("estado_silenciado", False)
     PANEL_LATERAL_VISIBLE = configuracion.get("panel_lateral_visible", True)
     # Ajustar tema
+    controlador_tema.tema_interfaz = APARIENCIA
+    controlador_tema.tema_iconos = "claro" if APARIENCIA == "oscuro" else "oscuro"
+    ctk.set_appearance_mode("dark" if APARIENCIA == "oscuro" else "light")
     if APARIENCIA == "oscuro":
         cambiar_icono_tema("oscuro")
         controlador_tema.registrar_botones("modo_claro", boton_tema)
@@ -138,6 +142,12 @@ def cargar_todos_ajustes():
         contenedor_derecha_principal.configure(width=0)
     # Actualizar todos los iconos según los estados cargados
     actualizar_iconos()
+    # Recargar los colores del tema
+    controlador_tema.colores()
+    # Actualizar el tema de la interfaz
+    controlador_tema.cambiar_tema()
+    # Actualizar el tema de la interfaz forzando la actualización
+    controlador_tema.cambiar_tema()
 
 
 # Función para reproducir o pausar la canción
@@ -293,7 +303,7 @@ def cambiar_visibilidad_vista():
     PANEL_LATERAL_VISIBLE = not PANEL_LATERAL_VISIBLE
     if PANEL_LATERAL_VISIBLE:
         # Mostrar el panel
-        contenedor_derecha_principal.configure(width=ANCHO_PANEL_DERECHA)
+        contenedor_derecha_principal.configure(width=ANCHO_PANEL_DERECHA + 5)
         contenedor_derecha_principal.pack(side="left", fill="both", padx=(5, 0))
         controlador_tema.registrar_botones("ocultar", boton_visibilidad)
         actualizar_tooltip(boton_visibilidad, "Ocultar lateral")
@@ -1167,15 +1177,17 @@ def abrir_estadisticas():
         print(f"Error al abrir las estadísticas: {e}")
 
 
+# Función para abrir la ventana de cola de reproducción
+def abrir_cola_reproduccion():
+    try:
+        cola_reproduccion.mostrar_ventana_cola()
+    except Exception as e:
+        print(f"Error al abrir la cola de reproducción: {e}")
+
+
 # ************************************** Ventana principal **************************************
 # Crear ventana
 ventana_principal = ctk.CTk()
-
-# Apariencia de la interfaz por defecto es claro
-ctk.set_appearance_mode("light")
-
-# Icono de la ventana
-cambiar_icono_tema()
 
 # Biblioteca de canciones
 biblioteca = Biblioteca()
@@ -1192,6 +1204,24 @@ controlador_reproductor = ControladorReproductor()
 # Controlador de archivos
 controlador_archivos = ControladorArchivos()
 
+# Primero, cargar configuración (antes de establecer apariencia)
+configuracion = controlador_archivos.cargar_ajustes()
+
+# Apariencia (claro/oscuro)
+APARIENCIA = configuracion.get("apariencia", "claro")
+
+# Aplicar tema según configuración cargada
+ctk.set_appearance_mode("dark" if APARIENCIA == "oscuro" else "light")
+
+# Establecer el tema en el controlador
+controlador_tema.tema_interfaz = APARIENCIA
+
+# Establecer el icono del tema
+controlador_tema.tema_iconos = "claro" if APARIENCIA == "oscuro" else "oscuro"
+
+# Icono de la ventana según el tema cargado
+cambiar_icono_tema(APARIENCIA)
+
 # Mini reproductor
 mini_reproductor = MiniReproductor(ventana_principal, controlador_tema)
 
@@ -1200,6 +1230,9 @@ configuracion = Configuracion(ventana_principal, controlador_tema)
 
 # Estadísticas
 estadisticas = Estadisticas(ventana_principal, controlador_tema, controlador_archivos)
+
+# Cola de reproducción
+cola_reproduccion = ColaReproduccion(ventana_principal, controlador_tema, controlador_reproductor)
 
 # Obtener las dimensiones de la pantalla
 ancho_pantalla = ventana_principal.winfo_screenwidth()
@@ -1642,6 +1675,7 @@ boton_mostrar_cola = ctk.CTkButton(
     text_color=TEXTO_CLARO,
     text="",
     hover_color=HOVER_CLARO,
+    command=abrir_cola_reproduccion,
 )
 boton_mostrar_cola.pack(side="left", padx=5)
 controlador_tema.registrar_botones("mostrar_cola", boton_mostrar_cola)
@@ -1816,7 +1850,7 @@ controlador_tema.registrar_combobox(combo_ordenamiento)
 # Contenedor de lista de canciones
 contenedor_lista_canciones = ctk.CTkFrame(
     contenedor_derecha,
-    height=ALTO_TABVIEW + 5,
+    height=ALTO_TABVIEW,
     fg_color="transparent",
 )
 contenedor_lista_canciones.pack(fill="both", expand=True, padx=3)

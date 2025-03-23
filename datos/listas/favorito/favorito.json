@@ -1,21 +1,7 @@
 {
     "favoritos": [
         {
-            "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "artista_album": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO",
-            "duracion": 151.53632653061226,
-            "duracion_formateada": "02:31",
-            "anio": "2020-11-27",
-            "numero_pista": "14",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\pm\\530.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "artista_album": "¥$ ft Kanye West, Ty Dolla $ign",
@@ -26,6 +12,20 @@
             "numero_pista": "7/16",
             "tiene_caratula": true,
             "me_gusta": false,
+            "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3",
+            "titulo": "Gangster Pain",
+            "artista": "The Notorious B.I.G.",
+            "artista_album": "Dropout Music",
+            "album": "Gangster Pain",
+            "duracion": 128.6008163265306,
+            "duracion_formateada": "02:08",
+            "anio": "2020-05-08",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": true,
             "favorito": true
         }
     ]

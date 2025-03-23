@@ -17,6 +17,10 @@ ALTO_MINI_REPRODUCTOR = 125
 ANCHO_ESTADISTICAS = 500
 ALTO_ESTADISTICAS = 600
 
+# Tamaño de la cola de reproducción
+ANCHO_COLA_REPRODUCCION = 425
+ALTO_COLA_REPRODUCCION = 500
+
 # Tamaño panel derecha
 ANCHO_PANEL_DERECHA = 435
 
@@ -69,6 +73,7 @@ RUTA_CARPETA_ESTADISTICAS = os.path.join(RUTA_CARPETA_DATOS, "estadisticas")
 RUTA_CARPETA_CONFIGURACION = os.path.join(RUTA_CARPETA_DATOS, "configuracion")
 
 # Rutas de archivos
+RUTA_COLA = os.path.join(RUTA_CARPETA_LISTAS, "cola.json")
 RUTA_CANCIONES = os.path.join(RUTA_CARPETA_ESTADISTICAS, "canciones.json")
 RUTA_FAVORITOS = os.path.join(RUTA_CARPETA_FAVORITOS, "favorito.json")
 RUTA_ME_GUSTA = os.path.join(RUTA_CARPETA_ME_GUSTA, "me_gusta.json")

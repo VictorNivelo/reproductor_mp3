@@ -13,6 +13,20 @@
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\530.mp3",
+            "titulo": "530",
+            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
+            "artista_album": "¥$ ft Kanye West, Ty Dolla $ign",
+            "album": "VULTURES 2",
+            "duracion": 289.5412244897959,
+            "duracion_formateada": "04:49",
+            "anio": "2024-08-03",
+            "numero_pista": "7/16",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": true
         }
     ]
 }

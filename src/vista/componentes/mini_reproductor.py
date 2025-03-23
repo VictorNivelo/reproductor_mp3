@@ -66,7 +66,7 @@ class MiniReproductor(Utiles):
         # ======================================== Panel informacion ======================================
         # Crea el panel de información del mini reproductor
         panel_informacion_mini_reproductor = ctk.CTkFrame(
-            panel_derecha_mini_reproductor, fg_color=self.color_fondo
+            panel_derecha_mini_reproductor, fg_color="transparent"
         )
         panel_informacion_mini_reproductor.pack(fill="x", padx=5, pady=3)
         self.componentes.append(panel_informacion_mini_reproductor)
@@ -78,7 +78,7 @@ class MiniReproductor(Utiles):
             text_color=self.color_texto,
             text="Nombre de la canción",
             font=(LETRA, TAMANIO_LETRA_ETIQUETA - 1.5),
-            fg_color=self.color_fondo,
+            fg_color="transparent",
         )
         etiqueta_nombre_cancion_mini_reproductor.pack()
         self.componentes.append(etiqueta_nombre_cancion_mini_reproductor)
@@ -89,7 +89,7 @@ class MiniReproductor(Utiles):
             text_color=self.color_texto,
             text="Artista",
             font=(LETRA, TAMANIO_LETRA_ETIQUETA - 1.5),
-            fg_color=self.color_fondo,
+            fg_color="transparent",
         )
         etiqueta_artista_mini_reproductor.pack()
         self.componentes.append(etiqueta_artista_mini_reproductor)
@@ -100,7 +100,7 @@ class MiniReproductor(Utiles):
             text_color=self.color_texto,
             text="Álbum",
             font=(LETRA, TAMANIO_LETRA_ETIQUETA - 1.5),
-            fg_color=self.color_fondo,
+            fg_color="transparent",
         )
         etiqueta_album_mini_reproductor.pack()
         self.componentes.append(etiqueta_album_mini_reproductor)
@@ -108,9 +108,7 @@ class MiniReproductor(Utiles):
 
         # ======================================== Panel progreso =========================================
         # Crea el panel de progreso del mini reproductor
-        panel_progreso_mini_reproductor = ctk.CTkFrame(
-            panel_derecha_mini_reproductor, fg_color=self.color_fondo
-        )
+        panel_progreso_mini_reproductor = ctk.CTkFrame(panel_derecha_mini_reproductor, fg_color="transparent")
         panel_progreso_mini_reproductor.pack(fill="x", padx=5)
         self.componentes.append(panel_progreso_mini_reproductor)
 
@@ -128,9 +126,7 @@ class MiniReproductor(Utiles):
 
         # ======================================== Panel tiempo ===========================================
         # Crea el panel de tiempo del mini reproductor
-        panel_tiempo_mini_reproductor = ctk.CTkFrame(
-            panel_progreso_mini_reproductor, fg_color=self.color_fondo
-        )
+        panel_tiempo_mini_reproductor = ctk.CTkFrame(panel_progreso_mini_reproductor, fg_color="transparent")
         panel_tiempo_mini_reproductor.pack(fill="x")
         self.componentes.append(panel_tiempo_mini_reproductor)
 
@@ -141,7 +137,7 @@ class MiniReproductor(Utiles):
             text_color=self.color_texto,
             text="00:00",
             font=(LETRA, TAMANIO_LETRA_TIEMPO - 1),
-            fg_color=self.color_fondo,
+            fg_color="transparent",
         )
         etiqueta_tiempo_inicio_mini_reproductor.pack(side="left")
         self.componentes.append(etiqueta_tiempo_inicio_mini_reproductor)
@@ -152,7 +148,7 @@ class MiniReproductor(Utiles):
             text_color=self.color_texto,
             text="00:00",
             font=(LETRA, TAMANIO_LETRA_TIEMPO - 1),
-            fg_color=self.color_fondo,
+            fg_color="transparent",
         )
         etiqueta_tiempo_final_mini_reproductor.pack(side="right")
         self.componentes.append(etiqueta_tiempo_final_mini_reproductor)
@@ -160,15 +156,13 @@ class MiniReproductor(Utiles):
 
         # ======================================== Panel botones ==========================================
         # Crea el panel de botones del mini reproductor
-        panel_botones_mini_reproductor = ctk.CTkFrame(
-            panel_derecha_mini_reproductor, fg_color=self.color_fondo
-        )
+        panel_botones_mini_reproductor = ctk.CTkFrame(panel_derecha_mini_reproductor, fg_color="transparent")
         panel_botones_mini_reproductor.pack(fill="x", padx=5, pady=(0, 5))
         self.componentes.append(panel_botones_mini_reproductor)
 
         # Crea el contenedor de botones del mini reproductor
         contenedor_botones_mini_reproductor = ctk.CTkFrame(
-            panel_botones_mini_reproductor, fg_color=self.color_fondo
+            panel_botones_mini_reproductor, fg_color="transparent"
         )
         contenedor_botones_mini_reproductor.pack(pady=(0, 3), expand=True)
         self.componentes.append(contenedor_botones_mini_reproductor)
@@ -259,8 +253,8 @@ class MiniReproductor(Utiles):
         imagen_cancion_mini_reproductor = ctk.CTkLabel(
             panel_izquierda_mini_reproductor,
             text_color=self.color_texto,
-            text="img",
-            fg_color=self.color_fondo,
+            text="caratula",
+            fg_color="transparent",
         )
         imagen_cancion_mini_reproductor.pack(pady=5)
         self.componentes.append(imagen_cancion_mini_reproductor)

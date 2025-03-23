@@ -1,6 +1,20 @@
 {
     "me_gusta": [
         {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "artista_album": "Tainy",
+            "album": "DATA",
+            "duracion": 197.01551020408164,
+            "duracion_formateada": "03:17",
+            "anio": "2023",
+            "numero_pista": "6",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
             "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
             "titulo": "120",
             "artista": "Bad Bunny",
@@ -13,6 +27,20 @@
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Gangster Pain.mp3",
+            "titulo": "Gangster Pain",
+            "artista": "The Notorious B.I.G.",
+            "artista_album": "Dropout Music",
+            "album": "Gangster Pain",
+            "duracion": 128.6008163265306,
+            "duracion_formateada": "02:08",
+            "anio": "2020-05-08",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
         }
     ]
 }

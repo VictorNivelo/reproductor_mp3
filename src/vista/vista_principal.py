@@ -368,8 +368,12 @@ def agregar_cancion_vista():
         if cancion:
             canciones_agregadas.append(cancion)
     if canciones_agregadas:
+        # Guardar la pestaña actual
+        pestana_actual = paginas_canciones.get()
         actualizar_todas_vistas_canciones()
         guardar_biblioteca()
+        # Restaurar el binding de scroll según la pestaña actual
+        actualizar_pestana_seleccionada()
 
 
 # Función para agregar directorio (puede ser llamada desde un botón)
@@ -377,8 +381,12 @@ def agregar_directorio_vista():
     ruta = filedialog.askdirectory(title="Seleccionar directorio de música")
     if ruta:
         controlador_biblioteca.agregar_directorio(Path(ruta))
+        # Guardar la pestaña actual
+        pestana_actual = paginas_canciones.get()
         actualizar_todas_vistas_canciones()
         guardar_biblioteca()
+        # Restaurar el binding de scroll según la pestaña actual
+        actualizar_pestana_seleccionada()
 
 
 def actualizar_estado_botones_gustos():
@@ -526,6 +534,21 @@ def actualizar_vista_canciones(panel_botones_canciones):
         crear_boton_cancion(cancion, panel_botones_canciones)
 
 
+# Función para reestablecer el scroll en una pestaña
+def restablecer_scroll_pestaña(canvas, panel, ventana_canvas):
+    # Limpiar cualquier binding anterior
+    canvas.unbind_all("<MouseWheel>")
+    # Crear una nueva instancia de GestorScroll
+    gestor = GestorScroll(canvas, panel, ventana_canvas)
+    # Forzar la actualización de la región de scroll
+    panel.update_idletasks()
+    canvas.yview_moveto(0)
+    canvas.configure(scrollregion=canvas.bbox("all"))
+    # Vincular el evento de rueda del ratón
+    canvas.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas, e))
+    return gestor
+
+
 # Función para manejar cambios de pestaña
 def actualizar_pestana_seleccionada():
     # Obtener nombre de la pestaña activa
@@ -550,7 +573,6 @@ def actualizar_pestana_seleccionada():
         pestanas_cargadas["Listas"] = True
     # Restaurar el binding correcto dependiendo de la pestaña activa
     if pestana_actual == "Canciones":
-        # Usar la instancia de GestorScroll creada anteriormente
         canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
     elif pestana_actual == "Me gusta":
         tab_me_gusta = paginas_canciones.tab("Me gusta")
@@ -584,16 +606,17 @@ def actualizar_pestana_seleccionada():
 
 # Función para actualizar todas las vistas de las canciones
 def actualizar_todas_vistas_canciones():
+    pestana_actual = paginas_canciones.get()
     # Actualizar la vista de canciones
     actualizar_vista_canciones(panel_botones_canciones)
-    # Actualizar la vista de álbumes
-    actualizar_vista_albumes()
-    # Actualizar la vista de artistas
-    actualizar_vista_artistas()
-    # Actualizar la vista de Me gusta
-    actualizar_vista_me_gusta()
-    # Actualizar la vista de favoritos
-    actualizar_vista_favoritos()
+    # Actualizar las demás vistas pero marcarlas como no cargadas
+    pestanas_cargadas["Me gusta"] = False
+    pestanas_cargadas["Favoritos"] = False
+    pestanas_cargadas["Álbumes"] = False
+    pestanas_cargadas["Artistas"] = False
+    # Reestablecer el scroll para la pestaña actual
+    if pestana_actual == "Canciones":
+        canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
     # Guardar la biblioteca después de las actualizaciones
     guardar_biblioteca()
 
@@ -1010,6 +1033,8 @@ def mostrar_canciones_filtradas(texto_busqueda):
     canvas_canciones.yview_moveto(0)
     # Actualizar la región de desplazamiento
     canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
+    # Reestablecer el scroll
+    canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
 
 
 # Función para buscar canciones según el texto introducido
@@ -1022,6 +1047,9 @@ def buscar_canciones(_event=None):
     if not texto_busqueda:
         if pestana_actual == "Canciones":
             actualizar_vista_canciones(panel_botones_canciones)
+            canvas_canciones.bind_all(
+                "<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e)
+            )
         elif pestana_actual == "Me gusta":
             actualizar_vista_me_gusta()
         elif pestana_actual == "Favoritos":
@@ -1039,11 +1067,11 @@ def buscar_canciones(_event=None):
     elif pestana_actual == "Favoritos":
         mostrar_favoritos_filtrados(texto_busqueda)
     elif pestana_actual == "Álbumes":
-        # Mostrar álbumes filtrados
         mostrar_albumes_filtrados(texto_busqueda)
     elif pestana_actual == "Artistas":
-        # Mostrar artistas filtrados
         mostrar_artistas_filtrados(texto_busqueda)
+    # Asegurarnos de restablecer el scroll para la pestaña actual
+    actualizar_pestana_seleccionada()
 
 
 # Función para crear las barras iniciales
@@ -1788,7 +1816,7 @@ controlador_tema.registrar_combobox(combo_ordenamiento)
 # Contenedor de lista de canciones
 contenedor_lista_canciones = ctk.CTkFrame(
     contenedor_derecha,
-    height=ALTO_TABVIEW,
+    height=ALTO_TABVIEW + 5,
     fg_color="transparent",
 )
 contenedor_lista_canciones.pack(fill="both", expand=True, padx=3)

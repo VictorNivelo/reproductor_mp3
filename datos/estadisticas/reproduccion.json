@@ -1,33 +1,43 @@
 {
     "artistas": {
-        "Bad Bunny": 5,
+        "Bad Bunny": 8,
         "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 1,
-        "Lil Uzi Vert": 1
+        "Lil Uzi Vert": 1,
+        "Travis Scott ft SZA, Future": 1,
+        "¥$ ft Kanye West, Ty Dolla $ign": 1,
+        "The Notorious B.I.G.": 2,
+        "Tainy ft Sech, E.VAX": 1,
+        "CDobleta": 1
     },
     "albumes": {
-        "EL ÚLTIMO TOUR DEL MUNDO": 1,
-        "YHLQMDLG": 4,
+        "EL ÚLTIMO TOUR DEL MUNDO": 3,
+        "YHLQMDLG": 5,
         "Watch This (ARIZONATEARS Pluggnb Remix)": 1,
-        "Pink Tape": 1
+        "Pink Tape": 1,
+        "UTOPIA": 1,
+        "VULTURES 2": 1,
+        "Gangster Pain": 2,
+        "DATA": 1,
+        "Bellakita": 1
     },
-    "tiempo_total": 1070.8114285714287,
-    "canciones_escuchadas": 7,
+    "tiempo_total": 2812.029387755102,
+    "canciones_escuchadas": 16,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\3.mp3",
-        "titulo": "<3",
-        "artista": "Bad Bunny",
-        "album": "YHLQMDLG",
-        "timestamp": "2025-03-17T20:55:10.270433"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Bellakita.mp3",
+        "titulo": "Bellakita",
+        "artista": "CDobleta",
+        "album": "Bellakita",
+        "timestamp": "2025-03-23T12:08:11.351224"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\Musica\\3.mp3": {
-            "contador": 4,
+            "contador": 5,
             "titulo": "<3",
             "artista": "Bad Bunny",
             "album": "YHLQMDLG"
@@ -43,6 +53,36 @@
             "titulo": "Just Wanna Rock",
             "artista": "Lil Uzi Vert",
             "album": "Pink Tape"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3": {
+            "contador": 1,
+            "titulo": "TELEKINESIS (ft SZA, Future)",
+            "artista": "Travis Scott ft SZA, Future",
+            "album": "UTOPIA"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\530.mp3": {
+            "contador": 1,
+            "titulo": "530",
+            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
+            "album": "VULTURES 2"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Gangster Pain.mp3": {
+            "contador": 2,
+            "titulo": "Gangster Pain",
+            "artista": "The Notorious B.I.G.",
+            "album": "Gangster Pain"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3": {
+            "contador": 1,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Bellakita.mp3": {
+            "contador": 1,
+            "titulo": "Bellakita",
+            "artista": "CDobleta",
+            "album": "Bellakita"
         }
     }
 }

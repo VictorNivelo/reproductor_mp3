@@ -1,10 +1,10 @@
 {
     "estadisticas": {
-        "total_canciones": 28,
-        "total_artistas": 41,
-        "total_albumes": 25,
-        "me_gusta": 1,
-        "favorito": 1
+        "total_canciones": 29,
+        "total_artistas": 42,
+        "total_albumes": 26,
+        "me_gusta": 3,
+        "favorito": 2
     },
     "canciones": [
         {
@@ -102,7 +102,7 @@
             "anio": "2023",
             "numero_pista": "6",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {
@@ -145,7 +145,7 @@
             "numero_pista": "7/16",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": false
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\3.mp3",
@@ -157,6 +157,20 @@
             "duracion_formateada": "02:38",
             "anio": "2020-02-29",
             "numero_pista": "20",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Bellakita.mp3",
+            "titulo": "Bellakita",
+            "artista": "CDobleta",
+            "artista_album": "CDobleta",
+            "album": "Bellakita",
+            "duracion": 182.54367346938776,
+            "duracion_formateada": "03:02",
+            "anio": "2023-12-30",
+            "numero_pista": "1/1",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -228,7 +242,7 @@
             "anio": "2020-05-08",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {

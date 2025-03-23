@@ -62,7 +62,7 @@ class Configuracion(Utiles):
             text="Configuración",
             font=(LETRA, TAMANIO_LETRA_ETIQUETA + 4),
             text_color=self.color_texto,
-            fg_color=self.color_fondo,
+            fg_color="transparent",
         )
         etiqueta_titulo.pack(pady=5)
         self.componentes.append(etiqueta_titulo)

@@ -1,8 +1,6 @@
 from modelo.cancion import Cancion
-import customtkinter as ctk
+from utiles import Utiles
 from constantes import *
-from io import BytesIO
-from PIL import Image
 import pygame
 import random
 import time
@@ -38,6 +36,8 @@ class ControladorReproductor:
         self.historial_aleatorio = []
         # Inicializar pygame
         pygame.mixer.init()
+        # Instancia de Utiles
+        self.utiles = Utiles()
 
     # Método que establece las etiquetas de la interfaz
     def establecer_informacion_interfaz(self, nombre, artista, album, anio, imagen):
@@ -63,20 +63,12 @@ class ControladorReproductor:
             self.etiqueta_anio.configure(text=f"Lanzamiento: {self.cancion_actual.fecha_formateada}")
             # Actualizar carátula
             if self.cancion_actual.caratula_cancion:
-                try:
-                    # Crear imagen desde los bytes de la carátula
-                    imagen = Image.open(BytesIO(self.cancion_actual.caratula_cancion))
-                    # Redimensionar la imagen manteniendo la proporción
-                    ancho = 300
-                    ratio = ancho / float(imagen.size[0])
-                    alto = int(float(imagen.size[1]) * float(ratio))
-                    imagen = imagen.resize((ancho, alto), Image.Resampling.LANCZOS)
-                    # Convertir a formato CTkImage
-                    foto = ctk.CTkImage(light_image=imagen, dark_image=imagen, size=(ancho, alto))
-                    # Actualizar la etiqueta
+                foto, _, _ = self.utiles.crear_imagen_desde_bytes(
+                    self.cancion_actual.caratula_cancion, ancho=300
+                )
+                if foto:
                     self.etiqueta_imagen.configure(image=foto, text="")
-                except Exception as e:
-                    print(f"Error al cargar la carátula: {e}")
+                else:
                     self.etiqueta_imagen.configure(image=None, text="Sin carátula")
             else:
                 self.etiqueta_imagen.configure(image=None, text="Sin carátula")

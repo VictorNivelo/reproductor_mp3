@@ -1,4 +1,7 @@
+import customtkinter as ctk
 from constantes import *
+from io import BytesIO
+from PIL import Image
 import tracemalloc
 
 
@@ -59,3 +62,28 @@ class Utiles:
         self.color_segundario = OSCURO_SEGUNDARIO if tema else CLARO_SEGUNDARIO
         # Color exclusivo de UtilesComponentes
         self.color_progreso = TEXTO_OSCURO if tema else FONDO_OSCURO
+
+    # Método para obtener la imagen de la caratula
+    @staticmethod
+    def crear_imagen_desde_bytes(imagen_bytes, ancho, mantener_proporcion=True):
+        try:
+            # Crear imagen desde los bytes
+            imagen = Image.open(BytesIO(imagen_bytes))
+            # Calcular dimensiones finales
+            ancho_original = float(imagen.size[0])
+            alto_original = float(imagen.size[1])
+            if mantener_proporcion:
+                ratio = ancho / ancho_original
+                alto = int(alto_original * ratio)
+            else:
+                alto = ancho  # Cuadrado si no se mantiene proporción
+            # Redimensionar la imagen
+            imagen_redimensionada = imagen.resize((ancho, alto), Image.Resampling.LANCZOS)
+            # Convertir a formato CTkImage
+            foto = ctk.CTkImage(
+                light_image=imagen_redimensionada, dark_image=imagen_redimensionada, size=(ancho, alto)
+            )
+            return foto, ancho, alto
+        except Exception as e:
+            print(f"Error al procesar la imagen: {e}")
+            return None, None, None

@@ -3,8 +3,6 @@ from vista.utiles.utiles_scroll import GestorScroll
 import customtkinter as ctk
 from utiles import Utiles
 from constantes import *
-from io import BytesIO
-from PIL import Image
 import tkinter as tk
 
 
@@ -146,6 +144,20 @@ class ColaReproduccion:
         boton_cerrar.pack(pady=3)
         self.componentes.append(boton_cerrar)
 
+    def mostrar_caratula(self, frame_contenedor, imagen_bytes, ancho=60, padding_y=(0, 3)):
+        foto, _, _ = self.utiles.crear_imagen_desde_bytes(imagen_bytes, ancho)
+        if foto:
+            label_imagen = ctk.CTkLabel(frame_contenedor, image=foto, text="")
+            label_imagen.image = foto
+            label_imagen.pack(
+                side="left" if frame_contenedor.pack_info().get("side") != "left" else "top",
+                padx=(0, 3),
+                pady=padding_y,
+            )
+            self.componentes.append(label_imagen)
+            return label_imagen
+        return None
+
     def mostrar_cancion_actual(self, panel):
         cancion_actual = self.controlador_reproductor.cancion_actual
         if cancion_actual:
@@ -168,19 +180,7 @@ class ColaReproduccion:
             self.componentes.append(frame_imagen)
 
             if cancion_actual.caratula_cancion:
-                try:
-                    imagen = Image.open(BytesIO(cancion_actual.caratula_cancion))
-                    ancho = 60
-                    ratio = ancho / float(imagen.size[0])
-                    alto = int(float(imagen.size[1]) * float(ratio))
-                    imagen = imagen.resize((ancho, alto), Image.Resampling.LANCZOS)
-                    foto = ctk.CTkImage(light_image=imagen, dark_image=imagen, size=(ancho, alto))
-                    label_imagen = ctk.CTkLabel(frame_imagen, image=foto, text="")
-                    label_imagen.image = foto  # Mantener referencia
-                    label_imagen.pack(pady=(0, 3))
-                    self.componentes.append(label_imagen)
-                except Exception as e:
-                    print(f"Error al cargar la carátula: {e}")
+                self.mostrar_caratula(frame_imagen, cancion_actual.caratula_cancion, ancho=60)
 
             # Información de la canción
             informacion_cancion = ctk.CTkFrame(frame_informacion_cancion, fg_color="transparent")
@@ -356,19 +356,7 @@ class ColaReproduccion:
 
             # Intentar mostrar la carátula
             if cancion.caratula_cancion:
-                try:
-                    imagen = Image.open(BytesIO(cancion.caratula_cancion))
-                    ancho = 45
-                    ratio = ancho / float(imagen.size[0])
-                    alto = int(float(imagen.size[1]) * float(ratio))
-                    imagen = imagen.resize((ancho, alto), Image.Resampling.LANCZOS)
-                    foto = ctk.CTkImage(light_image=imagen, dark_image=imagen, size=(ancho, alto))
-                    label_imagen = ctk.CTkLabel(frame_cancion, image=foto, text="")
-                    label_imagen.image = foto  # Mantener referencia
-                    label_imagen.pack(side="left", padx=(0, 3))
-                    self.componentes.append(label_imagen)
-                except Exception as e:
-                    print(f"Error al cargar la carátula: {e}")
+                self.mostrar_caratula(frame_cancion, cancion.caratula_cancion, ancho=45)
 
             # Información de la canción
             informacion_cancion_cola = ctk.CTkFrame(
@@ -418,9 +406,9 @@ class ColaReproduccion:
             self.controlador_tema.registrar_etiqueta(etiqueta_album)
 
             # Añadir efecto hover al frame de canción
-            def configurar_hover(frame, enter=True):
+            def configurar_hover(frame_objetivo, enter=True):
                 color = self.utiles.color_hover if enter else "transparent"
-                frame.configure(fg_color=color)
+                frame_objetivo.configure(fg_color=color)
 
             frame_cancion.bind("<Enter>", lambda e, f=frame_cancion: configurar_hover(f, True))
             frame_cancion.bind("<Leave>", lambda e, f=frame_cancion: configurar_hover(f, False))

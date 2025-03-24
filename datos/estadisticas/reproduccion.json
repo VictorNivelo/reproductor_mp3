@@ -1,22 +1,22 @@
 {
     "artistas": {
         "The Notorious B.I.G.": 24,
-        "¥$ ft Kanye West, Ty Dolla $ign": 90,
+        "¥$ ft Kanye West, Ty Dolla $ign": 91,
         "Offset ft Metro Boomin": 6
     },
     "albumes": {
         "Gangster Pain": 24,
-        "VULTURES 2": 90,
+        "VULTURES 2": 91,
         "Without Warning": 6
     },
-    "tiempo_total": 30182.086530612298,
-    "canciones_escuchadas": 120,
+    "tiempo_total": 30471.627755102094,
+    "canciones_escuchadas": 121,
     "ultima_cancion": {
         "ruta": "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
         "titulo": "530",
         "artista": "¥$ ft Kanye West, Ty Dolla $ign",
         "album": "VULTURES 2",
-        "timestamp": "2025-03-24T13:13:11.397348"
+        "timestamp": "2025-03-24T13:51:05.888527"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3": {
@@ -26,7 +26,7 @@
             "album": "Gangster Pain"
         },
         "C:\\Users\\Victor\\Music\\Musica\\530.mp3": {
-            "contador": 90,
+            "contador": 91,
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"

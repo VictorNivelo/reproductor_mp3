@@ -649,29 +649,125 @@ def actualizar_todas_vistas_canciones():
     guardar_biblioteca()
 
 
-# Función para configurar la interfaz de albumes
-def configurar_interfaz_albumes():
+# Función para mostrar los detalles de las canciones
+def mostrar_canciones_detalle(tipo, elemento, funcion_volver):
     # Obtener colores actualizados del tema
     controlador_tema.colores()
-    # Obtener la pestaña de álbumes
-    tab_albumes = paginas_canciones.tab("Álbumes")
+    # Obtener la pestaña correspondiente
+    tab = paginas_canciones.tab(tipo)
     # Limpiar la pestaña
-    for widget in tab_albumes.winfo_children():
+    for widget in tab.winfo_children():
         widget.destroy()
-    # Crear canvas sin scrollbar visible
-    canvas_albumes = tk.Canvas(tab_albumes, highlightthickness=0)
-    canvas_albumes.pack(fill="both", expand=True)
-    canvas_albumes.configure(bg=paginas_canciones.cget("fg_color"))
-    controlador_tema.registrar_canvas(canvas_albumes, es_tabview=True, tabview_parent=paginas_canciones)
-    # Crear panel para los botones dentro del canvas
-    panel_botones_albumes = ctk.CTkFrame(canvas_albumes, fg_color="transparent", corner_radius=0)
-    panel_botones_albumes.pack(fill="both")
-    controlador_tema.registrar_frame(panel_botones_albumes)
+    # Crear contenedor para la visualización del detalle
+    contenedor_detalles = ctk.CTkFrame(tab, fg_color="transparent")
+    contenedor_detalles.pack(fill="both", expand=True)
+    # Panel superior con botón volver y título
+    panel_superior = ctk.CTkFrame(contenedor_detalles, fg_color="transparent")
+    panel_superior.pack(fill="x", pady=(5, 10))
+    # Botón para volver a la lista
+    boton_volver = ctk.CTkButton(
+        panel_superior,
+        width=50,
+        height=28,
+        fg_color=controlador_tema.color_boton,
+        text="Volver",
+        font=(LETRA, TAMANIO_LETRA_BOTON),
+        text_color=controlador_tema.color_texto,
+        hover_color=controlador_tema.color_hover,
+        command=funcion_volver,
+    )
+    boton_volver.pack(side="left")
+    controlador_tema.registrar_botones(f"volver_{tipo.lower()}", boton_volver)
+    # Título del elemento
+    etiqueta_elemento = ctk.CTkLabel(
+        panel_superior,
+        fg_color="transparent",
+        text=elemento,
+        font=(LETRA, TAMANIO_LETRA_ETIQUETA, "bold"),
+        text_color=controlador_tema.color_texto,
+        anchor="center",
+    )
+    etiqueta_elemento.pack(side="top", fill="x", expand=True)
+    controlador_tema.registrar_etiqueta(etiqueta_elemento)
+    # Usar la función existente para crear el canvas con scroll
+    canvas_canciones_general, panel_canciones, _ = crear_canvas_con_scroll(
+        contenedor_detalles, True, paginas_canciones
+    )
+    # Mostrar las canciones del elemento
+    if tipo == "Álbumes":
+        canciones = biblioteca.por_album.get(elemento, [])
+    else:  # "Artistas"
+        canciones = biblioteca.por_artista.get(elemento, [])
+    for cancion in canciones:
+        crear_boton_cancion(cancion, panel_canciones)
+    # Actualizar la vista del canvas
+    panel_canciones.update_idletasks()
+    canvas_canciones_general.yview_moveto(0)
+    canvas_canciones_general.configure(scrollregion=canvas_canciones_general.bbox("all"))
+    return canvas_canciones_general, panel_canciones
+
+
+# Función para crear un canvas con scroll y panel de botones
+def crear_canvas_con_scroll(contenedor_padre, estabview=True, tabviewparent=None):
+    canvas = tk.Canvas(contenedor_padre, highlightthickness=0)
+    canvas.pack(fill="both", expand=True)
+    canvas.configure(bg=paginas_canciones.cget("fg_color") if estabview else controlador_tema.color_fondo)
+    controlador_tema.registrar_canvas(canvas, es_tabview=estabview, tabview_parent=tabviewparent)
+    # Crear panel para el contenido
+    panel_botones = ctk.CTkFrame(canvas, fg_color="transparent", corner_radius=0)
+    panel_botones.pack(fill="both")
+    controlador_tema.registrar_frame(panel_botones)
     # Crear ventana en el canvas para el panel
-    canvas_window = canvas_albumes.create_window((0, 0), window=panel_botones_albumes)
-    # Usar GestorScroll para manejar el scrolling
-    GestorScroll(canvas_albumes, panel_botones_albumes, canvas_window)
-    return canvas_albumes, panel_botones_albumes
+    canvas_ventana_general = canvas.create_window((0, 0), window=panel_botones)
+    # Configurar scroll
+    GestorScroll(canvas, panel_botones, canvas_ventana_general)
+    return canvas, panel_botones, canvas_ventana_general
+
+
+# Función genérica para configurar vista de listas de canciones
+def configurar_vista_lista_canciones(nombre_pestania, lista_canciones, filtro=None):
+    # Usar la función existente para la configuración básica de la interfaz
+    canvas, panel_botones = configurar_interfaz_pestania(nombre_pestania)
+    # Aplicar filtro si se especifica
+    if filtro:
+        canciones_a_mostrar = [
+            c
+            for c in lista_canciones
+            if (
+                filtro.lower() in c.titulo_cancion.lower()
+                or filtro.lower() in c.artista.lower()
+                or filtro.lower() in c.album.lower()
+            )
+        ]
+    else:
+        canciones_a_mostrar = lista_canciones
+    # Crear botones para cada canción en la lista
+    for cancion in canciones_a_mostrar:
+        crear_boton_cancion(cancion, panel_botones)
+    # Actualizar la vista del canvas
+    panel_botones.update_idletasks()
+    canvas.yview_moveto(0)
+    canvas.configure(scrollregion=canvas.bbox("all"))
+    return canvas, panel_botones
+
+
+# Función genérica para configurar la interfaz de cualquier pestaña
+def configurar_interfaz_pestania(nombre_pestania):
+    # Obtener colores actualizados del tema
+    controlador_tema.colores()
+    # Obtener la pestaña
+    tab = paginas_canciones.tab(nombre_pestania)
+    # Limpiar la pestaña
+    for widget in tab.winfo_children():
+        widget.destroy()
+    # Crear canvas con scroll
+    canvas, panel_botones, _ = crear_canvas_con_scroll(tab, True, paginas_canciones)
+    return canvas, panel_botones
+
+
+# Función para configurar la interfaz de albumes
+def configurar_interfaz_albumes():
+    return configurar_interfaz_pestania("Álbumes")
 
 
 # Función auxiliar para crear botones de álbumes
@@ -708,65 +804,7 @@ def actualizar_vista_albumes():
 
 # Función para mostrar las canciones de un álbum
 def mostrar_canciones_album(album):
-    # Obtener colores actualizados del tema
-    controlador_tema.colores()
-    # Obtener la pestaña de álbumes
-    tab_albumes = paginas_canciones.tab("Álbumes")
-    # Limpiar la pestaña
-    for widget in tab_albumes.winfo_children():
-        widget.destroy()
-    # Crear contenedor para la visualización del álbum
-    contenedor_detalles_album = ctk.CTkFrame(tab_albumes, fg_color="transparent")
-    contenedor_detalles_album.pack(fill="both", expand=True)
-    # Panel superior con botón volver y título
-    panel_superior = ctk.CTkFrame(contenedor_detalles_album, fg_color="transparent")
-    panel_superior.pack(fill="x", pady=(5, 10))
-    # Botón para volver a la lista de álbumes
-    boton_volver = ctk.CTkButton(
-        panel_superior,
-        width=50,
-        height=28,
-        fg_color=controlador_tema.color_boton,
-        text="Volver",
-        font=(LETRA, TAMANIO_LETRA_BOTON),
-        text_color=controlador_tema.color_texto,
-        hover_color=controlador_tema.color_hover,
-        command=lambda: actualizar_vista_albumes(),
-    )
-    boton_volver.pack(side="left")
-    controlador_tema.registrar_botones("volver_albumes", boton_volver)
-    # Título del álbum
-    etiqueta_album = ctk.CTkLabel(
-        panel_superior,
-        fg_color="transparent",
-        text=album,
-        font=(LETRA, TAMANIO_LETRA_ETIQUETA, "bold"),
-        text_color=controlador_tema.color_texto,
-        anchor="center",
-    )
-    etiqueta_album.pack(side="top", fill="x", expand=True)
-    controlador_tema.registrar_etiqueta(etiqueta_album)
-    # Crear canvas sin scrollbar visible
-    canvas_canciones_album = tk.Canvas(contenedor_detalles_album, highlightthickness=0)
-    canvas_canciones_album.pack(fill="both", expand=True)
-    canvas_canciones_album.configure(bg=paginas_canciones.cget("fg_color"))
-    controlador_tema.registrar_canvas(
-        canvas_canciones_album, es_tabview=True, tabview_parent=paginas_canciones
-    )
-    # Crear panel para los botones dentro del canvas
-    panel_canciones_album = ctk.CTkFrame(canvas_canciones_album, fg_color="transparent", corner_radius=0)
-    panel_canciones_album.pack(fill="both")
-    controlador_tema.registrar_frame(panel_canciones_album)
-    # Crear ventana en el canvas para el panel
-    canvas_window = canvas_canciones_album.create_window((0, 0), window=panel_canciones_album)
-    # Vincular eventos con GestorScroll
-    GestorScroll(canvas_canciones_album, panel_canciones_album, canvas_window)
-    # Mostrar las canciones del álbum
-    for cancion in biblioteca.por_album.get(album, []):
-        crear_boton_cancion(cancion, panel_canciones_album)
-    panel_canciones_album.update_idletasks()
-    canvas_canciones_album.yview_moveto(0)
-    canvas_canciones_album.configure(scrollregion=canvas_canciones_album.bbox("all"))
+    return mostrar_canciones_detalle("Álbumes", album, actualizar_vista_albumes)
 
 
 # Función para actualizar la vista de albunes filtrados
@@ -781,27 +819,7 @@ def mostrar_albumes_filtrados(texto_busqueda):
 
 # Función para configurar la interfaz artistas
 def configurar_interfaz_artistas():
-    # Obtener colores actualizados del tema
-    controlador_tema.colores()
-    # Obtener la pestaña de artistas
-    tab_artistas = paginas_canciones.tab("Artistas")
-    # Limpiar la pestaña
-    for widget in tab_artistas.winfo_children():
-        widget.destroy()
-    # Crear canvas sin scrollbar visible
-    canvas_artistas = tk.Canvas(tab_artistas, highlightthickness=0)
-    canvas_artistas.pack(fill="both", expand=True)
-    canvas_artistas.configure(bg=paginas_canciones.cget("fg_color"))
-    controlador_tema.registrar_canvas(canvas_artistas, es_tabview=True, tabview_parent=paginas_canciones)
-    # Crear panel para los botones dentro del canvas
-    panel_botones_artistas = ctk.CTkFrame(canvas_artistas, fg_color="transparent", corner_radius=0)
-    panel_botones_artistas.pack(fill="both")
-    controlador_tema.registrar_frame(panel_botones_artistas)
-    # Crear ventana en el canvas para el panel
-    canvas_window = canvas_artistas.create_window((0, 0), window=panel_botones_artistas)
-    # Usar GestorScroll para manejar el scrolling
-    GestorScroll(canvas_artistas, panel_botones_artistas, canvas_window)
-    return canvas_artistas, panel_botones_artistas
+    return configurar_interfaz_pestania("Artistas")
 
 
 # Función auxiliar para crear botones de artistas
@@ -839,65 +857,7 @@ def actualizar_vista_artistas():
 
 # Función para mostrar las canciones de un artista
 def mostrar_canciones_artista(artista):
-    # Obtener colores actualizados del tema
-    controlador_tema.colores()
-    # Obtener la pestaña de artistas
-    tab_artistas = paginas_canciones.tab("Artistas")
-    # Limpiar la pestaña
-    for widget in tab_artistas.winfo_children():
-        widget.destroy()
-    # Crear contenedor para la visualización del artista
-    contenedor_detalles_artista = ctk.CTkFrame(tab_artistas, fg_color="transparent")
-    contenedor_detalles_artista.pack(fill="both", expand=True)
-    # Panel superior con botón volver y título
-    panel_superior = ctk.CTkFrame(contenedor_detalles_artista, fg_color="transparent")
-    panel_superior.pack(fill="x", pady=(5, 10))
-    # Botón para volver a la lista de artistas
-    boton_volver = ctk.CTkButton(
-        panel_superior,
-        width=50,
-        height=28,
-        fg_color=controlador_tema.color_boton,
-        text="Volver",
-        font=(LETRA, TAMANIO_LETRA_BOTON),
-        text_color=controlador_tema.color_texto,
-        hover_color=controlador_tema.color_hover,
-        command=lambda: actualizar_vista_artistas(),
-    )
-    boton_volver.pack(side="left")
-    controlador_tema.registrar_botones("volver_artistas", boton_volver)
-    # Título del artista
-    etiqueta_artista = ctk.CTkLabel(
-        panel_superior,
-        fg_color="transparent",
-        text=artista,
-        font=(LETRA, TAMANIO_LETRA_ETIQUETA, "bold"),
-        text_color=controlador_tema.color_texto,
-        anchor="center",
-    )
-    etiqueta_artista.pack(side="top", fill="x", expand=True)
-    controlador_tema.registrar_etiqueta(etiqueta_artista)
-    # Crear canvas sin scrollbar visible
-    canvas_canciones_artista = tk.Canvas(contenedor_detalles_artista, highlightthickness=0)
-    canvas_canciones_artista.pack(fill="both", expand=True)
-    canvas_canciones_artista.configure(bg=paginas_canciones.cget("fg_color"))
-    controlador_tema.registrar_canvas(
-        canvas_canciones_artista, es_tabview=True, tabview_parent=paginas_canciones
-    )
-    # Crear panel para las canciones dentro del canvas
-    panel_canciones_artista = ctk.CTkFrame(canvas_canciones_artista, fg_color="transparent", corner_radius=0)
-    panel_canciones_artista.pack(fill="both")
-    controlador_tema.registrar_frame(panel_canciones_artista)
-    # Crear ventana en el canvas para el panel
-    canvas_window = canvas_canciones_artista.create_window((0, 0), window=panel_canciones_artista)
-    # Usar GestorScroll para manejar el scrolling
-    GestorScroll(canvas_canciones_artista, panel_canciones_artista, canvas_window)
-    # Mostrar las canciones del artista
-    for cancion in biblioteca.por_artista.get(artista, []):
-        crear_boton_cancion(cancion, panel_canciones_artista)
-    panel_canciones_artista.update_idletasks()
-    canvas_canciones_artista.yview_moveto(0)
-    canvas_canciones_artista.configure(scrollregion=canvas_canciones_artista.bbox("all"))
+    return mostrar_canciones_detalle("Artistas", artista, actualizar_vista_artistas)
 
 
 # Función para mostrar artistas filtrados
@@ -913,130 +873,22 @@ def mostrar_artistas_filtrados(texto_busqueda):
 
 # Función para actualizar la vista de Me gusta
 def actualizar_vista_me_gusta():
-    # Obtener la pestaña de me gusta
-    tab_me_gusta = paginas_canciones.tab("Me gusta")
-    # Limpiar la pestaña
-    for widget in tab_me_gusta.winfo_children():
-        widget.destroy()
-    # Crear canvas sin scrollbar visible (consistente con otras vistas)
-    canvas_me_gusta = tk.Canvas(tab_me_gusta, highlightthickness=0)
-    canvas_me_gusta.pack(fill="both", expand=True)
-    canvas_me_gusta.configure(bg=paginas_canciones.cget("fg_color"))
-    controlador_tema.registrar_canvas(canvas_me_gusta, es_tabview=True, tabview_parent=paginas_canciones)
-    # Crear panel para los botones dentro del canvas
-    panel_botones_me_gusta = ctk.CTkFrame(canvas_me_gusta, fg_color="transparent", corner_radius=0)
-    panel_botones_me_gusta.pack(fill="both")
-    controlador_tema.registrar_frame(panel_botones_me_gusta)
-    # Crear ventana en el canvas para el panel
-    canvas_window = canvas_me_gusta.create_window((0, 0), window=panel_botones_me_gusta)
-    # Usar GestorScroll para manejar el scrolling
-    GestorScroll(canvas_me_gusta, panel_botones_me_gusta, canvas_window)
-    # Crear botones para cada canción en Me gusta
-    for cancion in biblioteca.me_gusta:
-        crear_boton_cancion(cancion, panel_botones_me_gusta)
-    panel_botones_me_gusta.update_idletasks()
-    canvas_me_gusta.yview_moveto(0)
-    canvas_me_gusta.configure(scrollregion=canvas_me_gusta.bbox("all"))
+    configurar_vista_lista_canciones("Me gusta", biblioteca.me_gusta)
 
 
 # Función para mostrar las canciones de Me gusta filtradas
 def mostrar_me_gusta_filtrados(texto_busqueda):
-    # Obtener la pestaña de me gusta
-    tab_me_gusta = paginas_canciones.tab("Me gusta")
-    # Limpiar la pestaña
-    for widget in tab_me_gusta.winfo_children():
-        widget.destroy()
-    # Crear canvas sin scrollbar visible
-    canvas_me_gusta = tk.Canvas(tab_me_gusta, highlightthickness=0)
-    canvas_me_gusta.pack(fill="both", expand=True)
-    canvas_me_gusta.configure(bg=paginas_canciones.cget("fg_color"))
-    controlador_tema.registrar_canvas(canvas_me_gusta, es_tabview=True, tabview_parent=paginas_canciones)
-    # Crear panel para los botones dentro del canvas
-    panel_botones_me_gusta = ctk.CTkFrame(canvas_me_gusta, fg_color="transparent", corner_radius=0)
-    panel_botones_me_gusta.pack(fill="both")
-    controlador_tema.registrar_frame(panel_botones_me_gusta)
-    # Crear ventana en el canvas para el panel
-    canvas_window = canvas_me_gusta.create_window((0, 0), window=panel_botones_me_gusta)
-    # Usar GestorScroll para manejar el scrolling
-    GestorScroll(canvas_me_gusta, panel_botones_me_gusta, canvas_window)
-    # Filtrar y mostrar canciones
-    canciones_filtradas = [
-        c
-        for c in biblioteca.me_gusta
-        if texto_busqueda.lower() in c.titulo_cancion.lower()
-        or texto_busqueda.lower() in c.artista.lower()
-        or texto_busqueda.lower() in c.album.lower()
-    ]
-    for cancion in canciones_filtradas:
-        crear_boton_cancion(cancion, panel_botones_me_gusta)
-    # Actualizar la vista del canvas
-    panel_botones_me_gusta.update_idletasks()
-    canvas_me_gusta.yview_moveto(0)
-    canvas_me_gusta.configure(scrollregion=canvas_me_gusta.bbox("all"))
+    configurar_vista_lista_canciones("Me gusta", biblioteca.me_gusta, texto_busqueda)
 
 
 # Función para actualizar la vista de favoritos
 def actualizar_vista_favoritos():
-    # Obtener la pestaña de favoritos
-    tab_favoritos = paginas_canciones.tab("Favoritos")
-    # Limpiar la pestaña
-    for widget in tab_favoritos.winfo_children():
-        widget.destroy()
-    # Crear canvas sin scrollbar visible
-    canvas_favoritos = tk.Canvas(tab_favoritos, highlightthickness=0)
-    canvas_favoritos.pack(fill="both", expand=True)
-    canvas_favoritos.configure(bg=paginas_canciones.cget("fg_color"))
-    controlador_tema.registrar_canvas(canvas_favoritos, es_tabview=True, tabview_parent=paginas_canciones)
-    # Crear panel para los botones dentro del canvas
-    panel_botones_favoritos = ctk.CTkFrame(canvas_favoritos, fg_color="transparent", corner_radius=0)
-    panel_botones_favoritos.pack(fill="both")
-    controlador_tema.registrar_frame(panel_botones_favoritos)
-    # Crear ventana en el canvas para el panel
-    canvas_window = canvas_favoritos.create_window((0, 0), window=panel_botones_favoritos)
-    # Usar GestorScroll para manejar el scrolling
-    GestorScroll(canvas_favoritos, panel_botones_favoritos, canvas_window)
-    # Crear botones para cada canción en favoritos
-    for cancion in biblioteca.favorito:
-        crear_boton_cancion(cancion, panel_botones_favoritos)
-    panel_botones_favoritos.update_idletasks()
-    canvas_favoritos.yview_moveto(0)
-    canvas_favoritos.configure(scrollregion=canvas_favoritos.bbox("all"))
+    configurar_vista_lista_canciones("Favoritos", biblioteca.favorito)
 
 
 # Función para mostrar las canciones de favoritos filtradas
 def mostrar_favoritos_filtrados(texto_busqueda):
-    # Obtener la pestaña de favoritos
-    tab_favoritos = paginas_canciones.tab("Favoritos")
-    # Limpiar la pestaña
-    for widget in tab_favoritos.winfo_children():
-        widget.destroy()
-    # Crear canvas sin scrollbar visible
-    canvas_favoritos = tk.Canvas(tab_favoritos, highlightthickness=0)
-    canvas_favoritos.pack(fill="both", expand=True)
-    canvas_favoritos.configure(bg=paginas_canciones.cget("fg_color"))
-    controlador_tema.registrar_canvas(canvas_favoritos, es_tabview=True, tabview_parent=paginas_canciones)
-    # Crear panel para los botones dentro del canvas
-    panel_botones_favoritos = ctk.CTkFrame(canvas_favoritos, fg_color="transparent", corner_radius=0)
-    panel_botones_favoritos.pack(fill="both")
-    controlador_tema.registrar_frame(panel_botones_favoritos)
-    # Crear ventana en el canvas para el panel
-    canvas_window = canvas_favoritos.create_window((0, 0), window=panel_botones_favoritos)
-    # Usar GestorScroll para manejar el scrolling
-    GestorScroll(canvas_favoritos, panel_botones_favoritos, canvas_window)
-    # Filtrar y mostrar canciones
-    canciones_filtradas = [
-        c
-        for c in biblioteca.favorito
-        if texto_busqueda.lower() in c.titulo_cancion.lower()
-        or texto_busqueda.lower() in c.artista.lower()
-        or texto_busqueda.lower() in c.album.lower()
-    ]
-    for cancion in canciones_filtradas:
-        crear_boton_cancion(cancion, panel_botones_favoritos)
-    # Actualizar la vista del canvas
-    panel_botones_favoritos.update_idletasks()
-    canvas_favoritos.yview_moveto(0)
-    canvas_favoritos.configure(scrollregion=canvas_favoritos.bbox("all"))
+    configurar_vista_lista_canciones("Favoritos", biblioteca.favorito, texto_busqueda)
 
 
 # Función para mostrar las canciones filtradas en la vista de canciones
@@ -1893,20 +1745,10 @@ paginas_canciones.add("Listas")
 # Boton de prueba en canciones
 tab_canciones = paginas_canciones.tab("Canciones")
 
-# Crear canvas sin scrollbar visible
-canvas_canciones = tk.Canvas(tab_canciones, highlightthickness=0)
-canvas_canciones.pack(fill="both", expand=True)
-canvas_canciones.configure(bg=paginas_canciones.cget("fg_color"))
-controlador_tema.registrar_canvas(canvas_canciones, es_tabview=True, tabview_parent=paginas_canciones)
-
-# Crear panel para los botones dentro del canvas
-panel_botones_canciones = ctk.CTkFrame(canvas_canciones, fg_color="transparent", corner_radius=0)
-panel_botones_canciones.pack(fill="both")
-controlador_tema.registrar_frame(panel_botones_canciones)
-
-# Crear ventana en el canvas para el panel
-canvas_window = canvas_canciones.create_window((0, 0), window=panel_botones_canciones)
-
+# Usar la función para crear canvas con scroll
+canvas_canciones, panel_botones_canciones, canvas_window = crear_canvas_con_scroll(
+    tab_canciones, True, paginas_canciones
+)
 # Vincular eventos
 gestion_scroll = GestorScroll(canvas_canciones, panel_botones_canciones, canvas_window)
 

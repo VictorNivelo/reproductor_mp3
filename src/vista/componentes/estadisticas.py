@@ -48,12 +48,17 @@ class Estadisticas(Utiles):
             self.crear_ventana_estadisticas()
         else:
             try:
-                self.colores()
-                self.ventana_estadisticas.winfo_exists()
-                establecer_icono_tema(self.ventana_estadisticas, self.controlador.tema_interfaz)
-                self.ventana_estadisticas.deiconify()
+                # Verificar si la ventana aún existe y es válida
+                if self.ventana_estadisticas.winfo_exists():
+                    self.colores()
+                    establecer_icono_tema(self.ventana_estadisticas, self.controlador.tema_interfaz)
+                    self.ventana_estadisticas.deiconify()
+                else:
+                    # La ventana ya no existe, crear una nueva
+                    self.ventana_estadisticas = None
+                    self.crear_ventana_estadisticas()
             except Exception as e:
-                print(f"Error al mostrar la ventana de estadisticas: {e}")
+                print(f"Error al mostrar la ventana de estadísticas: {e}")
                 self.ventana_estadisticas = None
                 self.crear_ventana_estadisticas()
 

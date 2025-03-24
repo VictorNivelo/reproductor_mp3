@@ -18,6 +18,24 @@ import random
 
 # FUNCIONES DE LOS BOTONES
 
+# ========================= Variables de estado ==========================
+# Estados de los botones
+ESTADO_REPRODUCCION = False
+ESTADO_SILENCIO = False
+PANEL_LATERAL_VISIBLE = True
+MODO_ALEATORIO = True
+MODO_REPETICION = 0
+NIVEL_VOLUMEN = 100
+ME_GUSTA = False
+FAVORITO = False
+
+# Estado de la barra de progreso
+ARRASTRANDO_PROGRESO = False
+DURACION_TOTAL = 0
+TIEMPO_ACTUAL = 0
+
+# ========================================================================
+
 # Diccionario para almacenar los botones de canciones
 botones_canciones = {}
 pestanas_cargadas = {
@@ -40,11 +58,11 @@ def cambiar_tema_vista():
     if APARIENCIA == "claro":
         cambiar_icono_tema("claro")
         controlador_tema.registrar_botones("modo_oscuro", boton_tema)
-        actualizar_tooltip(boton_tema, "Cambiar a claro")
+        actualizar_tooltip(boton_tema, "Cambiar a oscuro")
     else:
         cambiar_icono_tema("oscuro")
         controlador_tema.registrar_botones("modo_claro", boton_tema)
-        actualizar_tooltip(boton_tema, "Cambiar a oscuro")
+        actualizar_tooltip(boton_tema, "Cambiar a claro")
     # Guardar todos los ajustes
     guardar_todos_ajustes()
     # Actualizar iconos
@@ -96,7 +114,7 @@ def actualizar_iconos():
 
 # Función para guardar todos los ajustes
 def guardar_todos_ajustes():
-    configuracion = {
+    configuracion_guardada = {
         "apariencia": APARIENCIA,
         "nivel_volumen": NIVEL_VOLUMEN,
         "modo_aleatorio": MODO_ALEATORIO,
@@ -104,21 +122,21 @@ def guardar_todos_ajustes():
         "estado_silenciado": ESTADO_SILENCIO,
         "panel_lateral_visible": PANEL_LATERAL_VISIBLE,
     }
-    controlador_archivos.guardar_ajustes(configuracion)
+    controlador_archivos.guardar_ajustes(configuracion_guardada)
 
 
 # Función para cargar todos los ajustes
 def cargar_todos_ajustes():
     global APARIENCIA, NIVEL_VOLUMEN, MODO_ALEATORIO, MODO_REPETICION, ESTADO_SILENCIO, PANEL_LATERAL_VISIBLE
     # Cargar configuración desde archivo
-    configuracion = controlador_archivos.cargar_ajustes()
+    configuracion_cargada = controlador_archivos.cargar_ajustes()
     # Aplicar valores a las variables globales
-    APARIENCIA = configuracion.get("apariencia", "claro")
-    NIVEL_VOLUMEN = configuracion.get("nivel_volumen", 100)
-    MODO_ALEATORIO = configuracion.get("modo_aleatorio", False)
-    MODO_REPETICION = configuracion.get("modo_repeticion", 0)
-    ESTADO_SILENCIO = configuracion.get("estado_silenciado", False)
-    PANEL_LATERAL_VISIBLE = configuracion.get("panel_lateral_visible", True)
+    APARIENCIA = configuracion_cargada.get("apariencia", "claro")
+    NIVEL_VOLUMEN = configuracion_cargada.get("nivel_volumen", 100)
+    MODO_ALEATORIO = configuracion_cargada.get("modo_aleatorio", False)
+    MODO_REPETICION = configuracion_cargada.get("modo_repeticion", 0)
+    ESTADO_SILENCIO = configuracion_cargada.get("estado_silenciado", False)
+    PANEL_LATERAL_VISIBLE = configuracion_cargada.get("panel_lateral_visible", True)
     # Ajustar tema
     controlador_tema.tema_interfaz = APARIENCIA
     controlador_tema.tema_iconos = "claro" if APARIENCIA == "oscuro" else "oscuro"
@@ -379,7 +397,7 @@ def agregar_cancion_vista():
             canciones_agregadas.append(cancion)
     if canciones_agregadas:
         # Guardar la pestaña actual
-        pestana_actual = paginas_canciones.get()
+        # pestana_actual = paginas_canciones.get()
         actualizar_todas_vistas_canciones()
         guardar_biblioteca()
         # Restaurar el binding de scroll según la pestaña actual
@@ -392,7 +410,7 @@ def agregar_directorio_vista():
     if ruta:
         controlador_biblioteca.agregar_directorio(Path(ruta))
         # Guardar la pestaña actual
-        pestana_actual = paginas_canciones.get()
+        # pestana_actual = paginas_canciones.get()
         actualizar_todas_vistas_canciones()
         guardar_biblioteca()
         # Restaurar el binding de scroll según la pestaña actual
@@ -507,11 +525,11 @@ def cargar_biblioteca_vista():
 
 
 # Función para crear botones para cada canción en la biblioteca
-def crear_boton_cancion(cancion, panel_botones_canciones):
+def crear_boton_cancion(cancion, panel):
     # Obtener colores del tema actual
     controlador_tema.colores()
     boton = ctk.CTkButton(
-        panel_botones_canciones,
+        panel,
         height=28,
         fg_color=controlador_tema.color_boton,
         font=(LETRA, TAMANIO_LETRA_BOTON),
@@ -526,7 +544,7 @@ def crear_boton_cancion(cancion, panel_botones_canciones):
 
 
 # Función para actualizar la vista de las canciones en la biblioteca
-def actualizar_vista_canciones(panel_botones_canciones):
+def actualizar_vista_canciones(panel):
     # Limpiar botones existentes
     for cancion, boton in botones_canciones.items():
         try:
@@ -541,11 +559,11 @@ def actualizar_vista_canciones(panel_botones_canciones):
     botones_canciones.clear()
     # Crear nuevos botones para cada canción
     for cancion in biblioteca.canciones:
-        crear_boton_cancion(cancion, panel_botones_canciones)
+        crear_boton_cancion(cancion, panel)
 
 
 # Función para reestablecer el scroll en una pestaña
-def restablecer_scroll_pestaña(canvas, panel, ventana_canvas):
+def restablecer_scroll_pestania(canvas, panel, ventana_canvas):
     # Limpiar cualquier binding anterior
     canvas.unbind_all("<MouseWheel>")
     # Crear una nueva instancia de GestorScroll
@@ -1086,7 +1104,7 @@ def buscar_canciones(_event=None):
 
 # Función para crear las barras iniciales
 def crear_barras_espectro():
-    global barras_espectro, ANCHO_BARRA, ESPACIO_ENTRE_BARRA
+    global barras_espectro
     # Limpiar barras existentes
     for barra in barras_espectro:
         try:
@@ -1100,19 +1118,19 @@ def crear_barras_espectro():
     ancho_canvas = canvas_espectro.winfo_width()
     alto_canvas = canvas_espectro.winfo_height()
     # Calcular ancho de barra y espacio entre barras dinámicamente
-    espacio_total = ancho_canvas  # Usar 90% del ancho para dejar márgenes
-    ANCHO_BARRA = max(2, (espacio_total / NUMERO_BARRA) * 0.7)  # 70% para la barra
-    ESPACIO_ENTRE_BARRA = (espacio_total / NUMERO_BARRA) * 0.3  # 30% para el espacio
+    espacio_total = ancho_canvas
+    ancho_barra = max(2, (espacio_total / NUMERO_BARRA) * 0.7)  # 70% para la barra
+    espacio_entre_barra = (espacio_total / NUMERO_BARRA) * 0.3  # 30% para el espacio
     # Calcular posición inicial para centrar las barras
     x_inicial = (
-        ancho_canvas - (NUMERO_BARRA * (ANCHO_BARRA + ESPACIO_ENTRE_BARRA) - ESPACIO_ENTRE_BARRA)
+        ancho_canvas - (NUMERO_BARRA * (ancho_barra + espacio_entre_barra) - espacio_entre_barra)
     ) // 2
     # Color según el tema
     color_barra = HOVER_CLARO if APARIENCIA == "claro" else HOVER_OSCURO
     # Crear barras
     for i in range(NUMERO_BARRA):
-        x1 = x_inicial + i * (ANCHO_BARRA + ESPACIO_ENTRE_BARRA)
-        x2 = x1 + ANCHO_BARRA
+        x1 = x_inicial + i * (ancho_barra + espacio_entre_barra)
+        x2 = x1 + ancho_barra
         y1 = alto_canvas
         y2 = alto_canvas - alturas_barras[i]
         barra = canvas_espectro.create_rectangle(x1, y1, x2, y2, fill=color_barra, width=0)
@@ -1125,24 +1143,18 @@ def actualizar_espectro():
         return
     alto_canvas = canvas_espectro.winfo_height()
     # Generar alturas aleatorias para simular el espectro
-    for i in range(NUMERO_BARRA):
-        if i < len(barras_espectro):  # Verificar que la barra existe
-            altura_objetivo = random.randint(10, int(alto_canvas))
-            alturas_barras[i] = int(alturas_barras[i] * 0.7 + altura_objetivo * 0.3)
-            # Actualizar altura de la barra
-            try:
-                x1, _, x2, _ = canvas_espectro.coords(barras_espectro[i])
-                canvas_espectro.coords(
-                    barras_espectro[i], x1, alto_canvas, x2, alto_canvas - alturas_barras[i]
-                )
-            except Exception as e:
-                # Error cuando el widget del canvas ha sido destruido o no está disponible
-                print(f"Error al actualizar la barra del espectro: {e}")
-                return
-            except IndexError:
-                # Error cuando se intenta acceder a una barra que no existe
-                print(f"Error: No se encontró la barra {i} en el espectro")
-                return
+    for i in range(min(NUMERO_BARRA, len(barras_espectro))):
+        # Calcular nueva altura con suavizado (70% actual + 30% objetivo)
+        altura_objetivo = random.randint(10, int(alto_canvas * 0.9))  # Limitar al 90% de altura
+        alturas_barras[i] = int(alturas_barras[i] * 0.7 + altura_objetivo * 0.3)
+        # Actualizar altura de la barra
+        try:
+            x1, _, x2, _ = canvas_espectro.coords(barras_espectro[i])
+            canvas_espectro.coords(barras_espectro[i], x1, alto_canvas, x2, alto_canvas - alturas_barras[i])
+        except Exception as e:
+            # Error cuando el widget del canvas ha sido destruido o no está disponible
+            print(f"Error al actualizar la barra del espectro: {e}")
+            return
     # Llamar a la función nuevamente después de un delay
     if ESTADO_REPRODUCCION:
         ventana_principal.after(75, actualizar_espectro)

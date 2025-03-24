@@ -108,13 +108,17 @@ class Configuracion(Utiles):
         else:
             try:
                 # Verificar si la ventana aún existe y es válida
-                self.colores()
-                self.ventana_configuracion.winfo_exists()
-                establecer_icono_tema(self.ventana_configuracion, self.controlador.tema_interfaz)
-                self.ventana_configuracion.deiconify()
+                if self.ventana_configuracion.winfo_exists():
+                    self.colores()
+                    establecer_icono_tema(self.ventana_configuracion, self.controlador.tema_interfaz)
+                    self.ventana_configuracion.deiconify()
+                else:
+                    # La ventana ya no existe, crear una nueva
+                    self.ventana_configuracion = None
+                    self.crear_ventana_configuracion()
             except Exception as e:
                 print(f"Error al mostrar la ventana de configuración: {e}")
-                # Sí hay error, recrear la ventana
+                # Si hay error, recrear la ventana
                 self.ventana_configuracion = None
                 self.crear_ventana_configuracion()
 

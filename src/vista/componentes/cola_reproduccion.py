@@ -37,28 +37,28 @@ class ColaReproduccion:
             ANCHO_COLA_REPRODUCCION,
             ALTO_COLA_REPRODUCCION,
             "Cola de reproducción",
-            self.utiles.color_fondo,
+            self.utiles.color_fondo_principal,
             lambda: cerrar_ventana_modal(self.ventana_cola, self.componentes, self.controlador_tema),
             self.controlador_tema,
         )
 
         # Contenedor principal con margen reducido
         contenedor_principal = ctk.CTkFrame(
-            self.ventana_cola, fg_color="transparent", corner_radius=BORDES_REDONDEADOS_PANEL
+            self.ventana_cola, fg_color=self.utiles.color_fondo, corner_radius=BORDES_REDONDEADOS_PANEL
         )
         contenedor_principal.pack(fill="both", expand=True, padx=3, pady=3)
         self.componentes.append(contenedor_principal)
-        self.controlador_tema.registrar_frame(contenedor_principal, es_ctk=True)
 
         # Etiqueta título con menos altura
         etiqueta_titulo = ctk.CTkLabel(
             contenedor_principal,
             height=15,
+            fg_color="transparent",
             text="Cola de reproducción",
             font=(LETRA, 18, "bold"),
             text_color=self.utiles.color_texto,
         )
-        etiqueta_titulo.pack()
+        etiqueta_titulo.pack(padx=10, pady=5)
         self.componentes.append(etiqueta_titulo)
         self.controlador_tema.registrar_etiqueta(etiqueta_titulo)
 
@@ -68,7 +68,7 @@ class ColaReproduccion:
             fg_color=self.utiles.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_cancion_actual.pack(fill="both", pady=(0, 3))
+        panel_cancion_actual.pack(fill="both", padx=5, pady=(0, 5))
         self.componentes.append(panel_cancion_actual)
 
         # Etiqueta de reproducción actual
@@ -79,7 +79,7 @@ class ColaReproduccion:
             font=(LETRA, 14, "bold"),
             text_color=self.utiles.color_texto,
         )
-        etiqueta_reproduciendo.pack(anchor="w", padx=3, pady=3)
+        etiqueta_reproduciendo.pack(anchor="w", padx=10, pady=(3, 0))
         self.componentes.append(etiqueta_reproduciendo)
         self.controlador_tema.registrar_etiqueta(etiqueta_reproduciendo)
 
@@ -92,7 +92,7 @@ class ColaReproduccion:
             fg_color=self.utiles.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_cola_reproduccion.pack(fill="both", expand=True, pady=(0, 3))
+        panel_cola_reproduccion.pack(fill="both", expand=True, padx=5, pady=(0, 5))
         self.componentes.append(panel_cola_reproduccion)
 
         # Etiqueta de próximas canciones
@@ -103,7 +103,7 @@ class ColaReproduccion:
             font=(LETRA, 14, "bold"),
             text_color=self.utiles.color_texto,
         )
-        etiqueta_proximas.pack(anchor="w", padx=3, pady=3)
+        etiqueta_proximas.pack(anchor="w", padx=10, pady=(3, 0))
         self.componentes.append(etiqueta_proximas)
         self.controlador_tema.registrar_etiqueta(etiqueta_proximas)
 
@@ -154,7 +154,7 @@ class ColaReproduccion:
                 panel,
                 fg_color="transparent",
             )
-            frame_informacion_cancion.pack(fill="both", padx=3, pady=3)
+            frame_informacion_cancion.pack(fill="both", padx=3, pady=5)
             self.componentes.append(frame_informacion_cancion)
 
             # Intentar mostrar la carátula
@@ -170,14 +170,14 @@ class ColaReproduccion:
             if cancion_actual.caratula_cancion:
                 try:
                     imagen = Image.open(BytesIO(cancion_actual.caratula_cancion))
-                    ancho = 55
+                    ancho = 60
                     ratio = ancho / float(imagen.size[0])
                     alto = int(float(imagen.size[1]) * float(ratio))
                     imagen = imagen.resize((ancho, alto), Image.Resampling.LANCZOS)
                     foto = ctk.CTkImage(light_image=imagen, dark_image=imagen, size=(ancho, alto))
                     label_imagen = ctk.CTkLabel(frame_imagen, image=foto, text="")
                     label_imagen.image = foto  # Mantener referencia
-                    label_imagen.pack(pady=3)
+                    label_imagen.pack(pady=(0, 3))
                     self.componentes.append(label_imagen)
                 except Exception as e:
                     print(f"Error al cargar la carátula: {e}")

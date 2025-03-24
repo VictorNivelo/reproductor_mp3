@@ -1,33 +1,41 @@
 {
     "artistas": {
-        "The Notorious B.I.G.": 3,
-        "¥$ ft Kanye West, Ty Dolla $ign": 19
+        "The Notorious B.I.G.": 12,
+        "¥$ ft Kanye West, Ty Dolla $ign": 62,
+        "Offset ft Metro Boomin": 3
     },
     "albumes": {
-        "Gangster Pain": 3,
-        "VULTURES 2": 19
+        "Gangster Pain": 12,
+        "VULTURES 2": 62,
+        "Without Warning": 3
     },
-    "tiempo_total": 5887.085714285717,
-    "canciones_escuchadas": 22,
+    "tiempo_total": 20013.244081632678,
+    "canciones_escuchadas": 77,
     "ultima_cancion": {
         "ruta": "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
         "titulo": "530",
         "artista": "¥$ ft Kanye West, Ty Dolla $ign",
         "album": "VULTURES 2",
-        "timestamp": "2025-03-23T15:42:34.040131"
+        "timestamp": "2025-03-23T23:29:54.159193"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3": {
-            "contador": 3,
+            "contador": 12,
             "titulo": "Gangster Pain",
             "artista": "The Notorious B.I.G.",
             "album": "Gangster Pain"
         },
         "C:\\Users\\Victor\\Music\\Musica\\530.mp3": {
-            "contador": 19,
+            "contador": 62,
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Ric Flair Drip (ft Metro Boomin).mp3": {
+            "contador": 3,
+            "titulo": "Ric Flair Drip (ft Metro Boomin)",
+            "artista": "Offset ft Metro Boomin",
+            "album": "Without Warning"
         }
     }
 }

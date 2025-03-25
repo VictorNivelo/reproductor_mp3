@@ -190,11 +190,10 @@ class ColaReproduccion:
             # Nombre de la canción
             etiqueta_titulo = ctk.CTkLabel(
                 informacion_cancion,
-                height=15,
+                height=19,
                 text=cancion_actual.titulo_cancion,
                 font=(LETRA, 14, "bold"),
                 text_color=self.utiles.color_texto,
-                anchor="w",
             )
             etiqueta_titulo.pack(anchor="w")
             self.componentes.append(etiqueta_titulo)
@@ -203,11 +202,10 @@ class ColaReproduccion:
             # Artista
             etiqueta_artista = ctk.CTkLabel(
                 informacion_cancion,
-                height=15,
+                height=19,
                 text=cancion_actual.artista,
                 font=(LETRA, 12),
                 text_color=self.utiles.color_texto,
-                anchor="w",
             )
             etiqueta_artista.pack(anchor="w")
             self.componentes.append(etiqueta_artista)
@@ -216,7 +214,7 @@ class ColaReproduccion:
             # Álbum
             etiqueta_album = ctk.CTkLabel(
                 informacion_cancion,
-                height=15,
+                height=19,
                 text=(
                     cancion_actual.album
                     if hasattr(cancion_actual, "album") and cancion_actual.album
@@ -224,7 +222,6 @@ class ColaReproduccion:
                 ),
                 font=(LETRA, 12, "italic"),
                 text_color=self.utiles.color_texto,
-                anchor="w",
             )
             etiqueta_album.pack(anchor="w")
             self.componentes.append(etiqueta_album)
@@ -283,7 +280,7 @@ class ColaReproduccion:
                     font=(LETRA, 12, "italic"),
                     text_color=self.utiles.color_texto,
                 )
-                etiqueta_info.pack(anchor="w", pady=3)
+                etiqueta_info.pack(fill="both", pady=3)
                 self.componentes.append(etiqueta_info)
                 self.controlador_tema.registrar_etiqueta(etiqueta_info)
                 return
@@ -295,7 +292,7 @@ class ColaReproduccion:
                 font=(LETRA, 12, "italic"),
                 text_color=self.utiles.color_texto,
             )
-            etiqueta_info.pack(anchor="w", pady=(0, 3))
+            etiqueta_info.pack(fill="both", pady=3)
             self.componentes.append(etiqueta_info)
             self.controlador_tema.registrar_etiqueta(etiqueta_info)
 
@@ -311,7 +308,7 @@ class ColaReproduccion:
                     font=(LETRA, 12, "italic"),
                     text_color=self.utiles.color_texto,
                 )
-                etiqueta_reinicio.pack(anchor="w", pady=(0, 3))
+                etiqueta_reinicio.pack(fill="both", pady=3)
                 self.componentes.append(etiqueta_reinicio)
                 self.controlador_tema.registrar_etiqueta(etiqueta_reinicio)
         else:  # Reproducción secuencial
@@ -326,7 +323,7 @@ class ColaReproduccion:
                     font=(LETRA, 12, "italic"),
                     text_color=self.utiles.color_texto,
                 )
-                etiqueta_reinicio.pack(anchor="w", pady=(0, 3))
+                etiqueta_reinicio.pack(fill="both", pady=3)
                 self.componentes.append(etiqueta_reinicio)
                 self.controlador_tema.registrar_etiqueta(etiqueta_reinicio)
                 proximas_canciones = lista_reproduccion[:10]
@@ -338,7 +335,7 @@ class ColaReproduccion:
                 frame,
                 fg_color="transparent",
             )
-            frame_cancion.pack(fill="both")
+            frame_cancion.pack(fill="both", pady=(3, 0))
             self.componentes.append(frame_cancion)
 
             # Número de orden
@@ -373,7 +370,6 @@ class ColaReproduccion:
                 text=cancion.titulo_cancion,
                 font=(LETRA, 12, "bold"),
                 text_color=self.utiles.color_texto,
-                anchor="w",
             )
             etiqueta_titulo.pack(anchor="w")
             self.componentes.append(etiqueta_titulo)
@@ -386,7 +382,6 @@ class ColaReproduccion:
                 text=cancion.artista,
                 font=(LETRA, 10),
                 text_color=self.utiles.color_texto,
-                anchor="w",
             )
             etiqueta_artista.pack(anchor="w")
             self.componentes.append(etiqueta_artista)
@@ -399,7 +394,6 @@ class ColaReproduccion:
                 text=cancion.album,
                 font=(LETRA, 10, "italic"),
                 text_color=self.utiles.color_texto,
-                anchor="w",
             )
             etiqueta_album.pack(anchor="w")
             self.componentes.append(etiqueta_album)

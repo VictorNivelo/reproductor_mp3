@@ -1,196 +1,33 @@
 {
     "artistas": {
-        "The Notorious B.I.G.": 29,
-        "¥$ ft Kanye West, Ty Dolla $ign": 94,
-        "Offset ft Metro Boomin": 11,
-        "Drake": 1,
-        "Feid ft Sech": 3,
-        "Future  ft Metro Boomin, Travis Scott": 2,
-        "Lil Uzi Vert": 4,
-        "Bad Bunny": 2,
-        "Tyler, The Creator": 20,
-        "Metro Boomin ft Coi Leray": 34,
-        "Tainy ft Sech, E.VAX": 2,
-        "Future ft Metro Boomin, Travis Scott, Playboi Carti": 3,
-        "Maluma": 1,
-        "21 Savage ft Young Thug, Metro Boomin": 3,
-        "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 3,
-        "Travis Scott ft SZA, Future": 8,
-        "Kanye West ft Lupe Fiasco": 1,
-        "Gucci Mane ft Bruno Mars, Kodak Black": 2,
-        "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN": 1,
-        "Juice WRLD ft Lil Uzi Vert": 1
+        "Eladio Carrion ft Bryant Myers": 4,
+        "Yan Block ft Panda Black": 9
     },
     "albumes": {
-        "Gangster Pain": 29,
-        "VULTURES 2": 94,
-        "Without Warning": 11,
-        "If You're Reading This It's Too Late": 1,
-        "BAHÍA DUCATI": 3,
-        "WE DON'T TRUST YOU": 5,
-        "Eternal Atake 2": 1,
-        "EL ÚLTIMO TOUR DEL MUNDO": 2,
-        "IGOR": 8,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 34,
-        "DATA": 2,
-        "Pink Tape": 3,
-        "11:11": 1,
-        "american dream": 3,
-        "Watch This (ARIZONATEARS Pluggnb Remix)": 3,
-        "Flower Boy": 12,
-        "UTOPIA": 8,
-        "Late Registration": 1,
-        "Evil Genius": 2,
-        "Chosen Few: New Generation": 1,
-        "Goodbye & Good Riddance": 1
+        "Animal": 4,
+        "444": 9
     },
-    "tiempo_total": 47680.47020408162,
-    "canciones_escuchadas": 225,
+    "tiempo_total": 2448.9012244897963,
+    "canciones_escuchadas": 13,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3",
-        "titulo": "Gangster Pain",
-        "artista": "The Notorious B.I.G.",
-        "album": "Gangster Pain",
-        "timestamp": "2025-03-24T19:29:48.553609"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
+        "titulo": "444",
+        "artista": "Yan Block ft Panda Black",
+        "album": "444",
+        "timestamp": "2025-03-24T22:28:59.865348"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3": {
-            "contador": 29,
-            "titulo": "Gangster Pain",
-            "artista": "The Notorious B.I.G.",
-            "album": "Gangster Pain"
+        "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3": {
+            "contador": 4,
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal"
         },
-        "C:\\Users\\Victor\\Music\\Musica\\530.mp3": {
-            "contador": 92,
-            "titulo": "530",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Ric Flair Drip (ft Metro Boomin).mp3": {
-            "contador": 11,
-            "titulo": "Ric Flair Drip (ft Metro Boomin)",
-            "artista": "Offset ft Metro Boomin",
-            "album": "Without Warning"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\10 Bands.mp3": {
-            "contador": 1,
-            "titulo": "10 Bands",
-            "artista": "Drake",
-            "album": "If You're Reading This It's Too Late"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\JAMAICA.mp3": {
-            "contador": 3,
-            "titulo": "JAMAICA",
-            "artista": "Feid ft Sech",
-            "album": "BAHÍA DUCATI"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\Cinderella.mp3": {
-            "contador": 2,
-            "titulo": "Cinderella",
-            "artista": "Future  ft Metro Boomin, Travis Scott",
-            "album": "WE DON'T TRUST YOU"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\Chill Bae.mp3": {
-            "contador": 1,
-            "titulo": "Chill Bae",
-            "artista": "Lil Uzi Vert",
-            "album": "Eternal Atake 2"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
-            "contador": 2,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\EXACTLY WHAT YOU RUN FROM YOU END UP CHASING.mp3": {
-            "contador": 8,
-            "titulo": "EXACTLY WHAT YOU RUN FROM YOU END UP CHASING",
-            "artista": "Tyler, The Creator",
-            "album": "IGOR"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3": {
-            "contador": 34,
-            "titulo": "Self Love",
-            "artista": "Metro Boomin ft Coi Leray",
-            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3": {
-            "contador": 2,
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "album": "DATA"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\Just Wanna Rock.mp3": {
-            "contador": 3,
-            "titulo": "Just Wanna Rock",
-            "artista": "Lil Uzi Vert",
-            "album": "Pink Tape"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\ISABELLA.mp3": {
-            "contador": 2,
-            "titulo": "ISABELLA",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\Type Shit.mp3": {
-            "contador": 3,
-            "titulo": "Type Shit",
-            "artista": "Future ft Metro Boomin, Travis Scott, Playboi Carti",
-            "album": "WE DON'T TRUST YOU"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\11 PM.mp3": {
-            "contador": 1,
-            "titulo": "11 PM",
-            "artista": "Maluma",
-            "album": "11:11"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\pop ur shit.mp3": {
-            "contador": 3,
-            "titulo": "pop ur shit",
-            "artista": "21 Savage ft Young Thug, Metro Boomin",
-            "album": "american dream"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\Watch This (Remix).mp3": {
-            "contador": 3,
-            "titulo": "Watch This (Remix)",
-            "artista": "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS",
-            "album": "Watch This (ARIZONATEARS Pluggnb Remix)"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\Sometimes....mp3": {
-            "contador": 12,
-            "titulo": "Sometimes",
-            "artista": "Tyler, The Creator",
-            "album": "Flower Boy"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3": {
-            "contador": 8,
-            "titulo": "TELEKINESIS (ft SZA, Future)",
-            "artista": "Travis Scott ft SZA, Future",
-            "album": "UTOPIA"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\Touch The Sky.mp3": {
-            "contador": 1,
-            "titulo": "Touch The Sky",
-            "artista": "Kanye West ft Lupe Fiasco",
-            "album": "Late Registration"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3": {
-            "contador": 2,
-            "titulo": "Wake Up in the Sky",
-            "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
-            "album": "Evil Genius"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\0 Sentimientos (Remix).mp3": {
-            "contador": 1,
-            "titulo": "0 Sentimientos (Remix)",
-            "artista": "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN",
-            "album": "Chosen Few: New Generation"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\Wasted (ft Lil Uzi Vert).mp3": {
-            "contador": 1,
-            "titulo": "Wasted (ft Lil Uzi Vert)",
-            "artista": "Juice WRLD ft Lil Uzi Vert",
-            "album": "Goodbye & Good Riddance"
+        "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
+            "contador": 9,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
         }
     }
 }

@@ -652,6 +652,11 @@ def actualizar_vista_canciones(panel):
     # Crear nuevos botones para cada canción
     for cancion in biblioteca.canciones:
         crear_boton_cancion(cancion, panel)
+    # Forzar actualización del layout
+    panel.update_idletasks()
+    # Asegurar que el canvas se actualice correctamente y volver al inicio
+    canvas_canciones.yview_moveto(0)
+    canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
 
 
 # Función para reestablecer el scroll en una pestaña
@@ -1641,20 +1646,20 @@ boton_mostrar_cola.pack(side="left", padx=5)
 controlador_tema.registrar_botones("mostrar_cola", boton_mostrar_cola)
 crear_tooltip(boton_mostrar_cola, "Mostrar la cola")
 
-boton_agregar_cola = ctk.CTkButton(
-    panel_controles_reproduccion,
-    width=ANCHO_BOTON,
-    height=ALTO_BOTON,
-    corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
-    text="",
-    hover_color=HOVER_CLARO,
-)
-boton_agregar_cola.pack(side="left", padx=5)
-controlador_tema.registrar_botones("agregar_cola", boton_agregar_cola)
-crear_tooltip(boton_agregar_cola, "Agregar a la cola")
+# boton_agregar_cola = ctk.CTkButton(
+#     panel_controles_reproduccion,
+#     width=ANCHO_BOTON,
+#     height=ALTO_BOTON,
+#     corner_radius=BORDES_REDONDEADOS_BOTON,
+#     fg_color=BOTON_CLARO,
+#     font=(LETRA, TAMANIO_LETRA_BOTON),
+#     text_color=TEXTO_CLARO,
+#     text="",
+#     hover_color=HOVER_CLARO,
+# )
+# boton_agregar_cola.pack(side="left", padx=5)
+# controlador_tema.registrar_botones("agregar_cola", boton_agregar_cola)
+# crear_tooltip(boton_agregar_cola, "Agregar a la cola")
 
 boton_minimizar = ctk.CTkButton(
     panel_controles_reproduccion,

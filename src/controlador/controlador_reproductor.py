@@ -122,6 +122,11 @@ class ControladorReproductor:
     def animar_desplazamiento_texto(self):
         if not hasattr(self, "desplazamiento_activo"):
             return
+        # Si la reproducción está pausada, no animamos el desplazamiento
+        if hasattr(self, "reproduciendo") and not self.reproduciendo:
+            # Programar verificación periódica para reanudar cuando se reanude la reproducción
+            self.marquee_timer_id = self.etiqueta_nombre.after(500, self.animar_desplazamiento_texto)
+            return
         textos = {
             "titulo": (self.texto_titulo, self.etiqueta_nombre),
             "artista": (self.texto_artista, self.etiqueta_artista),
@@ -136,15 +141,40 @@ class ControladorReproductor:
             longitud_maxima = 75
             # Si el texto es más largo que la longitud máxima, aplicar desplazamiento
             if len(texto_completo) > longitud_maxima:
-                # Crear texto visible con efecto de desplazamiento
-                if pos < len(texto_completo) - longitud_maxima:
-                    texto_visible = texto_completo[pos : pos + longitud_maxima]
-                    self.posicion_desplazamiento[clave] += 1
-                else:
-                    # Reiniciar desplazamiento con una pausa
-                    self.posicion_desplazamiento[clave] = 0
-                    texto_visible = texto_completo[:longitud_maxima]
-                # Actualizar etiqueta
+                # Control de pausa al inicio
+                if pos == 0:
+                    # Si estamos al inicio, pausar durante más tiempo
+                    if not hasattr(self, f"pausa_inicio_{clave}"):
+                        setattr(self, f"pausa_inicio_{clave}", 0)
+                    pausa_actual = getattr(self, f"pausa_inicio_{clave}")
+                    if pausa_actual < 8:  # 8 * 125ms = 1 segundo de pausa
+                        setattr(self, f"pausa_inicio_{clave}", pausa_actual + 1)
+                        texto_visible = texto_completo[:longitud_maxima]
+                        etiqueta.configure(text=texto_visible)
+                        continue
+                    else:
+                        setattr(self, f"pausa_inicio_{clave}", 0)
+                # Control de pausa al final
+                if pos >= len(texto_completo) - longitud_maxima:
+                    # Si llegamos al final, pausar antes de reiniciar
+                    if not hasattr(self, f"pausa_final_{clave}"):
+                        setattr(self, f"pausa_final_{clave}", 0)
+                    pausa_actual = getattr(self, f"pausa_final_{clave}")
+                    if pausa_actual < 8:  # 8 * 125ms = 1 segundo de pausa
+                        texto_visible = texto_completo[len(texto_completo) - longitud_maxima :]
+                        etiqueta.configure(text=texto_visible)
+                        setattr(self, f"pausa_final_{clave}", pausa_actual + 1)
+                        continue
+                    else:
+                        # Reiniciar desde el principio
+                        self.posicion_desplazamiento[clave] = 0
+                        texto_visible = texto_completo[:longitud_maxima]
+                        setattr(self, f"pausa_final_{clave}", 0)
+                        etiqueta.configure(text=texto_visible)
+                        continue
+                # Desplazamiento normal
+                texto_visible = texto_completo[pos : pos + longitud_maxima]
+                self.posicion_desplazamiento[clave] += 1
                 etiqueta.configure(text=texto_visible)
         # Programar próxima actualización
         self.marquee_timer_id = self.etiqueta_nombre.after(125, self.animar_desplazamiento_texto)

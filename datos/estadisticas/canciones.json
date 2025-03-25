@@ -3,7 +3,7 @@
         "total_canciones": 26,
         "total_artistas": 40,
         "total_albumes": 24,
-        "me_gusta": 3,
+        "me_gusta": 4,
         "favorito": 3
     },
     "canciones": [
@@ -172,7 +172,7 @@
             "anio": "2019",
             "numero_pista": "4",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {

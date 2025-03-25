@@ -1,6 +1,6 @@
 {
     "artistas": {
-        "The Notorious B.I.G.": 28,
+        "The Notorious B.I.G.": 29,
         "¥$ ft Kanye West, Ty Dolla $ign": 94,
         "Offset ft Metro Boomin": 11,
         "Drake": 1,
@@ -8,8 +8,8 @@
         "Future  ft Metro Boomin, Travis Scott": 2,
         "Lil Uzi Vert": 4,
         "Bad Bunny": 2,
-        "Tyler, The Creator": 18,
-        "Metro Boomin ft Coi Leray": 29,
+        "Tyler, The Creator": 20,
+        "Metro Boomin ft Coi Leray": 34,
         "Tainy ft Sech, E.VAX": 2,
         "Future ft Metro Boomin, Travis Scott, Playboi Carti": 3,
         "Maluma": 1,
@@ -18,10 +18,11 @@
         "Travis Scott ft SZA, Future": 8,
         "Kanye West ft Lupe Fiasco": 1,
         "Gucci Mane ft Bruno Mars, Kodak Black": 2,
-        "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN": 1
+        "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN": 1,
+        "Juice WRLD ft Lil Uzi Vert": 1
     },
     "albumes": {
-        "Gangster Pain": 28,
+        "Gangster Pain": 29,
         "VULTURES 2": 94,
         "Without Warning": 11,
         "If You're Reading This It's Too Late": 1,
@@ -29,8 +30,8 @@
         "WE DON'T TRUST YOU": 5,
         "Eternal Atake 2": 1,
         "EL ÚLTIMO TOUR DEL MUNDO": 2,
-        "IGOR": 6,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 29,
+        "IGOR": 8,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 34,
         "DATA": 2,
         "Pink Tape": 3,
         "11:11": 1,
@@ -40,20 +41,21 @@
         "UTOPIA": 8,
         "Late Registration": 1,
         "Evil Genius": 2,
-        "Chosen Few: New Generation": 1
+        "Chosen Few: New Generation": 1,
+        "Goodbye & Good Riddance": 1
     },
-    "tiempo_total": 46316.4081632653,
-    "canciones_escuchadas": 216,
+    "tiempo_total": 47680.47020408162,
+    "canciones_escuchadas": 225,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3",
-        "titulo": "Self Love",
-        "artista": "Metro Boomin ft Coi Leray",
-        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
-        "timestamp": "2025-03-24T19:08:05.787437"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3",
+        "titulo": "Gangster Pain",
+        "artista": "The Notorious B.I.G.",
+        "album": "Gangster Pain",
+        "timestamp": "2025-03-24T19:29:48.553609"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3": {
-            "contador": 28,
+            "contador": 29,
             "titulo": "Gangster Pain",
             "artista": "The Notorious B.I.G.",
             "album": "Gangster Pain"
@@ -101,13 +103,13 @@
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\pm\\EXACTLY WHAT YOU RUN FROM YOU END UP CHASING.mp3": {
-            "contador": 6,
+            "contador": 8,
             "titulo": "EXACTLY WHAT YOU RUN FROM YOU END UP CHASING",
             "artista": "Tyler, The Creator",
             "album": "IGOR"
         },
         "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3": {
-            "contador": 29,
+            "contador": 34,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
@@ -183,6 +185,12 @@
             "titulo": "0 Sentimientos (Remix)",
             "artista": "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN",
             "album": "Chosen Few: New Generation"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Wasted (ft Lil Uzi Vert).mp3": {
+            "contador": 1,
+            "titulo": "Wasted (ft Lil Uzi Vert)",
+            "artista": "Juice WRLD ft Lil Uzi Vert",
+            "album": "Goodbye & Good Riddance"
         }
     }
 }

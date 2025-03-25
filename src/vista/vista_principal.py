@@ -524,23 +524,115 @@ def cargar_biblioteca_vista():
             pestanas_cargadas[key] = False
 
 
+# Función para iniciar el desplazamiento del texto
+def iniciar_desplazamiento_boton(boton):
+    # Verificar si el botón tiene el atributo timer_id usando hasattr
+    if hasattr(boton, "timer_id") and getattr(boton, "timer_id"):
+        boton.after_cancel(getattr(boton, "timer_id"))
+    # Reiniciar la posición
+    setattr(boton, "pos_marquee", 0)
+    animar_texto_boton(boton)
+
+
+# Función para detener el desplazamiento del texto
+def detener_desplazamiento_boton(boton, longitud_maxima=50):
+    if hasattr(boton, "timer_id") and getattr(boton, "timer_id"):
+        boton.after_cancel(getattr(boton, "timer_id"))
+    # Mostrar texto truncado al detener
+    texto_completo = getattr(boton, "texto_completo", "")
+    boton.configure(text=texto_completo[:longitud_maxima] + "...")
+
+
+# Función para animar el texto del botón
+def animar_texto_boton(boton, longitud_maxima=50):
+    # Verificar si tiene el atributo texto_completo
+    if not hasattr(boton, "texto_completo"):
+        return
+    texto_completo = getattr(boton, "texto_completo")
+    pos = getattr(boton, "pos_marquee", 0)
+    # Control de la posición de desplazamiento
+    if pos == 0:
+        # Al inicio, pausa
+        if not hasattr(boton, "pausa_inicio"):
+            setattr(boton, "pausa_inicio", 0)
+        pausa_actual = getattr(boton, "pausa_inicio")
+        if pausa_actual < 8:  # Pausa de 1 segundo (8 * 125ms)
+            setattr(boton, "pausa_inicio", pausa_actual + 1)
+            texto_visible = texto_completo[:longitud_maxima]
+            boton.configure(text=texto_visible + "...")
+            timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
+            setattr(boton, "timer_id", timer_id)
+            return
+        else:
+            setattr(boton, "pausa_inicio", 0)
+    # Si el texto llega al final, reiniciar
+    if pos >= len(texto_completo) - longitud_maxima:
+        # Pausa al final
+        if not hasattr(boton, "pausa_final"):
+            setattr(boton, "pausa_final", 0)
+        pausa_actual = getattr(boton, "pausa_final")
+        if pausa_actual < 8:  # Pausa de 1 segundo (8 * 125ms)
+            setattr(boton, "pausa_final", pausa_actual + 1)
+            texto_visible = texto_completo[len(texto_completo) - longitud_maxima :]
+            boton.configure(text=texto_visible)
+            timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
+            setattr(boton, "timer_id", timer_id)
+            return
+        else:
+            setattr(boton, "pausa_final", 0)
+            setattr(boton, "pos_marquee", 0)
+            texto_visible = texto_completo[:longitud_maxima]
+            boton.configure(text=texto_visible + "...")
+            timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
+            setattr(boton, "timer_id", timer_id)
+            return
+    # Desplazamiento normal
+    texto_visible = texto_completo[pos : pos + longitud_maxima]
+    boton.configure(text=texto_visible)
+    setattr(boton, "pos_marquee", pos + 1)
+    timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
+    setattr(boton, "timer_id", timer_id)
+
+
+# Función para configurar el desplazamiento de texto en botones
+def configurar_desplazamiento_texto(boton, texto_completo, longitud_maxima=50):
+    # Si el texto es más corto que el límite, simplemente mostrarlo
+    if len(texto_completo) <= longitud_maxima:
+        boton.configure(text=texto_completo)
+        return
+    # Almacenar el texto completo como atributo del botón usando setattr
+    setattr(boton, "texto_completo", texto_completo)
+    setattr(boton, "pos_marquee", 0)
+    setattr(boton, "timer_id", None)
+    # Vincular eventos de ratón para activar/desactivar el desplazamiento
+    boton.bind("<Enter>", lambda event: iniciar_desplazamiento_boton(boton))
+    boton.bind("<Leave>", lambda event: detener_desplazamiento_boton(boton, longitud_maxima))
+    # Mostrar inicialmente el texto truncado con elipsis
+    boton.configure(text=texto_completo[:longitud_maxima] + "...")
+
+
 # Función para crear botones para cada canción en la biblioteca
 def crear_boton_cancion(cancion, panel):
     # Obtener colores del tema actual
     controlador_tema.colores()
+    # Determinar si el texto es largo y necesita desplazamiento
+    texto_cancion = f"{cancion.titulo_cancion} - {cancion.artista}"
+    # Crear el botón con texto inicial
     boton = ctk.CTkButton(
         panel,
         height=28,
         fg_color=controlador_tema.color_boton,
         font=(LETRA, TAMANIO_LETRA_BOTON),
         text_color=controlador_tema.color_texto,
-        text=f"{cancion.titulo_cancion} - {cancion.artista}",
+        text=texto_cancion,
         hover_color=controlador_tema.color_hover,
         command=lambda c=cancion: reproducir_cancion_desde_lista(c),
     )
     boton.pack(fill="both", pady=(0, 2), expand=True)
     controlador_tema.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton)
     botones_canciones[cancion] = boton
+    # Configurar desplazamiento si el texto es largo
+    configurar_desplazamiento_texto(boton, texto_cancion)
 
 
 # Función para actualizar la vista de las canciones en la biblioteca
@@ -789,6 +881,8 @@ def crear_botones_albumes(albumes, canvas_albumes, panel_botones_albumes):
         )
         boton_album.pack(fill="both", pady=(0, 2), expand=True)
         controlador_tema.registrar_botones(f"album_{album}", boton_album)
+        # Configurar desplazamiento si el texto es largo
+        configurar_desplazamiento_texto(boton_album, album)
     panel_botones_albumes.update_idletasks()
     canvas_albumes.yview_moveto(0)
     canvas_albumes.configure(scrollregion=canvas_albumes.bbox("all"))
@@ -841,6 +935,8 @@ def crear_botones_artistas(artistas, canvas_artistas, panel_botones_artistas):
         )
         boton_artista.pack(fill="both", pady=(0, 2), expand=True)
         controlador_tema.registrar_botones(f"artista_{artista}", boton_artista)
+        # Configurar desplazamiento si el texto es largo
+        configurar_desplazamiento_texto(boton_artista, artista)
     panel_botones_artistas.update_idletasks()
     canvas_artistas.yview_moveto(0)
     canvas_artistas.configure(scrollregion=canvas_artistas.bbox("all"))

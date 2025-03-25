@@ -41,6 +41,20 @@
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\EXACTLY WHAT YOU RUN FROM YOU END UP CHASING.mp3",
+            "titulo": "EXACTLY WHAT YOU RUN FROM YOU END UP CHASING",
+            "artista": "Tyler, The Creator",
+            "artista_album": "Tyler, The Creator",
+            "album": "IGOR",
+            "duracion": 14.680816326530612,
+            "duracion_formateada": "00:14",
+            "anio": "2019",
+            "numero_pista": "4",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
         }
     ]
 }

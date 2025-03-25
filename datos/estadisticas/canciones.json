@@ -1,10 +1,10 @@
 {
     "estadisticas": {
-        "total_canciones": 25,
-        "total_artistas": 39,
-        "total_albumes": 23,
-        "me_gusta": 1,
-        "favorito": 2
+        "total_canciones": 26,
+        "total_artistas": 40,
+        "total_albumes": 24,
+        "me_gusta": 3,
+        "favorito": 3
     },
     "canciones": [
         {
@@ -116,8 +116,8 @@
             "anio": "2020-11-27",
             "numero_pista": "14",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
+            "me_gusta": true,
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
@@ -201,6 +201,20 @@
             "numero_pista": "5/16",
             "tiene_caratula": true,
             "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\JAMAICA.mp3",
+            "titulo": "JAMAICA",
+            "artista": "Feid ft Sech",
+            "artista_album": "Feid",
+            "album": "BAHÍA DUCATI",
+            "duracion": 224.2873469387755,
+            "duracion_formateada": "03:44",
+            "anio": "2020-09-11",
+            "numero_pista": "3",
+            "tiene_caratula": true,
+            "me_gusta": true,
             "favorito": false
         },
         {

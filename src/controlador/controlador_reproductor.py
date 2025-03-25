@@ -19,6 +19,16 @@ class ControladorReproductor:
         self.etiqueta_album = None
         self.etiqueta_anio = None
         self.etiqueta_imagen = None
+        # Textos de la interfaz
+        self.texto_titulo = None
+        self.texto_artista = None
+        self.texto_album = None
+        # Desplazamiento de textos largos
+        self.direccion_desplazamiento = None
+        self.posicion_desplazamiento = None
+        self.desplazamiento_activo = None
+        # Temporizador de desplazamiento
+        self.marquee_timer_id = None
         # Etiquetas de tiempo
         self.etiqueta_tiempo_actual = None
         self.etiqueta_tiempo_total = None
@@ -47,20 +57,30 @@ class ControladorReproductor:
         self.etiqueta_anio = anio
         self.etiqueta_imagen = imagen
         # Establecer texto inicial
-        self.etiqueta_nombre.configure(text="Sin reproducción")
-        self.etiqueta_artista.configure(text="Artista: ")
-        self.etiqueta_album.configure(text="Álbum: ")
-        self.etiqueta_anio.configure(text="Lanzamiento: ")
+        self.etiqueta_nombre.configure(text="")
+        self.etiqueta_artista.configure(text="")
+        self.etiqueta_album.configure(text="")
+        self.etiqueta_anio.configure(text="")
         self.etiqueta_imagen.configure(text="Sin carátula")
 
     # Método que actualiza la información de la interfaz
     def actualizar_informacion_interfaz(self):
         if self.cancion_actual and self.etiqueta_nombre:
-            # Actualizar texto de las etiquetas
-            self.etiqueta_nombre.configure(text=self.cancion_actual.titulo_cancion)
-            self.etiqueta_artista.configure(text=f"Artista: {self.cancion_actual.artista}")
-            self.etiqueta_album.configure(text=f"Álbum: {self.cancion_actual.album}")
-            self.etiqueta_anio.configure(text=f"Lanzamiento: {self.cancion_actual.fecha_formateada}")
+            # Guardar información de la canción actual
+            self.texto_titulo = self.cancion_actual.titulo_cancion
+            self.texto_artista = self.cancion_actual.artista
+            self.texto_album = self.cancion_actual.album
+            # Configurar texto inicial (sin desplazamiento aún)
+            self.etiqueta_nombre.configure(text=self.texto_titulo)
+            self.etiqueta_artista.configure(text=self.texto_artista)
+            self.etiqueta_album.configure(text=self.texto_album)
+            self.etiqueta_anio.configure(text=self.cancion_actual.fecha_formateada)
+            # Cancelar cualquier timer de desplazamiento anterior
+            if hasattr(self, "marquee_timer_id") and self.marquee_timer_id:
+                self.etiqueta_nombre.after_cancel(self.marquee_timer_id)
+                self.marquee_timer_id = None
+            # Iniciar desplazamiento de textos largos si es necesario
+            self.iniciar_desplazamiento_texto()
             # Actualizar carátula
             if self.cancion_actual.caratula_cancion:
                 foto, _, _ = self.utiles.crear_imagen_desde_bytes(
@@ -72,6 +92,62 @@ class ControladorReproductor:
                     self.etiqueta_imagen.configure(image=None, text="Sin carátula")
             else:
                 self.etiqueta_imagen.configure(image=None, text="Sin carátula")
+
+    # Método para iniciar desplazamiento de textos largos
+    def iniciar_desplazamiento_texto(self):
+        # Longitud máxima antes de activar desplazamiento
+        longitud_maxima = 75
+        # Variables para controlar el desplazamiento
+        self.desplazamiento_activo = {}
+        self.posicion_desplazamiento = {}
+        self.direccion_desplazamiento = {}
+        # Comprobar si algún texto necesita desplazamiento
+        textos = {
+            "titulo": (self.texto_titulo, self.etiqueta_nombre),
+            "artista": (self.texto_artista, self.etiqueta_artista),
+            "album": (self.texto_album, self.etiqueta_album),
+        }
+        for clave, (texto, etiqueta) in textos.items():
+            if len(texto) > longitud_maxima:
+                self.desplazamiento_activo[clave] = True
+                self.posicion_desplazamiento[clave] = 0
+                self.direccion_desplazamiento[clave] = 1  # 1: derecha a izquierda
+            else:
+                self.desplazamiento_activo[clave] = False
+        # Iniciar animación si hay textos para desplazar
+        if any(self.desplazamiento_activo.values()):
+            self.animar_desplazamiento_texto()
+
+    # Método para animar el desplazamiento del texto
+    def animar_desplazamiento_texto(self):
+        if not hasattr(self, "desplazamiento_activo"):
+            return
+        textos = {
+            "titulo": (self.texto_titulo, self.etiqueta_nombre),
+            "artista": (self.texto_artista, self.etiqueta_artista),
+            "album": (self.texto_album, self.etiqueta_album),
+        }
+        # Actualizar cada texto que necesite desplazamiento
+        for clave, (texto_completo, etiqueta) in textos.items():
+            if not self.desplazamiento_activo.get(clave, False):
+                continue
+            # Obtener posición actual y longitud visible
+            pos = self.posicion_desplazamiento[clave]
+            longitud_maxima = 75
+            # Si el texto es más largo que la longitud máxima, aplicar desplazamiento
+            if len(texto_completo) > longitud_maxima:
+                # Crear texto visible con efecto de desplazamiento
+                if pos < len(texto_completo) - longitud_maxima:
+                    texto_visible = texto_completo[pos : pos + longitud_maxima]
+                    self.posicion_desplazamiento[clave] += 1
+                else:
+                    # Reiniciar desplazamiento con una pausa
+                    self.posicion_desplazamiento[clave] = 0
+                    texto_visible = texto_completo[:longitud_maxima]
+                # Actualizar etiqueta
+                etiqueta.configure(text=texto_visible)
+        # Programar próxima actualización
+        self.marquee_timer_id = self.etiqueta_nombre.after(125, self.animar_desplazamiento_texto)
 
     # Método que establece las etiquetas de tiempo
     def establecer_etiquetas_tiempo(self, etiqueta_actual, etiqueta_total):

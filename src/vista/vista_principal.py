@@ -1009,7 +1009,7 @@ def actualizar_espectro():
             return
     # Llamar a la función nuevamente después de un delay
     if ESTADO_REPRODUCCION:
-        ventana_principal.after(75, actualizar_espectro)
+        ventana_principal.after(85, actualizar_espectro)
 
 
 # Función para establecer el icono del tema
@@ -1241,7 +1241,7 @@ etiqueta_nombre_cancion = ctk.CTkLabel(
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=TEXTO_CLARO,
-    text="Nombre de la Canción",
+    text="",
 )
 etiqueta_nombre_cancion.pack(expand=True)
 controlador_tema.registrar_etiqueta(etiqueta_nombre_cancion)
@@ -1252,7 +1252,7 @@ etiqueta_artista_cancion = ctk.CTkLabel(
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=TEXTO_CLARO,
-    text="Artista de la Canción",
+    text="",
 )
 etiqueta_artista_cancion.pack(expand=True)
 controlador_tema.registrar_etiqueta(etiqueta_artista_cancion)
@@ -1263,7 +1263,7 @@ etiqueta_album_cancion = ctk.CTkLabel(
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=TEXTO_CLARO,
-    text="Álbum de la Canción",
+    text="",
 )
 etiqueta_album_cancion.pack(expand=True)
 controlador_tema.registrar_etiqueta(etiqueta_album_cancion)
@@ -1274,7 +1274,7 @@ etiqueta_anio_cancion = ctk.CTkLabel(
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=TEXTO_CLARO,
-    text="Lanzamiento de la Canción",
+    text="",
 )
 etiqueta_anio_cancion.pack(expand=True)
 controlador_tema.registrar_etiqueta(etiqueta_anio_cancion)

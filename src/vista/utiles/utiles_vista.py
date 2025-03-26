@@ -58,11 +58,22 @@ def cargar_iconos(tema="claro"):
         # Botones de creación, edición y eliminación
         "crear": "crear",
         "editar": "editar",
+        "guardar": "guardar",
         "eliminar": "eliminar",
+        "quitar": "quitar",
+        "limpiar": "limpiar",
+        "buscar": "buscar",
+        "regresar": "regresar",
         # Botones de reproducción de video
         "microfono": "microfono",
         "audifonos": "audifonos",
+        "bluetooth": "bluetooth",
         "sonido": "sonido",
+        "enlace": "enlace",
+        # Botones de mostrar lista
+        "cuadricula": "cuadricula",
+        "detalles": "detalles",
+        "lista": "lista",
     }
     for nombre, archivo in archivos_iconos.items():
         try:

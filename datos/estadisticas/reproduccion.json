@@ -1,40 +1,40 @@
 {
     "artistas": {
-        "Eladio Carrion ft Bryant Myers": 28,
-        "Yan Block ft Panda Black": 43,
+        "Eladio Carrion ft Bryant Myers": 30,
+        "Yan Block ft Panda Black": 50,
         "MF DOOM ft Pebbles The Invisible Girl": 20,
-        "Bad Bunny": 17,
+        "Bad Bunny": 22,
         "Tyler, The Creator": 2,
         "The Notorious B.I.G.": 2,
-        "¥$ ft Kanye West, Ty Dolla $ign": 6
+        "¥$ ft Kanye West, Ty Dolla $ign": 9
     },
     "albumes": {
-        "Animal": 28,
-        "444": 43,
+        "Animal": 30,
+        "444": 50,
         "Operation: Doomsday (Complete)": 20,
-        "EL ÚLTIMO TOUR DEL MUNDO": 17,
+        "EL ÚLTIMO TOUR DEL MUNDO": 22,
         "Flower Boy": 2,
         "Gangster Pain": 2,
-        "VULTURES 2": 6
+        "VULTURES 2": 9
     },
-    "tiempo_total": 20881.449795918357,
-    "canciones_escuchadas": 118,
+    "tiempo_total": 24170.475102040797,
+    "canciones_escuchadas": 135,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
-        "titulo": "444",
-        "artista": "Yan Block ft Panda Black",
-        "album": "444",
-        "timestamp": "2025-03-26T13:51:03.968788"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
+        "titulo": "120",
+        "artista": "Bad Bunny",
+        "album": "EL ÚLTIMO TOUR DEL MUNDO",
+        "timestamp": "2025-03-26T14:39:54.081706"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3": {
-            "contador": 28,
+            "contador": 30,
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
-            "contador": 43,
+            "contador": 50,
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
@@ -46,7 +46,7 @@
             "album": "Operation: Doomsday (Complete)"
         },
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
-            "contador": 17,
+            "contador": 22,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
@@ -64,7 +64,7 @@
             "album": "Gangster Pain"
         },
         "C:\\Users\\Victor\\Music\\pm\\530.mp3": {
-            "contador": 6,
+            "contador": 9,
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"

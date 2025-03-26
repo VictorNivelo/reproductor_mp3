@@ -87,13 +87,13 @@ class ColaReproduccion:
         duracion_total = self.calcular_duracion_cola()
         etiqueta_duracion = ctk.CTkLabel(
             contenedor_principal,
-            height=15,
+            height=14,
             fg_color="transparent",
             text=f"Duración total: {duracion_total}",
-            font=(LETRA, 12),
+            font=(LETRA, 11),
             text_color=self.utiles.color_texto,
         )
-        etiqueta_duracion.pack(padx=10, pady=3)
+        etiqueta_duracion.pack(padx=10, pady=1)
         self.componentes.append(etiqueta_duracion)
         self.controlador_tema.registrar_etiqueta(etiqueta_duracion)
         # ------------------------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ class ColaReproduccion:
             panel_cancion_actual,
             height=15,
             text="Reproduciendo ahora:",
-            font=(LETRA, 14, "bold"),
+            font=(LETRA, 13, "bold"),
             text_color=self.utiles.color_texto,
         )
         etiqueta_reproduciendo.pack(anchor="w", padx=5, pady=(3, 0))
@@ -156,7 +156,7 @@ class ColaReproduccion:
             panel_componentes,
             height=15,
             text="Próximas canciones:",
-            font=(LETRA, 14, "bold"),
+            font=(LETRA, 13, "bold"),
             text_color=self.utiles.color_texto,
         )
         etiqueta_proximas.pack(side="left")
@@ -268,7 +268,7 @@ class ColaReproduccion:
                 width=60,
                 height=60,
             )
-            panel_imagen.pack(side="left", padx=3, pady=3)
+            panel_imagen.pack(side="left", padx=3)
             self.componentes.append(panel_imagen)
             # -------------------------------------------------------------------------------------------------
 
@@ -280,7 +280,7 @@ class ColaReproduccion:
             # ***************************** Panel información de la canción ***********************************
             # Información de la canción
             informacion_cancion = ctk.CTkFrame(panel_informacion_cancion, fg_color="transparent")
-            informacion_cancion.pack(side="left", fill="both", expand=True, padx=(0, 3), pady=3)
+            informacion_cancion.pack(side="left", fill="both", expand=True, padx=(0, 3))
             self.componentes.append(informacion_cancion)
 
             # ---------------------------------------- Etiqueta título ----------------------------------------
@@ -453,8 +453,8 @@ class ColaReproduccion:
                     indice_real = -1
             elif modo_repeticion == 2 and indice_actual >= len(lista_reproduccion) - 1:
                 indice_real = i  # Para el caso de repetir todo cuando estamos al final
-            # Crear un panel para cada canción con hover
             # ***************************************** Panel canción *****************************************
+            # Crear un panel para cada canción con hover
             panel_cancion = ctk.CTkFrame(
                 panel,
                 fg_color="transparent",
@@ -553,8 +553,10 @@ class ColaReproduccion:
                 color = self.utiles.color_hover if enter else "transparent"
                 panel_objetivo.configure(fg_color=color)
 
+            # Configurar eventos de hover
             panel_cancion.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
             panel_cancion.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
+
             # Añadir evento de clic para reproducir la canción
             panel_cancion.bind("<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c))
             etiqueta_titulo.bind("<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c))

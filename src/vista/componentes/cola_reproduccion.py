@@ -173,13 +173,14 @@ class ColaReproduccion:
                 height=ALTO_BOTON,
                 fg_color=self.utiles.color_boton,
                 hover_color=self.utiles.color_hover,
-                font=(LETRA, 10),
+                font=(LETRA, TAMANIO_LETRA_BOTON),
                 text_color=self.utiles.color_texto,
                 text="Limpiar cola",
                 command=self.limpiar_cola,
             )
             boton_limpiar_cola.pack(side="right")
             self.componentes.append(boton_limpiar_cola)
+            self.controlador_tema.registrar_botones_con_tamano("limpiar", boton_limpiar_cola, (15, 15))
         # ------------------------------------------------------------------------------------------------
 
         # ---------------------------------------- Canvas cola -------------------------------------------
@@ -215,10 +216,11 @@ class ColaReproduccion:
             contenedor_principal,
             width=ANCHO_BOTON,
             height=ALTO_BOTON,
-            text="Cerrar",
             fg_color=self.utiles.color_boton,
             hover_color=self.utiles.color_hover,
+            font=(LETRA, TAMANIO_LETRA_BOTON),
             text_color=self.utiles.color_texto,
+            text="Cerrar",
             command=lambda: cerrar_ventana_modal(self.ventana_cola, self.componentes, self.controlador_tema),
         )
         boton_cerrar.pack(pady=3)
@@ -545,16 +547,17 @@ class ColaReproduccion:
                 panel_cancion,
                 width=ANCHO_BOTON,
                 height=ALTO_BOTON,
-                corner_radius=12,
+                corner_radius=7,
                 fg_color=self.utiles.color_boton,
                 hover_color=self.utiles.color_hover,
-                font=(LETRA, 14, "bold"),
+                font=(LETRA, TAMANIO_LETRA_BOTON + 2, "bold"),
                 text_color=self.utiles.color_texto,
-                text="×",
+                text="X",
                 command=lambda idx=indice_real: self.quitar_de_cola(idx),
             )
             boton_quitar.pack(side="right", padx=(0, 3))
             self.componentes.append(boton_quitar)
+            # self.controlador_tema.registrar_botones_con_tamano("quitar", boton_quitar, (15, 15))
             # -------------------------------------------------------------------------------------------------
 
             # Añadir efecto hover al panel de canción

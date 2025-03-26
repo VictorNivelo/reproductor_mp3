@@ -1,52 +1,52 @@
 {
     "artistas": {
-        "Eladio Carrion ft Bryant Myers": 30,
-        "Yan Block ft Panda Black": 50,
-        "MF DOOM ft Pebbles The Invisible Girl": 20,
-        "Bad Bunny": 22,
+        "Eladio Carrion ft Bryant Myers": 35,
+        "Yan Block ft Panda Black": 56,
+        "MF DOOM ft Pebbles The Invisible Girl": 22,
+        "Bad Bunny": 32,
         "Tyler, The Creator": 2,
         "The Notorious B.I.G.": 2,
-        "¥$ ft Kanye West, Ty Dolla $ign": 9
+        "¥$ ft Kanye West, Ty Dolla $ign": 17
     },
     "albumes": {
-        "Animal": 30,
-        "444": 50,
-        "Operation: Doomsday (Complete)": 20,
-        "EL ÚLTIMO TOUR DEL MUNDO": 22,
+        "Animal": 35,
+        "444": 56,
+        "Operation: Doomsday (Complete)": 22,
+        "EL ÚLTIMO TOUR DEL MUNDO": 32,
         "Flower Boy": 2,
         "Gangster Pain": 2,
-        "VULTURES 2": 9
+        "VULTURES 2": 17
     },
-    "tiempo_total": 24170.475102040797,
-    "canciones_escuchadas": 135,
+    "tiempo_total": 30403.160816326505,
+    "canciones_escuchadas": 166,
     "ultima_cancion": {
         "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
         "titulo": "120",
         "artista": "Bad Bunny",
         "album": "EL ÚLTIMO TOUR DEL MUNDO",
-        "timestamp": "2025-03-26T14:39:54.081706"
+        "timestamp": "2025-03-26T15:17:37.194060"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3": {
-            "contador": 30,
+            "contador": 35,
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
-            "contador": 50,
+            "contador": 56,
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Doomsday..mp3": {
-            "contador": 20,
+            "contador": 22,
             "titulo": "Doomsday",
             "artista": "MF DOOM ft Pebbles The Invisible Girl",
             "album": "Operation: Doomsday (Complete)"
         },
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
-            "contador": 22,
+            "contador": 32,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
@@ -64,7 +64,7 @@
             "album": "Gangster Pain"
         },
         "C:\\Users\\Victor\\Music\\pm\\530.mp3": {
-            "contador": 9,
+            "contador": 17,
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"

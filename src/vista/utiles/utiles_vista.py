@@ -9,8 +9,10 @@ tooltips = {}
 
 
 # Método para obtener la ruta de los iconos de la aplicación
-def cargar_iconos(tema="claro"):
+def cargar_iconos(tema="claro", tamanio=None):
     iconos = {}
+    # Tamaño de los iconos
+    tamanio_iconos = tamanio if tamanio else (ANCHO_IMAGEN, ALTO_IMAGEN)
     archivos_iconos = {
         # Botones de gustos
         "me_gusta": "me_gusta",
@@ -89,12 +91,33 @@ def cargar_iconos(tema="claro"):
                 # Modo de imagen y tamaño
                 light_image=Image.open(ruta_iconos),
                 dark_image=Image.open(ruta_iconos),
-                size=(ANCHO_IMAGEN, ALTO_IMAGEN),
+                size=tamanio_iconos,
             )
         except Exception as e:
             print(f"Error al cargar el icono {nombre}: {e}")
             iconos[nombre] = None
     return iconos
+
+
+# Método para cargar un único icono con tamaño personalizado
+def cargar_icono_personalizado(nombre, tema="claro", tamanio=None):
+    try:
+        # Determinar si el icono requiere tema
+        if nombre in ["me_gusta_rojo", "favorito_amarillo"]:
+            ruta_iconos = obtener_ruta_iconos(nombre, None)
+        else:
+            ruta_iconos = obtener_ruta_iconos(nombre, tema)
+        # Usar tamaño predeterminado si no se especifica
+        tamanio_icono = tamanio if tamanio else (ANCHO_IMAGEN, ALTO_IMAGEN)
+        # Cargar el icono
+        return ctk.CTkImage(
+            light_image=Image.open(ruta_iconos),
+            dark_image=Image.open(ruta_iconos),
+            size=tamanio_icono,
+        )
+    except Exception as e:
+        print(f"Error al cargar el icono personalizado {nombre}: {e}")
+        return None
 
 
 # Método para obtener la ruta de los iconos de la aplicación

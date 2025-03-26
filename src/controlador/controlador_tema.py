@@ -1,4 +1,4 @@
-from vista.utiles.utiles_vista import cargar_iconos
+from vista.utiles.utiles_vista import cargar_icono_personalizado, cargar_iconos
 import customtkinter as ctk
 from utiles import Utiles
 
@@ -25,6 +25,20 @@ class ControladorTema(Utiles):
     def registrar_botones(self, nombre, boton):
         self.botones[nombre] = boton
         self.mostrar_icono_boton(nombre)
+
+    # Registrar botones con iconos de tamaño personalizado
+    def registrar_botones_con_tamano(self, nombre, boton, tamano=None):
+        self.botones[nombre] = boton
+        if tamano:
+            # Cargar icono con tamaño personalizado
+            icono = cargar_icono_personalizado(nombre, self.tema_iconos, tamano)
+            if icono:
+                boton.configure(image=icono)
+                # Guardar referencia para evitar el recolector de basura
+                boton._icono_personalizado = icono
+        else:
+            # Usar el método estándar para mostrar iconos
+            self.mostrar_icono_boton(nombre)
 
     # Registrar frames
     def registrar_frame(self, frame, es_ctk=False, es_principal=False):

@@ -1,4 +1,5 @@
 from vista.componentes.utiles.utiles_componentes import configurar_ventana_modal, cerrar_ventana_modal
+from vista.utiles.utiles_vista import cargar_icono_personalizado
 from vista.utiles.utiles_scroll import GestorScroll
 import customtkinter as ctk
 from utiles import Utiles
@@ -61,32 +62,33 @@ class ColaReproduccion:
         )
         # ===================================== Contenedor principal =====================================
         # Contenedor principal con margen reducido
-        contenedor_principal = ctk.CTkFrame(
+        panel_principal_cola = ctk.CTkFrame(
             self.ventana_cola, fg_color=self.utiles.color_fondo, corner_radius=BORDES_REDONDEADOS_PANEL
         )
-        contenedor_principal.pack(fill="both", expand=True, padx=3, pady=3)
-        self.componentes.append(contenedor_principal)
+        panel_principal_cola.pack(fill="both", expand=True, padx=3, pady=3)
+        self.componentes.append(panel_principal_cola)
 
         # ---------------------------------------- Etiqueta título ----------------------------------------
         # Etiqueta título con menos altura
-        etiqueta_titulo = ctk.CTkLabel(
-            contenedor_principal,
+        etiqueta_titulo_general = ctk.CTkLabel(
+            panel_principal_cola,
             height=15,
             fg_color="transparent",
             font=(LETRA, 16, "bold"),
             text_color=self.utiles.color_texto,
             text="Cola de reproducción",
         )
-        etiqueta_titulo.pack(padx=10)
-        self.componentes.append(etiqueta_titulo)
-        self.controlador_tema.registrar_etiqueta(etiqueta_titulo)
+        etiqueta_titulo_general.pack(padx=10)
+        self.componentes.append(etiqueta_titulo_general)
+        self.controlador_tema.registrar_etiqueta(etiqueta_titulo_general)
         # ------------------------------------------------------------------------------------------------
 
         # ---------------------------------------- Etiqueta duración --------------------------------------
         # Duración total de la cola
         duracion_total = self.calcular_duracion_cola()
+        # Etiqueta con la duración total
         etiqueta_duracion = ctk.CTkLabel(
-            contenedor_principal,
+            panel_principal_cola,
             height=14,
             fg_color="transparent",
             font=(LETRA, 11),
@@ -102,7 +104,7 @@ class ColaReproduccion:
         # ---------------------------------------- Panel cancion -----------------------------------------
         # Panel para la canción actual con mejor estilo
         panel_cancion_actual = ctk.CTkFrame(
-            contenedor_principal,
+            panel_principal_cola,
             fg_color=self.utiles.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
@@ -132,7 +134,7 @@ class ColaReproduccion:
         # ---------------------------------------- Panel cola --------------------------------------------
         # Panel para las próximas canciones
         panel_cola_reproduccion = ctk.CTkFrame(
-            contenedor_principal,
+            panel_principal_cola,
             fg_color=self.utiles.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
@@ -213,7 +215,7 @@ class ColaReproduccion:
         # ---------------------------------------- Botón cerrar ------------------------------------------
         # Botón para cerrar con mejor estilo
         boton_cerrar = ctk.CTkButton(
-            contenedor_principal,
+            panel_principal_cola,
             width=ANCHO_BOTON,
             height=ALTO_BOTON,
             fg_color=self.utiles.color_boton,
@@ -346,7 +348,7 @@ class ColaReproduccion:
                 panel_sin_cancion,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, 12),
+                font=(LETRA, 12, "italic"),
                 text_color=self.utiles.color_texto,
                 text="No hay ninguna canción en reproducción",
             )
@@ -370,7 +372,7 @@ class ColaReproduccion:
                 panel,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, 12),
+                font=(LETRA, 12, "italic"),
                 text_color=self.utiles.color_texto,
                 text="La cola de reproducción está vacía",
             )
@@ -488,18 +490,18 @@ class ColaReproduccion:
                 self.mostrar_caratula(panel_cancion, cancion.caratula_cancion, ancho=45)
             # Información de la canción
             # --------------------------------- Panel información canción -------------------------------------
-            informacion_cancion_cola = ctk.CTkFrame(
+            panel_cola_informacion = ctk.CTkFrame(
                 panel_cancion,
                 fg_color="transparent",
             )
-            informacion_cancion_cola.pack(side="left", fill="both", expand=True, padx=(0, 3), pady=3)
-            self.componentes.append(informacion_cancion_cola)
+            panel_cola_informacion.pack(side="left", fill="both", expand=True, padx=(0, 3), pady=3)
+            self.componentes.append(panel_cola_informacion)
             # -------------------------------------------------------------------------------------------------
 
             # ---------------------------------------- Etiqueta título ----------------------------------------
             # Nombre de la canción
             etiqueta_titulo = ctk.CTkLabel(
-                informacion_cancion_cola,
+                panel_cola_informacion,
                 height=15,
                 fg_color="transparent",
                 font=(LETRA, 12, "bold"),
@@ -514,10 +516,10 @@ class ColaReproduccion:
             # ---------------------------------------- Etiqueta artista ---------------------------------------
             # Artista
             etiqueta_artista = ctk.CTkLabel(
-                informacion_cancion_cola,
+                panel_cola_informacion,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, 10),
+                font=(LETRA, 11),
                 text_color=self.utiles.color_texto,
                 text=cancion.artista,
             )
@@ -529,10 +531,10 @@ class ColaReproduccion:
             # ------------------------------------- Etiqueta album --------------------------------------------
             # Álbum
             etiqueta_album = ctk.CTkLabel(
-                informacion_cancion_cola,
+                panel_cola_informacion,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, 10, "italic"),
+                font=(LETRA, 11, "italic"),
                 text_color=self.utiles.color_texto,
                 text=cancion.album,
             )
@@ -543,6 +545,7 @@ class ColaReproduccion:
 
             # ---------------------------------------- Botón quitar -------------------------------------------
             # Botón para quitar de la cola
+            icono_quitar = cargar_icono_personalizado("quitar", self.controlador_tema.tema_iconos, (10, 10))
             boton_quitar = ctk.CTkButton(
                 panel_cancion,
                 width=ANCHO_BOTON,
@@ -552,7 +555,8 @@ class ColaReproduccion:
                 hover_color=self.utiles.color_hover,
                 font=(LETRA, TAMANIO_LETRA_BOTON + 2, "bold"),
                 text_color=self.utiles.color_texto,
-                text="X",
+                text="",
+                image=icono_quitar,
                 command=lambda idx=indice_real: self.quitar_de_cola(idx),
             )
             boton_quitar.pack(side="right", padx=(0, 3))
@@ -567,11 +571,14 @@ class ColaReproduccion:
 
             # Configurar eventos de hover
             panel_cancion.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
+            panel_cola_informacion.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
             etiqueta_titulo.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
             etiqueta_artista.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
             etiqueta_album.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
             etiqueta_numero.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
+
             panel_cancion.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
+            panel_cola_informacion.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
             etiqueta_titulo.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
             etiqueta_artista.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
             etiqueta_album.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
@@ -579,6 +586,9 @@ class ColaReproduccion:
 
             # Añadir evento de clic para reproducir la canción
             panel_cancion.bind("<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c))
+            panel_cola_informacion.bind(
+                "<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c)
+            )
             etiqueta_titulo.bind("<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c))
             etiqueta_artista.bind("<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c))
             etiqueta_album.bind("<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c))

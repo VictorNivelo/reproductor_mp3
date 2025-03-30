@@ -56,3 +56,14 @@ class GestorScroll:
         if (direccion < 0 and posicion_actual[0] <= 0) or (direccion > 0 and posicion_actual[1] >= 1):
             return
         canvas.yview_scroll(int(direccion), "units")
+
+    # Método para desactivar el scroll
+    def desactivar(self):
+        try:
+            # Desvincular eventos de scroll
+            self.canvas.unbind_all("<MouseWheel>")
+            # Desvincular eventos de configuración
+            self.panel.unbind("<Configure>")
+            self.canvas.unbind("<Configure>")
+        except Exception as e:
+            print(f"Error al desvincular eventos de scroll: {e}")

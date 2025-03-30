@@ -523,8 +523,8 @@ def cargar_biblioteca_vista():
         # Reiniciar estado de las pestañas
         for key in pestanas_cargadas:
             pestanas_cargadas[key] = False
-            
-            
+
+
 # Función para cargar la cola de reproducción guardada
 def cargar_cola_vista():
     global controlador_archivos, controlador_reproductor, biblioteca
@@ -1557,22 +1557,6 @@ boton_repetir.pack(side="left", padx=5)
 controlador_tema.registrar_botones("no_repetir", boton_repetir)
 crear_tooltip(boton_repetir, "No repetir")
 
-boton_retroceder = ctk.CTkButton(
-    panel_controles_reproduccion,
-    width=ANCHO_BOTON,
-    height=ALTO_BOTON,
-    corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
-    text="",
-    hover_color=HOVER_CLARO,
-    command=retroceder_reproduccion_vista,
-)
-boton_retroceder.pack(side="left", padx=5)
-controlador_tema.registrar_botones("retroceder", boton_retroceder)
-crear_tooltip(boton_retroceder, f"Retrocede {TIEMPO_AJUSTE} segundos")
-
 boton_anterior = ctk.CTkButton(
     panel_controles_reproduccion,
     width=ANCHO_BOTON,
@@ -1588,6 +1572,22 @@ boton_anterior = ctk.CTkButton(
 boton_anterior.pack(side="left", padx=5)
 controlador_tema.registrar_botones("anterior", boton_anterior)
 crear_tooltip(boton_anterior, "Reproucir anterior")
+
+boton_retroceder = ctk.CTkButton(
+    panel_controles_reproduccion,
+    width=ANCHO_BOTON,
+    height=ALTO_BOTON,
+    corner_radius=BORDES_REDONDEADOS_BOTON,
+    fg_color=BOTON_CLARO,
+    font=(LETRA, TAMANIO_LETRA_BOTON),
+    text_color=TEXTO_CLARO,
+    text="",
+    hover_color=HOVER_CLARO,
+    command=retroceder_reproduccion_vista,
+)
+boton_retroceder.pack(side="left", padx=5)
+controlador_tema.registrar_botones("retroceder", boton_retroceder)
+crear_tooltip(boton_retroceder, f"Retrocede {TIEMPO_AJUSTE} segundos")
 
 boton_reproducir = ctk.CTkButton(
     panel_controles_reproduccion,
@@ -1605,22 +1605,6 @@ boton_reproducir.pack(side="left", padx=5)
 controlador_tema.registrar_botones("reproducir", boton_reproducir)
 crear_tooltip(boton_reproducir, "Reproducir")
 
-boton_siguiente = ctk.CTkButton(
-    panel_controles_reproduccion,
-    width=ANCHO_BOTON,
-    height=ALTO_BOTON,
-    corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
-    text="",
-    hover_color=HOVER_CLARO,
-    command=reproducir_siguiente_vista,
-)
-boton_siguiente.pack(side="left", padx=5)
-controlador_tema.registrar_botones("siguiente", boton_siguiente)
-crear_tooltip(boton_siguiente, "Reproducir siguiente")
-
 boton_adelantar = ctk.CTkButton(
     panel_controles_reproduccion,
     width=ANCHO_BOTON,
@@ -1636,6 +1620,22 @@ boton_adelantar = ctk.CTkButton(
 boton_adelantar.pack(side="left", padx=5)
 controlador_tema.registrar_botones("adelantar", boton_adelantar)
 crear_tooltip(boton_adelantar, f"Adelanta {TIEMPO_AJUSTE} segundos")
+
+boton_siguiente = ctk.CTkButton(
+    panel_controles_reproduccion,
+    width=ANCHO_BOTON,
+    height=ALTO_BOTON,
+    corner_radius=BORDES_REDONDEADOS_BOTON,
+    fg_color=BOTON_CLARO,
+    font=(LETRA, TAMANIO_LETRA_BOTON),
+    text_color=TEXTO_CLARO,
+    text="",
+    hover_color=HOVER_CLARO,
+    command=reproducir_siguiente_vista,
+)
+boton_siguiente.pack(side="left", padx=5)
+controlador_tema.registrar_botones("siguiente", boton_siguiente)
+crear_tooltip(boton_siguiente, "Reproducir siguiente")
 
 boton_mostrar_cola = ctk.CTkButton(
     panel_controles_reproduccion,

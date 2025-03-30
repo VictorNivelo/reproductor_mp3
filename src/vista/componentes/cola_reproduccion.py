@@ -416,9 +416,9 @@ class ColaReproduccion:
             self.componentes.append(etiqueta_info)
             self.controlador_tema.registrar_etiqueta(etiqueta_info)
             # -------------------------------------------------------------------------------------------------
-            # En modo aleatorio, mostrar todas las canciones disponibles
+            # En modo aleatorio, mostrar todas las canciones disponibles (eliminando la limitación)
             disponibles = [cancion for i, cancion in enumerate(lista_reproduccion) if i != indice_actual]
-            proximas_canciones = disponibles[:10]  # Limitar a 10 canciones
+            proximas_canciones = disponibles
             if not proximas_canciones and modo_repeticion == 2:
                 # ---------------------------------------- Etiqueta reinicio ----------------------------------
                 etiqueta_reinicio = ctk.CTkLabel(
@@ -436,7 +436,7 @@ class ColaReproduccion:
         else:  # Reproducción secuencial
             # Mostrar las próximas canciones en orden
             if indice_actual < len(lista_reproduccion) - 1:
-                proximas_canciones = lista_reproduccion[indice_actual + 1 : indice_actual + 11]
+                proximas_canciones = lista_reproduccion[indice_actual + 1 :]
             elif modo_repeticion == 2:  # Repetir todo
                 # ---------------------------------------- Etiqueta reinicio ----------------------------------
                 etiqueta_reinicio = ctk.CTkLabel(

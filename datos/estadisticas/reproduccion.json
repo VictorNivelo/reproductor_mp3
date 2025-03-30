@@ -1,40 +1,50 @@
 {
     "artistas": {
-        "Eladio Carrion ft Bryant Myers": 43,
-        "Yan Block ft Panda Black": 64,
+        "Eladio Carrion ft Bryant Myers": 44,
+        "Yan Block ft Panda Black": 67,
         "MF DOOM ft Pebbles The Invisible Girl": 28,
-        "Bad Bunny": 37,
+        "Bad Bunny": 43,
         "Tyler, The Creator": 2,
-        "The Notorious B.I.G.": 4,
-        "¥$ ft Kanye West, Ty Dolla $ign": 24
+        "The Notorious B.I.G.": 5,
+        "¥$ ft Kanye West, Ty Dolla $ign": 26,
+        "Tainy ft Sech, E.VAX": 6,
+        "Noriel ft Bad Bunny, Almighty": 1,
+        "Bad Bunny ft Diplo, Nitti Gritti": 1,
+        "Kanye West ft Syleena Johnson": 1
     },
     "albumes": {
-        "Animal": 43,
-        "444": 64,
+        "Animal": 44,
+        "444": 67,
         "Operation: Doomsday (Complete)": 28,
-        "EL ÚLTIMO TOUR DEL MUNDO": 37,
+        "EL ÚLTIMO TOUR DEL MUNDO": 39,
         "Flower Boy": 2,
-        "Gangster Pain": 4,
-        "VULTURES 2": 24
+        "Gangster Pain": 5,
+        "VULTURES 2": 26,
+        "DATA": 6,
+        "Amigos y Enemigos (Remix)": 1,
+        "Un Verano Sin Ti": 1,
+        "X 100PRE": 1,
+        "YHLQMDLG": 3,
+        "The College Dropout": 1
     },
-    "tiempo_total": 37370.25306122445,
-    "canciones_escuchadas": 202,
+    "tiempo_total": 41692.290612244855,
+    "canciones_escuchadas": 224,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3",
-        "titulo": "Animal",
-        "artista": "Eladio Carrion ft Bryant Myers",
-        "album": "Animal",
-        "timestamp": "2025-03-30T16:50:53.929786"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
+        "titulo": "11 Y ONCE",
+        "artista": "Tainy ft Sech, E.VAX",
+        "album": "DATA",
+        "timestamp": "2025-03-30T18:38:10.503697"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3": {
-            "contador": 43,
+            "contador": 44,
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
-            "contador": 64,
+            "contador": 67,
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
@@ -46,7 +56,7 @@
             "album": "Operation: Doomsday (Complete)"
         },
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
-            "contador": 37,
+            "contador": 39,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
@@ -58,16 +68,58 @@
             "album": "Flower Boy"
         },
         "C:\\Users\\Victor\\Music\\pm\\Gangster Pain.mp3": {
-            "contador": 4,
+            "contador": 5,
             "titulo": "Gangster Pain",
             "artista": "The Notorious B.I.G.",
             "album": "Gangster Pain"
         },
         "C:\\Users\\Victor\\Music\\pm\\530.mp3": {
-            "contador": 24,
+            "contador": 26,
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3": {
+            "contador": 6,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Amigos y Enemigos (ft Bad Bunny & Almighty).mp3": {
+            "contador": 1,
+            "titulo": "Amigos y Enemigos",
+            "artista": "Noriel ft Bad Bunny, Almighty",
+            "album": "Amigos y Enemigos (Remix)"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Agosto.mp3": {
+            "contador": 1,
+            "titulo": "Agosto",
+            "artista": "Bad Bunny",
+            "album": "Un Verano Sin Ti"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\200 Mph.mp3": {
+            "contador": 1,
+            "titulo": "200 Mph",
+            "artista": "Bad Bunny ft Diplo, Nitti Gritti",
+            "album": "X 100PRE"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\25 8.mp3": {
+            "contador": 1,
+            "titulo": "25/8",
+            "artista": "Bad Bunny",
+            "album": "YHLQMDLG"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\3.mp3": {
+            "contador": 2,
+            "titulo": "<3",
+            "artista": "Bad Bunny",
+            "album": "YHLQMDLG"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\All Falls Down.mp3": {
+            "contador": 1,
+            "titulo": "All Falls Down",
+            "artista": "Kanye West ft Syleena Johnson",
+            "album": "The College Dropout"
         }
     }
 }

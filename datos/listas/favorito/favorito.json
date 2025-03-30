@@ -1,3 +1,18 @@
 {
-    "favoritos": []
+    "favoritos": [
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "artista_album": "Yan Block ft Panda Black",
+            "album": "444",
+            "duracion": 175.30775510204083,
+            "duracion_formateada": "02:55",
+            "anio": "2024-04-04",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": true
+        }
+    ]
 }

@@ -1,5 +1,5 @@
-from controlador.controlador_archivos import ControladorArchivos
 from vista.componentes.utiles.utiles_componentes import configurar_ventana_modal, cerrar_ventana_modal
+from controlador.controlador_archivos import ControladorArchivos
 from vista.utiles.utiles_vista import cargar_icono_personalizado
 from vista.utiles.utiles_scroll import GestorScroll
 import customtkinter as ctk
@@ -170,6 +170,7 @@ class ColaReproduccion:
         # ---------------------------------------- Botón limpiar cola ------------------------------------
         # Botón para limpiar toda la cola
         if self.controlador_reproductor.lista_reproduccion:
+            icono_limpiar = cargar_icono_personalizado("limpiar", self.controlador_tema.tema_iconos, (15, 15))
             boton_limpiar_cola = ctk.CTkButton(
                 panel_componentes,
                 width=ANCHO_BOTON,
@@ -179,11 +180,12 @@ class ColaReproduccion:
                 font=(LETRA, TAMANIO_LETRA_BOTON),
                 text_color=self.utiles.color_texto,
                 text="Limpiar cola",
+                image=icono_limpiar,
                 command=self.limpiar_cola,
             )
             boton_limpiar_cola.pack(side="right")
             self.componentes.append(boton_limpiar_cola)
-            self.controlador_tema.registrar_botones_con_tamano("limpiar", boton_limpiar_cola, (15, 15))
+            # self.controlador_tema.registrar_botones("limpiar", boton_limpiar_cola)
         # ------------------------------------------------------------------------------------------------
 
         # ---------------------------------------- Canvas cola -------------------------------------------
@@ -545,7 +547,7 @@ class ColaReproduccion:
 
             # ---------------------------------------- Botón quitar -------------------------------------------
             # Botón para quitar de la cola
-            icono_quitar = cargar_icono_personalizado("quitar", self.controlador_tema.tema_iconos, (10, 10))
+            icono_quitar = cargar_icono_personalizado("quitar", self.controlador_tema.tema_iconos, (7, 7))
             boton_quitar = ctk.CTkButton(
                 panel_cancion,
                 width=ANCHO_BOTON,

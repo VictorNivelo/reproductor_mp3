@@ -20,6 +20,7 @@ class ControladorArchivos:
         self.ruta_me_gusta = RUTA_ME_GUSTA
         self.ruta_reproduccion = RUTA_REPRODUCCION
         self.ruta_configuracion = RUTA_CONFIGURACION
+        self.ruta_cola = RUTA_COLA
         # Crear la estructura de directorios
         self.crear_estructura_directorios()
 
@@ -63,13 +64,16 @@ class ControladorArchivos:
                 os.makedirs(directorio)
 
     # Guardar la biblioteca en archivos JSON
-    def guardar_biblioteca(self, biblioteca):
+    def guardar_biblioteca(self, biblioteca, reproductor=None):
         try:
             # Guardar todas las canciones
             self.guardar_canciones(biblioteca)
             # Guardar listas especiales
             self.guardar_me_gusta(biblioteca)
             self.guardar_favoritos(biblioteca)
+            # Guardar la cola de reproducción si se proporciona el reproductor
+            if reproductor is not None:
+                self.guardar_cola_reproduccion(reproductor)
             return True
         except Exception as e:
             print(f"Error al guardar biblioteca: {str(e)}")
@@ -84,6 +88,26 @@ class ControladorArchivos:
         contenido = json.dumps(datos, ensure_ascii=False, indent=4)
         with open(self.ruta_canciones, "w", encoding="utf-8") as archivo:
             archivo.write(contenido)
+
+    # Guardar la cola de reproducción en un archivo JSON
+    def guardar_cola_reproduccion(self, reproductor):
+        try:
+            if not reproductor.lista_reproduccion:
+                # Si la cola está vacía, crear un JSON con lista vacía
+                datos_cola = {"indice_actual": -1, "canciones": []}
+            else:
+                # Guardar la lista de reproducción con el índice actual
+                datos_cola = {
+                    "indice_actual": reproductor.indice_actual,
+                    "canciones": [str(cancion.ruta_cancion) for cancion in reproductor.lista_reproduccion],
+                }
+            contenido = json.dumps(datos_cola, ensure_ascii=False, indent=4)
+            with open(self.ruta_cola, "w", encoding="utf-8") as archivo:
+                archivo.write(contenido)
+            return True
+        except Exception as e:
+            print(f"Error al guardar la cola de reproducción: {str(e)}")
+            return False
 
     # Guardar la lista de me gusta en un archivo JSON
     def guardar_me_gusta(self, biblioteca):
@@ -150,6 +174,43 @@ class ControladorArchivos:
         # Ordenar todas las colecciones después de cargar
         biblioteca.ordenar_colecciones()
         return canciones_cargadas
+
+    # Cargar la cola de reproducción desde un archivo JSON
+    def cargar_cola_reproduccion(self, reproductor, biblioteca):
+        estructura_cola = {"indice_actual": -1, "canciones": []}
+        # Verificar archivo de cola
+        self.verificar_archivo_json(self.ruta_cola, estructura_cola)
+        try:
+            with open(self.ruta_cola, "r", encoding="utf-8") as archivo:
+                datos_cola = json.load(archivo)
+            # Limpiar la cola actual
+            reproductor.lista_reproduccion = []
+            reproductor.indice_actual = -1
+            # Si no hay canciones en el archivo, salir
+            if not datos_cola["canciones"]:
+                return True
+            # Reconstituir la lista de reproducción a partir de las rutas guardadas
+            lista_reconstruida = []
+            for ruta_str in datos_cola["canciones"]:
+                ruta = Path(ruta_str)
+                # Buscar la canción en la biblioteca
+                for cancion in biblioteca.canciones:
+                    if cancion.ruta_cancion == ruta:
+                        lista_reconstruida.append(cancion)
+                        break
+            # Establecer la lista reconstruida y el índice actual
+            if lista_reconstruida:
+                reproductor.lista_reproduccion = lista_reconstruida
+                # Asegurarse que el índice esté dentro de los límites
+                indice = datos_cola["indice_actual"]
+                if 0 <= indice < len(lista_reconstruida):
+                    reproductor.indice_actual = indice
+                else:
+                    reproductor.indice_actual = 0
+            return True
+        except Exception as e:
+            print(f"Error al cargar la cola de reproducción: {str(e)}")
+            return False
 
     # Actualizar los estados me gusta y favoritos desde los archivos JSON
     def actualizar_estados_desde_listas(self, biblioteca):

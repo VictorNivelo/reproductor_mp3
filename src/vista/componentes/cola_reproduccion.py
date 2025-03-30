@@ -1,3 +1,4 @@
+from controlador.controlador_archivos import ControladorArchivos
 from vista.componentes.utiles.utiles_componentes import configurar_ventana_modal, cerrar_ventana_modal
 from vista.utiles.utiles_vista import cargar_icono_personalizado
 from vista.utiles.utiles_scroll import GestorScroll
@@ -233,7 +234,7 @@ class ColaReproduccion:
         # ================================================================================================
 
     # Método para mostrar la carátula de una canción en un panel
-    def mostrar_caratula(self, panel_contenedor, imagen_bytes, ancho=60, padding_y=(0, 3)):
+    def mostrar_caratula(self, panel_contenedor, imagen_bytes, ancho=60):
         foto, _, _ = self.utiles.crear_imagen_desde_bytes(imagen_bytes, ancho)
         if foto:
             # --------------------------------------- Etiqueta imagen ------------------------------------
@@ -242,7 +243,6 @@ class ColaReproduccion:
             etiqueta_imagen.pack(
                 side="left" if panel_contenedor.pack_info().get("side") != "left" else "top",
                 padx=(0, 3),
-                pady=padding_y,
             )
             self.componentes.append(etiqueta_imagen)
             # --------------------------------------------------------------------------------------------
@@ -468,7 +468,7 @@ class ColaReproduccion:
                 panel,
                 fg_color="transparent",
             )
-            panel_cancion.pack(fill="both", pady=(2, 0))
+            panel_cancion.pack(fill="both")
             self.componentes.append(panel_cancion)
             # ------------------------------------- Etiqueta número -------------------------------------------
             # Número de orden
@@ -631,6 +631,9 @@ class ColaReproduccion:
                 self.controlador_reproductor.reproducir_siguiente()
             # Actualizar la ventana de cola
             self.actualizar_ventana_cola()
+            # Guardar la cola actualizada
+            controlador_archivos = ControladorArchivos()
+            controlador_archivos.guardar_cola_reproduccion(self.controlador_reproductor)
 
     # Método para limpiar toda la cola de reproducción
     def limpiar_cola(self):
@@ -648,6 +651,8 @@ class ColaReproduccion:
             self.controlador_reproductor.indice_actual = -1
         # Actualizar la ventana de cola
         self.actualizar_ventana_cola()
+        controlador_archivos = ControladorArchivos()
+        controlador_archivos.guardar_cola_reproduccion(self.controlador_reproductor)
 
     # Método para actualizar la ventana de la cola de reproducción
     def actualizar_ventana_cola(self):

@@ -505,7 +505,8 @@ def finalizar_arrastre_progreso(event):
 
 # Función para guardar la biblioteca cuando ocurren cambios
 def guardar_biblioteca():
-    controlador_archivos.guardar_biblioteca(biblioteca)
+    global controlador_archivos, biblioteca, controlador_reproductor
+    controlador_archivos.guardar_biblioteca(biblioteca, controlador_reproductor)
 
 
 # Función para cargar la biblioteca al iniciar
@@ -522,6 +523,12 @@ def cargar_biblioteca_vista():
         # Reiniciar estado de las pestañas
         for key in pestanas_cargadas:
             pestanas_cargadas[key] = False
+            
+            
+# Función para cargar la cola de reproducción guardada
+def cargar_cola_vista():
+    global controlador_archivos, controlador_reproductor, biblioteca
+    controlador_archivos.cargar_cola_reproduccion(controlador_reproductor, biblioteca)
 
 
 # Función para iniciar el desplazamiento del texto
@@ -1917,6 +1924,9 @@ verificar_estado_reproduccion()
 
 # Cargar las canciones de biblioteca al iniciar
 cargar_biblioteca_vista()
+
+# Cargar la cola de reproducción al iniciar
+cargar_cola_vista()
 
 # Mostrar la ventana
 ventana_principal.mainloop()

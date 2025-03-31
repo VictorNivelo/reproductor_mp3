@@ -1,5 +1,8 @@
 class GestorScroll:
     def __init__(self, canvas, panel, ventana_canvas):
+        # Identificador único para este gestor de scroll
+        self.scroll_id = f"scroll_{id(self)}"
+        # Inicializar variables
         self.canvas = canvas
         self.panel = panel
         self.ventana_canvas = ventana_canvas
@@ -9,18 +12,36 @@ class GestorScroll:
 
     # Configurar el scroll del frame
     def scroll_frame_configuracion(self, _event=None):
+        if not self.canvas or not self.panel:
+            return
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
         # Obtener dimensiones
         contenido_altura = self.panel.winfo_reqheight()
         canvas_altura = self.canvas.winfo_height()
         # Habilitar o deshabilitar el scroll
         if contenido_altura <= canvas_altura:
-            self.canvas.unbind_all("<MouseWheel>")
+            self.canvas.unbind_all(f"<MouseWheel>")
         else:
+            # Usar bind_all pero con un tag específico para este gestor
+            self.canvas.bind("<MouseWheel>", self.scroll_raton_configuracion)
+            # Vincular eventos MouseWheel solo cuando el ratón está sobre este canvas
+            self.canvas.bind("<Enter>", self._activar_scroll)
+            self.canvas.bind("<Leave>", self._desactivar_scroll)
+
+    # Activar el scroll cuando el ratón entra al canvas
+    def _activar_scroll(self, _event=None):
+        if self.canvas:
             self.canvas.bind_all("<MouseWheel>", self.scroll_raton_configuracion)
+
+    # Desactivar el scroll cuando el ratón sale del canvas
+    def _desactivar_scroll(self, _event=None):
+        if self.canvas:
+            self.canvas.unbind_all("<MouseWheel>")
 
     # Configurar el scroll del canvas
     def scroll_canvas_configuracion(self, event):
+        if not self.canvas or not self.ventana_canvas:
+            return
         canvas_width = event.width
         self.canvas.itemconfig(self.ventana_canvas, width=canvas_width)
         # Verificar scroll después de redimensionar
@@ -28,6 +49,8 @@ class GestorScroll:
 
     # Desplazar el canvas con la rueda del ratón
     def scroll_raton_configuracion(self, event):
+        if not self.canvas or not self.panel:
+            return
         contenido_altura = self.panel.winfo_reqheight()
         canvas_altura = self.canvas.winfo_height()
         # Solo permitir scroll si el contenido es mayor que el canvas
@@ -60,10 +83,21 @@ class GestorScroll:
     # Método para desactivar el scroll
     def desactivar(self):
         try:
-            # Desvincular eventos de scroll
-            self.canvas.unbind_all("<MouseWheel>")
+            # Desvincular eventos del canvas específico
+            if self.canvas:
+                self.canvas.unbind("<Enter>")
+                self.canvas.unbind("<Leave>")
+                self.canvas.unbind("<MouseWheel>")
+                # Solo desvincular eventos globales si estamos dentro del canvas
+                self.canvas.unbind_all("<MouseWheel>")
             # Desvincular eventos de configuración
-            self.panel.unbind("<Configure>")
-            self.canvas.unbind("<Configure>")
+            if self.panel:
+                self.panel.unbind("<Configure>")
+            if self.canvas:
+                self.canvas.unbind("<Configure>")
+            # Limpiar referencias
+            self.canvas = None
+            self.panel = None
+            self.ventana_canvas = None
         except Exception as e:
             print(f"Error al desvincular eventos de scroll: {e}")

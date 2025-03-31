@@ -25,6 +25,17 @@ class ColaReproduccion:
     def iniciar_monitor_cambios(self):
         self.verificar_cambio_cancion()
 
+    # Metodo para cerrar la ventana de la cola de reproducción
+    def cerrar_ventana_cola(self):
+        # Primero desactivar el gestor de scroll si existe
+        if self.gestor_scroll:
+            self.gestor_scroll.desactivar()
+            self.gestor_scroll = None
+        # Ahora cerrar la ventana normalmente
+        cerrar_ventana_modal(self.ventana_cola, self.componentes, self.controlador_tema)
+        self.ventana_cola = None
+        self.componentes = []
+
     # Método para verificar si la canción actual cambió
     def verificar_cambio_cancion(self):
         cancion_actual = self.controlador_reproductor.cancion_actual
@@ -58,7 +69,7 @@ class ColaReproduccion:
             ALTO_COLA_REPRODUCCION,
             "Cola de reproducción",
             self.utiles.color_fondo_principal,
-            lambda: cerrar_ventana_modal(self.ventana_cola, self.componentes, self.controlador_tema),
+            lambda: self.cerrar_ventana_cola(),
             self.controlador_tema,
         )
         # ===================================== Contenedor principal =====================================
@@ -226,7 +237,7 @@ class ColaReproduccion:
             font=(LETRA, TAMANIO_LETRA_BOTON),
             text_color=self.utiles.color_texto,
             text="Cerrar",
-            command=lambda: cerrar_ventana_modal(self.ventana_cola, self.componentes, self.controlador_tema),
+            command=lambda: self.cerrar_ventana_cola(),
         )
         boton_cerrar.pack(pady=3)
         self.componentes.append(boton_cerrar)
@@ -658,12 +669,8 @@ class ColaReproduccion:
 
     # Método para actualizar la ventana de la cola de reproducción
     def actualizar_ventana_cola(self):
-        # Cerrar la ventana actual
-        cerrar_ventana_modal(self.ventana_cola, self.componentes, self.controlador_tema)
-        # Limpiar referencias
-        self.ventana_cola = None
-        self.componentes = []
-        self.gestor_scroll = None
+        # Cerrar la ventana actual usando nuestro método seguro
+        self.cerrar_ventana_cola()
         # Abrir nueva ventana actualizada
         self.mostrar_ventana_cola()
 

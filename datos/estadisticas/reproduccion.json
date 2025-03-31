@@ -1,40 +1,42 @@
 {
     "artistas": {
         "Eladio Carrion ft Bryant Myers": 44,
-        "Yan Block ft Panda Black": 67,
+        "Yan Block ft Panda Black": 68,
         "MF DOOM ft Pebbles The Invisible Girl": 28,
-        "Bad Bunny": 43,
+        "Bad Bunny": 48,
         "Tyler, The Creator": 2,
         "The Notorious B.I.G.": 5,
         "¥$ ft Kanye West, Ty Dolla $ign": 26,
-        "Tainy ft Sech, E.VAX": 6,
+        "Tainy ft Sech, E.VAX": 11,
         "Noriel ft Bad Bunny, Almighty": 1,
-        "Bad Bunny ft Diplo, Nitti Gritti": 1,
-        "Kanye West ft Syleena Johnson": 1
+        "Bad Bunny ft Diplo, Nitti Gritti": 6,
+        "Kanye West ft Syleena Johnson": 3,
+        "Tainy ft Anuel AA, Ozuna": 3
     },
     "albumes": {
         "Animal": 44,
-        "444": 67,
+        "444": 68,
         "Operation: Doomsday (Complete)": 28,
-        "EL ÚLTIMO TOUR DEL MUNDO": 39,
+        "EL ÚLTIMO TOUR DEL MUNDO": 40,
         "Flower Boy": 2,
         "Gangster Pain": 5,
         "VULTURES 2": 26,
-        "DATA": 6,
+        "DATA": 11,
         "Amigos y Enemigos (Remix)": 1,
-        "Un Verano Sin Ti": 1,
-        "X 100PRE": 1,
-        "YHLQMDLG": 3,
-        "The College Dropout": 1
+        "Un Verano Sin Ti": 2,
+        "X 100PRE": 6,
+        "YHLQMDLG": 6,
+        "The College Dropout": 3,
+        "Adicto (ft Anuel AA & Ozuna)": 3
     },
-    "tiempo_total": 41692.290612244855,
-    "canciones_escuchadas": 224,
+    "tiempo_total": 45895.39265306119,
+    "canciones_escuchadas": 245,
     "ultima_cancion": {
         "ruta": "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
         "titulo": "11 Y ONCE",
         "artista": "Tainy ft Sech, E.VAX",
         "album": "DATA",
-        "timestamp": "2025-03-30T18:38:10.503697"
+        "timestamp": "2025-03-31T11:54:58.951825"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3": {
@@ -44,7 +46,7 @@
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
-            "contador": 67,
+            "contador": 68,
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
@@ -56,7 +58,7 @@
             "album": "Operation: Doomsday (Complete)"
         },
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
-            "contador": 39,
+            "contador": 40,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
@@ -80,7 +82,7 @@
             "album": "VULTURES 2"
         },
         "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3": {
-            "contador": 6,
+            "contador": 11,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
@@ -92,34 +94,40 @@
             "album": "Amigos y Enemigos (Remix)"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Agosto.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "Agosto",
             "artista": "Bad Bunny",
             "album": "Un Verano Sin Ti"
         },
         "C:\\Users\\Victor\\Music\\Musica\\200 Mph.mp3": {
-            "contador": 1,
+            "contador": 6,
             "titulo": "200 Mph",
             "artista": "Bad Bunny ft Diplo, Nitti Gritti",
             "album": "X 100PRE"
         },
         "C:\\Users\\Victor\\Music\\Musica\\25 8.mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "25/8",
             "artista": "Bad Bunny",
             "album": "YHLQMDLG"
         },
         "C:\\Users\\Victor\\Music\\Musica\\3.mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "<3",
             "artista": "Bad Bunny",
             "album": "YHLQMDLG"
         },
         "C:\\Users\\Victor\\Music\\Musica\\All Falls Down.mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "All Falls Down",
             "artista": "Kanye West ft Syleena Johnson",
             "album": "The College Dropout"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Adicto (ft Anuel AA & Ozuna).mp3": {
+            "contador": 3,
+            "titulo": "Adicto",
+            "artista": "Tainy ft Anuel AA, Ozuna",
+            "album": "Adicto (ft Anuel AA & Ozuna)"
         }
     }
 }

@@ -94,12 +94,25 @@ class ControladorArchivos:
         try:
             if not reproductor.lista_reproduccion:
                 # Si la cola está vacía, crear un JSON con lista vacía
-                datos_cola = {"indice_actual": -1, "canciones": []}
+                datos_cola = {"indice_actual": -1, "canciones": [], "ultima_cancion": None}
             else:
-                # Guardar la lista de reproducción con el índice actual
+                # Guardar la lista de reproducción con el índice actual y la última canción
+                ultima_cancion_info = None
+                if reproductor.indice_actual >= 0 and reproductor.indice_actual < len(
+                    reproductor.lista_reproduccion
+                ):
+                    cancion_actual = reproductor.lista_reproduccion[reproductor.indice_actual]
+                    ultima_cancion_info = {
+                        "ruta": str(cancion_actual.ruta_cancion),
+                        "titulo": cancion_actual.titulo_cancion,
+                        "artista": cancion_actual.artista,
+                        "album": cancion_actual.album,
+                        "timestamp": datetime.now().isoformat(),
+                    }
                 datos_cola = {
                     "indice_actual": reproductor.indice_actual,
                     "canciones": [str(cancion.ruta_cancion) for cancion in reproductor.lista_reproduccion],
+                    "ultima_cancion": ultima_cancion_info,
                 }
             contenido = json.dumps(datos_cola, ensure_ascii=False, indent=4)
             with open(self.ruta_cola, "w", encoding="utf-8") as archivo:
@@ -177,7 +190,7 @@ class ControladorArchivos:
 
     # Cargar la cola de reproducción desde un archivo JSON
     def cargar_cola_reproduccion(self, reproductor, biblioteca):
-        estructura_cola = {"indice_actual": -1, "canciones": []}
+        estructura_cola = {"indice_actual": -1, "canciones": [], "ultima_cancion": None}
         # Verificar archivo de cola
         self.verificar_archivo_json(self.ruta_cola, estructura_cola)
         try:
@@ -186,6 +199,8 @@ class ControladorArchivos:
             # Limpiar la cola actual
             reproductor.lista_reproduccion = []
             reproductor.indice_actual = -1
+            # Guardar información de la última canción reproducida
+            reproductor.ultima_cancion = datos_cola.get("ultima_cancion")
             # Si no hay canciones en el archivo, salir
             if not datos_cola["canciones"]:
                 return True

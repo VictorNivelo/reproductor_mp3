@@ -209,6 +209,17 @@ def reproducir_cancion_desde_lista(cancion):
     actualizar_estado_botones_gustos()
 
 
+# Función para actualizar el estado de reproducción desde la cola
+def actualizar_estado_reproduccion_desde_cola():
+    global ESTADO_REPRODUCCION
+    ESTADO_REPRODUCCION = True
+    controlador_tema.registrar_botones("pausa", boton_reproducir)
+    actualizar_tooltip(boton_reproducir, "Pausar")
+    actualizar_estado_botones_gustos()
+    # También iniciar la animación del espectro
+    actualizar_espectro()
+
+
 # Función para reproducir la canción siguiente
 def reproducir_siguiente_vista():
     global controlador_reproductor, ESTADO_REPRODUCCION
@@ -1204,7 +1215,12 @@ configuracion = Configuracion(ventana_principal, controlador_tema)
 estadisticas = Estadisticas(ventana_principal, controlador_tema, controlador_archivos)
 
 # Cola de reproducción
-cola_reproduccion = ColaReproduccion(ventana_principal, controlador_tema, controlador_reproductor)
+cola_reproduccion = ColaReproduccion(
+    ventana_principal,
+    controlador_tema,
+    controlador_reproductor,
+    lambda: actualizar_estado_reproduccion_desde_cola(),
+)
 
 # Obtener las dimensiones de la pantalla
 ancho_pantalla = ventana_principal.winfo_screenwidth()

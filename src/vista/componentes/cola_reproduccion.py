@@ -9,16 +9,17 @@ import tkinter as tk
 
 
 class ColaReproduccion:
-    def __init__(self, ventana_principal, controlador_tema, controlador_reproductor):
+    def __init__(self, ventana_principal, controlador_tema, controlador_reproductor, llamado_actualizacion=None):
+        self.controlador_reproductor = controlador_reproductor
+        self.llamado_actualizacion = llamado_actualizacion
         self.ventana_principal = ventana_principal
         self.controlador_tema = controlador_tema
-        self.controlador_reproductor = controlador_reproductor
+        self.utiles = Utiles(controlador_tema)
+        self.ultima_cancion = None
+        self.gestor_scroll = None
         self.ventana_cola = None
         self.componentes = []
-        self.gestor_scroll = None
-        self.utiles = Utiles(controlador_tema)
         # Configurar un temporizador para comprobar cambios en la canción actual
-        self.ultima_cancion = None
         self.iniciar_monitor_cambios()
 
     # Método para iniciar el temporizador de verificación de cambios
@@ -625,6 +626,9 @@ class ColaReproduccion:
     def reproducir_cancion_seleccionada(self, cancion):
         if cancion:
             self.controlador_reproductor.reproducir_cancion(cancion)
+            # Llamar al callback para actualizar el estado de la interfaz
+            if self.llamado_actualizacion:
+                self.llamado_actualizacion()
             # Actualizar solo la sección de la canción actual si la ventana está abierta
             if self.ventana_cola is not None and self.ventana_cola.winfo_exists():
                 self.actualizar_cancion_actual_en_cola()

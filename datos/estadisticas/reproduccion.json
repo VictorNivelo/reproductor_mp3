@@ -1,133 +1,49 @@
 {
     "artistas": {
-        "Eladio Carrion ft Bryant Myers": 44,
-        "Yan Block ft Panda Black": 68,
-        "MF DOOM ft Pebbles The Invisible Girl": 28,
-        "Bad Bunny": 48,
-        "Tyler, The Creator": 2,
-        "The Notorious B.I.G.": 5,
-        "¥$ ft Kanye West, Ty Dolla $ign": 26,
-        "Tainy ft Sech, E.VAX": 11,
-        "Noriel ft Bad Bunny, Almighty": 1,
-        "Bad Bunny ft Diplo, Nitti Gritti": 6,
-        "Kanye West ft Syleena Johnson": 3,
-        "Tainy ft Anuel AA, Ozuna": 3
+        "Maluma": 3,
+        "Bad Bunny": 3,
+        "Kanye West ft Lupe Fiasco": 1,
+        "Offset ft Metro Boomin": 3
     },
     "albumes": {
-        "Animal": 44,
-        "444": 68,
-        "Operation: Doomsday (Complete)": 28,
-        "EL ÚLTIMO TOUR DEL MUNDO": 40,
-        "Flower Boy": 2,
-        "Gangster Pain": 5,
-        "VULTURES 2": 26,
-        "DATA": 11,
-        "Amigos y Enemigos (Remix)": 1,
-        "Un Verano Sin Ti": 2,
-        "X 100PRE": 6,
-        "YHLQMDLG": 6,
-        "The College Dropout": 3,
-        "Adicto (ft Anuel AA & Ozuna)": 3
+        "11:11": 3,
+        "EL ÚLTIMO TOUR DEL MUNDO": 3,
+        "Late Registration": 1,
+        "Without Warning": 3
     },
-    "tiempo_total": 45895.39265306119,
-    "canciones_escuchadas": 245,
+    "tiempo_total": 1737.0644897959182,
+    "canciones_escuchadas": 10,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-03-31T11:54:58.951825"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3",
+        "titulo": "Ric Flair Drip (ft Metro Boomin)",
+        "artista": "Offset ft Metro Boomin",
+        "album": "Without Warning",
+        "timestamp": "2025-03-31T20:22:59.739240"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3": {
-            "contador": 44,
-            "titulo": "Animal",
-            "artista": "Eladio Carrion ft Bryant Myers",
-            "album": "Animal"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
-            "contador": 68,
-            "titulo": "444",
-            "artista": "Yan Block ft Panda Black",
-            "album": "444"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Doomsday..mp3": {
-            "contador": 28,
-            "titulo": "Doomsday",
-            "artista": "MF DOOM ft Pebbles The Invisible Girl",
-            "album": "Operation: Doomsday (Complete)"
+        "C:\\Users\\Victor\\Music\\pm\\11 PM.mp3": {
+            "contador": 3,
+            "titulo": "11 PM",
+            "artista": "Maluma",
+            "album": "11:11"
         },
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
-            "contador": 40,
+            "contador": 3,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
-        "C:\\Users\\Victor\\Music\\pm\\Sometimes....mp3": {
-            "contador": 2,
-            "titulo": "Sometimes",
-            "artista": "Tyler, The Creator",
-            "album": "Flower Boy"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\Gangster Pain.mp3": {
-            "contador": 5,
-            "titulo": "Gangster Pain",
-            "artista": "The Notorious B.I.G.",
-            "album": "Gangster Pain"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\530.mp3": {
-            "contador": 26,
-            "titulo": "530",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3": {
-            "contador": 11,
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "album": "DATA"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Amigos y Enemigos (ft Bad Bunny & Almighty).mp3": {
+        "C:\\Users\\Victor\\Music\\pm\\Touch The Sky.mp3": {
             "contador": 1,
-            "titulo": "Amigos y Enemigos",
-            "artista": "Noriel ft Bad Bunny, Almighty",
-            "album": "Amigos y Enemigos (Remix)"
+            "titulo": "Touch The Sky",
+            "artista": "Kanye West ft Lupe Fiasco",
+            "album": "Late Registration"
         },
-        "C:\\Users\\Victor\\Music\\Musica\\Agosto.mp3": {
-            "contador": 2,
-            "titulo": "Agosto",
-            "artista": "Bad Bunny",
-            "album": "Un Verano Sin Ti"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\200 Mph.mp3": {
-            "contador": 6,
-            "titulo": "200 Mph",
-            "artista": "Bad Bunny ft Diplo, Nitti Gritti",
-            "album": "X 100PRE"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\25 8.mp3": {
+        "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3": {
             "contador": 3,
-            "titulo": "25/8",
-            "artista": "Bad Bunny",
-            "album": "YHLQMDLG"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\3.mp3": {
-            "contador": 3,
-            "titulo": "<3",
-            "artista": "Bad Bunny",
-            "album": "YHLQMDLG"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\All Falls Down.mp3": {
-            "contador": 3,
-            "titulo": "All Falls Down",
-            "artista": "Kanye West ft Syleena Johnson",
-            "album": "The College Dropout"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Adicto (ft Anuel AA & Ozuna).mp3": {
-            "contador": 3,
-            "titulo": "Adicto",
-            "artista": "Tainy ft Anuel AA, Ozuna",
-            "album": "Adicto (ft Anuel AA & Ozuna)"
+            "titulo": "Ric Flair Drip (ft Metro Boomin)",
+            "artista": "Offset ft Metro Boomin",
+            "album": "Without Warning"
         }
     }
 }

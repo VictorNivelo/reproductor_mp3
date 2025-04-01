@@ -1,3 +1,4 @@
+from controlador.controlador_archivos import ControladorArchivos
 from modelo.cancion import Cancion
 from utiles import Utiles
 from constantes import *
@@ -242,6 +243,9 @@ class ControladorReproductor:
     def establecer_lista_reproduccion(self, canciones, indice=0):
         self.lista_reproduccion = canciones
         self.indice_actual = indice if 0 <= indice < len(canciones) else 0
+        # Guardar la cola automáticamente
+        controlador_archivos = ControladorArchivos()
+        controlador_archivos.guardar_cola_reproduccion(self)
 
     # Método que establece el modo de repetición
     def establecer_modo_repeticion(self, modo):
@@ -282,6 +286,9 @@ class ControladorReproductor:
         self.tiempo_inicio = time.perf_counter()
         self.actualizar_informacion_interfaz()
         self.actualizar_tiempo()
+        # Guardar la cola automáticamente
+        controlador_archivos = ControladorArchivos()
+        controlador_archivos.guardar_cola_reproduccion(self)
 
     # Métodos que controlan la reproducción de la canción
     def pausar_reproduccion(self) -> None:

@@ -227,6 +227,34 @@ class ControladorArchivos:
             print(f"Error al cargar la cola de reproducción: {str(e)}")
             return False
 
+    # Método para obtener la última canción reproducida con verificación adicional
+    def obtener_ultima_cancion_reproducida(self):
+        estructura_reproduccion = {
+            "artistas": {},
+            "albumes": {},
+            "tiempo_total": 0.0,
+            "canciones_escuchadas": 0,
+            "ultima_cancion": None,
+            "canciones": {},
+        }
+        # Verificar archivo de estadísticas
+        self.verificar_archivo_json(self.ruta_reproduccion, estructura_reproduccion)
+        try:
+            with open(self.ruta_reproduccion, "r", encoding="utf-8") as archivo:
+                estadisticas = json.load(archivo)
+            ultima_cancion = estadisticas.get("ultima_cancion")
+            if ultima_cancion and "ruta" in ultima_cancion:
+                # Verificar que el archivo existe
+                ruta_cancion = Path(ultima_cancion["ruta"])
+                if ruta_cancion.exists():
+                    return ultima_cancion
+                else:
+                    print(f"El archivo de la última canción no existe: {ruta_cancion}")
+            return None
+        except Exception as e:
+            print(f"Error al obtener la última canción reproducida: {str(e)}")
+            return None
+
     # Actualizar los estados me gusta y favoritos desde los archivos JSON
     def actualizar_estados_desde_listas(self, biblioteca):
         try:

@@ -168,22 +168,53 @@ def cargar_todos_ajustes():
     controlador_tema.cambiar_tema()
 
 
+# Función para cargar la última canción reproducida
+def cargar_ultima_cancion_reproducida():
+    ultima_cancion_info = controlador_archivos.obtener_ultima_cancion_reproducida()
+    if ultima_cancion_info:
+        # Buscar la canción en la biblioteca
+        ruta_cancion = Path(ultima_cancion_info["ruta"])
+        for cancion in biblioteca.canciones:
+            if str(cancion.ruta_cancion) == str(ruta_cancion):
+                # Añadir la canción a la cola sin reproducirla
+                if (
+                    controlador_reproductor.lista_reproduccion == []
+                    or cancion not in controlador_reproductor.lista_reproduccion
+                ):
+                    controlador_reproductor.lista_reproduccion = [cancion]
+                    controlador_reproductor.indice_actual = 0
+                    controlador_reproductor.cancion_actual = cancion
+                # Actualizar la interfaz sin reproducir
+                controlador_reproductor.actualizar_informacion_interfaz()
+                # Actualizar estado de los botones de me gusta/favorito
+                actualizar_estado_botones_gustos()
+                return True
+    return False
+
+
 # Función para reproducir o pausar la canción
 def reproducir_vista():
     global ESTADO_REPRODUCCION
     if not ESTADO_REPRODUCCION:
-        # Iniciar reproducción
-        ESTADO_REPRODUCCION = True
-        controlador_tema.registrar_botones("pausa", boton_reproducir)
-        controlador_reproductor.reanudar_reproduccion()
-        actualizar_tooltip(boton_reproducir, "Pausar")
-        actualizar_espectro()
+        # Verificar si hay una canción en la cola para reproducir
+        if controlador_reproductor.cancion_actual:
+            # Si hay una canción cargada pero no estaba sonando, empezar a reproducirla
+            if not controlador_reproductor.reproduciendo:
+                controlador_reproductor.reproducir_cancion(controlador_reproductor.cancion_actual)
+            else:
+                # Si ya estaba sonando pero pausada, solo reanudar
+                controlador_reproductor.reanudar_reproduccion()
+            # Actualizar estado e iconos
+            ESTADO_REPRODUCCION = True
+            controlador_tema.registrar_botones("pausa", boton_reproducir)
+            actualizar_tooltip(boton_reproducir, "Pausar")
+            actualizar_espectro()
     else:
         # Pausar reproducción
         ESTADO_REPRODUCCION = False
         controlador_tema.registrar_botones("reproducir", boton_reproducir)
         controlador_reproductor.pausar_reproduccion()
-        actualizar_tooltip(boton_reproducir, "Repoducir")
+        actualizar_tooltip(boton_reproducir, "Reproducir")
 
 
 # Función para reproducir la canción seleccionada
@@ -428,6 +459,7 @@ def agregar_directorio_vista():
         actualizar_pestana_seleccionada()
 
 
+# Funciona para actualizar el estado de los botones de me gusta y favorito
 def actualizar_estado_botones_gustos():
     global ME_GUSTA, FAVORITO
     cancion_actual = controlador_reproductor.cancion_actual
@@ -538,8 +570,19 @@ def cargar_biblioteca_vista():
 
 # Función para cargar la cola de reproducción guardada
 def cargar_cola_vista():
-    global controlador_archivos, controlador_reproductor, biblioteca
+    # Cargar la cola de reproducción
     controlador_archivos.cargar_cola_reproduccion(controlador_reproductor, biblioteca)
+    # Si hay canciones en la cola, actualizar la interfaz
+    if controlador_reproductor.lista_reproduccion:
+        # Establecer la canción actual sin reproducirla automáticamente
+        indice = controlador_reproductor.indice_actual
+        if 0 <= indice < len(controlador_reproductor.lista_reproduccion):
+            controlador_reproductor.cancion_actual = controlador_reproductor.lista_reproduccion[indice]
+            controlador_reproductor.actualizar_informacion_interfaz()
+            # Actualizar estado de los botones de me gusta/favorito
+            actualizar_estado_botones_gustos()
+    # También podemos cargar la información de la última canción reproducida
+    cargar_ultima_cancion_reproducida()
 
 
 # Función para iniciar el desplazamiento del texto

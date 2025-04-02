@@ -110,7 +110,7 @@ class Estadisticas(Utiles):
         self.componentes.append(panel_mensaje)
 
         # ------------------------------ Etiqueta de mensaje ------------------------------
-        # Mensaje informativo
+        # Etiqueta de mensaje si no hay estadísticas
         etiqueta_mensaje = ctk.CTkLabel(
             panel_mensaje,
             height=15,
@@ -137,7 +137,7 @@ class Estadisticas(Utiles):
         self.componentes.append(panel_resumen)
 
         # ---------------------------- Etiqueta de informacion ----------------------------
-        # Información general
+        # Etiqueta de información general de canciones
         informacion_canciones = ctk.CTkLabel(
             panel_resumen,
             height=15,
@@ -152,7 +152,7 @@ class Estadisticas(Utiles):
         # ---------------------------------------------------------------------------------
 
         # ---------------------------- Etiqueta de tiempo total ---------------------------
-        # Información de tiempo total
+        # Etiqueta de tiempo total
         informacion_tiempo = ctk.CTkLabel(
             panel_resumen,
             height=15,
@@ -187,7 +187,7 @@ class Estadisticas(Utiles):
         self.componentes.append(panel_tarjeta_cancion)
 
         # ------------------------------ Etiqueta de título -------------------------------
-        # Título de la tarjeta
+        # Etiqueta de título
         etiqueta_titulo_cancion = ctk.CTkLabel(
             panel_tarjeta_cancion,
             height=15,
@@ -289,7 +289,7 @@ class Estadisticas(Utiles):
         self.componentes.append(panel_tarjeta_artista)
 
         # ------------------------------- Etiqueta de título ------------------------------
-        # Título de la tarjeta
+        # Etiqueta de título
         etiqueta_titulo_artista = ctk.CTkLabel(
             panel_tarjeta_artista,
             height=15,
@@ -311,7 +311,7 @@ class Estadisticas(Utiles):
         # ---------------------------------------------------------------------------------
 
         # ------------------------- Etiqueta con nombre de artista -------------------------
-        # Nombre del artista
+        # Etiqueta con nombre de artista
         etiqueta_nombre_artista = ctk.CTkLabel(
             panel_informacion_artista,
             height=15,
@@ -326,7 +326,7 @@ class Estadisticas(Utiles):
         # ---------------------------------------------------------------------------------
 
         # ------------------------- Etiqueta con album de artista --------------------------
-        # Reproducciones
+        # Etiqueta con las reproducciones del artista
         etiqueta_reproducciones_artista = ctk.CTkLabel(
             panel_informacion_artista,
             height=15,
@@ -360,7 +360,7 @@ class Estadisticas(Utiles):
         self.componentes.append(panel_tarjeta_albun)
 
         # ------------------------------- Etiqueta de título ------------------------------
-        # Título de la tarjeta
+        # Etiqueta de título
         etiqueta_titulo_albun = ctk.CTkLabel(
             panel_tarjeta_albun,
             height=15,
@@ -382,7 +382,7 @@ class Estadisticas(Utiles):
         # ---------------------------------------------------------------------------------
 
         # ------------------------ Etiqueta con nombre de álbum ---------------------------
-        # Nombre del álbum
+        # Etiqueta con nombre de álbum
         etiqueta_nombre_album = ctk.CTkLabel(
             panel_informacion_albun,
             height=15,
@@ -397,7 +397,7 @@ class Estadisticas(Utiles):
         # ---------------------------------------------------------------------------------
 
         # ------------------------ Etiqueta con artista de álbum --------------------------
-        # Reproducciones
+        # Etiqueta con la reproducción del álbum
         etiqueta_reproducciones_albun = ctk.CTkLabel(
             panel_informacion_albun,
             height=15,
@@ -431,7 +431,7 @@ class Estadisticas(Utiles):
         self.componentes.append(panel_ultima_escuchada)
 
         # ------------------------------- Etiqueta de título ------------------------------
-        # Título panel
+        # Etiqueta de título
         etiqueta_titulo_ultima = ctk.CTkLabel(
             panel_ultima_escuchada,
             height=15,
@@ -453,7 +453,7 @@ class Estadisticas(Utiles):
         # ---------------------------------------------------------------------------------
 
         # ------------------------ Etiqueta con nombre de canción -------------------------
-        # Título canción
+        # Etiqueta con título de canción
         etiqueta_titulo_ultima = ctk.CTkLabel(
             panel_informacion_ultima,
             height=15,
@@ -468,7 +468,7 @@ class Estadisticas(Utiles):
         # ---------------------------------------------------------------------------------
 
         # ------------------------ Etiqueta con artista de canción ------------------------
-        # Artista y álbum
+        # Etiqueta con artista de canción
         etiqueta_artista_ultima = ctk.CTkLabel(
             panel_informacion_ultima,
             height=15,

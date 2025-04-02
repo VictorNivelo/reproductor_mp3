@@ -1,37 +1,15 @@
 {
-    "indice_actual": 17,
+    "indice_actual": 1,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\pm\\0 Sentimientos (Remix).mp3",
-        "C:\\Users\\Victor\\Music\\pm\\10 Bands.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\10 Freaky Girls (ft 21 Savage).mp3",
-        "C:\\Users\\Victor\\Music\\pm\\100 MILLONES.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\105 Freestyle.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\11 PM.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\120.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\530.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Chill Bae.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Cinderella.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\EXACTLY WHAT YOU RUN FROM YOU END UP CHASING.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Gangster Pain.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\ISABELLA.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Just Wanna Rock.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\pop ur shit.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Sometimes....mp3",
-        "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Touch The Sky.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Type Shit.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Wasted (ft Lil Uzi Vert).mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Watch This (Remix).mp3"
+        "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3",
-        "titulo": "Self Love",
-        "artista": "Metro Boomin ft Coi Leray",
-        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
-        "timestamp": "2025-04-01T14:50:50.049459"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3",
+        "titulo": "Animal",
+        "artista": "Eladio Carrion ft Bryant Myers",
+        "album": "Animal",
+        "timestamp": "2025-04-01T18:05:57.866346"
     }
 }

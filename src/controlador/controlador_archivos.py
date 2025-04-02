@@ -98,7 +98,7 @@ class ControladorArchivos:
             else:
                 # Guardar la lista de reproducción con el índice actual y la última canción
                 ultima_cancion_info = None
-                if reproductor.indice_actual >= 0 and reproductor.indice_actual < len(
+                if 0 <= reproductor.indice_actual < len(
                     reproductor.lista_reproduccion
                 ):
                     cancion_actual = reproductor.lista_reproduccion[reproductor.indice_actual]

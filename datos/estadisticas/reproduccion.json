@@ -1,49 +1,41 @@
 {
     "artistas": {
-        "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN": 1,
-        "Bad Bunny ft Luar La L": 1,
-        "Bad Bunny": 1,
-        "Metro Boomin ft Coi Leray": 1
+        "Yan Block ft Panda Black": 2,
+        "Eladio Carrion ft Bryant Myers": 2,
+        "Anuel AA": 1
     },
     "albumes": {
-        "Chosen Few: New Generation": 1,
-        "100 MILLONES": 1,
-        "EL ÚLTIMO TOUR DEL MUNDO": 1,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1
+        "444": 2,
+        "Animal": 2,
+        "¿Qué Nos Pasó?": 1
     },
-    "tiempo_total": 914.3379591836737,
-    "canciones_escuchadas": 4,
+    "tiempo_total": 1031.9673469387756,
+    "canciones_escuchadas": 5,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3",
-        "titulo": "Self Love",
-        "artista": "Metro Boomin ft Coi Leray",
-        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
-        "timestamp": "2025-04-01T14:50:00.939566"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3",
+        "titulo": "Animal",
+        "artista": "Eladio Carrion ft Bryant Myers",
+        "album": "Animal",
+        "timestamp": "2025-04-01T18:05:57.867704"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\pm\\0 Sentimientos (Remix).mp3": {
-            "contador": 1,
-            "titulo": "0 Sentimientos (Remix)",
-            "artista": "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN",
-            "album": "Chosen Few: New Generation"
+        "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
+            "contador": 2,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
         },
-        "C:\\Users\\Victor\\Music\\pm\\100 MILLONES.mp3": {
-            "contador": 1,
-            "titulo": "100 MILLONES",
-            "artista": "Bad Bunny ft Luar La L",
-            "album": "100 MILLONES"
+        "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3": {
+            "contador": 2,
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal"
         },
-        "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
+        "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3": {
             "contador": 1,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3": {
-            "contador": 1,
-            "titulo": "Self Love",
-            "artista": "Metro Boomin ft Coi Leray",
-            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "album": "¿Qué Nos Pasó?"
         }
     }
 }

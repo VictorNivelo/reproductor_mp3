@@ -232,20 +232,23 @@ class Estadisticas(Utiles):
         # ------------------------ Panel para contenido de la tarjeta ---------------------
         # Panel para contenido con imagen y texto
         panel_contenido = ctk.CTkFrame(panel_tarjeta_cancion, fg_color="transparent")
-        panel_contenido.pack(fill="x", padx=5)
+        panel_contenido.pack(fill="x", padx=5, pady=(0, 3))
         self.componentes.append(panel_contenido)
         # ---------------------------------------------------------------------------------
 
         # ---------------------------- Subpanel para la carátula --------------------------
         # Panel para la carátula (a la izquierda)
         panel_caratula = ctk.CTkFrame(panel_contenido, fg_color="transparent")
-        panel_caratula.pack(side="left", pady=5)
+        panel_caratula.pack(side="left", pady=(0, 3))
         self.componentes.append(panel_caratula)
+        # ---------------------------------------------------------------------------------
 
+        # ---------------------------- Etiqueta para la carátula --------------------------
         # Etiqueta para la carátula
-        etiqueta_caratula = ctk.CTkLabel(panel_caratula, text="", fg_color="transparent", corner_radius=5)
+        etiqueta_caratula = ctk.CTkLabel(panel_caratula, text="", fg_color="transparent")
         etiqueta_caratula.pack()
         self.componentes.append(etiqueta_caratula)
+        # ---------------------------------------------------------------------------------
 
         if self.controlador_biblioteca:
             # Primero obtener la carátula como imagen PIL
@@ -294,7 +297,7 @@ class Estadisticas(Utiles):
             fg_color="transparent",
             font=(LETRA, 12),
             text_color=self.color_texto,
-            text=f"Artista: {cancion['artista']}",
+            text=f"{cancion['artista']}",
         )
         etiqueta_artista_cancion.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_artista_cancion)
@@ -309,7 +312,7 @@ class Estadisticas(Utiles):
             fg_color="transparent",
             font=(LETRA, 12),
             text_color=self.color_texto,
-            text=f"Álbum: {cancion['album']}",
+            text=f"{cancion['album']}",
         )
         etiqueta_album_cancion.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_album_cancion)
@@ -437,10 +440,48 @@ class Estadisticas(Utiles):
         self.controlador_tema.registrar_etiqueta(etiqueta_titulo_albun)
         # ---------------------------------------------------------------------------------
 
+        # ------------------------ Panel para contenido de la tarjeta ---------------------
+        # Panel para contenido con imagen y texto
+        panel_contenido = ctk.CTkFrame(panel_tarjeta_albun, fg_color="transparent")
+        panel_contenido.pack(fill="x", padx=5, pady=(0, 3))
+        self.componentes.append(panel_contenido)
+        # ---------------------------------------------------------------------------------
+
+        # ---------------------------- Subpanel para la carátula --------------------------
+        # Panel para la carátula (a la izquierda)
+        panel_caratula = ctk.CTkFrame(panel_contenido, fg_color="transparent")
+        panel_caratula.pack(side="left", pady=(0, 3))
+        self.componentes.append(panel_caratula)
+        # ---------------------------------------------------------------------------------
+
+        # ---------------------------- Etiqueta para la carátula --------------------------
+        # Etiqueta para la carátula
+        etiqueta_caratula = ctk.CTkLabel(panel_caratula, text="", fg_color="transparent")
+        etiqueta_caratula.pack()
+        self.componentes.append(etiqueta_caratula)
+        # ---------------------------------------------------------------------------------
+
+        if self.controlador_biblioteca:
+            # Primero obtener la carátula como imagen PIL
+            caratula_PIL = self.controlador_biblioteca.obtener_caratula_album(
+                album["nombre"], formato="PIL", ancho=60, alto=60
+            )
+            if caratula_PIL:
+                # Convertir a CTkImage
+                caratula_ctk = CTkImage(light_image=caratula_PIL, dark_image=caratula_PIL, size=(60, 60))
+                etiqueta_caratula.configure(image=caratula_ctk)
+                # Guardar referencia
+                etiqueta_caratula.image = caratula_ctk
+            else:
+                etiqueta_caratula.configure(text="Sin\ncarátula", image=None)
+        else:
+            etiqueta_caratula.configure(text="Sin\ncarátula", image=None)
+        # ---------------------------------------------------------------------------------
+
         # -------------------------- Panel para información del álbum ---------------------
         # Panel para información del álbum
-        panel_informacion_albun = ctk.CTkFrame(panel_tarjeta_albun, fg_color="transparent")
-        panel_informacion_albun.pack(fill="x", padx=5, pady=(0, 5))
+        panel_informacion_albun = ctk.CTkFrame(panel_contenido, fg_color="transparent")
+        panel_informacion_albun.pack(side="left", fill="x", expand=True)
         self.componentes.append(panel_informacion_albun)
         # ---------------------------------------------------------------------------------
 
@@ -508,10 +549,48 @@ class Estadisticas(Utiles):
         self.controlador_tema.registrar_etiqueta(etiqueta_titulo_ultima)
         # ---------------------------------------------------------------------------------
 
+        # ------------------------ Panel para contenido de la tarjeta ---------------------
+        # Panel para contenido con imagen y texto
+        panel_contenido = ctk.CTkFrame(panel_ultima_escuchada, fg_color="transparent")
+        panel_contenido.pack(fill="x", padx=5, pady=(0, 3))
+        self.componentes.append(panel_contenido)
+        # ---------------------------------------------------------------------------------
+
+        # ---------------------------- Subpanel para la carátula --------------------------
+        # Panel para la carátula (a la izquierda)
+        panel_caratula = ctk.CTkFrame(panel_contenido, fg_color="transparent")
+        panel_caratula.pack(side="left", pady=(0, 3))
+        self.componentes.append(panel_caratula)
+        # ---------------------------------------------------------------------------------
+
+        # ---------------------------- Etiqueta para la carátula --------------------------
+        # Etiqueta para la carátula
+        etiqueta_caratula = ctk.CTkLabel(panel_caratula, text="", fg_color="transparent")
+        etiqueta_caratula.pack()
+        self.componentes.append(etiqueta_caratula)
+        # ---------------------------------------------------------------------------------
+
+        if self.controlador_biblioteca:
+            # Primero obtener la carátula como imagen PIL
+            caratula_PIL = self.controlador_biblioteca.obtener_caratula_album(
+                ultima["album"], formato="PIL", ancho=60, alto=60
+            )
+            if caratula_PIL:
+                # Convertir a CTkImage
+                caratula_ctk = CTkImage(light_image=caratula_PIL, dark_image=caratula_PIL, size=(60, 60))
+                etiqueta_caratula.configure(image=caratula_ctk)
+                # Guardar referencia
+                etiqueta_caratula.image = caratula_ctk
+            else:
+                etiqueta_caratula.configure(text="Sin\ncarátula", image=None)
+        else:
+            etiqueta_caratula.configure(text="Sin\ncarátula", image=None)
+        # ---------------------------------------------------------------------------------
+
         # -------------------------- Panel para información de la canción ------------------
         # Panel para información del álbum
-        panel_informacion_ultima = ctk.CTkFrame(panel_ultima_escuchada, fg_color="transparent")
-        panel_informacion_ultima.pack(fill="x", padx=5, pady=(0, 5))
+        panel_informacion_ultima = ctk.CTkFrame(panel_contenido, fg_color="transparent")
+        panel_informacion_ultima.pack(side="left", fill="x", expand=True)
         self.componentes.append(panel_informacion_ultima)
         # ---------------------------------------------------------------------------------
 
@@ -538,11 +617,25 @@ class Estadisticas(Utiles):
             fg_color="transparent",
             font=(LETRA, 12),
             text_color=self.color_texto,
-            text=f"{ultima['artista']} • {ultima['album']}",
+            text=f"{ultima['artista']}",
         )
         etiqueta_artista_ultima.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_artista_ultima)
         self.controlador_tema.registrar_etiqueta(etiqueta_artista_ultima)
+        # ---------------------------------------------------------------------------------
+        # ------------------------ Etiqueta con artista de canción ------------------------
+        # Etiqueta con artista de canción
+        etiqueta_album_ultima = ctk.CTkLabel(
+            panel_informacion_ultima,
+            height=15,
+            fg_color="transparent",
+            font=(LETRA, 12),
+            text_color=self.color_texto,
+            text=f"{ultima['album']}",
+        )
+        etiqueta_album_ultima.pack(anchor="w", padx=5)
+        self.componentes.append(etiqueta_album_ultima)
+        self.controlador_tema.registrar_etiqueta(etiqueta_album_ultima)
         # ---------------------------------------------------------------------------------
         # *********************************************************************************
 

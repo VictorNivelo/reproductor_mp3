@@ -1,15 +1,27 @@
 {
-    "indice_actual": 2,
+    "indice_actual": 1,
     "canciones": [
+        "C:\\Users\\Victor\\Music\\Musica\\120.mp3",
         "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
         "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\BOMB.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\DEAD.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\FIELD TRIP.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\FOREVER ROLLING.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\FRIED.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\ISABELLA.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\PROMOTION.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\RIVER.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\SLIDE.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\TIME MOVING SLOW.mp3",
         "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3",
-        "titulo": "¿Qué Nos Pasó?",
-        "artista": "Anuel AA",
-        "album": "¿Qué Nos Pasó?",
-        "timestamp": "2025-04-02T19:51:49.182855"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
+        "titulo": "444",
+        "artista": "Yan Block ft Panda Black",
+        "album": "444",
+        "timestamp": "2025-04-02T21:05:38.958824"
     }
 }

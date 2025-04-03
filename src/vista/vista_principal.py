@@ -822,27 +822,30 @@ def mostrar_canciones_detalle(tipo, elemento, funcion_volver):
     # Panel superior con botón volver y título
     panel_superior = ctk.CTkFrame(contenedor_detalles, fg_color="transparent")
     panel_superior.pack(fill="x", pady=(5, 10))
+    # Icono de regrear
+    icono_regresar = cargar_icono_personalizado("regresar", controlador_tema.tema_iconos, (13, 13))
     # Botón para volver a la lista
     boton_volver = ctk.CTkButton(
         panel_superior,
-        width=50,
-        height=28,
+        width=ANCHO_BOTON,
         fg_color=controlador_tema.color_boton,
-        text="Volver",
+        hover_color=controlador_tema.color_hover,
+        image=icono_regresar,
         font=(LETRA, TAMANIO_LETRA_BOTON),
         text_color=controlador_tema.color_texto,
-        hover_color=controlador_tema.color_hover,
+        text="Regresar",
         command=funcion_volver,
     )
     boton_volver.pack(side="left")
     controlador_tema.registrar_botones(f"volver_{tipo.lower()}", boton_volver)
+    crear_tooltip(boton_volver, "Regresar a la lista")
     # Título del elemento
     etiqueta_elemento = ctk.CTkLabel(
         panel_superior,
         fg_color="transparent",
-        text=elemento,
         font=(LETRA, TAMANIO_LETRA_ETIQUETA, "bold"),
         text_color=controlador_tema.color_texto,
+        text=elemento,
         anchor="center",
     )
     etiqueta_elemento.pack(side="top", fill="x", expand=True)

@@ -2,25 +2,25 @@
     "artistas": {
         "Yan Block ft Panda Black": 8,
         "Eladio Carrion ft Bryant Myers": 8,
-        "Anuel AA": 10,
+        "Anuel AA": 11,
         "Bad Bunny": 17,
         "¥$ ft Kanye West, Ty Dolla $ign": 25
     },
     "albumes": {
         "444": 8,
         "Animal": 8,
-        "¿Qué Nos Pasó?": 10,
+        "¿Qué Nos Pasó?": 11,
         "EL ÚLTIMO TOUR DEL MUNDO": 17,
         "VULTURES 2": 25
     },
-    "tiempo_total": 12641.044897959182,
-    "canciones_escuchadas": 68,
+    "tiempo_total": 12886.83102040816,
+    "canciones_escuchadas": 69,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
-        "titulo": "444",
-        "artista": "Yan Block ft Panda Black",
-        "album": "444",
-        "timestamp": "2025-04-02T21:05:38.960633"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3",
+        "titulo": "¿Qué Nos Pasó?",
+        "artista": "Anuel AA",
+        "album": "¿Qué Nos Pasó?",
+        "timestamp": "2025-04-03T13:01:10.803013"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
@@ -36,7 +36,7 @@
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3": {
-            "contador": 10,
+            "contador": 11,
             "titulo": "¿Qué Nos Pasó?",
             "artista": "Anuel AA",
             "album": "¿Qué Nos Pasó?"

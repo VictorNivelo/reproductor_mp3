@@ -143,18 +143,18 @@ def establecer_icono_tema(ventana, tema="claro"):
 
 
 # Método para crear un tooltip en un widget de la aplicación
-def crear_tooltip(widget, text):
+def crear_tooltip(componente, texto):
     # Guardar referencia al tooltip en el diccionario
-    tooltip = ToolTip(widget, text)
-    tooltips[widget] = tooltip
+    tooltip = ToolTip(componente, texto)
+    tooltips[componente] = tooltip
     return tooltip
 
 
 # Método para actualizar el texto de un tooltip existente
-def actualizar_tooltip(widget, nuevo_texto):
-    if widget in tooltips:
+def actualizar_tooltip(componente, nuevo_texto):
+    if componente in tooltips:
         # Si el tooltip existe, actualizar su texto
-        tooltips[widget].text = nuevo_texto
+        tooltips[componente].texto = nuevo_texto
     else:
         # Si no existe, crear uno nuevo
-        crear_tooltip(widget, nuevo_texto)
+        crear_tooltip(componente, nuevo_texto)

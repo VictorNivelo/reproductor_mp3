@@ -22,17 +22,17 @@ class ToolTip:
     # Actualizar el texto del tooltip
     @texto_componente.setter
     def texto_componente(self, valor):
-        self.texto_componente = valor
+        self.texto = valor
         if self.tooltip:
             self.ocultar_tooltip()
             self.mostrar_tooltip()
 
-    # Iniciar temporizador para mostrar el tooltip
+    # Método para iniciar el temporizador
     def iniciar_temporizador(self, _event=None):
         self.cancelar_temporizador()
         self.id_temporizador = self.componente.after(1000, self.mostrar_tooltip)
 
-    # Cancelar temporizador para ocultar el tooltip
+    # Método para cancelar el temporizador
     def cancelar_temporizador(self):
         if self.id_temporizador:
             self.componente.after_cancel(self.id_temporizador)
@@ -41,7 +41,7 @@ class ToolTip:
             self.componente.after_cancel(self.temporizador_animacion)
             self.temporizador_animacion = None
 
-    # Mostrar tooltip en la posición del componente
+    # Método para mostrar el tooltip
     def mostrar_tooltip(self, _event=None):
         if not self.tooltip:
             widget_x = self.componente.winfo_rootx()
@@ -88,7 +88,7 @@ class ToolTip:
             # Iniciar animación de aparición
             self.animar_aparicion(0)
 
-    # Animar la aparición gradualmente
+    # Método para animar la aparición del tooltip
     def animar_aparicion(self, paso):
         if self.tooltip:
             if paso <= self.pasos_desvanecimiento:
@@ -98,7 +98,7 @@ class ToolTip:
                     self.intervalo_desvanecimiento, lambda: self.animar_aparicion(paso + 1)
                 )
 
-    # Animar la desaparición gradualmente
+    # Método para animar la desaparición del tooltip
     def animar_desaparicion(self, paso):
         if self.tooltip:
             if paso <= self.pasos_desvanecimiento:
@@ -113,7 +113,7 @@ class ToolTip:
                 self.tooltip = None
                 self.temporizador_animacion = None
 
-    # Ocultar tooltip al quitar el cursor del componente
+    # Método para ocultar el tooltip
     def ocultar_tooltip(self, _event=None):
         self.cancelar_temporizador()
         if self.tooltip:

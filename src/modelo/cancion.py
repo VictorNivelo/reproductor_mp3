@@ -1,3 +1,6 @@
+from customtkinter import CTkImage
+from PIL.Image import Resampling
+from PIL import Image, ImageTk
 from datetime import datetime
 from mutagen.flac import FLAC
 from mutagen.id3 import ID3
@@ -5,6 +8,7 @@ from mutagen.mp3 import MP3
 from mutagen.mp4 import MP4
 from pathlib import Path
 import mutagen
+import io
 
 
 class Cancion:
@@ -91,6 +95,42 @@ class Cancion:
         except Exception as e:
             print(f"Error al procesar el archivo {ruta_archivo}: {str(e)}")
             return cls(ruta=ruta_archivo, titulo=ruta_archivo.stem)
+
+    # Método para obtener la carátula de la canción
+    def obtener_caratula(self, formato="bytes", ancho=None, alto=None):
+        if not self.caratula_cancion:
+            return None
+        try:
+            if formato == "bytes":
+                return self.caratula_cancion
+            # Convertir bytes a imagen PIL
+            imagen_bytes = io.BytesIO(self.caratula_cancion)
+            imagen_pil = Image.open(imagen_bytes)
+            # Redimensionar si se especifican dimensiones
+            if ancho or alto:
+                if ancho and not alto:
+                    # Mantener proporciones si solo se especifica el ancho
+                    proporcion = ancho / imagen_pil.width
+                    alto = int(imagen_pil.height * proporcion)
+                elif alto and not ancho:
+                    # Mantener proporciones si solo se especifica el alto
+                    proporcion = alto / imagen_pil.height
+                    ancho = int(imagen_pil.width * proporcion)
+                imagen_pil = imagen_pil.resize((ancho, alto), Resampling.LANCZOS)
+            if formato == "PIL":
+                return imagen_pil
+            elif formato == "tk":
+                # Importar CTkImage para customtkinter
+                try:
+                    return CTkImage(light_image=imagen_pil, dark_image=imagen_pil, size=(ancho, alto))
+                except ImportError:
+                    # Fallback a ImageTk.PhotoImage si no se puede importar CTkImage
+                    return ImageTk.PhotoImage(imagen_pil)
+            else:
+                raise ValueError(f"Formato '{formato}' no soportado")
+        except Exception as e:
+            print(f"Error al procesar la carátula: {e}")
+            return None
 
     # Método que obtiene la información base de la canción
     @staticmethod

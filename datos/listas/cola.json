@@ -1,15 +1,15 @@
 {
-    "indice_actual": 1,
+    "indice_actual": 2,
     "canciones": [
         "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
         "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3",
         "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3",
-        "titulo": "Animal",
-        "artista": "Eladio Carrion ft Bryant Myers",
-        "album": "Animal",
-        "timestamp": "2025-04-01T18:05:57.866346"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3",
+        "titulo": "¿Qué Nos Pasó?",
+        "artista": "Anuel AA",
+        "album": "¿Qué Nos Pasó?",
+        "timestamp": "2025-04-02T19:51:49.182855"
     }
 }

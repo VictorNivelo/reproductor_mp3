@@ -1,38 +1,38 @@
 {
     "artistas": {
-        "Yan Block ft Panda Black": 2,
-        "Eladio Carrion ft Bryant Myers": 2,
-        "Anuel AA": 1
+        "Yan Block ft Panda Black": 7,
+        "Eladio Carrion ft Bryant Myers": 6,
+        "Anuel AA": 10
     },
     "albumes": {
-        "444": 2,
-        "Animal": 2,
-        "¿Qué Nos Pasó?": 1
+        "444": 7,
+        "Animal": 6,
+        "¿Qué Nos Pasó?": 10
     },
-    "tiempo_total": 1031.9673469387756,
-    "canciones_escuchadas": 5,
+    "tiempo_total": 4991.712653061226,
+    "canciones_escuchadas": 23,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3",
-        "titulo": "Animal",
-        "artista": "Eladio Carrion ft Bryant Myers",
-        "album": "Animal",
-        "timestamp": "2025-04-01T18:05:57.867704"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3",
+        "titulo": "¿Qué Nos Pasó?",
+        "artista": "Anuel AA",
+        "album": "¿Qué Nos Pasó?",
+        "timestamp": "2025-04-02T19:51:49.192367"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
-            "contador": 2,
+            "contador": 7,
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3": {
-            "contador": 2,
+            "contador": 6,
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3": {
-            "contador": 1,
+            "contador": 10,
             "titulo": "¿Qué Nos Pasó?",
             "artista": "Anuel AA",
             "album": "¿Qué Nos Pasó?"

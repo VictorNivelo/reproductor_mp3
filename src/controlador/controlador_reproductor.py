@@ -14,6 +14,8 @@ class ControladorReproductor:
         # Tiempo de reproducción
         self.tiempo_inicio = None
         self.tiempo_acumulado = 0
+        # Carátula de la canción
+        self._foto_caratula = None
         # Etiquetas de la interfaz
         self.etiqueta_nombre = None
         self.etiqueta_artista = None
@@ -49,6 +51,29 @@ class ControladorReproductor:
         pygame.mixer.init()
         # Instancia de Utiles
         self.utiles = Utiles()
+
+    # Método que actualiza la carátula de la canción
+    def actualizar_caratula(self, caratula_bytes=None, ancho=300):
+        try:
+            # Si no se proporcionan bytes, usar la carátula de la canción actual
+            if caratula_bytes is None and self.cancion_actual:
+                caratula_bytes = self.cancion_actual.caratula_cancion
+            if caratula_bytes and self.etiqueta_imagen:
+                foto, _, _ = self.utiles.crear_imagen_desde_bytes(caratula_bytes, ancho=ancho)
+                if foto:
+                    self.etiqueta_imagen.configure(image=foto, text="")
+                    # Guardar referencia para evitar que se pierda por el recolector de basura
+                    self._foto_caratula = foto
+                    return True
+                else:
+                    self.etiqueta_imagen.configure(image=None, text="Sin carátula")
+            else:
+                self.etiqueta_imagen.configure(image=None, text="Sin carátula")
+            return False
+        except Exception as e:
+            print(f"Error al actualizar carátula: {e}")
+            self.etiqueta_imagen.configure(image=None, text="Sin carátula")
+            return False
 
     # Método que establece las etiquetas de la interfaz
     def establecer_informacion_interfaz(self, nombre, artista, album, anio, imagen):

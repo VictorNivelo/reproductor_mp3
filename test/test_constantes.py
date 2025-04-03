@@ -1,11 +1,11 @@
-# Pone el directorio padre en el path para poder importar src.constantes
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-
-
-from src.constantes import *
-import unittest
 import sys
 import os
+
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+from vista.vista_principal import *
+from src.constantes import *
+import unittest
 
 
 # Clase de pruebas unitarias

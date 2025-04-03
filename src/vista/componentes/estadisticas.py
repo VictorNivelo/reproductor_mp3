@@ -1,17 +1,21 @@
 from vista.componentes.utiles.utiles_componentes import *
 from vista.utiles.utiles_vista import *
+from customtkinter import CTkImage
 import customtkinter as ctk
 from utiles import Utiles
 from constantes import *
 
 
 class Estadisticas(Utiles):
-    def __init__(self, ventana_principal, controlador, controlador_archivos):
-        super().__init__(controlador_externo=controlador)
+    def __init__(
+        self, ventana_principal, controlador_tema, controlador_archivos, controlador_biblioteca=None
+    ):
+        super().__init__(controlador_externo=controlador_tema)
         self.ventana_estadisticas = None
         self.ventana_principal = ventana_principal
-        self.controlador = controlador
+        self.controlador_tema = controlador_tema
         self.controlador_archivos = controlador_archivos
+        self.controlador_biblioteca = controlador_biblioteca
         self.componentes = []
 
     # Función para crear la ventana de estadísticas
@@ -30,7 +34,7 @@ class Estadisticas(Utiles):
             titulo="Estadísticas",
             color_fondo=self.color_fondo,
             funcion_cierre=self.cerrar_ventana_estadistica,
-            controlador=self.controlador,
+            controlador=self.controlador_tema,
         )
         # =================================================================================================
 
@@ -63,7 +67,7 @@ class Estadisticas(Utiles):
         )
         etiqueta_titulo_general.pack()
         self.componentes.append(etiqueta_titulo_general)
-        self.controlador.registrar_etiqueta(etiqueta_titulo_general)
+        self.controlador_tema.registrar_etiqueta(etiqueta_titulo_general)
         # -------------------------------------------------------------------------------------------------
 
         # Obtener estadísticas de reproducción
@@ -121,7 +125,7 @@ class Estadisticas(Utiles):
         )
         etiqueta_mensaje.pack()
         self.componentes.append(etiqueta_mensaje)
-        self.controlador.registrar_etiqueta(etiqueta_mensaje)
+        self.controlador_tema.registrar_etiqueta(etiqueta_mensaje)
         # ---------------------------------------------------------------------------------
         # *********************************************************************************
 
@@ -131,39 +135,63 @@ class Estadisticas(Utiles):
         # Panel para resumen
         panel_resumen = ctk.CTkFrame(
             panel_padre,
-            fg_color="transparent",
+            fg_color=self.color_segundario,
+            corner_radius=BORDES_REDONDEADOS_PANEL,
+            border_width=1,
+            border_color=self.color_borde,
         )
-        panel_resumen.pack(fill="x", padx=5)
+        panel_resumen.pack(fill="x", padx=5, pady=(5, 0))
         self.componentes.append(panel_resumen)
+
+        # ---------------------------- Etiqueta de título de resumen --------------------
+        etiqueta_titulo_resumen = ctk.CTkLabel(
+            panel_resumen,
+            height=15,
+            fg_color="transparent",
+            font=(LETRA, 14, "bold"),
+            text_color=self.color_texto,
+            text="Resumen general",
+        )
+        etiqueta_titulo_resumen.pack(pady=(3, 0))
+        self.componentes.append(etiqueta_titulo_resumen)
+        self.controlador_tema.registrar_etiqueta(etiqueta_titulo_resumen)
+        # ---------------------------------------------------------------------------------
+
+        # ---------------------------- Panel para información resumen ---------------------
+        # Panel para información de canción
+        panel_informacion_resumen = ctk.CTkFrame(panel_resumen, fg_color="transparent")
+        panel_informacion_resumen.pack(fill="x", padx=5, pady=(0, 5))
+        self.componentes.append(panel_informacion_resumen)
+        # ------------------------
 
         # ---------------------------- Etiqueta de informacion ----------------------------
         # Etiqueta de información general de canciones
-        informacion_canciones = ctk.CTkLabel(
-            panel_resumen,
+        etiqueta_informacion_canciones = ctk.CTkLabel(
+            panel_informacion_resumen,
             height=15,
             fg_color="transparent",
             font=(LETRA, 12),
             text_color=self.color_texto,
             text=f"Canciones escuchadas: {estadisticas['canciones_escuchadas']}",
         )
-        informacion_canciones.pack()
-        self.componentes.append(informacion_canciones)
-        self.controlador.registrar_etiqueta(informacion_canciones)
+        etiqueta_informacion_canciones.pack()
+        self.componentes.append(etiqueta_informacion_canciones)
+        self.controlador_tema.registrar_etiqueta(etiqueta_informacion_canciones)
         # ---------------------------------------------------------------------------------
 
         # ---------------------------- Etiqueta de tiempo total ---------------------------
         # Etiqueta de tiempo total
-        informacion_tiempo = ctk.CTkLabel(
-            panel_resumen,
+        etiqueta_informacion_tiempo = ctk.CTkLabel(
+            panel_informacion_resumen,
             height=15,
             fg_color="transparent",
             font=(LETRA, 12),
             text_color=self.color_texto,
             text=f"Tiempo total de reproducción: {estadisticas['tiempo_total_reproduccion']}",
         )
-        informacion_tiempo.pack()
-        self.componentes.append(informacion_tiempo)
-        self.controlador.registrar_etiqueta(informacion_tiempo)
+        etiqueta_informacion_tiempo.pack()
+        self.componentes.append(etiqueta_informacion_tiempo)
+        self.controlador_tema.registrar_etiqueta(etiqueta_informacion_tiempo)
         # ---------------------------------------------------------------------------------
         # *********************************************************************************
 
@@ -198,13 +226,48 @@ class Estadisticas(Utiles):
         )
         etiqueta_titulo_cancion.pack(pady=(3, 0))
         self.componentes.append(etiqueta_titulo_cancion)
-        self.controlador.registrar_etiqueta(etiqueta_titulo_cancion)
+        self.controlador_tema.registrar_etiqueta(etiqueta_titulo_cancion)
+        # ---------------------------------------------------------------------------------
+
+        # ------------------------ Panel para contenido de la tarjeta ---------------------
+        # Panel para contenido con imagen y texto
+        panel_contenido = ctk.CTkFrame(panel_tarjeta_cancion, fg_color="transparent")
+        panel_contenido.pack(fill="x", padx=5)
+        self.componentes.append(panel_contenido)
+        # ---------------------------------------------------------------------------------
+
+        # ---------------------------- Subpanel para la carátula --------------------------
+        # Panel para la carátula (a la izquierda)
+        panel_caratula = ctk.CTkFrame(panel_contenido, fg_color="transparent")
+        panel_caratula.pack(side="left", pady=5)
+        self.componentes.append(panel_caratula)
+
+        # Etiqueta para la carátula
+        etiqueta_caratula = ctk.CTkLabel(panel_caratula, text="", fg_color="transparent", corner_radius=5)
+        etiqueta_caratula.pack()
+        self.componentes.append(etiqueta_caratula)
+
+        if self.controlador_biblioteca:
+            # Primero obtener la carátula como imagen PIL
+            caratula_PIL = self.controlador_biblioteca.obtener_caratula_album(
+                cancion["album"], formato="PIL", ancho=60, alto=60
+            )
+            if caratula_PIL:
+                # Convertir a CTkImage
+                caratula_ctk = CTkImage(light_image=caratula_PIL, dark_image=caratula_PIL, size=(60, 60))
+                etiqueta_caratula.configure(image=caratula_ctk)
+                # Guardar referencia
+                etiqueta_caratula.image = caratula_ctk
+            else:
+                etiqueta_caratula.configure(text="Sin\ncarátula", image=None)
+        else:
+            etiqueta_caratula.configure(text="Sin\ncarátula", image=None)
         # ---------------------------------------------------------------------------------
 
         # ---------------------------- Panel para información de canción ------------------
-        # Panel para información de canción
-        panel_informacion_cancion = ctk.CTkFrame(panel_tarjeta_cancion, fg_color="transparent")
-        panel_informacion_cancion.pack(fill="x", padx=5, pady=(0, 3))
+        # Panel para información de canción (a la derecha)
+        panel_informacion_cancion = ctk.CTkFrame(panel_contenido, fg_color="transparent")
+        panel_informacion_cancion.pack(side="left", fill="x", expand=True)
         self.componentes.append(panel_informacion_cancion)
         # ---------------------------------------------------------------------------------
 
@@ -220,7 +283,7 @@ class Estadisticas(Utiles):
         )
         etiqueta_titulo_cancion.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_titulo_cancion)
-        self.controlador.registrar_etiqueta(etiqueta_titulo_cancion)
+        self.controlador_tema.registrar_etiqueta(etiqueta_titulo_cancion)
         # ---------------------------------------------------------------------------------
 
         # ------------------------- Etiqueta con artista de cancion ------------------------
@@ -235,7 +298,7 @@ class Estadisticas(Utiles):
         )
         etiqueta_artista_cancion.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_artista_cancion)
-        self.controlador.registrar_etiqueta(etiqueta_artista_cancion)
+        self.controlador_tema.registrar_etiqueta(etiqueta_artista_cancion)
         # ---------------------------------------------------------------------------------
 
         # ------------------------- Etiqueta con album de cancion --------------------------
@@ -250,11 +313,11 @@ class Estadisticas(Utiles):
         )
         etiqueta_album_cancion.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_album_cancion)
-        self.controlador.registrar_etiqueta(etiqueta_album_cancion)
+        self.controlador_tema.registrar_etiqueta(etiqueta_album_cancion)
         # ---------------------------------------------------------------------------------
 
-        # ------------------------- Etiqueta con duracion de cancion -----------------------
-        # Etiqueta con duración de canción
+        # ------------------------- Etiqueta con reproducciones de cancion -----------------------
+        # Etiqueta con reproducciones de canción
         etiqueta_reproducciones_cancion = ctk.CTkLabel(
             panel_informacion_cancion,
             height=15,
@@ -265,7 +328,7 @@ class Estadisticas(Utiles):
         )
         etiqueta_reproducciones_cancion.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_reproducciones_cancion)
-        self.controlador.registrar_etiqueta(etiqueta_reproducciones_cancion)
+        self.controlador_tema.registrar_etiqueta(etiqueta_reproducciones_cancion)
         # ---------------------------------------------------------------------------------
         # *********************************************************************************
 
@@ -300,13 +363,13 @@ class Estadisticas(Utiles):
         )
         etiqueta_titulo_artista.pack(pady=(3, 0))
         self.componentes.append(etiqueta_titulo_artista)
-        self.controlador.registrar_etiqueta(etiqueta_titulo_artista)
+        self.controlador_tema.registrar_etiqueta(etiqueta_titulo_artista)
         # ---------------------------------------------------------------------------------
 
         # -------------------------- Panel para información del artista -------------------
         # Panel para información del artista
         panel_informacion_artista = ctk.CTkFrame(panel_tarjeta_artista, fg_color="transparent")
-        panel_informacion_artista.pack(fill="x", padx=5, pady=(0, 3))
+        panel_informacion_artista.pack(fill="x", padx=5, pady=(0, 5))
         self.componentes.append(panel_informacion_artista)
         # ---------------------------------------------------------------------------------
 
@@ -322,7 +385,7 @@ class Estadisticas(Utiles):
         )
         etiqueta_nombre_artista.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_nombre_artista)
-        self.controlador.registrar_etiqueta(etiqueta_nombre_artista)
+        self.controlador_tema.registrar_etiqueta(etiqueta_nombre_artista)
         # ---------------------------------------------------------------------------------
 
         # ------------------------- Etiqueta con album de artista --------------------------
@@ -337,7 +400,7 @@ class Estadisticas(Utiles):
         )
         etiqueta_reproducciones_artista.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_reproducciones_artista)
-        self.controlador.registrar_etiqueta(etiqueta_reproducciones_artista)
+        self.controlador_tema.registrar_etiqueta(etiqueta_reproducciones_artista)
         # ---------------------------------------------------------------------------------
         # *********************************************************************************
 
@@ -371,13 +434,13 @@ class Estadisticas(Utiles):
         )
         etiqueta_titulo_albun.pack(pady=(3, 0))
         self.componentes.append(etiqueta_titulo_albun)
-        self.controlador.registrar_etiqueta(etiqueta_titulo_albun)
+        self.controlador_tema.registrar_etiqueta(etiqueta_titulo_albun)
         # ---------------------------------------------------------------------------------
 
         # -------------------------- Panel para información del álbum ---------------------
         # Panel para información del álbum
         panel_informacion_albun = ctk.CTkFrame(panel_tarjeta_albun, fg_color="transparent")
-        panel_informacion_albun.pack(fill="x", padx=5, pady=(0, 3))
+        panel_informacion_albun.pack(fill="x", padx=5, pady=(0, 5))
         self.componentes.append(panel_informacion_albun)
         # ---------------------------------------------------------------------------------
 
@@ -393,7 +456,7 @@ class Estadisticas(Utiles):
         )
         etiqueta_nombre_album.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_nombre_album)
-        self.controlador.registrar_etiqueta(etiqueta_nombre_album)
+        self.controlador_tema.registrar_etiqueta(etiqueta_nombre_album)
         # ---------------------------------------------------------------------------------
 
         # ------------------------ Etiqueta con artista de álbum --------------------------
@@ -408,7 +471,7 @@ class Estadisticas(Utiles):
         )
         etiqueta_reproducciones_albun.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_reproducciones_albun)
-        self.controlador.registrar_etiqueta(etiqueta_reproducciones_albun)
+        self.controlador_tema.registrar_etiqueta(etiqueta_reproducciones_albun)
         # ---------------------------------------------------------------------------------
         # *********************************************************************************
 
@@ -427,7 +490,7 @@ class Estadisticas(Utiles):
             border_width=1,
             border_color=self.color_borde,
         )
-        panel_ultima_escuchada.pack(fill="x", padx=5)
+        panel_ultima_escuchada.pack(fill="x", padx=5, pady=(5, 0))
         self.componentes.append(panel_ultima_escuchada)
 
         # ------------------------------- Etiqueta de título ------------------------------
@@ -442,13 +505,13 @@ class Estadisticas(Utiles):
         )
         etiqueta_titulo_ultima.pack(pady=(3, 0))
         self.componentes.append(etiqueta_titulo_ultima)
-        self.controlador.registrar_etiqueta(etiqueta_titulo_ultima)
+        self.controlador_tema.registrar_etiqueta(etiqueta_titulo_ultima)
         # ---------------------------------------------------------------------------------
 
         # -------------------------- Panel para información de la canción ------------------
         # Panel para información del álbum
         panel_informacion_ultima = ctk.CTkFrame(panel_ultima_escuchada, fg_color="transparent")
-        panel_informacion_ultima.pack(fill="x", padx=5, pady=(0, 3))
+        panel_informacion_ultima.pack(fill="x", padx=5, pady=(0, 5))
         self.componentes.append(panel_informacion_ultima)
         # ---------------------------------------------------------------------------------
 
@@ -464,7 +527,7 @@ class Estadisticas(Utiles):
         )
         etiqueta_titulo_ultima.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_titulo_ultima)
-        self.controlador.registrar_etiqueta(etiqueta_titulo_ultima)
+        self.controlador_tema.registrar_etiqueta(etiqueta_titulo_ultima)
         # ---------------------------------------------------------------------------------
 
         # ------------------------ Etiqueta con artista de canción ------------------------
@@ -479,7 +542,7 @@ class Estadisticas(Utiles):
         )
         etiqueta_artista_ultima.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_artista_ultima)
-        self.controlador.registrar_etiqueta(etiqueta_artista_ultima)
+        self.controlador_tema.registrar_etiqueta(etiqueta_artista_ultima)
         # ---------------------------------------------------------------------------------
         # *********************************************************************************
 
@@ -492,7 +555,7 @@ class Estadisticas(Utiles):
                 # Verificar si la ventana aún existe y es válida
                 if self.ventana_estadisticas.winfo_exists():
                     self.colores()
-                    establecer_icono_tema(self.ventana_estadisticas, self.controlador.tema_interfaz)
+                    establecer_icono_tema(self.ventana_estadisticas, self.controlador_tema.tema_interfaz)
                     self.ventana_estadisticas.deiconify()
                 else:
                     # La ventana ya no existe, crear una nueva
@@ -505,4 +568,4 @@ class Estadisticas(Utiles):
 
     # Metodo para cerrar la ventana de estadisticas
     def cerrar_ventana_estadistica(self):
-        cerrar_ventana_modal(self.ventana_estadisticas, self.componentes, self.controlador)
+        cerrar_ventana_modal(self.ventana_estadisticas, self.componentes, self.controlador_tema)

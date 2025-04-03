@@ -1255,7 +1255,7 @@ mini_reproductor = MiniReproductor(ventana_principal, controlador_tema)
 configuracion = Configuracion(ventana_principal, controlador_tema)
 
 # Estadísticas
-estadisticas = Estadisticas(ventana_principal, controlador_tema, controlador_archivos)
+estadisticas = Estadisticas(ventana_principal, controlador_tema, controlador_archivos, controlador_biblioteca)
 
 # Cola de reproducción
 cola_reproduccion = ColaReproduccion(

@@ -40,3 +40,19 @@ class ControladorBiblioteca:
         except Exception as e:
             print(f"Error al marcar como favorito: {e}")
             return False
+
+    # Método para obtener la caratula de un album
+    def obtener_caratula_album(self, nombre_album, formato="bytes", ancho=None, alto=None):
+        try:
+            return self.biblioteca.obtener_caratula_album(nombre_album, formato, ancho, alto)
+        except Exception as e:
+            print(f"Error al obtener carátula del álbum: {e}")
+            return None
+
+    # Método para obtener la caratula de un artista
+    def obtener_caratula_artista(self, nombre_artista, formato="bytes", ancho=None, alto=None):
+        try:
+            return self.biblioteca.obtener_caratula_artista(nombre_artista, formato, ancho, alto)
+        except Exception as e:
+            print(f"Error al obtener carátula del artista: {e}")
+            return None

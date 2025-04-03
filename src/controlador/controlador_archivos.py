@@ -8,12 +8,12 @@ import os
 class ControladorArchivos:
     def __init__(self):
         # Directorios base
-        self.dir_datos = RUTA_CARPETA_DATOS
-        self.dir_listas = RUTA_CARPETA_LISTAS
-        self.dir_me_gusta = RUTA_CARPETA_ME_GUSTA
-        self.dir_favoritos = RUTA_CARPETA_FAVORITOS
-        self.dir_estadisticas = RUTA_CARPETA_ESTADISTICAS
-        self.dir_configuracion = RUTA_CARPETA_CONFIGURACION
+        self.ruta_carpeta_datos = RUTA_CARPETA_DATOS
+        self.ruta_carpeta_listas = RUTA_CARPETA_LISTAS
+        self.ruta_carpeta_me_gusta = RUTA_CARPETA_ME_GUSTA
+        self.ruta_carpeta_favoritos = RUTA_CARPETA_FAVORITOS
+        self.ruta_carpeta_estadisticas = RUTA_CARPETA_ESTADISTICAS
+        self.ruta_carpeta_configuracion = RUTA_CARPETA_CONFIGURACION
         # Rutas de archivos
         self.ruta_canciones = RUTA_CANCIONES
         self.ruta_favoritos = RUTA_FAVORITOS
@@ -52,12 +52,12 @@ class ControladorArchivos:
     # Crear la estructura de directorios necesaria
     def crear_estructura_directorios(self):
         directorios = [
-            self.dir_datos,
-            self.dir_estadisticas,
-            self.dir_listas,
-            self.dir_favoritos,
-            self.dir_me_gusta,
-            self.dir_configuracion,
+            self.ruta_carpeta_datos,
+            self.ruta_carpeta_estadisticas,
+            self.ruta_carpeta_listas,
+            self.ruta_carpeta_me_gusta,
+            self.ruta_carpeta_favoritos,
+            self.ruta_carpeta_configuracion,
         ]
         for directorio in directorios:
             if not os.path.exists(directorio):
@@ -98,9 +98,7 @@ class ControladorArchivos:
             else:
                 # Guardar la lista de reproducción con el índice actual y la última canción
                 ultima_cancion_info = None
-                if 0 <= reproductor.indice_actual < len(
-                    reproductor.lista_reproduccion
-                ):
+                if 0 <= reproductor.indice_actual < len(reproductor.lista_reproduccion):
                     cancion_actual = reproductor.lista_reproduccion[reproductor.indice_actual]
                     ultima_cancion_info = {
                         "ruta": str(cancion_actual.ruta_cancion),
@@ -406,8 +404,8 @@ class ControladorArchivos:
     def guardar_ajustes(self, configuracion):
         try:
             # Asegurarse de que exista el directorio
-            if not os.path.exists(self.dir_configuracion):
-                os.makedirs(self.dir_configuracion)
+            if not os.path.exists(self.ruta_carpeta_configuracion):
+                os.makedirs(self.ruta_carpeta_configuracion)
             # Crear o actualizar el archivo de configuración
             if os.path.exists(self.ruta_configuracion):
                 # Si existe, cargar la configuración actual y actualizar

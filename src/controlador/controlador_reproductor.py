@@ -15,7 +15,7 @@ class ControladorReproductor:
         self.tiempo_inicio = None
         self.tiempo_acumulado = 0
         # Carátula de la canción
-        self._foto_caratula = None
+        self.foto_caratula = None
         # Etiquetas de la interfaz
         self.etiqueta_nombre = None
         self.etiqueta_artista = None
@@ -31,11 +31,11 @@ class ControladorReproductor:
         self.posicion_desplazamiento = None
         self.desplazamiento_activo = None
         # Temporizador de desplazamiento
-        self.marquee_timer_id = None
+        self.id_marcador_tiempo = None
         # Etiquetas de tiempo
         self.etiqueta_tiempo_actual = None
         self.etiqueta_tiempo_total = None
-        self.timer_id = None
+        self.id_temporizador = None
         # Barra de progreso
         self.barra_progreso = None
         # Lista de reproducción
@@ -63,7 +63,7 @@ class ControladorReproductor:
                 if foto:
                     self.etiqueta_imagen.configure(image=foto, text="")
                     # Guardar referencia para evitar que se pierda por el recolector de basura
-                    self._foto_caratula = foto
+                    self.foto_caratula = foto
                     return True
                 else:
                     self.etiqueta_imagen.configure(image=None, text="Sin carátula")
@@ -102,9 +102,9 @@ class ControladorReproductor:
             self.etiqueta_album.configure(text=self.texto_album)
             self.etiqueta_anio.configure(text=self.cancion_actual.fecha_formateada)
             # Cancelar cualquier timer de desplazamiento anterior
-            if hasattr(self, "marquee_timer_id") and self.marquee_timer_id:
-                self.etiqueta_nombre.after_cancel(self.marquee_timer_id)
-                self.marquee_timer_id = None
+            if hasattr(self, "id_marcador_tiempo") and self.id_marcador_tiempo:
+                self.etiqueta_nombre.after_cancel(self.id_marcador_tiempo)
+                self.id_marcador_tiempo = None
             # Iniciar desplazamiento de textos largos si es necesario
             self.iniciar_desplazamiento_texto()
             # Actualizar carátula
@@ -151,7 +151,7 @@ class ControladorReproductor:
         # Si la reproducción está pausada, no animamos el desplazamiento
         if hasattr(self, "reproduciendo") and not self.reproduciendo:
             # Programar verificación periódica para reanudar cuando se reanude la reproducción
-            self.marquee_timer_id = self.etiqueta_nombre.after(500, self.animar_desplazamiento_texto)
+            self.id_marcador_tiempo = self.etiqueta_nombre.after(500, self.animar_desplazamiento_texto)
             return
         textos = {
             "titulo": (self.texto_titulo, self.etiqueta_nombre),
@@ -203,7 +203,7 @@ class ControladorReproductor:
                 self.posicion_desplazamiento[clave] += 1
                 etiqueta.configure(text=texto_visible)
         # Programar próxima actualización
-        self.marquee_timer_id = self.etiqueta_nombre.after(125, self.animar_desplazamiento_texto)
+        self.id_marcador_tiempo = self.etiqueta_nombre.after(125, self.animar_desplazamiento_texto)
 
     # Método que establece las etiquetas de tiempo
     def establecer_etiquetas_tiempo(self, etiqueta_actual, etiqueta_total):
@@ -257,7 +257,7 @@ class ControladorReproductor:
                 self.etiqueta_tiempo_actual.configure(text=f"{minutos_actual:02d}:{segundos_actual:02d}")
             if self.etiqueta_tiempo_total:
                 self.etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
-            self.timer_id = self.etiqueta_tiempo_actual.after(100, self.actualizar_tiempo)
+            self.id_temporizador = self.etiqueta_tiempo_actual.after(100, self.actualizar_tiempo)
         return False
 
     # Método que establece la barra de progreso
@@ -284,9 +284,9 @@ class ControladorReproductor:
 
     # Método que reproduce una canción
     def reproducir_cancion(self, cancion: Cancion) -> None:
-        if self.timer_id:
-            self.etiqueta_tiempo_actual.after_cancel(self.timer_id)
-            self.timer_id = None
+        if self.id_temporizador:
+            self.etiqueta_tiempo_actual.after_cancel(self.id_temporizador)
+            self.id_temporizador = None
         self.cancion_actual = cancion
         # Actualizar el índice si la canción está en la lista de reproducción
         if self.lista_reproduccion:
@@ -335,9 +335,9 @@ class ControladorReproductor:
 
     # Método que detiene la reproducción de la canción
     def detener_reproduccion(self) -> bool:
-        if self.timer_id:
-            self.etiqueta_tiempo_actual.after_cancel(self.timer_id)
-            self.timer_id = None
+        if self.id_temporizador:
+            self.etiqueta_tiempo_actual.after_cancel(self.id_temporizador)
+            self.id_temporizador = None
         pygame.mixer.music.stop()
         self.reproduciendo = False
         # Resetear etiquetas de tiempo y barra de progreso

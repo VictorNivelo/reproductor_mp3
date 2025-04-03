@@ -10,7 +10,7 @@ class ControladorTema(Utiles):
         self.iconos = cargar_iconos(self.tema_iconos)
         # Diccionario de botones
         self.botones = {}
-        self.frames = []
+        self.paneles = []
         self.etiquetas = []
         self.entradas = []
         self.comboboxes = []
@@ -40,13 +40,13 @@ class ControladorTema(Utiles):
             # Usar el método estándar para mostrar iconos
             self.mostrar_icono_boton(nombre)
 
-    # Registrar frames
-    def registrar_frame(self, frame, es_ctk=False, es_principal=False):
-        # Verificar si el frame no está ya en la lista
-        for f, _, _ in self.frames:
-            if f == frame:
+    # Registrar paneles
+    def registrar_panel(self, panel, es_ctk=False, es_principal=False):
+        # Verificar si el panel no está ya en la lista
+        for f, _, _ in self.paneles:
+            if f == panel:
                 return
-        self.frames.append((frame, es_ctk, es_principal))
+        self.paneles.append((panel, es_ctk, es_principal))
 
     # Registrar etiquetas
     def registrar_etiqueta(self, etiqueta):
@@ -84,19 +84,19 @@ class ControladorTema(Utiles):
             if nombre_icono in self.iconos and self.iconos[nombre_icono]:
                 boton.configure(image=self.iconos[nombre_icono], compound="left")
 
-    # Actualizar colores de los frames
-    def actualizar_colores_frames(self):
-        for frame, es_ctk, es_principal in self.frames:
+    # Actualizar colores de los paneles
+    def actualizar_colores_paneles(self):
+        for panel, es_ctk, es_principal in self.paneles:
             try:
-                if frame.winfo_exists():
+                if panel.winfo_exists():
                     if es_principal:
-                        frame.configure(bg=self.color_fondo_principal)
+                        panel.configure(bg=self.color_fondo_principal)
                     elif es_ctk:
-                        frame.configure(fg_color=self.color_fondo)
+                        panel.configure(fg_color=self.color_fondo)
                     else:
-                        frame.configure(fg_color=self.color_base)
+                        panel.configure(fg_color=self.color_base)
             except Exception as e:
-                print(f"Error al configurar el color del frame: {e}")
+                print(f"Error al configurar el color del panel: {e}")
 
     # Actualizar colores de las etiquetas
     def actualizar_colores_etiquetas(self):
@@ -243,8 +243,8 @@ class ControladorTema(Utiles):
                 if nombre in self.botones:
                     del self.botones[nombre]
         try:
-            # Actualizar colores de frames
-            self.actualizar_colores_frames()
+            # Actualizar colores de paneles
+            self.actualizar_colores_paneles()
             # Actualizar colores de etiquetas
             self.actualizar_colores_etiquetas()
             # Actualizar colores de entradas
@@ -278,11 +278,11 @@ class ControladorTema(Utiles):
         for nombre in botones_a_eliminar:
             if nombre in self.botones:
                 del self.botones[nombre]
-        # Limpiar frames destruidos
-        self.frames = [
-            (frame, es_ctk, es_principal)
-            for frame, es_ctk, es_principal in self.frames
-            if self.widget_existe(frame)
+        # Limpiar paneles destruidos
+        self.paneles = [
+            (panel, es_ctk, es_principal)
+            for panel, es_ctk, es_principal in self.paneles
+            if self.widget_existe(panel)
         ]
         # Limpiar etiquetas destruidas
         self.etiquetas = [etiqueta for etiqueta in self.etiquetas if self.widget_existe(etiqueta)]

@@ -5,7 +5,7 @@ from PIL import Image
 import tracemalloc
 
 
-# Decorador para medir el consumo de memoria
+# Método decorador para medir el consumo de memoria de una función
 def medir_consumo_memoria(func):
     def wrapper(*args, **kwargs):
         tracemalloc.start()

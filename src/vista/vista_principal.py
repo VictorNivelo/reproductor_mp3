@@ -874,7 +874,7 @@ def crear_canvas_con_scroll(contenedor_padre, estabview=True, tabviewparent=None
     # Crear panel para el contenido
     panel_botones = ctk.CTkFrame(canvas, fg_color="transparent", corner_radius=0)
     panel_botones.pack(fill="both")
-    controlador_tema.registrar_frame(panel_botones)
+    controlador_tema.registrar_panel(panel_botones)
     # Crear ventana en el canvas para el panel
     canvas_ventana_general = canvas.create_window((0, 0), window=panel_botones)
     # Configurar scroll
@@ -1290,7 +1290,7 @@ conenedor_principal.configure(
     pady=5,
 )
 conenedor_principal.pack(fill="both", expand=True)
-controlador_tema.registrar_frame(conenedor_principal, es_principal=True)
+controlador_tema.registrar_panel(conenedor_principal, es_principal=True)
 
 # ===============================================================================================
 
@@ -1300,7 +1300,7 @@ contenedor_izquierda = ctk.CTkFrame(
     conenedor_principal, fg_color=FONDO_CLARO, corner_radius=BORDES_REDONDEADOS_PANEL
 )
 contenedor_izquierda.pack(side="left", fill="both", expand=True)
-controlador_tema.registrar_frame(contenedor_izquierda, es_ctk=True)
+controlador_tema.registrar_panel(contenedor_izquierda, es_ctk=True)
 
 # ------------------------------- Seccion de controles superiores --------------------------------
 # Contenedor superior
@@ -1817,7 +1817,7 @@ contenedor_derecha_principal = ctk.CTkFrame(
 )
 contenedor_derecha_principal.pack(side="left", fill="both", padx=(5, 0))
 contenedor_derecha_principal.pack_propagate(False)
-controlador_tema.registrar_frame(contenedor_derecha_principal, es_ctk=True)
+controlador_tema.registrar_panel(contenedor_derecha_principal, es_ctk=True)
 
 # Contentedor de panel derecho interno
 contenedor_derecha = ctk.CTkFrame(

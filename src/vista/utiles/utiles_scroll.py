@@ -25,16 +25,16 @@ class GestorScroll:
             # Usar bind_all pero con un tag específico para este gestor
             self.canvas.bind("<MouseWheel>", self.scroll_raton_configuracion)
             # Vincular eventos MouseWheel solo cuando el ratón está sobre este canvas
-            self.canvas.bind("<Enter>", self._activar_scroll)
-            self.canvas.bind("<Leave>", self._desactivar_scroll)
+            self.canvas.bind("<Enter>", self.activar_scroll)
+            self.canvas.bind("<Leave>", self.desactivar_scroll)
 
     # Activar el scroll cuando el ratón entra al canvas
-    def _activar_scroll(self, _event=None):
+    def activar_scroll(self, _event=None):
         if self.canvas:
             self.canvas.bind_all("<MouseWheel>", self.scroll_raton_configuracion)
 
     # Desactivar el scroll cuando el ratón sale del canvas
-    def _desactivar_scroll(self, _event=None):
+    def desactivar_scroll(self, _event=None):
         if self.canvas:
             self.canvas.unbind_all("<MouseWheel>")
 

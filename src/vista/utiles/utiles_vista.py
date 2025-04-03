@@ -1,4 +1,4 @@
-from vista.tooltip import ToolTip
+from vista.componentes.tooltip import ToolTip
 import customtkinter as ctk
 from constantes import *
 from PIL import Image

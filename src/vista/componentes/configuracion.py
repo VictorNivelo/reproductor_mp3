@@ -6,11 +6,11 @@ from constantes import *
 
 
 class Configuracion(Utiles):
-    def __init__(self, ventana_principal, controlador):
-        super().__init__(controlador_externo=controlador)
+    def __init__(self, ventana_principal, controlador_tema):
+        super().__init__(controlador_externo=controlador_tema)
         self.ventana_configuracion = None
         self.ventana_principal = ventana_principal
-        self.controlador = controlador
+        self.controlador_tema = controlador_tema
         self.componentes = []
 
         """
@@ -40,7 +40,7 @@ class Configuracion(Utiles):
             titulo="Configuración",
             color_fondo=self.color_fondo,
             funcion_cierre=self.cerrar_ventana_configuracion,
-            controlador=self.controlador,
+            controlador=self.controlador_tema,
         )
         # ===========================================================================================
 
@@ -110,7 +110,7 @@ class Configuracion(Utiles):
                 # Verificar si la ventana aún existe y es válida
                 if self.ventana_configuracion.winfo_exists():
                     self.colores()
-                    establecer_icono_tema(self.ventana_configuracion, self.controlador.tema_interfaz)
+                    establecer_icono_tema(self.ventana_configuracion, self.controlador_tema.tema_interfaz)
                     self.ventana_configuracion.deiconify()
                 else:
                     # La ventana ya no existe, crear una nueva
@@ -124,7 +124,7 @@ class Configuracion(Utiles):
 
     # Metodo para cerrar ventana de configuración
     def cerrar_ventana_configuracion(self):
-        cerrar_ventana_modal(self.ventana_configuracion, self.componentes, self.controlador)
+        cerrar_ventana_modal(self.ventana_configuracion, self.componentes, self.controlador_tema)
 
     # Abrir sección de configuración
     @staticmethod

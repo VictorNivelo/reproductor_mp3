@@ -5,11 +5,11 @@ from constantes import *
 
 
 class MiniReproductor(Utiles):
-    def __init__(self, ventana_principal, controlador):
-        super().__init__(controlador_externo=controlador)
+    def __init__(self, ventana_principal, controlador_tema):
+        super().__init__(controlador_externo=controlador_tema)
         self.ventana_principal_mini_reproductor = None
         self.ventana_principal = ventana_principal
-        self.controlador = controlador
+        self.controlador_tema = controlador_tema
         self.componentes = []
 
     # Metodo para crear la ventana del mini reproductors
@@ -38,7 +38,7 @@ class MiniReproductor(Utiles):
         self.ventana_principal_mini_reproductor.protocol("WM_DELETE_WINDOW", self.ocultar)
 
         # Establecer el icono de la ventana del mini reproductor
-        establecer_icono_tema(self.ventana_principal_mini_reproductor, self.controlador.tema_interfaz)
+        establecer_icono_tema(self.ventana_principal_mini_reproductor, self.controlador_tema.tema_interfaz)
         # =================================================================================================
 
         # ======================================= Panel principal =========================================
@@ -180,7 +180,7 @@ class MiniReproductor(Utiles):
             hover_color=self.color_hover,
         )
         boton_me_gusta_mini_reproductor.pack(side="left", padx=5)
-        self.controlador.registrar_botones("me_gusta_mini", boton_me_gusta_mini_reproductor)
+        self.controlador_tema.registrar_botones("me_gusta_mini", boton_me_gusta_mini_reproductor)
 
         boton_anterior_mini_reproductor = ctk.CTkButton(
             contenedor_botones_mini_reproductor,
@@ -194,7 +194,7 @@ class MiniReproductor(Utiles):
             hover_color=self.color_hover,
         )
         boton_anterior_mini_reproductor.pack(side="left", padx=5)
-        self.controlador.registrar_botones("anterior_mini", boton_anterior_mini_reproductor)
+        self.controlador_tema.registrar_botones("anterior_mini", boton_anterior_mini_reproductor)
 
         boton_reproducir_mini_reproductor = ctk.CTkButton(
             contenedor_botones_mini_reproductor,
@@ -208,7 +208,7 @@ class MiniReproductor(Utiles):
             hover_color=self.color_hover,
         )
         boton_reproducir_mini_reproductor.pack(side="left", padx=5)
-        self.controlador.registrar_botones("reproducir_mini", boton_reproducir_mini_reproductor)
+        self.controlador_tema.registrar_botones("reproducir_mini", boton_reproducir_mini_reproductor)
 
         boton_siguiente_mini_reproductor = ctk.CTkButton(
             contenedor_botones_mini_reproductor,
@@ -222,7 +222,7 @@ class MiniReproductor(Utiles):
             hover_color=self.color_hover,
         )
         boton_siguiente_mini_reproductor.pack(side="left", padx=5)
-        self.controlador.registrar_botones("siguiente_mini", boton_siguiente_mini_reproductor)
+        self.controlador_tema.registrar_botones("siguiente_mini", boton_siguiente_mini_reproductor)
 
         boton_maximizar_mini_reproductor = ctk.CTkButton(
             contenedor_botones_mini_reproductor,
@@ -237,7 +237,7 @@ class MiniReproductor(Utiles):
             command=self.ocultar,
         )
         boton_maximizar_mini_reproductor.pack(side="left", padx=5)
-        self.controlador.registrar_botones("maximizar_mini", boton_maximizar_mini_reproductor)
+        self.controlador_tema.registrar_botones("maximizar_mini", boton_maximizar_mini_reproductor)
         # =================================================================================================
 
         # ======================================== Panel izquierda ========================================
@@ -287,7 +287,7 @@ class MiniReproductor(Utiles):
             # La ventana existe, actualizar colores e icono
             try:
                 self.colores()
-                establecer_icono_tema(self.ventana_principal_mini_reproductor, self.controlador.tema_interfaz)
+                establecer_icono_tema(self.ventana_principal_mini_reproductor, self.controlador_tema.tema_interfaz)
                 self.actualizar_colores()
             except Exception as e:
                 print(f"Error al mostrar la ventana del mini reproductor: {e}")

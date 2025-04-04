@@ -557,8 +557,8 @@ def agregar_a_cola_vista(cancion):
     if controlador_reproductor.indice_actual == -1:
         controlador_reproductor.indice_actual = 0
     # Guardar la cola automáticamente
-    controlador_archivos = ControladorArchivos()
-    controlador_archivos.guardar_cola_reproduccion(controlador_reproductor)
+    controlador_archivos_cola = ControladorArchivos()
+    controlador_archivos_cola.guardar_cola_reproduccion(controlador_reproductor)
     # Mostrar mensaje de confirmación
     print(f"Se ha agregado a la cola: {cancion.titulo_cancion}")
 
@@ -927,7 +927,7 @@ def crear_opcion_menu(panel_menu_opciones, texto, comando, tiene_separador=False
 
 
 # Función para cerrar el menú cuando pierde el foco
-def cerrar_menu_si_pierde_foco(menu_ventana, event=None):
+def cerrar_menu_al_desenfocar(menu_ventana, _event=None):
     # Verificar si el menú sigue existiendo
     if not menu_ventana.winfo_exists():
         return
@@ -995,7 +995,7 @@ def mostrar_menu_cancion(cancion, frame_padre):
     # Establecer la geometría con la altura exacta del contenido
     menu_ventana.geometry(f"200x{altura_real}+{x}+{y}")
     # Vincular eventos para cerrar el menú
-    menu_ventana.bind("<FocusOut>", lambda event: cerrar_menu_si_pierde_foco(menu_ventana, event))
+    menu_ventana.bind("<FocusOut>", lambda event: cerrar_menu_al_desenfocar(menu_ventana, event))
     menu_ventana.bind("<Button-1>", lambda e: menu_ventana.destroy())
     # Vincular clic en cualquier parte de la pantalla para cerrar el menú
     ventana_principal.bind("<Button-1>", lambda e: menu_ventana.destroy(), add="+")
@@ -1004,7 +1004,8 @@ def mostrar_menu_cancion(cancion, frame_padre):
     def al_cerrar_menu():
         try:
             ventana_principal.unbind("<Button-1>")
-        except:
+        except Exception as e:
+            print(f"Error al restablecer el binding: {e}")
             pass
 
     menu_ventana.protocol("WM_DELETE_WINDOW", al_cerrar_menu)

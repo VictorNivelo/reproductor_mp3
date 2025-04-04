@@ -1,18 +1,10 @@
 {
-    "indice_actual": 7,
+    "indice_actual": 14,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\pm\\0 Sentimientos (Remix).mp3",
-        "C:\\Users\\Victor\\Music\\pm\\10 Bands.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\10 Freaky Girls (ft 21 Savage).mp3",
-        "C:\\Users\\Victor\\Music\\pm\\100 MILLONES.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\105 Freestyle.mp3",
         "C:\\Users\\Victor\\Music\\pm\\11 PM.mp3",
         "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\pm\\120.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\530.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Chill Bae.mp3",
         "C:\\Users\\Victor\\Music\\pm\\Cinderella.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\EXACTLY WHAT YOU RUN FROM YOU END UP CHASING.mp3",
         "C:\\Users\\Victor\\Music\\pm\\Gangster Pain.mp3",
         "C:\\Users\\Victor\\Music\\pm\\ISABELLA.mp3",
         "C:\\Users\\Victor\\Music\\pm\\Just Wanna Rock.mp3",
@@ -28,10 +20,10 @@
         "C:\\Users\\Victor\\Music\\pm\\Watch This (Remix).mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
-        "titulo": "120",
-        "artista": "Bad Bunny",
-        "album": "EL ÚLTIMO TOUR DEL MUNDO",
-        "timestamp": "2025-04-04T14:29:07.373783"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3",
+        "titulo": "Wake Up in the Sky",
+        "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
+        "album": "Evil Genius",
+        "timestamp": "2025-04-04T15:07:01.373019"
     }
 }

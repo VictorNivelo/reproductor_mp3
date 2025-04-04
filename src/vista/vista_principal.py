@@ -471,6 +471,37 @@ def cambiar_favorito_menu(cancion):
         actualizar_estado_botones_gustos()
 
 
+# Funciona para actualizar el estado de los botones de me gusta y favorito
+def actualizar_estado_botones_gustos():
+    global ME_GUSTA, FAVORITO
+    cancion_actual = controlador_reproductor.cancion_actual
+    if cancion_actual:
+        # Actualizar estado de Me Gusta
+        ME_GUSTA = cancion_actual.me_gusta
+        if ME_GUSTA:
+            controlador_tema.registrar_botones("me_gusta_rojo", boton_me_gusta)
+            actualizar_tooltip(boton_me_gusta, "Quitar de me gusta")
+        else:
+            controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
+            actualizar_tooltip(boton_me_gusta, "Agregar a me gusta")
+        # Actualizar estado de Favorito
+        FAVORITO = cancion_actual.favorito
+        if FAVORITO:
+            controlador_tema.registrar_botones("favorito_amarillo", boton_favorito)
+            actualizar_tooltip(boton_favorito, "Quitar de favorito")
+        else:
+            controlador_tema.registrar_botones("favorito", boton_favorito)
+            actualizar_tooltip(boton_favorito, "Agregar a favorito")
+    else:
+        # Sin canción actual
+        ME_GUSTA = False
+        FAVORITO = False
+        controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
+        controlador_tema.registrar_botones("favorito", boton_favorito)
+        actualizar_tooltip(boton_me_gusta, "Agregar a me gusta")
+        actualizar_tooltip(boton_favorito, "Agregar a favorito")
+
+
 # Función para agregar canciones (puede ser llamada desde un botón)
 def agregar_cancion_vista():
     rutas = filedialog.askopenfilenames(
@@ -507,35 +538,113 @@ def agregar_directorio_vista():
         actualizar_pestana_seleccionada()
 
 
-# Funciona para actualizar el estado de los botones de me gusta y favorito
-def actualizar_estado_botones_gustos():
-    global ME_GUSTA, FAVORITO
-    cancion_actual = controlador_reproductor.cancion_actual
-    if cancion_actual:
-        # Actualizar estado de Me Gusta
-        ME_GUSTA = cancion_actual.me_gusta
-        if ME_GUSTA:
-            controlador_tema.registrar_botones("me_gusta_rojo", boton_me_gusta)
-            actualizar_tooltip(boton_me_gusta, "Quitar de me gusta")
-        else:
-            controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
-            actualizar_tooltip(boton_me_gusta, "Agregar a me gusta")
-        # Actualizar estado de Favorito
-        FAVORITO = cancion_actual.favorito
-        if FAVORITO:
-            controlador_tema.registrar_botones("favorito_amarillo", boton_favorito)
-            actualizar_tooltip(boton_favorito, "Quitar de favorito")
-        else:
-            controlador_tema.registrar_botones("favorito", boton_favorito)
-            actualizar_tooltip(boton_favorito, "Agregar a favorito")
-    else:
-        # Sin canción actual
-        ME_GUSTA = False
-        FAVORITO = False
-        controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
-        controlador_tema.registrar_botones("favorito", boton_favorito)
-        actualizar_tooltip(boton_me_gusta, "Agregar a me gusta")
-        actualizar_tooltip(boton_favorito, "Agregar a favorito")
+# Función para agregar una canción a la cola de reproducción
+def agregar_a_cola_vista(cancion):
+    # Verificar si hay una lista de reproducción existente
+    if not controlador_reproductor.lista_reproduccion:
+        # Si no hay cola, crear una nueva con esta canción
+        controlador_reproductor.establecer_lista_reproduccion([cancion])
+        # Mostrar mensaje de confirmación
+        print(f"Se ha agregado a la cola: {cancion.titulo_cancion}")
+        return
+    # Si la canción ya está en la lista, mostrar mensaje
+    if cancion in controlador_reproductor.lista_reproduccion:
+        print(f"La canción '{cancion.titulo_cancion}' ya está en la cola")
+        return
+    # Añadir la canción a la lista actual
+    controlador_reproductor.lista_reproduccion.append(cancion)
+    # Si no hay reproducción activa, configurar esta como la siguiente
+    if controlador_reproductor.indice_actual == -1:
+        controlador_reproductor.indice_actual = 0
+    # Guardar la cola automáticamente
+    controlador_archivos = ControladorArchivos()
+    controlador_archivos.guardar_cola_reproduccion(controlador_reproductor)
+    # Mostrar mensaje de confirmación
+    print(f"Se ha agregado a la cola: {cancion.titulo_cancion}")
+
+
+# Función para eliminar una canción de la biblioteca
+def eliminar_cancion_vista(cancion):
+    # Verificar si la canción que se elimina está en reproducción
+    if controlador_reproductor.cancion_actual == cancion:
+        # Si está reproduciéndose, detener la reproducción
+        controlador_reproductor.detener_reproduccion()
+        # Limpiar la información en la interfaz
+        controlador_reproductor.cancion_actual = None
+        controlador_reproductor.actualizar_informacion_interfaz()
+    # Eliminar la canción de la cola de reproducción si está en ella
+    if cancion in controlador_reproductor.lista_reproduccion:
+        # Obtener índice actual
+        indice_actual = controlador_reproductor.indice_actual
+        indice_cancion = controlador_reproductor.lista_reproduccion.index(cancion)
+        # Eliminar la canción de la lista
+        controlador_reproductor.lista_reproduccion.remove(cancion)
+        # Ajustar el índice actual si es necesario
+        if indice_cancion <= indice_actual and indice_actual > 0:
+            controlador_reproductor.indice_actual -= 1
+        elif len(controlador_reproductor.lista_reproduccion) == 0:
+            controlador_reproductor.indice_actual = -1
+        # Guardar la cola actualizada
+        controlador_archivos = ControladorArchivos()
+        controlador_archivos.guardar_cola_reproduccion(controlador_reproductor)
+    # Verificar si la canción está en la lista de "Me gusta" y eliminarla manualmente
+    if cancion.me_gusta:
+        cancion.me_gusta = False
+        if cancion in biblioteca.me_gusta:
+            biblioteca.me_gusta.remove(cancion)
+    # Verificar si la canción está en la lista de "Favoritos" y eliminarla manualmente
+    if cancion.favorito:
+        cancion.favorito = False
+        if cancion in biblioteca.favorito:
+            biblioteca.favorito.remove(cancion)
+    # Verificar y eliminar de la colección de artistas
+    for artista, lista_canciones in list(biblioteca.por_artista.items()):
+        if cancion in lista_canciones:
+            lista_canciones.remove(cancion)
+            # Si quedó vacía, eliminar la clave
+            if not lista_canciones:
+                biblioteca.por_artista.pop(artista, None)
+    # Verificar y eliminar de la colección de álbumes
+    for album, lista_canciones in list(biblioteca.por_album.items()):
+        if cancion in lista_canciones:
+            lista_canciones.remove(cancion)
+            # Si quedó vacía, eliminar la clave
+            if not lista_canciones:
+                biblioteca.por_album.pop(album, None)
+    # Eliminar de la colección por título
+    if cancion.titulo_cancion.lower() in biblioteca.por_titulo:
+        biblioteca.por_titulo.pop(cancion.titulo_cancion.lower(), None)
+
+    # Finalmente, eliminar la canción de la biblioteca principal
+    try:
+        if cancion in biblioteca.canciones:
+            biblioteca.canciones.remove(cancion)
+    except Exception as e:
+        print(f"Error al eliminar la canción de la lista principal: {e}")
+    # Guardar los cambios en los archivos
+    guardar_biblioteca()
+    # Marcar todas las pestañas como no cargadas para forzar su reconstrucción
+    for pestana in pestanas_cargadas:
+        pestanas_cargadas[pestana] = False
+    # Actualizar todas las vistas para reflejar los cambios
+    actualizar_todas_vistas_canciones()
+    # Si hay botones de canciones, eliminar la referencia al botón de esta canción
+    if cancion in botones_canciones:
+        del botones_canciones[cancion]
+    # Si estamos en una pestaña específica, actualizar esa vista
+    pestana_actual = paginas_canciones.get()
+    if pestana_actual == "Canciones":
+        actualizar_vista_canciones(panel_botones_canciones)
+    elif pestana_actual == "Me gusta":
+        actualizar_vista_me_gusta()
+    elif pestana_actual == "Favoritos":
+        actualizar_vista_favoritos()
+    elif pestana_actual == "Álbumes":
+        actualizar_vista_albumes()
+    elif pestana_actual == "Artistas":
+        actualizar_vista_artistas()
+    # Mostrar mensaje de confirmación
+    print(f"Se ha eliminado de la biblioteca: {cancion.titulo_cancion}")
 
 
 # Función para actualizar el progreso de la canción
@@ -810,8 +919,19 @@ def crear_opcion_menu(panel_menu_opciones, texto, comando, tiene_separador=False
 
 # Función para cerrar el menú cuando pierde el foco
 def cerrar_menu_si_pierde_foco(menu_ventana, event=None):
-    if menu_ventana.focus_get() is None or menu_ventana.focus_get() != menu_ventana:
-        menu_ventana.destroy()
+    # Verificar si el menú sigue existiendo
+    if not menu_ventana.winfo_exists():
+        return
+    # Obtener el widget que tiene el foco ahora
+    focused_widget = menu_ventana.focus_get()
+    # Si nada tiene el foco o el foco no está en el menú o sus hijos
+    if not focused_widget or not str(focused_widget).startswith(str(menu_ventana)):
+        try:
+            # Limpiar el binding adicional antes de destruir
+            ventana_principal.unbind("<Button-1>")
+            menu_ventana.destroy()
+        except Exception as e:
+            print(f"Error al cerrar menú: {e}")
 
 
 # Función para mostrar el menú contextual personalizado de una canción
@@ -840,9 +960,7 @@ def mostrar_menu_cancion(cancion, frame_padre):
     crear_opcion_menu(
         panel_menu_opciones, "Reproducir ahora", lambda: reproducir_cancion_desde_lista(cancion)
     )
-    crear_opcion_menu(
-        panel_menu_opciones, "Agregar a la cola", lambda: print(f"Agregar a cola: {cancion.titulo_cancion}")
-    )
+    crear_opcion_menu(panel_menu_opciones, "Agregar a la cola", lambda: agregar_a_cola_vista(cancion))
     # Separador antes de opciones de Me gusta/Favorito
     texto_me_gusta = "Quitar de Me gusta" if cancion.me_gusta else "Agregar a Me gusta"
     crear_opcion_menu(panel_menu_opciones, texto_me_gusta, lambda: cambiar_me_gusta_menu(cancion), True)
@@ -853,19 +971,36 @@ def mostrar_menu_cancion(cancion, frame_padre):
         panel_menu_opciones, "Ver información", lambda: print(f"Ver info de: {cancion.titulo_cancion}"), True
     )
     crear_opcion_menu(
-        panel_menu_opciones, "Eliminar de la biblioteca", lambda: print(f"Eliminar: {cancion.titulo_cancion}")
+        panel_menu_opciones, "Eliminar de la biblioteca", lambda: eliminar_cancion_vista(cancion)
     )
+    # Actualizar el panel para obtener su altura real
+    panel_menu_opciones.update_idletasks()
+    altura_real = panel_menu_opciones.winfo_reqheight()
     # Posicionar el menú junto al botón
-    x = frame_padre.winfo_rootx() + frame_padre.winfo_width() - 200  # Alinear a la derecha del frame
+    x = frame_padre.winfo_rootx() + frame_padre.winfo_width() - 200
     y = frame_padre.winfo_rooty()
     # Asegurar que el menú no salga de la pantalla
     screen_width = menu_ventana.winfo_screenwidth()
     if x + 200 > screen_width:
         x = screen_width - 210
-    menu_ventana.geometry(f"200x{panel_menu_opciones.winfo_reqheight()}+{x}+{y}")
-    # Vincular eventos para cerrar el menú al perder el foco
+    # Establecer la geometría con la altura exacta del contenido
+    menu_ventana.geometry(f"200x{altura_real}+{x}+{y}")
+    # Vincular eventos para cerrar el menú
     menu_ventana.bind("<FocusOut>", lambda event: cerrar_menu_si_pierde_foco(menu_ventana, event))
     menu_ventana.bind("<Button-1>", lambda e: menu_ventana.destroy())
+    # Vincular clic en cualquier parte de la pantalla para cerrar el menú
+    ventana_principal.bind("<Button-1>", lambda e: menu_ventana.destroy(), add="+")
+
+    # Establecer una función para restablecer el binding cuando el menú se cierre
+    def al_cerrar_menu():
+        try:
+            ventana_principal.unbind("<Button-1>")
+        except:
+            pass
+
+    menu_ventana.protocol("WM_DELETE_WINDOW", al_cerrar_menu)
+    # Dar foco al menú para detectar cuando lo pierde
+    menu_ventana.focus_set()
 
 
 # Función para actualizar la vista de las canciones en la biblioteca

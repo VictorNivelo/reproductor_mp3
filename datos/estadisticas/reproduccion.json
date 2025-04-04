@@ -1,113 +1,21 @@
 {
     "artistas": {
-        "Yan Block ft Panda Black": 11,
-        "Eladio Carrion ft Bryant Myers": 9,
-        "Anuel AA": 12,
-        "Bad Bunny": 18,
-        "¥$ ft Kanye West, Ty Dolla $ign": 31
+        "¥$ ft Kanye West, Ty Dolla $ign": 1
     },
     "albumes": {
-        "444": 11,
-        "Animal": 9,
-        "¿Qué Nos Pasó?": 12,
-        "EL ÚLTIMO TOUR DEL MUNDO": 18,
-        "VULTURES 2": 31
+        "VULTURES 2": 1
     },
-    "tiempo_total": 15169.619591836734,
-    "canciones_escuchadas": 81,
+    "tiempo_total": 289.5412244897959,
+    "canciones_escuchadas": 1,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\530.mp3",
         "titulo": "530",
         "artista": "¥$ ft Kanye West, Ty Dolla $ign",
         "album": "VULTURES 2",
-        "timestamp": "2025-04-04T13:19:04.970220"
+        "timestamp": "2025-04-04T14:22:51.286462"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
-            "contador": 11,
-            "titulo": "444",
-            "artista": "Yan Block ft Panda Black",
-            "album": "444"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3": {
-            "contador": 9,
-            "titulo": "Animal",
-            "artista": "Eladio Carrion ft Bryant Myers",
-            "album": "Animal"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3": {
-            "contador": 12,
-            "titulo": "¿Qué Nos Pasó?",
-            "artista": "Anuel AA",
-            "album": "¿Qué Nos Pasó?"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\120.mp3": {
-            "contador": 18,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\BOMB.mp3": {
-            "contador": 5,
-            "titulo": "BOMB",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\DEAD.mp3": {
-            "contador": 4,
-            "titulo": "DEAD",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\FIELD TRIP.mp3": {
-            "contador": 4,
-            "titulo": "FIELD TRIP",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\FOREVER ROLLING.mp3": {
-            "contador": 4,
-            "titulo": "FOREVER ROLLING",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\FRIED.mp3": {
-            "contador": 3,
-            "titulo": "FRIED",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\ISABELLA.mp3": {
-            "contador": 2,
-            "titulo": "ISABELLA",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\PROMOTION.mp3": {
-            "contador": 2,
-            "titulo": "PROMOTION",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\RIVER.mp3": {
-            "contador": 2,
-            "titulo": "RIVER",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\SLIDE.mp3": {
-            "contador": 3,
-            "titulo": "SLIDE",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\TIME MOVING SLOW.mp3": {
-            "contador": 1,
-            "titulo": "TIME MOVING SLOW",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\530.mp3": {
+        "C:\\Users\\Victor\\Music\\pm\\530.mp3": {
             "contador": 1,
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",

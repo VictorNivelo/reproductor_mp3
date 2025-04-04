@@ -102,28 +102,32 @@ class Biblioteca:
                     print(f"Error al agregar {archivo}: {e}")
         return canciones_agregadas
 
-    # Método para eliminar una canción de la biblioteca
+    # Método para eliminar una canción de la biblioteca (en la clase Biblioteca)
     def eliminar_cancion(self, cancion: Cancion) -> bool:
         try:
-            # Eliminar de la lista principal
+            # Eliminar de la lista principal de canciones
             self.canciones.remove(cancion)
-            # Eliminar del diccionario por título
-            if cancion.titulo_cancion in self.por_titulo:
-                del self.por_titulo[cancion.titulo_cancion]
-            # Eliminar de la lista de artistas
+            # Primero, eliminar del diccionario de títulos
+            if cancion.titulo_cancion.lower() in self.por_titulo:
+                self.por_titulo.pop(cancion.titulo_cancion.lower(), None)
+            # Eliminar del diccionario por artista
             if cancion.artista in self.por_artista:
-                self.por_artista[cancion.artista].remove(cancion)
-                if not self.por_artista[cancion.artista]:  # Si la lista queda vacía
-                    del self.por_artista[cancion.artista]
-            # Eliminar de la lista de álbumes
+                if cancion in self.por_artista[cancion.artista]:
+                    self.por_artista[cancion.artista].remove(cancion)
+                    # Si quedó vacía, eliminar la clave
+                    if not self.por_artista[cancion.artista]:
+                        self.por_artista.pop(cancion.artista, None)
+            # Eliminar del diccionario por álbum
             if cancion.album in self.por_album:
-                self.por_album[cancion.album].remove(cancion)
-                if not self.por_album[cancion.album]:  # Si la lista queda vacía
-                    del self.por_album[cancion.album]
-            # Eliminar de me gusta si existe
+                if cancion in self.por_album[cancion.album]:
+                    self.por_album[cancion.album].remove(cancion)
+                    # Si quedó vacía, eliminar la clave
+                    if not self.por_album[cancion.album]:
+                        self.por_album.pop(cancion.album, None)
+            # Eliminar de la lista de "Me gusta" si está presente
             if cancion in self.me_gusta:
                 self.me_gusta.remove(cancion)
-            # Eliminar de favoritos si existe
+            # Eliminar de la lista de "Favoritos" si está presente
             if cancion in self.favorito:
                 self.favorito.remove(cancion)
             return True

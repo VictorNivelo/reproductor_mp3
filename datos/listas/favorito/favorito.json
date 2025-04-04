@@ -1,20 +1,6 @@
 {
     "favoritos": [
         {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
-            "titulo": "444",
-            "artista": "Yan Block ft Panda Black",
-            "artista_album": "Yan Block ft Panda Black",
-            "album": "444",
-            "duracion": 175.30775510204083,
-            "duracion_formateada": "02:55",
-            "anio": "2024-04-04",
-            "numero_pista": "1/1",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
-        },
-        {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
@@ -25,7 +11,7 @@
             "anio": "2024-08-03",
             "numero_pista": "7/16",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": true
         },
         {
@@ -39,7 +25,21 @@
             "anio": "2019-07-05",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
+            "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\TIME MOVING SLOW.mp3",
+            "titulo": "TIME MOVING SLOW",
+            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
+            "artista_album": "¥$ ft Kanye West, Ty Dolla $ign",
+            "album": "VULTURES 2",
+            "duracion": 159.7126530612245,
+            "duracion_formateada": "02:39",
+            "anio": "2024-08-03",
+            "numero_pista": "2/16",
+            "tiene_caratula": true,
+            "me_gusta": false,
             "favorito": true
         }
     ]

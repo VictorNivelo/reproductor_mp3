@@ -38,6 +38,7 @@ TIEMPO_ACTUAL = 0
 
 # Diccionario para almacenar los botones de canciones
 botones_canciones = {}
+botones_opciones_canciones = {}
 pestanas_cargadas = {
     "Me gusta": False,
     "Favoritos": False,
@@ -108,6 +109,21 @@ def actualizar_iconos():
     icono_favorito = "favorito_amarillo" if FAVORITO else "favorito"
     controlador_tema.registrar_botones(icono_me_gusta, boton_me_gusta)
     controlador_tema.registrar_botones(icono_favorito, boton_favorito)
+    # Actualizar iconos en botones de opciones para todas las canciones
+    for cancion, boton in botones_canciones.items():
+        # Buscar el botón de opciones asociado y actualizar su icono
+        frame_padre = boton.winfo_parent()
+        if frame_padre:
+            frame = boton.nametowidget(frame_padre)
+            if frame and frame.winfo_exists():
+                # Buscar el botón de opciones dentro del frame
+                for widget in frame.winfo_children():
+                    if isinstance(widget, ctk.CTkButton) and widget != boton:
+                        # Actualizar el icono del botón de opciones
+                        icono_opcion = cargar_icono_personalizado(
+                            "opcion", controlador_tema.tema_iconos, (15, 20)
+                        )
+                        widget.configure(image=icono_opcion)
     # Actualizar el porcentaje de volumen
     etiqueta_porcentaje_volumen.configure(text=f"{NIVEL_VOLUMEN}%")
 
@@ -400,6 +416,22 @@ def cambiar_me_gusta_vista():
             pestanas_cargadas["Me gusta"] = True
 
 
+# Función para cambiar el estado de "me gusta" de una canción desde el menú
+def cambiar_me_gusta_menu(cancion):
+    controlador_biblioteca.marcar_me_gusta_controlador(cancion)
+    # Marcar pestaña como no cargada para forzar actualización
+    pestanas_cargadas["Me gusta"] = False
+    # Actualizar vista si estamos en esa pestaña
+    if paginas_canciones.get() == "Me gusta":
+        actualizar_vista_me_gusta()
+        pestanas_cargadas["Me gusta"] = True
+    # Guardar cambios
+    guardar_biblioteca()
+    # Si es la canción actual, actualizar también los botones de la interfaz principal
+    if controlador_reproductor.cancion_actual == cancion:
+        actualizar_estado_botones_gustos()
+
+
 # Función para cambiar el estado de favorito
 def cambiar_favorito_vista():
     global FAVORITO
@@ -421,6 +453,22 @@ def cambiar_favorito_vista():
         if paginas_canciones.get() == "Favoritos":
             actualizar_vista_favoritos()
             pestanas_cargadas["Favoritos"] = True
+
+
+# Función para cambiar el estado de "favorito" de una canción desde el menú
+def cambiar_favorito_menu(cancion):
+    controlador_biblioteca.marcar_favorito_controlador(cancion)
+    # Marcar pestaña como no cargada para forzar actualización
+    pestanas_cargadas["Favoritos"] = False
+    # Actualizar vista si estamos en esa pestaña
+    if paginas_canciones.get() == "Favoritos":
+        actualizar_vista_favoritos()
+        pestanas_cargadas["Favoritos"] = True
+    # Guardar cambios
+    guardar_biblioteca()
+    # Si es la canción actual, actualizar también los botones de la interfaz principal
+    if controlador_reproductor.cancion_actual == cancion:
+        actualizar_estado_botones_gustos()
 
 
 # Función para agregar canciones (puede ser llamada desde un botón)
@@ -678,22 +726,146 @@ def crear_boton_cancion(cancion, panel):
     controlador_tema.colores()
     # Determinar si el texto es largo y necesita desplazamiento
     texto_cancion = f"{cancion.titulo_cancion} - {cancion.artista}"
-    # Crear el botón con texto inicial
-    boton = ctk.CTkButton(
-        panel,
-        height=28,
+    # Crear frame contenedor para el botón y el menú
+    # ------------------------------------- Panel de canción ------------------------------------
+    panel_lista_cancion = ctk.CTkFrame(panel, height=28, fg_color="transparent")
+    panel_lista_cancion.pack(fill="both", expand=True, pady=(0, 2))
+    panel_lista_cancion.pack_propagate(False)
+    # -------------------------------------------------------------------------------------------
+
+    # ------------------------------------- Botón de canción ------------------------------------
+    # Crear el botón principal con texto inicial
+    boton_cancion = ctk.CTkButton(
+        panel_lista_cancion,
+        width=ANCHO_BOTON + 8,
+        height=ALTO_BOTON + 8,
         fg_color=controlador_tema.color_boton,
+        hover_color=controlador_tema.color_hover,
         font=(LETRA, TAMANIO_LETRA_BOTON),
         text_color=controlador_tema.color_texto,
         text=texto_cancion,
-        hover_color=controlador_tema.color_hover,
         command=lambda c=cancion: reproducir_cancion_desde_lista(c),
     )
-    boton.pack(fill="both", pady=(0, 2), expand=True)
-    controlador_tema.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton)
-    botones_canciones[cancion] = boton
+    boton_cancion.pack(side="left", fill="both", expand=True)
+    # -------------------------------------------------------------------------------------------
+
+    # ------------------------------------ Boton de opciones ------------------------------------
+    # Cargar icono de opciones
+    icono_opcion = cargar_icono_personalizado("opcion", controlador_tema.tema_iconos, (15, 20))
+    # Botón de opciones
+    boton_opciones = ctk.CTkButton(
+        panel_lista_cancion,
+        width=ANCHO_BOTON + 8,
+        height=ALTO_BOTON + 8,
+        fg_color=controlador_tema.color_boton,
+        hover_color=controlador_tema.color_hover,
+        font=(LETRA, TAMANIO_LETRA_BOTON),
+        text_color=controlador_tema.color_texto,
+        text="",
+        image=icono_opcion,
+        command=lambda c=cancion: mostrar_menu_cancion(c, panel_lista_cancion),
+    )
+    boton_opciones.pack(side="right", padx=(1, 0))
+    crear_tooltip(boton_opciones, "Opciones")
+    # -------------------------------------------------------------------------------------------
+
+    # Registrar botones en el controlador de tema
+    controlador_tema.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton_cancion)
+    controlador_tema.registrar_botones(f"opciones_{cancion.titulo_cancion}", boton_opciones)
+    botones_canciones[cancion] = boton_cancion
     # Configurar desplazamiento si el texto es largo
-    configurar_desplazamiento_texto(boton, texto_cancion)
+    configurar_desplazamiento_texto(boton_cancion, texto_cancion)
+    # Vincular clic derecho al botón principal para mostrar el menú
+    boton_cancion.bind("<Button-3>", lambda event, c=cancion: mostrar_menu_cancion(c, panel_lista_cancion))
+    return panel_lista_cancion
+
+
+# Función para crear una opción de menú en un menú contextual
+def crear_opcion_menu(panel_menu_opciones, texto, comando, tiene_separador=False):
+    if tiene_separador:
+        # -------------------------..--- Separador entre opciones -------------------------------
+        separador = ctk.CTkFrame(
+            panel_menu_opciones,
+            fg_color=controlador_tema.color_hover,
+            height=1,
+        )
+        separador.pack(fill="x", padx=5, pady=3)
+        # ---------------------------------------------------------------------------------------
+    # ------------------------------------ Botón de opción --------------------------------------
+    boton_opcion = ctk.CTkButton(
+        panel_menu_opciones,
+        width=ANCHO_BOTON + 5,
+        height=ALTO_BOTON + 5,
+        fg_color="transparent",
+        hover_color=controlador_tema.color_hover,
+        font=(LETRA, TAMANIO_LETRA_BOTON),
+        text_color=controlador_tema.color_texto,
+        text=texto,
+        anchor="w",
+        command=lambda: [comando(), panel_menu_opciones.master.destroy()],
+    )
+    boton_opcion.pack(fill="x", padx=2, pady=1)
+    # -------------------------------------------------------------------------------------------
+
+
+# Función para cerrar el menú cuando pierde el foco
+def cerrar_menu_si_pierde_foco(menu_ventana, event=None):
+    if menu_ventana.focus_get() is None or menu_ventana.focus_get() != menu_ventana:
+        menu_ventana.destroy()
+
+
+# Función para mostrar el menú contextual personalizado de una canción
+def mostrar_menu_cancion(cancion, frame_padre):
+    # Verificar si ya existe un menú abierto y cerrarlo
+    for widget in ventana_principal.winfo_children():
+        if isinstance(widget, ctk.CTkToplevel) and hasattr(widget, "menu_opciones"):
+            widget.destroy()
+    # Obtener colores actuales del tema
+    controlador_tema.colores()
+    # Crear una ventana de nivel superior para el menú
+    menu_ventana = ctk.CTkToplevel(ventana_principal)
+    # Marcar esta ventana como un menú contextual
+    menu_ventana.menu_opciones = True
+    menu_ventana.title("")
+    menu_ventana.geometry("200x0")
+    menu_ventana.overrideredirect(True)
+    menu_ventana.configure(fg_color=controlador_tema.color_fondo)
+    menu_ventana.attributes("-topmost", True)
+    # ----------------------------------- Panel menu opciones -----------------------------------
+    # Contenedor principal del menú
+    panel_menu_opciones = ctk.CTkFrame(menu_ventana, fg_color=controlador_tema.color_fondo)
+    panel_menu_opciones.pack(fill="both", expand=True)
+    # -------------------------------------------------------------------------------------------
+    # Agregar opciones al menú
+    crear_opcion_menu(
+        panel_menu_opciones, "Reproducir ahora", lambda: reproducir_cancion_desde_lista(cancion)
+    )
+    crear_opcion_menu(
+        panel_menu_opciones, "Agregar a la cola", lambda: print(f"Agregar a cola: {cancion.titulo_cancion}")
+    )
+    # Separador antes de opciones de Me gusta/Favorito
+    texto_me_gusta = "Quitar de Me gusta" if cancion.me_gusta else "Agregar a Me gusta"
+    crear_opcion_menu(panel_menu_opciones, texto_me_gusta, lambda: cambiar_me_gusta_menu(cancion), True)
+    texto_favorito = "Quitar de Favoritos" if cancion.favorito else "Agregar a Favoritos"
+    crear_opcion_menu(panel_menu_opciones, texto_favorito, lambda: cambiar_favorito_menu(cancion))
+    # Separador antes de opciones adicionales
+    crear_opcion_menu(
+        panel_menu_opciones, "Ver información", lambda: print(f"Ver info de: {cancion.titulo_cancion}"), True
+    )
+    crear_opcion_menu(
+        panel_menu_opciones, "Eliminar de la biblioteca", lambda: print(f"Eliminar: {cancion.titulo_cancion}")
+    )
+    # Posicionar el menú junto al botón
+    x = frame_padre.winfo_rootx() + frame_padre.winfo_width() - 200  # Alinear a la derecha del frame
+    y = frame_padre.winfo_rooty()
+    # Asegurar que el menú no salga de la pantalla
+    screen_width = menu_ventana.winfo_screenwidth()
+    if x + 200 > screen_width:
+        x = screen_width - 210
+    menu_ventana.geometry(f"200x{panel_menu_opciones.winfo_reqheight()}+{x}+{y}")
+    # Vincular eventos para cerrar el menú al perder el foco
+    menu_ventana.bind("<FocusOut>", lambda event: cerrar_menu_si_pierde_foco(menu_ventana, event))
+    menu_ventana.bind("<Button-1>", lambda e: menu_ventana.destroy())
 
 
 # Función para actualizar la vista de las canciones en la biblioteca
@@ -703,9 +875,16 @@ def actualizar_vista_canciones(panel):
         try:
             # Eliminar el botón del controlador_tema de tema
             nombre_boton = f"cancion_{cancion.titulo_cancion}"
+            nombre_opciones = f"opciones_{cancion.titulo_cancion}"
             controlador_tema.eliminar_boton(nombre_boton)
-            # Destruir el botón
-            boton.destroy()
+            controlador_tema.eliminar_boton(nombre_opciones)
+            # Destruir el frame contenedor (que contiene el botón)
+            if boton and boton.winfo_exists():
+                frame_padre = boton.winfo_parent()
+                if frame_padre:
+                    frame = boton.nametowidget(frame_padre)
+                    if frame and frame.winfo_exists():
+                        frame.destroy()
         except Exception as e:
             print(f"Error al destruir el botón {cancion.titulo_cancion}: {e}")
             pass
@@ -823,17 +1002,18 @@ def mostrar_canciones_detalle(tipo, elemento, funcion_volver):
     panel_superior = ctk.CTkFrame(contenedor_detalles, fg_color="transparent")
     panel_superior.pack(fill="x", pady=(5, 10))
     # Icono de regrear
-    icono_regresar = cargar_icono_personalizado("regresar", controlador_tema.tema_iconos, (13, 13))
+    icono_regresar = cargar_icono_personalizado("regresar", controlador_tema.tema_iconos, (12, 12))
     # Botón para volver a la lista
     boton_volver = ctk.CTkButton(
         panel_superior,
-        width=ANCHO_BOTON,
+        width=ANCHO_BOTON + 4,
+        height=ALTO_BOTON + 4,
         fg_color=controlador_tema.color_boton,
         hover_color=controlador_tema.color_hover,
-        image=icono_regresar,
         font=(LETRA, TAMANIO_LETRA_BOTON),
         text_color=controlador_tema.color_texto,
         text="Regresar",
+        image=icono_regresar,
         command=funcion_volver,
     )
     boton_volver.pack(side="left")
@@ -940,12 +1120,13 @@ def crear_botones_albumes(albumes, canvas_albumes, panel_botones_albumes):
             continue
         boton_album = ctk.CTkButton(
             panel_botones_albumes,
-            height=28,
+            width=ANCHO_BOTON + 8,
+            height=ALTO_BOTON + 8,
             fg_color=controlador_tema.color_boton,
+            hover_color=controlador_tema.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
             text_color=controlador_tema.color_texto,
             text=album,
-            hover_color=controlador_tema.color_hover,
             command=lambda a=album: mostrar_canciones_album(a),
         )
         boton_album.pack(fill="both", pady=(0, 2), expand=True)
@@ -994,12 +1175,13 @@ def crear_botones_artistas(artistas, canvas_artistas, panel_botones_artistas):
             continue
         boton_artista = ctk.CTkButton(
             panel_botones_artistas,
-            height=28,
+            width=ANCHO_BOTON + 8,
+            height=ALTO_BOTON + 8,
             fg_color=controlador_tema.color_boton,
+            hover_color=controlador_tema.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
             text_color=controlador_tema.color_texto,
             text=artista,
-            hover_color=controlador_tema.color_hover,
             command=lambda a=artista: mostrar_canciones_artista(a),
         )
         boton_artista.pack(fill="both", pady=(0, 2), expand=True)
@@ -1317,10 +1499,10 @@ boton_ajustes = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=abrir_configuracion,
 )
 boton_ajustes.pack(side=tk.RIGHT, padx=(5, 0))
@@ -1333,10 +1515,10 @@ boton_tema = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=cambiar_tema_vista,
 )
 boton_tema.pack(side=tk.RIGHT, padx=(5, 0))
@@ -1349,10 +1531,10 @@ boton_visibilidad = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=cambiar_visibilidad_vista,
 )
 boton_visibilidad.pack(side=tk.RIGHT, padx=(5, 0))
@@ -1367,10 +1549,10 @@ boton_estadisticas = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=abrir_estadisticas,
 )
 boton_estadisticas.pack(side=tk.RIGHT)
@@ -1475,10 +1657,10 @@ boton_me_gusta = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=cambiar_me_gusta_vista,
 )
 boton_me_gusta.pack(side="left", padx=(5, 0))
@@ -1491,10 +1673,10 @@ boton_favorito = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=cambiar_favorito_vista,
 )
 boton_favorito.pack(side="left", padx=(5, 0))
@@ -1593,10 +1775,10 @@ boton_aleatorio = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=cambiar_orden_vista,
 )
 boton_aleatorio.pack(side="left", padx=5)
@@ -1609,10 +1791,10 @@ boton_repetir = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=cambiar_repeticion_vista,
 )
 boton_repetir.pack(side="left", padx=5)
@@ -1625,10 +1807,10 @@ boton_anterior = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=reproducir_anterior_vista,
 )
 boton_anterior.pack(side="left", padx=5)
@@ -1641,10 +1823,10 @@ boton_retroceder = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=retroceder_reproduccion_vista,
 )
 boton_retroceder.pack(side="left", padx=5)
@@ -1657,10 +1839,10 @@ boton_reproducir = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=reproducir_vista,
 )
 boton_reproducir.pack(side="left", padx=5)
@@ -1673,10 +1855,10 @@ boton_adelantar = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=adelantar_reproduccion_vista,
 )
 boton_adelantar.pack(side="left", padx=5)
@@ -1689,10 +1871,10 @@ boton_siguiente = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=reproducir_siguiente_vista,
 )
 boton_siguiente.pack(side="left", padx=5)
@@ -1705,10 +1887,10 @@ boton_mostrar_cola = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=abrir_cola_reproduccion,
 )
 boton_mostrar_cola.pack(side="left", padx=5)
@@ -1721,10 +1903,10 @@ crear_tooltip(boton_mostrar_cola, "Mostrar la cola")
 #     height=ALTO_BOTON,
 #     corner_radius=BORDES_REDONDEADOS_BOTON,
 #     fg_color=BOTON_CLARO,
+#     hover_color=HOVER_CLARO,
 #     font=(LETRA, TAMANIO_LETRA_BOTON),
 #     text_color=TEXTO_CLARO,
 #     text="",
-#     hover_color=HOVER_CLARO,
 # )
 # boton_agregar_cola.pack(side="left", padx=5)
 # controlador_tema.registrar_botones("agregar_cola", boton_agregar_cola)
@@ -1736,10 +1918,10 @@ boton_minimizar = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=abrir_minireproductor,
 )
 boton_minimizar.pack(side="left", padx=5)
@@ -1764,10 +1946,10 @@ boton_silenciar = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="",
-    hover_color=HOVER_CLARO,
     command=cambiar_silencio_vista,
 )
 boton_silenciar.pack(side="left")
@@ -1940,10 +2122,10 @@ boton_agregar_cancion = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="Agregar Canción",
-    hover_color=HOVER_CLARO,
     command=agregar_cancion_vista,
 )
 boton_agregar_cancion.pack(side="left", padx=(0, 5))
@@ -1956,10 +2138,10 @@ boton_agregar_directorio = ctk.CTkButton(
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
     fg_color=BOTON_CLARO,
+    hover_color=HOVER_CLARO,
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=TEXTO_CLARO,
     text="Agregar Carpeta",
-    hover_color=HOVER_CLARO,
     command=agregar_directorio_vista,
 )
 boton_agregar_directorio.pack(side="left", padx=(0, 5))

@@ -3,7 +3,7 @@
         "total_canciones": 15,
         "total_artistas": 9,
         "total_albumes": 5,
-        "me_gusta": 5,
+        "me_gusta": 1,
         "favorito": 3
     },
     "canciones": [
@@ -18,7 +18,7 @@
             "anio": "2020-11-27",
             "numero_pista": "14",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
@@ -32,8 +32,8 @@
             "anio": "2024-04-04",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
+            "me_gusta": false,
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
@@ -46,7 +46,7 @@
             "anio": "2024-08-03",
             "numero_pista": "7/16",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": true
         },
         {
@@ -60,7 +60,7 @@
             "anio": "2019-07-05",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": true
         },
         {
@@ -201,7 +201,7 @@
             "numero_pista": "2/16",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": false
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3",

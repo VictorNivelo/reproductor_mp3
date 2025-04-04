@@ -56,9 +56,14 @@ class ToolTip:
                 fg_color = TEXTO_CLARO
             x = widget_x + widget_width // 2
             y = widget_y + widget_height + 5
-            self.tooltip = ctk.CTkToplevel()
+            # Crear el tooltip como un Toplevel
+            self.tooltip = ctk.CTkToplevel(fg_color=FONDO_CLARO)
             self.tooltip.wm_overrideredirect(True)
             self.tooltip.attributes("-alpha", 0.0)
+            self.tooltip.attributes("-transparentcolor", FONDO_CLARO)
+            self.tooltip.wm_attributes("-topmost", True)
+            self.tooltip.wm_attributes("-toolwindow", True)
+            # Etiqueta del tooltip con el texto
             etiqueta_tooltip = ctk.CTkLabel(
                 self.tooltip,
                 fg_color=bg_color,
@@ -66,8 +71,6 @@ class ToolTip:
                 font=(LETRA, TAMANIO_LETRA_BOTON),
                 text=self.texto_componente,
                 text_color=fg_color,
-                padx=2,
-                pady=2,
             )
             etiqueta_tooltip.pack()
             self.tooltip.update_idletasks()

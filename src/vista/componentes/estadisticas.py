@@ -252,12 +252,12 @@ class Estadisticas(Utiles):
 
         if self.controlador_biblioteca:
             # Primero obtener la carátula como imagen PIL
-            caratula_PIL = self.controlador_biblioteca.obtener_caratula_album(
+            caratula_pil = self.controlador_biblioteca.obtener_caratula_album(
                 cancion["album"], formato="PIL", ancho=60, alto=60
             )
-            if caratula_PIL:
+            if caratula_pil:
                 # Convertir a CTkImage
-                caratula_ctk = CTkImage(light_image=caratula_PIL, dark_image=caratula_PIL, size=(60, 60))
+                caratula_ctk = CTkImage(light_image=caratula_pil, dark_image=caratula_pil, size=(60, 60))
                 etiqueta_caratula.configure(image=caratula_ctk)
                 # Guardar referencia
                 etiqueta_caratula.image = caratula_ctk
@@ -463,12 +463,12 @@ class Estadisticas(Utiles):
 
         if self.controlador_biblioteca:
             # Primero obtener la carátula como imagen PIL
-            caratula_PIL = self.controlador_biblioteca.obtener_caratula_album(
+            caratula_pil = self.controlador_biblioteca.obtener_caratula_album(
                 album["nombre"], formato="PIL", ancho=60, alto=60
             )
-            if caratula_PIL:
+            if caratula_pil:
                 # Convertir a CTkImage
-                caratula_ctk = CTkImage(light_image=caratula_PIL, dark_image=caratula_PIL, size=(60, 60))
+                caratula_ctk = CTkImage(light_image=caratula_pil, dark_image=caratula_pil, size=(60, 60))
                 etiqueta_caratula.configure(image=caratula_ctk)
                 # Guardar referencia
                 etiqueta_caratula.image = caratula_ctk
@@ -572,12 +572,12 @@ class Estadisticas(Utiles):
 
         if self.controlador_biblioteca:
             # Primero obtener la carátula como imagen PIL
-            caratula_PIL = self.controlador_biblioteca.obtener_caratula_album(
+            caratula_pil = self.controlador_biblioteca.obtener_caratula_album(
                 ultima["album"], formato="PIL", ancho=60, alto=60
             )
-            if caratula_PIL:
+            if caratula_pil:
                 # Convertir a CTkImage
-                caratula_ctk = CTkImage(light_image=caratula_PIL, dark_image=caratula_PIL, size=(60, 60))
+                caratula_ctk = CTkImage(light_image=caratula_pil, dark_image=caratula_pil, size=(60, 60))
                 etiqueta_caratula.configure(image=caratula_ctk)
                 # Guardar referencia
                 etiqueta_caratula.image = caratula_ctk

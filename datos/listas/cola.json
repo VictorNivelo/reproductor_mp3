@@ -1,5 +1,5 @@
 {
-    "indice_actual": 14,
+    "indice_actual": 4,
     "canciones": [
         "C:\\Users\\Victor\\Music\\Musica\\120.mp3",
         "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
@@ -18,10 +18,10 @@
         "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3",
-        "titulo": "¿Qué Nos Pasó?",
-        "artista": "Anuel AA",
-        "album": "¿Qué Nos Pasó?",
-        "timestamp": "2025-04-03T14:31:31.855430"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\BOMB.mp3",
+        "titulo": "BOMB",
+        "artista": "¥$ ft Kanye West, Ty Dolla $ign",
+        "album": "VULTURES 2",
+        "timestamp": "2025-04-03T20:49:59.979325"
     }
 }

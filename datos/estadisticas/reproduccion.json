@@ -4,23 +4,23 @@
         "Eladio Carrion ft Bryant Myers": 8,
         "Anuel AA": 11,
         "Bad Bunny": 17,
-        "¥$ ft Kanye West, Ty Dolla $ign": 25
+        "¥$ ft Kanye West, Ty Dolla $ign": 26
     },
     "albumes": {
         "444": 8,
         "Animal": 8,
         "¿Qué Nos Pasó?": 11,
         "EL ÚLTIMO TOUR DEL MUNDO": 17,
-        "VULTURES 2": 25
+        "VULTURES 2": 26
     },
-    "tiempo_total": 12886.83102040816,
-    "canciones_escuchadas": 69,
+    "tiempo_total": 13038.524081632651,
+    "canciones_escuchadas": 70,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3",
-        "titulo": "¿Qué Nos Pasó?",
-        "artista": "Anuel AA",
-        "album": "¿Qué Nos Pasó?",
-        "timestamp": "2025-04-03T13:01:10.803013"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\BOMB.mp3",
+        "titulo": "BOMB",
+        "artista": "¥$ ft Kanye West, Ty Dolla $ign",
+        "album": "VULTURES 2",
+        "timestamp": "2025-04-03T20:49:59.981040"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
@@ -48,7 +48,7 @@
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\Musica\\BOMB.mp3": {
-            "contador": 3,
+            "contador": 4,
             "titulo": "BOMB",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"

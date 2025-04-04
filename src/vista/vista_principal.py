@@ -585,7 +585,6 @@ def eliminar_cancion_vista(cancion):
         elif len(controlador_reproductor.lista_reproduccion) == 0:
             controlador_reproductor.indice_actual = -1
         # Guardar la cola actualizada
-        controlador_archivos = ControladorArchivos()
         controlador_archivos.guardar_cola_reproduccion(controlador_reproductor)
     # Verificar si la canción está en la lista de "Me gusta" y eliminarla manualmente
     if cancion.me_gusta:
@@ -614,7 +613,6 @@ def eliminar_cancion_vista(cancion):
     # Eliminar de la colección por título
     if cancion.titulo_cancion.lower() in biblioteca.por_titulo:
         biblioteca.por_titulo.pop(cancion.titulo_cancion.lower(), None)
-
     # Finalmente, eliminar la canción de la biblioteca principal
     try:
         if cancion in biblioteca.canciones:
@@ -623,26 +621,37 @@ def eliminar_cancion_vista(cancion):
         print(f"Error al eliminar la canción de la lista principal: {e}")
     # Guardar los cambios en los archivos
     guardar_biblioteca()
+    # Limpiar la referencia del botón de esta canción si existe
+    if cancion in botones_canciones:
+        # Destruir el botón físicamente
+        if botones_canciones[cancion].winfo_exists():
+            botones_canciones[cancion].destroy()
+        # Eliminar la referencia del diccionario
+        del botones_canciones[cancion]
     # Marcar todas las pestañas como no cargadas para forzar su reconstrucción
     for pestana in pestanas_cargadas:
         pestanas_cargadas[pestana] = False
-    # Actualizar todas las vistas para reflejar los cambios
-    actualizar_todas_vistas_canciones()
-    # Si hay botones de canciones, eliminar la referencia al botón de esta canción
-    if cancion in botones_canciones:
-        del botones_canciones[cancion]
-    # Si estamos en una pestaña específica, actualizar esa vista
+    # Obtener la pestaña actual
     pestana_actual = paginas_canciones.get()
+    # Reconstruir completamente la vista actual
     if pestana_actual == "Canciones":
+        # Limpiar el panel de canciones
+        for widget in panel_botones_canciones.winfo_children():
+            widget.destroy()
+        # Reconstruir la vista
         actualizar_vista_canciones(panel_botones_canciones)
     elif pestana_actual == "Me gusta":
-        actualizar_vista_me_gusta()
+        # Recrear el panel de Me gusta
+        configurar_interfaz_pestania("Me gusta")
     elif pestana_actual == "Favoritos":
-        actualizar_vista_favoritos()
+        # Recrear el panel de Favoritos
+        configurar_interfaz_pestania("Favoritos")
     elif pestana_actual == "Álbumes":
-        actualizar_vista_albumes()
+        # Recrear el panel de Álbumes
+        configurar_interfaz_albumes()
     elif pestana_actual == "Artistas":
-        actualizar_vista_artistas()
+        # Recrear el panel de Artistas
+        configurar_interfaz_artistas()
     # Mostrar mensaje de confirmación
     print(f"Se ha eliminado de la biblioteca: {cancion.titulo_cancion}")
 

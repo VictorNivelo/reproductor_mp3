@@ -1,25 +1,33 @@
 {
     "artistas": {
-        "¥$ ft Kanye West, Ty Dolla $ign": 1
+        "¥$ ft Kanye West, Ty Dolla $ign": 2,
+        "Bad Bunny": 1
     },
     "albumes": {
-        "VULTURES 2": 1
+        "VULTURES 2": 2,
+        "EL ÚLTIMO TOUR DEL MUNDO": 1
     },
-    "tiempo_total": 289.5412244897959,
-    "canciones_escuchadas": 1,
+    "tiempo_total": 730.6187755102042,
+    "canciones_escuchadas": 3,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\530.mp3",
-        "titulo": "530",
-        "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-        "album": "VULTURES 2",
-        "timestamp": "2025-04-04T14:22:51.286462"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
+        "titulo": "120",
+        "artista": "Bad Bunny",
+        "album": "EL ÚLTIMO TOUR DEL MUNDO",
+        "timestamp": "2025-04-04T14:28:51.639356"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\530.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "530",
             "artista": "¥$ ft Kanye West, Ty Dolla $ign",
             "album": "VULTURES 2"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
+            "contador": 1,
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
         }
     }
 }

@@ -75,11 +75,12 @@ class Configuracion(Utiles):
                 boton_seccion = ctk.CTkButton(
                     panel_principal_configuracion,
                     height=35,
+                    corner_radius=BORDES_REDONDEADOS_BOTON,
                     fg_color=self.color_boton,
+                    hover_color=self.color_hover,
                     font=(LETRA, TAMANIO_LETRA_BOTON),
                     text_color=self.color_texto,
                     text=seccion,
-                    hover_color=self.color_hover,
                     command=lambda s=seccion: self.abrir_seccion(s),
                 )
                 boton_seccion.pack(fill="x", pady=3, padx=5)
@@ -90,11 +91,12 @@ class Configuracion(Utiles):
         boton_cerrar = ctk.CTkButton(
             panel_principal_configuracion,
             height=35,
+            corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.color_boton,
+            hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
             text_color=self.color_texto,
             text="Cerrar",
-            hover_color=self.color_hover,
             command=self.cerrar_ventana_configuracion,
         )
         boton_cerrar.pack(fill="x", pady=(215, 0), padx=5)

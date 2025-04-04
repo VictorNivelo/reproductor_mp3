@@ -3,8 +3,8 @@
         "total_canciones": 15,
         "total_artistas": 9,
         "total_albumes": 5,
-        "me_gusta": 2,
-        "favorito": 0
+        "me_gusta": 5,
+        "favorito": 3
     },
     "canciones": [
         {
@@ -18,7 +18,7 @@
             "anio": "2020-11-27",
             "numero_pista": "14",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {
@@ -33,7 +33,7 @@
             "numero_pista": "1/1",
             "tiene_caratula": true,
             "me_gusta": true,
-            "favorito": false
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
@@ -46,8 +46,8 @@
             "anio": "2024-08-03",
             "numero_pista": "7/16",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
+            "me_gusta": true,
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3",
@@ -60,8 +60,8 @@
             "anio": "2019-07-05",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
+            "me_gusta": true,
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\BOMB.mp3",

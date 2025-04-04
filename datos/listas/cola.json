@@ -1,5 +1,5 @@
 {
-    "indice_actual": 4,
+    "indice_actual": 12,
     "canciones": [
         "C:\\Users\\Victor\\Music\\Musica\\120.mp3",
         "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
@@ -18,10 +18,10 @@
         "C:\\Users\\Victor\\Music\\Musica\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\BOMB.mp3",
-        "titulo": "BOMB",
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\SLIDE.mp3",
+        "titulo": "SLIDE",
         "artista": "¥$ ft Kanye West, Ty Dolla $ign",
         "album": "VULTURES 2",
-        "timestamp": "2025-04-03T20:49:59.979325"
+        "timestamp": "2025-04-04T12:03:06.121313"
     }
 }

@@ -174,10 +174,10 @@ class MiniReproductor(Utiles):
             height=ALTO_BOTON,
             corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.color_boton,
+            hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
             text_color=TEXTO_CLARO,
             text="",
-            hover_color=self.color_hover,
         )
         boton_me_gusta_mini_reproductor.pack(side="left", padx=5)
         self.controlador_tema.registrar_botones("me_gusta_mini", boton_me_gusta_mini_reproductor)
@@ -188,10 +188,10 @@ class MiniReproductor(Utiles):
             height=ALTO_BOTON,
             corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.color_boton,
+            hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
             text_color=TEXTO_CLARO,
             text="",
-            hover_color=self.color_hover,
         )
         boton_anterior_mini_reproductor.pack(side="left", padx=5)
         self.controlador_tema.registrar_botones("anterior_mini", boton_anterior_mini_reproductor)
@@ -202,10 +202,10 @@ class MiniReproductor(Utiles):
             height=ALTO_BOTON,
             corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.color_boton,
+            hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
             text_color=TEXTO_CLARO,
             text="",
-            hover_color=self.color_hover,
         )
         boton_reproducir_mini_reproductor.pack(side="left", padx=5)
         self.controlador_tema.registrar_botones("reproducir_mini", boton_reproducir_mini_reproductor)
@@ -216,10 +216,10 @@ class MiniReproductor(Utiles):
             height=ALTO_BOTON,
             corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.color_boton,
+            hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
             text_color=TEXTO_CLARO,
             text="",
-            hover_color=self.color_hover,
         )
         boton_siguiente_mini_reproductor.pack(side="left", padx=5)
         self.controlador_tema.registrar_botones("siguiente_mini", boton_siguiente_mini_reproductor)
@@ -230,10 +230,10 @@ class MiniReproductor(Utiles):
             height=ALTO_BOTON,
             corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.color_boton,
+            hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
             text_color=TEXTO_CLARO,
             text="",
-            hover_color=self.color_hover,
             command=self.ocultar,
         )
         boton_maximizar_mini_reproductor.pack(side="left", padx=5)
@@ -332,8 +332,8 @@ class MiniReproductor(Utiles):
                 elif isinstance(widget, ctk.CTkButton):
                     widget.configure(
                         fg_color=self.color_boton,
-                        text_color=self.color_texto,
                         hover_color=self.color_hover,
+                        text_color=self.color_texto,
                     )
                 elif isinstance(widget, ctk.CTkProgressBar):
                     widget.configure(progress_color=self.color_progreso, fg_color=self.color_fondo)

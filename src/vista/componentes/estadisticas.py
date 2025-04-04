@@ -91,6 +91,7 @@ class Estadisticas(Utiles):
             panel_estadisticas_general,
             width=ANCHO_BOTON,
             height=ALTO_BOTON,
+            corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.color_boton,
             hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),

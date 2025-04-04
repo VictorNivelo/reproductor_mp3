@@ -9,7 +9,9 @@ import tkinter as tk
 
 
 class ColaReproduccion:
-    def __init__(self, ventana_principal, controlador_tema, controlador_reproductor, llamado_actualizacion=None):
+    def __init__(
+        self, ventana_principal, controlador_tema, controlador_reproductor, llamado_actualizacion=None
+    ):
         self.controlador_reproductor = controlador_reproductor
         self.llamado_actualizacion = llamado_actualizacion
         self.ventana_principal = ventana_principal
@@ -185,8 +187,9 @@ class ColaReproduccion:
             icono_limpiar = cargar_icono_personalizado("limpiar", self.controlador_tema.tema_iconos, (15, 15))
             boton_limpiar_cola = ctk.CTkButton(
                 panel_componentes,
-                width=ANCHO_BOTON,
-                height=ALTO_BOTON,
+                width=ANCHO_BOTON + 2,
+                height=ALTO_BOTON + 2,
+                corner_radius=BORDES_REDONDEADOS_BOTON,
                 fg_color=self.utiles.color_boton,
                 hover_color=self.utiles.color_hover,
                 font=(LETRA, TAMANIO_LETRA_BOTON),
@@ -233,6 +236,7 @@ class ColaReproduccion:
             panel_principal_cola,
             width=ANCHO_BOTON,
             height=ALTO_BOTON,
+            corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.utiles.color_boton,
             hover_color=self.utiles.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
@@ -559,15 +563,15 @@ class ColaReproduccion:
 
             # ---------------------------------------- Botón quitar -------------------------------------------
             # Botón para quitar de la cola
-            icono_quitar = cargar_icono_personalizado("quitar", self.controlador_tema.tema_iconos, (7, 7))
+            icono_quitar = cargar_icono_personalizado("quitar", self.controlador_tema.tema_iconos, (9, 9))
             boton_quitar = ctk.CTkButton(
                 panel_cancion,
-                width=ANCHO_BOTON,
-                height=ALTO_BOTON,
-                corner_radius=7,
+                width=ANCHO_BOTON + 4,
+                height=ALTO_BOTON + 4,
+                corner_radius=BORDES_REDONDEADOS_BOTON,
                 fg_color=self.utiles.color_boton,
                 hover_color=self.utiles.color_hover,
-                font=(LETRA, TAMANIO_LETRA_BOTON + 2, "bold"),
+                font=(LETRA, TAMANIO_LETRA_BOTON, "bold"),
                 text_color=self.utiles.color_texto,
                 text="",
                 image=icono_quitar,

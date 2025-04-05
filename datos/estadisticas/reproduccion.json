@@ -1,39 +1,49 @@
 {
     "artistas": {
         "¥$ ft Kanye West, Ty Dolla $ign": 2,
-        "Bad Bunny": 2,
+        "Bad Bunny": 4,
         "Metro Boomin ft 21 Savage": 1,
         "Drake": 1,
         "Young Miko ft Caleb Calloway": 1,
-        "Maluma": 1,
-        "Tainy ft Sech, E.VAX": 1,
-        "Offset ft Metro Boomin": 2,
-        "Future  ft Metro Boomin, Travis Scott": 1,
+        "Maluma": 2,
+        "Tainy ft Sech, E.VAX": 3,
+        "Offset ft Metro Boomin": 3,
+        "Future  ft Metro Boomin, Travis Scott": 3,
         "Future ft Metro Boomin, Travis Scott, Playboi Carti": 1,
         "21 Savage ft Young Thug, Metro Boomin": 1,
-        "Gucci Mane ft Bruno Mars, Kodak Black": 1
+        "Gucci Mane ft Bruno Mars, Kodak Black": 1,
+        "Lil Uzi Vert": 1,
+        "Travis Scott ft SZA, Future": 1,
+        "Tyler, The Creator": 1,
+        "Metro Boomin ft Coi Leray": 1,
+        "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS": 1
     },
     "albumes": {
         "VULTURES 2": 2,
-        "EL ÚLTIMO TOUR DEL MUNDO": 2,
+        "EL ÚLTIMO TOUR DEL MUNDO": 4,
         "NOT ALL HEROES WEAR CAPES (Deluxe)": 1,
         "If You're Reading This It's Too Late": 1,
         "105 Freestyle": 1,
-        "11:11": 1,
-        "DATA": 1,
-        "Without Warning": 2,
-        "WE DON'T TRUST YOU": 2,
+        "11:11": 2,
+        "DATA": 3,
+        "Without Warning": 3,
+        "WE DON'T TRUST YOU": 4,
         "american dream": 1,
-        "Evil Genius": 1
+        "Evil Genius": 1,
+        "Pink Tape": 1,
+        "UTOPIA": 1,
+        "Flower Boy": 1,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
+        "Watch This (ARIZONATEARS Pluggnb Remix)": 1
     },
-    "tiempo_total": 2950.844081632653,
-    "canciones_escuchadas": 15,
+    "tiempo_total": 5202.938775510204,
+    "canciones_escuchadas": 28,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3",
-        "titulo": "Wake Up in the Sky",
-        "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
-        "album": "Evil Genius",
-        "timestamp": "2025-04-04T15:04:23.557699"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\Watch This (Remix).mp3",
+        "titulo": "Watch This (Remix)",
+        "artista": "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS",
+        "album": "Watch This (ARIZONATEARS Pluggnb Remix)",
+        "timestamp": "2025-04-04T19:26:08.916656"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\530.mp3": {
@@ -43,7 +53,7 @@
             "album": "VULTURES 2"
         },
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
-            "contador": 2,
+            "contador": 4,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
@@ -67,25 +77,25 @@
             "album": "105 Freestyle"
         },
         "C:\\Users\\Victor\\Music\\pm\\11 PM.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "11 PM",
             "artista": "Maluma",
             "album": "11:11"
         },
         "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
         },
         "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "Ric Flair Drip (ft Metro Boomin)",
             "artista": "Offset ft Metro Boomin",
             "album": "Without Warning"
         },
         "C:\\Users\\Victor\\Music\\pm\\Cinderella.mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "Cinderella",
             "artista": "Future  ft Metro Boomin, Travis Scott",
             "album": "WE DON'T TRUST YOU"
@@ -107,6 +117,36 @@
             "titulo": "Wake Up in the Sky",
             "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
             "album": "Evil Genius"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Just Wanna Rock.mp3": {
+            "contador": 1,
+            "titulo": "Just Wanna Rock",
+            "artista": "Lil Uzi Vert",
+            "album": "Pink Tape"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3": {
+            "contador": 1,
+            "titulo": "TELEKINESIS (ft SZA, Future)",
+            "artista": "Travis Scott ft SZA, Future",
+            "album": "UTOPIA"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Sometimes....mp3": {
+            "contador": 1,
+            "titulo": "Sometimes",
+            "artista": "Tyler, The Creator",
+            "album": "Flower Boy"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3": {
+            "contador": 1,
+            "titulo": "Self Love",
+            "artista": "Metro Boomin ft Coi Leray",
+            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\Watch This (Remix).mp3": {
+            "contador": 1,
+            "titulo": "Watch This (Remix)",
+            "artista": "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS",
+            "album": "Watch This (ARIZONATEARS Pluggnb Remix)"
         }
     }
 }

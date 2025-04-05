@@ -116,8 +116,7 @@ class MiniReproductor(Utiles):
         barra_progreso_mini_reproductor = ctk.CTkProgressBar(
             panel_progreso_mini_reproductor,
             height=5,
-            progress_color=self.color_hover,
-            fg_color="lightgray",
+            progress_color=self.color_barra_progreso,
         )
         barra_progreso_mini_reproductor.pack(fill="x")
         barra_progreso_mini_reproductor.set(0)
@@ -336,6 +335,6 @@ class MiniReproductor(Utiles):
                         text_color=self.color_texto,
                     )
                 elif isinstance(widget, ctk.CTkProgressBar):
-                    widget.configure(progress_color=self.color_progreso, fg_color=self.color_fondo)
+                    widget.configure(progress_color=self.color_barras)
             except Exception as e:
                 print(f"Error al actualizar los colores del mini reproductor: {e}")

@@ -1,9 +1,11 @@
 {
-    "indice_actual": 14,
+    "indice_actual": 17,
     "canciones": [
         "C:\\Users\\Victor\\Music\\pm\\11 PM.mp3",
         "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\pm\\120.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Am I Dreaming (ft Metro Boomin, A$AP Rocky, Roisee).mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Can't Remember to Forget You (ft Rihanna)..mp3",
         "C:\\Users\\Victor\\Music\\pm\\Cinderella.mp3",
         "C:\\Users\\Victor\\Music\\pm\\Gangster Pain.mp3",
         "C:\\Users\\Victor\\Music\\pm\\ISABELLA.mp3",
@@ -12,7 +14,6 @@
         "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3",
         "C:\\Users\\Victor\\Music\\pm\\Self Love.mp3",
         "C:\\Users\\Victor\\Music\\pm\\Sometimes....mp3",
-        "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3",
         "C:\\Users\\Victor\\Music\\pm\\Touch The Sky.mp3",
         "C:\\Users\\Victor\\Music\\pm\\Type Shit.mp3",
         "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3",
@@ -20,10 +21,10 @@
         "C:\\Users\\Victor\\Music\\pm\\Watch This (Remix).mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\Wake Up in the Sky.mp3",
-        "titulo": "Wake Up in the Sky",
-        "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
-        "album": "Evil Genius",
-        "timestamp": "2025-04-04T15:07:01.373019"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\Watch This (Remix).mp3",
+        "titulo": "Watch This (Remix)",
+        "artista": "Lil Uzi Vert ft sped up nightcore, ARIZONATEARS",
+        "album": "Watch This (ARIZONATEARS Pluggnb Remix)",
+        "timestamp": "2025-04-04T19:26:08.915009"
     }
 }

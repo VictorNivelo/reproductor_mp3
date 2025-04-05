@@ -172,7 +172,7 @@ class ControladorTema(Utiles):
     def actualizar_colores_progress_bars(self):
         for progress_bar in self.progress_bars:
             try:
-                progress_bar.configure(fg_color=self.barra_progreso, progress_color=self.color_slider)
+                progress_bar.configure(progress_color=self.color_barra_progreso)
             except Exception as e:
                 print(f"Error al configurar la progress bar: {e}")
 

@@ -822,7 +822,7 @@ def animar_texto_boton(boton, longitud_maxima=50):
 
 
 # Función para configurar el desplazamiento de texto en botones
-def configurar_desplazamiento_texto(boton, texto_completo, longitud_maxima=50):
+def configurar_desplazamiento_texto(boton, texto_completo, longitud_maxima=55):
     # Si el texto es más corto que el límite, simplemente mostrarlo
     if len(texto_completo) <= longitud_maxima:
         boton.configure(text=texto_completo)
@@ -944,7 +944,7 @@ def cerrar_menu_al_desenfocar(menu_ventana, _event=None):
 
 
 # Función para mostrar el menú contextual personalizado de una canción
-def mostrar_menu_cancion(cancion, frame_padre):
+def mostrar_menu_cancion(cancion, panel_padre):
     # Verificar si ya existe un menú abierto y cerrarlo
     for widget in ventana_principal.winfo_children():
         if isinstance(widget, ctk.CTkToplevel) and hasattr(widget, "menu_opciones"):
@@ -956,13 +956,15 @@ def mostrar_menu_cancion(cancion, frame_padre):
     # Marcar esta ventana como un menú contextual
     menu_ventana.menu_opciones = True
     menu_ventana.title("")
-    menu_ventana.geometry("200x0")
+    menu_ventana.geometry("175x0")
     menu_ventana.overrideredirect(True)
     menu_ventana.configure(fg_color=controlador_tema.color_fondo)
     menu_ventana.attributes("-topmost", True)
     # ----------------------------------- Panel menu opciones -----------------------------------
     # Contenedor principal del menú
-    panel_menu_opciones = ctk.CTkFrame(menu_ventana, fg_color=controlador_tema.color_fondo)
+    panel_menu_opciones = ctk.CTkFrame(
+        menu_ventana, corner_radius=BORDES_REDONDEADOS_PANEL, fg_color=controlador_tema.color_fondo
+    )
     panel_menu_opciones.pack(fill="both", expand=True)
     # -------------------------------------------------------------------------------------------
     # Agregar opciones al menú
@@ -986,14 +988,14 @@ def mostrar_menu_cancion(cancion, frame_padre):
     panel_menu_opciones.update_idletasks()
     altura_real = panel_menu_opciones.winfo_reqheight()
     # Posicionar el menú junto al botón
-    x = frame_padre.winfo_rootx() + frame_padre.winfo_width() - 200
-    y = frame_padre.winfo_rooty()
+    x = panel_padre.winfo_rootx() + panel_padre.winfo_width() - 200
+    y = panel_padre.winfo_rooty()
     # Asegurar que el menú no salga de la pantalla
     screen_width = menu_ventana.winfo_screenwidth()
     if x + 200 > screen_width:
         x = screen_width - 210
     # Establecer la geometría con la altura exacta del contenido
-    menu_ventana.geometry(f"200x{altura_real}+{x}+{y}")
+    menu_ventana.geometry(f"175x{altura_real}+{x}+{y}")
     # Vincular eventos para cerrar el menú
     menu_ventana.bind("<FocusOut>", lambda event: cerrar_menu_al_desenfocar(menu_ventana, event))
     menu_ventana.bind("<Button-1>", lambda e: menu_ventana.destroy())
@@ -1449,6 +1451,7 @@ def buscar_canciones(_event=None):
 # Función para crear las barras iniciales
 def crear_barras_espectro():
     global barras_espectro
+    controlador_tema.colores()
     # Limpiar barras existentes
     for barra in barras_espectro:
         try:
@@ -1469,15 +1472,13 @@ def crear_barras_espectro():
     x_inicial = (
         ancho_canvas - (NUMERO_BARRA * (ancho_barra + espacio_entre_barra) - espacio_entre_barra)
     ) // 2
-    # Color según el tema
-    color_barra = HOVER_CLARO if APARIENCIA == "claro" else HOVER_OSCURO
     # Crear barras
     for i in range(NUMERO_BARRA):
         x1 = x_inicial + i * (ancho_barra + espacio_entre_barra)
         x2 = x1 + ancho_barra
         y1 = alto_canvas
         y2 = alto_canvas - alturas_barras[i]
-        barra = canvas_espectro.create_rectangle(x1, y1, x2, y2, fill=color_barra, width=0)
+        barra = canvas_espectro.create_rectangle(x1, y1, x2, y2, fill=controlador_tema.color_barras, width=0)
         barras_espectro.append(barra)
 
 
@@ -1860,9 +1861,10 @@ panel_progreso = ctk.CTkFrame(contenedor_progreso, fg_color="transparent")
 panel_progreso.pack(fill="x", expand=True)
 
 # Barra de progreso
-barra_progreso = ctk.CTkProgressBar(panel_progreso)
-barra_progreso.configure(height=5, progress_color=FONDO_OSCURO, fg_color="lightgray")
-barra_progreso.pack(fill="x", padx=12, pady=(0, 3))
+barra_progreso = ctk.CTkProgressBar(
+    panel_progreso, height=5, progress_color=controlador_tema.color_barra_progreso
+)
+barra_progreso.pack(fill="x", padx=6, pady=(0, 3))
 barra_progreso.set(0)
 barra_progreso.bind("<Button-1>", iniciar_arrastre_progreso)
 barra_progreso.bind("<B1-Motion>", durante_arrastre_progreso)

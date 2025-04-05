@@ -89,7 +89,7 @@ def crear_paleta_tema(colores_hex: List[str]) -> Dict[str, str]:
             "color_hover_oscuro": "#474747",
             "color_slider": "#555555",
             "color_borde": "#2d2d2d",
-            "barra_progreso": "#474747",
+            "color_barra_progreso": "#474747",
         }
     # Ordenar colores por brillo
     colores_por_brillo = ordenar_colores_por_brillo(colores_hex)
@@ -108,7 +108,7 @@ def crear_paleta_tema(colores_hex: List[str]) -> Dict[str, str]:
         "color_hover_oscuro": colores_por_brillo[1],
         "color_slider": colores_por_saturacion[-3 % len(colores_por_saturacion)],
         "color_borde": colores_por_brillo[2],
-        "barra_progreso": colores_por_brillo[1],
+        "color_barra_progreso": colores_por_brillo[1],
     }
     return colores_tema
 

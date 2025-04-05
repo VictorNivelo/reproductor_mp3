@@ -36,12 +36,12 @@ class Utiles:
         self.color_boton = None
         self.color_hover = None
         self.color_base = None
+        self.color_barras = None
         self.color_borde = None
         self.color_slider = None
         self.color_hover_oscuro = None
-        self.barra_progreso = None
+        self.color_barra_progreso = None
         self.color_segundario = None
-        self.color_progreso = None
 
     # Método para obtener los colores de la interfaz
     def colores(self):
@@ -53,15 +53,14 @@ class Utiles:
         self.color_texto = TEXTO_OSCURO if tema else TEXTO_CLARO
         self.color_boton = BOTON_OSCURO if tema else BOTON_CLARO
         self.color_hover = HOVER_OSCURO if tema else HOVER_CLARO
+        self.color_hover_oscuro = HOVER_OSCURO if tema else HOVER_OSCURO
         # Colores exclusivos de UtilesControlador
         self.color_base = OSCURO if tema else CLARO
-        self.color_borde = FONDO_CLARO if tema else FONDO_OSCURO
-        self.color_slider = TEXTO_OSCURO if tema else FONDO_OSCURO
-        self.color_hover_oscuro = HOVER_OSCURO if tema else HOVER_OSCURO
-        self.barra_progreso = HOVER_OSCURO if tema else "lightgray"
         self.color_segundario = OSCURO_SEGUNDARIO if tema else CLARO_SEGUNDARIO
-        # Color exclusivo de UtilesComponentes
-        self.color_progreso = TEXTO_OSCURO if tema else FONDO_OSCURO
+        self.color_borde = FONDO_CLARO if tema else FONDO_OSCURO
+        self.color_barras = BARRA_OSCURO if tema else BARRA_CLARO
+        self.color_slider = TEXTO_OSCURO if tema else FONDO_OSCURO
+        self.color_barra_progreso = BARRA_PROGRESO_CLARO if tema else BARRA_PROGRESO_OSCURO
 
     # Método para obtener la imagen de la caratula
     @staticmethod

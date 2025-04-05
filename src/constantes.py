@@ -85,21 +85,25 @@ RUTA_CONFIGURACION = os.path.join(RUTA_CARPETA_CONFIGURACION, "ajustes.json")
 # ========================== Colores y fuentes ===========================
 # Claro
 CLARO = "#ffffff"
-CLARO_SEGUNDARIO = "#f8f8f8"
-FONDO_PRINCIPAL_CLARO = "#dedede"
-FONDO_CLARO = "#f2f2f2"
-TEXTO_CLARO = "#1a1a1a"
-BOTON_CLARO = "#e6e6e6"
-HOVER_CLARO = "#d9d9d9"
+CLARO_SEGUNDARIO = "#f9f9f9"
+FONDO_PRINCIPAL_CLARO = "#e5e5e5"
+FONDO_CLARO = "#f5f5f5"
+TEXTO_CLARO = "#121212"
+BOTON_CLARO = "#ebebeb"
+HOVER_CLARO = "#d4d4d4"
+BARRA_CLARO = "#c6c6c6"
+BARRA_PROGRESO_CLARO = "#b8b8b8"
 
 # Oscuro
 OSCURO = "#0a0a0a"
-OSCURO_SEGUNDARIO = "#141414"
-FONDO_PRINCIPAL_OSCURO = "#181818"
-FONDO_OSCURO = "#1f1f1f"
-TEXTO_OSCURO = "#ffffff"
-BOTON_OSCURO = "#2d2d2d"
-HOVER_OSCURO = "#383838"
+OSCURO_SEGUNDARIO = "#161616"
+FONDO_PRINCIPAL_OSCURO = "#1a1a1a"
+FONDO_OSCURO = "#212121"
+TEXTO_OSCURO = "#f0f0f0"
+BOTON_OSCURO = "#2f2f2f"
+HOVER_OSCURO = "#3a3a3a"
+BARRA_OSCURO = "#4d4d4d"
+BARRA_PROGRESO_OSCURO = "#555555"
 
 # ========================================================================
 

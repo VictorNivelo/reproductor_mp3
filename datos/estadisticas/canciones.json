@@ -1,10 +1,10 @@
 {
     "estadisticas": {
-        "total_canciones": 17,
-        "total_artistas": 28,
+        "total_canciones": 18,
+        "total_artistas": 31,
         "total_albumes": 16,
         "me_gusta": 1,
-        "favorito": 0
+        "favorito": 1
     },
     "canciones": [
         {
@@ -33,7 +33,7 @@
             "numero_pista": "6",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": false
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
@@ -47,6 +47,34 @@
             "numero_pista": "14",
             "tiene_caratula": true,
             "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Am I Dreaming (ft Metro Boomin, A$AP Rocky, Roisee).mp3",
+            "titulo": "Am I Dreaming (ft Metro Boomin, A$AP Rocky, Roisee)",
+            "artista": "Metro Boomin ft A$AP Rocky, Roisee",
+            "artista_album": "Metro Boomin",
+            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
+            "duracion": 256.07836734693876,
+            "duracion_formateada": "04:16",
+            "anio": "2023-06-02",
+            "numero_pista": "2/13",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Can't Remember to Forget You (ft Rihanna)..mp3",
+            "titulo": "Can't Remember to Forget You (ft Rihanna)",
+            "artista": "Shakira ft Rihanna",
+            "artista_album": "Shakira",
+            "album": "Shakira. (Expanded Edition) [Spanish Version]",
+            "duracion": 206.91591836734693,
+            "duracion_formateada": "03:26",
+            "anio": "2014-03-13",
+            "numero_pista": "15/15",
+            "tiene_caratula": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
@@ -157,20 +185,6 @@
             "duracion_formateada": "00:36",
             "anio": "2017",
             "numero_pista": "3",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3",
-            "titulo": "TELEKINESIS (ft SZA, Future)",
-            "artista": "Travis Scott ft SZA, Future",
-            "artista_album": "Travis Scott",
-            "album": "UTOPIA",
-            "duracion": 353.8024489795918,
-            "duracion_formateada": "05:53",
-            "anio": "2023-07-28",
-            "numero_pista": "18/19",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false

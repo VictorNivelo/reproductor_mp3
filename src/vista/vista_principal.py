@@ -48,6 +48,14 @@ pestanas_cargadas = {
 }
 
 
+# Método para actualizar el tooltip
+def actualizar_tooltip_vista():
+    # Actualizar todos los tooltips visibles
+    for _, tooltip in tooltips.items():
+        if tooltip.tooltip and tooltip.tooltip.winfo_exists():
+            tooltip.actualizar_colores_tooltip()
+
+
 # Función para cambiar el tema de la interfaz
 def cambiar_tema_vista():
     global APARIENCIA
@@ -57,17 +65,17 @@ def cambiar_tema_vista():
     APARIENCIA = "oscuro" if APARIENCIA == "claro" else "claro"
     # Actualizar icono de tema
     if APARIENCIA == "claro":
-        cambiar_icono_tema("claro")
         controlador_tema.registrar_botones("modo_oscuro", boton_tema)
-        actualizar_tooltip(boton_tema, "Cambiar a oscuro")
+        actualizar_texto_tooltip(boton_tema, "Cambiar a oscuro")
     else:
-        cambiar_icono_tema("oscuro")
         controlador_tema.registrar_botones("modo_claro", boton_tema)
-        actualizar_tooltip(boton_tema, "Cambiar a claro")
+        actualizar_texto_tooltip(boton_tema, "Cambiar a claro")
     # Guardar todos los ajustes
     guardar_todos_ajustes()
     # Actualizar iconos
     actualizar_iconos()
+    # Actualizar colores de los tooltips
+    actualizar_tooltip_vista()
 
 
 # Función para cambiar el tema de la interfaz
@@ -223,14 +231,14 @@ def reproducir_vista():
             # Actualizar estado e iconos
             ESTADO_REPRODUCCION = True
             controlador_tema.registrar_botones("pausa", boton_reproducir)
-            actualizar_tooltip(boton_reproducir, "Pausar")
+            actualizar_texto_tooltip(boton_reproducir, "Pausar")
             actualizar_espectro()
     else:
         # Pausar reproducción
         ESTADO_REPRODUCCION = False
         controlador_tema.registrar_botones("reproducir", boton_reproducir)
         controlador_reproductor.pausar_reproduccion()
-        actualizar_tooltip(boton_reproducir, "Reproducir")
+        actualizar_texto_tooltip(boton_reproducir, "Reproducir")
 
 
 # Función para reproducir la canción seleccionada
@@ -249,7 +257,7 @@ def reproducir_cancion_desde_lista(cancion):
     # Cambiar icono del botón a pausa
     controlador_tema.registrar_botones("pausa", boton_reproducir)
     # Actualizar tooltip del botón
-    actualizar_tooltip(boton_reproducir, "Pausar")
+    actualizar_texto_tooltip(boton_reproducir, "Pausar")
     # Iniciar animación del espectro
     actualizar_espectro()
     # Actualizar botones de Me Gusta y Favoritos
@@ -261,7 +269,7 @@ def actualizar_estado_reproduccion_desde_cola():
     global ESTADO_REPRODUCCION
     ESTADO_REPRODUCCION = True
     controlador_tema.registrar_botones("pausa", boton_reproducir)
-    actualizar_tooltip(boton_reproducir, "Pausar")
+    actualizar_texto_tooltip(boton_reproducir, "Pausar")
     actualizar_estado_botones_gustos()
     # También iniciar la animación del espectro
     actualizar_espectro()
@@ -278,7 +286,7 @@ def reproducir_siguiente_vista():
         # No se pudo reproducir la siguiente (fin de lista)
         ESTADO_REPRODUCCION = False
         controlador_tema.registrar_botones("reproducir", boton_reproducir)
-        actualizar_tooltip(boton_reproducir, "Reproducir")
+        actualizar_texto_tooltip(boton_reproducir, "Reproducir")
 
 
 # Función para reproducir la canción anterior
@@ -327,11 +335,11 @@ def cambiar_silencio_vista():
         # Guardar volumen actual y silenciar
         controlador_reproductor.ajustar_volumen(0)
         controlador_tema.registrar_botones("silencio", boton_silenciar)
-        actualizar_tooltip(boton_silenciar, "Quitar silencio")
+        actualizar_texto_tooltip(boton_silenciar, "Quitar silencio")
     else:
         # Restaurar volumen anterior
         controlador_reproductor.ajustar_volumen(NIVEL_VOLUMEN)
-        actualizar_tooltip(boton_silenciar, "Silenciar")
+        actualizar_texto_tooltip(boton_silenciar, "Silenciar")
         cambiar_volumen_vista()
     guardar_todos_ajustes()
 
@@ -344,10 +352,10 @@ def cambiar_orden_vista():
     controlador_reproductor.establecer_modo_aleatorio(MODO_ALEATORIO)
     if MODO_ALEATORIO:
         controlador_tema.registrar_botones("aleatorio", boton_aleatorio)
-        actualizar_tooltip(boton_aleatorio, "Reproducción aleatoria")
+        actualizar_texto_tooltip(boton_aleatorio, "Reproducción aleatoria")
     else:
         controlador_tema.registrar_botones("orden", boton_aleatorio)
-        actualizar_tooltip(boton_aleatorio, "Reproducción en orden")
+        actualizar_texto_tooltip(boton_aleatorio, "Reproducción en orden")
     # Guardar configuración
     guardar_todos_ajustes()
 
@@ -360,15 +368,15 @@ def cambiar_repeticion_vista():
     # Icono de no repetir
     if MODO_REPETICION == 0:
         controlador_tema.registrar_botones("no_repetir", boton_repetir)
-        actualizar_tooltip(boton_repetir, "No repetir")
+        actualizar_texto_tooltip(boton_repetir, "No repetir")
     # Icono de repetir actual
     elif MODO_REPETICION == 1:
         controlador_tema.registrar_botones("repetir_actual", boton_repetir)
-        actualizar_tooltip(boton_repetir, "Repetir actual")
+        actualizar_texto_tooltip(boton_repetir, "Repetir actual")
     # Icono de repetir todo
     else:
         controlador_tema.registrar_botones("repetir_todo", boton_repetir)
-        actualizar_tooltip(boton_repetir, "Repetir todo")
+        actualizar_texto_tooltip(boton_repetir, "Repetir todo")
     # Guardar configuración
     guardar_todos_ajustes()
 
@@ -382,13 +390,13 @@ def cambiar_visibilidad_vista():
         contenedor_derecha_principal.configure(width=ANCHO_PANEL_DERECHA + 5)
         contenedor_derecha_principal.pack(side="left", fill="both", padx=(5, 0))
         controlador_tema.registrar_botones("ocultar", boton_visibilidad)
-        actualizar_tooltip(boton_visibilidad, "Ocultar lateral")
+        actualizar_texto_tooltip(boton_visibilidad, "Ocultar lateral")
     else:
         # Ocultar el panel
         contenedor_derecha_principal.configure(width=0)
         contenedor_derecha_principal.pack_forget()
         controlador_tema.registrar_botones("mostrar", boton_visibilidad)
-        actualizar_tooltip(boton_visibilidad, "Mostrar lateral")
+        actualizar_texto_tooltip(boton_visibilidad, "Mostrar lateral")
     # Guardar configuración
     guardar_todos_ajustes()
 
@@ -402,10 +410,10 @@ def cambiar_me_gusta_vista():
         ME_GUSTA = not ME_GUSTA
         if ME_GUSTA:
             controlador_tema.registrar_botones("me_gusta_rojo", boton_me_gusta)
-            actualizar_tooltip(boton_me_gusta, "Quitar de me gusta")
+            actualizar_texto_tooltip(boton_me_gusta, "Quitar de me gusta")
         else:
             controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
-            actualizar_tooltip(boton_me_gusta, "Agregar a me gusta")
+            actualizar_texto_tooltip(boton_me_gusta, "Agregar a me gusta")
         # Guardar cambios
         guardar_biblioteca()
         # Marcar pestaña como no cargada para forzar actualización
@@ -441,10 +449,10 @@ def cambiar_favorito_vista():
         FAVORITO = not FAVORITO
         if FAVORITO:
             controlador_tema.registrar_botones("favorito_amarillo", boton_favorito)
-            actualizar_tooltip(boton_favorito, "Quitar de favorito")
+            actualizar_texto_tooltip(boton_favorito, "Quitar de favorito")
         else:
             controlador_tema.registrar_botones("favorito", boton_favorito)
-            actualizar_tooltip(boton_favorito, "Agregar a favorito")
+            actualizar_texto_tooltip(boton_favorito, "Agregar a favorito")
         # Guardar cambios
         guardar_biblioteca()
         # Marcar pestaña como no cargada para forzar actualización
@@ -480,26 +488,26 @@ def actualizar_estado_botones_gustos():
         ME_GUSTA = cancion_actual.me_gusta
         if ME_GUSTA:
             controlador_tema.registrar_botones("me_gusta_rojo", boton_me_gusta)
-            actualizar_tooltip(boton_me_gusta, "Quitar de me gusta")
+            actualizar_texto_tooltip(boton_me_gusta, "Quitar de me gusta")
         else:
             controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
-            actualizar_tooltip(boton_me_gusta, "Agregar a me gusta")
+            actualizar_texto_tooltip(boton_me_gusta, "Agregar a me gusta")
         # Actualizar estado de Favorito
         FAVORITO = cancion_actual.favorito
         if FAVORITO:
             controlador_tema.registrar_botones("favorito_amarillo", boton_favorito)
-            actualizar_tooltip(boton_favorito, "Quitar de favorito")
+            actualizar_texto_tooltip(boton_favorito, "Quitar de favorito")
         else:
             controlador_tema.registrar_botones("favorito", boton_favorito)
-            actualizar_tooltip(boton_favorito, "Agregar a favorito")
+            actualizar_texto_tooltip(boton_favorito, "Agregar a favorito")
     else:
         # Sin canción actual
         ME_GUSTA = False
         FAVORITO = False
         controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
         controlador_tema.registrar_botones("favorito", boton_favorito)
-        actualizar_tooltip(boton_me_gusta, "Agregar a me gusta")
-        actualizar_tooltip(boton_favorito, "Agregar a favorito")
+        actualizar_texto_tooltip(boton_me_gusta, "Agregar a me gusta")
+        actualizar_texto_tooltip(boton_favorito, "Agregar a favorito")
 
 
 # Función para agregar canciones (puede ser llamada desde un botón)

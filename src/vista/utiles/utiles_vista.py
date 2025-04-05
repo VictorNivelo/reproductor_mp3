@@ -151,10 +151,10 @@ def crear_tooltip(componente, texto):
 
 
 # Método para actualizar el texto de un tooltip existente
-def actualizar_tooltip(componente, nuevo_texto):
+def actualizar_texto_tooltip(componente, nuevo_texto):
     if componente in tooltips:
         # Si el tooltip existe, actualizar su texto
-        tooltips[componente].texto = nuevo_texto
+        tooltips[componente].texto_componente = nuevo_texto
     else:
         # Si no existe, crear uno nuevo
         crear_tooltip(componente, nuevo_texto)

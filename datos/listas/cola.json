@@ -1,27 +1,14 @@
 {
-    "indice_actual": 3,
+    "indice_actual": 1,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\Musica\\120.mp3",
         "C:\\Users\\Victor\\Music\\Musica\\30 Hours.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Bellakita.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\En la Intimidad.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\En Que País.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Frank's Track.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Gangster Pain.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Gold Digger.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\PERRO NEGRO.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Runaway.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\SEDA.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\TELEFONO NUEVO.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Touch The Sky.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\VOU 787.mp3"
+        "C:\\Users\\Victor\\Music\\Musica\\Frank's Track.mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Bellakita.mp3",
-        "titulo": "Bellakita",
-        "artista": "CDobleta",
-        "album": "Bellakita",
-        "timestamp": "2025-04-05T15:26:56.162561"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Frank's Track.mp3",
+        "titulo": "Frank's Track",
+        "artista": "Kanye West",
+        "album": "The Life Of Pablo",
+        "timestamp": "2025-04-05T18:34:30.193434"
     }
 }

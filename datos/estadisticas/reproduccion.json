@@ -2,21 +2,27 @@
     "artistas": {
         "Madvillain ft Madlib, MF DOOM, Viktor Vaughn": 1,
         "Bad Bunny": 1,
-        "CDobleta": 1
+        "CDobleta": 1,
+        "Bryant Myers": 1,
+        "Yan Block ft Panda Black": 1,
+        "Kanye West": 1
     },
     "albumes": {
         "Madvillainy": 1,
         "EL ÚLTIMO TOUR DEL MUNDO": 1,
-        "Bellakita": 1
+        "Bellakita": 1,
+        "En Que País": 1,
+        "444": 1,
+        "The Life Of Pablo": 1
     },
-    "tiempo_total": 449.93306122448985,
-    "canciones_escuchadas": 3,
+    "tiempo_total": 1172.0964897959184,
+    "canciones_escuchadas": 6,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Bellakita.mp3",
-        "titulo": "Bellakita",
-        "artista": "CDobleta",
-        "album": "Bellakita",
-        "timestamp": "2025-04-05T15:26:49.982078"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\30 Hours.mp3",
+        "titulo": "30 Hours",
+        "artista": "Kanye West",
+        "album": "The Life Of Pablo",
+        "timestamp": "2025-04-05T18:34:28.212560"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\Fancy Clown (ft Viktor Vaughn)..mp3": {
@@ -36,6 +42,24 @@
             "titulo": "Bellakita",
             "artista": "CDobleta",
             "album": "Bellakita"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\En Que País.mp3": {
+            "contador": 1,
+            "titulo": "En Que País",
+            "artista": "Bryant Myers",
+            "album": "En Que País"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
+            "contador": 1,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\30 Hours.mp3": {
+            "contador": 1,
+            "titulo": "30 Hours",
+            "artista": "Kanye West",
+            "album": "The Life Of Pablo"
         }
     }
 }

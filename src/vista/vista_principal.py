@@ -879,7 +879,7 @@ def crear_boton_cancion(cancion, panel):
         text_color=controlador_tema.color_texto,
         text="",
         image=icono_opcion,
-        command=lambda c=cancion: mostrar_menu_cancion(c, panel_lista_cancion),
+        command=lambda c=cancion: mostrar_menu_opciones(c, panel_lista_cancion),
     )
     boton_opciones.pack(side="right", padx=(1, 0))
     crear_tooltip(boton_opciones, "Opciones")
@@ -892,8 +892,42 @@ def crear_boton_cancion(cancion, panel):
     # Configurar desplazamiento si el texto es largo
     configurar_desplazamiento_texto(boton_cancion, texto_cancion)
     # Vincular clic derecho al botón principal para mostrar el menú
-    boton_cancion.bind("<Button-3>", lambda event, c=cancion: mostrar_menu_cancion(c, panel_lista_cancion))
+    boton_cancion.bind("<Button-3>", lambda event, c=cancion: mostrar_menu_opciones(c, panel_lista_cancion))
     return panel_lista_cancion
+
+
+# Función para navegar al álbum de una canción específica
+def ir_al_album(cancion):
+    # Cambiar a la pestaña de álbumes
+    paginas_canciones.set("Álbumes")
+    # Marcar la pestaña como cargada
+    pestanas_cargadas["Álbumes"] = True
+    # Actualizar la vista de álbumes
+    actualizar_vista_albumes()
+    # Buscar y mostrar las canciones del álbum específico
+    if cancion.album and cancion.album not in ["", "Unknown Album", "Desconocido"]:
+        # Mostrar las canciones del álbum
+        mostrar_canciones_album(cancion.album)
+    else:
+        # Si no hay información de álbum, mostrar un mensaje
+        print(f"No hay información de álbum para: {cancion.titulo_cancion}")
+
+
+# Función para navegar al artista de una canción específica
+def ir_al_artista(cancion):
+    # Cambiar a la pestaña de artistas
+    paginas_canciones.set("Artistas")
+    # Marcar la pestaña como cargada
+    pestanas_cargadas["Artistas"] = True
+    # Actualizar la vista de artistas
+    actualizar_vista_artistas()
+    # Buscar y mostrar las canciones del artista específico
+    if cancion.artista and cancion.artista not in ["", "Unknown Artist", "Desconocido"]:
+        # Mostrar las canciones del artista
+        mostrar_canciones_artista(cancion.artista)
+    else:
+        # Si no hay información de artista, mostrar un mensaje
+        print(f"No hay información de artista para: {cancion.titulo_cancion}")
 
 
 # Función para crear una opción de menú en un menú contextual
@@ -903,9 +937,11 @@ def crear_opcion_menu(panel_menu_opciones, texto, comando, tiene_separador=False
         separador = ctk.CTkFrame(
             panel_menu_opciones,
             fg_color=controlador_tema.color_hover,
+            border_color=controlador_tema.color_hover,
+            border_width=1,
             height=1,
         )
-        separador.pack(fill="x", padx=5, pady=3)
+        separador.pack(fill="x", padx=2, pady=4)
         # ---------------------------------------------------------------------------------------
     # ------------------------------------ Botón de opción --------------------------------------
     boton_opcion = ctk.CTkButton(
@@ -920,7 +956,7 @@ def crear_opcion_menu(panel_menu_opciones, texto, comando, tiene_separador=False
         anchor="w",
         command=lambda: [comando(), panel_menu_opciones.master.destroy()],
     )
-    boton_opcion.pack(fill="x", padx=2, pady=1)
+    boton_opcion.pack(fill="x", padx=2)
     # -------------------------------------------------------------------------------------------
 
 
@@ -942,7 +978,7 @@ def cerrar_menu_al_desenfocar(menu_ventana, _event=None):
 
 
 # Función para mostrar el menú contextual personalizado de una canción
-def mostrar_menu_cancion(cancion, panel_padre):
+def mostrar_menu_opciones(cancion, panel_padre):
     # Verificar si ya existe un menú abierto y cerrarlo
     for widget in ventana_principal.winfo_children():
         if isinstance(widget, ctk.CTkToplevel) and hasattr(widget, "menu_opciones"):
@@ -968,32 +1004,48 @@ def mostrar_menu_cancion(cancion, panel_padre):
     panel_menu_opciones.pack(fill="both", expand=True, padx=2, pady=2)
     # -------------------------------------------------------------------------------------------
     # Agregar opciones al menú
+    # ---------------------------------- Opciones reproducir ------------------------------------
     crear_opcion_menu(
         panel_menu_opciones, "Reproducir ahora", lambda: reproducir_cancion_desde_lista(cancion)
     )
     crear_opcion_menu(panel_menu_opciones, "Agregar a la cola", lambda: agregar_a_cola_vista(cancion))
+    # -------------------------------------------------------------------------------------------
+    # ------------------------------------ Opciones de gusto ------------------------------------
     # Separador antes de opciones de Me gusta/Favorito
     texto_me_gusta = "Quitar de Me gusta" if cancion.me_gusta else "Agregar a Me gusta"
     crear_opcion_menu(panel_menu_opciones, texto_me_gusta, lambda: cambiar_me_gusta_menu(cancion), True)
     texto_favorito = "Quitar de Favoritos" if cancion.favorito else "Agregar a Favoritos"
     crear_opcion_menu(panel_menu_opciones, texto_favorito, lambda: cambiar_favorito_menu(cancion))
-    # Separador antes de opciones adicionales
+    # -------------------------------------------------------------------------------------------
+    # ---------------------------------- Opciones de información --------------------------------
+    if cancion.album and cancion.album not in ["", "Unknown Album", "Desconocido"]:
+        crear_opcion_menu(panel_menu_opciones, "Ir al álbum", lambda: ir_al_album(cancion), True)
+    if cancion.artista and cancion.artista not in ["", "Unknown Artist", "Desconocido"]:
+        crear_opcion_menu(panel_menu_opciones, "Ir al artista", lambda: ir_al_artista(cancion))
+    # -------------------------------------------------------------------------------------------
+    # ---------------------------------- Opciones de eliminar -----------------------------------
     crear_opcion_menu(
         panel_menu_opciones, "Ver información", lambda: print(f"Ver info de: {cancion.titulo_cancion}"), True
     )
     crear_opcion_menu(
         panel_menu_opciones, "Eliminar de la biblioteca", lambda: eliminar_cancion_vista(cancion)
     )
+    # -------------------------------------------------------------------------------------------
     # Actualizar el panel para obtener su altura real
     panel_menu_opciones.update_idletasks()
-    altura_real = panel_menu_opciones.winfo_reqheight()
+    altura_real = panel_menu_opciones.winfo_reqheight() + 5
     # Posicionar el menú junto al botón
     x = panel_padre.winfo_rootx() + panel_padre.winfo_width() - 200
     y = panel_padre.winfo_rooty()
     # Asegurar que el menú no salga de la pantalla
-    screen_width = menu_ventana.winfo_screenwidth()
-    if x + 200 > screen_width:
-        x = screen_width - 210
+    ancho_menu = menu_ventana.winfo_screenwidth()
+    alto_menu = menu_ventana.winfo_screenheight()
+    # Ajustar la posición horizontal del menú
+    if x + 200 > ancho_menu:
+        x = ancho_menu - 210
+    # Ajustar la posición vertical del menú
+    if y + altura_real > alto_menu:
+        y = alto_menu - altura_real - 10
     menu_ventana.update()
     # Establecer la geometría con la altura exacta del contenido
     menu_ventana.geometry(f"175x{altura_real}+{x}+{y}")

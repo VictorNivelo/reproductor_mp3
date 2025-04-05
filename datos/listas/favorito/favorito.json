@@ -1,17 +1,17 @@
 {
     "favoritos": [
         {
-            "ruta": "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "artista_album": "Tainy",
-            "album": "DATA",
-            "duracion": 197.01551020408164,
-            "duracion_formateada": "03:17",
-            "anio": "2023",
-            "numero_pista": "6",
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Bellakita.mp3",
+            "titulo": "Bellakita",
+            "artista": "CDobleta",
+            "artista_album": "CDobleta",
+            "album": "Bellakita",
+            "duracion": 182.54367346938776,
+            "duracion_formateada": "03:02",
+            "anio": "2023-12-30",
+            "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": true
         }
     ]

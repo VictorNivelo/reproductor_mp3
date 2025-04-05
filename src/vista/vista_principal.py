@@ -416,23 +416,18 @@ def cambiar_me_gusta_vista():
             actualizar_texto_tooltip(boton_me_gusta, "Agregar a me gusta")
         # Guardar cambios
         guardar_biblioteca()
-        # Marcar pestaña como no cargada para forzar actualización
-        pestanas_cargadas["Me gusta"] = False
-        # Actualizar vista si estamos en esa pestaña
-        if paginas_canciones.get() == "Me gusta":
-            actualizar_vista_me_gusta()
-            pestanas_cargadas["Me gusta"] = True
+        # Actualizar la vista inmediatamente, independiente de la pestaña actual
+        actualizar_vista_me_gusta()
+        pestanas_cargadas["Me gusta"] = True
 
 
 # Función para cambiar el estado de "me gusta" de una canción desde el menú
 def cambiar_me_gusta_menu(cancion):
     controlador_biblioteca.marcar_me_gusta_controlador(cancion)
-    # Marcar pestaña como no cargada para forzar actualización
-    pestanas_cargadas["Me gusta"] = False
-    # Actualizar vista si estamos en esa pestaña
-    if paginas_canciones.get() == "Me gusta":
-        actualizar_vista_me_gusta()
-        pestanas_cargadas["Me gusta"] = True
+    # Actualizar la vista inmediatamente
+    actualizar_vista_me_gusta()
+    # Marcar la pestaña como cargada
+    pestanas_cargadas["Me gusta"] = True
     # Guardar cambios
     guardar_biblioteca()
     # Si es la canción actual, actualizar también los botones de la interfaz principal
@@ -455,23 +450,18 @@ def cambiar_favorito_vista():
             actualizar_texto_tooltip(boton_favorito, "Agregar a favorito")
         # Guardar cambios
         guardar_biblioteca()
-        # Marcar pestaña como no cargada para forzar actualización
-        pestanas_cargadas["Favoritos"] = False
-        # Actualizar vista si estamos en esa pestaña
-        if paginas_canciones.get() == "Favoritos":
-            actualizar_vista_favoritos()
-            pestanas_cargadas["Favoritos"] = True
+        # Actualizar la vista inmediatamente, independiente de la pestaña actual
+        actualizar_vista_favoritos()
+        pestanas_cargadas["Favoritos"] = True
 
 
 # Función para cambiar el estado de "favorito" de una canción desde el menú
 def cambiar_favorito_menu(cancion):
     controlador_biblioteca.marcar_favorito_controlador(cancion)
-    # Marcar pestaña como no cargada para forzar actualización
-    pestanas_cargadas["Favoritos"] = False
-    # Actualizar vista si estamos en esa pestaña
-    if paginas_canciones.get() == "Favoritos":
-        actualizar_vista_favoritos()
-        pestanas_cargadas["Favoritos"] = True
+    # Actualizar la vista inmediatamente
+    actualizar_vista_favoritos()
+    # Marcar la pestaña como cargada
+    pestanas_cargadas["Favoritos"] = True
     # Guardar cambios
     guardar_biblioteca()
     # Si es la canción actual, actualizar también los botones de la interfaz principal
@@ -959,6 +949,7 @@ def mostrar_menu_cancion(cancion, panel_padre):
             widget.destroy()
     # Obtener colores actuales del tema
     controlador_tema.colores()
+    # ------------------------------------- Ventana de menú -------------------------------------
     # Crear una ventana de nivel superior para el menú
     menu_ventana = ctk.CTkToplevel(ventana_principal)
     # Marcar esta ventana como un menú contextual
@@ -968,12 +959,13 @@ def mostrar_menu_cancion(cancion, panel_padre):
     menu_ventana.overrideredirect(True)
     menu_ventana.configure(fg_color=controlador_tema.color_fondo)
     menu_ventana.attributes("-topmost", True)
+    # -------------------------------------------------------------------------------------------
     # ----------------------------------- Panel menu opciones -----------------------------------
     # Contenedor principal del menú
     panel_menu_opciones = ctk.CTkFrame(
         menu_ventana, corner_radius=BORDES_REDONDEADOS_PANEL, fg_color=controlador_tema.color_fondo
     )
-    panel_menu_opciones.pack(fill="both", expand=True)
+    panel_menu_opciones.pack(fill="both", expand=True, padx=2, pady=2)
     # -------------------------------------------------------------------------------------------
     # Agregar opciones al menú
     crear_opcion_menu(
@@ -1002,6 +994,7 @@ def mostrar_menu_cancion(cancion, panel_padre):
     screen_width = menu_ventana.winfo_screenwidth()
     if x + 200 > screen_width:
         x = screen_width - 210
+    menu_ventana.update()
     # Establecer la geometría con la altura exacta del contenido
     menu_ventana.geometry(f"175x{altura_real}+{x}+{y}")
     # Vincular eventos para cerrar el menú
@@ -1129,11 +1122,16 @@ def actualizar_todas_vistas_canciones():
     pestana_actual = paginas_canciones.get()
     # Actualizar la vista de canciones
     actualizar_vista_canciones(panel_botones_canciones)
-    # Actualizar las demás vistas pero marcarlas como no cargadas
-    pestanas_cargadas["Me gusta"] = False
-    pestanas_cargadas["Favoritos"] = False
-    pestanas_cargadas["Álbumes"] = False
-    pestanas_cargadas["Artistas"] = False
+    # Actualizar las demás pestañas inmediatamente
+    actualizar_vista_me_gusta()
+    actualizar_vista_favoritos()
+    actualizar_vista_albumes()
+    actualizar_vista_artistas()
+    # Marcar todas las pestañas como cargadas
+    pestanas_cargadas["Me gusta"] = True
+    pestanas_cargadas["Favoritos"] = True
+    pestanas_cargadas["Álbumes"] = True
+    pestanas_cargadas["Artistas"] = True
     # Reestablecer el scroll para la pestaña actual
     if pestana_actual == "Canciones":
         canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
@@ -1142,20 +1140,34 @@ def actualizar_todas_vistas_canciones():
 
 
 # Función para mostrar los detalles de las canciones
-def mostrar_canciones_detalle(tipo, elemento, funcion_volver):
+def mostrar_canciones_detalle(pagina, elemento, funcion_regresar):
+    # Eliminar tooltip si existe
+    eliminar_tooltip()
     # Obtener colores actualizados del tema
     controlador_tema.colores()
     # Obtener la pestaña correspondiente
-    tab = paginas_canciones.tab(tipo)
+    tab = paginas_canciones.tab(pagina)
     # Limpiar la pestaña
     for widget in tab.winfo_children():
         widget.destroy()
+
+    # Método para regresar a la lista de canciones
+    def regresar_con_limpieza():
+        eliminar_tooltip()
+        # Llamar a la función original de regreso
+        funcion_regresar()
+
+    # -------------------------------------- Panel detalles -------------------------------------
     # Crear contenedor para la visualización del detalle
     contenedor_detalles = ctk.CTkFrame(tab, fg_color="transparent")
     contenedor_detalles.pack(fill="both", expand=True)
+    # -------------------------------------------------------------------------------------------
+    # ------------------------------------- Panel superior --------------------------------------
     # Panel superior con botón volver y título
     panel_superior = ctk.CTkFrame(contenedor_detalles, fg_color="transparent")
     panel_superior.pack(fill="x", pady=(5, 10))
+    # -------------------------------------------------------------------------------------------
+    # ------------------------------------- Botón regresar --------------------------------------
     # Icono de regrear
     icono_regresar = cargar_icono_personalizado("regresar", controlador_tema.tema_iconos, (12, 12))
     # Botón para volver a la lista
@@ -1169,11 +1181,13 @@ def mostrar_canciones_detalle(tipo, elemento, funcion_volver):
         text_color=controlador_tema.color_texto,
         text="Regresar",
         image=icono_regresar,
-        command=funcion_volver,
+        command=regresar_con_limpieza,
     )
     boton_volver.pack(side="left")
-    controlador_tema.registrar_botones(f"volver_{tipo.lower()}", boton_volver)
+    controlador_tema.registrar_botones(f"volver_{pagina.lower()}", boton_volver)
     crear_tooltip(boton_volver, "Regresar a la lista")
+    # -------------------------------------------------------------------------------------------
+    # ------------------------------------ Etiqueta de elemento ---------------------------------
     # Título del elemento
     etiqueta_elemento = ctk.CTkLabel(
         panel_superior,
@@ -1185,12 +1199,13 @@ def mostrar_canciones_detalle(tipo, elemento, funcion_volver):
     )
     etiqueta_elemento.pack(side="top", fill="x", expand=True)
     controlador_tema.registrar_etiqueta(etiqueta_elemento)
+    # -------------------------------------------------------------------------------------------
     # Usar la función existente para crear el canvas con scroll
     canvas_canciones_general, panel_canciones, _ = crear_canvas_con_scroll(
         contenedor_detalles, True, paginas_canciones
     )
     # Mostrar las canciones del elemento
-    if tipo == "Álbumes":
+    if pagina == "Álbumes":
         canciones = biblioteca.por_album.get(elemento, [])
     else:  # "Artistas"
         canciones = biblioteca.por_artista.get(elemento, [])
@@ -1205,14 +1220,18 @@ def mostrar_canciones_detalle(tipo, elemento, funcion_volver):
 
 # Función para crear un canvas con scroll y panel de botones
 def crear_canvas_con_scroll(contenedor_padre, estabview=True, tabviewparent=None):
+    # -------------------------------- Crear canvas con scroll ----------------------------------
     canvas = tk.Canvas(contenedor_padre, highlightthickness=0)
     canvas.pack(fill="both", expand=True)
     canvas.configure(bg=paginas_canciones.cget("fg_color") if estabview else controlador_tema.color_fondo)
     controlador_tema.registrar_canvas(canvas, es_tabview=estabview, tabview_parent=tabviewparent)
+    # -------------------------------------------------------------------------------------------
+    # -------------------------------------- Panel botones --------------------------------------
     # Crear panel para el contenido
     panel_botones = ctk.CTkFrame(canvas, fg_color="transparent", corner_radius=0)
     panel_botones.pack(fill="both")
     controlador_tema.registrar_panel(panel_botones)
+    # -------------------------------------------------------------------------------------------
     # Crear ventana en el canvas para el panel
     canvas_ventana_general = canvas.create_window((0, 0), window=panel_botones)
     # Configurar scroll
@@ -1273,6 +1292,7 @@ def crear_botones_albumes(albumes, canvas_albumes, panel_botones_albumes):
         # Ignorar álbumes vacíos o sin nombre
         if album == "" or album == "Unknown Album" or album.lower() == "desconocido":
             continue
+        # ------------------------------------ Boton de álbum -----------------------------------
         boton_album = ctk.CTkButton(
             panel_botones_albumes,
             width=ANCHO_BOTON + 8,
@@ -1286,6 +1306,7 @@ def crear_botones_albumes(albumes, canvas_albumes, panel_botones_albumes):
         )
         boton_album.pack(fill="both", pady=(0, 2), expand=True)
         controlador_tema.registrar_botones(f"album_{album}", boton_album)
+        # ---------------------------------------------------------------------------------------
         # Configurar desplazamiento si el texto es largo
         configurar_desplazamiento_texto(boton_album, album)
     panel_botones_albumes.update_idletasks()
@@ -1328,6 +1349,7 @@ def crear_botones_artistas(artistas, canvas_artistas, panel_botones_artistas):
         # Ignorar artistas sin nombre o desconocidos
         if artista == "" or artista == "Unknown Artist" or artista.lower() == "desconocido":
             continue
+        # ----------------------------------- Boton de artista ----------------------------------
         boton_artista = ctk.CTkButton(
             panel_botones_artistas,
             width=ANCHO_BOTON + 8,
@@ -1341,6 +1363,7 @@ def crear_botones_artistas(artistas, canvas_artistas, panel_botones_artistas):
         )
         boton_artista.pack(fill="both", pady=(0, 2), expand=True)
         controlador_tema.registrar_botones(f"artista_{artista}", boton_artista)
+        # ---------------------------------------------------------------------------------------
         # Configurar desplazamiento si el texto es largo
         configurar_desplazamiento_texto(boton_artista, artista)
     panel_botones_artistas.update_idletasks()
@@ -1350,6 +1373,7 @@ def crear_botones_artistas(artistas, canvas_artistas, panel_botones_artistas):
 
 # Función para actualizar la vista de artistas
 def actualizar_vista_artistas():
+
     canvas_artistas, panel_botones_artistas = configurar_interfaz_artistas()
     # Obtener todos los artistas
     artistas = biblioteca.por_artista.keys()

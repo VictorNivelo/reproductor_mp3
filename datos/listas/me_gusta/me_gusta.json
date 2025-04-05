@@ -1,7 +1,7 @@
 {
     "me_gusta": [
         {
-            "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\120.mp3",
             "titulo": "120",
             "artista": "Bad Bunny",
             "artista_album": "Bad Bunny",
@@ -13,6 +13,20 @@
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Bellakita.mp3",
+            "titulo": "Bellakita",
+            "artista": "CDobleta",
+            "artista_album": "CDobleta",
+            "album": "Bellakita",
+            "duracion": 182.54367346938776,
+            "duracion_formateada": "03:02",
+            "anio": "2023-12-30",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
         }
     ]
 }

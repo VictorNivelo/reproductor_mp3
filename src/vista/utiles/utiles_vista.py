@@ -158,3 +158,12 @@ def actualizar_texto_tooltip(componente, nuevo_texto):
     else:
         # Si no existe, crear uno nuevo
         crear_tooltip(componente, nuevo_texto)
+
+
+# Método para eliminar un tooltip existente
+def eliminar_tooltip():
+    # Ocultar tooltips visibles antes de mostrar detalles
+    for _, tooltip in tooltips.items():
+        if tooltip.tooltip and tooltip.tooltip.winfo_exists():
+            tooltip.tooltip.destroy()
+            tooltip.tooltip = None

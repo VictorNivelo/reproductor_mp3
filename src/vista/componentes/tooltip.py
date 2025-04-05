@@ -15,6 +15,8 @@ class ToolTip:
         # Asociar eventos de entrada y salida al componente
         self.componente.bind("<Enter>", self.iniciar_temporizador)
         self.componente.bind("<Leave>", self.ocultar_tooltip)
+        # Asociar evento de destrucción del componente para ocultar el tooltip
+        self.componente.bind("<Destroy>", self.ocultar_tooltip_forzado)
 
     # Obtener el texto del tooltip
     @property
@@ -179,3 +181,14 @@ class ToolTip:
         if self.tooltip and self.tooltip.winfo_exists():
             # Iniciar animación de desaparición
             self.animar_desaparicion(0)
+
+    # Método para ocultar el tooltip forzado (sin animación)
+    def ocultar_tooltip_forzado(self, _event=None):
+        self.cancelar_temporizador()
+        if self.tooltip and self.tooltip.winfo_exists():
+            try:
+                self.tooltip.destroy()
+                self.tooltip = None
+            except Exception as e:
+                print(f"Error al ocultar el tooltip forzado: {e}")
+                pass

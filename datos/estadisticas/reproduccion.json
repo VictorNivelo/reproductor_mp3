@@ -1,65 +1,65 @@
 {
     "artistas": {
-        "Madvillain ft Madlib, MF DOOM, Viktor Vaughn": 1,
-        "Bad Bunny": 1,
-        "CDobleta": 1,
-        "Bryant Myers": 1,
-        "Yan Block ft Panda Black": 1,
-        "Kanye West": 1
+        "Yan Block ft Panda Black": 3,
+        "Travis Scott ft SZA, Future": 3,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 2,
+        "Eladio Carrion ft Bryant Myers": 2,
+        "Gucci Mane ft Bruno Mars, Kodak Black": 2,
+        "Kanye West ft Lupe Fiasco": 1
     },
     "albumes": {
-        "Madvillainy": 1,
-        "EL ÚLTIMO TOUR DEL MUNDO": 1,
-        "Bellakita": 1,
-        "En Que País": 1,
-        "444": 1,
-        "The Life Of Pablo": 1
+        "444": 3,
+        "UTOPIA": 3,
+        "47 (Remix)": 2,
+        "Animal": 2,
+        "Evil Genius": 2,
+        "Late Registration": 1
     },
-    "tiempo_total": 1172.0964897959184,
-    "canciones_escuchadas": 6,
+    "tiempo_total": 3704.6334693877557,
+    "canciones_escuchadas": 13,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\30 Hours.mp3",
-        "titulo": "30 Hours",
-        "artista": "Kanye West",
-        "album": "The Life Of Pablo",
-        "timestamp": "2025-04-05T18:34:28.212560"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
+        "titulo": "444",
+        "artista": "Yan Block ft Panda Black",
+        "album": "444",
+        "timestamp": "2025-04-05T22:05:11.137935"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\Musica\\Fancy Clown (ft Viktor Vaughn)..mp3": {
-            "contador": 1,
-            "titulo": "Fancy Clown (ft Viktor Vaughn)",
-            "artista": "Madvillain ft Madlib, MF DOOM, Viktor Vaughn",
-            "album": "Madvillainy"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\120.mp3": {
-            "contador": 1,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Bellakita.mp3": {
-            "contador": 1,
-            "titulo": "Bellakita",
-            "artista": "CDobleta",
-            "album": "Bellakita"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\En Que País.mp3": {
-            "contador": 1,
-            "titulo": "En Que País",
-            "artista": "Bryant Myers",
-            "album": "En Que País"
-        },
         "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
         },
-        "C:\\Users\\Victor\\Music\\Musica\\30 Hours.mp3": {
+        "C:\\Users\\Victor\\Music\\Musica\\TELEKINESIS (ft SZA, Future).mp3": {
+            "contador": 3,
+            "titulo": "TELEKINESIS (ft SZA, Future)",
+            "artista": "Travis Scott ft SZA, Future",
+            "album": "UTOPIA"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\47 (Remix).mp3": {
+            "contador": 2,
+            "titulo": "47 (Remix)",
+            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+            "album": "47 (Remix)"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3": {
+            "contador": 2,
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Wake Up in the Sky.mp3": {
+            "contador": 2,
+            "titulo": "Wake Up in the Sky",
+            "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
+            "album": "Evil Genius"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Touch The Sky.mp3": {
             "contador": 1,
-            "titulo": "30 Hours",
-            "artista": "Kanye West",
-            "album": "The Life Of Pablo"
+            "titulo": "Touch The Sky",
+            "artista": "Kanye West ft Lupe Fiasco",
+            "album": "Late Registration"
         }
     }
 }

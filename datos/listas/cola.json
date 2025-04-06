@@ -1,14 +1,18 @@
 {
-    "indice_actual": 1,
+    "indice_actual": 0,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\Musica\\30 Hours.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Frank's Track.mp3"
+        "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\47 (Remix).mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\TELEKINESIS (ft SZA, Future).mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Touch The Sky.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Wake Up in the Sky.mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Frank's Track.mp3",
-        "titulo": "Frank's Track",
-        "artista": "Kanye West",
-        "album": "The Life Of Pablo",
-        "timestamp": "2025-04-05T18:34:30.193434"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
+        "titulo": "444",
+        "artista": "Yan Block ft Panda Black",
+        "album": "444",
+        "timestamp": "2025-04-05T22:05:11.136688"
     }
 }

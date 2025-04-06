@@ -333,6 +333,24 @@ class ControladorReproductor:
             self.reproduciendo = True
             self.actualizar_tiempo()
 
+    # Método que reproduce o reanuda la canción actual
+    def reproducir_o_reanudar(self) -> bool:
+        # Comprobar primero si hay canción actual
+        if self.cancion_actual:
+            # Si la canción ya está cargada pero pausada, solo reanudar
+            if not self.reproduciendo:
+                self.reanudar_reproduccion()
+                return True
+            # Si ya está reproduciendo, no hacer nada
+            return True
+        # Si no hay canción actual pero hay lista, reproducir la primera
+        elif self.lista_reproduccion and self.indice_actual >= 0:
+            cancion = self.lista_reproduccion[self.indice_actual]
+            self.reproducir_cancion(cancion)
+            return True
+        # Ni canción actual ni lista de reproducción
+        return False
+
     # Método que detiene la reproducción de la canción
     def detener_reproduccion(self) -> bool:
         if self.id_temporizador:

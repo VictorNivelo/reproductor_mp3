@@ -221,13 +221,7 @@ def reproducir_vista():
     global ESTADO_REPRODUCCION
     if not ESTADO_REPRODUCCION:
         # Verificar si hay una canción en la cola para reproducir
-        if controlador_reproductor.cancion_actual:
-            # Si hay una canción cargada pero no estaba sonando, empezar a reproducirla
-            if not controlador_reproductor.reproduciendo:
-                controlador_reproductor.reproducir_cancion(controlador_reproductor.cancion_actual)
-            else:
-                # Si ya estaba sonando pero pausada, solo reanudar
-                controlador_reproductor.reanudar_reproduccion()
+        if controlador_reproductor.reproducir_o_reanudar():
             # Actualizar estado e iconos
             ESTADO_REPRODUCCION = True
             controlador_tema.registrar_botones("pausa", boton_reproducir)
@@ -544,10 +538,6 @@ def agregar_a_cola_vista(cancion):
         controlador_reproductor.establecer_lista_reproduccion([cancion])
         # Mostrar mensaje de confirmación
         print(f"Se ha agregado a la cola: {cancion.titulo_cancion}")
-        return
-    # Si la canción ya está en la lista, mostrar mensaje
-    if cancion in controlador_reproductor.lista_reproduccion:
-        print(f"La canción '{cancion.titulo_cancion}' ya está en la cola")
         return
     # Añadir la canción a la lista actual
     controlador_reproductor.lista_reproduccion.append(cancion)
@@ -1008,7 +998,12 @@ def mostrar_menu_opciones(cancion, panel_padre):
     crear_opcion_menu(
         panel_menu_opciones, "Reproducir ahora", lambda: reproducir_cancion_desde_lista(cancion)
     )
-    crear_opcion_menu(panel_menu_opciones, "Agregar a la cola", lambda: agregar_a_cola_vista(cancion))
+    # -------------------------------------------------------------------------------------------
+    # -------------------------------- Opciones de cola de reproducción -------------------------
+    crear_opcion_menu(panel_menu_opciones, "Agregar al inicio de la cola", lambda: print("hola"), True)
+    crear_opcion_menu(
+        panel_menu_opciones, "Agregar al final de la cola", lambda: agregar_a_cola_vista(cancion)
+    )
     # -------------------------------------------------------------------------------------------
     # ------------------------------------ Opciones de gusto ------------------------------------
     # Separador antes de opciones de Me gusta/Favorito

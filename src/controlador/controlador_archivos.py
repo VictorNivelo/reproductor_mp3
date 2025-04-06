@@ -107,9 +107,13 @@ class ControladorArchivos:
                         "album": cancion_actual.album,
                         "timestamp": datetime.now().isoformat(),
                     }
+                # Modificación: Guardar las rutas y las posiciones en la cola
+                canciones_en_cola = []
+                for cancion in reproductor.lista_reproduccion:
+                    canciones_en_cola.append(str(cancion.ruta_cancion))
                 datos_cola = {
                     "indice_actual": reproductor.indice_actual,
-                    "canciones": [str(cancion.ruta_cancion) for cancion in reproductor.lista_reproduccion],
+                    "canciones": canciones_en_cola,
                     "ultima_cancion": ultima_cancion_info,
                 }
             contenido = json.dumps(datos_cola, ensure_ascii=False, indent=4)
@@ -202,13 +206,14 @@ class ControladorArchivos:
             # Si no hay canciones en el archivo, salir
             if not datos_cola["canciones"]:
                 return True
-            # Reconstituir la lista de reproducción a partir de las rutas guardadas
+            # Modificación: Reconstruir la lista de reproducción permitiendo duplicados
             lista_reconstruida = []
             for ruta_str in datos_cola["canciones"]:
                 ruta = Path(ruta_str)
                 # Buscar la canción en la biblioteca
                 for cancion in biblioteca.canciones:
                     if cancion.ruta_cancion == ruta:
+                        # Añadir la canción a la lista aunque ya esté presente
                         lista_reconstruida.append(cancion)
                         break
             # Establecer la lista reconstruida y el índice actual

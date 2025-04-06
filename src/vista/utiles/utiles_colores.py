@@ -86,7 +86,6 @@ def crear_paleta_tema(colores_hex: List[str]) -> Dict[str, str]:
             "color_texto": "#ffffff",
             "color_boton": "#2d2d2d",
             "color_hover": "#383838",
-            "color_hover_oscuro": "#474747",
             "color_slider": "#555555",
             "color_borde": "#2d2d2d",
             "color_barra_progreso": "#474747",
@@ -105,7 +104,6 @@ def crear_paleta_tema(colores_hex: List[str]) -> Dict[str, str]:
             -2 % len(colores_por_saturacion)
         ],  # Color saturado para botones
         "color_hover": colores_por_saturacion[-1],
-        "color_hover_oscuro": colores_por_brillo[1],
         "color_slider": colores_por_saturacion[-3 % len(colores_por_saturacion)],
         "color_borde": colores_por_brillo[2],
         "color_barra_progreso": colores_por_brillo[1],

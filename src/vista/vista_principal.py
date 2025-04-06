@@ -51,9 +51,9 @@ pestanas_cargadas = {
 # Método para actualizar el tooltip
 def actualizar_tooltip_vista():
     # Actualizar todos los tooltips visibles
-    for _, tooltip in tooltips.items():
-        if tooltip.tooltip and tooltip.tooltip.winfo_exists():
-            tooltip.actualizar_colores_tooltip()
+    for _, tooltip_existente in lista_tooltips.items():
+        if tooltip_existente.tooltip and tooltip_existente.tooltip.winfo_exists():
+            tooltip_existente.actualizar_colores_tooltip()
 
 
 # Función para cambiar el tema de la interfaz
@@ -911,13 +911,40 @@ def ir_al_artista(cancion):
     pestanas_cargadas["Artistas"] = True
     # Actualizar la vista de artistas
     actualizar_vista_artistas()
-    # Buscar y mostrar las canciones del artista específico
-    if cancion.artista and cancion.artista not in ["", "Unknown Artist", "Desconocido"]:
-        # Mostrar las canciones del artista
-        mostrar_canciones_artista(cancion.artista)
+    # Extraer el artista principal (siempre es el primero antes de cualquier colaboración)
+    artista_completo = cancion.artista
+    # Lista de separadores comunes en nombres de artistas
+    separadores = SEPARADORES
+    # Obtener SIEMPRE el primer artista (antes del primer separador)
+    artista_principal = artista_completo
+    for separador in separadores:
+        if separador.lower() in artista_completo.lower():
+            artista_principal = artista_completo.split(separador, 1)[0].strip()
+            print(f"Artista extraído: '{artista_principal}' de '{artista_completo}'")
+            break
+    # Buscar el artista principal en la biblioteca
+    artista_encontrado = None
+    # Primero buscar coincidencia exacta (sin importar mayúsculas/minúsculas)
+    for artista_key in biblioteca.por_artista.keys():
+        if artista_principal.lower() == artista_key.lower():
+            artista_encontrado = artista_key
+            break
+    # Si no hay coincidencia exacta, buscar coincidencia parcial
+    if not artista_encontrado:
+        for artista_key in biblioteca.por_artista.keys():
+            if (
+                artista_principal.lower() in artista_key.lower()
+                or artista_key.lower() in artista_principal.lower()
+            ):
+                artista_encontrado = artista_key
+                break
+    # Si encontramos un artista que coincide, mostrar sus canciones
+    if artista_encontrado:
+        mostrar_canciones_artista(artista_encontrado)
+        print(f"Mostrando canciones del artista: {artista_encontrado}")
     else:
-        # Si no hay información de artista, mostrar un mensaje
-        print(f"No hay información de artista para: {cancion.titulo_cancion}")
+        # Si no hay coincidencia, mostrar mensaje informativo
+        print(f"No se encontró el artista principal '{artista_principal}' en la biblioteca")
 
 
 # Función para crear una opción de menú en un menú contextual
@@ -1218,7 +1245,7 @@ def mostrar_canciones_detalle(pagina, elemento, funcion_regresar):
     # Icono de regrear
     icono_regresar = cargar_icono_personalizado("regresar", controlador_tema.tema_iconos, (12, 12))
     # Botón para volver a la lista
-    boton_volver = ctk.CTkButton(
+    boton_regresar = ctk.CTkButton(
         panel_superior,
         width=ANCHO_BOTON + 4,
         height=ALTO_BOTON + 4,
@@ -1230,9 +1257,9 @@ def mostrar_canciones_detalle(pagina, elemento, funcion_regresar):
         image=icono_regresar,
         command=regresar_con_limpieza,
     )
-    boton_volver.pack(side="left")
-    controlador_tema.registrar_botones(f"volver_{pagina.lower()}", boton_volver)
-    crear_tooltip(boton_volver, "Regresar a la lista")
+    boton_regresar.pack(side="left")
+    controlador_tema.registrar_botones(f"volver_{pagina.lower()}", boton_regresar)
+    crear_tooltip(boton_regresar, "Regresar a la lista")
     # -------------------------------------------------------------------------------------------
     # ------------------------------------ Etiqueta de elemento ---------------------------------
     # Título del elemento

@@ -227,22 +227,7 @@ class Biblioteca:
     @staticmethod
     def separar_artistas(texto_artista: str) -> list:
         # Lista de separadores comunes para artistas
-        separadores = [
-            " ft ",
-            " feat ",
-            " feat. ",
-            " featuring ",
-            " with ",
-            " & ",
-            " and ",
-            " con ",
-            " junto a ",
-            " x ",
-            " vs ",
-            " vs. ",
-            ",",
-            " + ",
-        ]
+        separadores = SEPARADORES
         # Convertir a minúsculas para búsqueda insensible a mayúsculas
         texto_lower = texto_artista.lower()
         # Identificar separadores presentes

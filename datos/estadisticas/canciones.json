@@ -1,8 +1,8 @@
 {
     "estadisticas": {
-        "total_canciones": 6,
-        "total_artistas": 15,
-        "total_albumes": 6,
+        "total_canciones": 7,
+        "total_artistas": 17,
+        "total_albumes": 7,
         "me_gusta": 1,
         "favorito": 0
     },
@@ -45,6 +45,20 @@
             "duracion_formateada": "03:37",
             "anio": "2019-07-05",
             "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3",
+            "titulo": "Ric Flair Drip (ft Metro Boomin)",
+            "artista": "Offset ft Metro Boomin",
+            "artista_album": "21 Savage ft Offset, Metro Boomin",
+            "album": "Without Warning",
+            "duracion": 172.8261224489796,
+            "duracion_formateada": "02:52",
+            "anio": "2017-10-30",
+            "numero_pista": "3/10",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false

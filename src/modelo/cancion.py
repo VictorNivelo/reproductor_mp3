@@ -36,6 +36,14 @@ class Cancion:
         self.me_gusta = False
         self.favorito = False
 
+    # Convertir a cadena para mostrar en la consola
+    def __str__(self):
+        return f"\n{self.titulo_cancion} - {self.artista}"
+
+    # Convertir en cadena un objeto Cancion
+    def __repr__(self):
+        return self.__str__()
+
     # Propiedad que devuelve la duración de la canción en formato MM:SS
     @property
     def duracion_formateada(self) -> str:

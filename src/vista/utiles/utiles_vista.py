@@ -5,7 +5,7 @@ from PIL import Image
 import tkinter as tk
 
 # Diccionario para guardar los tooltips de los widgets
-tooltips = {}
+lista_tooltips = {}
 
 
 # Método para obtener la ruta de los iconos de la aplicación
@@ -146,15 +146,15 @@ def establecer_icono_tema(ventana, tema="claro"):
 def crear_tooltip(componente, texto):
     # Guardar referencia al tooltip en el diccionario
     tooltip = ToolTip(componente, texto)
-    tooltips[componente] = tooltip
+    lista_tooltips[componente] = tooltip
     return tooltip
 
 
 # Método para actualizar el texto de un tooltip existente
 def actualizar_texto_tooltip(componente, nuevo_texto):
-    if componente in tooltips:
+    if componente in lista_tooltips:
         # Si el tooltip existe, actualizar su texto
-        tooltips[componente].texto_componente = nuevo_texto
+        lista_tooltips[componente].texto_componente = nuevo_texto
     else:
         # Si no existe, crear uno nuevo
         crear_tooltip(componente, nuevo_texto)
@@ -163,7 +163,12 @@ def actualizar_texto_tooltip(componente, nuevo_texto):
 # Método para eliminar un tooltip existente
 def eliminar_tooltip():
     # Ocultar tooltips visibles antes de mostrar detalles
-    for _, tooltip in tooltips.items():
-        if tooltip.tooltip and tooltip.tooltip.winfo_exists():
-            tooltip.tooltip.destroy()
-            tooltip.tooltip = None
+    for _, tooltip_existente in lista_tooltips.items():
+        if tooltip_existente and tooltip_existente.tooltip is not None:
+            try:
+                if tooltip_existente.tooltip.winfo_exists():
+                    tooltip_existente.tooltip.destroy()
+                    tooltip_existente.tooltip = None
+            except Exception as e:
+                print(f"Error al eliminar tooltip: {e}")
+                tooltip_existente.tooltip = None

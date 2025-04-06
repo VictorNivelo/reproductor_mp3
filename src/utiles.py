@@ -52,8 +52,9 @@ class Utiles:
         self.color_fondo = FONDO_OSCURO if tema else FONDO_CLARO
         self.color_texto = TEXTO_OSCURO if tema else TEXTO_CLARO
         self.color_boton = BOTON_OSCURO if tema else BOTON_CLARO
-        self.color_hover = HOVER_OSCURO if tema else HOVER_CLARO
-        self.color_hover_oscuro = HOVER_OSCURO if tema else HOVER_OSCURO
+        self.color_hover, self.color_hover_oscuro = (
+            (HOVER_OSCURO, HOVER_CLARO) if tema else (HOVER_CLARO, HOVER_OSCURO)
+        )
         # Colores exclusivos de UtilesControlador
         self.color_base = OSCURO if tema else CLARO
         self.color_segundario = OSCURO_SEGUNDARIO if tema else CLARO_SEGUNDARIO

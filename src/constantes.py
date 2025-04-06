@@ -130,6 +130,27 @@ TIEMPO_AJUSTE = 10
 
 # ========================================================================
 
+# ======================== Separadores de listas =========================
+# Separadores de listas
+SEPARADORES = [
+    " ft ",
+    " feat ",
+    " feat. ",
+    " featuring ",
+    " with ",
+    " & ",
+    " and ",
+    " con ",
+    " junto a ",
+    " x ",
+    " vs ",
+    " vs. ",
+    ",",
+    " + ",
+]
+
+# ========================================================================
+
 # =================== Formatos de archivos soportados ====================
 # Formatos de archivos soportados
 FORMATOS_SOPORTADOS = {".mp3", ".flac", ".m4a", ".mp4", ".wav", ".ogg"}

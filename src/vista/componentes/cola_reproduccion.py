@@ -404,6 +404,7 @@ class ColaReproduccion:
         if modo_repeticion == 1:  # Repetir canción actual
             # Solo mostrar la canción actual que se repetirá
             if 0 <= indice_actual < len(lista_reproduccion):
+                proximas_canciones = [lista_reproduccion[indice_actual]]
                 # --------------------------------------- Etiqueta repetición ---------------------------------
                 etiqueta_info = ctk.CTkLabel(
                     panel,
@@ -419,6 +420,9 @@ class ColaReproduccion:
                 # ---------------------------------------------------------------------------------------------
                 return
         elif modo_aleatorio:  # Reproducción aleatoria
+            proximas_canciones = [
+                cancion for i, cancion in enumerate(lista_reproduccion) if i != indice_actual
+            ]
             # ---------------------------------------- Etiqueta aleatorio -------------------------------------
             etiqueta_info = ctk.CTkLabel(
                 panel,
@@ -433,8 +437,9 @@ class ColaReproduccion:
             self.controlador_tema.registrar_etiqueta(etiqueta_info)
             # -------------------------------------------------------------------------------------------------
             # En modo aleatorio, mostrar todas las canciones disponibles (eliminando la limitación)
-            disponibles = [cancion for i, cancion in enumerate(lista_reproduccion) if i != indice_actual]
-            proximas_canciones = disponibles
+            proximas_canciones = [
+                cancion for i, cancion in enumerate(lista_reproduccion) if i != indice_actual
+            ]
             if not proximas_canciones and modo_repeticion == 2:
                 # ---------------------------------------- Etiqueta reinicio ----------------------------------
                 etiqueta_reinicio = ctk.CTkLabel(
@@ -452,8 +457,10 @@ class ColaReproduccion:
         else:  # Reproducción secuencial
             # Mostrar las próximas canciones en orden
             if indice_actual < len(lista_reproduccion) - 1:
+                # Mostrar todas las canciones después del índice actual
                 proximas_canciones = lista_reproduccion[indice_actual + 1 :]
-            elif modo_repeticion == 2:  # Repetir todo
+            # Si está activado repetir todo y hay canciones antes de la actual, añadirlas después
+            if modo_repeticion == 2 and indice_actual > 0:
                 # ---------------------------------------- Etiqueta reinicio ----------------------------------
                 etiqueta_reinicio = ctk.CTkLabel(
                     panel,
@@ -467,7 +474,7 @@ class ColaReproduccion:
                 self.componentes.append(etiqueta_reinicio)
                 self.controlador_tema.registrar_etiqueta(etiqueta_reinicio)
                 # ---------------------------------------------------------------------------------------------
-                proximas_canciones = lista_reproduccion[:15]
+                proximas_canciones.extend(lista_reproduccion[:indice_actual])
         # Mostrar las próximas canciones con un diseño más compacto
         for i, cancion in enumerate(proximas_canciones):
             # Calcular el índice real en la lista de reproducción
@@ -640,16 +647,8 @@ class ColaReproduccion:
     # Método para quitar una canción de la cola de reproducción
     def quitar_de_cola(self, indice):
         if 0 <= indice < len(self.controlador_reproductor.lista_reproduccion):
-            # Verificar si es la canción actual
-            es_actual = indice == self.controlador_reproductor.indice_actual
-            # Eliminar la canción de la lista
-            self.controlador_reproductor.lista_reproduccion.pop(indice)
-            # Ajustar el índice actual si es necesario
-            if indice <= self.controlador_reproductor.indice_actual:
-                self.controlador_reproductor.indice_actual -= 1
-            # Si era la canción actual, reproducir la siguiente
-            if es_actual and self.controlador_reproductor.reproduciendo:
-                self.controlador_reproductor.reproducir_siguiente()
+            # Delegar la acción al controlador
+            self.controlador_reproductor.quitar_cancion_de_cola(indice)
             # Actualizar la ventana de cola
             self.actualizar_ventana_cola()
             # Guardar la cola actualizada
@@ -658,22 +657,10 @@ class ColaReproduccion:
 
     # Método para limpiar toda la cola de reproducción
     def limpiar_cola(self):
-        # Guardar la canción actual si está reproduciéndose
-        cancion_actual = None
-        if self.controlador_reproductor.reproduciendo and self.controlador_reproductor.cancion_actual:
-            cancion_actual = self.controlador_reproductor.cancion_actual
-        # Limpiar la lista
-        self.controlador_reproductor.lista_reproduccion = []
-        # Si hay una canción reproduciéndose, mantenerla
-        if cancion_actual:
-            self.controlador_reproductor.lista_reproduccion.append(cancion_actual)
-            self.controlador_reproductor.indice_actual = 0
-        else:
-            self.controlador_reproductor.indice_actual = -1
+        # Delegar la acción al controlador
+        self.controlador_reproductor.limpiar_cola(mantener_actual=True)
         # Actualizar la ventana de cola
         self.actualizar_ventana_cola()
-        controlador_archivos = ControladorArchivos()
-        controlador_archivos.guardar_cola_reproduccion(self.controlador_reproductor)
 
     # Método para actualizar la ventana de la cola de reproducción
     def actualizar_ventana_cola(self):

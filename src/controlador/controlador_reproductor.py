@@ -265,12 +265,85 @@ class ControladorReproductor:
         self.barra_progreso = barra
 
     # Método que establece la lista de reproducción actual
-    def establecer_lista_reproduccion(self, canciones, indice=0):
+    def establecer_cola_reproduccion(self, canciones, indice=0):
         self.lista_reproduccion = canciones
         self.indice_actual = indice if 0 <= indice < len(canciones) else 0
         # Guardar la cola automáticamente
         controlador_archivos = ControladorArchivos()
         controlador_archivos.guardar_cola_reproduccion(self)
+
+    # Método que agrega una canción a la cola de reproducción
+    def agregar_cancion_a_cola(self, cancion):
+        if cancion:
+            self.lista_reproduccion.append(cancion)
+            # Si no hay reproducción activa, configurar esta como la siguiente
+            if self.indice_actual == -1:
+                self.indice_actual = 0
+            # Guardar la cola automáticamente
+            controlador_archivos = ControladorArchivos()
+            controlador_archivos.guardar_cola_reproduccion(self)
+            return True
+        return False
+
+    # Método que agrega una canción al inicio de la cola de reproducción
+    def agregar_cancion_inicio_cola(self, cancion):
+        if cancion:
+            # Si hay una canción en reproducción, insertar después de ella
+            if self.indice_actual >= 0:
+                # Insertar después de la posición actual
+                posicion_insercion = self.indice_actual + 1
+                self.lista_reproduccion.insert(posicion_insercion, cancion)
+                # No es necesario ajustar el índice actual
+            else:
+                # Si no hay reproducción activa, insertar al inicio
+                self.lista_reproduccion.insert(0, cancion)
+                self.indice_actual = 0
+            # Guardar la cola automáticamente
+            controlador_archivos = ControladorArchivos()
+            controlador_archivos.guardar_cola_reproduccion(self)
+            return True
+        return False
+
+    # Método que agrega una canción al final de la cola de reproducción
+    def agregar_cancion_final_cola(self, cancion):
+        return self.agregar_cancion_a_cola(cancion)
+
+    # Método que quita una canción de la cola de reproducción
+    def quitar_cancion_de_cola(self, indice):
+        if 0 <= indice < len(self.lista_reproduccion):
+            # Verificar si es la canción actual
+            es_actual = indice == self.indice_actual
+            # Eliminar la canción de la lista
+            self.lista_reproduccion.pop(indice)
+            # Ajustar el índice actual si es necesario
+            if indice <= self.indice_actual and self.indice_actual > 0:
+                self.indice_actual -= 1
+            elif len(self.lista_reproduccion) == 0:
+                self.indice_actual = -1
+            # Si era la canción actual, reproducir la siguiente
+            if es_actual and self.reproduciendo:
+                return self.reproducir_siguiente()
+            return True
+        return False
+
+    # Método que limpia la cola de reproducción
+    def limpiar_cola(self, mantener_actual=True):
+        # Guardar referencia a la canción actual si está reproduciéndose
+        cancion_actual = None
+        if mantener_actual and self.reproduciendo and self.cancion_actual:
+            cancion_actual = self.cancion_actual
+        # Limpiar la lista
+        self.lista_reproduccion = []
+        # Si hay una canción reproduciéndose y queremos mantenerla
+        if cancion_actual:
+            self.lista_reproduccion.append(cancion_actual)
+            self.indice_actual = 0
+        else:
+            self.indice_actual = -1
+        # Guardar la cola actualizada
+        controlador_archivos = ControladorArchivos()
+        controlador_archivos.guardar_cola_reproduccion(self)
+        return True
 
     # Método que establece el modo de repetición
     def establecer_modo_repeticion(self, modo):
@@ -284,31 +357,40 @@ class ControladorReproductor:
 
     # Método que reproduce una canción
     def reproducir_cancion(self, cancion: Cancion) -> None:
+        # Cancelar el temporizador anterior si existe
         if self.id_temporizador:
             self.etiqueta_tiempo_actual.after_cancel(self.id_temporizador)
             self.id_temporizador = None
+        # Establecer la canción actual
         self.cancion_actual = cancion
-        # Actualizar el índice si la canción está en la lista de reproducción
+        # Actualizar el índice solo si la canción está en la lista de reproducción
         if self.lista_reproduccion:
-            try:
-                nuevo_indice = self.lista_reproduccion.index(cancion)
-                # Si cambiamos el índice y estamos en modo aleatorio, actualizar historial
-                if nuevo_indice != self.indice_actual and self.modo_aleatorio:
-                    self.indice_actual = nuevo_indice
-                    # Agregar al historial si no está ya
-                    if self.indice_actual not in self.historial_aleatorio:
-                        self.historial_aleatorio.append(self.indice_actual)
+            # Buscar todas las ocurrencias de la canción en la lista
+            indices_cancion = [i for i, c in enumerate(self.lista_reproduccion) if c == cancion]
+            if indices_cancion:
+                # Si hay múltiples instancias de la misma canción, elegir la primera que sea ≥ índice_actual
+                indices_mayores = [i for i in indices_cancion if i >= self.indice_actual]
+                if indices_mayores:
+                    # Tomar el primer índice mayor o igual al actual
+                    self.indice_actual = indices_mayores[0]
                 else:
-                    self.indice_actual = nuevo_indice
-            except ValueError:
-                # Si la canción no está en la lista, mantener el índice actual
-                pass
+                    # Si no hay índices mayores, tomar el primero
+                    self.indice_actual = indices_cancion[0]
+                # Actualizar historial en modo aleatorio
+                if self.modo_aleatorio and self.indice_actual not in self.historial_aleatorio:
+                    self.historial_aleatorio.append(self.indice_actual)
+        else:
+            # Si la canción no está en la lista, agregarla
+            self.lista_reproduccion.append(cancion)
+            self.indice_actual = 0
+        # Cargar y reproducir la canción con pygame
         pygame.mixer.music.load(str(cancion.ruta_cancion))
         pygame.mixer.music.play()
         self.reproduciendo = True
         # Reiniciar cronómetro
         self.tiempo_acumulado = 0
         self.tiempo_inicio = time.perf_counter()
+        # Actualizar interfaz
         self.actualizar_informacion_interfaz()
         self.actualizar_tiempo()
         # Guardar la cola automáticamente

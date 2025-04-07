@@ -1,15 +1,15 @@
 {
     "me_gusta": [
         {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\444..mp3",
-            "titulo": "444",
-            "artista": "Yan Block ft Panda Black",
-            "artista_album": "Yan Block ft Panda Black",
-            "album": "444",
-            "duracion": 175.30775510204083,
-            "duracion_formateada": "02:55",
-            "anio": "2024-04-04",
-            "numero_pista": "1/1",
+            "ruta": "C:\\Users\\Victor\\Music\\pm\\120.mp3",
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "artista_album": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO",
+            "duracion": 151.53632653061226,
+            "duracion_formateada": "02:31",
+            "anio": "2020-11-27",
+            "numero_pista": "14",
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": false

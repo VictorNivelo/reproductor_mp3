@@ -1,73 +1,57 @@
 {
     "artistas": {
-        "Yan Block ft Panda Black": 5,
-        "Travis Scott ft SZA, Future": 6,
-        "Anuel AA ft Sinfonico, Ñengo Flow": 2,
-        "Eladio Carrion ft Bryant Myers": 4,
-        "Gucci Mane ft Bruno Mars, Kodak Black": 3,
-        "Kanye West ft Lupe Fiasco": 10,
-        "Offset ft Metro Boomin": 1
+        "Bad Bunny": 3,
+        "¥$ ft Kanye West, Ty Dolla $ign": 3,
+        "Tainy ft Sech, E.VAX": 9,
+        "Offset ft Metro Boomin": 6,
+        "Travis Scott ft SZA, Future": 3
     },
     "albumes": {
-        "444": 5,
-        "UTOPIA": 6,
-        "47 (Remix)": 2,
-        "Animal": 4,
-        "Evil Genius": 3,
-        "Late Registration": 10,
-        "Without Warning": 1
+        "EL ÚLTIMO TOUR DEL MUNDO": 3,
+        "VULTURES 2": 3,
+        "DATA": 9,
+        "Without Warning": 6,
+        "UTOPIA": 3
     },
-    "tiempo_total": 8059.533061224494,
-    "canciones_escuchadas": 31,
+    "tiempo_total": 4352.992653061225,
+    "canciones_escuchadas": 24,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3",
-        "titulo": "Ric Flair Drip (ft Metro Boomin)",
-        "artista": "Offset ft Metro Boomin",
-        "album": "Without Warning",
-        "timestamp": "2025-04-06T13:39:00.996108"
+        "ruta": "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
+        "titulo": "11 Y ONCE",
+        "artista": "Tainy ft Sech, E.VAX",
+        "album": "DATA",
+        "timestamp": "2025-04-07T15:59:32.187237"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\Musica\\444..mp3": {
-            "contador": 5,
-            "titulo": "444",
-            "artista": "Yan Block ft Panda Black",
-            "album": "444"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\TELEKINESIS (ft SZA, Future).mp3": {
-            "contador": 6,
-            "titulo": "TELEKINESIS (ft SZA, Future)",
-            "artista": "Travis Scott ft SZA, Future",
-            "album": "UTOPIA"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\47 (Remix).mp3": {
-            "contador": 2,
-            "titulo": "47 (Remix)",
-            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
-            "album": "47 (Remix)"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Animal..mp3": {
-            "contador": 4,
-            "titulo": "Animal",
-            "artista": "Eladio Carrion ft Bryant Myers",
-            "album": "Animal"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Wake Up in the Sky.mp3": {
+        "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
             "contador": 3,
-            "titulo": "Wake Up in the Sky",
-            "artista": "Gucci Mane ft Bruno Mars, Kodak Black",
-            "album": "Evil Genius"
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
-        "C:\\Users\\Victor\\Music\\Musica\\Touch The Sky.mp3": {
-            "contador": 10,
-            "titulo": "Touch The Sky",
-            "artista": "Kanye West ft Lupe Fiasco",
-            "album": "Late Registration"
+        "C:\\Users\\Victor\\Music\\pm\\ISABELLA.mp3": {
+            "contador": 3,
+            "titulo": "ISABELLA",
+            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
+            "album": "VULTURES 2"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3": {
+            "contador": 9,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
         },
         "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3": {
-            "contador": 1,
+            "contador": 6,
             "titulo": "Ric Flair Drip (ft Metro Boomin)",
             "artista": "Offset ft Metro Boomin",
             "album": "Without Warning"
+        },
+        "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3": {
+            "contador": 3,
+            "titulo": "TELEKINESIS (ft SZA, Future)",
+            "artista": "Travis Scott ft SZA, Future",
+            "album": "UTOPIA"
         }
     }
 }

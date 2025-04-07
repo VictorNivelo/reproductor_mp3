@@ -239,7 +239,7 @@ def reproducir_vista():
 def reproducir_cancion_desde_lista(cancion):
     global ESTADO_REPRODUCCION, biblioteca
     # Establecer la lista de reproducción actual
-    controlador_reproductor.establecer_lista_reproduccion(
+    controlador_reproductor.establecer_cola_reproduccion(
         biblioteca.canciones, biblioteca.canciones.index(cancion)
     )
     # Reproducir la canción
@@ -530,25 +530,43 @@ def agregar_directorio_vista():
         actualizar_pestana_seleccionada()
 
 
-# Función para agregar una canción a la cola de reproducción
-def agregar_a_cola_vista(cancion):
-    # Verificar si hay una lista de reproducción existente
-    if not controlador_reproductor.lista_reproduccion:
-        # Si no hay cola, crear una nueva con esta canción
-        controlador_reproductor.establecer_lista_reproduccion([cancion])
+# Función para agregar una canción al inicio de la cola de reproducción
+def agregar_inicio_cola_vista(cancion):
+    # Usar el método del controlador para agregar la canción después de la actual
+    if controlador_reproductor.agregar_cancion_inicio_cola(cancion):
+        # Mostrar mensaje de confirmación
+        print(f"Se ha agregado después de la canción actual: {cancion.titulo_cancion}")
+        # Imprimir estado de la cola para diagnóstico
+        print("ESTADO DE LA COLA DESPUÉS DE AGREGAR:")
+        for i, c in enumerate(controlador_reproductor.lista_reproduccion):
+            marca = " (ACTUAL)" if i == controlador_reproductor.indice_actual else ""
+            print(f"{i}: {c.titulo_cancion}{marca}")
+        # Si la ventana de cola está abierta, actualizarla
+        if (
+            hasattr(cola_reproduccion, "ventana_cola")
+            and cola_reproduccion.ventana_cola
+            and cola_reproduccion.ventana_cola.winfo_exists()
+        ):
+            cola_reproduccion.actualizar_ventana_cola()
+    else:
+        print(f"No se pudo agregar después de la canción actual: {cancion.titulo_cancion}")
+
+
+# Función para agregar una canción al final de la cola de reproducción
+def agregar_fin_cola_vista(cancion):
+    # Usar el método del controlador para agregar la canción al final de la cola
+    if controlador_reproductor.agregar_cancion_final_cola(cancion):
         # Mostrar mensaje de confirmación
         print(f"Se ha agregado a la cola: {cancion.titulo_cancion}")
-        return
-    # Añadir la canción a la lista actual
-    controlador_reproductor.lista_reproduccion.append(cancion)
-    # Si no hay reproducción activa, configurar esta como la siguiente
-    if controlador_reproductor.indice_actual == -1:
-        controlador_reproductor.indice_actual = 0
-    # Guardar la cola automáticamente
-    controlador_archivos_cola = ControladorArchivos()
-    controlador_archivos_cola.guardar_cola_reproduccion(controlador_reproductor)
-    # Mostrar mensaje de confirmación
-    print(f"Se ha agregado a la cola: {cancion.titulo_cancion}")
+        # Si la ventana de cola está abierta, actualizarla
+        if (
+            hasattr(cola_reproduccion, "ventana_cola")
+            and cola_reproduccion.ventana_cola
+            and cola_reproduccion.ventana_cola.winfo_exists()
+        ):
+            cola_reproduccion.actualizar_ventana_cola()
+    else:
+        print(f"No se pudo agregar a la cola: {cancion.titulo_cancion}")
 
 
 # Función para eliminar una canción de la biblioteca
@@ -1027,9 +1045,11 @@ def mostrar_menu_opciones(cancion, panel_padre):
     )
     # -------------------------------------------------------------------------------------------
     # -------------------------------- Opciones de cola de reproducción -------------------------
-    crear_opcion_menu(panel_menu_opciones, "Agregar al inicio de la cola", lambda: print("hola"), True)
     crear_opcion_menu(
-        panel_menu_opciones, "Agregar al final de la cola", lambda: agregar_a_cola_vista(cancion)
+        panel_menu_opciones, "Agregar al inicio de la cola", lambda: agregar_inicio_cola_vista(cancion), True
+    )
+    crear_opcion_menu(
+        panel_menu_opciones, "Agregar al final de la cola", lambda: agregar_fin_cola_vista(cancion)
     )
     # -------------------------------------------------------------------------------------------
     # ------------------------------------ Opciones de gusto ------------------------------------
@@ -1238,11 +1258,12 @@ def mostrar_canciones_detalle(pagina, elemento, funcion_regresar):
     # -------------------------------------------------------------------------------------------
     # ------------------------------------- Panel superior --------------------------------------
     # Panel superior con botón volver y título
-    panel_superior = ctk.CTkFrame(contenedor_detalles, fg_color="transparent")
-    panel_superior.pack(fill="x", pady=(5, 10))
+    panel_superior = ctk.CTkFrame(contenedor_detalles, height=30, fg_color="transparent")
+    panel_superior.pack(fill="x")
+    panel_superior.pack_propagate(False)
     # -------------------------------------------------------------------------------------------
     # ------------------------------------- Botón regresar --------------------------------------
-    # Icono de regrear
+    # Icono de regresar
     icono_regresar = cargar_icono_personalizado("regresar", controlador_tema.tema_iconos, (12, 12))
     # Botón para volver a la lista
     boton_regresar = ctk.CTkButton(
@@ -1261,17 +1282,23 @@ def mostrar_canciones_detalle(pagina, elemento, funcion_regresar):
     controlador_tema.registrar_botones(f"volver_{pagina.lower()}", boton_regresar)
     crear_tooltip(boton_regresar, "Regresar a la lista")
     # -------------------------------------------------------------------------------------------
+    # -------------------------------------- Panel titulo ---------------------------------------
+    # Panel contenedor para la etiqueta
+    panel_titulo = ctk.CTkFrame(panel_superior, fg_color="transparent")
+    panel_titulo.place(relx=0.5, rely=0.5, anchor="center")
+    # -------------------------------------------------------------------------------------------
     # ------------------------------------ Etiqueta de elemento ---------------------------------
-    # Título del elemento
+    # Título del elemento centrado
     etiqueta_elemento = ctk.CTkLabel(
-        panel_superior,
+        panel_titulo,
+        height=25,
         fg_color="transparent",
         font=(LETRA, TAMANIO_LETRA_ETIQUETA, "bold"),
         text_color=controlador_tema.color_texto,
         text=elemento,
         anchor="center",
     )
-    etiqueta_elemento.pack(side="top", fill="x", expand=True)
+    etiqueta_elemento.pack()
     controlador_tema.registrar_etiqueta(etiqueta_elemento)
     # -------------------------------------------------------------------------------------------
     # Usar la función existente para crear el canvas con scroll
@@ -2214,10 +2241,10 @@ panel_elementos_volumen = ctk.CTkFrame(panel_volumen, fg_color="transparent")
 panel_elementos_volumen.pack(side="left", fill="x", expand=True)
 
 # Barra de volumen
-barra_volumen = ctk.CTkSlider(panel_elementos_volumen)
-barra_volumen.configure(
-    progress_color=FONDO_OSCURO,
+barra_volumen = ctk.CTkSlider(
+    panel_elementos_volumen,
     fg_color=HOVER_CLARO,
+    progress_color=FONDO_OSCURO,
     button_color=FONDO_OSCURO,
     button_hover_color=HOVER_OSCURO,
     number_of_steps=100,

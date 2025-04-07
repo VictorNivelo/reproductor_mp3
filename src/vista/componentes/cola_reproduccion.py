@@ -404,7 +404,6 @@ class ColaReproduccion:
         if modo_repeticion == 1:  # Repetir canción actual
             # Solo mostrar la canción actual que se repetirá
             if 0 <= indice_actual < len(lista_reproduccion):
-                proximas_canciones = [lista_reproduccion[indice_actual]]
                 # --------------------------------------- Etiqueta repetición ---------------------------------
                 etiqueta_info = ctk.CTkLabel(
                     panel,
@@ -420,9 +419,6 @@ class ColaReproduccion:
                 # ---------------------------------------------------------------------------------------------
                 return
         elif modo_aleatorio:  # Reproducción aleatoria
-            proximas_canciones = [
-                cancion for i, cancion in enumerate(lista_reproduccion) if i != indice_actual
-            ]
             # ---------------------------------------- Etiqueta aleatorio -------------------------------------
             etiqueta_info = ctk.CTkLabel(
                 panel,

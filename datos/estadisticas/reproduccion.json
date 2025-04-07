@@ -2,25 +2,25 @@
     "artistas": {
         "Bad Bunny": 3,
         "¥$ ft Kanye West, Ty Dolla $ign": 3,
-        "Tainy ft Sech, E.VAX": 9,
+        "Tainy ft Sech, E.VAX": 11,
         "Offset ft Metro Boomin": 6,
         "Travis Scott ft SZA, Future": 3
     },
     "albumes": {
         "EL ÚLTIMO TOUR DEL MUNDO": 3,
         "VULTURES 2": 3,
-        "DATA": 9,
+        "DATA": 11,
         "Without Warning": 6,
         "UTOPIA": 3
     },
-    "tiempo_total": 4352.992653061225,
-    "canciones_escuchadas": 24,
+    "tiempo_total": 4747.023673469388,
+    "canciones_escuchadas": 26,
     "ultima_cancion": {
         "ruta": "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
         "titulo": "11 Y ONCE",
         "artista": "Tainy ft Sech, E.VAX",
         "album": "DATA",
-        "timestamp": "2025-04-07T15:59:32.187237"
+        "timestamp": "2025-04-07T16:17:28.693635"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\pm\\120.mp3": {
@@ -36,7 +36,7 @@
             "album": "VULTURES 2"
         },
         "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3": {
-            "contador": 9,
+            "contador": 11,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"

@@ -1,17 +1,21 @@
 {
-    "indice_actual": 0,
+    "indice_actual": 3,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\120.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\ISABELLA.mp3",
-        "C:\\Users\\Victor\\Music\\pm\\Ric Flair Drip (ft Metro Boomin).mp3",
-        "C:\\Users\\Victor\\Music\\pm\\TELEKINESIS (ft SZA, Future).mp3"
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "C:\\Users\\Victor\\Music\\M\\120.mp3",
+        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "C:\\Users\\Victor\\Music\\M\\444..mp3",
+        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\pm\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-04-07T16:17:28.691963"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
+        "titulo": "444",
+        "artista": "Yan Block ft Panda Black",
+        "album": "444",
+        "timestamp": "2025-04-10T14:35:49.007722"
     }
 }

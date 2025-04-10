@@ -1,12 +1,6 @@
-colorthief==0.2.1
 customtkinter==5.2.2
 darkdetect==0.8.0
-joblib==1.4.2
 mutagen==1.47.0
-numpy==2.2.3
 packaging==24.2
 pillow==11.1.0
 pygame==2.6.1
-scikit-learn==1.6.1
-scipy==1.15.2
-threadpoolctl==3.5.0

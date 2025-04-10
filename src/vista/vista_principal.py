@@ -536,11 +536,6 @@ def agregar_inicio_cola_vista(cancion):
     if controlador_reproductor.agregar_cancion_inicio_cola(cancion):
         # Mostrar mensaje de confirmación
         print(f"Se ha agregado después de la canción actual: {cancion.titulo_cancion}")
-        # Imprimir estado de la cola para diagnóstico
-        print("ESTADO DE LA COLA DESPUÉS DE AGREGAR:")
-        for i, c in enumerate(controlador_reproductor.lista_reproduccion):
-            marca = " (ACTUAL)" if i == controlador_reproductor.indice_actual else ""
-            print(f"{i}: {c.titulo_cancion}{marca}")
         # Si la ventana de cola está abierta, actualizarla
         if (
             hasattr(cola_reproduccion, "ventana_cola")

@@ -59,7 +59,7 @@ RUTA_IMAGENES = os.path.join(RUTA_RECURSOS, "imagenes")
 RUTA_ICONO_APLICACION_CLARO = os.path.join(RUTA_ICONOS, "reproductor_claro.png")
 RUTA_ICONO_APLICACION_OSCURO = os.path.join(RUTA_ICONOS, "reproductor_oscuro.png")
 
-# Ruta del ucono de la aplicacion en ico
+# Ruta del icono de la aplicacion en ico
 RUTA_ICONO_APLICACION_CLARO_ICO = os.path.join(RUTA_ICONOS, "reproductor_claro.ico")
 RUTA_ICONO_APLICACION_OSCURO_ICO = os.path.join(RUTA_ICONOS, "reproductor_oscuro.ico")
 
@@ -125,7 +125,7 @@ TAMANIO_LETRA_VOLUMEN = 13
 # ========================================================================
 
 # ========================= Constantes ===================================
-# Tiempo de retoceso y avance
+# Tiempo de retroceso y avance
 TIEMPO_AJUSTE = 10
 
 # ========================================================================

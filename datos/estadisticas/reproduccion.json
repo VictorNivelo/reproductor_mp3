@@ -1,33 +1,73 @@
 {
     "artistas": {
-        "Tainy ft Sech, E.VAX": 2,
-        "Yan Block ft Panda Black": 1
+        "Tainy ft Sech, E.VAX": 5,
+        "Yan Block ft Panda Black": 2,
+        "Bad Bunny": 2,
+        "Feid": 1,
+        "Metro Boomin ft Coi Leray": 1,
+        "Anuel AA": 1,
+        "Eladio Carrion ft Bryant Myers": 2
     },
     "albumes": {
-        "DATA": 2,
-        "444": 1
+        "DATA": 5,
+        "444": 2,
+        "EL ÚLTIMO TOUR DEL MUNDO": 2,
+        "INTER SHIBUYA - LA MAFIA": 1,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
+        "¿Qué Nos Pasó?": 1,
+        "Animal": 2
     },
-    "tiempo_total": 569.3387755102041,
-    "canciones_escuchadas": 3,
+    "tiempo_total": 2668.1991836734696,
+    "canciones_escuchadas": 14,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
-        "titulo": "444",
-        "artista": "Yan Block ft Panda Black",
-        "album": "444",
-        "timestamp": "2025-04-10T14:35:49.026037"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "titulo": "Animal",
+        "artista": "Eladio Carrion ft Bryant Myers",
+        "album": "Animal",
+        "timestamp": "2025-04-10T16:08:28.638772"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 2,
+            "contador": 5,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
         },
         "C:\\Users\\Victor\\Music\\M\\444..mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
+        },
+        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
+            "contador": 2,
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
+        },
+        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
+            "contador": 1,
+            "titulo": "14 De Febrero",
+            "artista": "Feid",
+            "album": "INTER SHIBUYA - LA MAFIA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
+            "contador": 1,
+            "titulo": "Self Love",
+            "artista": "Metro Boomin ft Coi Leray",
+            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
+            "contador": 1,
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "album": "¿Qué Nos Pasó?"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
+            "contador": 2,
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal"
         }
     }
 }

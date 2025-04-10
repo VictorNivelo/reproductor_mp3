@@ -28,7 +28,7 @@ class ColaReproduccion:
     def iniciar_monitor_cambios(self):
         self.verificar_cambio_cancion()
 
-    # Metodo para cerrar la ventana de la cola de reproducción
+    # Método para cerrar la ventana de la cola de reproducción
     def cerrar_ventana_cola(self):
         # Primero desactivar el gestor de scroll si existe
         if self.gestor_scroll:
@@ -745,10 +745,10 @@ class ColaReproduccion:
         segundos = int(duracion_total % 60)
         # Caso 2: Repetir toda la lista (modo 2)
         if modo_repeticion == 2:
-            # Si hay solo una canción en la lista
+            # Sí hay solo una canción en la lista
             if len(lista_reproduccion) == 1:
                 return f"{minutos}min {segundos}s (repetición infinita)"
-            # Si hay más de una canción
+            # Sí hay más de una canción
             duracion_completa = sum(cancion.duracion for cancion in lista_reproduccion)
             min_completo = int((duracion_completa % 3600) // 60)
             seg_completo = int(duracion_completa % 60)

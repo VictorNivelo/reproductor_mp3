@@ -169,7 +169,7 @@ class ControladorReproductor:
             if len(texto_completo) > longitud_maxima:
                 # Control de pausa al inicio
                 if pos == 0:
-                    # Si estamos al inicio, pausar durante más tiempo
+                    # Sí estamos al inicio, pausar durante más tiempo
                     if not hasattr(self, f"pausa_inicio_{clave}"):
                         setattr(self, f"pausa_inicio_{clave}", 0)
                     pausa_actual = getattr(self, f"pausa_inicio_{clave}")
@@ -276,7 +276,7 @@ class ControladorReproductor:
     def agregar_cancion_a_cola(self, cancion):
         if cancion:
             self.lista_reproduccion.append(cancion)
-            # Si no hay reproducción activa, configurar esta como la siguiente
+            # Si no hay reproducción activa, configurar está como la siguiente
             if self.indice_actual == -1:
                 self.indice_actual = 0
             # Guardar la cola automáticamente
@@ -288,7 +288,7 @@ class ControladorReproductor:
     # Método que agrega una canción al inicio de la cola de reproducción
     def agregar_cancion_inicio_cola(self, cancion):
         if cancion:
-            # Si hay una canción en reproducción, insertar después de ella
+            # Sí hay una canción en reproducción, insertar después de ella
             if self.indice_actual >= 0:
                 # Insertar después de la posición actual
                 posicion_insercion = self.indice_actual + 1
@@ -320,7 +320,7 @@ class ControladorReproductor:
                 self.indice_actual -= 1
             elif len(self.lista_reproduccion) == 0:
                 self.indice_actual = -1
-            # Si era la canción actual, reproducir la siguiente
+            # Sí era la canción actual, reproducir la siguiente
             if es_actual and self.reproduciendo:
                 return self.reproducir_siguiente()
             return True
@@ -368,7 +368,7 @@ class ControladorReproductor:
             # Buscar todas las ocurrencias de la canción en la lista
             indices_cancion = [i for i, c in enumerate(self.lista_reproduccion) if c == cancion]
             if indices_cancion:
-                # Si hay múltiples instancias de la misma canción, elegir la primera que sea ≥ índice_actual
+                # Si hay múltiples instancias de la misma canción, elegir la primera que sea ≥ índice
                 indices_mayores = [i for i in indices_cancion if i >= self.indice_actual]
                 if indices_mayores:
                     # Tomar el primer índice mayor o igual al actual
@@ -410,7 +410,20 @@ class ControladorReproductor:
     # Método que reanuda la reproducción de la canción
     def reanudar_reproduccion(self) -> None:
         if not self.reproduciendo and self.cancion_actual:
-            pygame.mixer.music.unpause()
+            # Verificar el estado actual de pygame
+            try:
+                # Intentar reanudar primero
+                pygame.mixer.music.unpause()
+                # Si no hay sonido, volver a cargar y reproducir
+                if pygame.mixer.music.get_busy() == 0:
+                    # Recargar el archivo y comenzar desde el tiempo acumulado
+                    pygame.mixer.music.load(str(self.cancion_actual.ruta_cancion))
+                    pygame.mixer.music.play(start=self.tiempo_acumulado)
+            except Exception as e:
+                print(f"Error al reanudar reproducción, recargando: {e}")
+                # Si hay error, volver a cargar el archivo
+                pygame.mixer.music.load(str(self.cancion_actual.ruta_cancion))
+                pygame.mixer.music.play(start=self.tiempo_acumulado)
             self.tiempo_inicio = time.perf_counter()
             self.reproduciendo = True
             self.actualizar_tiempo()
@@ -425,7 +438,7 @@ class ControladorReproductor:
                 return True
             # Si ya está reproduciendo, no hacer nada
             return True
-        # Si no hay canción actual pero hay lista, reproducir la primera
+        # Si no hay canción actual, pero hay lista, reproducir la primera
         elif self.lista_reproduccion and self.indice_actual >= 0:
             cancion = self.lista_reproduccion[self.indice_actual]
             self.reproducir_cancion(cancion)

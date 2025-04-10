@@ -210,7 +210,7 @@ def cargar_ultima_cancion_reproducida():
                     controlador_reproductor.cancion_actual = cancion
                 # Actualizar la interfaz sin reproducir
                 controlador_reproductor.actualizar_informacion_interfaz()
-                # Actualizar estado de los botones de me gusta/favorito
+                # Actualizar estado de los botones de me_gusta/favorito
                 actualizar_estado_botones_gustos()
                 return True
     return False
@@ -463,7 +463,7 @@ def cambiar_favorito_menu(cancion):
         actualizar_estado_botones_gustos()
 
 
-# Funciona para actualizar el estado de los botones de me gusta y favorito
+# Funciona para actualizar el estado de los botones de me_gusta y favorito
 def actualizar_estado_botones_gustos():
     global ME_GUSTA, FAVORITO
     cancion_actual = controlador_reproductor.cancion_actual
@@ -568,7 +568,7 @@ def agregar_fin_cola_vista(cancion):
 def eliminar_cancion_vista(cancion):
     # Verificar si la canción que se elimina está en reproducción
     if controlador_reproductor.cancion_actual == cancion:
-        # Si está reproduciéndose, detener la reproducción
+        # Sí está reproduciéndose, detener la reproducción
         controlador_reproductor.detener_reproduccion()
         # Limpiar la información en la interfaz
         controlador_reproductor.cancion_actual = None
@@ -739,14 +739,14 @@ def cargar_biblioteca_vista():
 def cargar_cola_vista():
     # Cargar la cola de reproducción
     controlador_archivos.cargar_cola_reproduccion(controlador_reproductor, biblioteca)
-    # Si hay canciones en la cola, actualizar la interfaz
+    # Sí hay canciones en la cola, actualizar la interfaz
     if controlador_reproductor.lista_reproduccion:
         # Establecer la canción actual sin reproducirla automáticamente
         indice = controlador_reproductor.indice_actual
         if 0 <= indice < len(controlador_reproductor.lista_reproduccion):
             controlador_reproductor.cancion_actual = controlador_reproductor.lista_reproduccion[indice]
             controlador_reproductor.actualizar_informacion_interfaz()
-            # Actualizar estado de los botones de me gusta/favorito
+            # Actualizar estado de los botones de me_gusta/favorito
             actualizar_estado_botones_gustos()
     # También podemos cargar la información de la última canción reproducida
     cargar_ultima_cancion_reproducida()
@@ -1048,7 +1048,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
     )
     # -------------------------------------------------------------------------------------------
     # ------------------------------------ Opciones de gusto ------------------------------------
-    # Separador antes de opciones de Me gusta/Favorito
+    # Separador antes de opciones de Me_gusta/Favorito
     texto_me_gusta = "Quitar de Me gusta" if cancion.me_gusta else "Agregar a Me gusta"
     crear_opcion_menu(panel_menu_opciones, texto_me_gusta, lambda: cambiar_me_gusta_menu(cancion), True)
     texto_favorito = "Quitar de Favoritos" if cancion.favorito else "Agregar a Favoritos"
@@ -1136,7 +1136,7 @@ def actualizar_vista_canciones(panel):
     canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
 
 
-# Función para reestablecer el scroll en una pestaña
+# Función para restablecer el scroll en una pestaña
 def restablecer_scroll_pestania(canvas, panel, ventana_canvas):
     # Limpiar cualquier binding anterior
     canvas.unbind_all("<MouseWheel>")
@@ -1221,7 +1221,7 @@ def actualizar_todas_vistas_canciones():
     pestanas_cargadas["Favoritos"] = True
     pestanas_cargadas["Álbumes"] = True
     pestanas_cargadas["Artistas"] = True
-    # Reestablecer el scroll para la pestaña actual
+    # Restablecer el scroll para la pestaña actual
     if pestana_actual == "Canciones":
         canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
     # Guardar la biblioteca después de las actualizaciones
@@ -1493,12 +1493,12 @@ def mostrar_artistas_filtrados(texto_busqueda):
     crear_botones_artistas(artistas_filtrados, canvas_artistas, panel_botones_artistas)
 
 
-# Función para actualizar la vista de Me gusta
+# Función para actualizar la vista de Me_gusta
 def actualizar_vista_me_gusta():
     configurar_vista_lista_canciones("Me gusta", biblioteca.me_gusta)
 
 
-# Función para mostrar las canciones de Me gusta filtradas
+# Función para mostrar las canciones de Me_gusta filtradas
 def mostrar_me_gusta_filtrados(texto_busqueda):
     configurar_vista_lista_canciones("Me gusta", biblioteca.me_gusta, texto_busqueda)
 
@@ -1535,7 +1535,7 @@ def mostrar_canciones_filtradas(texto_busqueda):
     canvas_canciones.yview_moveto(0)
     # Actualizar la región de desplazamiento
     canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
-    # Reestablecer el scroll
+    # Restablecer el scroll
     canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
 
 
@@ -1742,21 +1742,21 @@ ventana_principal.title("Reproductor de música")
 
 # ==================================== Contenedor principal =====================================
 # Contenedor principal
-conenedor_principal = tk.Frame(ventana_principal)
-conenedor_principal.configure(
+contenedor_principal = tk.Frame(ventana_principal)
+contenedor_principal.configure(
     bg=FONDO_PRINCIPAL_CLARO,
     padx=5,
     pady=5,
 )
-conenedor_principal.pack(fill="both", expand=True)
-controlador_tema.registrar_panel(conenedor_principal, es_principal=True)
+contenedor_principal.pack(fill="both", expand=True)
+controlador_tema.registrar_panel(contenedor_principal, es_principal=True)
 
 # ===============================================================================================
 
 # ======================================= Panel izquierda =======================================
 # Contenedor izquierdo hecho con customtkinter
 contenedor_izquierda = ctk.CTkFrame(
-    conenedor_principal, fg_color=FONDO_CLARO, corner_radius=BORDES_REDONDEADOS_PANEL
+    contenedor_principal, fg_color=FONDO_CLARO, corner_radius=BORDES_REDONDEADOS_PANEL
 )
 contenedor_izquierda.pack(side="left", fill="both", expand=True)
 controlador_tema.registrar_panel(contenedor_izquierda, es_ctk=True)
@@ -2090,7 +2090,7 @@ boton_anterior = ctk.CTkButton(
 )
 boton_anterior.pack(side="left", padx=5)
 controlador_tema.registrar_botones("anterior", boton_anterior)
-crear_tooltip(boton_anterior, "Reproucir anterior")
+crear_tooltip(boton_anterior, "Reproducir anterior")
 
 boton_retroceder = ctk.CTkButton(
     panel_controles_reproduccion,
@@ -2270,7 +2270,7 @@ controlador_tema.registrar_etiqueta(etiqueta_porcentaje_volumen)
 # ======================================== Panel derecha ========================================
 # Contenedor principal de panel derecho
 contenedor_derecha_principal = ctk.CTkFrame(
-    conenedor_principal,
+    contenedor_principal,
     width=ANCHO_PANEL_DERECHA + 5 if PANEL_LATERAL_VISIBLE else 0,
     fg_color=FONDO_CLARO,
     corner_radius=BORDES_REDONDEADOS_PANEL,
@@ -2279,7 +2279,7 @@ contenedor_derecha_principal.pack(side="left", fill="both", padx=(5, 0))
 contenedor_derecha_principal.pack_propagate(False)
 controlador_tema.registrar_panel(contenedor_derecha_principal, es_ctk=True)
 
-# Contentedor de panel derecho interno
+# Contenedor de panel derecho interno
 contenedor_derecha = ctk.CTkFrame(
     contenedor_derecha_principal,
     fg_color="transparent",

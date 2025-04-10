@@ -68,7 +68,7 @@ class Configuracion(Utiles):
         self.componentes.append(etiqueta_titulo)
         # secciones de configuración
         secciones = ["General", "Audio", "Reproductor", "Interfaz", "Acerca de"]
-        # creacion de los botones para cada una de las secciones
+        # Creación de los botones para cada una de las secciones
         for seccion in secciones:
             # botones de las secciones
             try:
@@ -103,7 +103,7 @@ class Configuracion(Utiles):
         self.componentes.append(boton_cerrar)
         # ==============================================================================================
 
-    # Metodo para mostrar ventana de configuración
+    # Método para mostrar ventana de configuración
     def mostrar_ventana_configuracion(self):
         if not hasattr(self, "ventana_configuracion") or self.ventana_configuracion is None:
             self.crear_ventana_configuracion()
@@ -120,11 +120,11 @@ class Configuracion(Utiles):
                     self.crear_ventana_configuracion()
             except Exception as e:
                 print(f"Error al mostrar la ventana de configuración: {e}")
-                # Si hay error, recrear la ventana
+                # Sí hay error, recrear la ventana
                 self.ventana_configuracion = None
                 self.crear_ventana_configuracion()
 
-    # Metodo para cerrar ventana de configuración
+    # Método para cerrar ventana de configuración
     def cerrar_ventana_configuracion(self):
         cerrar_ventana_modal(self.ventana_configuracion, self.componentes, self.controlador_tema)
 

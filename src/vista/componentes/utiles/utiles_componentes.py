@@ -1,7 +1,7 @@
 from vista.utiles.utiles_vista import establecer_icono_tema
 
 
-# Metodo para configurar la ventana modal
+# Método para configurar la ventana modal
 def configurar_ventana_modal(
     ventana_principal, ventana_modal, ancho, alto, titulo, color_fondo, funcion_cierre, controlador
 ):
@@ -24,7 +24,7 @@ def configurar_ventana_modal(
     establecer_icono_tema(ventana_modal, controlador.tema_interfaz)
 
 
-# Metodo para cerrar la ventana modal
+# Método para cerrar la ventana modal
 def cerrar_ventana_modal(ventana, componentes, controlador):
     try:
         # Eliminar referencias de los componentes en el controlador

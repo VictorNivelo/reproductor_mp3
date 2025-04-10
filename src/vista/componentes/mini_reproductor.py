@@ -12,7 +12,7 @@ class MiniReproductor(Utiles):
         self.controlador_tema = controlador_tema
         self.componentes = []
 
-    # Metodo para crear la ventana del mini reproductors
+    # Método para crear la ventana del mini reproductor
     def crear_ventana_mini_reproductor(self):
         # Actualizar colores
         self.colores()
@@ -264,7 +264,7 @@ class MiniReproductor(Utiles):
 
         # self.ventana_principal_mini_reproductor.mainloop()
 
-    # Metodo para mostrar la ventana del mini reproductor
+    # Método para mostrar la ventana del mini reproductor
     def mostrar_ventana_mini_reproductor(self):
         # Verificar si la ventana del mini reproductor es None o fue destruida
         ventana_destruida = False
@@ -304,7 +304,7 @@ class MiniReproductor(Utiles):
         except Exception as e:
             print(f"Error al mostrar el mini reproductor: {e}")
 
-    # Metodo para ocultar la ventana del mini reproductor
+    # Método para ocultar la ventana del mini reproductor
     def ocultar(self):
         if self.ventana_principal_mini_reproductor:
             try:
@@ -315,7 +315,7 @@ class MiniReproductor(Utiles):
                 pass
             self.ventana_principal.deiconify()
 
-    # Metodo para actualizar los colores de los componentes del mini reproductor
+    # Método para actualizar los colores de los componentes del mini reproductor
     def actualizar_colores(self):
         self.colores()
         # Actualizar colores de los componentes

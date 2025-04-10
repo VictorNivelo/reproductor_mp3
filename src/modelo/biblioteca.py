@@ -34,7 +34,7 @@ class Biblioteca:
             print(f"Error al detectar duplicado: {str(e)}")
             return []
 
-    # Metodo para agregar una canción a la biblioteca
+    # Método para agregar una canción a la biblioteca
     def agregar_cancion(self, ruta: Path) -> Cancion | None:
         try:
             # Verificar si el archivo existe
@@ -87,7 +87,7 @@ class Biblioteca:
             print(f"Error al procesar la canción {ruta.name}: {str(e)}")
             return None
 
-    # Metodo para agregar un directorio de canciones a la biblioteca
+    # Método para agregar un directorio de canciones a la biblioteca
     def agregar_directorio(self, ruta: Path) -> List[Cancion]:
         if not ruta.is_dir():
             raise NotADirectoryError(f"No es un directorio: {ruta}")
@@ -134,7 +134,7 @@ class Biblioteca:
         except ValueError:
             return False
 
-    # Metodo para eliminar todas las canciones de un directorio
+    # Método para eliminar todas las canciones de un directorio
     def eliminar_directorio(self, ruta: Path) -> List[Cancion]:
         if not ruta.is_dir():
             raise NotADirectoryError(f"No es un directorio: {ruta}")
@@ -204,7 +204,7 @@ class Biblioteca:
             or texto in cancion.album.lower()
         ]
 
-    # Metodo para ordenar las canciones por un criterio
+    # Método para ordenar las canciones por un criterio
     def ordenar_por(self, criterio: str) -> List[Cancion]:
         if criterio == "titulo":
             return sorted(self.canciones, key=lambda x: x.titulo_cancion)
@@ -216,7 +216,7 @@ class Biblioteca:
             return sorted(self.canciones, key=lambda x: x.duracion)
         return self.canciones
 
-    # Metodo que convierte la biblioteca a un diccionario
+    # Método que convierte la biblioteca a un diccionario
     def convertir_diccionario(self) -> dict:
         return {
             "canciones": [cancion.convertir_diccionario() for cancion in self.canciones],

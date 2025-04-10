@@ -1,5 +1,5 @@
 {
-    "indice_actual": 3,
+    "indice_actual": 6,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -12,10 +12,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
-        "titulo": "444",
-        "artista": "Yan Block ft Panda Black",
-        "album": "444",
-        "timestamp": "2025-04-10T14:35:49.007722"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "titulo": "Animal",
+        "artista": "Eladio Carrion ft Bryant Myers",
+        "album": "Animal",
+        "timestamp": "2025-04-10T16:08:28.636605"
     }
 }

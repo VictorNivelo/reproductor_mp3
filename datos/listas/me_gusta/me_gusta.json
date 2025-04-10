@@ -1,3 +1,46 @@
 {
-    "me_gusta": []
+    "me_gusta": [
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+            "titulo": "14 De Febrero",
+            "artista": "Feid",
+            "artista_album": "Feid",
+            "album": "INTER SHIBUYA - LA MAFIA",
+            "duracion": 158.56326530612245,
+            "duracion_formateada": "02:38",
+            "anio": "2021-08-20",
+            "numero_pista": "14",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "artista_album": "Anuel AA",
+            "album": "¿Qué Nos Pasó?",
+            "duracion": 245.7861224489796,
+            "duracion_formateada": "04:05",
+            "anio": "2022-05-26",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "artista_album": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal",
+            "duracion": 217.78285714285715,
+            "duracion_formateada": "03:37",
+            "anio": "2019-07-05",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        }
+    ]
 }

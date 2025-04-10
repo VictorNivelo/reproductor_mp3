@@ -42,7 +42,7 @@ class ControladorArchivos:
                 with open(ruta, "r", encoding="utf-8") as archivo:
                     json.load(archivo)
             except json.JSONDecodeError:
-                # Si hay un error al decodificar, sobrescribir con la estructura predeterminada
+                # Sí hay un error al decodificar, sobrescribir con la estructura predeterminada
                 contenido = json.dumps(estructura_predeterminada, ensure_ascii=False, indent=4)
                 with open(ruta, "w", encoding="utf-8") as archivo:
                     archivo.write(contenido)
@@ -164,7 +164,7 @@ class ControladorArchivos:
             canciones_cargadas = self.cargar_canciones(biblioteca)
             # Actualizar estado me gusta y favoritos
             self.actualizar_estados_desde_listas(biblioteca)
-            # print(f"Se cargaron {canciones_cargadas} canciones")
+            # print(f"Se cargaron {canciones_cargadas} canciones)
             return canciones_cargadas > 0
         except Exception as e:
             print(f"Error al cargar la biblioteca: {str(e)}")
@@ -413,7 +413,7 @@ class ControladorArchivos:
                 os.makedirs(self.ruta_carpeta_configuracion)
             # Crear o actualizar el archivo de configuración
             if os.path.exists(self.ruta_configuracion):
-                # Si existe, cargar la configuración actual y actualizar
+                # Sí existe, cargar la configuración actual y actualizar
                 try:
                     with open(self.ruta_configuracion, "r", encoding="utf-8") as archivo:
                         datos = json.load(archivo)

@@ -69,9 +69,11 @@ class ToolTip:
             self.tooltip.title("")
             # -----------------------------------------------------------------------------------
             # Eliminar bordes de la ventana
-            self.tooltip.wm_overrideredirect(True)
+            self.tooltip.overrideredirect(True)
             # Configurar la ventana para que este siempre encima
-            self.tooltip.wm_attributes("-topmost", True)
+            self.tooltip.attributes("-topmost", True)
+            # Evitar que el tooltip se muestre en la barra de tareas
+            self.tooltip.attributes("-toolwindow", True)
             # Establece la opacidad inicial del tooltip
             self.tooltip.attributes("-alpha", 0.0)
             # Convierte el fondo del tooltip en transparente

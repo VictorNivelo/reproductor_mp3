@@ -1001,6 +1001,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
     menu_ventana.overrideredirect(True)
     menu_ventana.configure(fg_color=controlador_tema.color_fondo)
     menu_ventana.attributes("-topmost", True)
+    menu_ventana.attributes("-toolwindow", True)
     # -------------------------------------------------------------------------------------------
     # ----------------------------------- Panel menu opciones -----------------------------------
     # Contenedor principal del menú
@@ -1080,18 +1081,8 @@ def mostrar_menu_opciones(cancion, panel_padre):
 
 
 # Función para restablecer el scroll en una pestaña
-def restablecer_scroll_pestania(canvas, panel, ventana_canvas):
-    # Limpiar cualquier binding anterior
-    canvas.unbind_all("<MouseWheel>")
-    # Crear una nueva instancia de GestorScroll
-    gestor = GestorScroll(canvas, panel, ventana_canvas)
-    # Forzar la actualización de la región de scroll
-    panel.update_idletasks()
-    canvas.yview_moveto(0)
-    canvas.configure(scrollregion=canvas.bbox("all"))
-    # Vincular el evento de rueda del ratón
-    canvas.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas, e))
-    return gestor
+def restablecer_scroll_vista1(canvas, panel, ventana_canvas):
+    return GestorScroll.restablecer_scroll(canvas, panel, ventana_canvas)
 
 
 # Función para actualizar todas las vistas de las canciones
@@ -1455,7 +1446,7 @@ def mostrar_canciones_filtradas(texto_busqueda):
 
 
 # Función para buscar canciones según el texto introducido
-def buscar_canciones(_event=None):
+def buscar_cancion_vista(_event=None):
     # Obtener el texto de búsqueda
     texto_busqueda = entrada_busqueda.get().strip().lower()
     # Obtener la pestaña actual
@@ -2307,7 +2298,7 @@ entrada_busqueda.pack(side="left", fill="x", expand=True)
 controlador_tema.registrar_entrada(entrada_busqueda)
 
 # Vincular el evento de liberación de tecla con la función de búsqueda
-entrada_busqueda.bind("<KeyRelease>", lambda _event: buscar_canciones())
+entrada_busqueda.bind("<KeyRelease>", lambda _event: buscar_cancion_vista())
 
 # Opciones de ordenamiento en combobox
 opciones_ordenamiento = ["Nombre", "Artista", "Álbum", "Año", "Duración"]

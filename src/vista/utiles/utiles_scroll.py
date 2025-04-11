@@ -7,11 +7,11 @@ class GestorScroll:
         self.panel = panel
         self.ventana_canvas = ventana_canvas
         # Configurar eventos
-        self.panel.bind("<Configure>", self.scroll_frame_configuracion)
+        self.panel.bind("<Configure>", self.scroll_panel_configuracion)
         self.canvas.bind("<Configure>", self.scroll_canvas_configuracion)
 
     # Configurar el scroll del frame
-    def scroll_frame_configuracion(self, _event=None):
+    def scroll_panel_configuracion(self, _event=None):
         if not self.canvas or not self.panel:
             return
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
@@ -45,7 +45,7 @@ class GestorScroll:
         canvas_width = event.width
         self.canvas.itemconfig(self.ventana_canvas, width=canvas_width)
         # Verificar scroll después de redimensionar
-        self.scroll_frame_configuracion(None)
+        self.scroll_panel_configuracion(None)
 
     # Desplazar el canvas con la rueda del ratón
     def scroll_raton_configuracion(self, event):
@@ -79,6 +79,20 @@ class GestorScroll:
         if (direccion < 0 and posicion_actual[0] <= 0) or (direccion > 0 and posicion_actual[1] >= 1):
             return
         canvas.yview_scroll(int(direccion), "units")
+
+    @staticmethod
+    def restablecer_scroll(canvas, panel, ventana_canvas):
+        # Limpiar cualquier binding anterior
+        canvas.unbind_all("<MouseWheel>")
+        # Crear una nueva instancia de GestorScroll
+        gestor = GestorScroll(canvas, panel, ventana_canvas)
+        # Forzar la actualización de la región de scroll
+        panel.update_idletasks()
+        canvas.yview_moveto(0)
+        canvas.configure(scrollregion=canvas.bbox("all"))
+        # Vincular el evento de rueda del ratón
+        canvas.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas, e))
+        return gestor
 
     # Método para desactivar el scroll
     def desactivar(self):

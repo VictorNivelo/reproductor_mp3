@@ -1,30 +1,32 @@
 {
     "artistas": {
         "Tainy ft Sech, E.VAX": 5,
-        "Yan Block ft Panda Black": 2,
+        "Yan Block ft Panda Black": 3,
         "Bad Bunny": 2,
         "Feid": 1,
         "Metro Boomin ft Coi Leray": 1,
         "Anuel AA": 1,
-        "Eladio Carrion ft Bryant Myers": 2
+        "Eladio Carrion ft Bryant Myers": 2,
+        "Kanye West ft André 3000": 1
     },
     "albumes": {
         "DATA": 5,
-        "444": 2,
+        "444": 3,
         "EL ÚLTIMO TOUR DEL MUNDO": 2,
         "INTER SHIBUYA - LA MAFIA": 1,
         "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
         "¿Qué Nos Pasó?": 1,
-        "Animal": 2
+        "Animal": 2,
+        "Donda (Deluxe)": 1
     },
-    "tiempo_total": 2668.1991836734696,
-    "canciones_escuchadas": 14,
+    "tiempo_total": 3235.21306122449,
+    "canciones_escuchadas": 16,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "titulo": "Animal",
-        "artista": "Eladio Carrion ft Bryant Myers",
-        "album": "Animal",
-        "timestamp": "2025-04-10T16:08:28.638772"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3",
+        "titulo": "Life Of The Party (ft André 3000)",
+        "artista": "Kanye West ft André 3000",
+        "album": "Donda (Deluxe)",
+        "timestamp": "2025-04-10T16:44:23.957704"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
@@ -34,7 +36,7 @@
             "album": "DATA"
         },
         "C:\\Users\\Victor\\Music\\M\\444..mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
@@ -68,6 +70,12 @@
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
             "album": "Animal"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3": {
+            "contador": 1,
+            "titulo": "Life Of The Party (ft André 3000)",
+            "artista": "Kanye West ft André 3000",
+            "album": "Donda (Deluxe)"
         }
     }
 }

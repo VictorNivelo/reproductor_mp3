@@ -1,21 +1,15 @@
 {
-    "indice_actual": 6,
+    "indice_actual": 0,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "C:\\Users\\Victor\\Music\\M\\120.mp3",
-        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-        "C:\\Users\\Victor\\Music\\M\\444..mp3",
-        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
+        "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Never Abandon Your Family..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Off The Grid..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "titulo": "Animal",
-        "artista": "Eladio Carrion ft Bryant Myers",
-        "album": "Animal",
-        "timestamp": "2025-04-10T16:08:28.636605"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3",
+        "titulo": "Life Of The Party (ft André 3000)",
+        "artista": "Kanye West ft André 3000",
+        "album": "Donda (Deluxe)",
+        "timestamp": "2025-04-10T16:44:23.956070"
     }
 }

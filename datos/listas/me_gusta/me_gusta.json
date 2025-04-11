@@ -15,20 +15,6 @@
             "favorito": false
         },
         {
-            "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
-            "titulo": "¿Qué Nos Pasó?",
-            "artista": "Anuel AA",
-            "artista_album": "Anuel AA",
-            "album": "¿Qué Nos Pasó?",
-            "duracion": 245.7861224489796,
-            "duracion_formateada": "04:05",
-            "anio": "2022-05-26",
-            "numero_pista": "1/1",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": false
-        },
-        {
             "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
@@ -37,6 +23,20 @@
             "duracion": 217.78285714285715,
             "duracion_formateada": "03:37",
             "anio": "2019-07-05",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "artista_album": "Anuel AA",
+            "album": "¿Qué Nos Pasó?",
+            "duracion": 245.7861224489796,
+            "duracion_formateada": "04:05",
+            "anio": "2022-05-26",
             "numero_pista": "1/1",
             "tiene_caratula": true,
             "me_gusta": true,

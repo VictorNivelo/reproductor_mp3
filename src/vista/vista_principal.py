@@ -78,6 +78,11 @@ def cambiar_tema_vista():
     actualizar_tooltip_vista()
 
 
+# Función para establecer el icono del tema
+def cambiar_icono_tema(tema="claro"):
+    establecer_icono_tema(ventana_principal, tema)
+
+
 # Función para cambiar el tema de la interfaz
 def actualizar_iconos():
     # Estado de reproducción
@@ -236,7 +241,7 @@ def reproducir_vista():
 
 
 # Función para reproducir la canción seleccionada
-def reproducir_cancion_desde_lista(cancion):
+def reproducir_desde_lista_vista(cancion):
     global ESTADO_REPRODUCCION, biblioteca
     # Establecer la lista de reproducción actual
     controlador_reproductor.establecer_cola_reproduccion(
@@ -259,7 +264,7 @@ def reproducir_cancion_desde_lista(cancion):
 
 
 # Función para actualizar el estado de reproducción desde la cola
-def actualizar_estado_reproduccion_desde_cola():
+def reproducir_desde_cola_vista():
     global ESTADO_REPRODUCCION
     ESTADO_REPRODUCCION = True
     controlador_tema.registrar_botones("pausa", boton_reproducir)
@@ -752,93 +757,6 @@ def cargar_cola_vista():
     cargar_ultima_cancion_reproducida()
 
 
-# Función para iniciar el desplazamiento del texto
-def iniciar_desplazamiento_boton(boton):
-    # Verificar si el botón tiene el atributo timer_id usando hasattr
-    if hasattr(boton, "timer_id") and getattr(boton, "timer_id"):
-        boton.after_cancel(getattr(boton, "timer_id"))
-    # Reiniciar la posición
-    setattr(boton, "pos_marquee", 0)
-    animar_texto_boton(boton)
-
-
-# Función para detener el desplazamiento del texto
-def detener_desplazamiento_boton(boton, longitud_maxima=50):
-    if hasattr(boton, "timer_id") and getattr(boton, "timer_id"):
-        boton.after_cancel(getattr(boton, "timer_id"))
-    # Mostrar texto truncado al detener
-    texto_completo = getattr(boton, "texto_completo", "")
-    boton.configure(text=texto_completo[:longitud_maxima] + "...")
-
-
-# Función para animar el texto del botón
-def animar_texto_boton(boton, longitud_maxima=50):
-    # Verificar si tiene el atributo texto_completo
-    if not hasattr(boton, "texto_completo"):
-        return
-    texto_completo = getattr(boton, "texto_completo")
-    pos = getattr(boton, "pos_marquee", 0)
-    # Control de la posición de desplazamiento
-    if pos == 0:
-        # Al inicio, pausa
-        if not hasattr(boton, "pausa_inicio"):
-            setattr(boton, "pausa_inicio", 0)
-        pausa_actual = getattr(boton, "pausa_inicio")
-        if pausa_actual < 8:  # Pausa de 1 segundo (8 * 125ms)
-            setattr(boton, "pausa_inicio", pausa_actual + 1)
-            texto_visible = texto_completo[:longitud_maxima]
-            boton.configure(text=texto_visible + "...")
-            timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
-            setattr(boton, "timer_id", timer_id)
-            return
-        else:
-            setattr(boton, "pausa_inicio", 0)
-    # Si el texto llega al final, reiniciar
-    if pos >= len(texto_completo) - longitud_maxima:
-        # Pausa al final
-        if not hasattr(boton, "pausa_final"):
-            setattr(boton, "pausa_final", 0)
-        pausa_actual = getattr(boton, "pausa_final")
-        if pausa_actual < 8:  # Pausa de 1 segundo (8 * 125ms)
-            setattr(boton, "pausa_final", pausa_actual + 1)
-            texto_visible = texto_completo[len(texto_completo) - longitud_maxima :]
-            boton.configure(text=texto_visible)
-            timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
-            setattr(boton, "timer_id", timer_id)
-            return
-        else:
-            setattr(boton, "pausa_final", 0)
-            setattr(boton, "pos_marquee", 0)
-            texto_visible = texto_completo[:longitud_maxima]
-            boton.configure(text=texto_visible + "...")
-            timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
-            setattr(boton, "timer_id", timer_id)
-            return
-    # Desplazamiento normal
-    texto_visible = texto_completo[pos : pos + longitud_maxima]
-    boton.configure(text=texto_visible)
-    setattr(boton, "pos_marquee", pos + 1)
-    timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
-    setattr(boton, "timer_id", timer_id)
-
-
-# Función para configurar el desplazamiento de texto en botones
-def configurar_desplazamiento_texto(boton, texto_completo, longitud_maxima=55):
-    # Si el texto es más corto que el límite, simplemente mostrarlo
-    if len(texto_completo) <= longitud_maxima:
-        boton.configure(text=texto_completo)
-        return
-    # Almacenar el texto completo como atributo del botón usando setattr
-    setattr(boton, "texto_completo", texto_completo)
-    setattr(boton, "pos_marquee", 0)
-    setattr(boton, "timer_id", None)
-    # Vincular eventos de ratón para activar/desactivar el desplazamiento
-    boton.bind("<Enter>", lambda event: iniciar_desplazamiento_boton(boton))
-    boton.bind("<Leave>", lambda event: detener_desplazamiento_boton(boton, longitud_maxima))
-    # Mostrar inicialmente el texto truncado con elipsis
-    boton.configure(text=texto_completo[:longitud_maxima] + "...")
-
-
 # Función para crear botones para cada canción en la biblioteca
 def crear_boton_cancion(cancion, panel):
     # Obtener colores del tema actual
@@ -863,7 +781,7 @@ def crear_boton_cancion(cancion, panel):
         font=(LETRA, TAMANIO_LETRA_BOTON),
         text_color=controlador_tema.color_texto,
         text=texto_cancion,
-        command=lambda c=cancion: reproducir_cancion_desde_lista(c),
+        command=lambda c=cancion: reproducir_desde_lista_vista(c),
     )
     boton_cancion.pack(side="left", fill="both", expand=True)
     # -------------------------------------------------------------------------------------------
@@ -897,6 +815,64 @@ def crear_boton_cancion(cancion, panel):
     # Vincular clic derecho al botón principal para mostrar el menú
     boton_cancion.bind("<Button-3>", lambda event, c=cancion: mostrar_menu_opciones(c, panel_lista_cancion))
     return panel_lista_cancion
+
+
+# Función auxiliar para crear botones de álbumes
+def crear_boton_album(albumes, canvas_albumes, panel_botones_albumes):
+    # Crear botones para cada álbum
+    for album in sorted(albumes):
+        # Ignorar álbumes vacíos o sin nombre
+        if album == "" or album == "Unknown Album" or album.lower() == "desconocido":
+            continue
+        # ------------------------------------ Boton de álbum -----------------------------------
+        boton_album = ctk.CTkButton(
+            panel_botones_albumes,
+            width=ANCHO_BOTON + 8,
+            height=ALTO_BOTON + 8,
+            fg_color=controlador_tema.color_boton,
+            hover_color=controlador_tema.color_hover,
+            font=(LETRA, TAMANIO_LETRA_BOTON),
+            text_color=controlador_tema.color_texto,
+            text=album,
+            command=lambda a=album: mostrar_canciones_album(a),
+        )
+        boton_album.pack(fill="both", pady=(0, 2), expand=True)
+        controlador_tema.registrar_botones(f"album_{album}", boton_album)
+        # ---------------------------------------------------------------------------------------
+        # Configurar desplazamiento si el texto es largo
+        configurar_desplazamiento_texto(boton_album, album)
+    panel_botones_albumes.update_idletasks()
+    canvas_albumes.yview_moveto(0)
+    canvas_albumes.configure(scrollregion=canvas_albumes.bbox("all"))
+
+
+# Función auxiliar para crear botones de artistas
+def crear_boton_artista(artistas, canvas_artistas, panel_botones_artistas):
+    # Crear botones para cada artista
+    for artista in sorted(artistas):
+        # Ignorar artistas sin nombre o desconocidos
+        if artista == "" or artista == "Unknown Artist" or artista.lower() == "desconocido":
+            continue
+        # ----------------------------------- Boton de artista ----------------------------------
+        boton_artista = ctk.CTkButton(
+            panel_botones_artistas,
+            width=ANCHO_BOTON + 8,
+            height=ALTO_BOTON + 8,
+            fg_color=controlador_tema.color_boton,
+            hover_color=controlador_tema.color_hover,
+            font=(LETRA, TAMANIO_LETRA_BOTON),
+            text_color=controlador_tema.color_texto,
+            text=artista,
+            command=lambda a=artista: mostrar_canciones_artista(a),
+        )
+        boton_artista.pack(fill="both", pady=(0, 2), expand=True)
+        controlador_tema.registrar_botones(f"artista_{artista}", boton_artista)
+        # ---------------------------------------------------------------------------------------
+        # Configurar desplazamiento si el texto es largo
+        configurar_desplazamiento_texto(boton_artista, artista)
+    panel_botones_artistas.update_idletasks()
+    canvas_artistas.yview_moveto(0)
+    canvas_artistas.configure(scrollregion=canvas_artistas.bbox("all"))
 
 
 # Función para navegar al álbum de una canción específica
@@ -1035,9 +1011,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
     # -------------------------------------------------------------------------------------------
     # Agregar opciones al menú
     # ---------------------------------- Opciones reproducir ------------------------------------
-    crear_opcion_menu(
-        panel_menu_opciones, "Reproducir ahora", lambda: reproducir_cancion_desde_lista(cancion)
-    )
+    crear_opcion_menu(panel_menu_opciones, "Reproducir ahora", lambda: reproducir_desde_lista_vista(cancion))
     # -------------------------------------------------------------------------------------------
     # -------------------------------- Opciones de cola de reproducción -------------------------
     crear_opcion_menu(
@@ -1105,37 +1079,6 @@ def mostrar_menu_opciones(cancion, panel_padre):
     menu_ventana.focus_set()
 
 
-# Función para actualizar la vista de las canciones en la biblioteca
-def actualizar_vista_canciones(panel):
-    # Limpiar botones existentes
-    for cancion, boton in botones_canciones.items():
-        try:
-            # Eliminar el botón del controlador_tema de tema
-            nombre_boton = f"cancion_{cancion.titulo_cancion}"
-            nombre_opciones = f"opciones_{cancion.titulo_cancion}"
-            controlador_tema.eliminar_boton(nombre_boton)
-            controlador_tema.eliminar_boton(nombre_opciones)
-            # Destruir el frame contenedor (que contiene el botón)
-            if boton and boton.winfo_exists():
-                frame_padre = boton.winfo_parent()
-                if frame_padre:
-                    frame = boton.nametowidget(frame_padre)
-                    if frame and frame.winfo_exists():
-                        frame.destroy()
-        except Exception as e:
-            print(f"Error al destruir el botón {cancion.titulo_cancion}: {e}")
-            pass
-    botones_canciones.clear()
-    # Crear nuevos botones para cada canción
-    for cancion in biblioteca.canciones:
-        crear_boton_cancion(cancion, panel)
-    # Forzar actualización del layout
-    panel.update_idletasks()
-    # Asegurar que el canvas se actualice correctamente y volver al inicio
-    canvas_canciones.yview_moveto(0)
-    canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
-
-
 # Función para restablecer el scroll en una pestaña
 def restablecer_scroll_pestania(canvas, panel, ventana_canvas):
     # Limpiar cualquier binding anterior
@@ -1149,6 +1092,28 @@ def restablecer_scroll_pestania(canvas, panel, ventana_canvas):
     # Vincular el evento de rueda del ratón
     canvas.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas, e))
     return gestor
+
+
+# Función para actualizar todas las vistas de las canciones
+def actualizar_todas_vistas_canciones():
+    pestana_actual = paginas_canciones.get()
+    # Actualizar la vista de canciones
+    actualizar_vista_canciones(panel_botones_canciones)
+    # Actualizar las demás pestañas inmediatamente
+    actualizar_vista_me_gusta()
+    actualizar_vista_favoritos()
+    actualizar_vista_albumes()
+    actualizar_vista_artistas()
+    # Marcar todas las pestañas como cargadas
+    pestanas_cargadas["Me gusta"] = True
+    pestanas_cargadas["Favoritos"] = True
+    pestanas_cargadas["Álbumes"] = True
+    pestanas_cargadas["Artistas"] = True
+    # Restablecer el scroll para la pestaña actual
+    if pestana_actual == "Canciones":
+        canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
+    # Guardar la biblioteca después de las actualizaciones
+    guardar_biblioteca()
 
 
 # Función para manejar cambios de pestaña
@@ -1206,30 +1171,39 @@ def actualizar_pestana_seleccionada():
                 )
 
 
-# Función para actualizar todas las vistas de las canciones
-def actualizar_todas_vistas_canciones():
-    pestana_actual = paginas_canciones.get()
-    # Actualizar la vista de canciones
-    actualizar_vista_canciones(panel_botones_canciones)
-    # Actualizar las demás pestañas inmediatamente
-    actualizar_vista_me_gusta()
-    actualizar_vista_favoritos()
-    actualizar_vista_albumes()
-    actualizar_vista_artistas()
-    # Marcar todas las pestañas como cargadas
-    pestanas_cargadas["Me gusta"] = True
-    pestanas_cargadas["Favoritos"] = True
-    pestanas_cargadas["Álbumes"] = True
-    pestanas_cargadas["Artistas"] = True
-    # Restablecer el scroll para la pestaña actual
-    if pestana_actual == "Canciones":
-        canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
-    # Guardar la biblioteca después de las actualizaciones
-    guardar_biblioteca()
+# Función para actualizar la vista de las canciones en la biblioteca
+def actualizar_vista_canciones(panel):
+    # Limpiar botones existentes
+    for cancion, boton in botones_canciones.items():
+        try:
+            # Eliminar el botón del controlador_tema de tema
+            nombre_boton = f"cancion_{cancion.titulo_cancion}"
+            nombre_opciones = f"opciones_{cancion.titulo_cancion}"
+            controlador_tema.eliminar_boton(nombre_boton)
+            controlador_tema.eliminar_boton(nombre_opciones)
+            # Destruir el frame contenedor (que contiene el botón)
+            if boton and boton.winfo_exists():
+                frame_padre = boton.winfo_parent()
+                if frame_padre:
+                    frame = boton.nametowidget(frame_padre)
+                    if frame and frame.winfo_exists():
+                        frame.destroy()
+        except Exception as e:
+            print(f"Error al destruir el botón {cancion.titulo_cancion}: {e}")
+            pass
+    botones_canciones.clear()
+    # Crear nuevos botones para cada canción
+    for cancion in biblioteca.canciones:
+        crear_boton_cancion(cancion, panel)
+    # Forzar actualización del layout
+    panel.update_idletasks()
+    # Asegurar que el canvas se actualice correctamente y volver al inicio
+    canvas_canciones.yview_moveto(0)
+    canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
 
 
 # Función para mostrar los detalles de las canciones
-def mostrar_canciones_detalle(pagina, elemento, funcion_regresar):
+def mostrar_detalle_cancion(pagina, elemento, funcion_regresar):
     # Eliminar tooltip si existe
     eliminar_tooltip()
     # Obtener colores actualizados del tema
@@ -1381,46 +1355,17 @@ def configurar_interfaz_albumes():
     return configurar_interfaz_pestania("Álbumes")
 
 
-# Función auxiliar para crear botones de álbumes
-def crear_botones_albumes(albumes, canvas_albumes, panel_botones_albumes):
-    # Crear botones para cada álbum
-    for album in sorted(albumes):
-        # Ignorar álbumes vacíos o sin nombre
-        if album == "" or album == "Unknown Album" or album.lower() == "desconocido":
-            continue
-        # ------------------------------------ Boton de álbum -----------------------------------
-        boton_album = ctk.CTkButton(
-            panel_botones_albumes,
-            width=ANCHO_BOTON + 8,
-            height=ALTO_BOTON + 8,
-            fg_color=controlador_tema.color_boton,
-            hover_color=controlador_tema.color_hover,
-            font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=controlador_tema.color_texto,
-            text=album,
-            command=lambda a=album: mostrar_canciones_album(a),
-        )
-        boton_album.pack(fill="both", pady=(0, 2), expand=True)
-        controlador_tema.registrar_botones(f"album_{album}", boton_album)
-        # ---------------------------------------------------------------------------------------
-        # Configurar desplazamiento si el texto es largo
-        configurar_desplazamiento_texto(boton_album, album)
-    panel_botones_albumes.update_idletasks()
-    canvas_albumes.yview_moveto(0)
-    canvas_albumes.configure(scrollregion=canvas_albumes.bbox("all"))
-
-
 # Función para actualizar la vista de álbumes
 def actualizar_vista_albumes():
     canvas_albumes, panel_botones_albumes = configurar_interfaz_albumes()
     # Obtener todos los álbumes
     albumes = biblioteca.por_album.keys()
-    crear_botones_albumes(albumes, canvas_albumes, panel_botones_albumes)
+    crear_boton_album(albumes, canvas_albumes, panel_botones_albumes)
 
 
 # Función para mostrar las canciones de un álbum
 def mostrar_canciones_album(album):
-    return mostrar_canciones_detalle("Álbumes", album, actualizar_vista_albumes)
+    return mostrar_detalle_cancion("Álbumes", album, actualizar_vista_albumes)
 
 
 # Función para actualizar la vista de albunes filtrados
@@ -1430,7 +1375,7 @@ def mostrar_albumes_filtrados(texto_busqueda):
     albumes_filtrados = [
         album for album in biblioteca.por_album.keys() if texto_busqueda.lower() in album.lower()
     ]
-    crear_botones_albumes(albumes_filtrados, canvas_albumes, panel_botones_albumes)
+    crear_boton_album(albumes_filtrados, canvas_albumes, panel_botones_albumes)
 
 
 # Función para configurar la interfaz artistas
@@ -1438,48 +1383,18 @@ def configurar_interfaz_artistas():
     return configurar_interfaz_pestania("Artistas")
 
 
-# Función auxiliar para crear botones de artistas
-def crear_botones_artistas(artistas, canvas_artistas, panel_botones_artistas):
-    # Crear botones para cada artista
-    for artista in sorted(artistas):
-        # Ignorar artistas sin nombre o desconocidos
-        if artista == "" or artista == "Unknown Artist" or artista.lower() == "desconocido":
-            continue
-        # ----------------------------------- Boton de artista ----------------------------------
-        boton_artista = ctk.CTkButton(
-            panel_botones_artistas,
-            width=ANCHO_BOTON + 8,
-            height=ALTO_BOTON + 8,
-            fg_color=controlador_tema.color_boton,
-            hover_color=controlador_tema.color_hover,
-            font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=controlador_tema.color_texto,
-            text=artista,
-            command=lambda a=artista: mostrar_canciones_artista(a),
-        )
-        boton_artista.pack(fill="both", pady=(0, 2), expand=True)
-        controlador_tema.registrar_botones(f"artista_{artista}", boton_artista)
-        # ---------------------------------------------------------------------------------------
-        # Configurar desplazamiento si el texto es largo
-        configurar_desplazamiento_texto(boton_artista, artista)
-    panel_botones_artistas.update_idletasks()
-    canvas_artistas.yview_moveto(0)
-    canvas_artistas.configure(scrollregion=canvas_artistas.bbox("all"))
-
-
 # Función para actualizar la vista de artistas
 def actualizar_vista_artistas():
-
     canvas_artistas, panel_botones_artistas = configurar_interfaz_artistas()
     # Obtener todos los artistas
     artistas = biblioteca.por_artista.keys()
     # Usar la función auxiliar para crear botones
-    crear_botones_artistas(artistas, canvas_artistas, panel_botones_artistas)
+    crear_boton_artista(artistas, canvas_artistas, panel_botones_artistas)
 
 
 # Función para mostrar las canciones de un artista
 def mostrar_canciones_artista(artista):
-    return mostrar_canciones_detalle("Artistas", artista, actualizar_vista_artistas)
+    return mostrar_detalle_cancion("Artistas", artista, actualizar_vista_artistas)
 
 
 # Función para mostrar artistas filtrados
@@ -1490,7 +1405,7 @@ def mostrar_artistas_filtrados(texto_busqueda):
         artista for artista in biblioteca.por_artista.keys() if texto_busqueda.lower() in artista.lower()
     ]
     # Usar la función auxiliar para crear botones
-    crear_botones_artistas(artistas_filtrados, canvas_artistas, panel_botones_artistas)
+    crear_boton_artista(artistas_filtrados, canvas_artistas, panel_botones_artistas)
 
 
 # Función para actualizar la vista de Me_gusta
@@ -1633,9 +1548,91 @@ def actualizar_espectro():
         ventana_principal.after(85, actualizar_espectro)
 
 
-# Función para establecer el icono del tema
-def cambiar_icono_tema(tema="claro"):
-    establecer_icono_tema(ventana_principal, tema)
+# Función para iniciar el desplazamiento del texto
+def iniciar_desplazamiento_boton(boton):
+    # Verificar si el botón tiene el atributo timer_id usando hasattr
+    if hasattr(boton, "timer_id") and getattr(boton, "timer_id"):
+        boton.after_cancel(getattr(boton, "timer_id"))
+    # Reiniciar la posición
+    setattr(boton, "pos_marquee", 0)
+    animar_texto_boton(boton)
+
+
+# Función para detener el desplazamiento del texto
+def detener_desplazamiento_boton(boton, longitud_maxima=50):
+    if hasattr(boton, "timer_id") and getattr(boton, "timer_id"):
+        boton.after_cancel(getattr(boton, "timer_id"))
+    # Mostrar texto truncado al detener
+    texto_completo = getattr(boton, "texto_completo", "")
+    boton.configure(text=texto_completo[:longitud_maxima] + "...")
+
+
+# Función para animar el texto del botón
+def animar_texto_boton(boton, longitud_maxima=50):
+    # Verificar si tiene el atributo texto_completo
+    if not hasattr(boton, "texto_completo"):
+        return
+    texto_completo = getattr(boton, "texto_completo")
+    pos = getattr(boton, "pos_marquee", 0)
+    # Control de la posición de desplazamiento
+    if pos == 0:
+        # Al inicio, pausa
+        if not hasattr(boton, "pausa_inicio"):
+            setattr(boton, "pausa_inicio", 0)
+        pausa_actual = getattr(boton, "pausa_inicio")
+        if pausa_actual < 8:  # Pausa de 1 segundo (8 * 125ms)
+            setattr(boton, "pausa_inicio", pausa_actual + 1)
+            texto_visible = texto_completo[:longitud_maxima]
+            boton.configure(text=texto_visible + "...")
+            timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
+            setattr(boton, "timer_id", timer_id)
+            return
+        else:
+            setattr(boton, "pausa_inicio", 0)
+    # Si el texto llega al final, reiniciar
+    if pos >= len(texto_completo) - longitud_maxima:
+        # Pausa al final
+        if not hasattr(boton, "pausa_final"):
+            setattr(boton, "pausa_final", 0)
+        pausa_actual = getattr(boton, "pausa_final")
+        if pausa_actual < 8:  # Pausa de 1 segundo (8 * 125ms)
+            setattr(boton, "pausa_final", pausa_actual + 1)
+            texto_visible = texto_completo[len(texto_completo) - longitud_maxima :]
+            boton.configure(text=texto_visible)
+            timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
+            setattr(boton, "timer_id", timer_id)
+            return
+        else:
+            setattr(boton, "pausa_final", 0)
+            setattr(boton, "pos_marquee", 0)
+            texto_visible = texto_completo[:longitud_maxima]
+            boton.configure(text=texto_visible + "...")
+            timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
+            setattr(boton, "timer_id", timer_id)
+            return
+    # Desplazamiento normal
+    texto_visible = texto_completo[pos : pos + longitud_maxima]
+    boton.configure(text=texto_visible)
+    setattr(boton, "pos_marquee", pos + 1)
+    timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
+    setattr(boton, "timer_id", timer_id)
+
+
+# Función para configurar el desplazamiento de texto en botones
+def configurar_desplazamiento_texto(boton, texto_completo, longitud_maxima=55):
+    # Si el texto es más corto que el límite, simplemente mostrarlo
+    if len(texto_completo) <= longitud_maxima:
+        boton.configure(text=texto_completo)
+        return
+    # Almacenar el texto completo como atributo del botón usando setattr
+    setattr(boton, "texto_completo", texto_completo)
+    setattr(boton, "pos_marquee", 0)
+    setattr(boton, "timer_id", None)
+    # Vincular eventos de ratón para activar/desactivar el desplazamiento
+    boton.bind("<Enter>", lambda event: iniciar_desplazamiento_boton(boton))
+    boton.bind("<Leave>", lambda event: detener_desplazamiento_boton(boton, longitud_maxima))
+    # Mostrar inicialmente el texto truncado con elipsis
+    boton.configure(text=texto_completo[:longitud_maxima] + "...")
 
 
 # Función para abrir la ventana de configuración
@@ -1721,7 +1718,7 @@ cola_reproduccion = ColaReproduccion(
     ventana_principal,
     controlador_tema,
     controlador_reproductor,
-    lambda: actualizar_estado_reproduccion_desde_cola(),
+    lambda: reproducir_desde_cola_vista(),
 )
 
 # Obtener las dimensiones de la pantalla

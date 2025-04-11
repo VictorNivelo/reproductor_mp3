@@ -1,8 +1,8 @@
 {
     "estadisticas": {
-        "total_canciones": 9,
-        "total_artistas": 15,
-        "total_albumes": 9,
+        "total_canciones": 12,
+        "total_artistas": 17,
+        "total_albumes": 10,
         "me_gusta": 3,
         "favorito": 1
     },
@@ -103,6 +103,48 @@
             "numero_pista": "1/1",
             "tiene_caratula": true,
             "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3",
+            "titulo": "Life Of The Party (ft André 3000)",
+            "artista": "Kanye West ft André 3000",
+            "artista_album": "Kanye West",
+            "album": "Donda (Deluxe)",
+            "duracion": 391.7061224489796,
+            "duracion_formateada": "06:31",
+            "anio": "2021-11-14",
+            "numero_pista": "4/32",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Never Abandon Your Family..mp3",
+            "titulo": "Never Abandon Your Family",
+            "artista": "Kanye West",
+            "artista_album": "Kanye West",
+            "album": "Donda (Deluxe)",
+            "duracion": 207.49061224489796,
+            "duracion_formateada": "03:27",
+            "anio": "2021-11-14",
+            "numero_pista": "17/32",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Off The Grid..mp3",
+            "titulo": "Off The Grid",
+            "artista": "Kanye West",
+            "artista_album": "Kanye West",
+            "album": "Donda (Deluxe)",
+            "duracion": 339.27836734693875,
+            "duracion_formateada": "05:39",
+            "anio": "2021-11-14",
+            "numero_pista": "5/32",
+            "tiene_caratula": true,
+            "me_gusta": false,
             "favorito": false
         },
         {

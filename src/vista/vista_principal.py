@@ -60,7 +60,7 @@ def actualizar_tooltip_vista():
 def cambiar_tema_vista():
     global APARIENCIA
     # Cambiar tema
-    controlador_tema.cambiar_tema()
+    controlador_tema.cambiar_tema_controlador()
     # Actualizar la variable global APARIENCIA
     APARIENCIA = "oscuro" if APARIENCIA == "claro" else "claro"
     # Actualizar icono de tema
@@ -151,14 +151,14 @@ def guardar_todos_ajustes():
         "estado_silenciado": ESTADO_SILENCIO,
         "panel_lateral_visible": PANEL_LATERAL_VISIBLE,
     }
-    controlador_archivos.guardar_ajustes(configuracion_guardada)
+    controlador_archivos.guardar_ajustes_controlador(configuracion_guardada)
 
 
 # Función para cargar todos los ajustes
 def cargar_todos_ajustes():
     global APARIENCIA, NIVEL_VOLUMEN, MODO_ALEATORIO, MODO_REPETICION, ESTADO_SILENCIO, PANEL_LATERAL_VISIBLE
     # Cargar configuración desde archivo
-    configuracion_cargada = controlador_archivos.cargar_ajustes()
+    configuracion_cargada = controlador_archivos.cargar_ajustes_controlador()
     # Aplicar valores a las variables globales
     APARIENCIA = configuracion_cargada.get("apariencia", "claro")
     NIVEL_VOLUMEN = configuracion_cargada.get("nivel_volumen", 100)
@@ -179,11 +179,11 @@ def cargar_todos_ajustes():
     # Ajustar volumen
     barra_volumen.set(NIVEL_VOLUMEN)
     etiqueta_porcentaje_volumen.configure(text=f"{NIVEL_VOLUMEN}%")
-    controlador_reproductor.ajustar_volumen(NIVEL_VOLUMEN if not ESTADO_SILENCIO else 0)
+    controlador_reproductor.ajustar_volumen_controlador(NIVEL_VOLUMEN if not ESTADO_SILENCIO else 0)
     # Ajustar orden de reproducción
-    controlador_reproductor.establecer_modo_aleatorio(MODO_ALEATORIO)
+    controlador_reproductor.modo_orden_controlador(MODO_ALEATORIO)
     # Ajustar modo de repetición
-    controlador_reproductor.establecer_modo_repeticion(MODO_REPETICION)
+    controlador_reproductor.modo_repeticion_controlador(MODO_REPETICION)
     # Ajustar panel visible
     if not PANEL_LATERAL_VISIBLE:
         contenedor_derecha_principal.configure(width=0)
@@ -192,14 +192,14 @@ def cargar_todos_ajustes():
     # Recargar los colores del tema
     controlador_tema.colores()
     # Actualizar el tema de la interfaz
-    controlador_tema.cambiar_tema()
+    controlador_tema.cambiar_tema_controlador()
     # Actualizar el tema de la interfaz forzando la actualización
-    controlador_tema.cambiar_tema()
+    controlador_tema.cambiar_tema_controlador()
 
 
 # Función para cargar la última canción reproducida
 def cargar_ultima_cancion_reproducida():
-    ultima_cancion_info = controlador_archivos.obtener_ultima_cancion_reproducida()
+    ultima_cancion_info = controlador_archivos.ultima_reproducida_controlador()
     if ultima_cancion_info:
         # Buscar la canción en la biblioteca
         ruta_cancion = Path(ultima_cancion_info["ruta"])
@@ -214,7 +214,7 @@ def cargar_ultima_cancion_reproducida():
                     controlador_reproductor.indice_actual = 0
                     controlador_reproductor.cancion_actual = cancion
                 # Actualizar la interfaz sin reproducir
-                controlador_reproductor.actualizar_informacion_interfaz()
+                controlador_reproductor.actualizar_informacion_controlador()
                 # Actualizar estado de los botones de me_gusta/favorito
                 actualizar_estado_botones_gustos()
                 return True
@@ -226,7 +226,7 @@ def reproducir_vista():
     global ESTADO_REPRODUCCION
     if not ESTADO_REPRODUCCION:
         # Verificar si hay una canción en la cola para reproducir
-        if controlador_reproductor.reproducir_o_reanudar():
+        if controlador_reproductor.reproducir_o_reanudar_controlador():
             # Actualizar estado e iconos
             ESTADO_REPRODUCCION = True
             controlador_tema.registrar_botones("pausa", boton_reproducir)
@@ -236,7 +236,7 @@ def reproducir_vista():
         # Pausar reproducción
         ESTADO_REPRODUCCION = False
         controlador_tema.registrar_botones("reproducir", boton_reproducir)
-        controlador_reproductor.pausar_reproduccion()
+        controlador_reproductor.pausar_reproduccion_controlador()
         actualizar_texto_tooltip(boton_reproducir, "Reproducir")
 
 
@@ -244,13 +244,13 @@ def reproducir_vista():
 def reproducir_desde_lista_vista(cancion):
     global ESTADO_REPRODUCCION, biblioteca
     # Establecer la lista de reproducción actual
-    controlador_reproductor.establecer_cola_reproduccion(
+    controlador_reproductor.establecer_cola_reproduccion_controlador(
         biblioteca.canciones, biblioteca.canciones.index(cancion)
     )
     # Reproducir la canción
-    controlador_reproductor.reproducir_cancion(cancion)
+    controlador_reproductor.reproducir_cancion_controlador(cancion)
     # Registrar la reproducción en las estadísticas
-    controlador_archivos.registrar_reproduccion(cancion)
+    controlador_archivos.registrar_reproduccion_controlador(cancion)
     # Actualizar estado de reproducción
     ESTADO_REPRODUCCION = True
     # Cambiar icono del botón a pausa
@@ -277,7 +277,7 @@ def reproducir_desde_cola_vista():
 # Función para reproducir la canción siguiente
 def reproducir_siguiente_vista():
     global controlador_reproductor, ESTADO_REPRODUCCION
-    resultado = controlador_reproductor.reproducir_siguiente()
+    resultado = controlador_reproductor.reproducir_siguiente_controlador()
     if resultado:
         # Canción reproducida exitosamente
         actualizar_estado_botones_gustos()
@@ -291,21 +291,21 @@ def reproducir_siguiente_vista():
 # Función para reproducir la canción anterior
 def reproducir_anterior_vista():
     global controlador_reproductor
-    if controlador_reproductor.reproducir_anterior():
+    if controlador_reproductor.reproducir_anterior_controlador():
         # Canción reproducida exitosamente
         actualizar_estado_botones_gustos()
 
 
 # Función para adelantar la reproducción
 def adelantar_reproduccion_vista():
-    controlador_reproductor.adelantar_reproduccion(TIEMPO_AJUSTE)
+    controlador_reproductor.adelantar_reproduccion_controlador(TIEMPO_AJUSTE)
     # Actualizar tooltip con el valor actual
     crear_tooltip(boton_adelantar, f"Adelanta {TIEMPO_AJUSTE} segundos")
 
 
 # Función para retroceder la reproducción
 def retroceder_reproduccion_vista():
-    controlador_reproductor.retroceder_reproduccion(TIEMPO_AJUSTE)
+    controlador_reproductor.retroceder_reproduccion_controlador(TIEMPO_AJUSTE)
     # Actualizar tooltip con el valor actual
     crear_tooltip(boton_retroceder, f"Retrocede {TIEMPO_AJUSTE} segundos")
 
@@ -319,7 +319,7 @@ def cambiar_volumen_vista(_event=None):
     if ESTADO_SILENCIO and NIVEL_VOLUMEN > 0:
         ESTADO_SILENCIO = False
     # Ajustamos el volumen real
-    controlador_reproductor.ajustar_volumen(NIVEL_VOLUMEN if not ESTADO_SILENCIO else 0)
+    controlador_reproductor.ajustar_volumen_controlador(NIVEL_VOLUMEN if not ESTADO_SILENCIO else 0)
     # Actualizamos el icono
     actualizar_iconos()
     # Guardamos los ajustes
@@ -332,12 +332,12 @@ def cambiar_silencio_vista():
     ESTADO_SILENCIO = not ESTADO_SILENCIO
     if ESTADO_SILENCIO:
         # Guardar volumen actual y silenciar
-        controlador_reproductor.ajustar_volumen(0)
+        controlador_reproductor.ajustar_volumen_controlador(0)
         controlador_tema.registrar_botones("silencio", boton_silenciar)
         actualizar_texto_tooltip(boton_silenciar, "Quitar silencio")
     else:
         # Restaurar volumen anterior
-        controlador_reproductor.ajustar_volumen(NIVEL_VOLUMEN)
+        controlador_reproductor.ajustar_volumen_controlador(NIVEL_VOLUMEN)
         actualizar_texto_tooltip(boton_silenciar, "Silenciar")
         cambiar_volumen_vista()
     guardar_todos_ajustes()
@@ -348,7 +348,7 @@ def cambiar_orden_vista():
     global MODO_ALEATORIO
     MODO_ALEATORIO = not MODO_ALEATORIO
     # Informar al controlador_tema sobre el cambio en el modo de reproducción
-    controlador_reproductor.establecer_modo_aleatorio(MODO_ALEATORIO)
+    controlador_reproductor.modo_orden_controlador(MODO_ALEATORIO)
     if MODO_ALEATORIO:
         controlador_tema.registrar_botones("aleatorio", boton_aleatorio)
         actualizar_texto_tooltip(boton_aleatorio, "Reproducción aleatoria")
@@ -363,7 +363,7 @@ def cambiar_orden_vista():
 def cambiar_repeticion_vista():
     global MODO_REPETICION
     MODO_REPETICION = (MODO_REPETICION + 1) % 3
-    controlador_reproductor.establecer_modo_repeticion(MODO_REPETICION)
+    controlador_reproductor.modo_repeticion_controlador(MODO_REPETICION)
     # Icono de no repetir
     if MODO_REPETICION == 0:
         controlador_tema.registrar_botones("no_repetir", boton_repetir)
@@ -510,7 +510,7 @@ def agregar_cancion_vista():
     )
     canciones_agregadas = []
     for ruta in rutas:
-        cancion = controlador_biblioteca.agregar_cancion(Path(ruta))
+        cancion = controlador_biblioteca.agregar_cancion_controlador(Path(ruta))
         if cancion:
             canciones_agregadas.append(cancion)
     if canciones_agregadas:
@@ -526,7 +526,7 @@ def agregar_cancion_vista():
 def agregar_directorio_vista():
     ruta = filedialog.askdirectory(title="Seleccionar directorio de música")
     if ruta:
-        controlador_biblioteca.agregar_directorio(Path(ruta))
+        controlador_biblioteca.agregar_directorio_controlador(Path(ruta))
         # Guardar la pestaña actual
         # pestana_actual = paginas_canciones.get()
         actualizar_todas_vistas_canciones()
@@ -538,7 +538,7 @@ def agregar_directorio_vista():
 # Función para agregar una canción al inicio de la cola de reproducción
 def agregar_inicio_cola_vista(cancion):
     # Usar el método del controlador para agregar la canción después de la actual
-    if controlador_reproductor.agregar_cancion_inicio_cola(cancion):
+    if controlador_reproductor.agregar_cancion_inicio_cola_controlador(cancion):
         # Mostrar mensaje de confirmación
         print(f"Se ha agregado después de la canción actual: {cancion.titulo_cancion}")
         # Si la ventana de cola está abierta, actualizarla
@@ -555,7 +555,7 @@ def agregar_inicio_cola_vista(cancion):
 # Función para agregar una canción al final de la cola de reproducción
 def agregar_fin_cola_vista(cancion):
     # Usar el método del controlador para agregar la canción al final de la cola
-    if controlador_reproductor.agregar_cancion_final_cola(cancion):
+    if controlador_reproductor.agregar_cancion_final_cola_controlador(cancion):
         # Mostrar mensaje de confirmación
         print(f"Se ha agregado a la cola: {cancion.titulo_cancion}")
         # Si la ventana de cola está abierta, actualizarla
@@ -574,10 +574,10 @@ def eliminar_cancion_vista(cancion):
     # Verificar si la canción que se elimina está en reproducción
     if controlador_reproductor.cancion_actual == cancion:
         # Sí está reproduciéndose, detener la reproducción
-        controlador_reproductor.detener_reproduccion()
+        controlador_reproductor.detener_reproduccion_controlador()
         # Limpiar la información en la interfaz
         controlador_reproductor.cancion_actual = None
-        controlador_reproductor.actualizar_informacion_interfaz()
+        controlador_reproductor.actualizar_informacion_controlador()
     # Eliminar la canción de la cola de reproducción si está en ella
     if cancion in controlador_reproductor.lista_reproduccion:
         # Obtener índice actual
@@ -591,7 +591,7 @@ def eliminar_cancion_vista(cancion):
         elif len(controlador_reproductor.lista_reproduccion) == 0:
             controlador_reproductor.indice_actual = -1
         # Guardar la cola actualizada
-        controlador_archivos.guardar_cola_reproduccion(controlador_reproductor)
+        controlador_archivos.guardar_cola_reproduccion_controlador(controlador_reproductor)
     # Verificar si la canción está en la lista de "Me gusta" y eliminarla manualmente
     if cancion.me_gusta:
         cancion.me_gusta = False
@@ -721,16 +721,16 @@ def finalizar_arrastre_progreso(event):
 # Función para guardar la biblioteca cuando ocurren cambios
 def guardar_biblioteca():
     global controlador_archivos, biblioteca, controlador_reproductor
-    controlador_archivos.guardar_biblioteca(biblioteca, controlador_reproductor)
+    controlador_archivos.guardar_biblioteca_controlador(biblioteca, controlador_reproductor)
 
 
 # Función para cargar la biblioteca al iniciar
 def cargar_biblioteca_vista():
-    if controlador_archivos.cargar_biblioteca(biblioteca):
+    if controlador_archivos.cargar_biblioteca_controlador(biblioteca):
         # Cargar ajustes primero para tener el tema correcto
         cargar_todos_ajustes()
         # Reinicializar la estructura de artistas para separar colaboraciones
-        biblioteca.reinicializar_artistas()
+        biblioteca.reinicializar_artistas_biblioteca()
         # Actualizar vista principal de canciones
         actualizar_vista_canciones(panel_botones_canciones)
         # Configurar eventos para las pestañas (solo cargar cuando se seleccionan)
@@ -743,14 +743,14 @@ def cargar_biblioteca_vista():
 # Función para cargar la cola de reproducción guardada
 def cargar_cola_vista():
     # Cargar la cola de reproducción
-    controlador_archivos.cargar_cola_reproduccion(controlador_reproductor, biblioteca)
+    controlador_archivos.cargar_cola_reproduccion_controlador(controlador_reproductor, biblioteca)
     # Sí hay canciones en la cola, actualizar la interfaz
     if controlador_reproductor.lista_reproduccion:
         # Establecer la canción actual sin reproducirla automáticamente
         indice = controlador_reproductor.indice_actual
         if 0 <= indice < len(controlador_reproductor.lista_reproduccion):
             controlador_reproductor.cancion_actual = controlador_reproductor.lista_reproduccion[indice]
-            controlador_reproductor.actualizar_informacion_interfaz()
+            controlador_reproductor.actualizar_informacion_controlador()
             # Actualizar estado de los botones de me_gusta/favorito
             actualizar_estado_botones_gustos()
     # También podemos cargar la información de la última canción reproducida
@@ -1678,7 +1678,7 @@ controlador_reproductor = ControladorReproductor()
 controlador_archivos = ControladorArchivos()
 
 # Primero, cargar configuración (antes de establecer apariencia)
-configuracion = controlador_archivos.cargar_ajustes()
+configuracion = controlador_archivos.cargar_ajustes_controlador()
 
 # Apariencia (claro/oscuro)
 APARIENCIA = configuracion.get("apariencia", "claro")
@@ -1893,7 +1893,7 @@ etiqueta_anio_cancion = ctk.CTkLabel(
 etiqueta_anio_cancion.pack(expand=True)
 controlador_tema.registrar_etiqueta(etiqueta_anio_cancion)
 
-controlador_reproductor.establecer_informacion_interfaz(
+controlador_reproductor.establecer_informacion_controlador(
     etiqueta_nombre_cancion,
     etiqueta_artista_cancion,
     etiqueta_album_cancion,
@@ -1987,7 +1987,7 @@ barra_progreso.bind("<B1-Motion>", durante_arrastre_progreso)
 barra_progreso.bind("<ButtonRelease-1>", finalizar_arrastre_progreso)
 controlador_tema.registrar_progress_bar(barra_progreso)
 
-controlador_reproductor.establecer_barra_progreso(barra_progreso)
+controlador_reproductor.establecer_barra_progreso_controlador(barra_progreso)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -2018,7 +2018,7 @@ etiqueta_tiempo_total = ctk.CTkLabel(
 etiqueta_tiempo_total.pack(side=tk.RIGHT)
 controlador_tema.registrar_etiqueta(etiqueta_tiempo_total)
 
-controlador_reproductor.establecer_etiquetas_tiempo(etiqueta_tiempo_actual, etiqueta_tiempo_total)
+controlador_reproductor.establecer_etiquetas_tiempo_controlador(etiqueta_tiempo_actual, etiqueta_tiempo_total)
 
 # -----------------------------------------------------------------------------------------------
 
@@ -2418,7 +2418,7 @@ crear_tooltip(boton_agregar_directorio, "Agregar carpeta")
 cargar_todos_ajustes()
 
 # Establecer volumen inicial
-controlador_reproductor.ajustar_volumen(NIVEL_VOLUMEN if not ESTADO_SILENCIO else 0)
+controlador_reproductor.ajustar_volumen_controlador(NIVEL_VOLUMEN if not ESTADO_SILENCIO else 0)
 
 # Muestre el icono del volumen actual de la barra de volumen
 # cambiar_volumen_vista(None)

@@ -53,7 +53,7 @@ class ControladorReproductor:
         self.utiles = Utiles()
 
     # Método que establece las etiquetas de la interfaz
-    def establecer_informacion_interfaz(self, nombre, artista, album, anio, imagen):
+    def establecer_informacion_controlador(self, nombre, artista, album, anio, imagen):
         self.etiqueta_nombre = nombre
         self.etiqueta_artista = artista
         self.etiqueta_album = album
@@ -67,7 +67,7 @@ class ControladorReproductor:
         self.etiqueta_imagen.configure(text="Sin carátula")
 
     # Método que actualiza la carátula de la canción
-    def actualizar_caratula(self, caratula_bytes=None, ancho=300):
+    def actualizar_caratula_controlador(self, caratula_bytes=None, ancho=300):
         try:
             # Si no se proporcionan bytes, usar la carátula de la canción actual
             if caratula_bytes is None and self.cancion_actual:
@@ -90,7 +90,7 @@ class ControladorReproductor:
             return False
 
     # Método que actualiza la información de la interfaz
-    def actualizar_informacion_interfaz(self):
+    def actualizar_informacion_controlador(self):
         if self.cancion_actual and self.etiqueta_nombre:
             # Guardar información de la canción actual
             self.texto_titulo = self.cancion_actual.titulo_cancion
@@ -106,7 +106,7 @@ class ControladorReproductor:
                 self.etiqueta_nombre.after_cancel(self.id_marcador_tiempo)
                 self.id_marcador_tiempo = None
             # Iniciar desplazamiento de textos largos si es necesario
-            self.iniciar_desplazamiento_texto()
+            self.iniciar_desplazamiento_texto_controlador()
             # Actualizar carátula
             if self.cancion_actual.caratula_cancion:
                 foto, _, _ = self.utiles.crear_imagen_desde_bytes(
@@ -120,16 +120,16 @@ class ControladorReproductor:
                 self.etiqueta_imagen.configure(image=None, text="Sin carátula")
 
     # Método que establece la barra de progreso
-    def establecer_barra_progreso(self, barra):
+    def establecer_barra_progreso_controlador(self, barra):
         self.barra_progreso = barra
 
     # Método que establece las etiquetas de tiempo
-    def establecer_etiquetas_tiempo(self, etiqueta_actual, etiqueta_total):
+    def establecer_etiquetas_tiempo_controlador(self, etiqueta_actual, etiqueta_total):
         self.etiqueta_tiempo_actual = etiqueta_actual
         self.etiqueta_tiempo_total = etiqueta_total
 
     # Método que actualiza el tiempo de reproducción de la canción
-    def actualizar_tiempo(self):
+    def actualizar_tiempo_controlador(self):
         if self.cancion_actual:
             if self.tiempo_inicio is not None:
                 tiempo_actual = self.tiempo_acumulado + (time.perf_counter() - self.tiempo_inicio)
@@ -149,17 +149,17 @@ class ControladorReproductor:
                 # Manejar el final de la canción según el modo de repetición
                 if self.modo_repeticion == 1:  # Repetir canción actual
                     # Reiniciar la misma canción
-                    self.reproducir_cancion(self.cancion_actual)
+                    self.reproducir_cancion_controlador(self.cancion_actual)
                     return
                 elif self.lista_reproduccion and (
                     self.indice_actual < len(self.lista_reproduccion) - 1 or self.modo_repeticion == 2
                 ):
                     # Reproducir siguiente canción
-                    self.reproducir_siguiente()
+                    self.reproducir_siguiente_controlador()
                     return
                 else:
                     # No hay más canciones o no está activada la repetición
-                    self.detener_reproduccion()
+                    self.detener_reproduccion_controlador()
                     # Señalizar a la vista que terminó la reproducción
                     self.reproduciendo = False
                     return True
@@ -175,16 +175,16 @@ class ControladorReproductor:
                 self.etiqueta_tiempo_actual.configure(text=f"{minutos_actual:02d}:{segundos_actual:02d}")
             if self.etiqueta_tiempo_total:
                 self.etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
-            self.id_temporizador = self.etiqueta_tiempo_actual.after(100, self.actualizar_tiempo)
+            self.id_temporizador = self.etiqueta_tiempo_actual.after(100, self.actualizar_tiempo_controlador)
         return False
 
     # Método que ajusta el volumen de la canción
     @staticmethod
-    def ajustar_volumen(volumen: float) -> None:
+    def ajustar_volumen_controlador(volumen: float) -> None:
         pygame.mixer.music.set_volume(volumen / 100.0)
 
     # Método para silenciar la reproducción
-    def silenciar(self):
+    def silenciar_controlador(self):
         # Guardar el volumen actual antes de silenciar
         volumen_anterior = pygame.mixer.music.get_volume() * 100.0
         # Establecer volumen a 0
@@ -192,7 +192,7 @@ class ControladorReproductor:
         return volumen_anterior
 
     # Método para quitar el silencio
-    def quitar_silencio(self, volumen_anterior=None):
+    def quitar_silencio_controlador(self, volumen_anterior=None):
         # Si no se proporciona un volumen, usar 50% por defecto
         if volumen_anterior is None:
             volumen_anterior = 50.0
@@ -203,17 +203,17 @@ class ControladorReproductor:
         return volumen_anterior
 
     # Método que establece el modo de repetición
-    def establecer_modo_repeticion(self, modo):
+    def modo_repeticion_controlador(self, modo):
         self.modo_repeticion = modo
 
     # Método para establecer el modo de reproducción (aleatorio o secuencial)
-    def establecer_modo_aleatorio(self, aleatorio: bool):
+    def modo_orden_controlador(self, aleatorio: bool):
         self.modo_aleatorio = aleatorio
         # Resetear el historial cuando cambiamos de modo
         self.historial_aleatorio = []
 
     # Método que reproduce una canción
-    def reproducir_cancion(self, cancion: Cancion) -> None:
+    def reproducir_cancion_controlador(self, cancion: Cancion) -> None:
         # Cancelar el temporizador anterior si existe
         if self.id_temporizador:
             self.etiqueta_tiempo_actual.after_cancel(self.id_temporizador)
@@ -248,14 +248,14 @@ class ControladorReproductor:
         self.tiempo_acumulado = 0
         self.tiempo_inicio = time.perf_counter()
         # Actualizar interfaz
-        self.actualizar_informacion_interfaz()
-        self.actualizar_tiempo()
+        self.actualizar_informacion_controlador()
+        self.actualizar_tiempo_controlador()
         # Guardar la cola automáticamente
         controlador_archivos = ControladorArchivos()
-        controlador_archivos.guardar_cola_reproduccion(self)
+        controlador_archivos.guardar_cola_reproduccion_controlador(self)
 
     # Métodos que controlan la reproducción de la canción
-    def pausar_reproduccion(self) -> None:
+    def pausar_reproduccion_controlador(self) -> None:
         if self.reproduciendo:
             pygame.mixer.music.pause()
             # Acumular tiempo transcurrido hasta el momento de la pausa
@@ -265,7 +265,7 @@ class ControladorReproductor:
             self.reproduciendo = False
 
     # Método que reanuda la reproducción de la canción
-    def reanudar_reproduccion(self) -> None:
+    def reanudar_reproduccion_controlador(self) -> None:
         if not self.reproduciendo and self.cancion_actual:
             # Verificar el estado actual de pygame
             try:
@@ -283,28 +283,28 @@ class ControladorReproductor:
                 pygame.mixer.music.play(start=self.tiempo_acumulado)
             self.tiempo_inicio = time.perf_counter()
             self.reproduciendo = True
-            self.actualizar_tiempo()
+            self.actualizar_tiempo_controlador()
 
     # Método que reproduce o reanuda la canción actual
-    def reproducir_o_reanudar(self) -> bool:
+    def reproducir_o_reanudar_controlador(self) -> bool:
         # Comprobar primero si hay canción actual
         if self.cancion_actual:
             # Si la canción ya está cargada pero pausada, solo reanudar
             if not self.reproduciendo:
-                self.reanudar_reproduccion()
+                self.reanudar_reproduccion_controlador()
                 return True
             # Si ya está reproduciendo, no hacer nada
             return True
         # Si no hay canción actual, pero hay lista, reproducir la primera
         elif self.lista_reproduccion and self.indice_actual >= 0:
             cancion = self.lista_reproduccion[self.indice_actual]
-            self.reproducir_cancion(cancion)
+            self.reproducir_cancion_controlador(cancion)
             return True
         # Ni canción actual ni lista de reproducción
         return False
 
     # Método que detiene la reproducción de la canción
-    def detener_reproduccion(self) -> bool:
+    def detener_reproduccion_controlador(self) -> bool:
         if self.id_temporizador:
             self.etiqueta_tiempo_actual.after_cancel(self.id_temporizador)
             self.id_temporizador = None
@@ -320,14 +320,14 @@ class ControladorReproductor:
         return False
 
     # Método para reiniciar la canción actual
-    def reiniciar_cancion(self):
+    def reiniciar_cancion_controlador(self):
         if self.cancion_actual:
             # Mover al inicio de la canción
-            return self.mover_a_posicion(0)
+            return self.mover_a_posicion_controlador(0)
         return False
 
     # Método que reproduce la siguiente canción
-    def reproducir_siguiente(self):
+    def reproducir_siguiente_controlador(self):
         if not self.lista_reproduccion:
             return False
         # Determinar el siguiente índice dependiendo del modo
@@ -343,7 +343,7 @@ class ControladorReproductor:
                     self.historial_aleatorio.append(self.indice_actual)
                 else:
                     # No repetir, detener reproducción
-                    self.detener_reproduccion()
+                    self.detener_reproduccion_controlador()
                     return False
             else:
                 # Generar índice aleatorio que no esté en el historial
@@ -365,14 +365,14 @@ class ControladorReproductor:
                     self.indice_actual = 0
                 else:
                     # Si no hay repetición, detener la reproducción
-                    self.detener_reproduccion()
+                    self.detener_reproduccion_controlador()
                     return False
         cancion = self.lista_reproduccion[self.indice_actual]
-        self.reproducir_cancion(cancion)
+        self.reproducir_cancion_controlador(cancion)
         return True
 
     # Método que reproduce la canción anterior
-    def reproducir_anterior(self):
+    def reproducir_anterior_controlador(self):
         if not self.lista_reproduccion:
             return False
         if self.modo_aleatorio:
@@ -390,23 +390,23 @@ class ControladorReproductor:
                 # Ir al final si es la primera canción
                 self.indice_actual = len(self.lista_reproduccion) - 1
         cancion = self.lista_reproduccion[self.indice_actual]
-        self.reproducir_cancion(cancion)
+        self.reproducir_cancion_controlador(cancion)
         return True
 
     # Método para adelantar la reproducción en segundos
-    def adelantar_reproduccion(self, segundos=None):
+    def adelantar_reproduccion_controlador(self, segundos=None):
         if segundos is None:
             segundos = TIEMPO_AJUSTE
-        self.mover_a_posicion(segundos)
+        self.mover_a_posicion_controlador(segundos)
 
     # Método para retroceder la reproducción en segundos
-    def retroceder_reproduccion(self, segundos=None):
+    def retroceder_reproduccion_controlador(self, segundos=None):
         if segundos is None:
             segundos = TIEMPO_AJUSTE
-        self.mover_a_posicion(-segundos)
+        self.mover_a_posicion_controlador(-segundos)
 
     # Método para mover la reproducción a una posición específica en segundos
-    def mover_a_posicion(self, tiempo_segundos):
+    def mover_a_posicion_controlador(self, tiempo_segundos):
         if self.reproduciendo and self.cancion_actual:
             # Obtener la posición actual
             if self.tiempo_inicio is not None:
@@ -429,7 +429,7 @@ class ControladorReproductor:
                 self.barra_progreso.set(progreso)
 
     # Método para obtener la posición actual de reproducción en segundos
-    def obtener_posicion_actual(self):
+    def obtener_posicion_actual_controlador(self):
         if self.cancion_actual:
             if self.tiempo_inicio is not None:
                 tiempo_actual = self.tiempo_acumulado + (time.perf_counter() - self.tiempo_inicio)
@@ -439,33 +439,33 @@ class ControladorReproductor:
         return 0
 
     # Método para mover la reproducción a un porcentaje específico de la canción
-    def mover_a_porcentaje(self, porcentaje):
+    def mover_a_porcentaje_controlador(self, porcentaje):
         if self.cancion_actual:
             # Asegurar que el porcentaje esté entre 0 y 100
             porcentaje = max(0, min(porcentaje, 100))
             # Convertir el porcentaje a segundos
             posicion_segundos = (porcentaje / 100.0) * self.cancion_actual.duracion
             # Utilizar el método existente para mover a la posición
-            return self.mover_a_posicion(posicion_segundos)
+            return self.mover_a_posicion_controlador(posicion_segundos)
         return False
 
     # Método para obtener el porcentaje actual de reproducción
-    def obtener_porcentaje_actual(self):
+    def obtener_porcentaje_actual_controlador(self):
         if self.cancion_actual and self.cancion_actual.duracion > 0:
-            tiempo_actual = self.obtener_posicion_actual()
+            tiempo_actual = self.obtener_posicion_actual_controlador()
             return (tiempo_actual / self.cancion_actual.duracion) * 100
         return 0
 
     # Método que establece la lista de reproducción actual
-    def establecer_cola_reproduccion(self, canciones, indice=0):
+    def establecer_cola_reproduccion_controlador(self, canciones, indice=0):
         self.lista_reproduccion = canciones
         self.indice_actual = indice if 0 <= indice < len(canciones) else 0
         # Guardar la cola automáticamente
         controlador_archivos = ControladorArchivos()
-        controlador_archivos.guardar_cola_reproduccion(self)
+        controlador_archivos.guardar_cola_reproduccion_controlador(self)
 
     # Método que agrega una canción a la cola de reproducción
-    def agregar_cancion_a_cola(self, cancion):
+    def agregar_cancion_a_cola_controlador(self, cancion):
         if cancion:
             self.lista_reproduccion.append(cancion)
             # Si no hay reproducción activa, configurar está como la siguiente
@@ -473,12 +473,12 @@ class ControladorReproductor:
                 self.indice_actual = 0
             # Guardar la cola automáticamente
             controlador_archivos = ControladorArchivos()
-            controlador_archivos.guardar_cola_reproduccion(self)
+            controlador_archivos.guardar_cola_reproduccion_controlador(self)
             return True
         return False
 
     # Método que agrega una canción al inicio de la cola de reproducción
-    def agregar_cancion_inicio_cola(self, cancion):
+    def agregar_cancion_inicio_cola_controlador(self, cancion):
         if cancion:
             # Sí hay una canción en reproducción, insertar después de ella
             if self.indice_actual >= 0:
@@ -492,16 +492,16 @@ class ControladorReproductor:
                 self.indice_actual = 0
             # Guardar la cola automáticamente
             controlador_archivos = ControladorArchivos()
-            controlador_archivos.guardar_cola_reproduccion(self)
+            controlador_archivos.guardar_cola_reproduccion_controlador(self)
             return True
         return False
 
     # Método que agrega una canción al final de la cola de reproducción
-    def agregar_cancion_final_cola(self, cancion):
-        return self.agregar_cancion_a_cola(cancion)
+    def agregar_cancion_final_cola_controlador(self, cancion):
+        return self.agregar_cancion_a_cola_controlador(cancion)
 
     # Método que quita una canción de la cola de reproducción
-    def quitar_cancion_de_cola(self, indice):
+    def quitar_cancion_cola_controlador(self, indice):
         if 0 <= indice < len(self.lista_reproduccion):
             # Verificar si es la canción actual
             es_actual = indice == self.indice_actual
@@ -514,12 +514,12 @@ class ControladorReproductor:
                 self.indice_actual = -1
             # Sí era la canción actual, reproducir la siguiente
             if es_actual and self.reproduciendo:
-                return self.reproducir_siguiente()
+                return self.reproducir_siguiente_controlador()
             return True
         return False
 
     # Método que limpia la cola de reproducción
-    def limpiar_cola(self, mantener_actual=True):
+    def limpiar_cola_controlador(self, mantener_actual=True):
         # Guardar referencia a la canción actual si está reproduciéndose
         cancion_actual = None
         if mantener_actual and self.reproduciendo and self.cancion_actual:
@@ -534,11 +534,11 @@ class ControladorReproductor:
             self.indice_actual = -1
         # Guardar la cola actualizada
         controlador_archivos = ControladorArchivos()
-        controlador_archivos.guardar_cola_reproduccion(self)
+        controlador_archivos.guardar_cola_reproduccion_controlador(self)
         return True
 
     # Método para iniciar desplazamiento de textos largos
-    def iniciar_desplazamiento_texto(self):
+    def iniciar_desplazamiento_texto_controlador(self):
         # Longitud máxima antes de activar desplazamiento
         longitud_maxima = 75
         # Variables para controlar el desplazamiento
@@ -560,16 +560,18 @@ class ControladorReproductor:
                 self.desplazamiento_activo[clave] = False
         # Iniciar animación si hay textos para desplazar
         if any(self.desplazamiento_activo.values()):
-            self.animar_desplazamiento_texto()
+            self.animar_desplazamiento_texto_controlador()
 
     # Método para animar el desplazamiento del texto
-    def animar_desplazamiento_texto(self):
+    def animar_desplazamiento_texto_controlador(self):
         if not hasattr(self, "desplazamiento_activo"):
             return
         # Si la reproducción está pausada, no animamos el desplazamiento
         if hasattr(self, "reproduciendo") and not self.reproduciendo:
             # Programar verificación periódica para reanudar cuando se reanude la reproducción
-            self.id_marcador_tiempo = self.etiqueta_nombre.after(500, self.animar_desplazamiento_texto)
+            self.id_marcador_tiempo = self.etiqueta_nombre.after(
+                500, self.animar_desplazamiento_texto_controlador
+            )
             return
         textos = {
             "titulo": (self.texto_titulo, self.etiqueta_nombre),
@@ -621,4 +623,6 @@ class ControladorReproductor:
                 self.posicion_desplazamiento[clave] += 1
                 etiqueta.configure(text=texto_visible)
         # Programar próxima actualización
-        self.id_marcador_tiempo = self.etiqueta_nombre.after(125, self.animar_desplazamiento_texto)
+        self.id_marcador_tiempo = self.etiqueta_nombre.after(
+            125, self.animar_desplazamiento_texto_controlador
+        )

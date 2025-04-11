@@ -71,7 +71,7 @@ class Estadisticas(Utiles):
         # -------------------------------------------------------------------------------------------------
 
         # Obtener estadísticas de reproducción
-        estadisticas = self.controlador_archivos.obtener_estadisticas_reproduccion()
+        estadisticas = self.controlador_archivos.obtener_estadisticas_controlador()
         if not estadisticas:
             # Mostrar mensaje si no hay estadísticas
             self.mostrar_sin_estadisticas(panel_estadisticas_general)
@@ -253,7 +253,7 @@ class Estadisticas(Utiles):
 
         if self.controlador_biblioteca:
             # Primero obtener la carátula como imagen PIL
-            caratula_pil = self.controlador_biblioteca.obtener_caratula_album(
+            caratula_pil = self.controlador_biblioteca.obtener_caratula_album_controlador(
                 cancion["album"], formato="PIL", ancho=60, alto=60
             )
             if caratula_pil:
@@ -443,7 +443,7 @@ class Estadisticas(Utiles):
 
         # ------------------------ Panel para contenido de la tarjeta ---------------------
         # Panel para contenido con imagen y texto
-        panel_contenido = ctk.CTkFrame(etiqueta_titulo_album, fg_color="transparent")
+        panel_contenido = ctk.CTkFrame(panel_tarjeta_album, fg_color="transparent")
         panel_contenido.pack(fill="x", padx=5, pady=(0, 3))
         self.componentes.append(panel_contenido)
         # ---------------------------------------------------------------------------------
@@ -464,7 +464,7 @@ class Estadisticas(Utiles):
 
         if self.controlador_biblioteca:
             # Primero obtener la carátula como imagen PIL
-            caratula_pil = self.controlador_biblioteca.obtener_caratula_album(
+            caratula_pil = self.controlador_biblioteca.obtener_caratula_album_controlador(
                 album["nombre"], formato="PIL", ancho=60, alto=60
             )
             if caratula_pil:
@@ -573,7 +573,7 @@ class Estadisticas(Utiles):
 
         if self.controlador_biblioteca:
             # Primero obtener la carátula como imagen PIL
-            caratula_pil = self.controlador_biblioteca.obtener_caratula_album(
+            caratula_pil = self.controlador_biblioteca.obtener_caratula_album_controlador(
                 ultima["album"], formato="PIL", ancho=60, alto=60
             )
             if caratula_pil:

@@ -87,12 +87,12 @@ class Cancion:
 
     # Método que crea una instancia de Cancion a partir de un archivo de audio
     @classmethod
-    def desde_archivo(cls, ruta_archivo: Path):
+    def cargar_cancion(cls, ruta_archivo: Path):
         try:
             audio = mutagen.File(ruta_archivo)
             if audio is None:
                 return cls(ruta=ruta_archivo, titulo=ruta_archivo.stem)
-            info = cls.obtener_informacion_base(ruta_archivo)
+            info = cls.obtener_informacion_base_cancion(ruta_archivo)
             if isinstance(audio, MP3):
                 info.update(cls.obtener_informacion_mp3(ruta_archivo))
             elif isinstance(audio, FLAC):
@@ -105,7 +105,7 @@ class Cancion:
             return cls(ruta=ruta_archivo, titulo=ruta_archivo.stem)
 
     # Método para obtener la carátula de la canción
-    def obtener_caratula(self, formato="bytes", ancho=None, alto=None):
+    def obtener_caratula_cancion(self, formato="bytes", ancho=None, alto=None):
         if not self.caratula_cancion:
             return None
         try:
@@ -142,7 +142,7 @@ class Cancion:
 
     # Método que obtiene la información base de la canción
     @staticmethod
-    def obtener_informacion_base(ruta_archivo: Path) -> dict:
+    def obtener_informacion_base_cancion(ruta_archivo: Path) -> dict:
         return {
             "titulo": ruta_archivo.stem,
             "artista": "Desconocido",
@@ -202,7 +202,7 @@ class Cancion:
         return info
 
     # Método que convierte la canción a un diccionario
-    def convertir_diccionario(self) -> dict:
+    def convertir_diccionario_cancion(self) -> dict:
         return {
             "ruta": str(self.ruta_cancion),
             "titulo": self.titulo_cancion,
@@ -220,7 +220,7 @@ class Cancion:
 
 
 # # Ejemplo de uso
-# cancion = Cancion.desde_archivo(Path("C:/Users/Victor/Music/pm/530.mp3"))
+# cancion = Cancion.cargar_cancion(Path("C:/Users/Victor/Music/pm/530.mp3"))
 # print(f"Título: {cancion.titulo_cancion}")
 # print(f"Artista: {cancion.artista}")
 # print(f"Artista del Álbum: {cancion.artista_album}")

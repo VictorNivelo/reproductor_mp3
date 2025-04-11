@@ -286,7 +286,9 @@ class MiniReproductor(Utiles):
             # La ventana existe, actualizar colores e icono
             try:
                 self.colores()
-                establecer_icono_tema(self.ventana_principal_mini_reproductor, self.controlador_tema.tema_interfaz)
+                establecer_icono_tema(
+                    self.ventana_principal_mini_reproductor, self.controlador_tema.tema_interfaz
+                )
                 self.actualizar_colores()
             except Exception as e:
                 print(f"Error al mostrar la ventana del mini reproductor: {e}")

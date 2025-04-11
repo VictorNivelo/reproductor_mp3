@@ -14,14 +14,14 @@ class Biblioteca:
         self.favorito = []
 
     # Verificar si una canción ya existe en la biblioteca
-    def existe_cancion(self, ruta: Path) -> bool:
+    def existe_cancion_biblioteca(self, ruta: Path) -> bool:
         return any(cancion.ruta_cancion == ruta for cancion in self.canciones)
 
     # Método adicional para detectar posibles duplicados (mismo título y artista)
-    def detectar_duplicado(self, ruta: Path) -> list:
+    def detectar_duplicado_biblioteca(self, ruta: Path) -> list:
         try:
             # Crear una canción temporal para extraer metadatos
-            cancion_temp = Cancion.desde_archivo(ruta)
+            cancion_temp = Cancion.cargar_cancion(ruta)
             # Buscar canciones con el mismo título y artista
             duplicados = [
                 cancion
@@ -35,7 +35,7 @@ class Biblioteca:
             return []
 
     # Método para agregar una canción a la biblioteca
-    def agregar_cancion(self, ruta: Path) -> Cancion | None:
+    def agregar_cancion_biblioteca(self, ruta: Path) -> Cancion | None:
         try:
             # Verificar si el archivo existe
             if not ruta.exists():
@@ -46,11 +46,11 @@ class Biblioteca:
                 print(f"Formato no soportado: {ruta.suffix}")
                 return None
             # Verificar si la canción ya existe por ruta
-            if self.existe_cancion(ruta):
+            if self.existe_cancion_biblioteca(ruta):
                 print(f"La canción ya existe en la biblioteca: {ruta.name}")
                 return None
             # Crear canción temporal para verificar duplicados por metadatos
-            cancion_temp = Cancion.desde_archivo(ruta)
+            cancion_temp = Cancion.cargar_cancion(ruta)
             duplicados = [
                 cancion
                 for cancion in self.canciones
@@ -70,7 +70,7 @@ class Biblioteca:
             self.canciones.append(cancion)
             self.por_titulo[cancion.titulo_cancion] = cancion
             # Procesar y separar múltiples artistas
-            artistas = self.separar_artistas(cancion.artista)
+            artistas = self.separar_artistas_biblioteca(cancion.artista)
             # Agregar a la colección de artistas, para cada uno de los artistas detectados
             for artista in artistas:
                 if artista not in self.por_artista:
@@ -81,21 +81,21 @@ class Biblioteca:
                 self.por_album[cancion.album] = []
             self.por_album[cancion.album].append(cancion)
             # Ordenar canciones por título después de agregar
-            self.ordenar_colecciones()
+            self.ordenar_canciones_biblioteca()
             return cancion
         except Exception as e:
             print(f"Error al procesar la canción {ruta.name}: {str(e)}")
             return None
 
     # Método para agregar un directorio de canciones a la biblioteca
-    def agregar_directorio(self, ruta: Path) -> List[Cancion]:
+    def agregar_directorio_biblioteca(self, ruta: Path) -> List[Cancion]:
         if not ruta.is_dir():
             raise NotADirectoryError(f"No es un directorio: {ruta}")
         canciones_agregadas = []
         for archivo in ruta.rglob("*"):
             if archivo.suffix.lower() in FORMATOS_SOPORTADOS:
                 try:
-                    cancion = self.agregar_cancion(archivo)
+                    cancion = self.agregar_cancion_biblioteca(archivo)
                     if cancion is not None:
                         canciones_agregadas.append(cancion)
                 except Exception as e:
@@ -103,7 +103,7 @@ class Biblioteca:
         return canciones_agregadas
 
     # Método para eliminar una canción de la biblioteca (en la clase Biblioteca)
-    def eliminar_cancion(self, cancion: Cancion) -> bool:
+    def eliminar_cancion_biblioteca(self, cancion: Cancion) -> bool:
         try:
             # Eliminar de la lista principal de canciones
             self.canciones.remove(cancion)
@@ -135,46 +135,46 @@ class Biblioteca:
             return False
 
     # Método para eliminar todas las canciones de un directorio
-    def eliminar_directorio(self, ruta: Path) -> List[Cancion]:
+    def eliminar_directorio_biblioteca(self, ruta: Path) -> List[Cancion]:
         if not ruta.is_dir():
             raise NotADirectoryError(f"No es un directorio: {ruta}")
         canciones_eliminadas = []
         # Encontrar todas las canciones del directorio
         for cancion in self.canciones[:]:  # Creamos una copia para iterar
             if str(ruta) in str(cancion.ruta_cancion):
-                if self.eliminar_cancion(cancion):
+                if self.eliminar_cancion_biblioteca(cancion):
                     canciones_eliminadas.append(cancion)
         return canciones_eliminadas
 
     # Método para obtener la carátula de una canción
-    def obtener_caratula_album(self, nombre_album, formato="bytes", ancho=None, alto=None):
+    def obtener_caratula_album_biblioteca(self, nombre_album, formato="bytes", ancho=None, alto=None):
         if nombre_album in self.por_album:
             for cancion in self.por_album[nombre_album]:
                 if cancion.caratula_cancion:
-                    return cancion.obtener_caratula(formato, ancho, alto)
+                    return cancion.obtener_caratula_cancion(formato, ancho, alto)
         return None
 
     # Método para obtener la carátula de un artista
-    def obtener_caratula_artista(self, nombre_artista, formato="bytes", ancho=None, alto=None):
+    def obtener_caratula_artista_biblioteca(self, nombre_artista, formato="bytes", ancho=None, alto=None):
         if nombre_artista in self.por_artista:
             for cancion in self.por_artista[nombre_artista]:
                 if cancion.caratula_cancion:
-                    return cancion.obtener_caratula(formato, ancho, alto)
+                    return cancion.obtener_caratula_cancion(formato, ancho, alto)
         return None
 
     # Método para obtener todas las carátulas de un álbum
-    def obtener_caratulas_album(self, nombre_album, formato="bytes", ancho=None, alto=None):
+    def obtener_todas_caratulas_album_biblioteca(self, nombre_album, formato="bytes", ancho=None, alto=None):
         caratulas = []
         if nombre_album in self.por_album:
             for cancion in self.por_album[nombre_album]:
                 if cancion.caratula_cancion:
-                    caratula = cancion.obtener_caratula(formato, ancho, alto)
+                    caratula = cancion.obtener_caratula_cancion(formato, ancho, alto)
                     if caratula and caratula not in caratulas:
                         caratulas.append(caratula)
         return caratulas
 
     # Método para agregar una canción a la lista de "me gusta"
-    def marcar_me_gusta(self, cancion: Cancion):
+    def agregar_me_gusta_biblioteca(self, cancion: Cancion):
         if cancion not in self.canciones:
             raise ValueError("La canción no existe en la biblioteca")
         cancion.me_gusta = not cancion.me_gusta
@@ -184,7 +184,7 @@ class Biblioteca:
             self.me_gusta.remove(cancion)
 
     # Método para agregar una canción a la lista de "favoritos"
-    def marcar_favorito(self, cancion: Cancion):
+    def agregar_favorito_biblioteca(self, cancion: Cancion):
         if cancion not in self.canciones:
             raise ValueError("La canción no existe en la biblioteca")
         cancion.favorito = not cancion.favorito
@@ -194,7 +194,7 @@ class Biblioteca:
             self.favorito.remove(cancion)
 
     # Método para obtener una lista de canciones por titulo, artista o álbum
-    def buscar(self, texto: str) -> List[Cancion]:
+    def buscar_biblioteca(self, texto: str) -> List[Cancion]:
         texto = texto.lower()
         return [
             cancion
@@ -205,7 +205,7 @@ class Biblioteca:
         ]
 
     # Método para ordenar las canciones por un criterio
-    def ordenar_por(self, criterio: str) -> List[Cancion]:
+    def ordenar_biblioteca(self, criterio: str) -> List[Cancion]:
         if criterio == "titulo":
             return sorted(self.canciones, key=lambda x: x.titulo_cancion)
         elif criterio == "artista":
@@ -217,15 +217,15 @@ class Biblioteca:
         return self.canciones
 
     # Método que convierte la biblioteca a un diccionario
-    def convertir_diccionario(self) -> dict:
+    def convertir_diccionario_bilioteca(self) -> dict:
         return {
-            "canciones": [cancion.convertir_diccionario() for cancion in self.canciones],
-            "estadisticas": self.obtener_estadisticas(),
+            "canciones": [cancion.convertir_diccionario_cancion() for cancion in self.canciones],
+            "estadisticas": self.obtener_estadisticas_biblioteca(),
         }
 
     # Método para separar múltiples artistas de una cadena
     @staticmethod
-    def separar_artistas(texto_artista: str) -> list:
+    def separar_artistas_biblioteca(texto_artista: str) -> list:
         # Lista de separadores comunes para artistas
         separadores = SEPARADORES
         # Convertir a minúsculas para búsqueda insensible a mayúsculas
@@ -253,7 +253,7 @@ class Biblioteca:
         return list(set(artistas))
 
     # Método para reconstruir la organización de artistas
-    def reinicializar_artistas(self):
+    def reinicializar_artistas_biblioteca(self):
         # Guardar todas las canciones actuales
         canciones_actuales = self.canciones.copy()
         # Limpiar la estructura de artistas
@@ -261,7 +261,7 @@ class Biblioteca:
         # Volver a procesar cada canción para actualizar la estructura de artistas
         for cancion in canciones_actuales:
             # Procesar y separar múltiples artistas
-            artistas = self.separar_artistas(cancion.artista)
+            artistas = self.separar_artistas_biblioteca(cancion.artista)
             # Agregar a la colección de artistas actualizada
             for artista in artistas:
                 if artista not in self.por_artista:
@@ -270,7 +270,7 @@ class Biblioteca:
         return True
 
     # Método para ordenar las colecciones de canciones
-    def ordenar_colecciones(self):
+    def ordenar_canciones_biblioteca(self):
         # Ordenar la lista principal de canciones
         self.canciones.sort(key=lambda x: x.titulo_cancion.lower())
         # Ordenar las listas por artistas
@@ -286,7 +286,7 @@ class Biblioteca:
             self.favorito.sort(key=lambda x: x.titulo_cancion.lower())
 
     # Método para obtener estadísticas de la biblioteca
-    def obtener_estadisticas(self) -> Dict[str, int]:
+    def obtener_estadisticas_biblioteca(self) -> Dict[str, int]:
         return {
             "total_canciones": len(self.canciones),
             "total_artistas": len(self.por_artista),

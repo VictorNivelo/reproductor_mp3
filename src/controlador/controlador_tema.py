@@ -19,7 +19,7 @@ class ControladorTema(Utiles):
         self.tabviews = []
         self.canvas = []
         # Establecer apariencia global
-        self.establecer_apariencia_global()
+        self.establecer_apariencia_global_controlador()
 
     # Registrar botones
     def registrar_botones(self, nombre, boton):
@@ -222,15 +222,15 @@ class ControladorTema(Utiles):
         return False
 
     # Establecer tema global
-    def establecer_apariencia_global(self):
+    def establecer_apariencia_global_controlador(self):
         ctk.set_appearance_mode("dark" if self.tema_interfaz == "oscuro" else "light")
 
     # Cambiar tema
-    def cambiar_tema(self):
+    def cambiar_tema_controlador(self):
         self.tema_interfaz = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.tema_iconos = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.iconos = cargar_iconos(self.tema_iconos)
-        self.establecer_apariencia_global()
+        self.establecer_apariencia_global_controlador()
         self.colores()
         # Limpiar widgets destruidos antes de actualizar
         self.limpiar_widgets_destruidos()

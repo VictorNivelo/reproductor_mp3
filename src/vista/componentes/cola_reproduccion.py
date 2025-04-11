@@ -632,7 +632,7 @@ class ColaReproduccion:
     # Método para reproducir una canción seleccionada de la cola
     def reproducir_cancion_seleccionada(self, cancion):
         if cancion:
-            self.controlador_reproductor.reproducir_cancion(cancion)
+            self.controlador_reproductor.reproducir_cancion_controlador(cancion)
             # Llamar al callback para actualizar el estado de la interfaz
             if self.llamado_actualizacion:
                 self.llamado_actualizacion()
@@ -644,17 +644,17 @@ class ColaReproduccion:
     def quitar_de_cola(self, indice):
         if 0 <= indice < len(self.controlador_reproductor.lista_reproduccion):
             # Delegar la acción al controlador
-            self.controlador_reproductor.quitar_cancion_de_cola(indice)
+            self.controlador_reproductor.quitar_cancion_cola_controlador(indice)
             # Actualizar la ventana de cola
             self.actualizar_ventana_cola()
             # Guardar la cola actualizada
             controlador_archivos = ControladorArchivos()
-            controlador_archivos.guardar_cola_reproduccion(self.controlador_reproductor)
+            controlador_archivos.guardar_cola_reproduccion_controlador(self.controlador_reproductor)
 
     # Método para limpiar toda la cola de reproducción
     def limpiar_cola(self):
         # Delegar la acción al controlador
-        self.controlador_reproductor.limpiar_cola(mantener_actual=True)
+        self.controlador_reproductor.limpiar_cola_controlador(mantener_actual=True)
         # Actualizar la ventana de cola
         self.actualizar_ventana_cola()
 

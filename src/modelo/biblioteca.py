@@ -217,7 +217,7 @@ class Biblioteca:
         return self.canciones
 
     # Método que convierte la biblioteca a un diccionario
-    def convertir_diccionario_bilioteca(self) -> dict:
+    def convertir_diccionario_biblioteca(self) -> dict:
         return {
             "canciones": [cancion.convertir_diccionario_cancion() for cancion in self.canciones],
             "estadisticas": self.obtener_estadisticas_biblioteca(),

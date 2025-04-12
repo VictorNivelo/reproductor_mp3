@@ -184,7 +184,8 @@ class ControladorReproductor:
         pygame.mixer.music.set_volume(volumen / 100.0)
 
     # Método para silenciar la reproducción
-    def silenciar_controlador(self):
+    @staticmethod
+    def silenciar_controlador():
         # Guardar el volumen actual antes de silenciar
         volumen_anterior = pygame.mixer.music.get_volume() * 100.0
         # Establecer volumen a 0
@@ -192,7 +193,8 @@ class ControladorReproductor:
         return volumen_anterior
 
     # Método para quitar el silencio
-    def quitar_silencio_controlador(self, volumen_anterior=None):
+    @staticmethod
+    def quitar_silencio_controlador(volumen_anterior=None):
         # Si no se proporciona un volumen, usar 50% por defecto
         if volumen_anterior is None:
             volumen_anterior = 50.0

@@ -678,11 +678,11 @@ class ColaReproduccion:
                                 # Encontramos el panel de la canción actual
                                 panel_cancion_actual = componente
                                 # Limpiar los componentes existentes excepto la etiqueta de título
-                                for widget in list(panel_cancion_actual.winfo_children()):
-                                    if widget != child:
-                                        if widget in self.componentes:
-                                            self.componentes.remove(widget)
-                                        widget.destroy()
+                                for componente in list(panel_cancion_actual.winfo_children()):
+                                    if componente != child:
+                                        if componente in self.componentes:
+                                            self.componentes.remove(componente)
+                                        componente.destroy()
                                 # Actualizar con la nueva información
                                 self.mostrar_cancion_actual(panel_cancion_actual)
                                 break
@@ -698,13 +698,13 @@ class ColaReproduccion:
                             window_info = canvas_cola.itemconfigure(item_id)
                             window_id = window_info.get("window")[-1]
                             if window_id:
-                                # Obtener el widget contenido
+                                # Obtener el componente contenido
                                 panel_canciones = canvas_cola.nametowidget(window_id)
                                 # Limpiar el panel de canciones
-                                for widget in panel_canciones.winfo_children():
-                                    if widget in self.componentes:
-                                        self.componentes.remove(widget)
-                                    widget.destroy()
+                                for componente in panel_canciones.winfo_children():
+                                    if componente in self.componentes:
+                                        self.componentes.remove(componente)
+                                    componente.destroy()
                                 # Mostrar las canciones actualizadas
                                 self.mostrar_cola_canciones(panel_canciones)
                                 break

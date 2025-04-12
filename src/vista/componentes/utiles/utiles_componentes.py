@@ -28,13 +28,13 @@ def configurar_ventana_modal(
 def cerrar_ventana_modal(ventana, componentes, controlador):
     try:
         # Eliminar referencias de los componentes en el controlador
-        for widget in componentes:
-            if widget in controlador.paneles:
-                controlador.paneles.remove(widget)
-            if widget in controlador.etiquetas:
-                controlador.etiquetas.remove(widget)
+        for componente in componentes:
+            if componente in controlador.paneles:
+                controlador.paneles.remove(componente)
+            if componente in controlador.etiquetas:
+                controlador.etiquetas.remove(componente)
             for nombre in list(controlador.botones.keys()):
-                if controlador.botones[nombre] == widget:
+                if controlador.botones[nombre] == componente:
                     del controlador.botones[nombre]
         # Limpiar lista de componentes
         componentes.clear()

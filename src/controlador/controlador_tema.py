@@ -232,8 +232,8 @@ class ControladorTema(Utiles):
         self.iconos = cargar_iconos(self.tema_iconos)
         self.establecer_apariencia_global_controlador()
         self.colores()
-        # Limpiar widgets destruidos antes de actualizar
-        self.limpiar_widgets_destruidos()
+        # Limpiar componentes destruidos antes de actualizar
+        self.limpiar_componentes_destruidos()
         # Actualizar iconos de botones
         for nombre in list(self.botones.keys()):
             try:
@@ -264,8 +264,8 @@ class ControladorTema(Utiles):
         except Exception as e:
             print(f"Error al cambiar el tema: {e}")
 
-    # Limpiar widgets destruidos
-    def limpiar_widgets_destruidos(self):
+    # Limpiar componentes destruidos
+    def limpiar_componentes_destruidos(self):
         # Limpiar botones destruidos
         botones_a_eliminar = []
         for nombre, boton in self.botones.items():
@@ -282,30 +282,30 @@ class ControladorTema(Utiles):
         self.paneles = [
             (panel, es_ctk, es_principal)
             for panel, es_ctk, es_principal in self.paneles
-            if self.widget_existe(panel)
+            if self.componente_existe(panel)
         ]
         # Limpiar etiquetas destruidas
-        self.etiquetas = [etiqueta for etiqueta in self.etiquetas if self.widget_existe(etiqueta)]
+        self.etiquetas = [etiqueta for etiqueta in self.etiquetas if self.componente_existe(etiqueta)]
         # Limpiar entradas destruidas
-        self.entradas = [entrada for entrada in self.entradas if self.widget_existe(entrada)]
+        self.entradas = [entrada for entrada in self.entradas if self.componente_existe(entrada)]
         # Limpiar comboboxes destruidos
-        self.comboboxes = [combobox for combobox in self.comboboxes if self.widget_existe(combobox)]
+        self.comboboxes = [combobox for combobox in self.comboboxes if self.componente_existe(combobox)]
         # Limpiar sliders destruidos
-        self.sliders = [slider for slider in self.sliders if self.widget_existe(slider)]
+        self.sliders = [slider for slider in self.sliders if self.componente_existe(slider)]
         # Limpiar progress_bars destruidas
-        self.progress_bars = [bar for bar in self.progress_bars if self.widget_existe(bar)]
+        self.progress_bars = [bar for bar in self.progress_bars if self.componente_existe(bar)]
         # Limpiar tabviews destruidos
-        self.tabviews = [tabview for tabview in self.tabviews if self.widget_existe(tabview)]
+        self.tabviews = [tabview for tabview in self.tabviews if self.componente_existe(tabview)]
         # Limpiar canvas destruidos
-        self.canvas = [canvas_info for canvas_info in self.canvas if self.widget_existe(canvas_info[0])]
+        self.canvas = [canvas_info for canvas_info in self.canvas if self.componente_existe(canvas_info[0])]
 
-    # Método auxiliar para verificar si un widget existe
+    # Método auxiliar para verificar si un componente existe
     @staticmethod
-    def widget_existe(widget):
+    def componente_existe(componente):
         try:
-            if widget is None:
+            if componente is None:
                 return False
-            return widget.winfo_exists()
+            return componente.winfo_exists()
         except Exception as e:
-            print(f"Error al verificar si el widget existe: {e}")
+            print(f"Error al verificar si el componente existe: {e}")
             return False

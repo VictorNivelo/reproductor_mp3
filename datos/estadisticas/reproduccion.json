@@ -1,6 +1,6 @@
 {
     "artistas": {
-        "Tainy ft Sech, E.VAX": 7,
+        "Tainy ft Sech, E.VAX": 8,
         "Yan Block ft Panda Black": 9,
         "Bad Bunny": 5,
         "Feid": 8,
@@ -13,7 +13,7 @@
         "Daddy Yankee ft Anuel AA": 2
     },
     "albumes": {
-        "DATA": 7,
+        "DATA": 8,
         "444": 9,
         "EL ÚLTIMO TOUR DEL MUNDO": 5,
         "INTER SHIBUYA - LA MAFIA": 8,
@@ -24,18 +24,18 @@
         "Without Warning": 2,
         "Adictiva": 2
     },
-    "tiempo_total": 7214.55020408163,
-    "canciones_escuchadas": 39,
+    "tiempo_total": 7411.565714285712,
+    "canciones_escuchadas": 40,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
-        "titulo": "444",
-        "artista": "Yan Block ft Panda Black",
-        "album": "444",
-        "timestamp": "2025-04-11T16:43:35.997012"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "titulo": "11 Y ONCE",
+        "artista": "Tainy ft Sech, E.VAX",
+        "album": "DATA",
+        "timestamp": "2025-04-12T09:56:02.346596"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 7,
+            "contador": 8,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"

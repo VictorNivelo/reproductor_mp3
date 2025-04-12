@@ -321,22 +321,22 @@ class MiniReproductor(Utiles):
     def actualizar_colores(self):
         self.colores()
         # Actualizar colores de los componentes
-        for widget in self.componentes:
+        for componente in self.componentes:
             try:
-                if isinstance(widget, ctk.CTkFrame):
-                    if widget.winfo_parent() == str(self.ventana_principal_mini_reproductor):
-                        widget.configure(fg_color=self.color_fondo_principal)
+                if isinstance(componente, ctk.CTkFrame):
+                    if componente.winfo_parent() == str(self.ventana_principal_mini_reproductor):
+                        componente.configure(fg_color=self.color_fondo_principal)
                     else:
-                        widget.configure(fg_color=self.color_fondo)
-                elif isinstance(widget, ctk.CTkLabel):
-                    widget.configure(fg_color=self.color_fondo, text_color=self.color_texto)
-                elif isinstance(widget, ctk.CTkButton):
-                    widget.configure(
+                        componente.configure(fg_color=self.color_fondo)
+                elif isinstance(componente, ctk.CTkLabel):
+                    componente.configure(fg_color=self.color_fondo, text_color=self.color_texto)
+                elif isinstance(componente, ctk.CTkButton):
+                    componente.configure(
                         fg_color=self.color_boton,
                         hover_color=self.color_hover,
                         text_color=self.color_texto,
                     )
-                elif isinstance(widget, ctk.CTkProgressBar):
-                    widget.configure(progress_color=self.color_barras)
+                elif isinstance(componente, ctk.CTkProgressBar):
+                    componente.configure(progress_color=self.color_barras)
             except Exception as e:
                 print(f"Error al actualizar los colores del mini reproductor: {e}")

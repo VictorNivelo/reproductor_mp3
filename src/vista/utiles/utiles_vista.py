@@ -4,7 +4,7 @@ from constantes import *
 from PIL import Image
 import tkinter as tk
 
-# Diccionario para guardar los tooltips de los widgets
+# Diccionario para guardar los tooltips de los componentes
 lista_tooltips = {}
 
 
@@ -142,7 +142,7 @@ def establecer_icono_tema(ventana, tema="claro"):
         ventana.iconphoto(True, icono)
 
 
-# Método para crear un tooltip en un widget de la aplicación
+# Método para crear un tooltip en un componente de la aplicación
 def crear_tooltip(componente, texto):
     # Guardar referencia al tooltip en el diccionario
     tooltip = ToolTip(componente, texto)

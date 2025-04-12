@@ -130,13 +130,13 @@ def actualizar_iconos():
             frame = boton.nametowidget(frame_padre)
             if frame and frame.winfo_exists():
                 # Buscar el botón de opciones dentro del frame
-                for widget in frame.winfo_children():
-                    if isinstance(widget, ctk.CTkButton) and widget != boton:
+                for componente in frame.winfo_children():
+                    if isinstance(componente, ctk.CTkButton) and componente != boton:
                         # Actualizar el icono del botón de opciones
                         icono_opcion = cargar_icono_personalizado(
                             "opcion", controlador_tema.tema_iconos, (15, 20)
                         )
-                        widget.configure(image=icono_opcion)
+                        componente.configure(image=icono_opcion)
     # Actualizar el porcentaje de volumen
     etiqueta_porcentaje_volumen.configure(text=f"{NIVEL_VOLUMEN}%")
 
@@ -642,8 +642,8 @@ def eliminar_cancion_vista(cancion):
     # Reconstruir completamente la vista actual
     if pestana_actual == "Canciones":
         # Limpiar el panel de canciones
-        for widget in panel_botones_canciones.winfo_children():
-            widget.destroy()
+        for componente in panel_botones_canciones.winfo_children():
+            componente.destroy()
         # Reconstruir la vista
         actualizar_vista_canciones(panel_botones_canciones)
     elif pestana_actual == "Me gusta":
@@ -971,10 +971,10 @@ def cerrar_menu_al_desenfocar(menu_ventana, _event=None):
     # Verificar si el menú sigue existiendo
     if not menu_ventana.winfo_exists():
         return
-    # Obtener el widget que tiene el foco ahora
-    focused_widget = menu_ventana.focus_get()
+    # Obtener el componente que tiene el foco ahora
+    componente_enfocado = menu_ventana.focus_get()
     # Si nada tiene el foco o el foco no está en el menú o sus hijos
-    if not focused_widget or not str(focused_widget).startswith(str(menu_ventana)):
+    if not componente_enfocado or not str(componente_enfocado).startswith(str(menu_ventana)):
         try:
             # Limpiar el binding adicional antes de destruir
             ventana_principal.unbind("<Button-1>")
@@ -986,9 +986,9 @@ def cerrar_menu_al_desenfocar(menu_ventana, _event=None):
 # Función para mostrar el menú contextual personalizado de una canción
 def mostrar_menu_opciones(cancion, panel_padre):
     # Verificar si ya existe un menú abierto y cerrarlo
-    for widget in ventana_principal.winfo_children():
-        if isinstance(widget, ctk.CTkToplevel) and hasattr(widget, "menu_opciones"):
-            widget.destroy()
+    for componente in ventana_principal.winfo_children():
+        if isinstance(componente, ctk.CTkToplevel) and hasattr(componente, "menu_opciones"):
+            componente.destroy()
     # Obtener colores actuales del tema
     controlador_tema.colores()
     # ------------------------------------- Ventana de menú -------------------------------------
@@ -1134,31 +1134,31 @@ def actualizar_pestana_seleccionada():
         canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
     elif pestana_actual == "Me gusta":
         tab_me_gusta = paginas_canciones.tab("Me gusta")
-        for widget in tab_me_gusta.winfo_children():
-            if isinstance(widget, tk.Canvas):
-                widget.bind_all(
-                    "<MouseWheel>", lambda e, canvas=widget: GestorScroll.scroll_simple(canvas, e)
+        for componente in tab_me_gusta.winfo_children():
+            if isinstance(componente, tk.Canvas):
+                componente.bind_all(
+                    "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
                 )
     elif pestana_actual == "Favoritos":
         tab_favoritos = paginas_canciones.tab("Favoritos")
-        for widget in tab_favoritos.winfo_children():
-            if isinstance(widget, tk.Canvas):
-                widget.bind_all(
-                    "<MouseWheel>", lambda e, canvas=widget: GestorScroll.scroll_simple(canvas, e)
+        for componente in tab_favoritos.winfo_children():
+            if isinstance(componente, tk.Canvas):
+                componente.bind_all(
+                    "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
                 )
     elif pestana_actual == "Álbumes":
         tab_albumes = paginas_canciones.tab("Álbumes")
-        for widget in tab_albumes.winfo_children():
-            if isinstance(widget, tk.Canvas):
-                widget.bind_all(
-                    "<MouseWheel>", lambda e, canvas=widget: GestorScroll.scroll_simple(canvas, e)
+        for componente in tab_albumes.winfo_children():
+            if isinstance(componente, tk.Canvas):
+                componente.bind_all(
+                    "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
                 )
     elif pestana_actual == "Artistas":
         tab_artistas = paginas_canciones.tab("Artistas")
-        for widget in tab_artistas.winfo_children():
-            if isinstance(widget, tk.Canvas):
-                widget.bind_all(
-                    "<MouseWheel>", lambda e, canvas=widget: GestorScroll.scroll_simple(canvas, e)
+        for componente in tab_artistas.winfo_children():
+            if isinstance(componente, tk.Canvas):
+                componente.bind_all(
+                    "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
                 )
 
 
@@ -1202,8 +1202,8 @@ def mostrar_detalle_cancion(pagina, elemento, funcion_regresar):
     # Obtener la pestaña correspondiente
     tab = paginas_canciones.tab(pagina)
     # Limpiar la pestaña
-    for widget in tab.winfo_children():
-        widget.destroy()
+    for componente in tab.winfo_children():
+        componente.destroy()
 
     # Método para regresar a la lista de canciones
     def regresar_con_limpieza():
@@ -1334,8 +1334,8 @@ def configurar_interfaz_pestania(nombre_pestania):
     # Obtener la pestaña
     tab = paginas_canciones.tab(nombre_pestania)
     # Limpiar la pestaña
-    for widget in tab.winfo_children():
-        widget.destroy()
+    for componente in tab.winfo_children():
+        componente.destroy()
     # Crear canvas con scroll
     canvas, panel_botones, _ = crear_canvas_con_scroll(tab, True, paginas_canciones)
     return canvas, panel_botones
@@ -1422,8 +1422,8 @@ def mostrar_favoritos_filtrados(texto_busqueda):
 # Función para mostrar las canciones filtradas en la vista de canciones
 def mostrar_canciones_filtradas(texto_busqueda):
     # Limpiar el panel de canciones
-    for widget in panel_botones_canciones.winfo_children():
-        widget.destroy()
+    for componente in panel_botones_canciones.winfo_children():
+        componente.destroy()
     # Obtener las canciones filtradas
     canciones_filtradas = [
         cancion
@@ -1491,7 +1491,7 @@ def crear_barras_espectro():
         try:
             canvas_espectro.delete(barra)
         except Exception as e:
-            # Error cuando el widget del canvas ha sido destruido o no está disponible
+            # Error cuando el componente del canvas ha sido destruido o no está disponible
             print(f"Error al eliminar la barra del espectro: {e}")
             return
     barras_espectro.clear()
@@ -1531,7 +1531,7 @@ def actualizar_espectro():
             x1, _, x2, _ = canvas_espectro.coords(barras_espectro[i])
             canvas_espectro.coords(barras_espectro[i], x1, alto_canvas, x2, alto_canvas - alturas_barras[i])
         except Exception as e:
-            # Error cuando el widget del canvas ha sido destruido o no está disponible
+            # Error cuando el componente del canvas ha sido destruido o no está disponible
             print(f"Error al actualizar la barra del espectro: {e}")
             return
     # Llamar a la función nuevamente después de un delay

@@ -3,8 +3,8 @@
         "total_canciones": 12,
         "total_artistas": 19,
         "total_albumes": 11,
-        "me_gusta": 0,
-        "favorito": 0
+        "me_gusta": 1,
+        "favorito": 1
     },
     "canciones": [
         {
@@ -130,8 +130,8 @@
             "anio": "2021-11-14",
             "numero_pista": "4/32",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
+            "me_gusta": true,
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\Never Abandon Your Family..mp3",

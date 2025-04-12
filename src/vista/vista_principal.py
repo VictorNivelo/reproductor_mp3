@@ -11,6 +11,7 @@ from modelo.biblioteca import Biblioteca
 from vista.utiles.utiles_vista import *
 from tkinter import filedialog
 import customtkinter as ctk
+from utiles import Utiles
 from pathlib import Path
 from constantes import *
 import tkinter as tk
@@ -1539,91 +1540,9 @@ def actualizar_espectro():
         ventana_principal.after(85, actualizar_espectro)
 
 
-# Función para iniciar el desplazamiento del texto
-def iniciar_desplazamiento_boton(boton):
-    # Verificar si el botón tiene el atributo timer_id usando hasattr
-    if hasattr(boton, "timer_id") and getattr(boton, "timer_id"):
-        boton.after_cancel(getattr(boton, "timer_id"))
-    # Reiniciar la posición
-    setattr(boton, "pos_marquee", 0)
-    animar_texto_boton(boton)
-
-
-# Función para detener el desplazamiento del texto
-def detener_desplazamiento_boton(boton, longitud_maxima=50):
-    if hasattr(boton, "timer_id") and getattr(boton, "timer_id"):
-        boton.after_cancel(getattr(boton, "timer_id"))
-    # Mostrar texto truncado al detener
-    texto_completo = getattr(boton, "texto_completo", "")
-    boton.configure(text=texto_completo[:longitud_maxima] + "...")
-
-
-# Función para animar el texto del botón
-def animar_texto_boton(boton, longitud_maxima=50):
-    # Verificar si tiene el atributo texto_completo
-    if not hasattr(boton, "texto_completo"):
-        return
-    texto_completo = getattr(boton, "texto_completo")
-    pos = getattr(boton, "pos_marquee", 0)
-    # Control de la posición de desplazamiento
-    if pos == 0:
-        # Al inicio, pausa
-        if not hasattr(boton, "pausa_inicio"):
-            setattr(boton, "pausa_inicio", 0)
-        pausa_actual = getattr(boton, "pausa_inicio")
-        if pausa_actual < 8:  # Pausa de 1 segundo (8 * 125ms)
-            setattr(boton, "pausa_inicio", pausa_actual + 1)
-            texto_visible = texto_completo[:longitud_maxima]
-            boton.configure(text=texto_visible + "...")
-            timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
-            setattr(boton, "timer_id", timer_id)
-            return
-        else:
-            setattr(boton, "pausa_inicio", 0)
-    # Si el texto llega al final, reiniciar
-    if pos >= len(texto_completo) - longitud_maxima:
-        # Pausa al final
-        if not hasattr(boton, "pausa_final"):
-            setattr(boton, "pausa_final", 0)
-        pausa_actual = getattr(boton, "pausa_final")
-        if pausa_actual < 8:  # Pausa de 1 segundo (8 * 125ms)
-            setattr(boton, "pausa_final", pausa_actual + 1)
-            texto_visible = texto_completo[len(texto_completo) - longitud_maxima :]
-            boton.configure(text=texto_visible)
-            timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
-            setattr(boton, "timer_id", timer_id)
-            return
-        else:
-            setattr(boton, "pausa_final", 0)
-            setattr(boton, "pos_marquee", 0)
-            texto_visible = texto_completo[:longitud_maxima]
-            boton.configure(text=texto_visible + "...")
-            timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
-            setattr(boton, "timer_id", timer_id)
-            return
-    # Desplazamiento normal
-    texto_visible = texto_completo[pos : pos + longitud_maxima]
-    boton.configure(text=texto_visible)
-    setattr(boton, "pos_marquee", pos + 1)
-    timer_id = boton.after(125, lambda: animar_texto_boton(boton, longitud_maxima))
-    setattr(boton, "timer_id", timer_id)
-
-
 # Función para configurar el desplazamiento de texto en botones
-def configurar_desplazamiento_texto(boton, texto_completo, longitud_maxima=55):
-    # Si el texto es más corto que el límite, simplemente mostrarlo
-    if len(texto_completo) <= longitud_maxima:
-        boton.configure(text=texto_completo)
-        return
-    # Almacenar el texto completo como atributo del botón usando setattr
-    setattr(boton, "texto_completo", texto_completo)
-    setattr(boton, "pos_marquee", 0)
-    setattr(boton, "timer_id", None)
-    # Vincular eventos de ratón para activar/desactivar el desplazamiento
-    boton.bind("<Enter>", lambda event: iniciar_desplazamiento_boton(boton))
-    boton.bind("<Leave>", lambda event: detener_desplazamiento_boton(boton, longitud_maxima))
-    # Mostrar inicialmente el texto truncado con elipsis
-    boton.configure(text=texto_completo[:longitud_maxima] + "...")
+def configurar_desplazamiento_texto(boton, texto_completo):
+    utiles.configurar_desplazamiento_boton(boton, texto_completo, 55)
 
 
 # Función para abrir la ventana de configuración
@@ -1664,6 +1583,9 @@ ventana_principal = ctk.CTk()
 
 # Biblioteca de canciones
 biblioteca = Biblioteca()
+
+# Utilidades
+utiles = Utiles()
 
 # Controlador_tema de tema
 controlador_tema = ControladorTema()

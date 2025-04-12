@@ -1,3 +1,18 @@
 {
-    "favoritos": []
+    "favoritos": [
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3",
+            "titulo": "Life Of The Party (ft André 3000)",
+            "artista": "Kanye West ft André 3000",
+            "artista_album": "Kanye West",
+            "album": "Donda (Deluxe)",
+            "duracion": 391.7061224489796,
+            "duracion_formateada": "06:31",
+            "anio": "2021-11-14",
+            "numero_pista": "4/32",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
+        }
+    ]
 }

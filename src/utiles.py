@@ -42,6 +42,12 @@ class Utiles:
         self.color_hover_oscuro = None
         self.color_barra_progreso = None
         self.color_segundario = None
+        # Animaciones
+        self.desplazamiento_activo = {}
+        self.posicion_desplazamiento = {}
+        self.direccion_desplazamiento = {}
+        self.id_marcador_tiempo = None
+        self.textos_animados = {}
 
     # Método para obtener los colores de la interfaz
     def colores(self):
@@ -87,3 +93,92 @@ class Utiles:
         except Exception as e:
             print(f"Error al procesar la imagen: {e}")
             return None, None, None
+
+    # Método para iniciar desplazamiento de textos largos
+    def iniciar_desplazamiento_texto(self, textos_dict, widget_principal, longitud_maxima=75):
+        # Cancelar cualquier animación anterior
+        if hasattr(self, "id_marcador_tiempo") and self.id_marcador_tiempo:
+            widget_principal.after_cancel(self.id_marcador_tiempo)
+            self.id_marcador_tiempo = None
+        # Variables para controlar el desplazamiento
+        self.desplazamiento_activo = {}
+        self.posicion_desplazamiento = {}
+        self.direccion_desplazamiento = {}
+        self.textos_animados = textos_dict
+        # Comprobar si algún texto necesita desplazamiento
+        for clave, (texto, etiqueta) in textos_dict.items():
+            if len(texto) > longitud_maxima:
+                self.desplazamiento_activo[clave] = True
+                self.posicion_desplazamiento[clave] = 0
+                self.direccion_desplazamiento[clave] = 1  # 1: derecha a izquierda
+            else:
+                self.desplazamiento_activo[clave] = False
+        # Iniciar animación si hay textos para desplazar
+        if any(self.desplazamiento_activo.values()):
+            self.animar_desplazamiento_texto(widget_principal)
+
+    # Método para animar el desplazamiento del texto
+    def animar_desplazamiento_texto(self, widget_principal, intervalo=125, reproduciendo=True):
+        if not hasattr(self, "desplazamiento_activo") or not self.textos_animados:
+            return
+        # Si la reproducción está pausada, no animamos el desplazamiento
+        if not reproduciendo:
+            # Programar verificación periódica para reanudar cuando se reanude la reproducción
+            self.id_marcador_tiempo = widget_principal.after(
+                500, lambda: self.animar_desplazamiento_texto(widget_principal, intervalo, reproduciendo)
+            )
+            return
+        # Actualizar cada texto que necesite desplazamiento
+        longitud_maxima = 75
+        for clave, (texto_completo, etiqueta) in self.textos_animados.items():
+            if not self.desplazamiento_activo.get(clave, False):
+                continue
+            # Obtener posición actual
+            posicion = self.posicion_desplazamiento[clave]
+            # Si el texto es más largo que la longitud máxima, aplicar desplazamiento
+            if len(texto_completo) > longitud_maxima:
+                # Control de pausa al inicio
+                if posicion == 0:
+                    # Sí estamos al inicio, pausar durante más tiempo
+                    if not hasattr(self, f"pausa_inicio_{clave}"):
+                        setattr(self, f"pausa_inicio_{clave}", 0)
+                    pausa_actual = getattr(self, f"pausa_inicio_{clave}")
+                    if pausa_actual < 8:  # 8 * 125ms = 1 segundo de pausa
+                        setattr(self, f"pausa_inicio_{clave}", pausa_actual + 1)
+                        texto_visible = texto_completo[:longitud_maxima]
+                        etiqueta.configure(text=texto_visible)
+                        continue
+                    else:
+                        setattr(self, f"pausa_inicio_{clave}", 0)
+                # Control de pausa al final
+                if posicion >= len(texto_completo) - longitud_maxima:
+                    # Si llegamos al final, pausar antes de reiniciar
+                    if not hasattr(self, f"pausa_final_{clave}"):
+                        setattr(self, f"pausa_final_{clave}", 0)
+                    pausa_actual = getattr(self, f"pausa_final_{clave}")
+                    if pausa_actual < 8:  # 8 * 125ms = 1 segundo de pausa
+                        texto_visible = texto_completo[len(texto_completo) - longitud_maxima :]
+                        etiqueta.configure(text=texto_visible)
+                        setattr(self, f"pausa_final_{clave}", pausa_actual + 1)
+                        continue
+                    else:
+                        # Reiniciar desde el principio
+                        self.posicion_desplazamiento[clave] = 0
+                        texto_visible = texto_completo[:longitud_maxima]
+                        setattr(self, f"pausa_final_{clave}", 0)
+                        etiqueta.configure(text=texto_visible)
+                        continue
+                # Desplazamiento normal
+                texto_visible = texto_completo[posicion : posicion + longitud_maxima]
+                self.posicion_desplazamiento[clave] += 1
+                etiqueta.configure(text=texto_visible)
+        # Programar próxima actualización
+        self.id_marcador_tiempo = widget_principal.after(
+            intervalo, lambda: self.animar_desplazamiento_texto(widget_principal, intervalo, reproduciendo)
+        )
+
+    # Método para detener la animación
+    def detener_desplazamiento_texto(self, widget_principal):
+        if hasattr(self, "id_marcador_tiempo") and self.id_marcador_tiempo:
+            widget_principal.after_cancel(self.id_marcador_tiempo)
+            self.id_marcador_tiempo = None

@@ -10,7 +10,7 @@ class GestorScroll:
         self.panel.bind("<Configure>", self.scroll_panel_configuracion)
         self.canvas.bind("<Configure>", self.scroll_canvas_configuracion)
 
-    # Configurar el scroll del frame
+    # Configurar el scroll del panel
     def scroll_panel_configuracion(self, _event=None):
         if not self.canvas or not self.panel:
             return

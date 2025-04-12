@@ -1,104 +1,25 @@
 {
     "artistas": {
-        "Tainy ft Sech, E.VAX": 8,
-        "Yan Block ft Panda Black": 9,
-        "Bad Bunny": 5,
-        "Feid": 8,
-        "Metro Boomin ft Coi Leray": 1,
-        "Anuel AA": 1,
-        "Eladio Carrion ft Bryant Myers": 2,
-        "Kanye West ft André 3000": 1,
-        "Offset ft Metro Boomin": 2,
-        "Kanye West": 1,
-        "Daddy Yankee ft Anuel AA": 2
+        "Anuel AA ft Sinfonico, Ñengo Flow": 1
     },
     "albumes": {
-        "DATA": 8,
-        "444": 9,
-        "EL ÚLTIMO TOUR DEL MUNDO": 5,
-        "INTER SHIBUYA - LA MAFIA": 8,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
-        "¿Qué Nos Pasó?": 1,
-        "Animal": 2,
-        "Donda (Deluxe)": 2,
-        "Without Warning": 2,
-        "Adictiva": 2
+        "47 (Remix)": 1
     },
-    "tiempo_total": 7411.565714285712,
-    "canciones_escuchadas": 40,
+    "tiempo_total": 517.8514285714285,
+    "canciones_escuchadas": 1,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-04-12T09:56:02.346596"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "titulo": "47 (Remix)",
+        "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+        "album": "47 (Remix)",
+        "timestamp": "2025-04-12T16:00:06.860142"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 8,
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "album": "DATA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
-            "contador": 9,
-            "titulo": "444",
-            "artista": "Yan Block ft Panda Black",
-            "album": "444"
-        },
-        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 5,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
-            "contador": 8,
-            "titulo": "14 De Febrero",
-            "artista": "Feid",
-            "album": "INTER SHIBUYA - LA MAFIA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
+        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
             "contador": 1,
-            "titulo": "Self Love",
-            "artista": "Metro Boomin ft Coi Leray",
-            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
-        },
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
-            "contador": 1,
-            "titulo": "¿Qué Nos Pasó?",
-            "artista": "Anuel AA",
-            "album": "¿Qué Nos Pasó?"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
-            "contador": 2,
-            "titulo": "Animal",
-            "artista": "Eladio Carrion ft Bryant Myers",
-            "album": "Animal"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3": {
-            "contador": 1,
-            "titulo": "Life Of The Party (ft André 3000)",
-            "artista": "Kanye West ft André 3000",
-            "album": "Donda (Deluxe)"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Ric Flair Drip (ft Metro Boomin).mp3": {
-            "contador": 2,
-            "titulo": "Ric Flair Drip (ft Metro Boomin)",
-            "artista": "Offset ft Metro Boomin",
-            "album": "Without Warning"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Never Abandon Your Family..mp3": {
-            "contador": 1,
-            "titulo": "Never Abandon Your Family",
-            "artista": "Kanye West",
-            "album": "Donda (Deluxe)"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 2,
-            "titulo": "Adictiva",
-            "artista": "Daddy Yankee ft Anuel AA",
-            "album": "Adictiva"
+            "titulo": "47 (Remix)",
+            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+            "album": "47 (Remix)"
         }
     }
 }

@@ -1,10 +1,10 @@
 {
     "estadisticas": {
-        "total_canciones": 10,
-        "total_artistas": 14,
-        "total_albumes": 9,
-        "me_gusta": 5,
-        "favorito": 3
+        "total_canciones": 12,
+        "total_artistas": 19,
+        "total_albumes": 11,
+        "me_gusta": 0,
+        "favorito": 0
     },
     "canciones": [
         {
@@ -32,7 +32,7 @@
             "anio": "2020-11-27",
             "numero_pista": "14",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
@@ -46,8 +46,8 @@
             "anio": "2021-08-20",
             "numero_pista": "14",
             "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
+            "me_gusta": false,
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
@@ -60,7 +60,21 @@
             "anio": "2024-04-04",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+            "titulo": "47 (Remix)",
+            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+            "artista_album": "Anuel AA",
+            "album": "47 (Remix)",
+            "duracion": 517.8514285714285,
+            "duracion_formateada": "08:37",
+            "anio": "2017-03-31",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
@@ -75,7 +89,35 @@
             "numero_pista": "1",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": true
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "artista_album": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal",
+            "duracion": 217.78285714285715,
+            "duracion_formateada": "03:37",
+            "anio": "2019-07-05",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\If I Ruled the World (Imagine That) (ft Lauryn Hill)..mp3",
+            "titulo": "If I Ruled the World (Imagine That) (ft Lauryn Hill)",
+            "artista": "Nas ft Ms. Lauryn Hill",
+            "artista_album": "Nas",
+            "album": "It Was Written",
+            "duracion": 282.40979591836737,
+            "duracion_formateada": "04:42",
+            "anio": "1996-07-02",
+            "numero_pista": "14/14",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3",
@@ -106,20 +148,6 @@
             "favorito": false
         },
         {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Ric Flair Drip (ft Metro Boomin).mp3",
-            "titulo": "Ric Flair Drip (ft Metro Boomin)",
-            "artista": "Offset ft Metro Boomin",
-            "artista_album": "21 Savage ft Offset, Metro Boomin",
-            "album": "Without Warning",
-            "duracion": 172.8261224489796,
-            "duracion_formateada": "02:52",
-            "anio": "2017-10-30",
-            "numero_pista": "3/10",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": false
-        },
-        {
             "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
@@ -131,7 +159,7 @@
             "numero_pista": "9/13",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": true
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
@@ -144,7 +172,7 @@
             "anio": "2022-05-26",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         }
     ]

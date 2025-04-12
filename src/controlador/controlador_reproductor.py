@@ -101,7 +101,7 @@ class ControladorReproductor:
             self.etiqueta_artista.configure(text=self.texto_artista)
             self.etiqueta_album.configure(text=self.texto_album)
             self.etiqueta_anio.configure(text=self.cancion_actual.fecha_formateada)
-            # Cancelar cualquier timer de desplazamiento anterior
+            # Cancelar cualquier tiempo de desplazamiento anterior
             if hasattr(self, "id_marcador_tiempo") and self.id_marcador_tiempo:
                 self.etiqueta_nombre.after_cancel(self.id_marcador_tiempo)
                 self.id_marcador_tiempo = None
@@ -263,7 +263,7 @@ class ControladorReproductor:
             # Acumular tiempo transcurrido hasta el momento de la pausa
             self.tiempo_acumulado += time.perf_counter() - self.tiempo_inicio
             self.tiempo_inicio = None
-            # En este caso no cancelamos el timer para que la interfaz siga actualizándose
+            # En este caso no cancelamos el tiempo para que la interfaz siga actualizándose
             self.reproduciendo = False
 
     # Método que reanuda la reproducción de la canción
@@ -585,12 +585,12 @@ class ControladorReproductor:
             if not self.desplazamiento_activo.get(clave, False):
                 continue
             # Obtener posición actual y longitud visible
-            pos = self.posicion_desplazamiento[clave]
+            posicion = self.posicion_desplazamiento[clave]
             longitud_maxima = 75
             # Si el texto es más largo que la longitud máxima, aplicar desplazamiento
             if len(texto_completo) > longitud_maxima:
                 # Control de pausa al inicio
-                if pos == 0:
+                if posicion == 0:
                     # Sí estamos al inicio, pausar durante más tiempo
                     if not hasattr(self, f"pausa_inicio_{clave}"):
                         setattr(self, f"pausa_inicio_{clave}", 0)
@@ -603,7 +603,7 @@ class ControladorReproductor:
                     else:
                         setattr(self, f"pausa_inicio_{clave}", 0)
                 # Control de pausa al final
-                if pos >= len(texto_completo) - longitud_maxima:
+                if posicion >= len(texto_completo) - longitud_maxima:
                     # Si llegamos al final, pausar antes de reiniciar
                     if not hasattr(self, f"pausa_final_{clave}"):
                         setattr(self, f"pausa_final_{clave}", 0)
@@ -621,7 +621,7 @@ class ControladorReproductor:
                         etiqueta.configure(text=texto_visible)
                         continue
                 # Desplazamiento normal
-                texto_visible = texto_completo[pos : pos + longitud_maxima]
+                texto_visible = texto_completo[posicion : posicion + longitud_maxima]
                 self.posicion_desplazamiento[clave] += 1
                 etiqueta.configure(text=texto_visible)
         # Programar próxima actualización

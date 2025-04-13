@@ -12,7 +12,77 @@
             "numero_pista": "4/32",
             "tiene_caratula": true,
             "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\7 Lagrimas (Remix).mp3",
+            "titulo": "7 Lagrimas (Remix)",
+            "artista": "Soge Culebra ft Mora, GARABATTO",
+            "artista_album": "Soge Culebra",
+            "album": "7 Lágrimas (Remix)",
+            "duracion": 209.2930612244898,
+            "duracion_formateada": "03:29",
+            "anio": "2022",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": true,
             "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "artista_album": "Yan Block ft Panda Black",
+            "album": "444",
+            "duracion": 175.30775510204083,
+            "duracion_formateada": "02:55",
+            "anio": "2024-04-04",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "artista_album": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal",
+            "duracion": 217.78285714285715,
+            "duracion_formateada": "03:37",
+            "anio": "2019-07-05",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "artista_album": "Anuel AA",
+            "album": "¿Qué Nos Pasó?",
+            "duracion": 245.7861224489796,
+            "duracion_formateada": "04:05",
+            "anio": "2022-05-26",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3",
+            "titulo": "16 Lines",
+            "artista": "Lil Peep",
+            "artista_album": "Lil Peep",
+            "album": "Come Over When You're Sober, Pt. 2",
+            "duracion": 244.95020408163265,
+            "duracion_formateada": "04:04",
+            "anio": "2018-11-09",
+            "numero_pista": "6",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
         }
     ]
 }

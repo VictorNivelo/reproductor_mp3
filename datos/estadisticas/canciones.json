@@ -1,10 +1,10 @@
 {
     "estadisticas": {
-        "total_canciones": 12,
-        "total_artistas": 19,
-        "total_albumes": 11,
-        "me_gusta": 1,
-        "favorito": 1
+        "total_canciones": 16,
+        "total_artistas": 24,
+        "total_albumes": 15,
+        "me_gusta": 6,
+        "favorito": 3
     },
     "canciones": [
         {
@@ -50,6 +50,20 @@
             "favorito": false
         },
         {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3",
+            "titulo": "16 Lines",
+            "artista": "Lil Peep",
+            "artista_album": "Lil Peep",
+            "album": "Come Over When You're Sober, Pt. 2",
+            "duracion": 244.95020408163265,
+            "duracion_formateada": "04:04",
+            "anio": "2018-11-09",
+            "numero_pista": "6",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
             "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
@@ -60,7 +74,7 @@
             "anio": "2024-04-04",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {
@@ -76,6 +90,48 @@
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3",
+            "titulo": "6 AM",
+            "artista": "J Balvin ft Farruko",
+            "artista_album": "J Balvin",
+            "album": "La Familia",
+            "duracion": 243.27836734693878,
+            "duracion_formateada": "04:03",
+            "anio": "2013-07-15",
+            "numero_pista": "5",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\7 Lagrimas (Remix).mp3",
+            "titulo": "7 Lagrimas (Remix)",
+            "artista": "Soge Culebra ft Mora, GARABATTO",
+            "artista_album": "Soge Culebra",
+            "album": "7 Lágrimas (Remix)",
+            "duracion": 209.2930612244898,
+            "duracion_formateada": "03:29",
+            "anio": "2022",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\A Mí.mp3",
+            "titulo": "A Mí",
+            "artista": "Rels B",
+            "artista_album": "Rels B",
+            "album": "A Mí",
+            "duracion": 209.71102040816328,
+            "duracion_formateada": "03:29",
+            "anio": "2019-02-21",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
@@ -102,21 +158,7 @@
             "anio": "2019-07-05",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\If I Ruled the World (Imagine That) (ft Lauryn Hill)..mp3",
-            "titulo": "If I Ruled the World (Imagine That) (ft Lauryn Hill)",
-            "artista": "Nas ft Ms. Lauryn Hill",
-            "artista_album": "Nas",
-            "album": "It Was Written",
-            "duracion": 282.40979591836737,
-            "duracion_formateada": "04:42",
-            "anio": "1996-07-02",
-            "numero_pista": "14/14",
-            "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {
@@ -131,7 +173,7 @@
             "numero_pista": "4/32",
             "tiene_caratula": true,
             "me_gusta": true,
-            "favorito": true
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\Never Abandon Your Family..mp3",
@@ -171,6 +213,20 @@
             "duracion_formateada": "04:05",
             "anio": "2022-05-26",
             "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\¿Qué Somos.mp3",
+            "titulo": "¿Qué Somos?",
+            "artista": "Sech",
+            "artista_album": "Sech",
+            "album": "42",
+            "duracion": 172.344,
+            "duracion_formateada": "02:52",
+            "anio": "2021",
+            "numero_pista": "3",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false

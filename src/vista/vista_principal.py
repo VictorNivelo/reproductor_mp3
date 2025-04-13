@@ -16,6 +16,7 @@ from pathlib import Path
 from constantes import *
 import tkinter as tk
 import random
+import math
 
 # FUNCIONES DE LOS BOTONES
 
@@ -35,6 +36,8 @@ ARRASTRANDO_PROGRESO = False
 DURACION_TOTAL = 0
 TIEMPO_ACTUAL = 0
 
+# Estado de la animación del espectro
+ANIMACION_ESPECTRO_ACTIVA = False
 # ========================================================================
 
 # Diccionario para almacenar los botones de canciones
@@ -224,7 +227,7 @@ def cargar_ultima_cancion_reproducida():
 
 # Función para reproducir o pausar la canción
 def reproducir_vista():
-    global ESTADO_REPRODUCCION
+    global ESTADO_REPRODUCCION, ANIMACION_ESPECTRO_ACTIVA
     if not ESTADO_REPRODUCCION:
         # Verificar si hay una canción en la cola para reproducir
         if controlador_reproductor.reproducir_o_reanudar_controlador():
@@ -232,7 +235,9 @@ def reproducir_vista():
             ESTADO_REPRODUCCION = True
             controlador_tema.registrar_botones("pausa", boton_reproducir)
             actualizar_texto_tooltip(boton_reproducir, "Pausar")
-            actualizar_espectro()
+            if not ANIMACION_ESPECTRO_ACTIVA:
+                ANIMACION_ESPECTRO_ACTIVA = True
+                actualizar_espectro()
     else:
         # Pausar reproducción
         ESTADO_REPRODUCCION = False
@@ -243,7 +248,7 @@ def reproducir_vista():
 
 # Función para reproducir la canción seleccionada
 def reproducir_desde_lista_vista(cancion):
-    global ESTADO_REPRODUCCION, biblioteca
+    global ESTADO_REPRODUCCION, ANIMACION_ESPECTRO_ACTIVA, biblioteca
     # Establecer la lista de reproducción actual
     controlador_reproductor.establecer_cola_reproduccion_controlador(
         biblioteca.canciones, biblioteca.canciones.index(cancion)
@@ -258,26 +263,30 @@ def reproducir_desde_lista_vista(cancion):
     controlador_tema.registrar_botones("pausa", boton_reproducir)
     # Actualizar tooltip del botón
     actualizar_texto_tooltip(boton_reproducir, "Pausar")
-    # Iniciar animación del espectro
-    actualizar_espectro()
     # Actualizar botones de Me Gusta y Favoritos
     actualizar_estado_botones_gustos()
+    # Iniciar animación del espectro
+    if not ANIMACION_ESPECTRO_ACTIVA:
+        ANIMACION_ESPECTRO_ACTIVA = True
+        actualizar_espectro()
 
 
 # Función para actualizar el estado de reproducción desde la cola
 def reproducir_desde_cola_vista():
-    global ESTADO_REPRODUCCION
+    global ESTADO_REPRODUCCION, ANIMACION_ESPECTRO_ACTIVA
     ESTADO_REPRODUCCION = True
     controlador_tema.registrar_botones("pausa", boton_reproducir)
     actualizar_texto_tooltip(boton_reproducir, "Pausar")
     actualizar_estado_botones_gustos()
     # También iniciar la animación del espectro
-    actualizar_espectro()
+    if not ANIMACION_ESPECTRO_ACTIVA:
+        ANIMACION_ESPECTRO_ACTIVA = True
+        actualizar_espectro()
 
 
 # Función para reproducir la canción siguiente
 def reproducir_siguiente_vista():
-    global controlador_reproductor, ESTADO_REPRODUCCION
+    global ESTADO_REPRODUCCION, ANIMACION_ESPECTRO_ACTIVA, controlador_reproductor
     resultado = controlador_reproductor.reproducir_siguiente_controlador()
     if resultado:
         # Canción reproducida exitosamente
@@ -504,6 +513,7 @@ def actualizar_estado_botones_gustos():
 def agregar_cancion_vista():
     rutas = filedialog.askopenfilenames(
         title="Seleccionar archivo de música",
+        initialdir=RUTA_CARPETA_MUSICA,
         filetypes=[
             ("Archivos de audio", "*.mp3 *.flac *.m4a *.mp4 *.wav *.ogg"),
             ("Todos los archivos", "*.*"),
@@ -515,7 +525,6 @@ def agregar_cancion_vista():
         if cancion:
             canciones_agregadas.append(cancion)
     if canciones_agregadas:
-        # Guardar la pestaña actual
         # pestana_actual = paginas_canciones.get()
         actualizar_todas_vistas_canciones()
         guardar_biblioteca()
@@ -525,10 +534,9 @@ def agregar_cancion_vista():
 
 # Función para agregar directorio (puede ser llamada desde un botón)
 def agregar_directorio_vista():
-    ruta = filedialog.askdirectory(title="Seleccionar directorio de música")
+    ruta = filedialog.askdirectory(title="Seleccionar directorio de música", initialdir=RUTA_CARPETA_MUSICA)
     if ruta:
         controlador_biblioteca.agregar_directorio_controlador(Path(ruta))
-        # Guardar la pestaña actual
         # pestana_actual = paginas_canciones.get()
         actualizar_todas_vistas_canciones()
         guardar_biblioteca()
@@ -1512,21 +1520,53 @@ def crear_barras_espectro():
         x1 = x_inicial + i * (ancho_barra + espacio_entre_barra)
         x2 = x1 + ancho_barra
         y1 = alto_canvas
-        y2 = alto_canvas - alturas_barras[i]
+        y2 = alto_canvas
         barra = canvas_espectro.create_rectangle(x1, y1, x2, y2, fill=controlador_tema.color_barras, width=0)
         barras_espectro.append(barra)
 
 
 # Función para actualizar la animación del espectro
 def actualizar_espectro():
+    global ANIMACION_ESPECTRO_ACTIVA, alturas_barras
+    # Si ya hay una animación activa, no iniciar otra
+    if not ESTADO_REPRODUCCION and not any(altura > 0 for altura in alturas_barras):
+        ANIMACION_ESPECTRO_ACTIVA = False
+        return
     if not canvas_espectro.winfo_exists():  # Verificar si el canvas existe
+        ANIMACION_ESPECTRO_ACTIVA = False
         return
     alto_canvas = canvas_espectro.winfo_height()
+    # Si no estamos reproduciendo, ocultar las barras con una animación suave
+    if not ESTADO_REPRODUCCION:
+        for i in range(min(NUMERO_BARRA, len(barras_espectro))):
+            # Reducir gradualmente la altura hasta llegar a cero
+            alturas_barras[i] = max(0, int(alturas_barras[i] * 0.9))
+            try:
+                x1, _, x2, _ = canvas_espectro.coords(barras_espectro[i])
+                canvas_espectro.coords(
+                    barras_espectro[i], x1, alto_canvas, x2, alto_canvas - alturas_barras[i]
+                )
+            except Exception as e:
+                print(f"Error al ocultar la barra del espectro: {e}")
+                ANIMACION_ESPECTRO_ACTIVA = False
+                return
+        # Continuar la animación de desvanecimiento mientras haya barras visibles
+        if any(altura > 0 for altura in alturas_barras):
+            ventana_principal.after(60, actualizar_espectro)
+        else:
+            ANIMACION_ESPECTRO_ACTIVA = False
+        return
     # Generar alturas aleatorias para simular el espectro
     for i in range(min(NUMERO_BARRA, len(barras_espectro))):
-        # Calcular nueva altura con suavizado (70% actual + 30% objetivo)
-        altura_objetivo = random.randint(10, int(alto_canvas * 0.9))  # Limitar al 90% de altura
-        alturas_barras[i] = int(alturas_barras[i] * 0.7 + altura_objetivo * 0.3)
+        # Generar altura con variación según la posición (efecto de onda)
+        factor_posicion = 0.5 + 0.5 * abs(math.sin((i / NUMERO_BARRA) * math.pi))
+        altura_base = random.randint(10, int(alto_canvas * 0.9 * factor_posicion))
+        # Suavizar los cambios entre frames para una animación más fluida
+        factor_suavizado = 0.7 + 0.3 * random.random()  # Variar ligeramente el factor de suavizado
+        altura_objetivo = int(altura_base * factor_posicion)
+        alturas_barras[i] = int(
+            alturas_barras[i] * factor_suavizado + altura_objetivo * (1 - factor_suavizado)
+        )
         # Actualizar altura de la barra
         try:
             x1, _, x2, _ = canvas_espectro.coords(barras_espectro[i])
@@ -1534,10 +1574,10 @@ def actualizar_espectro():
         except Exception as e:
             # Error cuando el componente del canvas ha sido destruido o no está disponible
             print(f"Error al actualizar la barra del espectro: {e}")
+            ANIMACION_ESPECTRO_ACTIVA = False
             return
     # Llamar a la función nuevamente después de un delay
-    if ESTADO_REPRODUCCION:
-        ventana_principal.after(85, actualizar_espectro)
+    ventana_principal.after(60, actualizar_espectro)
 
 
 # Función para configurar el desplazamiento de texto en botones

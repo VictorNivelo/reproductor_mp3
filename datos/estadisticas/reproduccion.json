@@ -1,49 +1,160 @@
 {
     "artistas": {
-        "Anuel AA ft Sinfonico, Ñengo Flow": 1,
-        "Metro Boomin ft Coi Leray": 3,
-        "Nas ft Ms. Lauryn Hill": 1,
-        "Kanye West ft André 3000": 2
+        "Anuel AA ft Sinfonico, Ñengo Flow": 5,
+        "Metro Boomin ft Coi Leray": 7,
+        "Nas ft Ms. Lauryn Hill": 8,
+        "Kanye West ft André 3000": 11,
+        "Kanye West": 7,
+        "Eladio Carrion ft Bryant Myers": 9,
+        "Tainy ft Sech, E.VAX": 4,
+        "Bad Bunny": 6,
+        "Yan Block ft Panda Black": 5,
+        "Daddy Yankee ft Anuel AA": 14,
+        "Anuel AA": 5,
+        "МЫ": 3,
+        "Soge Culebra ft Mora, GARABATTO": 8,
+        "J Balvin ft Farruko": 5,
+        "Rels B": 4,
+        "Sech": 3,
+        "Feid": 14,
+        "Lil Peep": 4
     },
     "albumes": {
-        "47 (Remix)": 1,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 3,
-        "It Was Written": 1,
-        "Donda (Deluxe)": 2
+        "47 (Remix)": 5,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 7,
+        "It Was Written": 8,
+        "Donda (Deluxe)": 18,
+        "Animal": 9,
+        "DATA": 4,
+        "EL ÚLTIMO TOUR DEL MUNDO": 6,
+        "444": 5,
+        "Adictiva": 14,
+        "¿Qué Nos Pasó?": 5,
+        "Ближе": 3,
+        "7 Lágrimas (Remix)": 8,
+        "La Familia": 5,
+        "A Mí": 4,
+        "42": 3,
+        "INTER SHIBUYA - LA MAFIA": 14,
+        "Come Over When You're Sober, Pt. 2": 4
     },
-    "tiempo_total": 2152.2285714285713,
-    "canciones_escuchadas": 7,
+    "tiempo_total": 28695.284978316315,
+    "canciones_escuchadas": 122,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "titulo": "Self Love",
-        "artista": "Metro Boomin ft Coi Leray",
-        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
-        "timestamp": "2025-04-12T16:36:09.374971"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "titulo": "14 De Febrero",
+        "artista": "Feid",
+        "album": "INTER SHIBUYA - LA MAFIA",
+        "timestamp": "2025-04-13T12:53:33.908262"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 1,
+            "contador": 5,
             "titulo": "47 (Remix)",
             "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
             "album": "47 (Remix)"
         },
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 3,
+            "contador": 7,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
         },
         "C:\\Users\\Victor\\Music\\Musica\\If I Ruled the World (Imagine That) (ft Lauryn Hill)..mp3": {
-            "contador": 1,
+            "contador": 8,
             "titulo": "If I Ruled the World (Imagine That) (ft Lauryn Hill)",
             "artista": "Nas ft Ms. Lauryn Hill",
             "album": "It Was Written"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3": {
-            "contador": 2,
+            "contador": 11,
             "titulo": "Life Of The Party (ft André 3000)",
             "artista": "Kanye West ft André 3000",
             "album": "Donda (Deluxe)"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Never Abandon Your Family..mp3": {
+            "contador": 7,
+            "titulo": "Never Abandon Your Family",
+            "artista": "Kanye West",
+            "album": "Donda (Deluxe)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
+            "contador": 9,
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal"
+        },
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
+            "contador": 4,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
+            "contador": 6,
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
+        },
+        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
+            "contador": 5,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
+            "contador": 14,
+            "titulo": "Adictiva",
+            "artista": "Daddy Yankee ft Anuel AA",
+            "album": "Adictiva"
+        },
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
+            "contador": 5,
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "album": "¿Qué Nos Pasó?"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Ближе.mp3": {
+            "contador": 3,
+            "titulo": "Ближе",
+            "artista": "МЫ",
+            "album": "Ближе"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\7 Lagrimas (Remix).mp3": {
+            "contador": 8,
+            "titulo": "7 Lagrimas (Remix)",
+            "artista": "Soge Culebra ft Mora, GARABATTO",
+            "album": "7 Lágrimas (Remix)"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3": {
+            "contador": 5,
+            "titulo": "6 AM",
+            "artista": "J Balvin ft Farruko",
+            "album": "La Familia"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\A Mí.mp3": {
+            "contador": 4,
+            "titulo": "A Mí",
+            "artista": "Rels B",
+            "album": "A Mí"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\¿Qué Somos.mp3": {
+            "contador": 3,
+            "titulo": "¿Qué Somos?",
+            "artista": "Sech",
+            "album": "42"
+        },
+        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
+            "contador": 14,
+            "titulo": "14 De Febrero",
+            "artista": "Feid",
+            "album": "INTER SHIBUYA - LA MAFIA"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3": {
+            "contador": 4,
+            "titulo": "16 Lines",
+            "artista": "Lil Peep",
+            "album": "Come Over When You're Sober, Pt. 2"
         }
     }
 }

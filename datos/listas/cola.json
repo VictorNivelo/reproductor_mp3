@@ -1,24 +1,28 @@
 {
-    "indice_actual": 10,
+    "indice_actual": 5,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\7 Lagrimas (Remix).mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\A Mí.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\If I Ruled the World (Imagine That) (ft Lauryn Hill)..mp3",
         "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3",
         "C:\\Users\\Victor\\Music\\Musica\\Never Abandon Your Family..mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\¿Qué Somos.mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "titulo": "Self Love",
-        "artista": "Metro Boomin ft Coi Leray",
-        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
-        "timestamp": "2025-04-12T16:36:09.373403"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "titulo": "47 (Remix)",
+        "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+        "album": "47 (Remix)",
+        "timestamp": "2025-04-13T13:07:19.148428"
     }
 }

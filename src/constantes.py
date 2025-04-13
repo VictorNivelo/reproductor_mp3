@@ -47,6 +47,9 @@ ESPACIO_ENTRE_BARRA = 1
 # ========================================================================
 
 # ========================= Ruta de los recursos =========================
+# Ruta de la carpeta musica en el sistema
+RUTA_CARPETA_MUSICA = os.path.join(os.path.expanduser("~"), "Music")
+
 # Ruta base del proyecto
 RUTA_BASE = os.path.dirname(os.path.dirname(__file__))
 

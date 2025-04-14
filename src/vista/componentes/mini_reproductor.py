@@ -10,7 +10,30 @@ class MiniReproductor(Utiles):
         self.ventana_principal_mini_reproductor = None
         self.ventana_principal = ventana_principal
         self.controlador_tema = controlador_tema
+        self.controlador_reproductor = None
+        self.foto_caratula_mini = None
         self.componentes = []
+        self.posicion_mini_reproductor = "superior_izquierda"
+        # Referencias a elementos que mostrarán información
+        self.etiqueta_nombre_cancion_mini = None
+        self.etiqueta_artista_mini = None
+        self.etiqueta_album_mini = None
+        self.imagen_cancion_mini = None
+        self.etiqueta_tiempo_inicio_mini = None
+        self.etiqueta_tiempo_final_mini = None
+        self.barra_progreso_mini = None
+        # Referencias a botones
+        self.boton_reproducir_mini = None
+        self.boton_anterior_mini = None
+        self.boton_siguiente_mini = None
+        self.boton_me_gusta_mini = None
+
+    # Método para establecer el controlador del reproductor
+    def establecer_controlador_reproductor(self, controlador_reproductor):
+        self.controlador_reproductor = controlador_reproductor
+        # Aplicar eventos de movimiento si la ventana ya está creada
+        if self.ventana_principal_mini_reproductor:
+            self.aplicar_eventos_movimiento()
 
     # Método para crear la ventana del mini reproductor
     def crear_ventana_mini_reproductor(self):
@@ -20,6 +43,9 @@ class MiniReproductor(Utiles):
         # ======================================= Ventana principal =======================================
         # Crear la ventana del mini reproductor
         self.ventana_principal_mini_reproductor = ctk.CTkToplevel(self.ventana_principal)
+
+        # Eliminar la barra de título y los bordes de la ventana
+        self.ventana_principal_mini_reproductor.overrideredirect(True)
 
         # Título de la ventana del mini reproductor
         self.ventana_principal_mini_reproductor.title("Minireproductor de música")
@@ -35,7 +61,7 @@ class MiniReproductor(Utiles):
         self.ventana_principal_mini_reproductor.resizable(False, False)
 
         # Configuración de la ventana como un modal
-        self.ventana_principal_mini_reproductor.protocol("WM_DELETE_WINDOW", self.ocultar)
+        # self.ventana_principal_mini_reproductor.protocol("WM_DELETE_WINDOW", self.ocultar)
 
         # Establecer el icono de la ventana del mini reproductor
         establecer_icono_tema(self.ventana_principal_mini_reproductor, self.controlador_tema.tema_interfaz)
@@ -46,7 +72,7 @@ class MiniReproductor(Utiles):
         panel_principal_mini_reproductor = ctk.CTkFrame(
             self.ventana_principal_mini_reproductor,
             fg_color=self.color_fondo_principal,
-            corner_radius=0,
+            corner_radius=BORDES_REDONDEADOS_PANEL,
         )
         # panel_principal_mini_reproductor configure(bg=self.color_fondo_principal)
         panel_principal_mini_reproductor.pack(fill="x", expand=True)
@@ -56,9 +82,9 @@ class MiniReproductor(Utiles):
         # ========================================= Panel derecho =========================================
         # Crea el panel derecho del mini reproductor
         panel_derecha_mini_reproductor = ctk.CTkFrame(
-            panel_principal_mini_reproductor, fg_color=self.color_fondo, width=240, height=125
+            panel_principal_mini_reproductor, fg_color=self.color_fondo, width=250, height=125
         )
-        panel_derecha_mini_reproductor.pack(side="right", padx=(0, 5), pady=4)
+        panel_derecha_mini_reproductor.pack(side="right", padx=(0, 5), pady=5)
         panel_derecha_mini_reproductor.pack_propagate(False)
         self.componentes.append(panel_derecha_mini_reproductor)
         # =================================================================================================
@@ -71,39 +97,45 @@ class MiniReproductor(Utiles):
         panel_informacion_mini_reproductor.pack(fill="x", padx=5, pady=3)
         self.componentes.append(panel_informacion_mini_reproductor)
 
+        # -------------------------------------- Etiqueta de título ---------------------------------------
         # Crea las etiquetas del mini reproductor
-        etiqueta_nombre_cancion_mini_reproductor = ctk.CTkLabel(
+        self.etiqueta_nombre_cancion_mini = ctk.CTkLabel(
             panel_informacion_mini_reproductor,
-            height=18,
+            height=20,
             text_color=self.color_texto,
-            text="Nombre de la canción",
-            font=(LETRA, TAMANIO_LETRA_ETIQUETA - 1.5),
+            text="Sin reproducción",
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA - 1),
             fg_color="transparent",
         )
-        etiqueta_nombre_cancion_mini_reproductor.pack()
-        self.componentes.append(etiqueta_nombre_cancion_mini_reproductor)
+        self.etiqueta_nombre_cancion_mini.pack()
+        self.componentes.append(self.etiqueta_nombre_cancion_mini)
+        # -------------------------------------------------------------------------------------------------
 
-        etiqueta_artista_mini_reproductor = ctk.CTkLabel(
+        # ------------------------------------- Etiquetas de artista --------------------------------------
+        self.etiqueta_artista_mini = ctk.CTkLabel(
             panel_informacion_mini_reproductor,
-            height=18,
+            height=20,
             text_color=self.color_texto,
-            text="Artista",
-            font=(LETRA, TAMANIO_LETRA_ETIQUETA - 1.5),
+            text="",
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA - 1),
             fg_color="transparent",
         )
-        etiqueta_artista_mini_reproductor.pack()
-        self.componentes.append(etiqueta_artista_mini_reproductor)
+        self.etiqueta_artista_mini.pack()
+        self.componentes.append(self.etiqueta_artista_mini)
+        # -------------------------------------------------------------------------------------------------
 
-        etiqueta_album_mini_reproductor = ctk.CTkLabel(
+        # -------------------------------------- Etiquetas de álbum ---------------------------------------
+        self.etiqueta_album_mini = ctk.CTkLabel(
             panel_informacion_mini_reproductor,
-            height=18,
+            height=20,
             text_color=self.color_texto,
-            text="Álbum",
-            font=(LETRA, TAMANIO_LETRA_ETIQUETA - 1.5),
+            text="",
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA - 1),
             fg_color="transparent",
         )
-        etiqueta_album_mini_reproductor.pack()
-        self.componentes.append(etiqueta_album_mini_reproductor)
+        self.etiqueta_album_mini.pack()
+        self.componentes.append(self.etiqueta_album_mini)
+        # -------------------------------------------------------------------------------------------------
         # =================================================================================================
 
         # ======================================== Panel progreso =========================================
@@ -112,15 +144,17 @@ class MiniReproductor(Utiles):
         panel_progreso_mini_reproductor.pack(fill="x", padx=5)
         self.componentes.append(panel_progreso_mini_reproductor)
 
+        # --------------------------------------- Barra de progreso ---------------------------------------
         # Crea la barra de progreso del mini reproductor
-        barra_progreso_mini_reproductor = ctk.CTkProgressBar(
+        self.barra_progreso_mini = ctk.CTkProgressBar(
             panel_progreso_mini_reproductor,
-            height=5,
+            height=6,
             progress_color=self.color_barra_progreso,
         )
-        barra_progreso_mini_reproductor.pack(fill="x")
-        barra_progreso_mini_reproductor.set(0)
-        self.componentes.append(barra_progreso_mini_reproductor)
+        self.barra_progreso_mini.pack(fill="x")
+        self.barra_progreso_mini.set(0)
+        self.componentes.append(self.barra_progreso_mini)
+        # -------------------------------------------------------------------------------------------------
         # =================================================================================================
 
         # ======================================== Panel tiempo ===========================================
@@ -129,28 +163,32 @@ class MiniReproductor(Utiles):
         panel_tiempo_mini_reproductor.pack(fill="x")
         self.componentes.append(panel_tiempo_mini_reproductor)
 
+        # ---------------------------------- Etiqueta de tiempo inicial -----------------------------------
         # Crea las etiquetas de tiempo del mini reproductor
-        etiqueta_tiempo_inicio_mini_reproductor = ctk.CTkLabel(
+        self.etiqueta_tiempo_inicio_mini = ctk.CTkLabel(
             panel_tiempo_mini_reproductor,
-            height=18,
+            height=20,
             text_color=self.color_texto,
             text="00:00",
             font=(LETRA, TAMANIO_LETRA_TIEMPO - 1),
             fg_color="transparent",
         )
-        etiqueta_tiempo_inicio_mini_reproductor.pack(side="left")
-        self.componentes.append(etiqueta_tiempo_inicio_mini_reproductor)
+        self.etiqueta_tiempo_inicio_mini.pack(side="left")
+        self.componentes.append(self.etiqueta_tiempo_inicio_mini)
+        # -------------------------------------------------------------------------------------------------
 
-        etiqueta_tiempo_final_mini_reproductor = ctk.CTkLabel(
+        # ----------------------------------- Etiqueta de tiempo final ------------------------------------
+        self.etiqueta_tiempo_final_mini = ctk.CTkLabel(
             panel_tiempo_mini_reproductor,
-            height=18,
+            height=20,
             text_color=self.color_texto,
             text="00:00",
             font=(LETRA, TAMANIO_LETRA_TIEMPO - 1),
             fg_color="transparent",
         )
-        etiqueta_tiempo_final_mini_reproductor.pack(side="right")
-        self.componentes.append(etiqueta_tiempo_final_mini_reproductor)
+        self.etiqueta_tiempo_final_mini.pack(side="right")
+        self.componentes.append(self.etiqueta_tiempo_final_mini)
+        # -------------------------------------------------------------------------------------------------
         # =================================================================================================
 
         # ======================================== Panel botones ==========================================
@@ -159,15 +197,18 @@ class MiniReproductor(Utiles):
         panel_botones_mini_reproductor.pack(fill="x", padx=5, pady=(0, 5))
         self.componentes.append(panel_botones_mini_reproductor)
 
+        # ----------------------------------------- Panel botones -----------------------------------------
         # Crea el contenedor de botones del mini reproductor
         contenedor_botones_mini_reproductor = ctk.CTkFrame(
             panel_botones_mini_reproductor, fg_color="transparent"
         )
         contenedor_botones_mini_reproductor.pack(pady=(0, 3), expand=True)
         self.componentes.append(contenedor_botones_mini_reproductor)
+        # -------------------------------------------------------------------------------------------------
 
+        # ---------------------------------------- Boton me gusta -----------------------------------------
         # Crea los botones del mini reproductor
-        boton_me_gusta_mini_reproductor = ctk.CTkButton(
+        self.boton_me_gusta_mini = ctk.CTkButton(
             contenedor_botones_mini_reproductor,
             width=ANCHO_BOTON,
             height=ALTO_BOTON,
@@ -175,13 +216,16 @@ class MiniReproductor(Utiles):
             fg_color=self.color_boton,
             hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=TEXTO_CLARO,
+            text_color=self.color_texto,
             text="",
+            command=self.cambiar_me_gusta,
         )
-        boton_me_gusta_mini_reproductor.pack(side="left", padx=5)
-        self.controlador_tema.registrar_botones("me_gusta_mini", boton_me_gusta_mini_reproductor)
+        self.boton_me_gusta_mini.pack(side="left", padx=5)
+        self.controlador_tema.registrar_botones("me_gusta_mini", self.boton_me_gusta_mini)
+        # -------------------------------------------------------------------------------------------------
 
-        boton_anterior_mini_reproductor = ctk.CTkButton(
+        # ----------------------------------------- Boton anterior ----------------------------------------
+        self.boton_anterior_mini = ctk.CTkButton(
             contenedor_botones_mini_reproductor,
             width=ANCHO_BOTON,
             height=ALTO_BOTON,
@@ -189,13 +233,16 @@ class MiniReproductor(Utiles):
             fg_color=self.color_boton,
             hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=TEXTO_CLARO,
+            text_color=self.color_texto,
             text="",
+            command=self.reproducir_anterior,
         )
-        boton_anterior_mini_reproductor.pack(side="left", padx=5)
-        self.controlador_tema.registrar_botones("anterior_mini", boton_anterior_mini_reproductor)
+        self.boton_anterior_mini.pack(side="left", padx=5)
+        self.controlador_tema.registrar_botones("anterior_mini", self.boton_anterior_mini)
+        # -------------------------------------------------------------------------------------------------
 
-        boton_reproducir_mini_reproductor = ctk.CTkButton(
+        # --------------------------------- Boton reproducir/pausar ---------------------------------------
+        self.boton_reproducir_mini = ctk.CTkButton(
             contenedor_botones_mini_reproductor,
             width=ANCHO_BOTON,
             height=ALTO_BOTON,
@@ -203,13 +250,16 @@ class MiniReproductor(Utiles):
             fg_color=self.color_boton,
             hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=TEXTO_CLARO,
+            text_color=self.color_texto,
             text="",
+            command=self.reproducir_pausar,
         )
-        boton_reproducir_mini_reproductor.pack(side="left", padx=5)
-        self.controlador_tema.registrar_botones("reproducir_mini", boton_reproducir_mini_reproductor)
+        self.boton_reproducir_mini.pack(side="left", padx=5)
+        self.controlador_tema.registrar_botones("reproducir_mini", self.boton_reproducir_mini)
+        # -------------------------------------------------------------------------------------------------
 
-        boton_siguiente_mini_reproductor = ctk.CTkButton(
+        # -------------------------------- Boton siguiente ------------------------------------------------
+        self.boton_siguiente_mini = ctk.CTkButton(
             contenedor_botones_mini_reproductor,
             width=ANCHO_BOTON,
             height=ALTO_BOTON,
@@ -217,12 +267,15 @@ class MiniReproductor(Utiles):
             fg_color=self.color_boton,
             hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=TEXTO_CLARO,
+            text_color=self.color_texto,
             text="",
+            command=self.reproducir_siguiente,
         )
-        boton_siguiente_mini_reproductor.pack(side="left", padx=5)
-        self.controlador_tema.registrar_botones("siguiente_mini", boton_siguiente_mini_reproductor)
+        self.boton_siguiente_mini.pack(side="left", padx=5)
+        self.controlador_tema.registrar_botones("siguiente_mini", self.boton_siguiente_mini)
+        # -------------------------------------------------------------------------------------------------
 
+        # -------------------------------- Boton maximizar mini reproductor -------------------------------
         boton_maximizar_mini_reproductor = ctk.CTkButton(
             contenedor_botones_mini_reproductor,
             width=ANCHO_BOTON,
@@ -231,38 +284,174 @@ class MiniReproductor(Utiles):
             fg_color=self.color_boton,
             hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=TEXTO_CLARO,
+            text_color=self.color_texto,
             text="",
             command=self.ocultar,
         )
         boton_maximizar_mini_reproductor.pack(side="left", padx=5)
         self.controlador_tema.registrar_botones("maximizar_mini", boton_maximizar_mini_reproductor)
+        # -------------------------------------------------------------------------------------------------
         # =================================================================================================
 
         # ======================================== Panel izquierda ========================================
         # Crea el panel izquierdo del mini reproductor
         panel_izquierda_mini_reproductor = ctk.CTkFrame(
-            panel_principal_mini_reproductor, fg_color=self.color_fondo, width=100, height=125
+            panel_principal_mini_reproductor, fg_color=self.color_fondo, width=125, height=125
         )
-        panel_izquierda_mini_reproductor.pack(side="left", padx=(5, 0), pady=4)
+        panel_izquierda_mini_reproductor.pack(side="left", padx=5, pady=5)
         panel_izquierda_mini_reproductor.pack_propagate(False)
         self.componentes.append(panel_izquierda_mini_reproductor)
 
+        # ------------------------------------- Imagen de la canción ---------------------------------------
         # Crea la imagen de la canción del mini reproductor
-        imagen_cancion_mini_reproductor = ctk.CTkLabel(
+        self.imagen_cancion_mini = ctk.CTkLabel(
             panel_izquierda_mini_reproductor,
             text_color=self.color_texto,
-            text="caratula",
+            text="Sin carátula",
             fg_color="transparent",
         )
-        imagen_cancion_mini_reproductor.pack(pady=5)
-        self.componentes.append(imagen_cancion_mini_reproductor)
+        self.imagen_cancion_mini.pack(expand=True)
+        self.componentes.append(self.imagen_cancion_mini)
+        # -------------------------------------------------------------------------------------------------
         # =================================================================================================
 
         # Protocolo para cerrar la ventana del mini reproductor
         self.ventana_principal_mini_reproductor.protocol("WM_DELETE_WINDOW", self.ocultar)
 
-        # self.ventana_principal_mini_reproductor.mainloop()
+        # Aplicar eventos de movimiento a todos los componentes
+        self.aplicar_eventos_movimiento()
+
+    # Métodos para controlar la reproducción desde el mini reproductor
+    def reproducir_pausar(self):
+        if self.controlador_reproductor:
+            # Verificar el estado actual
+            if self.controlador_reproductor.reproduciendo:
+                # Si está reproduciendo, pausar
+                self.controlador_reproductor.pausar_reproduccion_controlador()
+                self.controlador_tema.registrar_botones("reproducir_mini", self.boton_reproducir_mini)
+                # Actualizar estado en ventana principal
+                try:
+                    from vista.vista_principal import boton_reproducir, controlador_tema
+                    from vista.vista_principal import ESTADO_REPRODUCCION
+
+                    globals()["ESTADO_REPRODUCCION"] = False
+                    controlador_tema.registrar_botones("reproducir", boton_reproducir)
+                except ImportError as e:
+                    print(f"Error al actualizar ventana principal: {e}")
+            else:
+                # Si está pausado, reanudar
+                self.controlador_reproductor.reanudar_reproduccion_controlador()
+                self.controlador_tema.registrar_botones("pausa_mini", self.boton_reproducir_mini)
+                # Actualizar estado en ventana principal
+                try:
+                    from vista.vista_principal import boton_reproducir, controlador_tema
+                    from vista.vista_principal import ESTADO_REPRODUCCION
+
+                    globals()["ESTADO_REPRODUCCION"] = True
+                    controlador_tema.registrar_botones("pausa", boton_reproducir)
+                except ImportError as e:
+                    print(f"Error al actualizar ventana principal: {e}")
+            # Actualizar información
+            self.actualizar_estado_reproduccion()
+
+    # Métodos para poner la canción anterior
+    def reproducir_anterior(self):
+        if self.controlador_reproductor:
+            self.controlador_reproductor.reproducir_anterior_controlador()
+            # Actualizar información
+            self.actualizar_informacion()
+            self.actualizar_estado_reproduccion()
+
+    # Métodos para poner la canción siguiente
+    def reproducir_siguiente(self):
+        if self.controlador_reproductor:
+            self.controlador_reproductor.reproducir_siguiente_controlador()
+            # Actualizar información
+            self.actualizar_informacion()
+            self.actualizar_estado_reproduccion()
+
+    # Método para cambiar el estado de "me gusta" de la canción actual
+    def cambiar_me_gusta(self):
+        if self.controlador_reproductor and self.controlador_reproductor.cancion_actual:
+            # Obtener la canción actual
+            cancion = self.controlador_reproductor.cancion_actual
+            # Importar el controlador de biblioteca desde el módulo principal
+            # (esto se hace dentro del método para evitar importaciones circulares)
+            from controlador.controlador_biblioteca import ControladorBiblioteca
+            from modelo.biblioteca import Biblioteca
+
+            # Obtener la instancia de la biblioteca
+            # (normalmente esto vendría como dependencia, pero lo hacemos así para este método específico)
+            try:
+                # Intentar obtener la biblioteca y el controlador desde algún registro global o singleton
+                from vista.vista_principal import biblioteca, controlador_biblioteca
+
+                # Marcar o desmarcar la canción como "me gusta"
+                controlador_biblioteca.marcar_me_gusta_controlador(cancion)
+                # Actualizar el estado visual del botón según el nuevo estado de me_gusta
+                if cancion.me_gusta:
+                    self.controlador_tema.registrar_botones("me_gusta_rojo_mini", self.boton_me_gusta_mini)
+                else:
+                    self.controlador_tema.registrar_botones("me_gusta_mini", self.boton_me_gusta_mini)
+                # Guardar los cambios en la biblioteca (si es necesario)
+                from controlador.controlador_archivos import ControladorArchivos
+
+                controlador_archivos = ControladorArchivos()
+                controlador_archivos.guardar_biblioteca_controlador(biblioteca, self.controlador_reproductor)
+            except ImportError as e:
+                print(f"Error al acceder a la biblioteca: {e}")
+                # Si no podemos acceder a la biblioteca global, mostramos un mensaje de error
+                pass
+
+    # Método para actualizar el estado de los botones según el estado de reproducción
+    def actualizar_estado_reproduccion(self):
+        if self.controlador_reproductor:
+            # Actualizar el icono del botón de reproducción/pausa
+            if self.controlador_reproductor.reproduciendo:
+                self.controlador_tema.registrar_botones("pausa_mini", self.boton_reproducir_mini)
+            else:
+                self.controlador_tema.registrar_botones("reproducir_mini", self.boton_reproducir_mini)
+
+    # Método para actualizar la información de la canción en el mini reproductor
+    def actualizar_informacion(self):
+        if self.controlador_reproductor and self.controlador_reproductor.cancion_actual:
+            cancion = self.controlador_reproductor.cancion_actual
+            # Actualizar etiquetas de texto
+            self.etiqueta_nombre_cancion_mini.configure(text=cancion.titulo_cancion)
+            self.etiqueta_artista_mini.configure(text=cancion.artista)
+            self.etiqueta_album_mini.configure(text=cancion.album)
+            # Actualizar carátula
+            if cancion.caratula_cancion:
+                foto, _, _ = self.crear_imagen_desde_bytes(cancion.caratula_cancion, ancho=125, alto=125)
+                if foto:
+                    self.imagen_cancion_mini.configure(image=foto, text="")
+                    # Guardar referencia para evitar el garbage collector
+                    self.foto_caratula_mini = foto
+                else:
+                    self.imagen_cancion_mini.configure(image=None, text="Sin carátula")
+            else:
+                self.imagen_cancion_mini.configure(image=None, text="Sin carátula")
+            # Actualizar duración total
+            minutos_total = int(cancion.duracion // 60)
+            segundos_total = int(cancion.duracion % 60)
+            self.etiqueta_tiempo_final_mini.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
+            # Sincronizar la barra de progreso con la principal
+            if (
+                hasattr(self.controlador_reproductor, "barra_progreso")
+                and self.controlador_reproductor.barra_progreso
+            ):
+                valor_progreso = self.controlador_reproductor.barra_progreso.get()
+                self.barra_progreso_mini.set(valor_progreso)
+        else:
+            # No hay canción en reproducción
+            self.etiqueta_nombre_cancion_mini.configure(text="Sin reproducción")
+            self.etiqueta_artista_mini.configure(text="")
+            self.etiqueta_album_mini.configure(text="")
+            self.etiqueta_tiempo_inicio_mini.configure(text="00:00")
+            self.etiqueta_tiempo_final_mini.configure(text="00:00")
+            self.imagen_cancion_mini.configure(image=None, text="Sin carátula")
+            self.barra_progreso_mini.set(0)
+        self.aplicar_eventos_movimiento()
 
     # Método para mostrar la ventana del mini reproductor
     def mostrar_ventana_mini_reproductor(self):
@@ -295,13 +484,49 @@ class MiniReproductor(Utiles):
                 # Si hay un error al actualizar, recrear la ventana
                 self.ventana_principal_mini_reproductor = None
                 self.crear_ventana_mini_reproductor()
+        # Actualizar información de la canción actual
+        self.actualizar_informacion()
+        self.actualizar_estado_reproduccion()
+        # Posicionar la ventana del mini reproductor en una ubicación visible
+        try:
+            # Obtener dimensiones de la pantalla
+            ancho_pantalla = self.ventana_principal.winfo_screenwidth()
+            alto_pantalla = self.ventana_principal.winfo_screenheight()
+            # Calcular posición según la configuración
+            if self.posicion_mini_reproductor == "superior_izquierda":
+                x = 0  # Margen izquierdo
+                y = 0  # Margen superior
+            elif self.posicion_mini_reproductor == "superior_derecha":
+                x = ancho_pantalla - ANCHO_MINI_REPRODUCTOR
+                y = 0
+            elif self.posicion_mini_reproductor == "inferior_izquierda":
+                x = 0
+                y = alto_pantalla - ALTO_MINI_REPRODUCTOR - 40
+            elif self.posicion_mini_reproductor == "inferior_derecha":
+                x = ancho_pantalla - ANCHO_MINI_REPRODUCTOR
+                y = alto_pantalla - ALTO_MINI_REPRODUCTOR - 40
+            elif self.posicion_mini_reproductor == "centro":
+                x = (ancho_pantalla - ANCHO_MINI_REPRODUCTOR) // 2
+                y = (alto_pantalla - ALTO_MINI_REPRODUCTOR) // 2
+            else:
+                # Posición por defecto (superior izquierda)
+                x = 0
+                y = 0
+            # Aplicar posición
+            self.ventana_principal_mini_reproductor.geometry(f"+{x}+{y}")
+        except Exception as e:
+            print(f"Error al posicionar el mini reproductor: {e}")
         # Mostrar la ventana del mini reproductor de forma segura
         try:
             if (
                 self.ventana_principal_mini_reproductor
                 and self.ventana_principal_mini_reproductor.winfo_exists()
             ):
+                # Mostrar el mini reproductor
                 self.ventana_principal_mini_reproductor.deiconify()
+                self.ventana_principal_mini_reproductor.lift()
+                self.ventana_principal_mini_reproductor.focus_set()
+                # Ocultar la ventana principal
                 self.ventana_principal.withdraw()
         except Exception as e:
             print(f"Error al mostrar el mini reproductor: {e}")
@@ -316,6 +541,84 @@ class MiniReproductor(Utiles):
                 print(f"Error al ocultar el mini reproductor: {e}")
                 pass
             self.ventana_principal.deiconify()
+
+    # Iniciar el movimiento de la ventana del mini reproductor
+    def iniciar_movimiento(self, event):
+        self.x = event.x
+        self.y = event.y
+
+    # Mover la ventana del mini reproductor según el movimiento del ratón
+    def mover_ventana(self, event):
+        deltax = event.x - self.x
+        deltay = event.y - self.y
+        x = self.ventana_principal_mini_reproductor.winfo_x() + deltax
+        y = self.ventana_principal_mini_reproductor.winfo_y() + deltay
+        self.ventana_principal_mini_reproductor.geometry(f"+{x}+{y}")
+
+    # Detener el movimiento de la ventana del mini reproductor
+    def detener_movimiento(self, event):
+        self.x = None
+        self.y = None
+
+    # Aplicar eventos de movimiento a la ventana del mini reproductor y sus componentes
+    def aplicar_eventos_movimiento(self):
+        # Primero al panel principal
+        if self.ventana_principal_mini_reproductor and hasattr(self, "componentes"):
+            # Aplicar eventos a la ventana principal primero
+            self.ventana_principal_mini_reproductor.bind("<ButtonPress-1>", self.iniciar_movimiento)
+            self.ventana_principal_mini_reproductor.bind("<ButtonRelease-1>", self.detener_movimiento)
+            self.ventana_principal_mini_reproductor.bind("<B1-Motion>", self.mover_ventana)
+            # Luego aplicar a todos los componentes
+            for componente in self.componentes:
+                try:
+                    # Verificar si el componente existe y es válido
+                    if componente and componente.winfo_exists():
+                        componente.bind("<ButtonPress-1>", self.iniciar_movimiento)
+                        componente.bind("<ButtonRelease-1>", self.detener_movimiento)
+                        componente.bind("<B1-Motion>", self.mover_ventana)
+                except Exception as e:
+                    print(f"Error al aplicar eventos de movimiento: {e}")
+
+    # Método para cambiar la posición del mini reproductor
+    def cambiar_posicion(self, nueva_posicion):
+        posiciones_validas = [
+            "superior_izquierda",
+            "superior_derecha",
+            "inferior_izquierda",
+            "inferior_derecha",
+            "centro",
+        ]
+        if nueva_posicion in posiciones_validas:
+            self.posicion_mini_reproductor = nueva_posicion
+            # Si la ventana está visible, actualizar su posición inmediatamente
+            if (
+                self.ventana_principal_mini_reproductor
+                and hasattr(self.ventana_principal_mini_reproductor, "winfo_exists")
+                and self.ventana_principal_mini_reproductor.winfo_exists()
+            ):
+                # Obtener dimensiones de la pantalla
+                ancho_pantalla = self.ventana_principal.winfo_screenwidth()
+                alto_pantalla = self.ventana_principal.winfo_screenheight()
+                # Calcular la nueva posición
+                if nueva_posicion == "superior_izquierda":
+                    x = 0
+                    y = 0
+                elif nueva_posicion == "superior_derecha":
+                    x = ancho_pantalla - ANCHO_MINI_REPRODUCTOR
+                    y = 0
+                elif nueva_posicion == "inferior_izquierda":
+                    x = 0
+                    y = alto_pantalla - ALTO_MINI_REPRODUCTOR - 40
+                elif nueva_posicion == "inferior_derecha":
+                    x = ancho_pantalla - ANCHO_MINI_REPRODUCTOR
+                    y = alto_pantalla - ALTO_MINI_REPRODUCTOR - 40
+                elif nueva_posicion == "centro":
+                    x = (ancho_pantalla - ANCHO_MINI_REPRODUCTOR) // 2
+                    y = (alto_pantalla - ALTO_MINI_REPRODUCTOR) // 2
+                # Aplicar la nueva posición
+                self.ventana_principal_mini_reproductor.geometry(f"+{x}+{y}")
+        else:
+            print(f"Posición no válida: {nueva_posicion}. Las posiciones válidas son: {posiciones_validas}")
 
     # Método para actualizar los colores de los componentes del mini reproductor
     def actualizar_colores(self):
@@ -337,6 +640,6 @@ class MiniReproductor(Utiles):
                         text_color=self.color_texto,
                     )
                 elif isinstance(componente, ctk.CTkProgressBar):
-                    componente.configure(progress_color=self.color_barras)
+                    componente.configure(progress_color=self.color_barra_progreso)
             except Exception as e:
                 print(f"Error al actualizar los colores del mini reproductor: {e}")

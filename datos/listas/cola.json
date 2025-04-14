@@ -1,5 +1,5 @@
 {
-    "indice_actual": 5,
+    "indice_actual": 2,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -19,10 +19,10 @@
         "C:\\Users\\Victor\\Music\\Musica\\¿Qué Somos.mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
-        "titulo": "47 (Remix)",
-        "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
-        "album": "47 (Remix)",
-        "timestamp": "2025-04-13T13:07:19.148428"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "titulo": "14 De Febrero",
+        "artista": "Feid",
+        "album": "INTER SHIBUYA - LA MAFIA",
+        "timestamp": "2025-04-14T15:29:43.800271"
     }
 }

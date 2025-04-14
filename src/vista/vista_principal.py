@@ -238,12 +238,22 @@ def reproducir_vista():
             if not ANIMACION_ESPECTRO_ACTIVA:
                 ANIMACION_ESPECTRO_ACTIVA = True
                 actualizar_espectro()
+        if (
+            mini_reproductor.ventana_principal_mini_reproductor
+            and mini_reproductor.ventana_principal_mini_reproductor.winfo_exists()
+        ):
+            mini_reproductor.actualizar_estado_reproduccion()
     else:
         # Pausar reproducción
         ESTADO_REPRODUCCION = False
         controlador_tema.registrar_botones("reproducir", boton_reproducir)
         controlador_reproductor.pausar_reproduccion_controlador()
         actualizar_texto_tooltip(boton_reproducir, "Reproducir")
+        if (
+            mini_reproductor.ventana_principal_mini_reproductor
+            and mini_reproductor.ventana_principal_mini_reproductor.winfo_exists()
+        ):
+            mini_reproductor.actualizar_estado_reproduccion()
 
 
 # Función para reproducir la canción seleccionada
@@ -1593,10 +1603,37 @@ def abrir_configuracion():
         print(f"Error al abrir la configuración: {e}")
 
 
+# Función para actualizar el mini reproductor
+def actualizar_mini_reproductor():
+    # Actualizar información en el mini reproductor si está abierto
+    if (
+        mini_reproductor.ventana_principal_mini_reproductor
+        and mini_reproductor.ventana_principal_mini_reproductor.winfo_exists()
+    ):
+        mini_reproductor.actualizar_informacion()
+        # Actualizar el tiempo actual
+        if controlador_reproductor.cancion_actual:
+            tiempo_actual = controlador_reproductor.obtener_posicion_actual_controlador()
+            minutos_actual = int(tiempo_actual // 60)
+            segundos_actual = int(tiempo_actual % 60)
+            mini_reproductor.etiqueta_tiempo_inicio_mini.configure(
+                text=f"{minutos_actual:02d}:{segundos_actual:02d}"
+            )
+            # Actualizar progreso
+            mini_reproductor.barra_progreso_mini.set(barra_progreso.get())
+    # Llamar a esta función cada 500ms si el mini reproductor está visible
+    if (
+        mini_reproductor.ventana_principal_mini_reproductor
+        and mini_reproductor.ventana_principal_mini_reproductor.winfo_exists()
+    ):
+        ventana_principal.after(500, actualizar_mini_reproductor)
+
+
 # Función para minimizar la ventana
 def abrir_minireproductor():
     try:
         mini_reproductor.mostrar_ventana_mini_reproductor()
+        actualizar_mini_reproductor()
     except Exception as e:
         print(f"Error al abrir el mini reproductor: {e}")
 
@@ -1659,6 +1696,7 @@ cambiar_icono_tema(APARIENCIA)
 
 # Mini reproductor
 mini_reproductor = MiniReproductor(ventana_principal, controlador_tema)
+mini_reproductor.establecer_controlador_reproductor(controlador_reproductor)
 
 # Configuración
 configuracion = Configuracion(ventana_principal, controlador_tema)
@@ -1694,7 +1732,7 @@ ventana_principal.title("Reproductor de música")
 # Contenedor principal
 contenedor_principal = tk.Frame(ventana_principal)
 contenedor_principal.configure(
-    bg=FONDO_PRINCIPAL_CLARO,
+    bg=controlador_tema.color_fondo_principal,
     padx=5,
     pady=5,
 )
@@ -1706,7 +1744,7 @@ controlador_tema.registrar_panel(contenedor_principal, es_principal=True)
 # ======================================= Panel izquierda =======================================
 # Contenedor izquierdo hecho con customtkinter
 contenedor_izquierda = ctk.CTkFrame(
-    contenedor_principal, fg_color=FONDO_CLARO, corner_radius=BORDES_REDONDEADOS_PANEL
+    contenedor_principal, fg_color=controlador_tema.color_fondo, corner_radius=BORDES_REDONDEADOS_PANEL
 )
 contenedor_izquierda.pack(side="left", fill="both", expand=True)
 controlador_tema.registrar_panel(contenedor_izquierda, es_ctk=True)
@@ -1722,10 +1760,10 @@ boton_ajustes = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=abrir_configuracion,
 )
@@ -1738,10 +1776,10 @@ boton_tema = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=cambiar_tema_vista,
 )
@@ -1754,10 +1792,10 @@ boton_visibilidad = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=cambiar_visibilidad_vista,
 )
@@ -1772,10 +1810,10 @@ boton_estadisticas = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=abrir_estadisticas,
 )
@@ -1796,7 +1834,7 @@ imagen_cancion = ctk.CTkLabel(
     height=300,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_VOLUMEN),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="Sin carátula",
 )
 imagen_cancion.pack(expand=True)
@@ -1816,7 +1854,7 @@ etiqueta_nombre_cancion = ctk.CTkLabel(
     height=23,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
 )
 etiqueta_nombre_cancion.pack(expand=True)
@@ -1827,7 +1865,7 @@ etiqueta_artista_cancion = ctk.CTkLabel(
     height=23,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
 )
 etiqueta_artista_cancion.pack(expand=True)
@@ -1838,7 +1876,7 @@ etiqueta_album_cancion = ctk.CTkLabel(
     height=23,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
 )
 etiqueta_album_cancion.pack(expand=True)
@@ -1849,7 +1887,7 @@ etiqueta_anio_cancion = ctk.CTkLabel(
     height=23,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
 )
 etiqueta_anio_cancion.pack(expand=True)
@@ -1880,10 +1918,10 @@ boton_me_gusta = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=cambiar_me_gusta_vista,
 )
@@ -1896,10 +1934,10 @@ boton_favorito = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=cambiar_favorito_vista,
 )
@@ -1916,7 +1954,7 @@ contenedor_espectro.pack(fill="both", padx=10, pady=3)
 contenedor_espectro.pack_propagate(False)
 
 # Canvas para el espectro
-canvas_espectro = tk.Canvas(contenedor_espectro, bg=FONDO_CLARO, highlightthickness=0)
+canvas_espectro = tk.Canvas(contenedor_espectro, bg=controlador_tema.color_fondo, highlightthickness=0)
 canvas_espectro.pack(fill="both", expand=True)
 controlador_tema.registrar_canvas(canvas_espectro, es_tabview=False)
 
@@ -1940,7 +1978,7 @@ panel_progreso.pack(fill="x", expand=True)
 
 # Barra de progreso
 barra_progreso = ctk.CTkProgressBar(
-    panel_progreso, height=5, progress_color=controlador_tema.color_barra_progreso
+    panel_progreso, height=7, progress_color=controlador_tema.color_barra_progreso
 )
 barra_progreso.pack(fill="x", padx=6, pady=(0, 3))
 barra_progreso.set(0)
@@ -1963,7 +2001,7 @@ etiqueta_tiempo_actual = ctk.CTkLabel(
     panel_tiempo,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_TIEMPO),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="00:00",
 )
 etiqueta_tiempo_actual.pack(side="left")
@@ -1974,7 +2012,7 @@ etiqueta_tiempo_total = ctk.CTkLabel(
     panel_tiempo,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_TIEMPO),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="00:00",
 )
 etiqueta_tiempo_total.pack(side=tk.RIGHT)
@@ -1999,10 +2037,10 @@ boton_aleatorio = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=cambiar_orden_vista,
 )
@@ -2015,10 +2053,10 @@ boton_repetir = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=cambiar_repeticion_vista,
 )
@@ -2031,10 +2069,10 @@ boton_anterior = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=reproducir_anterior_vista,
 )
@@ -2047,10 +2085,10 @@ boton_retroceder = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=retroceder_reproduccion_vista,
 )
@@ -2063,10 +2101,10 @@ boton_reproducir = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=reproducir_vista,
 )
@@ -2079,10 +2117,10 @@ boton_adelantar = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=adelantar_reproduccion_vista,
 )
@@ -2095,10 +2133,10 @@ boton_siguiente = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=reproducir_siguiente_vista,
 )
@@ -2111,10 +2149,10 @@ boton_mostrar_cola = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=abrir_cola_reproduccion,
 )
@@ -2127,10 +2165,10 @@ crear_tooltip(boton_mostrar_cola, "Mostrar la cola")
 #     width=ANCHO_BOTON,
 #     height=ALTO_BOTON,
 #     corner_radius=BORDES_REDONDEADOS_BOTON,
-#     fg_color=BOTON_CLARO,
-#     hover_color=HOVER_CLARO,
-#     font=(LETRA, TAMANIO_LETRA_BOTON),
-#     text_color=TEXTO_CLARO,
+# fg_color=controlador_tema.color_boton,
+# hover_color=controlador_tema.color_hover,
+# font=(LETRA, TAMANIO_LETRA_BOTON),
+# text_color=controlador_tema.color_texto,
 #     text="",
 # )
 # boton_agregar_cola.pack(side="left", padx=5)
@@ -2142,10 +2180,10 @@ boton_minimizar = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=abrir_minireproductor,
 )
@@ -2170,10 +2208,10 @@ boton_silenciar = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="",
     command=cambiar_silencio_vista,
 )
@@ -2188,7 +2226,7 @@ panel_elementos_volumen.pack(side="left", fill="x", expand=True)
 # Barra de volumen
 barra_volumen = ctk.CTkSlider(
     panel_elementos_volumen,
-    fg_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_hover,
     progress_color=FONDO_OSCURO,
     button_color=FONDO_OSCURO,
     button_hover_color=HOVER_OSCURO,
@@ -2207,7 +2245,7 @@ etiqueta_porcentaje_volumen = ctk.CTkLabel(
     width=35,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_VOLUMEN),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text=f"{NIVEL_VOLUMEN}%",
 )
 etiqueta_porcentaje_volumen.pack(side="left")
@@ -2222,7 +2260,7 @@ controlador_tema.registrar_etiqueta(etiqueta_porcentaje_volumen)
 contenedor_derecha_principal = ctk.CTkFrame(
     contenedor_principal,
     width=ANCHO_PANEL_DERECHA + 5 if PANEL_LATERAL_VISIBLE else 0,
-    fg_color=FONDO_CLARO,
+    fg_color=controlador_tema.color_fondo,
     corner_radius=BORDES_REDONDEADOS_PANEL,
 )
 contenedor_derecha_principal.pack(side="left", fill="both", padx=(5, 0))
@@ -2248,7 +2286,7 @@ panel_elementos.pack(fill="x", expand=True)
 # Entrada de busqueda
 entrada_busqueda = ctk.CTkEntry(
     panel_elementos,
-    fg_color=FONDO_CLARO,
+    fg_color=controlador_tema.color_fondo,
     border_width=1,
     border_color=FONDO_OSCURO,
     font=(LETRA, TAMANIO_LETRA_ENTRADA),
@@ -2346,10 +2384,10 @@ boton_agregar_cancion = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="Agregar Canción",
     command=agregar_cancion_vista,
 )
@@ -2362,10 +2400,10 @@ boton_agregar_directorio = ctk.CTkButton(
     width=ANCHO_BOTON,
     height=ALTO_BOTON,
     corner_radius=BORDES_REDONDEADOS_BOTON,
-    fg_color=BOTON_CLARO,
-    hover_color=HOVER_CLARO,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
     font=(LETRA, TAMANIO_LETRA_BOTON),
-    text_color=TEXTO_CLARO,
+    text_color=controlador_tema.color_texto,
     text="Agregar Carpeta",
     command=agregar_directorio_vista,
 )

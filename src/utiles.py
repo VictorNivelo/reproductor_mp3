@@ -71,18 +71,29 @@ class Utiles:
 
     # Método para obtener la imagen de la caratula
     @staticmethod
-    def crear_imagen_desde_bytes(imagen_bytes, ancho, mantener_proporcion=True):
+    def crear_imagen_desde_bytes(imagen_bytes, ancho, alto=None, mantener_proporcion=True):
         try:
             # Crear imagen desde los bytes
             imagen = Image.open(BytesIO(imagen_bytes))
-            # Calcular dimensiones finales
+            # Obtener dimensiones originales
             ancho_original = float(imagen.size[0])
             alto_original = float(imagen.size[1])
-            if mantener_proporcion:
-                ratio = ancho / ancho_original
+            # Calcular dimensiones finales según los parámetros
+            if alto is None:
+                # Si solo se proporciona ancho, calcular alto manteniendo proporción
+                if mantener_proporcion:
+                    ratio = ancho / ancho_original
+                    alto = int(alto_original * ratio)
+                else:
+                    alto = ancho  # Cuadrado si no se mantiene proporción
+            elif mantener_proporcion:
+                # Si se proporcionan ambos (ancho y alto) pero queremos mantener proporción
+                # Calculamos qué dimensión es más restrictiva
+                ratio_ancho = ancho / ancho_original
+                ratio_alto = alto / alto_original
+                ratio = min(ratio_ancho, ratio_alto)  # Usamos el ratio más pequeño
+                ancho = int(ancho_original * ratio)
                 alto = int(alto_original * ratio)
-            else:
-                alto = ancho  # Cuadrado si no se mantiene proporción
             # Redimensionar la imagen
             imagen_redimensionada = imagen.resize((ancho, alto), Image.Resampling.LANCZOS)
             # Convertir a formato CTkImage

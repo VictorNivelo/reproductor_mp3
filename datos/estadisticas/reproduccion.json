@@ -3,17 +3,17 @@
         "Anuel AA ft Sinfonico, Ñengo Flow": 5,
         "Metro Boomin ft Coi Leray": 8,
         "Nas ft Ms. Lauryn Hill": 8,
-        "Kanye West ft André 3000": 11,
-        "Kanye West": 7,
+        "Kanye West ft André 3000": 12,
+        "Kanye West": 8,
         "Eladio Carrion ft Bryant Myers": 9,
         "Tainy ft Sech, E.VAX": 4,
         "Bad Bunny": 7,
         "Yan Block ft Panda Black": 5,
-        "Daddy Yankee ft Anuel AA": 16,
+        "Daddy Yankee ft Anuel AA": 17,
         "Anuel AA": 5,
         "МЫ": 3,
         "Soge Culebra ft Mora, GARABATTO": 9,
-        "J Balvin ft Farruko": 6,
+        "J Balvin ft Farruko": 7,
         "Rels B": 4,
         "Sech": 3,
         "Feid": 15,
@@ -23,29 +23,29 @@
         "47 (Remix)": 5,
         "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 8,
         "It Was Written": 8,
-        "Donda (Deluxe)": 18,
+        "Donda (Deluxe)": 20,
         "Animal": 9,
         "DATA": 4,
         "EL ÚLTIMO TOUR DEL MUNDO": 7,
         "444": 5,
-        "Adictiva": 16,
+        "Adictiva": 17,
         "¿Qué Nos Pasó?": 5,
         "Ближе": 3,
         "7 Lágrimas (Remix)": 9,
-        "La Familia": 6,
+        "La Familia": 7,
         "A Mí": 4,
         "42": 3,
         "INTER SHIBUYA - LA MAFIA": 15,
         "Come Over When You're Sober, Pt. 2": 5
     },
-    "tiempo_total": 30308.189468112232,
-    "canciones_escuchadas": 130,
+    "tiempo_total": 31358.547019132642,
+    "canciones_escuchadas": 134,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-        "titulo": "14 De Febrero",
-        "artista": "Feid",
-        "album": "INTER SHIBUYA - LA MAFIA",
-        "timestamp": "2025-04-14T15:29:43.801536"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3",
+        "titulo": "6 AM",
+        "artista": "J Balvin ft Farruko",
+        "album": "La Familia",
+        "timestamp": "2025-04-14T20:38:36.262905"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
@@ -67,13 +67,13 @@
             "album": "It Was Written"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3": {
-            "contador": 11,
+            "contador": 12,
             "titulo": "Life Of The Party (ft André 3000)",
             "artista": "Kanye West ft André 3000",
             "album": "Donda (Deluxe)"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Never Abandon Your Family..mp3": {
-            "contador": 7,
+            "contador": 8,
             "titulo": "Never Abandon Your Family",
             "artista": "Kanye West",
             "album": "Donda (Deluxe)"
@@ -103,7 +103,7 @@
             "album": "444"
         },
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 16,
+            "contador": 17,
             "titulo": "Adictiva",
             "artista": "Daddy Yankee ft Anuel AA",
             "album": "Adictiva"
@@ -127,7 +127,7 @@
             "album": "7 Lágrimas (Remix)"
         },
         "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3": {
-            "contador": 6,
+            "contador": 7,
             "titulo": "6 AM",
             "artista": "J Balvin ft Farruko",
             "album": "La Familia"

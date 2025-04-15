@@ -707,14 +707,14 @@ def actualizar_etiqueta_tiempo_vista():
 
 
 # Función para verificar el estado de reproducción
-def verificar_estado_reproduccion():
+def verificar_estado_reproduccion(*args):
     global ESTADO_REPRODUCCION
     # Verificar si la reproducción ha terminado naturalmente
     if ESTADO_REPRODUCCION and not controlador_reproductor.reproduciendo:
         ESTADO_REPRODUCCION = False
         controlador_tema.registrar_botones("reproducir", boton_reproducir)
     # Llamar a esta función nuevamente después de un breve retraso
-    ventana_principal.after(500, verificar_estado_reproduccion)
+    ventana_principal.after(500, verificar_estado_reproduccion, *args)
 
 
 # Función para iniciar el arrastre del progreso de la canción
@@ -1536,7 +1536,7 @@ def crear_barras_espectro():
 
 
 # Función para actualizar la animación del espectro
-def actualizar_espectro():
+def actualizar_espectro(*args):
     global ANIMACION_ESPECTRO_ACTIVA, alturas_barras
     # Si ya hay una animación activa, no iniciar otra
     if not ESTADO_REPRODUCCION and not any(altura > 0 for altura in alturas_barras):
@@ -1562,7 +1562,7 @@ def actualizar_espectro():
                 return
         # Continuar la animación de desvanecimiento mientras haya barras visibles
         if any(altura > 0 for altura in alturas_barras):
-            ventana_principal.after(60, actualizar_espectro)
+            ventana_principal.after(60, actualizar_espectro, *args)
         else:
             ANIMACION_ESPECTRO_ACTIVA = False
         return
@@ -1587,7 +1587,7 @@ def actualizar_espectro():
             ANIMACION_ESPECTRO_ACTIVA = False
             return
     # Llamar a la función nuevamente después de un delay
-    ventana_principal.after(60, actualizar_espectro)
+    ventana_principal.after(60, actualizar_espectro, *args)
 
 
 # Función para configurar el desplazamiento de texto en botones
@@ -1604,7 +1604,7 @@ def abrir_configuracion():
 
 
 # Función para actualizar el mini reproductor
-def actualizar_mini_reproductor():
+def actualizar_mini_reproductor(*args):
     # Actualizar información en el mini reproductor si está abierto
     if (
         mini_reproductor.ventana_principal_mini_reproductor
@@ -1621,12 +1621,12 @@ def actualizar_mini_reproductor():
             )
             # Actualizar progreso
             mini_reproductor.barra_progreso_mini.set(barra_progreso.get())
-    # Llamar a esta función cada 500ms si el mini reproductor está visible
+    # Llamar a esta función cada 500 ms si el mini reproductor está visible
     if (
         mini_reproductor.ventana_principal_mini_reproductor
         and mini_reproductor.ventana_principal_mini_reproductor.winfo_exists()
     ):
-        ventana_principal.after(500, actualizar_mini_reproductor)
+        ventana_principal.after(500, actualizar_mini_reproductor, *args)
 
 
 # Función para minimizar la ventana

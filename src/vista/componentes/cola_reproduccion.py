@@ -669,28 +669,28 @@ class ColaReproduccion:
     def actualizar_cancion_actual_en_cola(self):
         if self.ventana_cola is not None and self.ventana_cola.winfo_exists():
             # Buscar el panel de la canción actual
-            for componente in self.componentes:
-                if isinstance(componente, ctk.CTkFrame) and componente.winfo_exists():
+            for componente_principal in self.componentes:
+                if isinstance(componente_principal, ctk.CTkFrame) and componente_principal.winfo_exists():
                     # Buscar el panel que tiene la etiqueta "Reproduciendo ahora:"
-                    for child in componente.winfo_children():
+                    for child in componente_principal.winfo_children():
                         if isinstance(child, ctk.CTkLabel) and hasattr(child, "cget"):
                             if child.cget("text") == "Reproduciendo ahora:":
                                 # Encontramos el panel de la canción actual
-                                panel_cancion_actual = componente
+                                panel_cancion_actual = componente_principal
                                 # Limpiar los componentes existentes excepto la etiqueta de título
-                                for componente in list(panel_cancion_actual.winfo_children()):
-                                    if componente != child:
-                                        if componente in self.componentes:
-                                            self.componentes.remove(componente)
-                                        componente.destroy()
+                                for hijo in list(panel_cancion_actual.winfo_children()):
+                                    if hijo != child:
+                                        if hijo in self.componentes:
+                                            self.componentes.remove(hijo)
+                                        hijo.destroy()
                                 # Actualizar con la nueva información
                                 self.mostrar_cancion_actual(panel_cancion_actual)
                                 break
             # Buscar el panel y canvas de la cola de reproducción
-            for componente in self.componentes:
-                if isinstance(componente, tk.Canvas) and componente.winfo_exists():
+            for componente_canvas in self.componentes:
+                if isinstance(componente_canvas, tk.Canvas) and componente_canvas.winfo_exists():
                     # Este es probablemente nuestro canvas
-                    canvas_cola = componente
+                    canvas_cola = componente_canvas
                     # Buscar el panel dentro del canvas
                     for item_id in canvas_cola.find_all():
                         if canvas_cola.type(item_id) == "window":
@@ -701,10 +701,10 @@ class ColaReproduccion:
                                 # Obtener el componente contenido
                                 panel_canciones = canvas_cola.nametowidget(window_id)
                                 # Limpiar el panel de canciones
-                                for componente in panel_canciones.winfo_children():
-                                    if componente in self.componentes:
-                                        self.componentes.remove(componente)
-                                    componente.destroy()
+                                for elemento in panel_canciones.winfo_children():
+                                    if elemento in self.componentes:
+                                        self.componentes.remove(elemento)
+                                    elemento.destroy()
                                 # Mostrar las canciones actualizadas
                                 self.mostrar_cola_canciones(panel_canciones)
                                 break

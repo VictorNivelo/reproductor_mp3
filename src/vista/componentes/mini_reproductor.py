@@ -27,6 +27,9 @@ class MiniReproductor(Utiles):
         self.boton_anterior_mini = None
         self.boton_siguiente_mini = None
         self.boton_me_gusta_mini = None
+        # Variables para el movimiento de la ventana
+        self.x = None
+        self.y = None
 
     # Método para establecer el controlador del reproductor
     def establecer_controlador_reproductor(self, controlador_reproductor):
@@ -59,9 +62,6 @@ class MiniReproductor(Utiles):
 
         # Configuración de la ventana del mini reproductor
         self.ventana_principal_mini_reproductor.resizable(False, False)
-
-        # Configuración de la ventana como un modal
-        # self.ventana_principal_mini_reproductor.protocol("WM_DELETE_WINDOW", self.ocultar)
 
         # Establecer el icono de la ventana del mini reproductor
         establecer_icono_tema(self.ventana_principal_mini_reproductor, self.controlador_tema.tema_interfaz)
@@ -323,17 +323,16 @@ class MiniReproductor(Utiles):
 
     # Métodos para controlar la reproducción desde el mini reproductor
     def reproducir_pausar(self):
+        from vista.vista_principal import boton_reproducir, controlador_tema
+
         if self.controlador_reproductor:
             # Verificar el estado actual
             if self.controlador_reproductor.reproduciendo:
-                # Si está reproduciendo, pausar
+                # Sí está reproduciendo, pausar
                 self.controlador_reproductor.pausar_reproduccion_controlador()
                 self.controlador_tema.registrar_botones("reproducir_mini", self.boton_reproducir_mini)
                 # Actualizar estado en ventana principal
                 try:
-                    from vista.vista_principal import boton_reproducir, controlador_tema
-                    from vista.vista_principal import ESTADO_REPRODUCCION
-
                     globals()["ESTADO_REPRODUCCION"] = False
                     controlador_tema.registrar_botones("reproducir", boton_reproducir)
                 except ImportError as e:
@@ -344,9 +343,6 @@ class MiniReproductor(Utiles):
                 self.controlador_tema.registrar_botones("pausa_mini", self.boton_reproducir_mini)
                 # Actualizar estado en ventana principal
                 try:
-                    from vista.vista_principal import boton_reproducir, controlador_tema
-                    from vista.vista_principal import ESTADO_REPRODUCCION
-
                     globals()["ESTADO_REPRODUCCION"] = True
                     controlador_tema.registrar_botones("pausa", boton_reproducir)
                 except ImportError as e:
@@ -372,20 +368,14 @@ class MiniReproductor(Utiles):
 
     # Método para cambiar el estado de "me gusta" de la canción actual
     def cambiar_me_gusta(self):
+        from vista.vista_principal import biblioteca, controlador_biblioteca
+        from controlador.controlador_archivos import ControladorArchivos
+
         if self.controlador_reproductor and self.controlador_reproductor.cancion_actual:
             # Obtener la canción actual
             cancion = self.controlador_reproductor.cancion_actual
-            # Importar el controlador de biblioteca desde el módulo principal
-            # (esto se hace dentro del método para evitar importaciones circulares)
-            from controlador.controlador_biblioteca import ControladorBiblioteca
-            from modelo.biblioteca import Biblioteca
-
-            # Obtener la instancia de la biblioteca
-            # (normalmente esto vendría como dependencia, pero lo hacemos así para este método específico)
             try:
                 # Intentar obtener la biblioteca y el controlador desde algún registro global o singleton
-                from vista.vista_principal import biblioteca, controlador_biblioteca
-
                 # Marcar o desmarcar la canción como "me gusta"
                 controlador_biblioteca.marcar_me_gusta_controlador(cancion)
                 # Actualizar el estado visual del botón según el nuevo estado de me_gusta
@@ -394,8 +384,6 @@ class MiniReproductor(Utiles):
                 else:
                     self.controlador_tema.registrar_botones("me_gusta_mini", self.boton_me_gusta_mini)
                 # Guardar los cambios en la biblioteca (si es necesario)
-                from controlador.controlador_archivos import ControladorArchivos
-
                 controlador_archivos = ControladorArchivos()
                 controlador_archivos.guardar_biblioteca_controlador(biblioteca, self.controlador_reproductor)
             except ImportError as e:
@@ -556,7 +544,7 @@ class MiniReproductor(Utiles):
         self.ventana_principal_mini_reproductor.geometry(f"+{x}+{y}")
 
     # Detener el movimiento de la ventana del mini reproductor
-    def detener_movimiento(self, event):
+    def detener_movimiento(self, _event):
         self.x = None
         self.y = None
 
@@ -581,6 +569,10 @@ class MiniReproductor(Utiles):
 
     # Método para cambiar la posición del mini reproductor
     def cambiar_posicion(self, nueva_posicion):
+        # Inicializar coordenadas
+        x = 0
+        y = 0
+        # Definir posiciones válidas
         posiciones_validas = [
             "superior_izquierda",
             "superior_derecha",

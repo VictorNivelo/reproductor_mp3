@@ -97,6 +97,62 @@
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\A Mí.mp3",
+            "titulo": "A Mí",
+            "artista": "Rels B",
+            "artista_album": "Rels B",
+            "album": "A Mí",
+            "duracion": 209.71102040816328,
+            "duracion_formateada": "03:29",
+            "anio": "2019-02-21",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "artista_album": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO",
+            "duracion": 151.53632653061226,
+            "duracion_formateada": "02:31",
+            "anio": "2020-11-27",
+            "numero_pista": "14",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+            "titulo": "47 (Remix)",
+            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+            "artista_album": "Anuel AA",
+            "album": "47 (Remix)",
+            "duracion": 517.8514285714285,
+            "duracion_formateada": "08:37",
+            "anio": "2017-03-31",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3",
+            "titulo": "6 AM",
+            "artista": "J Balvin ft Farruko",
+            "artista_album": "J Balvin",
+            "album": "La Familia",
+            "duracion": 243.27836734693878,
+            "duracion_formateada": "04:03",
+            "anio": "2013-07-15",
+            "numero_pista": "5",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
         }
     ]
 }

@@ -225,35 +225,50 @@ def cargar_ultima_cancion_reproducida():
     return False
 
 
+# Función para actualizar el estado de reproducción en la vista
+def actualizar_estado_reproduccion_vista():
+    global ESTADO_REPRODUCCION
+    # Obtener el estado real del reproductor
+    estado_actual = controlador_reproductor.reproduciendo
+    # Actualizar variable global
+    ESTADO_REPRODUCCION = estado_actual
+    # Actualizar icono en interfaz principal
+    if ESTADO_REPRODUCCION:
+        controlador_tema.registrar_botones("pausa", boton_reproducir)
+        actualizar_texto_tooltip(boton_reproducir, "Pausar")
+    else:
+        controlador_tema.registrar_botones("reproducir", boton_reproducir)
+        actualizar_texto_tooltip(boton_reproducir, "Reproducir")
+    # Actualizar mini reproductor si está visible
+    if (
+        mini_reproductor.ventana_principal_mini_reproductor
+        and mini_reproductor.ventana_principal_mini_reproductor.winfo_exists()
+    ):
+        if ESTADO_REPRODUCCION:
+            controlador_tema.registrar_botones("pausa_mini", mini_reproductor.boton_reproducir_mini)
+        else:
+            controlador_tema.registrar_botones("reproducir_mini", mini_reproductor.boton_reproducir_mini)
+    # Iniciar o detener la animación del espectro
+    global ANIMACION_ESPECTRO_ACTIVA
+    if ESTADO_REPRODUCCION and not ANIMACION_ESPECTRO_ACTIVA:
+        ANIMACION_ESPECTRO_ACTIVA = True
+        actualizar_espectro()
+    return ESTADO_REPRODUCCION
+
+
 # Función para reproducir o pausar la canción
 def reproducir_vista():
     global ESTADO_REPRODUCCION, ANIMACION_ESPECTRO_ACTIVA
     if not ESTADO_REPRODUCCION:
         # Verificar si hay una canción en la cola para reproducir
         if controlador_reproductor.reproducir_o_reanudar_controlador():
-            # Actualizar estado e iconos
-            ESTADO_REPRODUCCION = True
-            controlador_tema.registrar_botones("pausa", boton_reproducir)
-            actualizar_texto_tooltip(boton_reproducir, "Pausar")
-            if not ANIMACION_ESPECTRO_ACTIVA:
-                ANIMACION_ESPECTRO_ACTIVA = True
-                actualizar_espectro()
-        if (
-            mini_reproductor.ventana_principal_mini_reproductor
-            and mini_reproductor.ventana_principal_mini_reproductor.winfo_exists()
-        ):
-            mini_reproductor.actualizar_estado_reproduccion()
+            # Actualizar estado e iconos usando la función centralizada
+            actualizar_estado_reproduccion_vista()
     else:
         # Pausar reproducción
-        ESTADO_REPRODUCCION = False
-        controlador_tema.registrar_botones("reproducir", boton_reproducir)
         controlador_reproductor.pausar_reproduccion_controlador()
-        actualizar_texto_tooltip(boton_reproducir, "Reproducir")
-        if (
-            mini_reproductor.ventana_principal_mini_reproductor
-            and mini_reproductor.ventana_principal_mini_reproductor.winfo_exists()
-        ):
-            mini_reproductor.actualizar_estado_reproduccion()
+        # Actualizar estado e iconos usando la función centralizada
+        actualizar_estado_reproduccion_vista()
 
 
 # Función para reproducir la canción seleccionada
@@ -267,31 +282,18 @@ def reproducir_desde_lista_vista(cancion):
     controlador_reproductor.reproducir_cancion_controlador(cancion)
     # Registrar la reproducción en las estadísticas
     controlador_archivos.registrar_reproduccion_controlador(cancion)
-    # Actualizar estado de reproducción
-    ESTADO_REPRODUCCION = True
-    # Cambiar icono del botón a pausa
-    controlador_tema.registrar_botones("pausa", boton_reproducir)
-    # Actualizar tooltip del botón
-    actualizar_texto_tooltip(boton_reproducir, "Pausar")
+    # Actualizar estado usando la función centralizada
+    actualizar_estado_reproduccion_vista()
     # Actualizar botones de Me Gusta y Favoritos
     actualizar_estado_botones_gustos()
-    # Iniciar animación del espectro
-    if not ANIMACION_ESPECTRO_ACTIVA:
-        ANIMACION_ESPECTRO_ACTIVA = True
-        actualizar_espectro()
 
 
 # Función para actualizar el estado de reproducción desde la cola
 def reproducir_desde_cola_vista():
-    global ESTADO_REPRODUCCION, ANIMACION_ESPECTRO_ACTIVA
-    ESTADO_REPRODUCCION = True
-    controlador_tema.registrar_botones("pausa", boton_reproducir)
-    actualizar_texto_tooltip(boton_reproducir, "Pausar")
+    # Usar la función centralizada para actualizar el estado
+    actualizar_estado_reproduccion_vista()
+    # Actualizar botones de Me Gusta y Favoritos
     actualizar_estado_botones_gustos()
-    # También iniciar la animación del espectro
-    if not ANIMACION_ESPECTRO_ACTIVA:
-        ANIMACION_ESPECTRO_ACTIVA = True
-        actualizar_espectro()
 
 
 # Función para reproducir la canción siguiente
@@ -337,67 +339,136 @@ def cambiar_volumen_vista(_event=None):
     etiqueta_porcentaje_volumen.configure(text=f"{NIVEL_VOLUMEN}%")
     # Si el volumen es ajustado manualmente, desactivamos el silencio
     if ESTADO_SILENCIO and NIVEL_VOLUMEN > 0:
-        ESTADO_SILENCIO = False
-    # Ajustamos el volumen real
-    controlador_reproductor.ajustar_volumen_controlador(NIVEL_VOLUMEN if not ESTADO_SILENCIO else 0)
-    # Actualizamos el icono
-    actualizar_iconos()
+        # Usar la función centralizada para quitar el silencio
+        actualizar_estado_silencio_vista(False)
+    else:
+        # Ajustamos el volumen real sin cambiar el estado de silencio
+        controlador_reproductor.ajustar_volumen_controlador(NIVEL_VOLUMEN if not ESTADO_SILENCIO else 0)
+        # Actualizamos el icono sin cambiar el estado
+        actualizar_iconos()
     # Guardamos los ajustes
     guardar_todos_ajustes()
+
+
+# Función centralizada para actualizar el estado de silencio en todas las interfaces
+def actualizar_estado_silencio_vista(silenciar=None):
+    global ESTADO_SILENCIO
+    # Si se especifica un estado, actualizar la variable global
+    if silenciar is not None:
+        ESTADO_SILENCIO = silenciar
+    # Actualizar el volumen real según el estado
+    if ESTADO_SILENCIO:
+        # Silenciar el reproductor pero conservar el valor del volumen
+        controlador_reproductor.ajustar_volumen_controlador(0)
+        # Actualizar icono en interfaz principal
+        controlador_tema.registrar_botones("silencio", boton_silenciar)
+        actualizar_texto_tooltip(boton_silenciar, "Quitar silencio")
+    else:
+        # Restaurar el volumen anterior
+        controlador_reproductor.ajustar_volumen_controlador(NIVEL_VOLUMEN)
+        actualizar_texto_tooltip(boton_silenciar, "Silenciar")
+        # Determinar el icono de volumen según el nivel actual
+        if NIVEL_VOLUMEN == 0:
+            icono_volumen = "sin_volumen"
+        elif NIVEL_VOLUMEN <= 33:
+            icono_volumen = "volumen_bajo"
+        elif NIVEL_VOLUMEN <= 66:
+            icono_volumen = "volumen_medio"
+        else:
+            icono_volumen = "volumen_alto"
+        controlador_tema.registrar_botones(icono_volumen, boton_silenciar)
+    # Actualizar mini reproductor si está visible y tiene botón de silencio
+    if (
+        mini_reproductor.ventana_principal_mini_reproductor
+        and mini_reproductor.ventana_principal_mini_reproductor.winfo_exists()
+        and hasattr(mini_reproductor, "boton_silenciar_mini")
+    ):
+        if ESTADO_SILENCIO:
+            controlador_tema.registrar_botones("silencio_mini", mini_reproductor.boton_silenciar_mini)
+        else:
+            # Usar el mismo icono de volumen pero con el sufijo _mini
+            if NIVEL_VOLUMEN == 0:
+                icono_mini = "sin_volumen_mini"
+            elif NIVEL_VOLUMEN <= 33:
+                icono_mini = "volumen_bajo_mini"
+            elif NIVEL_VOLUMEN <= 66:
+                icono_mini = "volumen_medio_mini"
+            else:
+                icono_mini = "volumen_alto_mini"
+            controlador_tema.registrar_botones(icono_mini, mini_reproductor.boton_silenciar_mini)
+    # Guardar el cambio en los ajustes
+    guardar_todos_ajustes()
+    return ESTADO_SILENCIO
 
 
 # Función para cambiar el estado de silencio
 def cambiar_silencio_vista():
     global ESTADO_SILENCIO
-    ESTADO_SILENCIO = not ESTADO_SILENCIO
-    if ESTADO_SILENCIO:
-        # Guardar volumen actual y silenciar
-        controlador_reproductor.ajustar_volumen_controlador(0)
-        controlador_tema.registrar_botones("silencio", boton_silenciar)
-        actualizar_texto_tooltip(boton_silenciar, "Quitar silencio")
-    else:
-        # Restaurar volumen anterior
-        controlador_reproductor.ajustar_volumen_controlador(NIVEL_VOLUMEN)
-        actualizar_texto_tooltip(boton_silenciar, "Silenciar")
-        cambiar_volumen_vista()
-    guardar_todos_ajustes()
+    # Invertir el estado actual
+    nuevo_estado = not ESTADO_SILENCIO
+    # Utilizar la función centralizada para actualizar el estado
+    actualizar_estado_silencio_vista(nuevo_estado)
 
 
-# Función para cambiar el orden de reproducción
-def cambiar_orden_vista():
+# Función centralizada para actualizar el estado del modo aleatorio en todas las interfaces
+def actualizar_estado_aleatorio_vista(modo=None):
     global MODO_ALEATORIO
-    MODO_ALEATORIO = not MODO_ALEATORIO
-    # Informar al controlador_tema sobre el cambio en el modo de reproducción
-    controlador_reproductor.modo_orden_controlador(MODO_ALEATORIO)
+    # Si se especifica un modo, actualizar la variable global
+    if modo is not None:
+        MODO_ALEATORIO = modo
+        # Informar al controlador sobre el cambio en el modo de reproducción
+        controlador_reproductor.modo_orden_controlador(MODO_ALEATORIO)
+    # Actualizar icono en interfaz principal según el modo actual
     if MODO_ALEATORIO:
         controlador_tema.registrar_botones("aleatorio", boton_aleatorio)
         actualizar_texto_tooltip(boton_aleatorio, "Reproducción aleatoria")
     else:
         controlador_tema.registrar_botones("orden", boton_aleatorio)
         actualizar_texto_tooltip(boton_aleatorio, "Reproducción en orden")
-    # Guardar configuración
+    # Guardar el cambio en los ajustes
     guardar_todos_ajustes()
+    return MODO_ALEATORIO
+
+
+# Función para cambiar el orden de reproducción
+def cambiar_orden_vista():
+    global MODO_ALEATORIO
+    # Invertir el estado actual
+    nuevo_modo = not MODO_ALEATORIO
+    # Utilizar la función centralizada para actualizar el estado
+    actualizar_estado_aleatorio_vista(nuevo_modo)
+
+
+# Función centralizada para actualizar el estado del modo de repetición
+def actualizar_estado_repeticion_vista(modo=None):
+    global MODO_REPETICION
+    # Si se especifica un modo, actualizar la variable global
+    if modo is not None:
+        MODO_REPETICION = modo % 3  # Asegurar que esté en el rango 0-2
+        # Informar al controlador sobre el cambio
+        controlador_reproductor.modo_repeticion_controlador(MODO_REPETICION)
+    # Actualizar icono en interfaz principal según el modo actual
+    if MODO_REPETICION == 0:
+        controlador_tema.registrar_botones("no_repetir", boton_repetir)
+        actualizar_texto_tooltip(boton_repetir, "No repetir")
+    elif MODO_REPETICION == 1:
+        controlador_tema.registrar_botones("repetir_actual", boton_repetir)
+        actualizar_texto_tooltip(boton_repetir, "Repetir actual")
+    else:  # MODO_REPETICION == 2
+        controlador_tema.registrar_botones("repetir_todo", boton_repetir)
+        actualizar_texto_tooltip(boton_repetir, "Repetir todo")
+    # Guardar el cambio en los ajustes
+    guardar_todos_ajustes()
+    return MODO_REPETICION
 
 
 # Función para cambiar la repetición de reproducción
 def cambiar_repeticion_vista():
     global MODO_REPETICION
-    MODO_REPETICION = (MODO_REPETICION + 1) % 3
-    controlador_reproductor.modo_repeticion_controlador(MODO_REPETICION)
-    # Icono de no repetir
-    if MODO_REPETICION == 0:
-        controlador_tema.registrar_botones("no_repetir", boton_repetir)
-        actualizar_texto_tooltip(boton_repetir, "No repetir")
-    # Icono de repetir actual
-    elif MODO_REPETICION == 1:
-        controlador_tema.registrar_botones("repetir_actual", boton_repetir)
-        actualizar_texto_tooltip(boton_repetir, "Repetir actual")
-    # Icono de repetir todo
-    else:
-        controlador_tema.registrar_botones("repetir_todo", boton_repetir)
-        actualizar_texto_tooltip(boton_repetir, "Repetir todo")
-    # Guardar configuración
-    guardar_todos_ajustes()
+    # Calcular el siguiente modo
+    nuevo_modo = (MODO_REPETICION + 1) % 3
+    # Utilizar la función centralizada para actualizar el estado
+    actualizar_estado_repeticion_vista(nuevo_modo)
 
 
 # Función para cambiar la visibilidad del panel
@@ -420,103 +491,143 @@ def cambiar_visibilidad_vista():
     guardar_todos_ajustes()
 
 
-# Función para cambiar el estado de boton me gusta
-def cambiar_me_gusta_vista():
+# Función centralizada para actualizar el estado de "Me gusta" en todas las interfaces
+def actualizar_estado_me_gusta_vista(cancion=None):
     global ME_GUSTA
-    cancion_actual = controlador_reproductor.cancion_actual
-    if cancion_actual:
-        controlador_biblioteca.marcar_me_gusta_controlador(cancion_actual)
-        ME_GUSTA = not ME_GUSTA
+    # Si no se especifica una canción, usar la canción actual
+    if cancion is None:
+        cancion = controlador_reproductor.cancion_actual
+    # Verificar si hay una canción válida
+    if cancion:
+        # Actualizar el estado global
+        ME_GUSTA = cancion.me_gusta
+        # Actualizar icono en interfaz principal
         if ME_GUSTA:
             controlador_tema.registrar_botones("me_gusta_rojo", boton_me_gusta)
-            actualizar_texto_tooltip(boton_me_gusta, "Quitar de me gusta")
+            actualizar_texto_tooltip(boton_me_gusta, "Quitar de Me gusta")
         else:
             controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
-            actualizar_texto_tooltip(boton_me_gusta, "Agregar a me gusta")
+            actualizar_texto_tooltip(boton_me_gusta, "Agregar a Me gusta")
+        # Actualizar mini reproductor si está visible
+        if (
+            mini_reproductor.ventana_principal_mini_reproductor
+            and mini_reproductor.ventana_principal_mini_reproductor.winfo_exists()
+        ):
+            if ME_GUSTA:
+                controlador_tema.registrar_botones("me_gusta_rojo_mini", mini_reproductor.boton_me_gusta_mini)
+            else:
+                controlador_tema.registrar_botones("me_gusta_mini", mini_reproductor.boton_me_gusta_mini)
+        # Actualizar la vista "Me gusta" si está cargada
+        if pestanas_cargadas["Me gusta"]:
+            actualizar_vista_me_gusta()
+    else:
+        # Si no hay canción, desactivar los botones
+        ME_GUSTA = False
+        controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
+        actualizar_texto_tooltip(boton_me_gusta, "Agregar a Me gusta")
+        if (
+            mini_reproductor.ventana_principal_mini_reproductor
+            and mini_reproductor.ventana_principal_mini_reproductor.winfo_exists()
+        ):
+            controlador_tema.registrar_botones("me_gusta_mini", mini_reproductor.boton_me_gusta_mini)
+    return ME_GUSTA
+
+
+# Función para cambiar el estado de boton me gusta
+def cambiar_me_gusta_vista():
+    cancion_actual = controlador_reproductor.cancion_actual
+    if cancion_actual:
+        # Modificar el estado en la biblioteca
+        controlador_biblioteca.agregar_me_gusta_controlador(cancion_actual)
+        # Actualizar interfaz usando la función centralizada
+        actualizar_estado_me_gusta_vista()
         # Guardar cambios
         guardar_biblioteca()
-        # Actualizar la vista inmediatamente, independiente de la pestaña actual
-        actualizar_vista_me_gusta()
+        # Marcar la pestaña como cargada
         pestanas_cargadas["Me gusta"] = True
 
 
 # Función para cambiar el estado de "me gusta" de una canción desde el menú
 def cambiar_me_gusta_menu(cancion):
-    controlador_biblioteca.marcar_me_gusta_controlador(cancion)
-    # Actualizar la vista inmediatamente
-    actualizar_vista_me_gusta()
+    # Modificar el estado en la biblioteca
+    controlador_biblioteca.agregar_me_gusta_controlador(cancion)
+    # Actualizar interfaz si es la canción actual
+    if controlador_reproductor.cancion_actual == cancion:
+        actualizar_estado_me_gusta_vista()
+    else:
+        # Si no es la canción actual, solo actualizar la vista
+        if pestanas_cargadas["Me gusta"]:
+            actualizar_vista_me_gusta()
     # Marcar la pestaña como cargada
     pestanas_cargadas["Me gusta"] = True
     # Guardar cambios
     guardar_biblioteca()
-    # Si es la canción actual, actualizar también los botones de la interfaz principal
-    if controlador_reproductor.cancion_actual == cancion:
-        actualizar_estado_botones_gustos()
 
 
-# Función para cambiar el estado de favorito
-def cambiar_favorito_vista():
+# Función centralizada para actualizar el estado de "Favorito" en todas las interfaces
+def actualizar_estado_favorito_vista(cancion=None):
     global FAVORITO
-    cancion_actual = controlador_reproductor.cancion_actual
-    if cancion_actual:
-        controlador_biblioteca.marcar_favorito_controlador(cancion_actual)
-        FAVORITO = not FAVORITO
+    # Si no se especifica una canción, usar la canción actual
+    if cancion is None:
+        cancion = controlador_reproductor.cancion_actual
+    # Verificar si hay una canción válida
+    if cancion:
+        # Actualizar el estado global
+        FAVORITO = cancion.favorito
+        # Actualizar icono en interfaz principal
         if FAVORITO:
             controlador_tema.registrar_botones("favorito_amarillo", boton_favorito)
             actualizar_texto_tooltip(boton_favorito, "Quitar de favorito")
         else:
             controlador_tema.registrar_botones("favorito", boton_favorito)
             actualizar_texto_tooltip(boton_favorito, "Agregar a favorito")
+        # Actualizar la vista "Favoritos" si está cargada
+        if pestanas_cargadas["Favoritos"]:
+            actualizar_vista_favoritos()
+    else:
+        # Si no hay canción, desactivar los botones
+        FAVORITO = False
+        controlador_tema.registrar_botones("favorito", boton_favorito)
+        actualizar_texto_tooltip(boton_favorito, "Agregar a favorito")
+    return FAVORITO
+
+
+# Función para cambiar el estado de favorito
+def cambiar_favorito_vista():
+    cancion_actual = controlador_reproductor.cancion_actual
+    if cancion_actual:
+        # Modificar el estado en la biblioteca
+        controlador_biblioteca.agregar_favorito_controlador(cancion_actual)
+        # Actualizar interfaz usando la función centralizada
+        actualizar_estado_favorito_vista()
         # Guardar cambios
         guardar_biblioteca()
-        # Actualizar la vista inmediatamente, independiente de la pestaña actual
-        actualizar_vista_favoritos()
+        # Marcar la pestaña como cargada
         pestanas_cargadas["Favoritos"] = True
 
 
 # Función para cambiar el estado de "favorito" de una canción desde el menú
 def cambiar_favorito_menu(cancion):
-    controlador_biblioteca.marcar_favorito_controlador(cancion)
-    # Actualizar la vista inmediatamente
-    actualizar_vista_favoritos()
+    # Modificar el estado en la biblioteca
+    controlador_biblioteca.agregar_favorito_controlador(cancion)
+    # Actualizar interfaz si es la canción actual
+    if controlador_reproductor.cancion_actual == cancion:
+        actualizar_estado_favorito_vista()
+    else:
+        # Si no es la canción actual, solo actualizar la vista
+        if pestanas_cargadas["Favoritos"]:
+            actualizar_vista_favoritos()
     # Marcar la pestaña como cargada
     pestanas_cargadas["Favoritos"] = True
     # Guardar cambios
     guardar_biblioteca()
-    # Si es la canción actual, actualizar también los botones de la interfaz principal
-    if controlador_reproductor.cancion_actual == cancion:
-        actualizar_estado_botones_gustos()
 
 
 # Funciona para actualizar el estado de los botones de me_gusta y favorito
 def actualizar_estado_botones_gustos():
-    global ME_GUSTA, FAVORITO
-    cancion_actual = controlador_reproductor.cancion_actual
-    if cancion_actual:
-        # Actualizar estado de Me Gusta
-        ME_GUSTA = cancion_actual.me_gusta
-        if ME_GUSTA:
-            controlador_tema.registrar_botones("me_gusta_rojo", boton_me_gusta)
-            actualizar_texto_tooltip(boton_me_gusta, "Quitar de me gusta")
-        else:
-            controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
-            actualizar_texto_tooltip(boton_me_gusta, "Agregar a me gusta")
-        # Actualizar estado de Favorito
-        FAVORITO = cancion_actual.favorito
-        if FAVORITO:
-            controlador_tema.registrar_botones("favorito_amarillo", boton_favorito)
-            actualizar_texto_tooltip(boton_favorito, "Quitar de favorito")
-        else:
-            controlador_tema.registrar_botones("favorito", boton_favorito)
-            actualizar_texto_tooltip(boton_favorito, "Agregar a favorito")
-    else:
-        # Sin canción actual
-        ME_GUSTA = False
-        FAVORITO = False
-        controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
-        controlador_tema.registrar_botones("favorito", boton_favorito)
-        actualizar_texto_tooltip(boton_me_gusta, "Agregar a me gusta")
-        actualizar_texto_tooltip(boton_favorito, "Agregar a favorito")
+    # Usar las funciones centralizadas para actualizar ambos estados
+    actualizar_estado_me_gusta_vista()
+    actualizar_estado_favorito_vista()
 
 
 # Función para agregar canciones (puede ser llamada desde un botón)
@@ -956,7 +1067,7 @@ def ir_al_artista(cancion):
 
 
 # Función para crear una opción de menú en un menú contextual
-def crear_opcion_menu(panel_menu_opciones, texto, comando, tiene_separador=False):
+def crear_opcion_menu(panel_menu_opciones, texto, funcion, tiene_separador=False):
     if tiene_separador:
         # -------------------------..--- Separador entre opciones -------------------------------
         separador = ctk.CTkFrame(
@@ -979,7 +1090,7 @@ def crear_opcion_menu(panel_menu_opciones, texto, comando, tiene_separador=False
         text_color=controlador_tema.color_texto,
         text=texto,
         anchor="w",
-        command=lambda: [comando(), panel_menu_opciones.master.destroy()],
+        command=lambda: [funcion(), panel_menu_opciones.master.destroy()],
     )
     boton_opcion.pack(fill="x", padx=2)
     # -------------------------------------------------------------------------------------------

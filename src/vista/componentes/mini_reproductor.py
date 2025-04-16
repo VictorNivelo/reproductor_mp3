@@ -323,73 +323,70 @@ class MiniReproductor(Utiles):
 
     # Métodos para controlar la reproducción desde el mini reproductor
     def reproducir_pausar(self):
-        from vista.vista_principal import boton_reproducir, controlador_tema
+        from vista.vista_principal import actualizar_estado_reproduccion_vista
 
         if self.controlador_reproductor:
             # Verificar el estado actual
             if self.controlador_reproductor.reproduciendo:
                 # Sí está reproduciendo, pausar
                 self.controlador_reproductor.pausar_reproduccion_controlador()
-                self.controlador_tema.registrar_botones("reproducir_mini", self.boton_reproducir_mini)
-                # Actualizar estado en ventana principal
-                try:
-                    globals()["ESTADO_REPRODUCCION"] = False
-                    controlador_tema.registrar_botones("reproducir", boton_reproducir)
-                except ImportError as e:
-                    print(f"Error al actualizar ventana principal: {e}")
             else:
                 # Si está pausado, reanudar
                 self.controlador_reproductor.reanudar_reproduccion_controlador()
-                self.controlador_tema.registrar_botones("pausa_mini", self.boton_reproducir_mini)
-                # Actualizar estado en ventana principal
-                try:
-                    globals()["ESTADO_REPRODUCCION"] = True
-                    controlador_tema.registrar_botones("pausa", boton_reproducir)
-                except ImportError as e:
-                    print(f"Error al actualizar ventana principal: {e}")
-            # Actualizar información
-            self.actualizar_estado_reproduccion()
+            # Usar la función centralizada para actualizar todos los estados
+            actualizar_estado_reproduccion_vista()
 
     # Métodos para poner la canción anterior
     def reproducir_anterior(self):
         if self.controlador_reproductor:
-            self.controlador_reproductor.reproducir_anterior_controlador()
-            # Actualizar información
-            self.actualizar_informacion()
-            self.actualizar_estado_reproduccion()
+            if self.controlador_reproductor.reproducir_anterior_controlador():
+                # Importar las funciones centralizadas para actualizar estados
+                from vista.vista_principal import (
+                    actualizar_estado_reproduccion_vista,
+                    actualizar_estado_me_gusta_vista,
+                )
+
+                # Actualizar estado de reproducción
+                actualizar_estado_reproduccion_vista()
+                # Actualizar estado de me gusta
+                actualizar_estado_me_gusta_vista()
+                # Actualizar información visual
+                self.actualizar_informacion()
 
     # Métodos para poner la canción siguiente
     def reproducir_siguiente(self):
         if self.controlador_reproductor:
-            self.controlador_reproductor.reproducir_siguiente_controlador()
-            # Actualizar información
-            self.actualizar_informacion()
-            self.actualizar_estado_reproduccion()
+            if self.controlador_reproductor.reproducir_siguiente_controlador():
+                # Importar las funciones centralizadas para actualizar estados
+                from vista.vista_principal import (
+                    actualizar_estado_reproduccion_vista,
+                    actualizar_estado_me_gusta_vista,
+                )
+
+                # Actualizar estado de reproducción
+                actualizar_estado_reproduccion_vista()
+                # Actualizar estado de me gusta
+                actualizar_estado_me_gusta_vista()
+                # Actualizar información visual
+                self.actualizar_informacion()
 
     # Método para cambiar el estado de "me gusta" de la canción actual
     def cambiar_me_gusta(self):
-        from vista.vista_principal import biblioteca, controlador_biblioteca
-        from controlador.controlador_archivos import ControladorArchivos
+        from vista.vista_principal import actualizar_estado_me_gusta_vista, guardar_biblioteca
+        from vista.vista_principal import controlador_biblioteca
 
         if self.controlador_reproductor and self.controlador_reproductor.cancion_actual:
             # Obtener la canción actual
             cancion = self.controlador_reproductor.cancion_actual
             try:
-                # Intentar obtener la biblioteca y el controlador desde algún registro global o singleton
                 # Marcar o desmarcar la canción como "me gusta"
-                controlador_biblioteca.marcar_me_gusta_controlador(cancion)
-                # Actualizar el estado visual del botón según el nuevo estado de me_gusta
-                if cancion.me_gusta:
-                    self.controlador_tema.registrar_botones("me_gusta_rojo_mini", self.boton_me_gusta_mini)
-                else:
-                    self.controlador_tema.registrar_botones("me_gusta_mini", self.boton_me_gusta_mini)
-                # Guardar los cambios en la biblioteca (si es necesario)
-                controlador_archivos = ControladorArchivos()
-                controlador_archivos.guardar_biblioteca_controlador(biblioteca, self.controlador_reproductor)
-            except ImportError as e:
-                print(f"Error al acceder a la biblioteca: {e}")
-                # Si no podemos acceder a la biblioteca global, mostramos un mensaje de error
-                pass
+                controlador_biblioteca.agregar_me_gusta_controlador(cancion)
+                # Actualizar el estado visual usando la función centralizada
+                actualizar_estado_me_gusta_vista(cancion)
+                # Guardar los cambios en la biblioteca
+                guardar_biblioteca()
+            except Exception as e:
+                print(f"Error al cambiar estado de Me gusta: {e}")
 
     # Método para actualizar el estado de los botones según el estado de reproducción
     def actualizar_estado_reproduccion(self):

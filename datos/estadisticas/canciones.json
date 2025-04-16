@@ -3,8 +3,8 @@
         "total_canciones": 16,
         "total_artistas": 24,
         "total_albumes": 15,
-        "me_gusta": 7,
-        "favorito": 4
+        "me_gusta": 11,
+        "favorito": 3
     },
     "canciones": [
         {
@@ -32,7 +32,7 @@
             "anio": "2020-11-27",
             "numero_pista": "14",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {
@@ -88,7 +88,7 @@
             "anio": "2017-03-31",
             "numero_pista": "1",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {
@@ -102,8 +102,8 @@
             "anio": "2013-07-15",
             "numero_pista": "5",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": true
+            "me_gusta": true,
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\7 Lagrimas (Remix).mp3",
@@ -130,7 +130,7 @@
             "anio": "2019-02-21",
             "numero_pista": "1",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": true
         },
         {

@@ -1,55 +1,55 @@
 {
     "artistas": {
-        "Anuel AA ft Sinfonico, Ñengo Flow": 5,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 7,
         "Metro Boomin ft Coi Leray": 8,
         "Nas ft Ms. Lauryn Hill": 8,
-        "Kanye West ft André 3000": 12,
-        "Kanye West": 8,
-        "Eladio Carrion ft Bryant Myers": 9,
-        "Tainy ft Sech, E.VAX": 4,
-        "Bad Bunny": 7,
-        "Yan Block ft Panda Black": 5,
+        "Kanye West ft André 3000": 14,
+        "Kanye West": 9,
+        "Eladio Carrion ft Bryant Myers": 10,
+        "Tainy ft Sech, E.VAX": 12,
+        "Bad Bunny": 11,
+        "Yan Block ft Panda Black": 7,
         "Daddy Yankee ft Anuel AA": 17,
-        "Anuel AA": 5,
+        "Anuel AA": 7,
         "МЫ": 3,
         "Soge Culebra ft Mora, GARABATTO": 9,
-        "J Balvin ft Farruko": 7,
-        "Rels B": 4,
+        "J Balvin ft Farruko": 8,
+        "Rels B": 6,
         "Sech": 3,
-        "Feid": 15,
-        "Lil Peep": 5
+        "Feid": 18,
+        "Lil Peep": 8
     },
     "albumes": {
-        "47 (Remix)": 5,
+        "47 (Remix)": 7,
         "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 8,
         "It Was Written": 8,
-        "Donda (Deluxe)": 20,
-        "Animal": 9,
-        "DATA": 4,
-        "EL ÚLTIMO TOUR DEL MUNDO": 7,
-        "444": 5,
+        "Donda (Deluxe)": 23,
+        "Animal": 10,
+        "DATA": 12,
+        "EL ÚLTIMO TOUR DEL MUNDO": 11,
+        "444": 7,
         "Adictiva": 17,
-        "¿Qué Nos Pasó?": 5,
+        "¿Qué Nos Pasó?": 7,
         "Ближе": 3,
         "7 Lágrimas (Remix)": 9,
-        "La Familia": 7,
-        "A Mí": 4,
+        "La Familia": 8,
+        "A Mí": 6,
         "42": 3,
-        "INTER SHIBUYA - LA MAFIA": 15,
-        "Come Over When You're Sober, Pt. 2": 5
+        "INTER SHIBUYA - LA MAFIA": 18,
+        "Come Over When You're Sober, Pt. 2": 8
     },
-    "tiempo_total": 31358.547019132642,
-    "canciones_escuchadas": 134,
+    "tiempo_total": 38500.63354974489,
+    "canciones_escuchadas": 165,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3",
-        "titulo": "6 AM",
-        "artista": "J Balvin ft Farruko",
-        "album": "La Familia",
-        "timestamp": "2025-04-14T20:38:36.262905"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3",
+        "titulo": "16 Lines",
+        "artista": "Lil Peep",
+        "album": "Come Over When You're Sober, Pt. 2",
+        "timestamp": "2025-04-16T14:40:55.074036"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 5,
+            "contador": 7,
             "titulo": "47 (Remix)",
             "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
             "album": "47 (Remix)"
@@ -67,37 +67,37 @@
             "album": "It Was Written"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3": {
-            "contador": 12,
+            "contador": 14,
             "titulo": "Life Of The Party (ft André 3000)",
             "artista": "Kanye West ft André 3000",
             "album": "Donda (Deluxe)"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Never Abandon Your Family..mp3": {
-            "contador": 8,
+            "contador": 9,
             "titulo": "Never Abandon Your Family",
             "artista": "Kanye West",
             "album": "Donda (Deluxe)"
         },
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
-            "contador": 9,
+            "contador": 10,
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 4,
+            "contador": 12,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
         },
         "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 7,
+            "contador": 11,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\M\\444..mp3": {
-            "contador": 5,
+            "contador": 7,
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
@@ -109,7 +109,7 @@
             "album": "Adictiva"
         },
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
-            "contador": 5,
+            "contador": 7,
             "titulo": "¿Qué Nos Pasó?",
             "artista": "Anuel AA",
             "album": "¿Qué Nos Pasó?"
@@ -127,13 +127,13 @@
             "album": "7 Lágrimas (Remix)"
         },
         "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3": {
-            "contador": 7,
+            "contador": 8,
             "titulo": "6 AM",
             "artista": "J Balvin ft Farruko",
             "album": "La Familia"
         },
         "C:\\Users\\Victor\\Music\\Musica\\A Mí.mp3": {
-            "contador": 4,
+            "contador": 6,
             "titulo": "A Mí",
             "artista": "Rels B",
             "album": "A Mí"
@@ -145,13 +145,13 @@
             "album": "42"
         },
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
-            "contador": 15,
+            "contador": 18,
             "titulo": "14 De Febrero",
             "artista": "Feid",
             "album": "INTER SHIBUYA - LA MAFIA"
         },
         "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3": {
-            "contador": 5,
+            "contador": 8,
             "titulo": "16 Lines",
             "artista": "Lil Peep",
             "album": "Come Over When You're Sober, Pt. 2"

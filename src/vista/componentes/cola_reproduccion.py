@@ -64,6 +64,8 @@ class ColaReproduccion:
         self.utiles.colores()
         # Crear ventana modal
         self.ventana_cola = ctk.CTkToplevel(self.ventana_principal)
+        # # Eliminar la barra de título y los controles de ventana
+        # self.ventana_cola.overrideredirect(True)
         # Configurar la ventana modal
         configurar_ventana_modal(
             self.ventana_principal,

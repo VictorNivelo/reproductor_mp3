@@ -1,20 +1,6 @@
 {
     "favoritos": [
         {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3",
-            "titulo": "6 AM",
-            "artista": "J Balvin ft Farruko",
-            "artista_album": "J Balvin",
-            "album": "La Familia",
-            "duracion": 243.27836734693878,
-            "duracion_formateada": "04:03",
-            "anio": "2013-07-15",
-            "numero_pista": "5",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": true
-        },
-        {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\A Mí.mp3",
             "titulo": "A Mí",
             "artista": "Rels B",
@@ -25,7 +11,7 @@
             "anio": "2019-02-21",
             "numero_pista": "1",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": true
         },
         {

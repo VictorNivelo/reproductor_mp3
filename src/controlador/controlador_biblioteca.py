@@ -23,8 +23,18 @@ class ControladorBiblioteca:
             print(f"Error al agregar el directorio: {e}")
             return []
 
-    # Métodos que marcan canciones como me gusta
-    def marcar_me_gusta_controlador(self, cancion):
+    # Método que verifica si una canción está marcada como "Me gusta"
+    def verificar_me_gusta_controlador(self, cancion):
+        try:
+            if cancion is None:
+                return False
+            return cancion in self.biblioteca.me_gusta
+        except Exception as e:
+            print(f"Error al verificar me gusta: {e}")
+            return False
+
+    # Métodos que agrega canciones como me gusta
+    def agregar_me_gusta_controlador(self, cancion):
         try:
             self.biblioteca.agregar_me_gusta_biblioteca(cancion)
             return True
@@ -32,8 +42,18 @@ class ControladorBiblioteca:
             print(f"Error al marcar como me gusta: {e}")
             return False
 
-    # Métodos que marcan canciones como favoritas
-    def marcar_favorito_controlador(self, cancion):
+    # Método que verifica si una canción está marcada como favorita
+    def verificar_favorito_controlador(self, cancion):
+        try:
+            if cancion is None:
+                return False
+            return cancion in self.biblioteca.favorito
+        except Exception as e:
+            print(f"Error al verificar favorito: {e}")
+            return False
+
+    # Métodos que agrega canciones como favoritas
+    def agregar_favorito_controlador(self, cancion):
         try:
             self.biblioteca.agregar_favorito_biblioteca(cancion)
             return True

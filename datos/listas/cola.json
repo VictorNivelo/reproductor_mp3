@@ -1,5 +1,5 @@
 {
-    "indice_actual": 6,
+    "indice_actual": 3,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -19,10 +19,10 @@
         "C:\\Users\\Victor\\Music\\Musica\\¿Qué Somos.mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3",
-        "titulo": "6 AM",
-        "artista": "J Balvin ft Farruko",
-        "album": "La Familia",
-        "timestamp": "2025-04-14T20:38:36.261603"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3",
+        "titulo": "16 Lines",
+        "artista": "Lil Peep",
+        "album": "Come Over When You're Sober, Pt. 2",
+        "timestamp": "2025-04-16T14:40:55.069575"
     }
 }

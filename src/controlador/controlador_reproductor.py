@@ -183,10 +183,20 @@ class ControladorReproductor:
             self.id_temporizador = self.etiqueta_tiempo_actual.after(100, self.actualizar_tiempo_controlador)
         return False
 
+    # Método para obtener el porcentaje de volumen actual
+    @staticmethod
+    def obtener_volumen_controlador():
+        return pygame.mixer.music.get_volume() * 100.0
+
     # Método que ajusta el volumen de la canción
     @staticmethod
     def ajustar_volumen_controlador(volumen: float) -> None:
         pygame.mixer.music.set_volume(volumen / 100.0)
+
+    # Método para verificar si el reproductor está silenciado
+    @staticmethod
+    def obtener_estado_silenciado_controlador():
+        return pygame.mixer.music.get_volume() == 0.0
 
     # Método para silenciar la reproducción
     @staticmethod
@@ -209,15 +219,27 @@ class ControladorReproductor:
         pygame.mixer.music.set_volume(volumen_anterior / 100.0)
         return volumen_anterior
 
+    # Método que devuelve el estado del modo de repetición
+    def obtener_estado_repeticion_controlador(self):
+        return self.modo_repeticion
+
     # Método que establece el modo de repetición
     def modo_repeticion_controlador(self, modo):
         self.modo_repeticion = modo
+
+    # Método que devuelve el estado del modo aleatorio
+    def obtener_estado_aleatorio_controlador(self):
+        return self.modo_aleatorio
 
     # Método para establecer el modo de reproducción (aleatorio o secuencial)
     def modo_orden_controlador(self, aleatorio: bool):
         self.modo_aleatorio = aleatorio
         # Resetear el historial cuando cambiamos de modo
         self.historial_aleatorio = []
+
+    # Método que devuelve si hay una canción reproduciéndose actualmente
+    def obtener_estado_reproduccion_controlador(self):
+        return self.reproduciendo
 
     # Método que reproduce una canción
     def reproducir_cancion_controlador(self, cancion: Cancion) -> None:

@@ -39,6 +39,7 @@ def cargar_iconos(tema="claro", tamanio=None):
         # Botones varios
         "ajustes": "ajustes",
         "opcion": "opcion",
+        "atajos": "atajos",
         "estadistica": "estadistica",
         "agregar_carpeta": "agregar_carpeta",
         "agregar_cancion": "agregar_cancion",

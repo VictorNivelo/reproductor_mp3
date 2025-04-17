@@ -396,6 +396,20 @@ class MiniReproductor(UtilesGeneral):
                 self.controlador_tema.registrar_botones("pausa_mini", self.boton_reproducir_mini)
             else:
                 self.controlador_tema.registrar_botones("reproducir_mini", self.boton_reproducir_mini)
+            # Actualizar el icono de me_gusta según el estado de la canción actual
+            self.actualizar_estado_me_gusta()
+
+    # Método para actualizar el estado del botón "me gusta" según la canción actual
+    def actualizar_estado_me_gusta(self):
+        if self.controlador_reproductor and self.controlador_reproductor.cancion_actual:
+            # Obtener el estado de me_gusta de la canción actual
+            cancion = self.controlador_reproductor.cancion_actual
+            if cancion.me_gusta:
+                # Si tiene me gusta, mostrar icono rojo
+                self.controlador_tema.registrar_botones("me_gusta_rojo_mini", self.boton_me_gusta_mini)
+            else:
+                # Si no tiene me gusta, mostrar icono normal
+                self.controlador_tema.registrar_botones("me_gusta_mini", self.boton_me_gusta_mini)
 
     # Método para actualizar la información de la canción en el mini reproductor
     def actualizar_informacion(self):
@@ -472,6 +486,7 @@ class MiniReproductor(UtilesGeneral):
         # Actualizar información de la canción actual
         self.actualizar_informacion()
         self.actualizar_estado_reproduccion()
+        self.actualizar_estado_me_gusta()
         # Posicionar la ventana del mini reproductor en una ubicación visible
         try:
             # Obtener dimensiones de la pantalla

@@ -6,18 +6,18 @@
         "Kanye West ft André 3000": 14,
         "Kanye West": 9,
         "Eladio Carrion ft Bryant Myers": 10,
-        "Tainy ft Sech, E.VAX": 13,
+        "Tainy ft Sech, E.VAX": 14,
         "Bad Bunny": 11,
         "Yan Block ft Panda Black": 7,
-        "Daddy Yankee ft Anuel AA": 19,
+        "Daddy Yankee ft Anuel AA": 20,
         "Anuel AA": 7,
         "МЫ": 3,
         "Soge Culebra ft Mora, GARABATTO": 12,
-        "J Balvin ft Farruko": 8,
+        "J Balvin ft Farruko": 9,
         "Rels B": 8,
         "Sech": 3,
-        "Feid": 18,
-        "Lil Peep": 12
+        "Feid": 19,
+        "Lil Peep": 13
     },
     "albumes": {
         "47 (Remix)": 7,
@@ -25,27 +25,27 @@
         "It Was Written": 8,
         "Donda (Deluxe)": 23,
         "Animal": 10,
-        "DATA": 13,
+        "DATA": 14,
         "EL ÚLTIMO TOUR DEL MUNDO": 11,
         "444": 7,
-        "Adictiva": 19,
+        "Adictiva": 20,
         "¿Qué Nos Pasó?": 7,
         "Ближе": 3,
         "7 Lágrimas (Remix)": 12,
-        "La Familia": 8,
+        "La Familia": 9,
         "A Mí": 8,
         "42": 3,
-        "INTER SHIBUYA - LA MAFIA": 18,
-        "Come Over When You're Sober, Pt. 2": 12
+        "INTER SHIBUYA - LA MAFIA": 19,
+        "Come Over When You're Sober, Pt. 2": 13
     },
-    "tiempo_total": 41140.51599872447,
-    "canciones_escuchadas": 177,
+    "tiempo_total": 42192.20579464284,
+    "canciones_escuchadas": 182,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\7 Lagrimas (Remix).mp3",
-        "titulo": "7 Lagrimas (Remix)",
-        "artista": "Soge Culebra ft Mora, GARABATTO",
-        "album": "7 Lágrimas (Remix)",
-        "timestamp": "2025-04-17T13:58:28.021064"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "titulo": "Adictiva",
+        "artista": "Daddy Yankee ft Anuel AA",
+        "album": "Adictiva",
+        "timestamp": "2025-04-17T14:36:53.188718"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
@@ -85,7 +85,7 @@
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 13,
+            "contador": 14,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
@@ -103,7 +103,7 @@
             "album": "444"
         },
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 19,
+            "contador": 20,
             "titulo": "Adictiva",
             "artista": "Daddy Yankee ft Anuel AA",
             "album": "Adictiva"
@@ -127,7 +127,7 @@
             "album": "7 Lágrimas (Remix)"
         },
         "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3": {
-            "contador": 8,
+            "contador": 9,
             "titulo": "6 AM",
             "artista": "J Balvin ft Farruko",
             "album": "La Familia"
@@ -145,13 +145,13 @@
             "album": "42"
         },
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
-            "contador": 18,
+            "contador": 19,
             "titulo": "14 De Febrero",
             "artista": "Feid",
             "album": "INTER SHIBUYA - LA MAFIA"
         },
         "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3": {
-            "contador": 12,
+            "contador": 13,
             "titulo": "16 Lines",
             "artista": "Lil Peep",
             "album": "Come Over When You're Sober, Pt. 2"

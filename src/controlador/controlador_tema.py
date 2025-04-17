@@ -1,9 +1,9 @@
 from vista.utiles.utiles_vista import cargar_icono_personalizado, cargar_iconos
+from utiles import UtilesGeneral
 import customtkinter as ctk
-from utiles import Utiles
 
 
-class ControladorTema(Utiles):
+class ControladorTema(UtilesGeneral):
     def __init__(self):
         super().__init__()
         # Iconos de la interfaz

@@ -1,12 +1,12 @@
 from vista.componentes.utiles.utiles_componentes import *
 from vista.utiles.utiles_vista import *
 from customtkinter import CTkImage
+from utiles import UtilesGeneral
 import customtkinter as ctk
-from utiles import Utiles
 from constantes import *
 
 
-class Estadisticas(Utiles):
+class Estadisticas(UtilesGeneral):
     def __init__(
         self, ventana_principal, controlador_tema, controlador_archivos, controlador_biblioteca=None
     ):
@@ -24,7 +24,8 @@ class Estadisticas(Utiles):
         # ======================================= Ventana principal =======================================
         # Crear el panel principal de la ventana de estadísticas
         self.ventana_estadisticas = ctk.CTkToplevel(self.ventana_principal)
-
+        # Configurar la ventana para que no se pueda maximizar ni minimizar
+        self.ventana_estadisticas.resizable(False, False)
         # Configurar la ventana de estadísticas
         configurar_ventana_modal(
             ventana_principal=self.ventana_principal,
@@ -71,7 +72,7 @@ class Estadisticas(Utiles):
         # -------------------------------------------------------------------------------------------------
 
         # Obtener estadísticas de reproducción
-        estadisticas = self.controlador_archivos.obtener_estadisticas_controlador()
+        estadisticas = self.controlador_archivos.obtener_estadisticas_json_controlador()
         if not estadisticas:
             # Mostrar mensaje si no hay estadísticas
             self.mostrar_sin_estadisticas(panel_estadisticas_general)

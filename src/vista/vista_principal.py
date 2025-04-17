@@ -9,9 +9,9 @@ from vista.componentes.estadisticas import Estadisticas
 from vista.utiles.utiles_scroll import GestorScroll
 from modelo.biblioteca import Biblioteca
 from vista.utiles.utiles_vista import *
+from utiles import UtilesGeneral
 from tkinter import filedialog
 import customtkinter as ctk
-from utiles import Utiles
 from pathlib import Path
 from constantes import *
 import tkinter as tk
@@ -155,14 +155,14 @@ def guardar_todos_ajustes():
         "estado_silenciado": ESTADO_SILENCIO,
         "panel_lateral_visible": PANEL_LATERAL_VISIBLE,
     }
-    controlador_archivos.guardar_ajustes_controlador(configuracion_guardada)
+    controlador_archivos.guardar_ajustes_json_controlador(configuracion_guardada)
 
 
 # Función para cargar todos los ajustes
 def cargar_todos_ajustes():
     global APARIENCIA, NIVEL_VOLUMEN, MODO_ALEATORIO, MODO_REPETICION, ESTADO_SILENCIO, PANEL_LATERAL_VISIBLE
     # Cargar configuración desde archivo
-    configuracion_cargada = controlador_archivos.cargar_ajustes_controlador()
+    configuracion_cargada = controlador_archivos.cargar_ajustes_json_controlador()
     # Aplicar valores a las variables globales
     APARIENCIA = configuracion_cargada.get("apariencia", "claro")
     NIVEL_VOLUMEN = configuracion_cargada.get("nivel_volumen", 100)
@@ -203,7 +203,7 @@ def cargar_todos_ajustes():
 
 # Función para cargar la última canción reproducida
 def cargar_ultima_cancion_reproducida():
-    ultima_cancion_info = controlador_archivos.ultima_reproducida_controlador()
+    ultima_cancion_info = controlador_archivos.ultima_reproducida_json_controlador()
     if ultima_cancion_info:
         # Buscar la canción en la biblioteca
         ruta_cancion = Path(ultima_cancion_info["ruta"])
@@ -281,7 +281,7 @@ def reproducir_desde_lista_vista(cancion):
     # Reproducir la canción
     controlador_reproductor.reproducir_cancion_controlador(cancion)
     # Registrar la reproducción en las estadísticas
-    controlador_archivos.registrar_reproduccion_controlador(cancion)
+    controlador_archivos.registrar_reproduccion_json_controlador(cancion)
     # Actualizar estado usando la función centralizada
     actualizar_estado_reproduccion_vista()
     # Actualizar botones de Me Gusta y Favoritos
@@ -721,7 +721,7 @@ def eliminar_cancion_vista(cancion):
         elif len(controlador_reproductor.lista_reproduccion) == 0:
             controlador_reproductor.indice_actual = -1
         # Guardar la cola actualizada
-        controlador_archivos.guardar_cola_reproduccion_controlador(controlador_reproductor)
+        controlador_archivos.guardar_cola_reproduccion_json_controlador(controlador_reproductor)
     # Verificar si la canción está en la lista de "Me gusta" y eliminarla manualmente
     if cancion.me_gusta:
         cancion.me_gusta = False
@@ -851,12 +851,12 @@ def finalizar_arrastre_progreso(event):
 # Función para guardar la biblioteca cuando ocurren cambios
 def guardar_biblioteca():
     global controlador_archivos, biblioteca, controlador_reproductor
-    controlador_archivos.guardar_biblioteca_controlador(biblioteca, controlador_reproductor)
+    controlador_archivos.guardar_biblioteca_json_controlador(biblioteca, controlador_reproductor)
 
 
 # Función para cargar la biblioteca al iniciar
 def cargar_biblioteca_vista():
-    if controlador_archivos.cargar_biblioteca_controlador(biblioteca):
+    if controlador_archivos.cargar_biblioteca_json_controlador(biblioteca):
         # Cargar ajustes primero para tener el tema correcto
         cargar_todos_ajustes()
         # Reinicializar la estructura de artistas para separar colaboraciones
@@ -873,7 +873,7 @@ def cargar_biblioteca_vista():
 # Función para cargar la cola de reproducción guardada
 def cargar_cola_vista():
     # Cargar la cola de reproducción
-    controlador_archivos.cargar_cola_reproduccion_controlador(controlador_reproductor, biblioteca)
+    controlador_archivos.cargar_cola_reproduccion_json_controlador(controlador_reproductor, biblioteca)
     # Sí hay canciones en la cola, actualizar la interfaz
     if controlador_reproductor.lista_reproduccion:
         # Establecer la canción actual sin reproducirla automáticamente
@@ -1630,7 +1630,7 @@ def crear_barras_espectro():
     alto_canvas = canvas_espectro.winfo_height()
     # Calcular ancho de barra y espacio entre barras dinámicamente
     espacio_total = ancho_canvas
-    ancho_barra = max(2, (espacio_total / NUMERO_BARRA) * 0.7)  # 70% para la barra
+    ancho_barra = max(2, int((espacio_total / NUMERO_BARRA) * 0.7))  # 70% para la barra
     espacio_entre_barra = (espacio_total / NUMERO_BARRA) * 0.3  # 30% para el espacio
     # Calcular posición inicial para centrar las barras
     x_inicial = (
@@ -1773,7 +1773,7 @@ ventana_principal = ctk.CTk()
 biblioteca = Biblioteca()
 
 # Utilidades
-utiles = Utiles()
+utiles = UtilesGeneral()
 
 # Controlador_tema de tema
 controlador_tema = ControladorTema()
@@ -1788,7 +1788,7 @@ controlador_reproductor = ControladorReproductor()
 controlador_archivos = ControladorArchivos()
 
 # Primero, cargar configuración (antes de establecer apariencia)
-configuracion = controlador_archivos.cargar_ajustes_controlador()
+configuracion = controlador_archivos.cargar_ajustes_json_controlador()
 
 # Apariencia (claro/oscuro)
 APARIENCIA = configuracion.get("apariencia", "claro")

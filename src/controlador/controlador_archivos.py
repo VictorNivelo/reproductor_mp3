@@ -64,23 +64,23 @@ class ControladorArchivos:
                 os.makedirs(directorio)
 
     # Guardar la biblioteca en archivos JSON
-    def guardar_biblioteca_controlador(self, biblioteca, reproductor=None):
+    def guardar_biblioteca_json_controlador(self, biblioteca, reproductor=None):
         try:
             # Guardar todas las canciones
-            self.guardar_cancion_controlador(biblioteca)
+            self.guardar_cancion_json_controlador(biblioteca)
             # Guardar listas especiales
-            self.agregar_me_gusta_controlador(biblioteca)
-            self.agregar_favorito_controlador(biblioteca)
+            self.guardar_me_gusta_json_controlador(biblioteca)
+            self.guardar_favorito_json_controlador(biblioteca)
             # Guardar la cola de reproducción si se proporciona el reproductor
             if reproductor is not None:
-                self.guardar_cola_reproduccion_controlador(reproductor)
+                self.guardar_cola_reproduccion_json_controlador(reproductor)
             return True
         except Exception as e:
             print(f"Error al guardar biblioteca: {str(e)}")
             return False
 
     # Guardar las canciones en un archivo JSON
-    def guardar_cancion_controlador(self, biblioteca):
+    def guardar_cancion_json_controlador(self, biblioteca):
         datos = {
             "estadisticas": biblioteca.obtener_estadisticas_biblioteca(),
             "canciones": [cancion.convertir_diccionario_cancion() for cancion in biblioteca.canciones],
@@ -90,7 +90,7 @@ class ControladorArchivos:
             archivo.write(contenido)
 
     # Guardar la cola de reproducción en un archivo JSON
-    def guardar_cola_reproduccion_controlador(self, reproductor):
+    def guardar_cola_reproduccion_json_controlador(self, reproductor):
         try:
             if not reproductor.lista_reproduccion:
                 # Si la cola está vacía, crear un JSON con lista vacía
@@ -125,21 +125,21 @@ class ControladorArchivos:
             return False
 
     # Guardar la lista de me gusta en un archivo JSON
-    def agregar_me_gusta_controlador(self, biblioteca):
+    def guardar_me_gusta_json_controlador(self, biblioteca):
         datos = {"me_gusta": [cancion.convertir_diccionario_cancion() for cancion in biblioteca.me_gusta]}
         contenido = json.dumps(datos, ensure_ascii=False, indent=4)
         with open(self.ruta_me_gusta, "w", encoding="utf-8") as archivo:
             archivo.write(contenido)
 
     # Guardar la lista de favoritos en un archivo JSON
-    def agregar_favorito_controlador(self, biblioteca):
+    def guardar_favorito_json_controlador(self, biblioteca):
         datos = {"favoritos": [cancion.convertir_diccionario_cancion() for cancion in biblioteca.favorito]}
         contenido = json.dumps(datos, ensure_ascii=False, indent=4)
         with open(self.ruta_favoritos, "w", encoding="utf-8") as archivo:
             archivo.write(contenido)
 
     # Cargar la biblioteca desde los archivos JSON
-    def cargar_biblioteca_controlador(self, biblioteca):
+    def cargar_biblioteca_json_controlador(self, biblioteca):
         # Estructuras predeterminadas
         estructura_canciones = {
             "estadisticas": {
@@ -161,9 +161,9 @@ class ControladorArchivos:
             # Limpiar la biblioteca actual
             biblioteca.limpiar_biblioteca()
             # Cargar las canciones principales
-            canciones_cargadas = self.cargar_cancion_controlador(biblioteca)
+            canciones_cargadas = self.cargar_cancion_json_controlador(biblioteca)
             # Actualizar estado me gusta y favoritos
-            self.actualizar_estados_listas_controlador(biblioteca)
+            self.actualizar_estados_listas_json_controlador(biblioteca)
             # print(f"Se cargaron {canciones_cargadas} canciones)
             return canciones_cargadas > 0
         except Exception as e:
@@ -171,7 +171,7 @@ class ControladorArchivos:
             return False
 
     # Cargar las canciones desde un archivo JSON
-    def cargar_cancion_controlador(self, biblioteca):
+    def cargar_cancion_json_controlador(self, biblioteca):
         canciones_cargadas = 0
         with open(self.ruta_canciones, "r", encoding="utf-8") as archivo:
             datos = json.load(archivo)
@@ -191,7 +191,7 @@ class ControladorArchivos:
         return canciones_cargadas
 
     # Cargar la cola de reproducción desde un archivo JSON
-    def cargar_cola_reproduccion_controlador(self, reproductor, biblioteca):
+    def cargar_cola_reproduccion_json_controlador(self, reproductor, biblioteca):
         estructura_cola = {"indice_actual": -1, "canciones": [], "ultima_cancion": None}
         # Verificar archivo de cola
         self.verificar_archivo_json(self.ruta_cola, estructura_cola)
@@ -231,7 +231,7 @@ class ControladorArchivos:
             return False
 
     # Método para obtener la última canción reproducida con verificación adicional
-    def ultima_reproducida_controlador(self):
+    def ultima_reproducida_json_controlador(self):
         estructura_reproduccion = {
             "artistas": {},
             "albumes": {},
@@ -259,7 +259,7 @@ class ControladorArchivos:
             return None
 
     # Actualizar los estados me gusta y favoritos desde los archivos JSON
-    def actualizar_estados_listas_controlador(self, biblioteca):
+    def actualizar_estados_listas_json_controlador(self, biblioteca):
         try:
             # Actualizar me gusta
             if os.path.exists(self.ruta_me_gusta):
@@ -291,7 +291,7 @@ class ControladorArchivos:
             print(f"Error al actualizar estados: {str(e)}")
 
     # Guardar la lista de me gusta en un archivo JSON
-    def registrar_reproduccion_controlador(self, cancion):
+    def registrar_reproduccion_json_controlador(self, cancion):
         estructura_reproduccion = {
             "artistas": {},
             "albumes": {},
@@ -345,7 +345,7 @@ class ControladorArchivos:
             return False
 
     # Obtener las estadísticas de reproducción
-    def obtener_estadisticas_controlador(self):
+    def obtener_estadisticas_json_controlador(self):
         estructura_reproduccion = {
             "tiempo_total": 0.0,
             "canciones_escuchadas": 0,
@@ -406,7 +406,7 @@ class ControladorArchivos:
             return None
 
     # Guardar la configuración en un archivo JSON
-    def guardar_ajustes_controlador(self, configuracion):
+    def guardar_ajustes_json_controlador(self, configuracion):
         try:
             # Asegurarse de que exista el directorio
             if not os.path.exists(self.ruta_carpeta_configuracion):
@@ -433,7 +433,7 @@ class ControladorArchivos:
             return False
 
     # Cargar la configuración desde un archivo JSON
-    def cargar_ajustes_controlador(self):
+    def cargar_ajustes_json_controlador(self):
         # Estructura predeterminada con valores por defecto
         configuracion_por_defecto = {
             "apariencia": "claro",

@@ -2,21 +2,21 @@ from vista.componentes.utiles.utiles_componentes import configurar_ventana_modal
 from controlador.controlador_archivos import ControladorArchivos
 from vista.utiles.utiles_vista import cargar_icono_personalizado
 from vista.utiles.utiles_scroll import GestorScroll
+from utiles import UtilesGeneral
 import customtkinter as ctk
-from utiles import Utiles
 from constantes import *
 import tkinter as tk
 
 
-class ColaReproduccion:
+class ColaReproduccion(UtilesGeneral):
     def __init__(
         self, ventana_principal, controlador_tema, controlador_reproductor, llamado_actualizacion=None
     ):
+        super().__init__(controlador_externo=controlador_tema)
         self.controlador_reproductor = controlador_reproductor
         self.llamado_actualizacion = llamado_actualizacion
         self.ventana_principal = ventana_principal
         self.controlador_tema = controlador_tema
-        self.utiles = Utiles(controlador_tema)
         self.ultima_cancion = None
         self.gestor_scroll = None
         self.ventana_cola = None
@@ -61,9 +61,11 @@ class ColaReproduccion:
             self.ventana_cola.lift()
             return
         # Actualizar colores
-        self.utiles.colores()
+        self.colores()
         # Crear ventana modal
         self.ventana_cola = ctk.CTkToplevel(self.ventana_principal)
+        # Configurar la ventana para que no se pueda maximizar ni minimizar
+        self.ventana_cola.resizable(False, False)
         # # Eliminar la barra de título y los controles de ventana
         # self.ventana_cola.overrideredirect(True)
         # Configurar la ventana modal
@@ -73,14 +75,14 @@ class ColaReproduccion:
             ANCHO_COLA_REPRODUCCION,
             ALTO_COLA_REPRODUCCION,
             "Cola de reproducción",
-            self.utiles.color_fondo_principal,
+            self.color_fondo_principal,
             lambda: self.cerrar_ventana_cola(),
             self.controlador_tema,
         )
         # ===================================== Contenedor principal =====================================
         # Contenedor principal con margen reducido
         panel_principal_cola = ctk.CTkFrame(
-            self.ventana_cola, fg_color=self.utiles.color_fondo, corner_radius=BORDES_REDONDEADOS_PANEL
+            self.ventana_cola, fg_color=self.color_fondo, corner_radius=BORDES_REDONDEADOS_PANEL
         )
         panel_principal_cola.pack(fill="both", expand=True, padx=3, pady=3)
         self.componentes.append(panel_principal_cola)
@@ -92,7 +94,7 @@ class ColaReproduccion:
             height=15,
             fg_color="transparent",
             font=(LETRA, 16, "bold"),
-            text_color=self.utiles.color_texto,
+            text_color=self.color_texto,
             text="Cola de reproducción",
         )
         etiqueta_titulo_general.pack(padx=10)
@@ -109,7 +111,7 @@ class ColaReproduccion:
             height=14,
             fg_color="transparent",
             font=(LETRA, 11),
-            text_color=self.utiles.color_texto,
+            text_color=self.color_texto,
             text=f"Duración total: {duracion_total}",
         )
         etiqueta_duracion.pack(padx=10, pady=1)
@@ -122,7 +124,7 @@ class ColaReproduccion:
         # Panel para la canción actual con mejor estilo
         panel_cancion_actual = ctk.CTkFrame(
             panel_principal_cola,
-            fg_color=self.utiles.color_segundario,
+            fg_color=self.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
         panel_cancion_actual.pack(fill="both", padx=5, pady=(0, 5))
@@ -135,7 +137,7 @@ class ColaReproduccion:
             panel_cancion_actual,
             height=15,
             font=(LETRA, 13, "bold"),
-            text_color=self.utiles.color_texto,
+            text_color=self.color_texto,
             text="Reproduciendo ahora:",
         )
         etiqueta_reproduciendo.pack(anchor="w", padx=5, pady=(3, 0))
@@ -152,7 +154,7 @@ class ColaReproduccion:
         # Panel para las próximas canciones
         panel_cola_reproduccion = ctk.CTkFrame(
             panel_principal_cola,
-            fg_color=self.utiles.color_segundario,
+            fg_color=self.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
         panel_cola_reproduccion.pack(fill="both", expand=True, padx=5, pady=(0, 5))
@@ -175,7 +177,7 @@ class ColaReproduccion:
             panel_componentes,
             height=15,
             font=(LETRA, 13, "bold"),
-            text_color=self.utiles.color_texto,
+            text_color=self.color_texto,
             text="Próximas canciones:",
         )
         etiqueta_proximas.pack(side="left")
@@ -192,10 +194,10 @@ class ColaReproduccion:
                 width=ANCHO_BOTON + 2,
                 height=ALTO_BOTON + 2,
                 corner_radius=BORDES_REDONDEADOS_BOTON,
-                fg_color=self.utiles.color_boton,
-                hover_color=self.utiles.color_hover,
+                fg_color=self.color_boton,
+                hover_color=self.color_hover,
                 font=(LETRA, TAMANIO_LETRA_BOTON),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text="Limpiar cola",
                 image=icono_limpiar,
                 command=self.limpiar_cola,
@@ -239,10 +241,10 @@ class ColaReproduccion:
             width=ANCHO_BOTON,
             height=ALTO_BOTON,
             corner_radius=BORDES_REDONDEADOS_BOTON,
-            fg_color=self.utiles.color_boton,
-            hover_color=self.utiles.color_hover,
+            fg_color=self.color_boton,
+            hover_color=self.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
-            text_color=self.utiles.color_texto,
+            text_color=self.color_texto,
             text="Cerrar",
             command=lambda: self.cerrar_ventana_cola(),
         )
@@ -255,7 +257,7 @@ class ColaReproduccion:
 
     # Método para mostrar la carátula de una canción en un panel
     def mostrar_caratula(self, panel_contenedor, imagen_bytes, ancho=60):
-        foto, _, _ = self.utiles.crear_imagen_desde_bytes(imagen_bytes, ancho)
+        foto, _, _ = self.crear_imagen_desde_bytes(imagen_bytes, ancho)
         if foto:
             # --------------------------------------- Etiqueta imagen ------------------------------------
             etiqueta_imagen = ctk.CTkLabel(panel_contenedor, image=foto, text="")
@@ -314,7 +316,7 @@ class ColaReproduccion:
                 height=19,
                 fg_color="transparent",
                 font=(LETRA, 14, "bold"),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text=cancion_actual.titulo_cancion,
             )
             etiqueta_titulo.pack(anchor="w")
@@ -329,7 +331,7 @@ class ColaReproduccion:
                 height=19,
                 fg_color="transparent",
                 font=(LETRA, 12),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text=cancion_actual.artista,
             )
             etiqueta_artista.pack(anchor="w")
@@ -344,7 +346,7 @@ class ColaReproduccion:
                 height=19,
                 fg_color="transparent",
                 font=(LETRA, 12, "italic"),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text=cancion_actual.album,
             )
             etiqueta_album.pack(anchor="w")
@@ -369,7 +371,7 @@ class ColaReproduccion:
                 height=15,
                 fg_color="transparent",
                 font=(LETRA, 12, "italic"),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text="No hay ninguna canción en reproducción",
             )
             etiqueta_no_cancion.pack(pady=3, fill="both", expand=True)
@@ -393,7 +395,7 @@ class ColaReproduccion:
                 height=15,
                 fg_color="transparent",
                 font=(LETRA, 12, "italic"),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text="La cola de reproducción está vacía",
             )
             etiqueta_vacia.pack(pady=3)
@@ -412,7 +414,7 @@ class ColaReproduccion:
                     height=15,
                     fg_color="transparent",
                     font=(LETRA, 12, "italic"),
-                    text_color=self.utiles.color_texto,
+                    text_color=self.color_texto,
                     text="La canción actual se repetirá",
                 )
                 etiqueta_info.pack(fill="both", pady=3)
@@ -427,7 +429,7 @@ class ColaReproduccion:
                 height=15,
                 fg_color="transparent",
                 font=(LETRA, 12, "italic"),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text="Modo aleatorio activado - las canciones se elegirán al azar",
             )
             etiqueta_info.pack(fill="both", pady=3)
@@ -445,7 +447,7 @@ class ColaReproduccion:
                     height=15,
                     fg_color="transparent",
                     font=(LETRA, 12, "italic"),
-                    text_color=self.utiles.color_texto,
+                    text_color=self.color_texto,
                     text="Se reiniciará la reproducción aleatoria de todas las canciones",
                 )
                 etiqueta_reinicio.pack(fill="both", pady=3)
@@ -465,7 +467,7 @@ class ColaReproduccion:
                     height=15,
                     fg_color="transparent",
                     font=(LETRA, 12, "italic"),
-                    text_color=self.utiles.color_texto,
+                    text_color=self.color_texto,
                     text="Se reiniciará la reproducción desde el principio",
                 )
                 etiqueta_reinicio.pack(fill="both", pady=3)
@@ -501,7 +503,7 @@ class ColaReproduccion:
                 height=15,
                 fg_color="transparent",
                 font=(LETRA, 12),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text=f"{i+1}.",
             )
             etiqueta_numero.pack(side="left")
@@ -528,7 +530,7 @@ class ColaReproduccion:
                 height=15,
                 fg_color="transparent",
                 font=(LETRA, 12, "bold"),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text=cancion.titulo_cancion,
             )
             etiqueta_titulo.pack(anchor="w")
@@ -543,7 +545,7 @@ class ColaReproduccion:
                 height=15,
                 fg_color="transparent",
                 font=(LETRA, 11),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text=cancion.artista,
             )
             etiqueta_artista.pack(anchor="w")
@@ -558,7 +560,7 @@ class ColaReproduccion:
                 height=15,
                 fg_color="transparent",
                 font=(LETRA, 11, "italic"),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text=cancion.album,
             )
             etiqueta_album.pack(anchor="w")
@@ -574,10 +576,10 @@ class ColaReproduccion:
                 width=ANCHO_BOTON + 4,
                 height=ALTO_BOTON + 4,
                 corner_radius=BORDES_REDONDEADOS_BOTON,
-                fg_color=self.utiles.color_boton,
-                hover_color=self.utiles.color_hover,
+                fg_color=self.color_boton,
+                hover_color=self.color_hover,
                 font=(LETRA, TAMANIO_LETRA_BOTON, "bold"),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text="",
                 image=icono_quitar,
                 command=lambda idx=indice_real: self.quitar_de_cola(idx),
@@ -589,7 +591,7 @@ class ColaReproduccion:
 
             # Añadir efecto hover al panel de canción
             def configurar_hover(panel_objetivo, enter=True):
-                color = self.utiles.color_hover if enter else "transparent"
+                color = self.color_hover if enter else "transparent"
                 panel_objetivo.configure(fg_color=color)
 
             # Configurar eventos de hover
@@ -623,7 +625,7 @@ class ColaReproduccion:
                 height=15,
                 fg_color="transparent",
                 font=(LETRA, 12),
-                text_color=self.utiles.color_texto,
+                text_color=self.color_texto,
                 text="No hay más canciones en la cola",
             )
             etiqueta_final.pack(pady=3)
@@ -651,7 +653,7 @@ class ColaReproduccion:
             self.actualizar_ventana_cola()
             # Guardar la cola actualizada
             controlador_archivos = ControladorArchivos()
-            controlador_archivos.guardar_cola_reproduccion_controlador(self.controlador_reproductor)
+            controlador_archivos.guardar_cola_reproduccion_json_controlador(self.controlador_reproductor)
 
     # Método para limpiar toda la cola de reproducción
     def limpiar_cola(self):

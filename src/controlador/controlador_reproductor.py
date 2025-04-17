@@ -1,6 +1,6 @@
 from controlador.controlador_archivos import ControladorArchivos
 from modelo.cancion import Cancion
-from utiles import Utiles
+from utiles import UtilesGeneral
 from constantes import *
 import pygame
 import random
@@ -50,7 +50,7 @@ class ControladorReproductor:
         # Inicializar pygame
         pygame.mixer.init()
         # Instancia de Utiles
-        self.utiles = Utiles()
+        self.utiles = UtilesGeneral()
 
     # Método que establece las etiquetas de la interfaz
     def establecer_informacion_controlador(self, nombre, artista, album, anio, imagen):
@@ -155,13 +155,13 @@ class ControladorReproductor:
                 if self.modo_repeticion == 1:  # Repetir canción actual
                     # Reiniciar la misma canción
                     self.reproducir_cancion_controlador(self.cancion_actual)
-                    return
+                    return False
                 elif self.lista_reproduccion and (
                     self.indice_actual < len(self.lista_reproduccion) - 1 or self.modo_repeticion == 2
                 ):
                     # Reproducir siguiente canción
                     self.reproducir_siguiente_controlador()
-                    return
+                    return False
                 else:
                     # No hay más canciones o no está activada la repetición
                     self.detener_reproduccion_controlador()
@@ -281,7 +281,7 @@ class ControladorReproductor:
         self.actualizar_tiempo_controlador()
         # Guardar la cola automáticamente
         controlador_archivos = ControladorArchivos()
-        controlador_archivos.guardar_cola_reproduccion_controlador(self)
+        controlador_archivos.guardar_cola_reproduccion_json_controlador(self)
 
     # Métodos que controlan la reproducción de la canción
     def pausar_reproduccion_controlador(self) -> None:
@@ -491,7 +491,7 @@ class ControladorReproductor:
         self.indice_actual = indice if 0 <= indice < len(canciones) else 0
         # Guardar la cola automáticamente
         controlador_archivos = ControladorArchivos()
-        controlador_archivos.guardar_cola_reproduccion_controlador(self)
+        controlador_archivos.guardar_cola_reproduccion_json_controlador(self)
 
     # Método que agrega una canción a la cola de reproducción
     def agregar_cancion_a_cola_controlador(self, cancion):
@@ -502,7 +502,7 @@ class ControladorReproductor:
                 self.indice_actual = 0
             # Guardar la cola automáticamente
             controlador_archivos = ControladorArchivos()
-            controlador_archivos.guardar_cola_reproduccion_controlador(self)
+            controlador_archivos.guardar_cola_reproduccion_json_controlador(self)
             return True
         return False
 
@@ -521,7 +521,7 @@ class ControladorReproductor:
                 self.indice_actual = 0
             # Guardar la cola automáticamente
             controlador_archivos = ControladorArchivos()
-            controlador_archivos.guardar_cola_reproduccion_controlador(self)
+            controlador_archivos.guardar_cola_reproduccion_json_controlador(self)
             return True
         return False
 
@@ -563,5 +563,5 @@ class ControladorReproductor:
             self.indice_actual = -1
         # Guardar la cola actualizada
         controlador_archivos = ControladorArchivos()
-        controlador_archivos.guardar_cola_reproduccion_controlador(self)
+        controlador_archivos.guardar_cola_reproduccion_json_controlador(self)
         return True

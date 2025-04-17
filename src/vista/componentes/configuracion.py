@@ -1,11 +1,11 @@
 from vista.componentes.utiles.utiles_componentes import *
 from vista.utiles.utiles_vista import *
+from utiles import UtilesGeneral
 import customtkinter as ctk
-from utiles import Utiles
 from constantes import *
 
 
-class Configuracion(Utiles):
+class Configuracion(UtilesGeneral):
     def __init__(self, ventana_principal, controlador_tema):
         super().__init__(controlador_externo=controlador_tema)
         self.ventana_configuracion = None
@@ -30,7 +30,8 @@ class Configuracion(Utiles):
         # ======================================= Ventana principal =======================================
         # Crear el panel principal de la ventana de configuración
         self.ventana_configuracion = ctk.CTkToplevel(self.ventana_principal)
-
+        # Configurar la ventana para que no se pueda maximizar ni minimizar
+        self.ventana_configuracion.resizable(False, False)
         # Configurar la ventana de configuración
         configurar_ventana_modal(
             ventana_principal=self.ventana_principal,

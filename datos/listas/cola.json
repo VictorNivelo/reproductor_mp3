@@ -1,5 +1,5 @@
 {
-    "indice_actual": 3,
+    "indice_actual": 7,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -19,10 +19,10 @@
         "C:\\Users\\Victor\\Music\\Musica\\¿Qué Somos.mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3",
-        "titulo": "16 Lines",
-        "artista": "Lil Peep",
-        "album": "Come Over When You're Sober, Pt. 2",
-        "timestamp": "2025-04-16T14:40:55.069575"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\7 Lagrimas (Remix).mp3",
+        "titulo": "7 Lagrimas (Remix)",
+        "artista": "Soge Culebra ft Mora, GARABATTO",
+        "album": "7 Lágrimas (Remix)",
+        "timestamp": "2025-04-17T13:58:28.006342"
     }
 }

@@ -71,20 +71,6 @@
             "favorito": false
         },
         {
-            "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
-            "titulo": "47 (Remix)",
-            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
-            "artista_album": "Anuel AA",
-            "album": "47 (Remix)",
-            "duracion": 517.8514285714285,
-            "duracion_formateada": "08:37",
-            "anio": "2017-03-31",
-            "numero_pista": "1",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": false
-        },
-        {
             "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
@@ -150,6 +136,34 @@
             "duracion_formateada": "02:55",
             "anio": "2024-04-04",
             "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+            "titulo": "47 (Remix)",
+            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+            "artista_album": "Anuel AA",
+            "album": "47 (Remix)",
+            "duracion": 517.8514285714285,
+            "duracion_formateada": "08:37",
+            "anio": "2017-03-31",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3",
+            "titulo": "6 AM",
+            "artista": "J Balvin ft Farruko",
+            "artista_album": "J Balvin",
+            "album": "La Familia",
+            "duracion": 243.27836734693878,
+            "duracion_formateada": "04:03",
+            "anio": "2013-07-15",
+            "numero_pista": "5",
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": false

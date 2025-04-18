@@ -3,7 +3,7 @@
         "total_canciones": 16,
         "total_artistas": 24,
         "total_albumes": 15,
-        "me_gusta": 11,
+        "me_gusta": 12,
         "favorito": 3
     },
     "canciones": [
@@ -102,7 +102,7 @@
             "anio": "2013-07-15",
             "numero_pista": "5",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {

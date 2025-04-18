@@ -5,12 +5,12 @@ from constantes import *
 
 
 class MiniReproductor(UtilesGeneral):
-    def __init__(self, ventana_principal, controlador_tema):
+    def __init__(self, ventana_principal, controlador_tema, controlador_reproductor):
         super().__init__(controlador_externo=controlador_tema)
         self.ventana_principal_mini_reproductor = None
         self.ventana_principal = ventana_principal
         self.controlador_tema = controlador_tema
-        self.controlador_reproductor = None
+        self.controlador_reproductor = controlador_reproductor
         self.foto_caratula_mini = None
         self.componentes = []
         self.posicion_mini_reproductor = "superior_izquierda"
@@ -30,13 +30,6 @@ class MiniReproductor(UtilesGeneral):
         # Variables para el movimiento de la ventana
         self.x = None
         self.y = None
-
-    # Método para establecer el controlador del reproductor
-    def establecer_controlador_reproductor(self, controlador_reproductor):
-        self.controlador_reproductor = controlador_reproductor
-        # Aplicar eventos de movimiento si la ventana ya está creada
-        if self.ventana_principal_mini_reproductor:
-            self.aplicar_eventos_movimiento()
 
     # Método para crear la ventana del mini reproductor
     def crear_ventana_mini_reproductor(self):

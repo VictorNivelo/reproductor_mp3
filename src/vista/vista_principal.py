@@ -336,7 +336,7 @@ def retroceder_reproduccion_vista():
 # Función para aumentar el volumen en incrementos fijos
 def aumentar_volumen_vista():
     global NIVEL_VOLUMEN, ESTADO_SILENCIO
-    # Si está silenciado, primero quitar el silencio
+    # Sí está silenciado, primero quitar el silencio
     if ESTADO_SILENCIO:
         actualizar_estado_silencio_vista(False)
     # Calcular el nuevo nivel de volumen (máximo 100)
@@ -1819,12 +1819,50 @@ def abrir_cola_reproduccion():
 # Crear ventana
 ventana_principal = ctk.CTk()
 
+# Título de la ventana
+ventana_principal.title("Reproductor de música")
+
+# Obtener las dimensiones de la pantalla
+ancho_pantalla = ventana_principal.winfo_screenwidth()
+alto_pantalla = ventana_principal.winfo_screenheight()
+
+# Calcular la posición x,y para la ventana
+posicion_ancho = (ancho_pantalla - ANCHO_PRINCIPAL) // 2
+posicion_alto = (alto_pantalla - ALTO_PRINCIPAL) // 3
+
+# Establecer la geometría de la ventana
+ventana_principal.geometry(f"{ANCHO_PRINCIPAL}x{ALTO_PRINCIPAL}+{posicion_ancho}+{posicion_alto}")
+
+# =========================================== Atajos ============================================
+# Atajos de teclado para controlar el reproductor
+ventana_principal.bind("<Up>", lambda event: aumentar_volumen_vista())
+ventana_principal.bind("<Down>", lambda event: disminuir_volumen_vista())
+ventana_principal.bind("<space>", lambda event: reproducir_vista())
+ventana_principal.bind("<Left>", lambda event: retroceder_reproduccion_vista())
+ventana_principal.bind("<Right>", lambda event: adelantar_reproduccion_vista())
+ventana_principal.bind("<Control-Left>", lambda event: reproducir_anterior_vista())
+ventana_principal.bind("<Control-Right>", lambda event: reproducir_siguiente_vista())
+ventana_principal.bind("m", lambda event: cambiar_silencio_vista())
+ventana_principal.bind("r", lambda event: cambiar_repeticion_vista())
+ventana_principal.bind("s", lambda event: cambiar_orden_vista())
+ventana_principal.bind("l", lambda event: cambiar_visibilidad_vista())
+ventana_principal.bind("f", lambda event: cambiar_favorito_vista())
+ventana_principal.bind("g", lambda event: cambiar_me_gusta_vista())
+ventana_principal.bind("c", lambda event: abrir_cola_reproduccion())
+ventana_principal.bind("p", lambda event: abrir_minireproductor())
+
+# ===============================================================================================
+
+# ========================================= Utilidades ==========================================
 # Biblioteca de canciones
 biblioteca = Biblioteca()
 
 # Utilidades
 utiles = UtilesGeneral()
 
+# ===============================================================================================
+
+# =================================== Controladores =============================================
 # Controlador_tema de tema
 controlador_tema = ControladorTema()
 
@@ -1837,7 +1875,10 @@ controlador_reproductor = ControladorReproductor()
 # Controlador de archivos
 controlador_archivos = ControladorArchivos()
 
-# Primero, cargar configuración (antes de establecer apariencia)
+# ===============================================================================================
+
+# ================================= Configuración de la interfaz ================================
+# Primero, cargar configuración
 configuracion = controlador_archivos.cargar_ajustes_json_controlador()
 
 # Apariencia (claro/oscuro)
@@ -1855,9 +1896,12 @@ controlador_tema.tema_iconos = "claro" if APARIENCIA == "oscuro" else "oscuro"
 # Icono de la ventana según el tema cargado
 cambiar_icono_tema(APARIENCIA)
 
+# ===============================================================================================
+
+# ==================================== Componentes gráficos =====================================
+
 # Mini reproductor
-mini_reproductor = MiniReproductor(ventana_principal, controlador_tema)
-mini_reproductor.establecer_controlador_reproductor(controlador_reproductor)
+mini_reproductor = MiniReproductor(ventana_principal, controlador_tema, controlador_reproductor)
 
 # Configuración
 configuracion = Configuracion(ventana_principal, controlador_tema)
@@ -1876,19 +1920,7 @@ cola_reproduccion = ColaReproduccion(
     lambda: reproducir_desde_cola_vista(),
 )
 
-# Obtener las dimensiones de la pantalla
-ancho_pantalla = ventana_principal.winfo_screenwidth()
-alto_pantalla = ventana_principal.winfo_screenheight()
-
-# Calcular la posición x,y para la ventana
-posicion_ancho = (ancho_pantalla - ANCHO_PRINCIPAL) // 2
-posicion_alto = (alto_pantalla - ALTO_PRINCIPAL) // 3
-
-# Establecer la geometría de la ventana
-ventana_principal.geometry(f"{ANCHO_PRINCIPAL}x{ALTO_PRINCIPAL}+{posicion_ancho}+{posicion_alto}")
-
-# Título de la ventana
-ventana_principal.title("Reproductor de música")
+# ===============================================================================================
 
 # ***********************************************************************************************
 

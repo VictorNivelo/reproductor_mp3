@@ -1,5 +1,5 @@
 {
-    "indice_actual": 4,
+    "indice_actual": 3,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -19,10 +19,10 @@
         "C:\\Users\\Victor\\Music\\Musica\\¿Qué Somos.mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
-        "titulo": "444",
-        "artista": "Yan Block ft Panda Black",
-        "album": "444",
-        "timestamp": "2025-04-17T20:06:50.082617"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3",
+        "titulo": "16 Lines",
+        "artista": "Lil Peep",
+        "album": "Come Over When You're Sober, Pt. 2",
+        "timestamp": "2025-04-18T13:53:48.623719"
     }
 }

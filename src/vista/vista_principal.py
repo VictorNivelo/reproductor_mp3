@@ -7,6 +7,7 @@ from vista.componentes.configuracion import Configuracion
 from controlador.controlador_tema import ControladorTema
 from vista.componentes.estadisticas import Estadisticas
 from vista.utiles.utiles_scroll import GestorScroll
+from vista.componentes.atajos import Atajos
 from modelo.biblioteca import Biblioteca
 from vista.utiles.utiles_vista import *
 from utiles import UtilesGeneral
@@ -1757,6 +1758,14 @@ def abrir_estadisticas():
         print(f"Error al abrir las estadísticas: {e}")
 
 
+# Función para abrir la ventana de atajos
+def abrir_atajos():
+    try:
+        atajos.mostrar_ventana_atajos()
+    except Exception as e:
+        print(f"Error al abrir la ventana de atajos: {e}")
+
+
 # Función para abrir la ventana de cola de reproducción
 def abrir_cola_reproduccion():
     try:
@@ -1815,6 +1824,9 @@ configuracion = Configuracion(ventana_principal, controlador_tema)
 # Estadísticas
 estadisticas = Estadisticas(ventana_principal, controlador_tema, controlador_archivos, controlador_biblioteca)
 
+# Atajos
+atajos = Atajos(ventana_principal, controlador_tema)
+
 # Cola de reproducción
 cola_reproduccion = ColaReproduccion(
     ventana_principal,
@@ -1865,7 +1877,7 @@ controlador_tema.registrar_panel(contenedor_izquierda, es_ctk=True)
 contenedor_superior = ctk.CTkFrame(contenedor_izquierda, fg_color="transparent")
 contenedor_superior.pack(fill="both", padx=10, pady=(10, 3))
 
-# Botones de la parte superior
+# Boton de ajustes
 boton_ajustes = ctk.CTkButton(
     contenedor_superior,
     width=ANCHO_BOTON,
@@ -1878,10 +1890,11 @@ boton_ajustes = ctk.CTkButton(
     text="",
     command=abrir_configuracion,
 )
-boton_ajustes.pack(side=tk.RIGHT, padx=(5, 0))
+boton_ajustes.pack(side="right", padx=(5, 0))
 controlador_tema.registrar_botones("ajustes", boton_ajustes)
 crear_tooltip(boton_ajustes, "Configuración")
 
+# Botón de el tema del reproductor
 boton_tema = ctk.CTkButton(
     contenedor_superior,
     width=ANCHO_BOTON,
@@ -1894,10 +1907,11 @@ boton_tema = ctk.CTkButton(
     text="",
     command=cambiar_tema_vista,
 )
-boton_tema.pack(side=tk.RIGHT, padx=(5, 0))
+boton_tema.pack(side="right", padx=(5, 0))
 controlador_tema.registrar_botones("modo_oscuro", boton_tema)
 crear_tooltip(boton_tema, "Cambiar a oscuro")
 
+# Botón de el panel lateral
 boton_visibilidad = ctk.CTkButton(
     contenedor_superior,
     width=ANCHO_BOTON,
@@ -1910,12 +1924,12 @@ boton_visibilidad = ctk.CTkButton(
     text="",
     command=cambiar_visibilidad_vista,
 )
-boton_visibilidad.pack(side=tk.RIGHT, padx=(5, 0))
+boton_visibilidad.pack(side="right", padx=(5, 0))
 controlador_tema.registrar_botones("ocultar", boton_visibilidad)
 crear_tooltip(boton_visibilidad, "Ocultar lateral")
 
 
-# En el contenedor_superior, junto a los otros botones
+# Botón de estadísticas de reproducción
 boton_estadisticas = ctk.CTkButton(
     contenedor_superior,
     width=ANCHO_BOTON,
@@ -1928,9 +1942,26 @@ boton_estadisticas = ctk.CTkButton(
     text="",
     command=abrir_estadisticas,
 )
-boton_estadisticas.pack(side=tk.RIGHT)
+boton_estadisticas.pack(side="right", padx=(5, 0))
 controlador_tema.registrar_botones("estadistica", boton_estadisticas)
 crear_tooltip(boton_estadisticas, "Estadísticas de reproducción")
+
+# Botón de ayuda de atajos
+boton_atajos = ctk.CTkButton(
+    contenedor_superior,
+    width=ANCHO_BOTON,
+    height=ALTO_BOTON,
+    corner_radius=BORDES_REDONDEADOS_BOTON,
+    fg_color=controlador_tema.color_boton,
+    hover_color=controlador_tema.color_hover,
+    font=(LETRA, TAMANIO_LETRA_BOTON),
+    text_color=controlador_tema.color_texto,
+    text="",
+    command=abrir_atajos,
+)
+boton_atajos.pack(side="right")
+controlador_tema.registrar_botones("atajos", boton_atajos)
+crear_tooltip(boton_atajos, "Mostrar atajos de teclado")
 # -----------------------------------------------------------------------------------------------
 
 # ------------------------------- Seccion de imagen de la canción -------------------------------

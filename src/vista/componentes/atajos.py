@@ -13,6 +13,7 @@ class Atajos(UtilesGeneral):
         self.controlador_tema = controlador_tema
         self.componentes = []
 
+    # Método para crear la ventana de atajos
     def crear_ventana_atajos(self):
         # Establecer los colores de la interfaz
         self.colores()
@@ -33,6 +34,7 @@ class Atajos(UtilesGeneral):
             controlador=self.controlador_tema,
         )
 
+    # Método para mostrar la ventana de atajos
     def mostrar_ventana_atajos(self):
         if not hasattr(self, "ventana_atajos") or self.ventana_atajos is None:
             self.crear_ventana_atajos()
@@ -50,5 +52,6 @@ class Atajos(UtilesGeneral):
                 self.ventana_atajos = None
                 self.crear_ventana_atajos()
 
+    # Método para cerrar la ventana de atajos
     def cerrar_ventana_atajos(self):
         cerrar_ventana_modal(self.ventana_atajos, self.componentes, self.controlador_tema)

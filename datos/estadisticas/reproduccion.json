@@ -1,6 +1,6 @@
 {
     "artistas": {
-        "Anuel AA ft Sinfonico, Ñengo Flow": 7,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 8,
         "Metro Boomin ft Coi Leray": 8,
         "Nas ft Ms. Lauryn Hill": 8,
         "Kanye West ft André 3000": 14,
@@ -8,48 +8,48 @@
         "Eladio Carrion ft Bryant Myers": 10,
         "Tainy ft Sech, E.VAX": 14,
         "Bad Bunny": 11,
-        "Yan Block ft Panda Black": 7,
+        "Yan Block ft Panda Black": 8,
         "Daddy Yankee ft Anuel AA": 20,
         "Anuel AA": 7,
         "МЫ": 3,
         "Soge Culebra ft Mora, GARABATTO": 12,
-        "J Balvin ft Farruko": 9,
+        "J Balvin ft Farruko": 10,
         "Rels B": 8,
         "Sech": 3,
         "Feid": 19,
         "Lil Peep": 13
     },
     "albumes": {
-        "47 (Remix)": 7,
+        "47 (Remix)": 8,
         "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 8,
         "It Was Written": 8,
         "Donda (Deluxe)": 23,
         "Animal": 10,
         "DATA": 14,
         "EL ÚLTIMO TOUR DEL MUNDO": 11,
-        "444": 7,
+        "444": 8,
         "Adictiva": 20,
         "¿Qué Nos Pasó?": 7,
         "Ближе": 3,
         "7 Lágrimas (Remix)": 12,
-        "La Familia": 9,
+        "La Familia": 10,
         "A Mí": 8,
         "42": 3,
         "INTER SHIBUYA - LA MAFIA": 19,
         "Come Over When You're Sober, Pt. 2": 13
     },
-    "tiempo_total": 42192.20579464284,
-    "canciones_escuchadas": 182,
+    "tiempo_total": 43128.643345663244,
+    "canciones_escuchadas": 185,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "titulo": "Adictiva",
-        "artista": "Daddy Yankee ft Anuel AA",
-        "album": "Adictiva",
-        "timestamp": "2025-04-17T14:36:53.188718"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
+        "titulo": "444",
+        "artista": "Yan Block ft Panda Black",
+        "album": "444",
+        "timestamp": "2025-04-17T19:00:42.638724"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 7,
+            "contador": 8,
             "titulo": "47 (Remix)",
             "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
             "album": "47 (Remix)"
@@ -97,7 +97,7 @@
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\M\\444..mp3": {
-            "contador": 7,
+            "contador": 8,
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
@@ -127,7 +127,7 @@
             "album": "7 Lágrimas (Remix)"
         },
         "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3": {
-            "contador": 9,
+            "contador": 10,
             "titulo": "6 AM",
             "artista": "J Balvin ft Farruko",
             "album": "La Familia"

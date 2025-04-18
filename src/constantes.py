@@ -134,6 +134,7 @@ TAMANIO_LETRA_VOLUMEN = 13
 # ========================= Constantes ===================================
 # Tiempo de retroceso y avance
 TIEMPO_AJUSTE = 10
+AUMENTO_VOLUMEN = 5
 
 # ========================================================================
 

@@ -333,6 +333,47 @@ def retroceder_reproduccion_vista():
     crear_tooltip(boton_retroceder, f"Retrocede {TIEMPO_AJUSTE} segundos")
 
 
+# Función para aumentar el volumen en incrementos fijos
+def aumentar_volumen_vista():
+    global NIVEL_VOLUMEN, ESTADO_SILENCIO
+    # Si está silenciado, primero quitar el silencio
+    if ESTADO_SILENCIO:
+        actualizar_estado_silencio_vista(False)
+    # Calcular el nuevo nivel de volumen (máximo 100)
+    NIVEL_VOLUMEN = min(100, NIVEL_VOLUMEN + AUMENTO_VOLUMEN)
+    # Actualizar la barra de volumen visual
+    barra_volumen.set(NIVEL_VOLUMEN)
+    # Actualizar la etiqueta del porcentaje
+    etiqueta_porcentaje_volumen.configure(text=f"{NIVEL_VOLUMEN}%")
+    # Ajustar el volumen real
+    controlador_reproductor.ajustar_volumen_controlador(NIVEL_VOLUMEN)
+    # Actualizar los iconos según el nuevo nivel
+    actualizar_iconos()
+    # Guardar los ajustes
+    guardar_todos_ajustes()
+
+
+# Función para disminuir el volumen en incrementos fijos
+def disminuir_volumen_vista():
+    global NIVEL_VOLUMEN
+    # Calcular el nuevo nivel de volumen (mínimo 0)
+    NIVEL_VOLUMEN = max(0, NIVEL_VOLUMEN - AUMENTO_VOLUMEN)
+    # Actualizar la barra de volumen visual
+    barra_volumen.set(NIVEL_VOLUMEN)
+    # Actualizar la etiqueta del porcentaje
+    etiqueta_porcentaje_volumen.configure(text=f"{NIVEL_VOLUMEN}%")
+    # Si el volumen llega a cero, activar silencio
+    if NIVEL_VOLUMEN == 0:
+        actualizar_estado_silencio_vista(True)
+    else:
+        # Ajustar el volumen real
+        controlador_reproductor.ajustar_volumen_controlador(NIVEL_VOLUMEN)
+        # Actualizar los iconos según el nuevo nivel
+        actualizar_iconos()
+    # Guardar los ajustes
+    guardar_todos_ajustes()
+
+
 # Función para cambiar el volumen
 def cambiar_volumen_vista(_event=None):
     global NIVEL_VOLUMEN, ESTADO_SILENCIO
@@ -1894,7 +1935,7 @@ boton_ajustes.pack(side="right", padx=(5, 0))
 controlador_tema.registrar_botones("ajustes", boton_ajustes)
 crear_tooltip(boton_ajustes, "Configuración")
 
-# Botón de el tema del reproductor
+# Botón del tema del reproductor
 boton_tema = ctk.CTkButton(
     contenedor_superior,
     width=ANCHO_BOTON,
@@ -1911,7 +1952,7 @@ boton_tema.pack(side="right", padx=(5, 0))
 controlador_tema.registrar_botones("modo_oscuro", boton_tema)
 crear_tooltip(boton_tema, "Cambiar a oscuro")
 
-# Botón de el panel lateral
+# Botón del panel lateral
 boton_visibilidad = ctk.CTkButton(
     contenedor_superior,
     width=ANCHO_BOTON,
@@ -1975,7 +2016,7 @@ imagen_cancion = ctk.CTkLabel(
     width=300,
     height=300,
     fg_color="transparent",
-    font=(LETRA, TAMANIO_LETRA_VOLUMEN),
+    font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=controlador_tema.color_texto,
     text="Sin carátula",
 )
@@ -2561,9 +2602,6 @@ cargar_todos_ajustes()
 
 # Establecer volumen inicial
 controlador_reproductor.ajustar_volumen_controlador(NIVEL_VOLUMEN if not ESTADO_SILENCIO else 0)
-
-# Muestre el icono del volumen actual de la barra de volumen
-# cambiar_volumen_vista(None)
 
 # Actualizar los botones de la interfaz al iniciar la ejecución
 actualizar_iconos()

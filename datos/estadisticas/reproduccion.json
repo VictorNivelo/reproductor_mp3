@@ -12,12 +12,12 @@
         "Daddy Yankee ft Anuel AA": 20,
         "Anuel AA": 7,
         "МЫ": 3,
-        "Soge Culebra ft Mora, GARABATTO": 12,
+        "Soge Culebra ft Mora, GARABATTO": 13,
         "J Balvin ft Farruko": 10,
         "Rels B": 8,
         "Sech": 3,
         "Feid": 19,
-        "Lil Peep": 13
+        "Lil Peep": 14
     },
     "albumes": {
         "47 (Remix)": 8,
@@ -31,21 +31,21 @@
         "Adictiva": 20,
         "¿Qué Nos Pasó?": 7,
         "Ближе": 3,
-        "7 Lágrimas (Remix)": 12,
+        "7 Lágrimas (Remix)": 13,
         "La Familia": 10,
         "A Mí": 8,
         "42": 3,
         "INTER SHIBUYA - LA MAFIA": 19,
-        "Come Over When You're Sober, Pt. 2": 13
+        "Come Over When You're Sober, Pt. 2": 14
     },
-    "tiempo_total": 43128.643345663244,
-    "canciones_escuchadas": 185,
+    "tiempo_total": 43582.88661096936,
+    "canciones_escuchadas": 187,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
-        "titulo": "444",
-        "artista": "Yan Block ft Panda Black",
-        "album": "444",
-        "timestamp": "2025-04-17T19:00:42.638724"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3",
+        "titulo": "16 Lines",
+        "artista": "Lil Peep",
+        "album": "Come Over When You're Sober, Pt. 2",
+        "timestamp": "2025-04-19T17:24:27.435654"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
@@ -121,7 +121,7 @@
             "album": "Ближе"
         },
         "C:\\Users\\Victor\\Music\\Musica\\7 Lagrimas (Remix).mp3": {
-            "contador": 12,
+            "contador": 13,
             "titulo": "7 Lagrimas (Remix)",
             "artista": "Soge Culebra ft Mora, GARABATTO",
             "album": "7 Lágrimas (Remix)"
@@ -151,7 +151,7 @@
             "album": "INTER SHIBUYA - LA MAFIA"
         },
         "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3": {
-            "contador": 13,
+            "contador": 14,
             "titulo": "16 Lines",
             "artista": "Lil Peep",
             "album": "Come Over When You're Sober, Pt. 2"

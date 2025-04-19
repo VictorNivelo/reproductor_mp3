@@ -139,8 +139,6 @@ class Estadisticas(UtilesGeneral):
             panel_padre,
             fg_color=self.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
-            border_width=1,
-            border_color=self.color_borde,
         )
         panel_resumen.pack(fill="x", padx=5, pady=(5, 0))
         self.componentes.append(panel_resumen)
@@ -210,8 +208,6 @@ class Estadisticas(UtilesGeneral):
             panel_padre,
             fg_color=self.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
-            border_width=1,
-            border_color=self.color_borde,
         )
         panel_tarjeta_cancion.pack(fill="x", padx=5, pady=(5, 0))
         self.componentes.append(panel_tarjeta_cancion)
@@ -350,8 +346,6 @@ class Estadisticas(UtilesGeneral):
             panel_padre,
             fg_color=self.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
-            border_width=1,
-            border_color=self.color_borde,
         )
         panel_tarjeta_artista.pack(fill="x", padx=5, pady=(5, 0))
         self.componentes.append(panel_tarjeta_artista)
@@ -421,8 +415,6 @@ class Estadisticas(UtilesGeneral):
             panel_padre,
             fg_color=self.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
-            border_width=1,
-            border_color=self.color_borde,
         )
         panel_tarjeta_album.pack(fill="x", padx=5, pady=(5, 0))
         self.componentes.append(panel_tarjeta_album)
@@ -530,8 +522,6 @@ class Estadisticas(UtilesGeneral):
             panel_padre,
             fg_color=self.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
-            border_width=1,
-            border_color=self.color_borde,
         )
         panel_ultima_escuchada.pack(fill="x", padx=5, pady=(5, 0))
         self.componentes.append(panel_ultima_escuchada)

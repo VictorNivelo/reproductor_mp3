@@ -231,4 +231,4 @@ class Cancion:
 # print(f"Número de pista: {cancion.numero_pista}")
 # print(f"Duración: {cancion.duracion} segundos")
 # print(f"Duración formateada: {cancion.duracion_formateada}")
-# print(f"Tiene carátula: {cancion.caratula_cancion is not None}")
+# print(f"Tiene carátula: {cancion.caratula_cancion is not None}"()

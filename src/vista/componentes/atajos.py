@@ -42,7 +42,7 @@ class Atajos(UtilesGeneral):
             try:
                 if self.ventana_atajos.winfo_exists():
                     self.colores()
-                    establecer_icono_tema(self.ventana_configuracion, self.controlador_tema.tema_interfaz)
+                    establecer_icono_tema(self.ventana_atajos, self.controlador_tema.tema_interfaz)
                     self.ventana_atajos.deiconify()
                 else:
                     self.ventana_atajos = None

@@ -344,6 +344,53 @@ class ControladorArchivos:
             print(f"Error al registrar reproducción: {str(e)}")
             return False
 
+    # Guardar los atajos en un archivo JSON
+    @staticmethod
+    def guardar_atajos_json_controlador(atajos):
+        try:
+            # Asegurarse de que exista el directorio
+            directorio = os.path.dirname(RUTA_ATAJOS)
+            if not os.path.exists(directorio):
+                os.makedirs(directorio)
+            # Guardar los atajos
+            contenido = json.dumps(atajos, ensure_ascii=False, indent=4)
+            with open(RUTA_ATAJOS, "w", encoding="utf-8") as archivo:
+                archivo.write(contenido)
+            return True
+        except Exception as e:
+            print(f"Error al guardar los atajos: {str(e)}")
+            return False
+
+    # Cargar los atajos desde un archivo JSON
+    def cargar_atajos_json_controlador(self):
+        # Estructura con atajos predeterminados
+        atajos_por_defecto = {
+            "reproducir_pausar": "space",
+            "siguiente": "Control-Right",
+            "anterior": "Control-Left",
+            "aumentar_volumen": "Up",
+            "disminuir_volumen": "Down",
+            "silenciar": "m",
+            "modo_aleatorio": "s",
+            "repeticion": "r",
+            "visibilidad_panel": "l",
+            "me_gusta": "g",
+            "favorito": "f",
+            "cola": "c",
+            "mini_reproductor": "p",
+            "adelantar": "Right",
+            "retroceder": "Left",
+        }
+        try:
+            # Verificar que exista el archivo
+            self.verificar_archivo_json(RUTA_ATAJOS, atajos_por_defecto)
+            # Cargar los atajos
+            with open(RUTA_ATAJOS, "r", encoding="utf-8") as archivo:
+                return json.load(archivo)
+        except Exception as e:
+            print(f"Error al cargar los atajos: {str(e)}")
+            return atajos_por_defecto
+
     # Obtener las estadísticas de reproducción
     def obtener_estadisticas_json_controlador(self):
         estructura_reproduccion = {

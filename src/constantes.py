@@ -10,7 +10,7 @@ ANCHO_CONFIGURACION = 400
 ALTO_CONFIGURACION = 500
 
 # Tamaño de la ventana de atajos
-ANCHO_ATAJOS = 400
+ANCHO_ATAJOS = 450
 ALTO_ATAJOS = 500
 
 # Tamaño minireproductor
@@ -86,6 +86,7 @@ RUTA_FAVORITOS = os.path.join(RUTA_CARPETA_FAVORITOS, "favorito.json")
 RUTA_ME_GUSTA = os.path.join(RUTA_CARPETA_ME_GUSTA, "me_gusta.json")
 RUTA_REPRODUCCION = os.path.join(RUTA_CARPETA_ESTADISTICAS, "reproduccion.json")
 RUTA_CONFIGURACION = os.path.join(RUTA_CARPETA_CONFIGURACION, "ajustes.json")
+RUTA_ATAJOS = os.path.join(RUTA_CARPETA_CONFIGURACION, "atajos.json")
 
 # ========================================================================
 

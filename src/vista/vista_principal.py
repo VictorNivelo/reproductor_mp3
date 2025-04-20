@@ -6,6 +6,7 @@ from vista.componentes.mini_reproductor import MiniReproductor
 from vista.componentes.configuracion import Configuracion
 from controlador.controlador_tema import ControladorTema
 from vista.componentes.estadisticas import Estadisticas
+from vista.utiles.utiles_atajos import GestorAtajos
 from vista.utiles.utiles_scroll import GestorScroll
 from vista.componentes.atajos import Atajos
 from modelo.biblioteca import Biblioteca
@@ -1833,26 +1834,6 @@ posicion_alto = (alto_pantalla - ALTO_PRINCIPAL) // 3
 # Establecer la geometría de la ventana
 ventana_principal.geometry(f"{ANCHO_PRINCIPAL}x{ALTO_PRINCIPAL}+{posicion_ancho}+{posicion_alto}")
 
-# =========================================== Atajos ============================================
-# Atajos de teclado para controlar el reproductor
-ventana_principal.bind("<Up>", lambda event: aumentar_volumen_vista())
-ventana_principal.bind("<Down>", lambda event: disminuir_volumen_vista())
-ventana_principal.bind("<space>", lambda event: reproducir_vista())
-ventana_principal.bind("<Left>", lambda event: retroceder_reproduccion_vista())
-ventana_principal.bind("<Right>", lambda event: adelantar_reproduccion_vista())
-ventana_principal.bind("<Control-Left>", lambda event: reproducir_anterior_vista())
-ventana_principal.bind("<Control-Right>", lambda event: reproducir_siguiente_vista())
-ventana_principal.bind("m", lambda event: cambiar_silencio_vista())
-ventana_principal.bind("r", lambda event: cambiar_repeticion_vista())
-ventana_principal.bind("s", lambda event: cambiar_orden_vista())
-ventana_principal.bind("l", lambda event: cambiar_visibilidad_vista())
-ventana_principal.bind("f", lambda event: cambiar_favorito_vista())
-ventana_principal.bind("g", lambda event: cambiar_me_gusta_vista())
-ventana_principal.bind("c", lambda event: abrir_cola_reproduccion())
-ventana_principal.bind("p", lambda event: abrir_minireproductor())
-
-# ===============================================================================================
-
 # ========================================= Utilidades ==========================================
 # Biblioteca de canciones
 biblioteca = Biblioteca()
@@ -1899,7 +1880,6 @@ cambiar_icono_tema(APARIENCIA)
 # ===============================================================================================
 
 # ==================================== Componentes gráficos =====================================
-
 # Mini reproductor
 mini_reproductor = MiniReproductor(ventana_principal, controlador_tema, controlador_reproductor)
 
@@ -1921,6 +1901,49 @@ cola_reproduccion = ColaReproduccion(
 )
 
 # ===============================================================================================
+
+# =========================================== Atajos ============================================
+# Cargar atajos personalizados
+gestor_atajos = GestorAtajos()
+
+# Mapeo de acciones a funciones
+mapeo_acciones = {
+    "reproducir_pausar": lambda event: reproducir_vista(),
+    "siguiente": lambda event: reproducir_siguiente_vista(),
+    "anterior": lambda event: reproducir_anterior_vista(),
+    "aumentar_volumen": lambda event: aumentar_volumen_vista(),
+    "disminuir_volumen": lambda event: disminuir_volumen_vista(),
+    "silenciar": lambda event: cambiar_silencio_vista(),
+    "modo_aleatorio": lambda event: cambiar_orden_vista(),
+    "repeticion": lambda event: cambiar_repeticion_vista(),
+    "visibilidad_panel": lambda event: cambiar_visibilidad_vista(),
+    "me_gusta": lambda event: cambiar_me_gusta_vista(),
+    "favorito": lambda event: cambiar_favorito_vista(),
+    "cola": lambda event: abrir_cola_reproduccion(),
+    "mini_reproductor": lambda event: abrir_minireproductor(),
+    "adelantar": lambda event: adelantar_reproduccion_vista(),
+    "retroceder": lambda event: retroceder_reproduccion_vista(),
+}
+
+# Lista de teclas que requieren sintaxis especial en Tkinter
+teclas_especiales = ["space", "Return", "BackSpace", "Tab", "Escape", "Delete"]
+
+# Enlazar los atajos personalizados
+for accion, funcion in mapeo_acciones.items():
+    atajo = gestor_atajos.obtener_atajo(accion)
+    if atajo:
+        if "-" in atajo:
+            # Combinación de teclas (e.g., "Control-Right")
+            ventana_principal.bind(f"<{atajo}>", funcion)
+        elif atajo in teclas_especiales:
+            # Teclas especiales que requieren sintaxis <space> en vez de ' '
+            ventana_principal.bind(f"<{atajo}>", funcion)
+        else:
+            # Tecla simple (e.g., "a", "1", etc.)
+            ventana_principal.bind(atajo, funcion)
+
+# ===============================================================================================
+
 
 # ***********************************************************************************************
 

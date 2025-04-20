@@ -63,6 +63,7 @@ def cargar_iconos(tema="claro", tamanio=None):
         "editar": "editar",
         "guardar": "guardar",
         "eliminar": "eliminar",
+        "restaurar": "restaurar",
         "quitar": "quitar",
         "limpiar": "limpiar",
         "buscar": "buscar",

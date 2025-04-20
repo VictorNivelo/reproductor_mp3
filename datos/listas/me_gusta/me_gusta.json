@@ -99,20 +99,6 @@
             "favorito": false
         },
         {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3",
-            "titulo": "16 Lines",
-            "artista": "Lil Peep",
-            "artista_album": "Lil Peep",
-            "album": "Come Over When You're Sober, Pt. 2",
-            "duracion": 244.95020408163265,
-            "duracion_formateada": "04:04",
-            "anio": "2018-11-09",
-            "numero_pista": "6",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
-        },
-        {
             "ruta": "C:\\Users\\Victor\\Music\\Musica\\7 Lagrimas (Remix).mp3",
             "titulo": "7 Lagrimas (Remix)",
             "artista": "Soge Culebra ft Mora, GARABATTO",
@@ -167,6 +153,20 @@
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3",
+            "titulo": "16 Lines",
+            "artista": "Lil Peep",
+            "artista_album": "Lil Peep",
+            "album": "Come Over When You're Sober, Pt. 2",
+            "duracion": 244.95020408163265,
+            "duracion_formateada": "04:04",
+            "anio": "2018-11-09",
+            "numero_pista": "6",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
         }
     ]
 }

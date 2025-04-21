@@ -1929,18 +1929,18 @@ mapeo_acciones = {
 teclas_especiales = ["space", "Return", "BackSpace", "Tab", "Escape", "Delete"]
 
 # Enlazar los atajos personalizados
-for accion, funcion in mapeo_acciones.items():
+for accion, metodo in mapeo_acciones.items():
     atajo = gestor_atajos.obtener_atajo(accion)
     if atajo:
         if "-" in atajo:
             # Combinación de teclas (e.g., "Control-Right")
-            ventana_principal.bind(f"<{atajo}>", funcion)
+            ventana_principal.bind(f"<{atajo}>", metodo)
         elif atajo in teclas_especiales:
-            # Teclas especiales que requieren sintaxis <space> en vez de ' '
-            ventana_principal.bind(f"<{atajo}>", funcion)
+            # Teclas especiales que requieren sintaxis
+            ventana_principal.bind(f"<{atajo}>", metodo)
         else:
             # Tecla simple (e.g., "a", "1", etc.)
-            ventana_principal.bind(atajo, funcion)
+            ventana_principal.bind(atajo, metodo)
 
 # ===============================================================================================
 

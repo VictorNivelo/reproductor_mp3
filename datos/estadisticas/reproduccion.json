@@ -1,61 +1,63 @@
 {
     "artistas": {
-        "Anuel AA ft Sinfonico, Ñengo Flow": 8,
-        "Metro Boomin ft Coi Leray": 8,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 10,
+        "Metro Boomin ft Coi Leray": 9,
         "Nas ft Ms. Lauryn Hill": 8,
         "Kanye West ft André 3000": 14,
         "Kanye West": 9,
         "Eladio Carrion ft Bryant Myers": 10,
-        "Tainy ft Sech, E.VAX": 14,
+        "Tainy ft Sech, E.VAX": 17,
         "Bad Bunny": 11,
         "Yan Block ft Panda Black": 8,
         "Daddy Yankee ft Anuel AA": 20,
         "Anuel AA": 7,
         "МЫ": 3,
         "Soge Culebra ft Mora, GARABATTO": 13,
-        "J Balvin ft Farruko": 10,
-        "Rels B": 8,
-        "Sech": 3,
+        "J Balvin ft Farruko": 11,
+        "Rels B": 9,
+        "Sech": 4,
         "Feid": 19,
-        "Lil Peep": 14
+        "Lil Peep": 14,
+        "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN": 1
     },
     "albumes": {
-        "47 (Remix)": 8,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 8,
+        "47 (Remix)": 10,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 9,
         "It Was Written": 8,
         "Donda (Deluxe)": 23,
         "Animal": 10,
-        "DATA": 14,
+        "DATA": 17,
         "EL ÚLTIMO TOUR DEL MUNDO": 11,
         "444": 8,
         "Adictiva": 20,
         "¿Qué Nos Pasó?": 7,
         "Ближе": 3,
         "7 Lágrimas (Remix)": 13,
-        "La Familia": 10,
-        "A Mí": 8,
-        "42": 3,
+        "La Familia": 11,
+        "A Mí": 9,
+        "42": 4,
         "INTER SHIBUYA - LA MAFIA": 19,
-        "Come Over When You're Sober, Pt. 2": 14
+        "Come Over When You're Sober, Pt. 2": 14,
+        "Chosen Few: New Generation": 1
     },
-    "tiempo_total": 43582.88661096936,
-    "canciones_escuchadas": 187,
+    "tiempo_total": 46360.265713010165,
+    "canciones_escuchadas": 197,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3",
-        "titulo": "16 Lines",
-        "artista": "Lil Peep",
-        "album": "Come Over When You're Sober, Pt. 2",
-        "timestamp": "2025-04-19T17:24:27.435654"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "titulo": "11 Y ONCE",
+        "artista": "Tainy ft Sech, E.VAX",
+        "album": "DATA",
+        "timestamp": "2025-04-28T19:29:53.469482"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 8,
+            "contador": 10,
             "titulo": "47 (Remix)",
             "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
             "album": "47 (Remix)"
         },
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 8,
+            "contador": 9,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
@@ -85,7 +87,7 @@
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 14,
+            "contador": 17,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
@@ -127,19 +129,19 @@
             "album": "7 Lágrimas (Remix)"
         },
         "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3": {
-            "contador": 10,
+            "contador": 11,
             "titulo": "6 AM",
             "artista": "J Balvin ft Farruko",
             "album": "La Familia"
         },
         "C:\\Users\\Victor\\Music\\Musica\\A Mí.mp3": {
-            "contador": 8,
+            "contador": 9,
             "titulo": "A Mí",
             "artista": "Rels B",
             "album": "A Mí"
         },
         "C:\\Users\\Victor\\Music\\Musica\\¿Qué Somos.mp3": {
-            "contador": 3,
+            "contador": 4,
             "titulo": "¿Qué Somos?",
             "artista": "Sech",
             "album": "42"
@@ -155,6 +157,12 @@
             "titulo": "16 Lines",
             "artista": "Lil Peep",
             "album": "Come Over When You're Sober, Pt. 2"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\0 Sentimientos (Remix).mp3": {
+            "contador": 1,
+            "titulo": "0 Sentimientos (Remix)",
+            "artista": "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN",
+            "album": "Chosen Few: New Generation"
         }
     }
 }

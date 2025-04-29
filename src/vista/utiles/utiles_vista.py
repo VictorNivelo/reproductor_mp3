@@ -9,7 +9,7 @@ lista_tooltips = {}
 
 
 # Método para obtener la ruta de los iconos de la aplicación
-def cargar_iconos(tema="claro", tamanio=None):
+def cargar_icono(tema="claro", tamanio=None):
     iconos = {}
     # Tamaño de los iconos
     tamanio_iconos = tamanio if tamanio else (ANCHO_IMAGEN, ALTO_IMAGEN)
@@ -39,6 +39,7 @@ def cargar_iconos(tema="claro", tamanio=None):
         # Botones varios
         "ajustes": "ajustes",
         "opcion": "opcion",
+        "mas_opciones": "mas_opciones",
         "atajos": "atajos",
         "estadistica": "estadistica",
         "agregar_carpeta": "agregar_carpeta",
@@ -102,7 +103,7 @@ def cargar_iconos(tema="claro", tamanio=None):
 
 
 # Método para cargar un único icono con tamaño personalizado
-def cargar_icono_personalizado(nombre, tema="claro", tamanio=None):
+def cargar_icono_con_tamanio(nombre, tema="claro", tamanio=None):
     try:
         # Determinar si el icono requiere tema
         if nombre in ["me_gusta_rojo", "favorito_amarillo"]:
@@ -154,12 +155,15 @@ def crear_tooltip(componente, texto):
 
 # Método para actualizar el texto de un tooltip existente
 def actualizar_texto_tooltip(componente, nuevo_texto):
-    if componente in lista_tooltips:
-        # Si el tooltip existe, actualizar su texto
-        lista_tooltips[componente].texto_componente = nuevo_texto
-    else:
-        # Si no existe, crear uno nuevo
-        crear_tooltip(componente, nuevo_texto)
+    try:
+        if componente in lista_tooltips:
+            # Si el tooltip existe, actualizar su texto
+            lista_tooltips[componente].texto_componente = nuevo_texto
+        else:
+            # Si no existe, crear uno nuevo
+            crear_tooltip(componente, nuevo_texto)
+    except Exception as e:
+        print(f"Error al actualizar el texo del tooltip: {e}")
 
 
 # Método para eliminar un tooltip existente

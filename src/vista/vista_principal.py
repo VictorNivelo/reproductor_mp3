@@ -139,7 +139,7 @@ def actualizar_iconos():
                 for componente in frame.winfo_children():
                     if isinstance(componente, ctk.CTkButton) and componente != boton:
                         # Actualizar el icono del botón de opciones
-                        icono_opcion = cargar_icono_personalizado(
+                        icono_opcion = cargar_icono_con_tamanio(
                             "opcion", controlador_tema.tema_iconos, (15, 20)
                         )
                         componente.configure(image=icono_opcion)
@@ -961,7 +961,7 @@ def crear_boton_cancion(cancion, panel):
 
     # ------------------------------------ Boton de opciones ------------------------------------
     # Cargar icono de opciones
-    icono_opcion = cargar_icono_personalizado("opcion", controlador_tema.tema_iconos, (15, 20))
+    icono_opcion = cargar_icono_con_tamanio("opcion", controlador_tema.tema_iconos, (15, 20))
     # Botón de opciones
     boton_opciones = ctk.CTkButton(
         panel_lista_cancion,
@@ -1397,7 +1397,7 @@ def mostrar_detalle_cancion(pagina, elemento, funcion_regresar):
     # -------------------------------------------------------------------------------------------
     # ------------------------------------- Botón regresar --------------------------------------
     # Icono de regresar
-    icono_regresar = cargar_icono_personalizado("regresar", controlador_tema.tema_iconos, (12, 12))
+    icono_regresar = cargar_icono_con_tamanio("regresar", controlador_tema.tema_iconos, (12, 12))
     # Botón para volver a la lista
     boton_regresar = ctk.CTkButton(
         panel_superior,
@@ -2089,7 +2089,7 @@ contenedor_informacion.pack(fill="both", padx=10, pady=5)
 # Etiqueta de información de la canción
 etiqueta_nombre_cancion = ctk.CTkLabel(
     contenedor_informacion,
-    height=23,
+    height=20,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=controlador_tema.color_texto,
@@ -2100,7 +2100,7 @@ controlador_tema.registrar_etiqueta(etiqueta_nombre_cancion)
 
 etiqueta_artista_cancion = ctk.CTkLabel(
     contenedor_informacion,
-    height=23,
+    height=20,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=controlador_tema.color_texto,
@@ -2111,7 +2111,7 @@ controlador_tema.registrar_etiqueta(etiqueta_artista_cancion)
 
 etiqueta_album_cancion = ctk.CTkLabel(
     contenedor_informacion,
-    height=23,
+    height=20,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=controlador_tema.color_texto,
@@ -2122,7 +2122,7 @@ controlador_tema.registrar_etiqueta(etiqueta_album_cancion)
 
 etiqueta_anio_cancion = ctk.CTkLabel(
     contenedor_informacion,
-    height=23,
+    height=20,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=controlador_tema.color_texto,
@@ -2482,7 +2482,7 @@ etiqueta_porcentaje_volumen = ctk.CTkLabel(
     panel_elementos_volumen,
     width=35,
     fg_color="transparent",
-    font=(LETRA, TAMANIO_LETRA_VOLUMEN),
+    font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=controlador_tema.color_texto,
     text=f"{NIVEL_VOLUMEN}%",
 )

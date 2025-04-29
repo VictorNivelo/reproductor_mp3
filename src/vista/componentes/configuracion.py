@@ -60,10 +60,10 @@ class Configuracion(UtilesGeneral):
         # titulo del modal
         etiqueta_titulo = ctk.CTkLabel(
             panel_principal_configuracion,
-            text="Configuración",
-            font=(LETRA, TAMANIO_LETRA_ETIQUETA + 4),
-            text_color=self.color_texto,
             fg_color="transparent",
+            font=(LETRA, TAMANIO_LETRA_TITULO, "bold"),
+            text_color=self.color_texto,
+            text="Configuración",
         )
         etiqueta_titulo.pack(pady=5)
         self.componentes.append(etiqueta_titulo)

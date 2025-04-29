@@ -97,7 +97,7 @@ class MiniReproductor(UtilesGeneral):
             height=20,
             text_color=self.color_texto,
             text="Sin reproducción",
-            font=(LETRA, TAMANIO_LETRA_ETIQUETA - 1),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             fg_color="transparent",
         )
         self.etiqueta_nombre_cancion_mini.pack()
@@ -110,7 +110,7 @@ class MiniReproductor(UtilesGeneral):
             height=20,
             text_color=self.color_texto,
             text="",
-            font=(LETRA, TAMANIO_LETRA_ETIQUETA - 1),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             fg_color="transparent",
         )
         self.etiqueta_artista_mini.pack()
@@ -123,7 +123,7 @@ class MiniReproductor(UtilesGeneral):
             height=20,
             text_color=self.color_texto,
             text="",
-            font=(LETRA, TAMANIO_LETRA_ETIQUETA - 1),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             fg_color="transparent",
         )
         self.etiqueta_album_mini.pack()
@@ -163,7 +163,7 @@ class MiniReproductor(UtilesGeneral):
             height=20,
             text_color=self.color_texto,
             text="00:00",
-            font=(LETRA, TAMANIO_LETRA_TIEMPO - 1),
+            font=(LETRA, TAMANIO_LETRA_TIEMPO),
             fg_color="transparent",
         )
         self.etiqueta_tiempo_inicio_mini.pack(side="left")
@@ -176,7 +176,7 @@ class MiniReproductor(UtilesGeneral):
             height=20,
             text_color=self.color_texto,
             text="00:00",
-            font=(LETRA, TAMANIO_LETRA_TIEMPO - 1),
+            font=(LETRA, TAMANIO_LETRA_TIEMPO),
             fg_color="transparent",
         )
         self.etiqueta_tiempo_final_mini.pack(side="right")

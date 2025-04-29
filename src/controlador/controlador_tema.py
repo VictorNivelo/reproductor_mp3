@@ -1,4 +1,4 @@
-from vista.utiles.utiles_vista import cargar_icono_personalizado, cargar_iconos
+from vista.utiles.utiles_vista import cargar_icono_con_tamanio, cargar_icono
 from utiles import UtilesGeneral
 import customtkinter as ctk
 
@@ -7,7 +7,7 @@ class ControladorTema(UtilesGeneral):
     def __init__(self):
         super().__init__()
         # Iconos de la interfaz
-        self.iconos = cargar_iconos(self.tema_iconos)
+        self.iconos = cargar_icono(self.tema_iconos)
         # Diccionario de botones
         self.botones = {}
         self.paneles = []
@@ -31,7 +31,7 @@ class ControladorTema(UtilesGeneral):
         self.botones[nombre] = boton
         if tamano:
             # Cargar icono con tamaño personalizado
-            icono = cargar_icono_personalizado(nombre, self.tema_iconos, tamano)
+            icono = cargar_icono_con_tamanio(nombre, self.tema_iconos, tamano)
             if icono:
                 boton.configure(image=icono)
                 # Guardar referencia para evitar el recolector de basura
@@ -229,7 +229,7 @@ class ControladorTema(UtilesGeneral):
     def cambiar_tema_controlador(self):
         self.tema_interfaz = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.tema_iconos = "oscuro" if self.tema_interfaz == "claro" else "claro"
-        self.iconos = cargar_iconos(self.tema_iconos)
+        self.iconos = cargar_icono(self.tema_iconos)
         self.establecer_apariencia_global_controlador()
         self.colores()
         # Limpiar componentes destruidos antes de actualizar

@@ -1,6 +1,6 @@
 from vista.componentes.utiles.utiles_componentes import configurar_ventana_modal, cerrar_ventana_modal
 from controlador.controlador_archivos import ControladorArchivos
-from vista.utiles.utiles_vista import cargar_icono_personalizado
+from vista.utiles.utiles_vista import cargar_icono_con_tamanio
 from vista.utiles.utiles_scroll import GestorScroll
 from utiles import UtilesGeneral
 import customtkinter as ctk
@@ -93,7 +93,7 @@ class ColaReproduccion(UtilesGeneral):
             panel_principal_cola,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 16, "bold"),
+            font=(LETRA, TAMANIO_LETRA_TITULO, "bold"),
             text_color=self.color_texto,
             text="Cola de reproducción",
         )
@@ -110,7 +110,7 @@ class ColaReproduccion(UtilesGeneral):
             panel_principal_cola,
             height=14,
             fg_color="transparent",
-            font=(LETRA, 11),
+            font=(LETRA, TAMANIO_LETRA_TIEMPO),
             text_color=self.color_texto,
             text=f"Duración total: {duracion_total}",
         )
@@ -136,7 +136,7 @@ class ColaReproduccion(UtilesGeneral):
         etiqueta_reproduciendo = ctk.CTkLabel(
             panel_cancion_actual,
             height=15,
-            font=(LETRA, 13, "bold"),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA, "bold"),
             text_color=self.color_texto,
             text="Reproduciendo ahora:",
         )
@@ -176,7 +176,7 @@ class ColaReproduccion(UtilesGeneral):
         etiqueta_proximas = ctk.CTkLabel(
             panel_componentes,
             height=15,
-            font=(LETRA, 13, "bold"),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA, "bold"),
             text_color=self.color_texto,
             text="Próximas canciones:",
         )
@@ -188,7 +188,6 @@ class ColaReproduccion(UtilesGeneral):
         # ---------------------------------------- Botón limpiar cola ------------------------------------
         # Botón para limpiar toda la cola
         if self.controlador_reproductor.lista_reproduccion:
-            icono_limpiar = cargar_icono_personalizado("limpiar", self.controlador_tema.tema_iconos, (15, 15))
             boton_limpiar_cola = ctk.CTkButton(
                 panel_componentes,
                 width=ANCHO_BOTON + 2,
@@ -199,11 +198,11 @@ class ColaReproduccion(UtilesGeneral):
                 font=(LETRA, TAMANIO_LETRA_BOTON),
                 text_color=self.color_texto,
                 text="Limpiar cola",
-                image=icono_limpiar,
                 command=self.limpiar_cola,
             )
             boton_limpiar_cola.pack(side="right")
             self.componentes.append(boton_limpiar_cola)
+            self.controlador_tema.registrar_botones_con_tamano("limpiar", boton_limpiar_cola, (15, 15))
             # self.controlador_tema.registrar_botones("limpiar", boton_limpiar_cola)
         # ------------------------------------------------------------------------------------------------
 
@@ -315,7 +314,7 @@ class ColaReproduccion(UtilesGeneral):
                 informacion_cancion,
                 height=19,
                 fg_color="transparent",
-                font=(LETRA, 14, "bold"),
+                font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION, "bold"),
                 text_color=self.color_texto,
                 text=cancion_actual.titulo_cancion,
             )
@@ -330,7 +329,7 @@ class ColaReproduccion(UtilesGeneral):
                 informacion_cancion,
                 height=19,
                 fg_color="transparent",
-                font=(LETRA, 12),
+                font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
                 text_color=self.color_texto,
                 text=cancion_actual.artista,
             )
@@ -345,7 +344,7 @@ class ColaReproduccion(UtilesGeneral):
                 informacion_cancion,
                 height=19,
                 fg_color="transparent",
-                font=(LETRA, 12, "italic"),
+                font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION, "italic"),
                 text_color=self.color_texto,
                 text=cancion_actual.album,
             )
@@ -370,7 +369,7 @@ class ColaReproduccion(UtilesGeneral):
                 panel_sin_cancion,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, 12, "italic"),
+                font=(LETRA, TAMANIO_LETRA_MENSAJE, "italic"),
                 text_color=self.color_texto,
                 text="No hay ninguna canción en reproducción",
             )
@@ -394,7 +393,7 @@ class ColaReproduccion(UtilesGeneral):
                 panel,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, 12, "italic"),
+                font=(LETRA, TAMANIO_LETRA_MENSAJE, "italic"),
                 text_color=self.color_texto,
                 text="La cola de reproducción está vacía",
             )
@@ -413,7 +412,7 @@ class ColaReproduccion(UtilesGeneral):
                     panel,
                     height=15,
                     fg_color="transparent",
-                    font=(LETRA, 12, "italic"),
+                    font=(LETRA, TAMANIO_LETRA_MENSAJE, "italic"),
                     text_color=self.color_texto,
                     text="La canción actual se repetirá",
                 )
@@ -428,7 +427,7 @@ class ColaReproduccion(UtilesGeneral):
                 panel,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, 12, "italic"),
+                font=(LETRA, TAMANIO_LETRA_MENSAJE, "italic"),
                 text_color=self.color_texto,
                 text="Modo aleatorio activado - las canciones se elegirán al azar",
             )
@@ -446,7 +445,7 @@ class ColaReproduccion(UtilesGeneral):
                     panel,
                     height=15,
                     fg_color="transparent",
-                    font=(LETRA, 12, "italic"),
+                    font=(LETRA, TAMANIO_LETRA_MENSAJE, "italic"),
                     text_color=self.color_texto,
                     text="Se reiniciará la reproducción aleatoria de todas las canciones",
                 )
@@ -466,7 +465,7 @@ class ColaReproduccion(UtilesGeneral):
                     panel,
                     height=15,
                     fg_color="transparent",
-                    font=(LETRA, 12, "italic"),
+                    font=(LETRA, TAMANIO_LETRA_MENSAJE, "italic"),
                     text_color=self.color_texto,
                     text="Se reiniciará la reproducción desde el principio",
                 )
@@ -502,7 +501,7 @@ class ColaReproduccion(UtilesGeneral):
                 width=20,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, 12),
+                font=(LETRA, TAMANIO_LETRA_NUMERO),
                 text_color=self.color_texto,
                 text=f"{i+1}.",
             )
@@ -529,7 +528,7 @@ class ColaReproduccion(UtilesGeneral):
                 panel_cola_informacion,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, 12, "bold"),
+                font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION, "bold"),
                 text_color=self.color_texto,
                 text=cancion.titulo_cancion,
             )
@@ -544,7 +543,7 @@ class ColaReproduccion(UtilesGeneral):
                 panel_cola_informacion,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, 11),
+                font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
                 text_color=self.color_texto,
                 text=cancion.artista,
             )
@@ -559,7 +558,7 @@ class ColaReproduccion(UtilesGeneral):
                 panel_cola_informacion,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, 11, "italic"),
+                font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION, "italic"),
                 text_color=self.color_texto,
                 text=cancion.album,
             )
@@ -570,7 +569,7 @@ class ColaReproduccion(UtilesGeneral):
 
             # ---------------------------------------- Botón quitar -------------------------------------------
             # Botón para quitar de la cola
-            icono_quitar = cargar_icono_personalizado("quitar", self.controlador_tema.tema_iconos, (9, 9))
+            icono_quitar = cargar_icono_con_tamanio("quitar", self.controlador_tema.tema_iconos, (9, 9))
             boton_quitar = ctk.CTkButton(
                 panel_cancion,
                 width=ANCHO_BOTON + 4,
@@ -624,7 +623,7 @@ class ColaReproduccion(UtilesGeneral):
                 panel,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, 12),
+                font=(LETRA, TAMANIO_LETRA_MENSAJE),
                 text_color=self.color_texto,
                 text="No hay más canciones en la cola",
             )

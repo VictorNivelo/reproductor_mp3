@@ -1,5 +1,5 @@
 {
-    "indice_actual": 3,
+    "indice_actual": 0,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -11,7 +11,6 @@
         "C:\\Users\\Victor\\Music\\Musica\\7 Lagrimas (Remix).mp3",
         "C:\\Users\\Victor\\Music\\Musica\\A Mí.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
         "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3",
         "C:\\Users\\Victor\\Music\\Musica\\Never Abandon Your Family..mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
@@ -19,10 +18,10 @@
         "C:\\Users\\Victor\\Music\\Musica\\¿Qué Somos.mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3",
-        "titulo": "16 Lines",
-        "artista": "Lil Peep",
-        "album": "Come Over When You're Sober, Pt. 2",
-        "timestamp": "2025-04-19T20:37:14.938894"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "titulo": "11 Y ONCE",
+        "artista": "Tainy ft Sech, E.VAX",
+        "album": "DATA",
+        "timestamp": "2025-04-28T19:29:53.468210"
     }
 }

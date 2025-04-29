@@ -123,17 +123,23 @@ LETRA = "SF Pro Display"
 
 # ======================== Tamaños de las letras =========================
 # Tamaños de las letras
-TAMANIO_LETRA_TIEMPO = 12
-TAMANIO_LETRA_BOTON = 12
-TAMANIO_LETRA_ENTRADA = 12.5
-TAMANIO_LETRA_COMBOBOX = 12.5
 TAMANIO_LETRA_ETIQUETA = 13
-TAMANIO_LETRA_VOLUMEN = 13
+TAMANIO_LETRA_ETIQUETA_INFORMACION = 12
+TAMANIO_LETRA_TIEMPO = 12
+TAMANIO_LETRA_COMBOBOX = 12.5
+TAMANIO_LETRA_ENTRADA = 12.5
+TAMANIO_LETRA_BOTON = 12
+
+# Tamaños de las letras generales
+TAMANIO_LETRA_TITULO = 18
+TAMANIO_LETRA_SUBTITULO = 14
+TAMANIO_LETRA_MENSAJE = 13
+TAMANIO_LETRA_NUMERO = 12
 
 # ========================================================================
 
 # ========================= Constantes ===================================
-# Tiempo de retroceso y avance
+# Constantes de la aplicación
 TIEMPO_AJUSTE = 10
 AUMENTO_VOLUMEN = 5
 
@@ -167,7 +173,7 @@ FORMATOS_SOPORTADOS = {".mp3", ".flac", ".m4a", ".mp4", ".wav", ".ogg"}
 # ========================================================================
 
 
-# Obtener la ruta de un icono
+# Método para obtener la ruta de los iconos según el tema
 def obtener_ruta_iconos(nombre_icono, tema):
     # Iconos especiales que son independientes del tema
     iconos_especiales = ["me_gusta_rojo", "favorito_amarillo"]

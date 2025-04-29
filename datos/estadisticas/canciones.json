@@ -1,9 +1,9 @@
 {
     "estadisticas": {
-        "total_canciones": 16,
-        "total_artistas": 24,
-        "total_albumes": 15,
-        "me_gusta": 12,
+        "total_canciones": 15,
+        "total_artistas": 22,
+        "total_albumes": 14,
+        "me_gusta": 11,
         "favorito": 3
     },
     "canciones": [
@@ -143,20 +143,6 @@
             "duracion_formateada": "03:27",
             "anio": "2018-11-09",
             "numero_pista": "1",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": false
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-            "titulo": "Animal",
-            "artista": "Eladio Carrion ft Bryant Myers",
-            "artista_album": "Eladio Carrion ft Bryant Myers",
-            "album": "Animal",
-            "duracion": 217.78285714285715,
-            "duracion_formateada": "03:37",
-            "anio": "2019-07-05",
-            "numero_pista": "1/1",
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": false

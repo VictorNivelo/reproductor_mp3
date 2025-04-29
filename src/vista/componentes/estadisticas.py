@@ -62,7 +62,7 @@ class Estadisticas(UtilesGeneral):
             panel_estadisticas_general,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 18, "bold"),
+            font=(LETRA, TAMANIO_LETRA_TITULO, "bold"),
             text_color=self.color_texto,
             text="Análisis de tu música",
         )
@@ -121,7 +121,7 @@ class Estadisticas(UtilesGeneral):
             panel_mensaje,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 14),
+            font=(LETRA, TAMANIO_LETRA_MENSAJE),
             text_color=self.color_texto,
             text="Aún no hay estadísticas disponibles.\nReproducir música para generar análisis.",
         )
@@ -148,7 +148,7 @@ class Estadisticas(UtilesGeneral):
             panel_resumen,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 14, "bold"),
+            font=(LETRA, TAMANIO_LETRA_SUBTITULO, "bold"),
             text_color=self.color_texto,
             text="Resumen general",
         )
@@ -170,7 +170,7 @@ class Estadisticas(UtilesGeneral):
             panel_informacion_resumen,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 12),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
             text=f"Canciones escuchadas: {estadisticas['canciones_escuchadas']}",
         )
@@ -185,7 +185,7 @@ class Estadisticas(UtilesGeneral):
             panel_informacion_resumen,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 12),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
             text=f"Tiempo total de reproducción: {estadisticas['tiempo_total_reproduccion']}",
         )
@@ -218,7 +218,7 @@ class Estadisticas(UtilesGeneral):
             panel_tarjeta_cancion,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 14, "bold"),
+            font=(LETRA, TAMANIO_LETRA_SUBTITULO, "bold"),
             text_color=self.color_texto,
             text="Canción más reproducida",
         )
@@ -278,7 +278,7 @@ class Estadisticas(UtilesGeneral):
             panel_informacion_cancion,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 13, "bold"),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION, "bold"),
             text_color=self.color_texto,
             text=cancion["titulo"],
         )
@@ -293,7 +293,7 @@ class Estadisticas(UtilesGeneral):
             panel_informacion_cancion,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 12),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
             text=f"{cancion['artista']}",
         )
@@ -308,7 +308,7 @@ class Estadisticas(UtilesGeneral):
             panel_informacion_cancion,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 12),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
             text=f"{cancion['album']}",
         )
@@ -323,7 +323,7 @@ class Estadisticas(UtilesGeneral):
             panel_informacion_cancion,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 12),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
             text=f"Reproducciones: {cancion['reproducciones']}",
         )
@@ -356,7 +356,7 @@ class Estadisticas(UtilesGeneral):
             panel_tarjeta_artista,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 14, "bold"),
+            font=(LETRA, TAMANIO_LETRA_SUBTITULO, "bold"),
             text_color=self.color_texto,
             text="Artista más escuchado",
         )
@@ -378,7 +378,7 @@ class Estadisticas(UtilesGeneral):
             panel_informacion_artista,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 13, "bold"),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION, "bold"),
             text_color=self.color_texto,
             text=artista["nombre"],
         )
@@ -393,7 +393,7 @@ class Estadisticas(UtilesGeneral):
             panel_informacion_artista,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 12),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
             text=f"Reproducciones: {artista['reproducciones']}",
         )
@@ -425,7 +425,7 @@ class Estadisticas(UtilesGeneral):
             panel_tarjeta_album,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 14, "bold"),
+            font=(LETRA, TAMANIO_LETRA_SUBTITULO, "bold"),
             text_color=self.color_texto,
             text="Álbum más escuchado",
         )
@@ -485,7 +485,7 @@ class Estadisticas(UtilesGeneral):
             panel_informacion_album,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 13, "bold"),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION, "bold"),
             text_color=self.color_texto,
             text=album["nombre"],
         )
@@ -494,13 +494,29 @@ class Estadisticas(UtilesGeneral):
         self.controlador_tema.registrar_etiqueta(etiqueta_nombre_album)
         # ---------------------------------------------------------------------------------
 
+        # ------------------------- Etiqueta con artista de álbum -------------------------
+        # Etiqueta con el artista del álbum (NUEVA ETIQUETA)
+        if "artista" in album:
+            etiqueta_artista_album = ctk.CTkLabel(
+                panel_informacion_album,
+                height=15,
+                fg_color="transparent",
+                font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
+                text_color=self.color_texto,
+                text=f"{album['artista']}",
+            )
+            etiqueta_artista_album.pack(anchor="w", padx=5)
+            self.componentes.append(etiqueta_artista_album)
+            self.controlador_tema.registrar_etiqueta(etiqueta_artista_album)
+        # ---------------------------------------------------------------------------------
+
         # ------------------------ Etiqueta con artista de álbum --------------------------
         # Etiqueta con la reproducción del álbum
         etiqueta_reproducciones_album = ctk.CTkLabel(
             panel_informacion_album,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 12),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
             text=f"Reproducciones: {album['reproducciones']}",
         )
@@ -532,7 +548,7 @@ class Estadisticas(UtilesGeneral):
             panel_ultima_escuchada,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 14, "bold"),
+            font=(LETRA, TAMANIO_LETRA_SUBTITULO, "bold"),
             text_color=self.color_texto,
             text="Última canción reproducida",
         )
@@ -592,7 +608,7 @@ class Estadisticas(UtilesGeneral):
             panel_informacion_ultima,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 13, "bold"),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION, "bold"),
             text_color=self.color_texto,
             text=ultima["titulo"],
         )
@@ -607,7 +623,7 @@ class Estadisticas(UtilesGeneral):
             panel_informacion_ultima,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 12),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
             text=f"{ultima['artista']}",
         )
@@ -621,7 +637,7 @@ class Estadisticas(UtilesGeneral):
             panel_informacion_ultima,
             height=15,
             fg_color="transparent",
-            font=(LETRA, 12),
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
             text=f"{ultima['album']}",
         )

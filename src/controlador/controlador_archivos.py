@@ -434,10 +434,21 @@ class ControladorArchivos:
             # Encontrar el álbum más escuchado
             album_mas_escuchado = None
             max_album = 0
+            # Información del artista del álbum más escuchado
+            artista_album_mas_escuchado = None
             for album, contador in estadisticas["albumes"].items():
                 if contador > max_album:
                     max_album = contador
-                    album_mas_escuchado = {"nombre": album, "reproducciones": contador}
+                    # Buscar una canción que pertenezca a este álbum para obtener el nombre del artista
+                    for _, datos in estadisticas["canciones"].items():
+                        if datos["album"] == album:
+                            artista_album_mas_escuchado = datos["artista"]
+                            break
+                    album_mas_escuchado = {
+                        "nombre": album,
+                        "artista": artista_album_mas_escuchado,
+                        "reproducciones": contador,
+                    }
             # Compilar resumen de estadísticas
             resumen = {
                 "tiempo_total_reproduccion": tiempo_formateado,

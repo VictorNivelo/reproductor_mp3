@@ -86,12 +86,12 @@ class Estadisticas(UtilesGeneral):
             # Mostrar última reproducción
             self.mostrar_ultima_reproduccion(panel_estadisticas_general, estadisticas)
 
-        # ============================= Botón cerrar =====================================
+        # ---------------------------------- Botón cerrar ---------------------------------
         # Botón para cerrar la ventana de estadísticas
-        boton_cerrar = ctk.CTkButton(
+        boton_cerrar_estadisticas = ctk.CTkButton(
             panel_estadisticas_general,
             width=ANCHO_BOTON,
-            height=ALTO_BOTON,
+            height=ALTO_BOTON + 5,
             corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.color_boton,
             hover_color=self.color_hover,
@@ -100,14 +100,15 @@ class Estadisticas(UtilesGeneral):
             text="Cerrar",
             command=self.cerrar_ventana_estadistica,
         )
-        boton_cerrar.pack(pady=3)
-        self.componentes.append(boton_cerrar)
-        # =================================================================================
+        boton_cerrar_estadisticas.pack(pady=3)
+        self.componentes.append(boton_cerrar_estadisticas)
+        crear_tooltip(boton_cerrar_estadisticas, "Cerrar ventana de estadísticas")
+        # ---------------------------------------------------------------------------------
 
     # Función para mostrar mensaje si no hay estadísticas
     def mostrar_sin_estadisticas(self, panel_padre):
-        # Panel de mensaje
         # ***************************** Panel de mensaje **********************************
+        # Panel de mensaje
         panel_mensaje = ctk.CTkFrame(
             panel_padre,
             fg_color="transparent",

@@ -1,6 +1,6 @@
 from vista.componentes.utiles.utiles_componentes import configurar_ventana_modal, cerrar_ventana_modal
+from vista.utiles.utiles_vista import cargar_icono_con_tamanio, crear_tooltip
 from controlador.controlador_archivos import ControladorArchivos
-from vista.utiles.utiles_vista import cargar_icono_con_tamanio
 from vista.utiles.utiles_scroll import GestorScroll
 from utiles import UtilesGeneral
 import customtkinter as ctk
@@ -235,10 +235,10 @@ class ColaReproduccion(UtilesGeneral):
 
         # ---------------------------------------- Botón cerrar ------------------------------------------
         # Botón para cerrar con mejor estilo
-        boton_cerrar = ctk.CTkButton(
+        boton_cerrar_cola = ctk.CTkButton(
             panel_principal_cola,
             width=ANCHO_BOTON,
-            height=ALTO_BOTON,
+            height=ALTO_BOTON + 5,
             corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.color_boton,
             hover_color=self.color_hover,
@@ -247,8 +247,9 @@ class ColaReproduccion(UtilesGeneral):
             text="Cerrar",
             command=lambda: self.cerrar_ventana_cola(),
         )
-        boton_cerrar.pack(pady=3)
-        self.componentes.append(boton_cerrar)
+        boton_cerrar_cola.pack(pady=3)
+        self.componentes.append(boton_cerrar_cola)
+        crear_tooltip(boton_cerrar_cola, "Cerrar ventana de cola")
         # ------------------------------------------------------------------------------------------------
         # ************************************************************************************************
 

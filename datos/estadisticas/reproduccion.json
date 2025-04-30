@@ -1,168 +1,228 @@
 {
     "artistas": {
-        "Anuel AA ft Sinfonico, Ñengo Flow": 10,
-        "Metro Boomin ft Coi Leray": 9,
-        "Nas ft Ms. Lauryn Hill": 8,
-        "Kanye West ft André 3000": 14,
-        "Kanye West": 9,
-        "Eladio Carrion ft Bryant Myers": 10,
-        "Tainy ft Sech, E.VAX": 17,
-        "Bad Bunny": 11,
-        "Yan Block ft Panda Black": 8,
-        "Daddy Yankee ft Anuel AA": 20,
-        "Anuel AA": 7,
-        "МЫ": 3,
-        "Soge Culebra ft Mora, GARABATTO": 13,
-        "J Balvin ft Farruko": 11,
-        "Rels B": 9,
-        "Sech": 4,
-        "Feid": 19,
-        "Lil Peep": 14,
-        "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN": 1
+        "Anuel AA": 36,
+        "Cosculluela": 3,
+        "Sinfonico": 1,
+        "Ñengo Flow": 2,
+        "Daddy Yankee": 1,
+        "Tainy": 6,
+        "Ozuna": 1,
+        "Haze": 1,
+        "6ix9ine": 9,
+        "Becky G": 1,
+        "Prince Royce": 1,
+        "Lito Kirino": 1,
+        "Bad Bunny": 4,
+        "E.VAX": 5,
+        "Sech": 5,
+        "Feid": 2,
+        "Chencho Corleone": 1,
+        "Chris Jedi": 1,
+        "Darkiel": 2,
+        "Benny Benni": 2,
+        "Noriel": 2,
+        "Farruko": 3,
+        "Nio Garcia": 2,
+        "Bryant Myers": 3,
+        "Almighty": 2,
+        "Kendo Kaponi": 1,
+        "Panda Black": 1,
+        "Yan Block": 1,
+        "Coi Leray": 1,
+        "Metro Boomin": 1,
+        "Eladio Carrion": 1
     },
     "albumes": {
-        "47 (Remix)": 10,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 9,
-        "It Was Written": 8,
-        "Donda (Deluxe)": 23,
-        "Animal": 10,
-        "DATA": 17,
-        "EL ÚLTIMO TOUR DEL MUNDO": 11,
-        "444": 8,
-        "Adictiva": 20,
-        "¿Qué Nos Pasó?": 7,
-        "Ближе": 3,
-        "7 Lágrimas (Remix)": 13,
-        "La Familia": 11,
-        "A Mí": 9,
-        "42": 4,
-        "INTER SHIBUYA - LA MAFIA": 19,
-        "Come Over When You're Sober, Pt. 2": 14,
-        "Chosen Few: New Generation": 1
+        "23": 3,
+        "47 (Remix)": 1,
+        "Adictiva": 1,
+        "Adicto (ft Anuel AA & Ozuna)": 1,
+        "Amanece": 1,
+        "Ayer": 2,
+        "Real Hasta la Muerte": 10,
+        "DUMMY BOY": 9,
+        "Bubalu": 1,
+        "Coronamos": 1,
+        "YHLQMDLG": 1,
+        "DATA": 5,
+        "EL ÚLTIMO TOUR DEL MUNDO": 3,
+        "INTER SHIBUYA - LA MAFIA": 2,
+        "La Llevo Al Cielo (Ft. Ñengo Flow)": 1,
+        "Maliante Hp [ft Anuel Aa, Farruko, Almighty, Darkiel, Bryant Myers, Nio Garcia & Noriel]": 2,
+        "Gangalee": 1,
+        "Nunca Sapo": 1,
+        "444": 1,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
+        "Animal": 1
     },
-    "tiempo_total": 46360.265713010165,
-    "canciones_escuchadas": 197,
+    "tiempo_total": 11695.751836734695,
+    "canciones_escuchadas": 49,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-04-28T19:29:53.469482"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "titulo": "Animal",
+        "artista": "Eladio Carrion ft Bryant Myers",
+        "album": "Animal",
+        "timestamp": "2025-04-29T20:05:58.096084"
     },
     "canciones": {
+        "C:\\Users\\Victor\\Music\\Musica\\23.mp3": {
+            "contador": 3,
+            "titulo": "23",
+            "artista": "Cosculluela ft Anuel AA",
+            "album": "23"
+        },
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 10,
+            "contador": 1,
             "titulo": "47 (Remix)",
             "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
             "album": "47 (Remix)"
         },
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 9,
-            "titulo": "Self Love",
-            "artista": "Metro Boomin ft Coi Leray",
-            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
+        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
+            "contador": 1,
+            "titulo": "Adictiva",
+            "artista": "Daddy Yankee ft Anuel AA",
+            "album": "Adictiva"
         },
-        "C:\\Users\\Victor\\Music\\Musica\\If I Ruled the World (Imagine That) (ft Lauryn Hill)..mp3": {
-            "contador": 8,
-            "titulo": "If I Ruled the World (Imagine That) (ft Lauryn Hill)",
-            "artista": "Nas ft Ms. Lauryn Hill",
-            "album": "It Was Written"
+        "C:\\Users\\Victor\\Music\\Musica\\Adicto (ft Anuel AA & Ozuna).mp3": {
+            "contador": 1,
+            "titulo": "Adicto",
+            "artista": "Tainy ft Anuel AA, Ozuna",
+            "album": "Adicto (ft Anuel AA & Ozuna)"
         },
-        "C:\\Users\\Victor\\Music\\Musica\\Life Of The Party (ft André 3000)..mp3": {
-            "contador": 14,
-            "titulo": "Life Of The Party (ft André 3000)",
-            "artista": "Kanye West ft André 3000",
-            "album": "Donda (Deluxe)"
+        "C:\\Users\\Victor\\Music\\Musica\\Amanece.mp3": {
+            "contador": 1,
+            "titulo": "Amanece",
+            "artista": "Anuel AA ft Haze",
+            "album": "Amanece"
         },
-        "C:\\Users\\Victor\\Music\\Musica\\Never Abandon Your Family..mp3": {
-            "contador": 9,
-            "titulo": "Never Abandon Your Family",
-            "artista": "Kanye West",
-            "album": "Donda (Deluxe)"
+        "C:\\Users\\Victor\\Music\\Musica\\Ayer.mp3": {
+            "contador": 2,
+            "titulo": "Ayer",
+            "artista": "Anuel AA",
+            "album": "Ayer"
         },
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
-            "contador": 10,
-            "titulo": "Animal",
-            "artista": "Eladio Carrion ft Bryant Myers",
-            "album": "Animal"
+        "C:\\Users\\Victor\\Music\\Musica\\Bandolera.mp3": {
+            "contador": 4,
+            "titulo": "Bandolera",
+            "artista": "Anuel AA",
+            "album": "Real Hasta la Muerte"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\BEBE.mp3": {
+            "contador": 2,
+            "titulo": "BEBE",
+            "artista": "6ix9ine ft Anuel AA",
+            "album": "DUMMY BOY"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Bubalu.mp3": {
+            "contador": 1,
+            "titulo": "Bubalu",
+            "artista": "Becky G ft Prince Royce, Anuel AA",
+            "album": "Bubalu"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Coronamos.mp3": {
+            "contador": 1,
+            "titulo": "Coronamos",
+            "artista": "Lito Kirino ft Anuel AA",
+            "album": "Coronamos"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Está Cabrón Ser Yo.mp3": {
+            "contador": 1,
+            "titulo": "Está Cabrón Ser Yo",
+            "artista": "Bad Bunny ft Anuel AA",
+            "album": "YHLQMDLG"
         },
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 17,
+            "contador": 5,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
         },
         "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 11,
+            "contador": 3,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
-        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
-            "contador": 8,
-            "titulo": "444",
-            "artista": "Yan Block ft Panda Black",
-            "album": "444"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 20,
-            "titulo": "Adictiva",
-            "artista": "Daddy Yankee ft Anuel AA",
-            "album": "Adictiva"
-        },
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
-            "contador": 7,
-            "titulo": "¿Qué Nos Pasó?",
-            "artista": "Anuel AA",
-            "album": "¿Qué Nos Pasó?"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Ближе.mp3": {
-            "contador": 3,
-            "titulo": "Ближе",
-            "artista": "МЫ",
-            "album": "Ближе"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\7 Lagrimas (Remix).mp3": {
-            "contador": 13,
-            "titulo": "7 Lagrimas (Remix)",
-            "artista": "Soge Culebra ft Mora, GARABATTO",
-            "album": "7 Lágrimas (Remix)"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\6 AM.mp3": {
-            "contador": 11,
-            "titulo": "6 AM",
-            "artista": "J Balvin ft Farruko",
-            "album": "La Familia"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\A Mí.mp3": {
-            "contador": 9,
-            "titulo": "A Mí",
-            "artista": "Rels B",
-            "album": "A Mí"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\¿Qué Somos.mp3": {
-            "contador": 4,
-            "titulo": "¿Qué Somos?",
-            "artista": "Sech",
-            "album": "42"
-        },
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
-            "contador": 19,
+            "contador": 2,
             "titulo": "14 De Febrero",
             "artista": "Feid",
             "album": "INTER SHIBUYA - LA MAFIA"
         },
-        "C:\\Users\\Victor\\Music\\Musica\\16 Lines.mp3": {
-            "contador": 14,
-            "titulo": "16 Lines",
-            "artista": "Lil Peep",
-            "album": "Come Over When You're Sober, Pt. 2"
+        "C:\\Users\\Victor\\Music\\Musica\\Na' Nuevo.mp3": {
+            "contador": 6,
+            "titulo": "Na' Nuevo",
+            "artista": "Anuel AA",
+            "album": "Real Hasta la Muerte"
         },
-        "C:\\Users\\Victor\\Music\\Musica\\0 Sentimientos (Remix).mp3": {
+        "C:\\Users\\Victor\\Music\\Musica\\La Llevo Al Cielo (ft Ñengo Flow).mp3": {
             "contador": 1,
-            "titulo": "0 Sentimientos (Remix)",
-            "artista": "Boy Wonder CF ft Jon Z, Baby Rasta, Noriel, Darkiel, Messiah, LYAN",
-            "album": "Chosen Few: New Generation"
+            "titulo": "La Llevo Al Cielo",
+            "artista": "Chris Jedi ft Anuel AA, Chencho Corleone, Ñengo Flow",
+            "album": "La Llevo Al Cielo (Ft. Ñengo Flow)"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Maliante Hp (Remix).mp3": {
+            "contador": 2,
+            "titulo": "Maliante Hp (Remix)",
+            "artista": "Benny Benni ft Anuel AA, Farruko, Almighty, Darkiel, Bryant Myers, Nio Garcia, Noriel",
+            "album": "Maliante Hp [ft Anuel Aa, Farruko, Almighty, Darkiel, Bryant Myers, Nio Garcia & Noriel]"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Delincuente.mp3": {
+            "contador": 1,
+            "titulo": "Delincuente",
+            "artista": "Farruko ft Anuel AA, Kendo Kaponi",
+            "album": "Gangalee"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\MALA.mp3": {
+            "contador": 7,
+            "titulo": "MALA",
+            "artista": "6ix9ine ft Anuel AA",
+            "album": "DUMMY BOY"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Nunca Sapo.mp3": {
+            "contador": 1,
+            "titulo": "Nunca Sapo",
+            "artista": "Anuel AA",
+            "album": "Nunca Sapo"
+        },
+        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
+            "contador": 1,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
+            "contador": 1,
+            "titulo": "Self Love",
+            "artista": "Metro Boomin ft Coi Leray",
+            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
+            "contador": 1,
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal"
         }
+    },
+    "artistas_originales": {
+        "Cosculluela ft Anuel AA": 3,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 1,
+        "Daddy Yankee ft Anuel AA": 1,
+        "Tainy ft Anuel AA, Ozuna": 1,
+        "Anuel AA ft Haze": 1,
+        "Anuel AA": 13,
+        "6ix9ine ft Anuel AA": 9,
+        "Becky G ft Prince Royce, Anuel AA": 1,
+        "Lito Kirino ft Anuel AA": 1,
+        "Bad Bunny ft Anuel AA": 1,
+        "Tainy ft Sech, E.VAX": 5,
+        "Bad Bunny": 3,
+        "Feid": 2,
+        "Chris Jedi ft Anuel AA, Chencho Corleone, Ñengo Flow": 1,
+        "Benny Benni ft Anuel AA, Farruko, Almighty, Darkiel, Bryant Myers, Nio Garcia, Noriel": 2,
+        "Farruko ft Anuel AA, Kendo Kaponi": 1,
+        "Yan Block ft Panda Black": 1,
+        "Metro Boomin ft Coi Leray": 1,
+        "Eladio Carrion ft Bryant Myers": 1
     }
 }

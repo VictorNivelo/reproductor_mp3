@@ -60,6 +60,7 @@ class Configuracion(UtilesGeneral):
         # titulo del modal
         etiqueta_titulo = ctk.CTkLabel(
             panel_principal_configuracion,
+            height=15,
             fg_color="transparent",
             font=(LETRA, TAMANIO_LETRA_TITULO, "bold"),
             text_color=self.color_texto,
@@ -88,10 +89,12 @@ class Configuracion(UtilesGeneral):
                 self.componentes.append(boton_seccion)
             except Exception as e:
                 print(f"Error al crear el botón de la sección {seccion}: {e}")
+        # ---------------------------------------- Botón cerrar ----------------------------------------
         # botón de cerrar la ventana
-        boton_cerrar = ctk.CTkButton(
+        boton_cerrar_configuracion = ctk.CTkButton(
             panel_principal_configuracion,
-            height=35,
+            width=ANCHO_BOTON,
+            height=ALTO_BOTON + 5,
             corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.color_boton,
             hover_color=self.color_hover,
@@ -100,8 +103,10 @@ class Configuracion(UtilesGeneral):
             text="Cerrar",
             command=self.cerrar_ventana_configuracion,
         )
-        boton_cerrar.pack(fill="x", pady=(215, 0), padx=5)
-        self.componentes.append(boton_cerrar)
+        boton_cerrar_configuracion.pack(pady=3)
+        self.componentes.append(boton_cerrar_configuracion)
+        crear_tooltip(boton_cerrar_configuracion, "Cerrar ventana de configuración")
+        # ----------------------------------------------------------------------------------------------
         # ==============================================================================================
 
     # Método para mostrar ventana de configuración

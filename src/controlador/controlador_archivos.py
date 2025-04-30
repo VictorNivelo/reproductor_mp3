@@ -1,3 +1,4 @@
+from modelo.biblioteca import Biblioteca
 from datetime import datetime
 from pathlib import Path
 from constantes import *
@@ -294,6 +295,7 @@ class ControladorArchivos:
     def registrar_reproduccion_json_controlador(self, cancion):
         estructura_reproduccion = {
             "artistas": {},
+            "artistas_originales": {},
             "albumes": {},
             "tiempo_total": 0.0,
             "canciones_escuchadas": 0,
@@ -306,6 +308,9 @@ class ControladorArchivos:
             # Cargar las estadísticas actuales
             with open(self.ruta_reproduccion, "r", encoding="utf-8") as archivo:
                 estadisticas = json.load(archivo)
+            # Asegurar que existe la estructura de artistas_originales
+            if "artistas_originales" not in estadisticas:
+                estadisticas["artistas_originales"] = {}
             # Actualizar estadísticas generales
             estadisticas["tiempo_total"] += cancion.duracion
             estadisticas["canciones_escuchadas"] += 1
@@ -327,10 +332,16 @@ class ControladorArchivos:
                     "album": cancion.album,
                 }
             estadisticas["canciones"][ruta_str]["contador"] += 1
-            # Actualizar contador del artista
-            if cancion.artista not in estadisticas["artistas"]:
-                estadisticas["artistas"][cancion.artista] = 0
-            estadisticas["artistas"][cancion.artista] += 1
+            # Registrar el artista original completo
+            if cancion.artista not in estadisticas["artistas_originales"]:
+                estadisticas["artistas_originales"][cancion.artista] = 0
+            estadisticas["artistas_originales"][cancion.artista] += 1
+            # Procesar artistas individuales usando el método de la biblioteca
+            artistas = Biblioteca.separar_artistas_biblioteca(cancion.artista)
+            for artista in artistas:
+                if artista not in estadisticas["artistas"]:
+                    estadisticas["artistas"][artista] = 0
+                estadisticas["artistas"][artista] += 1
             # Actualizar contador del álbum
             if cancion.album not in estadisticas["albumes"]:
                 estadisticas["albumes"][cancion.album] = 0
@@ -397,6 +408,7 @@ class ControladorArchivos:
             "tiempo_total": 0.0,
             "canciones_escuchadas": 0,
             "artistas": {},
+            "artistas_originales": {},
             "albumes": {},
             "ultima_cancion": None,
             "canciones": {},
@@ -406,6 +418,9 @@ class ControladorArchivos:
         try:
             with open(self.ruta_reproduccion, "r", encoding="utf-8") as archivo:
                 estadisticas = json.load(archivo)
+            # Asegurar que existe la estructura de artistas_originales
+            if "artistas_originales" not in estadisticas:
+                estadisticas["artistas_originales"] = {}
             # Convertir tiempo total a formato legible
             tiempo_total = estadisticas["tiempo_total"]
             horas = int(tiempo_total // 3600)
@@ -424,17 +439,37 @@ class ControladorArchivos:
                         "album": datos["album"],
                         "reproducciones": datos["contador"],
                     }
-            # Encontrar el artista más escuchado
+            # Encontrar el artista más escuchado (contando apariciones en cualquier lugar)
             artista_mas_escuchado = None
-            max_artista = 0
-            for artista, contador in estadisticas["artistas"].items():
-                if contador > max_artista:
-                    max_artista = contador
-                    artista_mas_escuchado = {"nombre": artista, "reproducciones": contador}
+            # Diccionario para contar todas las apariciones de cada artista
+            artistas_conteo_total = {}
+            # Analizar cada canción para contar apariciones de artistas
+            for ruta, datos in estadisticas["canciones"].items():
+                nombre_artista_completo = datos["artista"]
+                conteo = datos["contador"]
+                # Separar todos los artistas que aparecen en el nombre
+                artistas_en_cancion = Biblioteca.separar_artistas_biblioteca(nombre_artista_completo)
+                # Contar cada aparición de cada artista
+                for artista in artistas_en_cancion:
+                    if artista not in artistas_conteo_total:
+                        artistas_conteo_total[artista] = 0
+                    artistas_conteo_total[artista] += conteo
+            # Encontrar el artista con más apariciones en total
+            max_reproducciones = 0
+            artista_mas_reproducido = None
+            for artista, conteo in artistas_conteo_total.items():
+                if conteo > max_reproducciones:
+                    max_reproducciones = conteo
+                    artista_mas_reproducido = artista
+            # Establecer el artista más escuchado
+            if artista_mas_reproducido:
+                artista_mas_escuchado = {
+                    "nombre": artista_mas_reproducido,
+                    "reproducciones": max_reproducciones,
+                }
             # Encontrar el álbum más escuchado
             album_mas_escuchado = None
             max_album = 0
-            # Información del artista del álbum más escuchado
             artista_album_mas_escuchado = None
             for album, contador in estadisticas["albumes"].items():
                 if contador > max_album:

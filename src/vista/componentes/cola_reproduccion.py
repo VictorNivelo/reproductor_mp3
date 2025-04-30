@@ -353,6 +353,14 @@ class ColaReproduccion(UtilesGeneral):
             self.componentes.append(etiqueta_album)
             self.controlador_tema.registrar_etiqueta(etiqueta_album)
             # -------------------------------------------------------------------------------------------------
+            # Crear un diccionario con los textos que pueden necesitar desplazamiento
+            self.textos_actuales = {
+                "titulo": (cancion_actual.titulo_cancion, etiqueta_titulo),
+                "artista": (cancion_actual.artista, etiqueta_artista),
+                "album": (cancion_actual.album, etiqueta_album),
+            }
+            # Iniciar el desplazamiento con longitud máxima adecuada
+            self.iniciar_desplazamiento_etiqueta(self.textos_actuales, panel, 30)
             # *************************************************************************************************
 
             # =================================================================================================
@@ -525,7 +533,7 @@ class ColaReproduccion(UtilesGeneral):
 
             # ---------------------------------------- Etiqueta título ----------------------------------------
             # Nombre de la canción
-            etiqueta_titulo = ctk.CTkLabel(
+            etiqueta_titulo_cola = ctk.CTkLabel(
                 panel_cola_informacion,
                 height=15,
                 fg_color="transparent",
@@ -533,14 +541,14 @@ class ColaReproduccion(UtilesGeneral):
                 text_color=self.color_texto,
                 text=cancion.titulo_cancion,
             )
-            etiqueta_titulo.pack(anchor="w")
-            self.componentes.append(etiqueta_titulo)
-            self.controlador_tema.registrar_etiqueta(etiqueta_titulo)
+            etiqueta_titulo_cola.pack(anchor="w")
+            self.componentes.append(etiqueta_titulo_cola)
+            self.controlador_tema.registrar_etiqueta(etiqueta_titulo_cola)
             # -------------------------------------------------------------------------------------------------
 
             # ---------------------------------------- Etiqueta artista ---------------------------------------
             # Artista
-            etiqueta_artista = ctk.CTkLabel(
+            etiqueta_artista_cola = ctk.CTkLabel(
                 panel_cola_informacion,
                 height=15,
                 fg_color="transparent",
@@ -548,14 +556,14 @@ class ColaReproduccion(UtilesGeneral):
                 text_color=self.color_texto,
                 text=cancion.artista,
             )
-            etiqueta_artista.pack(anchor="w")
-            self.componentes.append(etiqueta_artista)
-            self.controlador_tema.registrar_etiqueta(etiqueta_artista)
+            etiqueta_artista_cola.pack(anchor="w")
+            self.componentes.append(etiqueta_artista_cola)
+            self.controlador_tema.registrar_etiqueta(etiqueta_artista_cola)
             # -------------------------------------------------------------------------------------------------
 
             # ------------------------------------- Etiqueta album --------------------------------------------
             # Álbum
-            etiqueta_album = ctk.CTkLabel(
+            etiqueta_album_cola = ctk.CTkLabel(
                 panel_cola_informacion,
                 height=15,
                 fg_color="transparent",
@@ -563,9 +571,9 @@ class ColaReproduccion(UtilesGeneral):
                 text_color=self.color_texto,
                 text=cancion.album,
             )
-            etiqueta_album.pack(anchor="w")
-            self.componentes.append(etiqueta_album)
-            self.controlador_tema.registrar_etiqueta(etiqueta_album)
+            etiqueta_album_cola.pack(anchor="w")
+            self.componentes.append(etiqueta_album_cola)
+            self.controlador_tema.registrar_etiqueta(etiqueta_album_cola)
             # -------------------------------------------------------------------------------------------------
 
             # ---------------------------------------- Botón quitar -------------------------------------------
@@ -597,16 +605,16 @@ class ColaReproduccion(UtilesGeneral):
             # Configurar eventos de hover
             panel_cancion.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
             panel_cola_informacion.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
-            etiqueta_titulo.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
-            etiqueta_artista.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
-            etiqueta_album.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
+            etiqueta_titulo_cola.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
+            etiqueta_artista_cola.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
+            etiqueta_album_cola.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
             etiqueta_numero.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
 
             panel_cancion.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
             panel_cola_informacion.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
-            etiqueta_titulo.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
-            etiqueta_artista.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
-            etiqueta_album.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
+            etiqueta_titulo_cola.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
+            etiqueta_artista_cola.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
+            etiqueta_album_cola.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
             etiqueta_numero.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
 
             # Añadir evento de clic para reproducir la canción
@@ -614,9 +622,15 @@ class ColaReproduccion(UtilesGeneral):
             panel_cola_informacion.bind(
                 "<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c)
             )
-            etiqueta_titulo.bind("<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c))
-            etiqueta_artista.bind("<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c))
-            etiqueta_album.bind("<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c))
+            etiqueta_titulo_cola.bind(
+                "<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c)
+            )
+            etiqueta_artista_cola.bind(
+                "<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c)
+            )
+            etiqueta_album_cola.bind(
+                "<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c)
+            )
             etiqueta_numero.bind("<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c))
         if not proximas_canciones and modo_repeticion != 2:
             # ----------------------------------------- Etiqueta final ----------------------------------------

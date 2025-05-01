@@ -11,6 +11,7 @@ from vista.utiles.utiles_scroll import GestorScroll
 from vista.componentes.atajos import Atajos
 from modelo.biblioteca import Biblioteca
 from vista.utiles.utiles_vista import *
+from animacion import AnimacionGeneral
 from utiles import UtilesGeneral
 from tkinter import filedialog
 import customtkinter as ctk
@@ -1746,7 +1747,7 @@ def actualizar_espectro(*args):
 
 # Función para configurar el desplazamiento de texto en botones
 def configurar_desplazamiento_texto(boton, texto_completo):
-    utiles.configurar_desplazamiento_boton(boton, texto_completo, 55)
+    animacion.configurar_desplazamiento_boton(boton, texto_completo, 55)
 
 
 # Función para abrir la ventana de configuración
@@ -1840,6 +1841,8 @@ biblioteca = Biblioteca()
 
 # Utilidades
 utiles = UtilesGeneral()
+
+animacion = AnimacionGeneral()
 
 # ===============================================================================================
 

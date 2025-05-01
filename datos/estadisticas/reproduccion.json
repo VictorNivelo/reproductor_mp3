@@ -1,12 +1,12 @@
 {
     "artistas": {
-        "Anuel AA": 36,
+        "Anuel AA": 37,
         "Cosculluela": 3,
         "Sinfonico": 1,
-        "Ñengo Flow": 2,
+        "Ñengo Flow": 3,
         "Daddy Yankee": 1,
         "Tainy": 6,
-        "Ozuna": 1,
+        "Ozuna": 2,
         "Haze": 1,
         "6ix9ine": 9,
         "Becky G": 1,
@@ -24,13 +24,14 @@
         "Farruko": 3,
         "Nio Garcia": 2,
         "Bryant Myers": 3,
-        "Almighty": 2,
+        "Almighty": 3,
         "Kendo Kaponi": 1,
         "Panda Black": 1,
         "Yan Block": 1,
-        "Coi Leray": 1,
-        "Metro Boomin": 1,
-        "Eladio Carrion": 1
+        "Coi Leray": 2,
+        "Metro Boomin": 2,
+        "Eladio Carrion": 1,
+        "Kendo": 1
     },
     "albumes": {
         "23": 3,
@@ -52,17 +53,18 @@
         "Gangalee": 1,
         "Nunca Sapo": 1,
         "444": 1,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
-        "Animal": 1
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 2,
+        "Animal": 1,
+        "Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow)": 1
     },
-    "tiempo_total": 11695.751836734695,
-    "canciones_escuchadas": 49,
+    "tiempo_total": 12397.949387755103,
+    "canciones_escuchadas": 51,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "titulo": "Animal",
-        "artista": "Eladio Carrion ft Bryant Myers",
-        "album": "Animal",
-        "timestamp": "2025-04-29T20:05:58.096084"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+        "titulo": "Self Love",
+        "artista": "Metro Boomin ft Coi Leray",
+        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
+        "timestamp": "2025-05-01T11:40:11.689328"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\23.mp3": {
@@ -192,7 +194,7 @@
             "album": "444"
         },
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
@@ -202,6 +204,12 @@
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
             "album": "Animal"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow).mp3": {
+            "contador": 1,
+            "titulo": "Soldado Y Profeta",
+            "artista": "Anuel AA ft Ozuna, Almighty, Kendo, Ñengo Flow",
+            "album": "Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow)"
         }
     },
     "artistas_originales": {
@@ -222,7 +230,8 @@
         "Benny Benni ft Anuel AA, Farruko, Almighty, Darkiel, Bryant Myers, Nio Garcia, Noriel": 2,
         "Farruko ft Anuel AA, Kendo Kaponi": 1,
         "Yan Block ft Panda Black": 1,
-        "Metro Boomin ft Coi Leray": 1,
-        "Eladio Carrion ft Bryant Myers": 1
+        "Metro Boomin ft Coi Leray": 2,
+        "Eladio Carrion ft Bryant Myers": 1,
+        "Anuel AA ft Ozuna, Almighty, Kendo, Ñengo Flow": 1
     }
 }

@@ -1,4 +1,5 @@
 from controlador.controlador_archivos import ControladorArchivos
+from animacion import AnimacionGeneral
 from modelo.cancion import Cancion
 from utiles import UtilesGeneral
 from constantes import *
@@ -49,8 +50,10 @@ class ControladorReproductor:
         self.historial_aleatorio = []
         # Inicializar pygame
         pygame.mixer.init()
-        # Instancia de Utiles
+        # Instancia de utilidades
         self.utiles = UtilesGeneral()
+        # Instancia de la animacion
+        self.animacion = AnimacionGeneral()
 
     # Método que establece las etiquetas de la interfaz
     def establecer_informacion_controlador(self, nombre, artista, album, anio, imagen):
@@ -111,7 +114,7 @@ class ControladorReproductor:
                 "artista": (self.texto_artista, self.etiqueta_artista),
                 "album": (self.texto_album, self.etiqueta_album),
             }
-            self.utiles.iniciar_desplazamiento_etiqueta(textos, self.etiqueta_nombre, 80)
+            self.animacion.configurar_desplazamiento_etiqueta(textos, self.etiqueta_nombre, 80)
             # Actualizar carátula
             if self.cancion_actual.caratula_cancion:
                 foto, _, _ = self.utiles.crear_imagen_desde_bytes(

@@ -2,6 +2,7 @@ from vista.componentes.utiles.utiles_componentes import crear_ventana_modal, cer
 from vista.utiles.utiles_vista import cargar_icono_con_tamanio, crear_tooltip
 from controlador.controlador_archivos import ControladorArchivos
 from vista.utiles.utiles_scroll import GestorScroll
+from animacion import AnimacionGeneral
 from utiles import UtilesGeneral
 import customtkinter as ctk
 from constantes import *
@@ -21,8 +22,12 @@ class ColaReproduccion(UtilesGeneral):
         self.gestor_scroll = None
         self.ventana_cola = None
         self.componentes = []
+        # Instancia de utilidades
+        self.animacion = AnimacionGeneral()
         # Configurar un temporizador para comprobar cambios en la canción actual
         self.iniciar_monitor_cambios()
+        # Inicializar los textos actuales para la animación
+        self.textos_actuales = {}
 
     # Método para iniciar el temporizador de verificación de cambios
     def iniciar_monitor_cambios(self):
@@ -360,7 +365,7 @@ class ColaReproduccion(UtilesGeneral):
                 "album": (cancion_actual.album, etiqueta_album),
             }
             # Iniciar el desplazamiento con longitud máxima adecuada
-            self.iniciar_desplazamiento_etiqueta(self.textos_actuales, panel, 30)
+            self.animacion.configurar_desplazamiento_etiqueta(self.textos_actuales, panel, 50)
             # *************************************************************************************************
 
             # =================================================================================================

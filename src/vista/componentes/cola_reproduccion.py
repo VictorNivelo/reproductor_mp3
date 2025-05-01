@@ -1,4 +1,4 @@
-from vista.componentes.utiles.utiles_componentes import configurar_ventana_modal, cerrar_ventana_modal
+from vista.componentes.utiles.utiles_componentes import crear_ventana_modal, cerrar_ventana_modal
 from vista.utiles.utiles_vista import cargar_icono_con_tamanio, crear_tooltip
 from controlador.controlador_archivos import ControladorArchivos
 from vista.utiles.utiles_scroll import GestorScroll
@@ -69,7 +69,7 @@ class ColaReproduccion(UtilesGeneral):
         # # Eliminar la barra de título y los controles de ventana
         # self.ventana_cola.overrideredirect(True)
         # Configurar la ventana modal
-        configurar_ventana_modal(
+        crear_ventana_modal(
             self.ventana_principal,
             self.ventana_cola,
             ANCHO_COLA_REPRODUCCION,

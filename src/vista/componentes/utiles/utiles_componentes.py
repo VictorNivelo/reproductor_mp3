@@ -2,7 +2,7 @@ from vista.utiles.utiles_vista import establecer_icono_tema
 
 
 # Método para configurar la ventana modal
-def configurar_ventana_modal(
+def crear_ventana_modal(
     ventana_principal, ventana_modal, ancho, alto, titulo, color_fondo, funcion_cierre, controlador
 ):
     # Establecer el título de la ventana modal

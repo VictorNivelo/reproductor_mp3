@@ -27,7 +27,7 @@ class Estadisticas(UtilesGeneral):
         # Configurar la ventana para que no se pueda maximizar ni minimizar
         self.ventana_estadisticas.resizable(False, False)
         # Configurar la ventana de estadísticas
-        configurar_ventana_modal(
+        crear_ventana_modal(
             ventana_principal=self.ventana_principal,
             ventana_modal=self.ventana_estadisticas,
             ancho=ANCHO_ESTADISTICAS,

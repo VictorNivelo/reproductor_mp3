@@ -33,7 +33,7 @@ class Configuracion(UtilesGeneral):
         # Configurar la ventana para que no se pueda maximizar ni minimizar
         self.ventana_configuracion.resizable(False, False)
         # Configurar la ventana de configuración
-        configurar_ventana_modal(
+        crear_ventana_modal(
             ventana_principal=self.ventana_principal,
             ventana_modal=self.ventana_configuracion,
             ancho=ANCHO_CONFIGURACION,

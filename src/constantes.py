@@ -19,7 +19,7 @@ ALTO_MINI_REPRODUCTOR = 135
 
 # Tamaño de la barra de progreso
 ANCHO_ESTADISTICAS = 400
-ALTO_ESTADISTICAS = 450
+ALTO_ESTADISTICAS = 425
 
 # Tamaño de la cola de reproducción
 ANCHO_COLA_REPRODUCCION = 400

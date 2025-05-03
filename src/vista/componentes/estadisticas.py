@@ -1,5 +1,6 @@
 from vista.componentes.utiles.utiles_componentes import *
 from vista.utiles.utiles_vista import *
+from animacion import AnimacionGeneral
 from customtkinter import CTkImage
 from utiles import UtilesGeneral
 import customtkinter as ctk
@@ -17,6 +18,10 @@ class Estadisticas(UtilesGeneral):
         self.controlador_archivos = controlador_archivos
         self.controlador_biblioteca = controlador_biblioteca
         self.componentes = []
+        self.animacion = AnimacionGeneral()
+        self.animacion_artista = AnimacionGeneral()
+        self.animacion_album = AnimacionGeneral()
+        self.animacion_ultima = AnimacionGeneral()
 
     # Función para crear la ventana de estadísticas
     def crear_ventana_estadisticas(self):
@@ -143,20 +148,6 @@ class Estadisticas(UtilesGeneral):
         )
         panel_resumen.pack(fill="x", padx=5, pady=(5, 0))
         self.componentes.append(panel_resumen)
-
-        # ---------------------------- Etiqueta de título de resumen --------------------
-        etiqueta_titulo_resumen = ctk.CTkLabel(
-            panel_resumen,
-            height=15,
-            fg_color="transparent",
-            font=(LETRA, TAMANIO_LETRA_SUBTITULO, "bold"),
-            text_color=self.color_texto,
-            text="Resumen general",
-        )
-        etiqueta_titulo_resumen.pack(pady=(3, 0))
-        self.componentes.append(etiqueta_titulo_resumen)
-        self.controlador_tema.registrar_etiqueta(etiqueta_titulo_resumen)
-        # ---------------------------------------------------------------------------------
 
         # ---------------------------- Panel para información resumen ---------------------
         # Panel para información de canción
@@ -318,6 +309,18 @@ class Estadisticas(UtilesGeneral):
         self.controlador_tema.registrar_etiqueta(etiqueta_album_cancion)
         # ---------------------------------------------------------------------------------
 
+        # Crear un diccionario con los textos que pueden necesitar desplazamiento
+        textos_animados = {
+            "titulo": (cancion["titulo"], etiqueta_titulo_cancion),
+            "artista": (cancion["artista"], etiqueta_artista_cancion),
+            "album": (cancion["album"], etiqueta_album_cancion),
+        }
+        self.animacion_artista = AnimacionGeneral()
+        # Iniciar el desplazamiento con longitud máxima adecuada
+        self.animacion_artista.configurar_desplazamiento_etiqueta(
+            textos_animados, panel_informacion_cancion, 400
+        )
+
         # ------------------------- Etiqueta con reproducciones de cancion -----------------------
         # Etiqueta con reproducciones de canción
         etiqueta_reproducciones_cancion = ctk.CTkLabel(
@@ -387,6 +390,13 @@ class Estadisticas(UtilesGeneral):
         self.componentes.append(etiqueta_nombre_artista)
         self.controlador_tema.registrar_etiqueta(etiqueta_nombre_artista)
         # ---------------------------------------------------------------------------------
+
+        # Crear un diccionario con los textos que pueden necesitar desplazamiento
+        textos_animados = {
+            "nombre": (artista["nombre"], etiqueta_nombre_artista),
+        }
+        # Iniciar el desplazamiento con longitud máxima adecuada
+        self.animacion.configurar_desplazamiento_etiqueta(textos_animados, panel_informacion_artista, 400)
 
         # ------------------------- Etiqueta con album de artista --------------------------
         # Etiqueta con las reproducciones del artista
@@ -497,8 +507,7 @@ class Estadisticas(UtilesGeneral):
 
         # ------------------------- Etiqueta con artista de álbum -------------------------
         # Etiqueta con el artista del álbum (NUEVA ETIQUETA)
-        if "artista" in album:
-            etiqueta_artista_album = ctk.CTkLabel(
+        etiqueta_artista_album = ctk.CTkLabel(
                 panel_informacion_album,
                 height=15,
                 fg_color="transparent",
@@ -506,10 +515,18 @@ class Estadisticas(UtilesGeneral):
                 text_color=self.color_texto,
                 text=f"{album['artista']}",
             )
-            etiqueta_artista_album.pack(anchor="w", padx=5)
-            self.componentes.append(etiqueta_artista_album)
-            self.controlador_tema.registrar_etiqueta(etiqueta_artista_album)
+        etiqueta_artista_album.pack(anchor="w", padx=5)
+        self.componentes.append(etiqueta_artista_album)
+        self.controlador_tema.registrar_etiqueta(etiqueta_artista_album)
         # ---------------------------------------------------------------------------------
+
+        # Crear un diccionario con los textos que pueden necesitar desplazamiento
+        textos_animados = {
+            "nombre": (album["nombre"], etiqueta_nombre_album),
+        }
+        self.animacion_album = AnimacionGeneral()
+        # Iniciar el desplazamiento con longitud máxima adecuada
+        self.animacion_album.configurar_desplazamiento_etiqueta(textos_animados, panel_informacion_album, 400)
 
         # ------------------------ Etiqueta con artista de álbum --------------------------
         # Etiqueta con la reproducción del álbum
@@ -646,6 +663,19 @@ class Estadisticas(UtilesGeneral):
         self.componentes.append(etiqueta_album_ultima)
         self.controlador_tema.registrar_etiqueta(etiqueta_album_ultima)
         # ---------------------------------------------------------------------------------
+
+        # Crear un diccionario con los textos que pueden necesitar desplazamiento
+        textos_animados = {
+            "titulo": (ultima["titulo"], etiqueta_titulo_ultima),
+            "artista": (ultima["artista"], etiqueta_artista_ultima),
+            "album": (ultima["album"], etiqueta_album_ultima),
+        }
+        self.animacion_ultima = AnimacionGeneral()
+        # Iniciar el desplazamiento con longitud máxima adecuada
+        self.animacion_ultima.configurar_desplazamiento_etiqueta(
+            textos_animados, panel_informacion_ultima, 400
+        )
+
         # *********************************************************************************
 
     # Método para mostrar la ventana de estadisticas

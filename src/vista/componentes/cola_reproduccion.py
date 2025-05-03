@@ -302,19 +302,18 @@ class ColaReproduccion(UtilesGeneral):
         # ================================================================================================
 
     # Método para mostrar la carátula de una canción en un panel
-    def mostrar_caratula(self, panel_contenedor, imagen_bytes, ancho=60):
-        foto, _, _ = self.crear_imagen_desde_bytes(imagen_bytes, ancho)
-        if foto:
-            # --------------------------------------- Etiqueta imagen ------------------------------------
-            etiqueta_imagen = ctk.CTkLabel(panel_contenedor, image=foto, text="")
-            etiqueta_imagen.image = foto
-            etiqueta_imagen.pack(
-                side="left" if panel_contenedor.pack_info().get("side") != "left" else "top",
-                padx=(0, 3),
-            )
-            self.componentes.append(etiqueta_imagen)
-            # --------------------------------------------------------------------------------------------
-            return etiqueta_imagen
+    def mostrar_caratula(self, panel_contenedor, cancion, ancho=60):
+        if cancion and cancion.caratula_cancion:
+            foto = cancion.obtener_caratula_cancion(formato="tk", ancho=ancho, alto=ancho)
+            if foto:
+                etiqueta_imagen = ctk.CTkLabel(panel_contenedor, image=foto, text="")
+                etiqueta_imagen.image = foto
+                etiqueta_imagen.pack(
+                    side="left" if panel_contenedor.pack_info().get("side") != "left" else "top",
+                    padx=(0, 3),
+                )
+                self.componentes.append(etiqueta_imagen)
+                return etiqueta_imagen
         return None
 
     # Método para mostrar la información de la canción actual
@@ -345,7 +344,7 @@ class ColaReproduccion(UtilesGeneral):
             # -------------------------------------------------------------------------------------------------
 
             if cancion_actual.caratula_cancion:
-                self.mostrar_caratula(panel_imagen, cancion_actual.caratula_cancion, ancho=60)
+                self.mostrar_caratula(panel_imagen, cancion_actual, ancho=60)
 
             # *************************************************************************************************
 
@@ -436,6 +435,7 @@ class ColaReproduccion(UtilesGeneral):
             )
 
             # -------------------------------------------------------------------------------------------------
+
             # Crear un diccionario con los textos que pueden necesitar desplazamiento
             self.textos_actual = {
                 "titulo": (cancion_actual.titulo_cancion, etiqueta_titulo),
@@ -444,8 +444,8 @@ class ColaReproduccion(UtilesGeneral):
             }
             # Iniciar el desplazamiento con longitud máxima adecuada
             self.animacion.configurar_desplazamiento_etiqueta(self.textos_actual, panel, 365)
-            # *************************************************************************************************
 
+            # *************************************************************************************************
             # =================================================================================================
         else:
             # =================================== Información de la canción ===================================
@@ -603,7 +603,7 @@ class ColaReproduccion(UtilesGeneral):
             # -------------------------------------------------------------------------------------------------
             # Intentar mostrar la carátula
             if cancion.caratula_cancion:
-                self.mostrar_caratula(panel_cancion, cancion.caratula_cancion, ancho=45)
+                self.mostrar_caratula(panel_cancion, cancion, ancho=45)
             # Información de la canción
             # --------------------------------- Panel información canción -------------------------------------
             panel_cola_informacion = ctk.CTkFrame(

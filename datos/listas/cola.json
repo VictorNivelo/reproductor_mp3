@@ -1,44 +1,21 @@
 {
-    "indice_actual": 30,
+    "indice_actual": 8,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\23.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Adicto (ft Anuel AA & Ozuna).mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Amanece.mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Ayer.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Bandolera.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\BEBE.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Bubalu.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Coronamos.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Delincuente.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Está Cabrón Ser Yo.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Gan-Ga (Remix).mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Hasta Que Dios Diga.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\La Llevo Al Cielo (ft Ñengo Flow).mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\MALA.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Maliante Hp (Remix).mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Me Gusta.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Na' Nuevo.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Nunca Sapo.mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow).mp3",
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Nunca Sapo.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow).mp3",
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3"
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow).mp3",
-        "titulo": "Soldado Y Profeta",
-        "artista": "Anuel AA ft Ozuna, Almighty, Kendo, Ñengo Flow",
-        "album": "Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow)",
-        "timestamp": "2025-05-02T21:02:40.000795"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
+        "titulo": "¿Qué Nos Pasó?",
+        "artista": "Anuel AA",
+        "album": "¿Qué Nos Pasó?",
+        "timestamp": "2025-05-03T10:54:44.411431"
     }
 }

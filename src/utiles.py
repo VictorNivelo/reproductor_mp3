@@ -1,7 +1,4 @@
-import customtkinter as ctk
 from constantes import *
-from io import BytesIO
-from PIL import Image
 import tracemalloc
 
 
@@ -63,66 +60,26 @@ class UtilesGeneral:
         self.color_slider = TEXTO_OSCURO if tema else FONDO_OSCURO
         self.color_barra_progreso = BARRA_PROGRESO_CLARO if tema else BARRA_PROGRESO_OSCURO
 
-    # Método para obtener la imagen de la caratula
-    @staticmethod
-    def crear_imagen_desde_bytes(imagen_bytes, ancho, alto=None, mantener_proporcion=True):
-        try:
-            # Crear imagen desde los bytes
-            imagen = Image.open(BytesIO(imagen_bytes))
-            # Obtener dimensiones originales
-            ancho_original = float(imagen.size[0])
-            alto_original = float(imagen.size[1])
-            # Calcular dimensiones finales según los parámetros
-            if alto is None:
-                # Si solo se proporciona ancho, calcular alto manteniendo proporción
-                if mantener_proporcion:
-                    ratio = ancho / ancho_original
-                    alto = int(alto_original * ratio)
-                else:
-                    alto = ancho  # Cuadrado si no se mantiene proporción
-            elif mantener_proporcion:
-                # Si se proporcionan ambos (ancho y alto) pero queremos mantener proporción
-                # Calculamos qué dimensión es más restrictiva
-                ratio_ancho = ancho / ancho_original
-                ratio_alto = alto / alto_original
-                ratio = min(ratio_ancho, ratio_alto)  # Usamos el ratio más pequeño
-                ancho = int(ancho_original * ratio)
-                alto = int(alto_original * ratio)
-            # Redimensionar la imagen
-            imagen_redimensionada = imagen.resize((ancho, alto), Image.Resampling.LANCZOS)
-            # Convertir a formato CTkImage
-            foto = ctk.CTkImage(
-                light_image=imagen_redimensionada, dark_image=imagen_redimensionada, size=(ancho, alto)
-            )
-            return foto, ancho, alto
-        except Exception as e:
-            print(f"Error al procesar la imagen: {e}")
-            return None, None, None
-
     # Método para obtener el ancho de un componente
     @staticmethod
-    def obtener_ancho_componente(componente, ancho_por_defecto=200):
+    def obtener_ancho_componente(componente):
         componente.update_idletasks()
         ancho = componente.winfo_width()
         # Si el ancho es 1 o menor, intentamos obtener el tamaño de la ventana padre si existe
         if ancho <= 1 and componente.master is not None:
             componente.master.update_idletasks()
             ancho = componente.master.winfo_width()
-        if ancho <= 1:
-            return ancho_por_defecto
         return ancho
 
     # Método para obtener el alto de un componente
     @staticmethod
-    def obtener_alto_componente(componente, alto_por_defecto=200):
+    def obtener_alto_componente(componente):
         componente.update_idletasks()
         alto = componente.winfo_height()
         # Si el alto es 1 o menor, intentamos obtener el tamaño de la ventana padre si existe
         if alto <= 1 and componente.master is not None:
             componente.master.update_idletasks()
             alto = componente.master.winfo_height()
-        if alto <= 1:
-            return alto_por_defecto
         return alto
 
     # Método para mostrar las dimensiones de un componente
@@ -130,7 +87,7 @@ class UtilesGeneral:
         def _mostrar():
             ancho = self.obtener_ancho_componente(componente)
             alto = self.obtener_alto_componente(componente)
-            if ancho <= 1 or ancho == 200 or alto <= 1 or alto == 200:
+            if ancho <= 1 or alto <= 1:
                 componente.after(100, _mostrar)
             else:
                 print(f"Ancho real: {ancho}, Alto real: {alto}")

@@ -105,7 +105,7 @@ class Cancion:
             return cls(ruta=ruta_archivo, titulo=ruta_archivo.stem)
 
     # Método para obtener la carátula de la canción
-    def obtener_caratula_cancion(self, formato="bytes", ancho=None, alto=None):
+    def obtener_caratula_general_cancion(self, formato="bytes", ancho=None, alto=None):
         if not self.caratula_cancion:
             return None
         try:
@@ -128,7 +128,6 @@ class Cancion:
             if formato == "PIL":
                 return imagen_pil
             elif formato == "tk":
-                # Importar CTkImage para customtkinter
                 try:
                     return CTkImage(light_image=imagen_pil, dark_image=imagen_pil, size=(ancho, alto))
                 except ImportError:

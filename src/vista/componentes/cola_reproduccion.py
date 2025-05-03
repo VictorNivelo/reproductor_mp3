@@ -233,6 +233,7 @@ class ColaReproduccion(UtilesGeneral):
 
         # ---------------------------------------- Botón limpiar cola ------------------------------------
         # Botón para limpiar toda la cola
+        icono_limpiar = cargar_icono_con_tamanio("limpiar", self.controlador_tema.tema_iconos, (15, 15))
         if self.controlador_reproductor.lista_reproduccion:
             boton_limpiar_cola = ctk.CTkButton(
                 panel_componentes,
@@ -244,11 +245,12 @@ class ColaReproduccion(UtilesGeneral):
                 font=(LETRA, TAMANIO_LETRA_BOTON),
                 text_color=self.color_texto,
                 text="Limpiar cola",
+                image=icono_limpiar,
                 command=self.limpiar_cola,
             )
             boton_limpiar_cola.pack(side="right")
             self.componentes.append(boton_limpiar_cola)
-            self.controlador_tema.registrar_botones_con_tamano("limpiar", boton_limpiar_cola, (15, 15))
+            # self.controlador_tema.registrar_botones_con_tamano("limpiar", boton_limpiar_cola, (15, 15))
             # self.controlador_tema.registrar_botones("limpiar", boton_limpiar_cola)
         # ------------------------------------------------------------------------------------------------
 
@@ -304,7 +306,7 @@ class ColaReproduccion(UtilesGeneral):
     # Método para mostrar la carátula de una canción en un panel
     def mostrar_caratula(self, panel_contenedor, cancion, ancho=60):
         if cancion and cancion.caratula_cancion:
-            foto = cancion.obtener_caratula_cancion(formato="tk", ancho=ancho, alto=ancho)
+            foto = cancion.obtener_caratula_general_cancion(formato="tk", ancho=ancho, alto=ancho)
             if foto:
                 etiqueta_imagen = ctk.CTkLabel(panel_contenedor, image=foto, text="")
                 etiqueta_imagen.image = foto

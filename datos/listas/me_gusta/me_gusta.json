@@ -13,6 +13,20 @@
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Abusadora..mp3",
+            "titulo": "Abusadora",
+            "artista": "Wisin & Yandel",
+            "artista_album": "Wisin & Yandel",
+            "album": "La Revolucion (Deluxe)",
+            "duracion": 180.4277551020408,
+            "duracion_formateada": "03:00",
+            "anio": "2009-01-01",
+            "numero_pista": "9/18",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
         }
     ]
 }

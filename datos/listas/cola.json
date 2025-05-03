@@ -1,21 +1,42 @@
 {
-    "indice_actual": 8,
+    "indice_actual": 16,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Abusadora..mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Ahora Es.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Algo Me Gusta De Ti.mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\BACK TO ME.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\BURN.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\El Telefono.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Escápate Conmigo (Remix).mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\KING.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Mayor Que Yo.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Me Estas Tentando.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Noche De Entierro.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Noche De Sexo.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Paleta.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Pam Pam.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Pegao.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\PROBLEMATIC.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Rakata.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Sacala.mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Sexy Movimiento.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Todavía.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\VULTURES.mp3",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
-        "titulo": "¿Qué Nos Pasó?",
-        "artista": "Anuel AA",
-        "album": "¿Qué Nos Pasó?",
-        "timestamp": "2025-05-03T10:54:44.411431"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Me Estas Tentando.mp3",
+        "titulo": "Me Estas Tentando",
+        "artista": "Wisin & Yandel",
+        "album": "La Revolucion (Deluxe)",
+        "timestamp": "2025-05-03T11:32:00.617453"
     }
 }

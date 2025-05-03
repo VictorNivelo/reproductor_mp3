@@ -147,11 +147,17 @@ class Biblioteca:
         return canciones_eliminadas
 
     # Método para obtener la carátula de una canción
+    def obtener_caratula_cancion_biblioteca(self, cancion: Cancion, formato="bytes", ancho=None, alto=None):
+        if cancion in self.canciones:
+            return cancion.obtener_caratula_general_cancion(formato, ancho, alto)
+        return None
+
+    # Método para obtener la carátula de una canción
     def obtener_caratula_album_biblioteca(self, nombre_album, formato="bytes", ancho=None, alto=None):
         if nombre_album in self.por_album:
             for cancion in self.por_album[nombre_album]:
                 if cancion.caratula_cancion:
-                    return cancion.obtener_caratula_cancion(formato, ancho, alto)
+                    return cancion.obtener_caratula_general_cancion(formato, ancho, alto)
         return None
 
     # Método para obtener la carátula de un artista
@@ -159,7 +165,7 @@ class Biblioteca:
         if nombre_artista in self.por_artista:
             for cancion in self.por_artista[nombre_artista]:
                 if cancion.caratula_cancion:
-                    return cancion.obtener_caratula_cancion(formato, ancho, alto)
+                    return cancion.obtener_caratula_general_cancion(formato, ancho, alto)
         return None
 
     # Método para obtener todas las carátulas de un álbum
@@ -168,7 +174,7 @@ class Biblioteca:
         if nombre_album in self.por_album:
             for cancion in self.por_album[nombre_album]:
                 if cancion.caratula_cancion:
-                    caratula = cancion.obtener_caratula_cancion(formato, ancho, alto)
+                    caratula = cancion.obtener_caratula_general_cancion(formato, ancho, alto)
                     if caratula and caratula not in caratulas:
                         caratulas.append(caratula)
         return caratulas

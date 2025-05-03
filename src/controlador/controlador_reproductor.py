@@ -77,7 +77,7 @@ class ControladorReproductor:
                 caratula_bytes = self.cancion_actual.caratula_cancion
             if caratula_bytes and self.etiqueta_imagen:
                 # Usar el método de la instancia Cancion
-                foto = self.cancion_actual.obtener_caratula_cancion(formato="tk", ancho=ancho, alto=ancho)
+                foto = self.cancion_actual.obtener_caratula_general_cancion(formato="tk", ancho=ancho, alto=ancho)
                 if foto:
                     self.etiqueta_imagen.configure(image=foto, text="")
                     self.foto_caratula = foto
@@ -117,7 +117,7 @@ class ControladorReproductor:
             self.animacion.configurar_desplazamiento_etiqueta(textos, self.etiqueta_nombre, 800)
             # Actualizar carátula
             if self.cancion_actual.caratula_cancion:
-                foto = self.cancion_actual.obtener_caratula_cancion(formato="tk", ancho=300, alto=300)
+                foto = self.cancion_actual.obtener_caratula_general_cancion(formato="tk", ancho=300, alto=300)
                 if foto:
                     self.etiqueta_imagen.configure(image=foto, text="")
                     self.foto_caratula = foto

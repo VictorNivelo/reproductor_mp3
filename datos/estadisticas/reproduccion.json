@@ -1,157 +1,48 @@
 {
     "artistas": {
-        "E.VAX": 4,
-        "Sech": 4,
-        "Tainy": 4,
-        "Sinfonico": 9,
-        "Ñengo Flow": 9,
-        "Anuel AA": 15,
-        "Coi Leray": 6,
-        "Metro Boomin": 6,
-        "Yan Block": 1,
-        "Panda Black": 1,
-        "Bryant Myers": 1,
-        "Eladio Carrion": 1,
-        "Daddy Yankee": 5,
-        "Feid": 2,
-        "Ty Dolla $ign": 11,
-        "Kanye West": 11,
-        "Bad Bunny": 1,
-        "Wisin": 3,
-        "Yandel": 3
+        "Desconocido": 27,
+        "Ñengo Flow": 24,
+        "Anuel AA": 37,
+        "Sinfonico": 24,
+        "Daddy Yankee": 13
     },
     "albumes": {
-        "DATA": 4,
-        "47 (Remix)": 9,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 6,
-        "444": 1,
-        "Animal": 1,
-        "Adictiva": 5,
-        "¿Qué Nos Pasó?": 1,
-        "INTER SHIBUYA - LA MAFIA": 2,
-        "VULTURES 1": 11,
-        "EL ÚLTIMO TOUR DEL MUNDO": 1,
-        "La Historia De El Dúo (Vol.1)": 1,
-        "La Revolucion (Deluxe)": 2
+        "Desconocido": 27,
+        "47 (Remix)": 24,
+        "Adictiva": 13
     },
-    "tiempo_total": 11450.958367346935,
-    "canciones_escuchadas": 44,
+    "tiempo_total": 20450.324897959174,
+    "canciones_escuchadas": 64,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Me Estas Tentando.mp3",
-        "titulo": "Me Estas Tentando",
-        "artista": "Wisin & Yandel",
-        "album": "La Revolucion (Deluxe)",
-        "timestamp": "2025-05-03T11:32:00.618421"
+        "ruta": "C:\\Users\\Victor\\Music\\a.mp3",
+        "titulo": "a",
+        "artista": "Desconocido",
+        "album": "Desconocido",
+        "timestamp": "2025-05-03T13:21:16.058086"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 4,
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "album": "DATA"
+        "C:\\Users\\Victor\\Music\\a.mp3": {
+            "contador": 27,
+            "titulo": "a",
+            "artista": "Desconocido",
+            "album": "Desconocido"
         },
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 9,
+            "contador": 24,
             "titulo": "47 (Remix)",
             "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
             "album": "47 (Remix)"
         },
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 6,
-            "titulo": "Self Love",
-            "artista": "Metro Boomin ft Coi Leray",
-            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
-        },
-        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
-            "contador": 1,
-            "titulo": "444",
-            "artista": "Yan Block ft Panda Black",
-            "album": "444"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
-            "contador": 1,
-            "titulo": "Animal",
-            "artista": "Eladio Carrion ft Bryant Myers",
-            "album": "Animal"
-        },
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 5,
+            "contador": 13,
             "titulo": "Adictiva",
             "artista": "Daddy Yankee ft Anuel AA",
             "album": "Adictiva"
-        },
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
-            "contador": 1,
-            "titulo": "¿Qué Nos Pasó?",
-            "artista": "Anuel AA",
-            "album": "¿Qué Nos Pasó?"
-        },
-        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
-            "contador": 2,
-            "titulo": "14 De Febrero",
-            "artista": "Feid",
-            "album": "INTER SHIBUYA - LA MAFIA"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\BURN.mp3": {
-            "contador": 3,
-            "titulo": "BURN",
-            "artista": "Kanye West ft Ty Dolla $ign",
-            "album": "VULTURES 1"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\KING.mp3": {
-            "contador": 3,
-            "titulo": "KING",
-            "artista": "Kanye West ft Ty Dolla $ign",
-            "album": "VULTURES 1"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\BACK TO ME.mp3": {
-            "contador": 3,
-            "titulo": "BACK TO ME",
-            "artista": "Kanye West ft Ty Dolla $ign",
-            "album": "VULTURES 1"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\PROBLEMATIC.mp3": {
-            "contador": 2,
-            "titulo": "PROBLEMATIC",
-            "artista": "Kanye West ft Ty Dolla $ign",
-            "album": "VULTURES 1"
-        },
-        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 1,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Pam Pam.mp3": {
-            "contador": 1,
-            "titulo": "Pam Pam",
-            "artista": "Wisin & Yandel",
-            "album": "La Historia De El Dúo (Vol.1)"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Abusadora..mp3": {
-            "contador": 1,
-            "titulo": "Abusadora",
-            "artista": "Wisin & Yandel",
-            "album": "La Revolucion (Deluxe)"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Me Estas Tentando.mp3": {
-            "contador": 1,
-            "titulo": "Me Estas Tentando",
-            "artista": "Wisin & Yandel",
-            "album": "La Revolucion (Deluxe)"
         }
     },
     "artistas_originales": {
-        "Tainy ft Sech, E.VAX": 4,
-        "Anuel AA ft Sinfonico, Ñengo Flow": 9,
-        "Metro Boomin ft Coi Leray": 6,
-        "Yan Block ft Panda Black": 1,
-        "Eladio Carrion ft Bryant Myers": 1,
-        "Daddy Yankee ft Anuel AA": 5,
-        "Anuel AA": 1,
-        "Feid": 2,
-        "Kanye West ft Ty Dolla $ign": 11,
-        "Bad Bunny": 1,
-        "Wisin & Yandel": 3
+        "Desconocido": 27,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 24,
+        "Daddy Yankee ft Anuel AA": 13
     }
 }

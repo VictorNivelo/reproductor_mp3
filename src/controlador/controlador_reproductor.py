@@ -67,29 +67,38 @@ class ControladorReproductor:
         self.etiqueta_artista.configure(text="")
         self.etiqueta_album.configure(text="")
         self.etiqueta_anio.configure(text="")
-        self.etiqueta_imagen.configure(text="Sin carátula")
+        self.etiqueta_imagen.configure(image=None, text="Sin carátula")
 
     # Método que actualiza la carátula de la canción
-    def actualizar_caratula_controlador(self, caratula_bytes=None, ancho=300):
+    def actualizar_caratula_controlador(self, caratula_bytes=None, ancho_caratula=300, alto_caratula=300):
         try:
             # Si no se proporcionan bytes, usar la carátula de la canción actual
             if caratula_bytes is None and self.cancion_actual:
                 caratula_bytes = self.cancion_actual.caratula_cancion
             if caratula_bytes and self.etiqueta_imagen:
                 # Usar el método de la instancia Cancion
-                foto = self.cancion_actual.obtener_caratula_general_cancion(formato="tk", ancho=ancho, alto=ancho)
+                foto = self.cancion_actual.obtener_caratula_general_cancion(
+                    formato="tk", ancho=ancho_caratula, alto=alto_caratula
+                )
                 if foto:
                     self.etiqueta_imagen.configure(image=foto, text="")
                     self.foto_caratula = foto
                     return True
                 else:
-                    self.etiqueta_imagen.configure(image=None, text="Sin carátula")
+                    self.etiqueta_imagen.configure(image="", text="Sin carátula")
+                    self.foto_caratula = None
             else:
-                self.etiqueta_imagen.configure(image=None, text="Sin carátula")
+                self.etiqueta_imagen.configure(image="", text="Sin carátula")
+                self.foto_caratula = None
             return False
         except Exception as e:
             print(f"Error al actualizar carátula: {e}")
-            self.etiqueta_imagen.configure(image=None, text="Sin carátula")
+            try:
+                self.etiqueta_imagen.configure(image="", text="Sin carátula")
+            except Exception as e:
+                print(f"Error al mostrar sin caratula: {e}")
+                pass
+            self.foto_caratula = None
             return False
 
     # Método que actualiza la información de la interfaz
@@ -115,16 +124,8 @@ class ControladorReproductor:
                 "album": (self.texto_album, self.etiqueta_album),
             }
             self.animacion.configurar_desplazamiento_etiqueta(textos, self.etiqueta_nombre, 800)
-            # Actualizar carátula
-            if self.cancion_actual.caratula_cancion:
-                foto = self.cancion_actual.obtener_caratula_general_cancion(formato="tk", ancho=300, alto=300)
-                if foto:
-                    self.etiqueta_imagen.configure(image=foto, text="")
-                    self.foto_caratula = foto
-                else:
-                    self.etiqueta_imagen.configure(image=None, text="Sin carátula")
-            else:
-                self.etiqueta_imagen.configure(image=None, text="Sin carátula")
+            # Actualizar carátula usando el método centralizado
+            self.actualizar_caratula_controlador()
 
     # Método que establece la barra de progreso
     def establecer_barra_progreso_controlador(self, barra):

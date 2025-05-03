@@ -1,5 +1,5 @@
 {
-    "indice_actual": 25,
+    "indice_actual": 30,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -28,13 +28,17 @@
         "C:\\Users\\Victor\\Music\\Musica\\Nunca Sapo.mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
         "C:\\Users\\Victor\\Music\\Musica\\Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow).mp3",
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Nunca Sapo.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow).mp3",
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "titulo": "Self Love",
-        "artista": "Metro Boomin ft Coi Leray",
-        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
-        "timestamp": "2025-05-01T11:40:11.688374"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow).mp3",
+        "titulo": "Soldado Y Profeta",
+        "artista": "Anuel AA ft Ozuna, Almighty, Kendo, Ñengo Flow",
+        "album": "Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow)",
+        "timestamp": "2025-05-02T21:02:40.000795"
     }
 }

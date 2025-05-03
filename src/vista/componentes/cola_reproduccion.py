@@ -24,14 +24,55 @@ class ColaReproduccion(UtilesGeneral):
         self.componentes = []
         # Instancia de utilidades
         self.animacion = AnimacionGeneral()
+        self.animacion_cancion = AnimacionGeneral()
         # Configurar un temporizador para comprobar cambios en la canción actual
         self.iniciar_monitor_cambios()
         # Inicializar los textos actuales para la animación
-        self.textos_actuales = {}
+        self.textos_actual = {}
+        # Inicializar los textos de la cola
+        self.textos_cola = {}
 
     # Método para iniciar el temporizador de verificación de cambios
     def iniciar_monitor_cambios(self):
         self.verificar_cambio_cancion()
+
+    # Método para alternar entre reproducir y pausar la canción actual
+    def alternar_reproduccion(self):
+        if self.controlador_reproductor.reproduciendo:
+            # Sí está reproduciendo, pausar
+            self.controlador_reproductor.pausar_reproduccion_controlador()
+        else:
+            # Si está pausado, reproducir o reanudar
+            self.controlador_reproductor.reproducir_o_reanudar_controlador()
+        # Actualizar el estado de la interfaz principal
+        if self.llamado_actualizacion:
+            self.llamado_actualizacion()
+        # Si la ventana de cola está abierta, actualizar solo el botón
+        if self.ventana_cola is not None and self.ventana_cola.winfo_exists():
+            # Buscar el botón de reproducción/pausa en los componentes
+            for componente in self.componentes:
+                # Verificar si es un botón y existe
+                if (
+                    isinstance(componente, ctk.CTkButton)
+                    and componente.winfo_exists()
+                    and hasattr(componente, "cget")
+                    and componente.cget("command") == self.alternar_reproduccion
+                ):
+                    # Determinar el icono según el estado de reproducción
+                    icono_nombre = "pausa" if self.controlador_reproductor.reproduciendo else "reproducir"
+                    icono_reproduccion = cargar_icono_con_tamanio(
+                        icono_nombre, self.controlador_tema.tema_iconos, (20, 20)
+                    )
+                    # Actualizar el icono del botón
+                    componente.configure(image=icono_reproduccion)
+                    # Actualizar el tooltip
+                    crear_tooltip(
+                        componente,
+                        "Pausar" if self.controlador_reproductor.reproduciendo else "Reproducir",
+                    )
+                    # Guardar referencia al icono para evitar que sea recolectado
+                    componente.image = icono_reproduccion
+                    break
 
     # Método para cerrar la ventana de la cola de reproducción
     def cerrar_ventana_cola(self):
@@ -358,14 +399,51 @@ class ColaReproduccion(UtilesGeneral):
             self.componentes.append(etiqueta_album)
             self.controlador_tema.registrar_etiqueta(etiqueta_album)
             # -------------------------------------------------------------------------------------------------
+
+            # ------------------------------------------ Panel boton ------------------------------------------
+            # Panel para botón de reproducción/pausa
+            panel_boton_reproduccion = ctk.CTkFrame(panel_informacion_cancion, fg_color="transparent")
+            panel_boton_reproduccion.pack(side="right", padx=(0, 3))
+            self.componentes.append(panel_boton_reproduccion)
+            # -------------------------------------------------------------------------------------------------
+
+            # Determinar el icono según el estado de reproducción
+            icono_nombre = "pausa" if self.controlador_reproductor.reproduciendo else "reproducir"
+            icono_reproduccion = cargar_icono_con_tamanio(
+                icono_nombre, self.controlador_tema.tema_iconos, (18, 18)
+            )
+
+            # -------------------------------- Botón reproducir/pausar ----------------------------------------
+            # Botón de reproducción/pausa
+            boton_reproducir_pausar = ctk.CTkButton(
+                panel_boton_reproduccion,
+                width=ANCHO_BOTON,
+                height=ALTO_BOTON,
+                corner_radius=BORDES_REDONDEADOS_BOTON,
+                fg_color=self.color_boton,
+                hover_color=self.color_hover,
+                font=(LETRA, TAMANIO_LETRA_BOTON),
+                text_color=self.color_texto,
+                text="",
+                image=icono_reproduccion,
+                command=self.alternar_reproduccion,
+            )
+            boton_reproducir_pausar.pack()
+            self.componentes.append(boton_reproducir_pausar)
+            crear_tooltip(
+                boton_reproducir_pausar,
+                "Reproducir" if not self.controlador_reproductor.reproduciendo else "Pausar",
+            )
+
+            # -------------------------------------------------------------------------------------------------
             # Crear un diccionario con los textos que pueden necesitar desplazamiento
-            self.textos_actuales = {
+            self.textos_actual = {
                 "titulo": (cancion_actual.titulo_cancion, etiqueta_titulo),
                 "artista": (cancion_actual.artista, etiqueta_artista),
                 "album": (cancion_actual.album, etiqueta_album),
             }
             # Iniciar el desplazamiento con longitud máxima adecuada
-            self.animacion.configurar_desplazamiento_etiqueta(self.textos_actuales, panel, 50)
+            self.animacion.configurar_desplazamiento_etiqueta(self.textos_actual, panel, 365)
             # *************************************************************************************************
 
             # =================================================================================================
@@ -581,6 +659,19 @@ class ColaReproduccion(UtilesGeneral):
             self.controlador_tema.registrar_etiqueta(etiqueta_album_cola)
             # -------------------------------------------------------------------------------------------------
 
+            # Crear un diccionario para los textos animados de esta canción
+            self.textos_cola = {
+                "titulo": (cancion.titulo_cancion, etiqueta_titulo_cola),
+                "artista": (cancion.artista, etiqueta_artista_cola),
+                "album": (cancion.album, etiqueta_album_cola),
+            }
+            # Crear una instancia de animación para esta canción
+            self.animacion_cancion = AnimacionGeneral()
+            # Iniciar animación de desplazamiento para los textos largos de esta canción
+            self.animacion_cancion.configurar_desplazamiento_etiqueta(
+                self.textos_cola, panel_cola_informacion, 365
+            )
+
             # ---------------------------------------- Botón quitar -------------------------------------------
             # Botón para quitar de la cola
             icono_quitar = cargar_icono_con_tamanio("quitar", self.controlador_tema.tema_iconos, (9, 9))
@@ -608,35 +699,39 @@ class ColaReproduccion(UtilesGeneral):
                 panel_objetivo.configure(fg_color=color)
 
             # Configurar eventos de hover
-            panel_cancion.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
-            panel_cola_informacion.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
-            etiqueta_titulo_cola.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
-            etiqueta_artista_cola.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
-            etiqueta_album_cola.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
-            etiqueta_numero.bind("<Enter>", lambda e, f=panel_cancion: configurar_hover(f, True))
+            panel_cancion.bind("<Enter>", lambda e=None, f=panel_cancion: configurar_hover(f, True))
+            panel_cola_informacion.bind("<Enter>", lambda e=None, f=panel_cancion: configurar_hover(f, True))
+            etiqueta_titulo_cola.bind("<Enter>", lambda e=None, f=panel_cancion: configurar_hover(f, True))
+            etiqueta_artista_cola.bind("<Enter>", lambda e=None, f=panel_cancion: configurar_hover(f, True))
+            etiqueta_album_cola.bind("<Enter>", lambda e=None, f=panel_cancion: configurar_hover(f, True))
+            etiqueta_numero.bind("<Enter>", lambda e=None, f=panel_cancion: configurar_hover(f, True))
 
-            panel_cancion.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
-            panel_cola_informacion.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
-            etiqueta_titulo_cola.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
-            etiqueta_artista_cola.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
-            etiqueta_album_cola.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
-            etiqueta_numero.bind("<Leave>", lambda e, f=panel_cancion: configurar_hover(f, False))
+            panel_cancion.bind("<Leave>", lambda e=None, f=panel_cancion: configurar_hover(f, False))
+            panel_cola_informacion.bind("<Leave>", lambda e=None, f=panel_cancion: configurar_hover(f, False))
+            etiqueta_titulo_cola.bind("<Leave>", lambda e=None, f=panel_cancion: configurar_hover(f, False))
+            etiqueta_artista_cola.bind("<Leave>", lambda e=None, f=panel_cancion: configurar_hover(f, False))
+            etiqueta_album_cola.bind("<Leave>", lambda e=None, f=panel_cancion: configurar_hover(f, False))
+            etiqueta_numero.bind("<Leave>", lambda e=None, f=panel_cancion: configurar_hover(f, False))
 
             # Añadir evento de clic para reproducir la canción
-            panel_cancion.bind("<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c))
+            panel_cancion.bind(
+                "<Button-1>", lambda e=None, c=cancion: self.reproducir_cancion_seleccionada(c)
+            )
             panel_cola_informacion.bind(
-                "<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c)
+                "<Button-1>", lambda e=None, c=cancion: self.reproducir_cancion_seleccionada(c)
             )
             etiqueta_titulo_cola.bind(
-                "<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c)
+                "<Button-1>", lambda e=None, c=cancion: self.reproducir_cancion_seleccionada(c)
             )
             etiqueta_artista_cola.bind(
-                "<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c)
+                "<Button-1>", lambda e=None, c=cancion: self.reproducir_cancion_seleccionada(c)
             )
             etiqueta_album_cola.bind(
-                "<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c)
+                "<Button-1>", lambda e=None, c=cancion: self.reproducir_cancion_seleccionada(c)
             )
-            etiqueta_numero.bind("<Button-1>", lambda e, c=cancion: self.reproducir_cancion_seleccionada(c))
+            etiqueta_numero.bind(
+                "<Button-1>", lambda e=None, c=cancion: self.reproducir_cancion_seleccionada(c)
+            )
         if not proximas_canciones and modo_repeticion != 2:
             # ----------------------------------------- Etiqueta final ----------------------------------------
             etiqueta_final = ctk.CTkLabel(

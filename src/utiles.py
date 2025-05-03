@@ -98,3 +98,41 @@ class UtilesGeneral:
         except Exception as e:
             print(f"Error al procesar la imagen: {e}")
             return None, None, None
+
+    # Método para obtener el ancho de un componente
+    @staticmethod
+    def obtener_ancho_componente(componente, ancho_por_defecto=200):
+        componente.update_idletasks()
+        ancho = componente.winfo_width()
+        # Si el ancho es 1 o menor, intentamos obtener el tamaño de la ventana padre si existe
+        if ancho <= 1 and componente.master is not None:
+            componente.master.update_idletasks()
+            ancho = componente.master.winfo_width()
+        if ancho <= 1:
+            return ancho_por_defecto
+        return ancho
+
+    # Método para obtener el alto de un componente
+    @staticmethod
+    def obtener_alto_componente(componente, alto_por_defecto=200):
+        componente.update_idletasks()
+        alto = componente.winfo_height()
+        # Si el alto es 1 o menor, intentamos obtener el tamaño de la ventana padre si existe
+        if alto <= 1 and componente.master is not None:
+            componente.master.update_idletasks()
+            alto = componente.master.winfo_height()
+        if alto <= 1:
+            return alto_por_defecto
+        return alto
+
+    # Método para mostrar las dimensiones de un componente
+    def mostrar_dimensiones_componente(self, componente):
+        def _mostrar():
+            ancho = self.obtener_ancho_componente(componente)
+            alto = self.obtener_alto_componente(componente)
+            if ancho <= 1 or ancho == 200 or alto <= 1 or alto == 200:
+                componente.after(100, _mostrar)
+            else:
+                print(f"Ancho real: {ancho}, Alto real: {alto}")
+
+        componente.after(100, _mostrar)

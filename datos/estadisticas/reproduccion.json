@@ -1,20 +1,20 @@
 {
     "artistas": {
-        "Anuel AA": 37,
+        "Anuel AA": 39,
         "Cosculluela": 3,
         "Sinfonico": 1,
-        "Ñengo Flow": 3,
+        "Ñengo Flow": 4,
         "Daddy Yankee": 1,
-        "Tainy": 6,
-        "Ozuna": 2,
+        "Tainy": 8,
+        "Ozuna": 3,
         "Haze": 1,
         "6ix9ine": 9,
         "Becky G": 1,
         "Prince Royce": 1,
         "Lito Kirino": 1,
-        "Bad Bunny": 4,
-        "E.VAX": 5,
-        "Sech": 5,
+        "Bad Bunny": 5,
+        "E.VAX": 7,
+        "Sech": 7,
         "Feid": 2,
         "Chencho Corleone": 1,
         "Chris Jedi": 1,
@@ -24,14 +24,14 @@
         "Farruko": 3,
         "Nio Garcia": 2,
         "Bryant Myers": 3,
-        "Almighty": 3,
+        "Almighty": 4,
         "Kendo Kaponi": 1,
         "Panda Black": 1,
         "Yan Block": 1,
-        "Coi Leray": 2,
-        "Metro Boomin": 2,
+        "Coi Leray": 5,
+        "Metro Boomin": 5,
         "Eladio Carrion": 1,
-        "Kendo": 1
+        "Kendo": 2
     },
     "albumes": {
         "23": 3,
@@ -44,8 +44,8 @@
         "DUMMY BOY": 9,
         "Bubalu": 1,
         "Coronamos": 1,
-        "YHLQMDLG": 1,
-        "DATA": 5,
+        "YHLQMDLG": 2,
+        "DATA": 7,
         "EL ÚLTIMO TOUR DEL MUNDO": 3,
         "INTER SHIBUYA - LA MAFIA": 2,
         "La Llevo Al Cielo (Ft. Ñengo Flow)": 1,
@@ -53,18 +53,18 @@
         "Gangalee": 1,
         "Nunca Sapo": 1,
         "444": 1,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 2,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 5,
         "Animal": 1,
-        "Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow)": 1
+        "Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow)": 2
     },
-    "tiempo_total": 12397.949387755103,
-    "canciones_escuchadas": 51,
+    "tiempo_total": 14101.185306122448,
+    "canciones_escuchadas": 58,
     "ultima_cancion": {
         "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
         "titulo": "Self Love",
         "artista": "Metro Boomin ft Coi Leray",
         "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
-        "timestamp": "2025-05-01T11:40:11.689328"
+        "timestamp": "2025-05-02T20:52:55.529401"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\Musica\\23.mp3": {
@@ -128,13 +128,13 @@
             "album": "Coronamos"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Está Cabrón Ser Yo.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "Está Cabrón Ser Yo",
             "artista": "Bad Bunny ft Anuel AA",
             "album": "YHLQMDLG"
         },
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 5,
+            "contador": 7,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
@@ -194,7 +194,7 @@
             "album": "444"
         },
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 2,
+            "contador": 5,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
@@ -206,7 +206,7 @@
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\Musica\\Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow).mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "Soldado Y Profeta",
             "artista": "Anuel AA ft Ozuna, Almighty, Kendo, Ñengo Flow",
             "album": "Soldado Y Profeta (ft Ozuna, Almighty, Kendo, Ñengo Flow)"
@@ -222,16 +222,16 @@
         "6ix9ine ft Anuel AA": 9,
         "Becky G ft Prince Royce, Anuel AA": 1,
         "Lito Kirino ft Anuel AA": 1,
-        "Bad Bunny ft Anuel AA": 1,
-        "Tainy ft Sech, E.VAX": 5,
+        "Bad Bunny ft Anuel AA": 2,
+        "Tainy ft Sech, E.VAX": 7,
         "Bad Bunny": 3,
         "Feid": 2,
         "Chris Jedi ft Anuel AA, Chencho Corleone, Ñengo Flow": 1,
         "Benny Benni ft Anuel AA, Farruko, Almighty, Darkiel, Bryant Myers, Nio Garcia, Noriel": 2,
         "Farruko ft Anuel AA, Kendo Kaponi": 1,
         "Yan Block ft Panda Black": 1,
-        "Metro Boomin ft Coi Leray": 2,
+        "Metro Boomin ft Coi Leray": 5,
         "Eladio Carrion ft Bryant Myers": 1,
-        "Anuel AA ft Ozuna, Almighty, Kendo, Ñengo Flow": 1
+        "Anuel AA ft Ozuna, Almighty, Kendo, Ñengo Flow": 2
     }
 }

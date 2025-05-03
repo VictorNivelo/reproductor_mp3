@@ -1,3 +1,6 @@
+import tkinter.font as letra
+
+
 class AnimacionGeneral:
     def __init__(self):
         # Animaciones
@@ -6,6 +9,8 @@ class AnimacionGeneral:
         self.direccion_desplazamiento = {}
         self.id_marcador_tiempo = None
         self.textos_animados = {}
+        self.pausa_inicio = {}
+        self.pausa_final = {}
 
     # Método para configurar el desplazamiento automático de etiquetas
     def configurar_desplazamiento_etiqueta(self, textos_dict, componente_principal, longitud_maxima):
@@ -13,24 +18,37 @@ class AnimacionGeneral:
         if hasattr(self, "id_marcador_tiempo") and self.id_marcador_tiempo:
             componente_principal.after_cancel(self.id_marcador_tiempo)
             self.id_marcador_tiempo = None
-        # Variables para controlar el desplazamiento
         self.desplazamiento_activo = {}
         self.posicion_desplazamiento = {}
         self.direccion_desplazamiento = {}
         self.textos_animados = textos_dict
-        # Configurar el texto inicial y activar desplazamiento si es necesario
+        longitud_letra_dict = {}
         for clave, (texto, etiqueta) in textos_dict.items():
-            if len(texto) > longitud_maxima:
+            # Obtener la fuente del componente
+            font = letra.Font(font=etiqueta.cget("font"))
+            # Calcular cuántos caracteres caben en el ancho dado
+            longitud_letra = len(texto)
+            for i in range(1, len(texto) + 1):
+                if font.measure(texto[:i]) > longitud_maxima:
+                    longitud_letra = i - 1
+                    break
+            longitud_letra_dict[clave] = longitud_letra
+            if len(texto) > longitud_letra:
                 self.desplazamiento_activo[clave] = True
                 self.posicion_desplazamiento[clave] = 0
                 self.direccion_desplazamiento[clave] = 1
-                etiqueta.configure(text=texto[:longitud_maxima] + "...")
+                etiqueta.configure(text=texto[:longitud_letra] + "...")
             else:
                 self.desplazamiento_activo[clave] = False
                 etiqueta.configure(text=texto)
         # Iniciar animación automática si hay textos largos
         if any(self.desplazamiento_activo.values()):
-            self.iniciar_desplazamiento_etiqueta(componente_principal, longitud_maxima)
+            min_longitud_letra = min(
+                longitud_letra_dict[clave]
+                for clave in self.desplazamiento_activo
+                if self.desplazamiento_activo[clave]
+            )
+            self.iniciar_desplazamiento_etiqueta(componente_principal, min_longitud_letra)
 
     # Método para iniciar desplazamiento de textos largos (llama a animar)
     def iniciar_desplazamiento_etiqueta(self, componente_principal, longitud_maxima):
@@ -69,30 +87,25 @@ class AnimacionGeneral:
             posicion = self.posicion_desplazamiento[clave]
             # Control de pausa al inicio
             if posicion == 0:
-                if not hasattr(self, f"pausa_inicio_{clave}"):
-                    setattr(self, f"pausa_inicio_{clave}", 0)
-                pausa_actual = getattr(self, f"pausa_inicio_{clave}")
-                if pausa_actual < 8:
-                    setattr(self, f"pausa_inicio_{clave}", pausa_actual + 1)
+                self.pausa_inicio.setdefault(clave, 0)
+                if self.pausa_inicio[clave] < 8:
+                    self.pausa_inicio[clave] += 1
                     texto_visible = texto_completo[:longitud_maxima]
                     etiqueta.configure(text=texto_visible)
                     continue
                 else:
-                    setattr(self, f"pausa_inicio_{clave}", 0)
-            # Control de pausa al final
+                    self.pausa_inicio[clave] = 0
             if posicion >= len(texto_completo) - longitud_maxima:
-                if not hasattr(self, f"pausa_final_{clave}"):
-                    setattr(self, f"pausa_final_{clave}", 0)
-                pausa_actual = getattr(self, f"pausa_final_{clave}")
-                if pausa_actual < 8:
+                self.pausa_final.setdefault(clave, 0)
+                if self.pausa_final[clave] < 8:
                     texto_visible = texto_completo[len(texto_completo) - longitud_maxima :]
                     etiqueta.configure(text=texto_visible)
-                    setattr(self, f"pausa_final_{clave}", pausa_actual + 1)
+                    self.pausa_final[clave] += 1
                     continue
                 else:
                     self.posicion_desplazamiento[clave] = 0
                     texto_visible = texto_completo[:longitud_maxima]
-                    setattr(self, f"pausa_final_{clave}", 0)
+                    self.pausa_final[clave] = 0
                     etiqueta.configure(text=texto_visible)
                     continue
             # Desplazamiento normal
@@ -106,6 +119,18 @@ class AnimacionGeneral:
                 componente_principal, longitud_maxima, intervalo, reproduciendo
             ),
         )
+
+    # Método para configurar el desplazamiento de un botón
+    def configurar_desplazamiento_boton(self, boton, texto_completo, longitud_maxima):
+        if len(texto_completo) <= longitud_maxima:
+            boton.configure(text=texto_completo)
+            return
+        setattr(boton, "texto_completo", texto_completo)
+        setattr(boton, "posicion_desplazamiento", 0)
+        setattr(boton, "id_temporizador", None)
+        boton.bind("<Enter>", lambda event: self.iniciar_desplazamiento_boton(boton))
+        boton.bind("<Leave>", lambda event: self.detener_desplazamiento_boton(boton, longitud_maxima))
+        boton.configure(text=texto_completo[:longitud_maxima] + "...")
 
     # Método para iniciar el desplazamiento del texto en un botón
     def iniciar_desplazamiento_boton(self, boton):
@@ -171,15 +196,3 @@ class AnimacionGeneral:
         setattr(boton, "posicion_desplazamiento", pos + 1)
         id_temporizador = boton.after(125, lambda: self.animar_desplazamiento_boton(boton, longitud_maxima))
         setattr(boton, "id_temporizador", id_temporizador)
-
-    # Método para configurar el desplazamiento de un botón
-    def configurar_desplazamiento_boton(self, boton, texto_completo, longitud_maxima):
-        if len(texto_completo) <= longitud_maxima:
-            boton.configure(text=texto_completo)
-            return
-        setattr(boton, "texto_completo", texto_completo)
-        setattr(boton, "posicion_desplazamiento", 0)
-        setattr(boton, "id_temporizador", None)
-        boton.bind("<Enter>", lambda event: self.iniciar_desplazamiento_boton(boton))
-        boton.bind("<Leave>", lambda event: self.detener_desplazamiento_boton(boton, longitud_maxima))
-        boton.configure(text=texto_completo[:longitud_maxima] + "...")

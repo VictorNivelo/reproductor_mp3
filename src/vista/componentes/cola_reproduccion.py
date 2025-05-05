@@ -306,7 +306,7 @@ class ColaReproduccion(UtilesGeneral):
     # Método para mostrar la carátula de una canción en un panel
     def mostrar_caratula(self, panel_contenedor, cancion, ancho=60):
         if cancion and cancion.caratula_cancion:
-            foto = cancion.obtener_caratula_general_cancion(formato="tk", ancho=ancho, alto=ancho)
+            foto = cancion.obtener_caratula_general_cancion(formato="ctk", ancho=ancho, alto=ancho)
             if foto:
                 etiqueta_imagen = ctk.CTkLabel(panel_contenedor, image=foto, text="")
                 etiqueta_imagen.image = foto

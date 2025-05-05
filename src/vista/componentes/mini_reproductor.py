@@ -414,7 +414,7 @@ class MiniReproductor(UtilesGeneral):
             self.etiqueta_album_mini.configure(text=cancion.album)
             # Actualizar carátula usando el método de la canción
             if cancion.caratula_cancion:
-                foto = cancion.obtener_caratula_general_cancion(formato="tk", ancho=125, alto=125)
+                foto = cancion.obtener_caratula_general_cancion(formato="ctk", ancho=125, alto=125)
                 if foto:
                     self.imagen_cancion_mini.configure(image=foto, text="")
                     self.foto_caratula_mini = foto  # Evitar garbage collector

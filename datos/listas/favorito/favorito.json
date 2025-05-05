@@ -1,3 +1,18 @@
 {
-    "favoritos": []
+    "favoritos": [
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "artista_album": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal",
+            "duracion": 217.78285714285715,
+            "duracion_formateada": "03:37",
+            "anio": "2019-07-05",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": true
+        }
+    ]
 }

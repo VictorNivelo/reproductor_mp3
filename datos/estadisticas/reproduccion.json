@@ -1,48 +1,107 @@
 {
     "artistas": {
-        "Desconocido": 27,
-        "Ñengo Flow": 24,
-        "Anuel AA": 37,
-        "Sinfonico": 24,
-        "Daddy Yankee": 13
+        "Panda Black": 2,
+        "Yan Block": 2,
+        "Anuel AA": 4,
+        "Ñengo Flow": 2,
+        "Sinfonico": 2,
+        "Daddy Yankee": 2,
+        "Eladio Carrion": 2,
+        "Bryant Myers": 2,
+        "Desconocido": 3,
+        "E.VAX": 2,
+        "Tainy": 2,
+        "Sech": 2,
+        "Bad Bunny": 3,
+        "Feid": 1,
+        "Metro Boomin": 1,
+        "Coi Leray": 1
     },
     "albumes": {
-        "Desconocido": 27,
-        "47 (Remix)": 24,
-        "Adictiva": 13
+        "444": 2,
+        "47 (Remix)": 2,
+        "Adictiva": 2,
+        "Animal": 2,
+        "Desconocido": 3,
+        "DATA": 2,
+        "EL ÚLTIMO TOUR DEL MUNDO": 3,
+        "INTER SHIBUYA - LA MAFIA": 1,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1
     },
-    "tiempo_total": 20450.324897959174,
-    "canciones_escuchadas": 64,
+    "tiempo_total": 4025.4171428571435,
+    "canciones_escuchadas": 18,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\a.mp3",
-        "titulo": "a",
-        "artista": "Desconocido",
-        "album": "Desconocido",
-        "timestamp": "2025-05-03T13:21:16.058086"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "titulo": "Animal",
+        "artista": "Eladio Carrion ft Bryant Myers",
+        "album": "Animal",
+        "timestamp": "2025-05-03T19:18:32.415312"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\a.mp3": {
-            "contador": 27,
-            "titulo": "a",
-            "artista": "Desconocido",
-            "album": "Desconocido"
+        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
+            "contador": 2,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
         },
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 24,
+            "contador": 2,
             "titulo": "47 (Remix)",
             "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
             "album": "47 (Remix)"
         },
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 13,
+            "contador": 2,
             "titulo": "Adictiva",
             "artista": "Daddy Yankee ft Anuel AA",
             "album": "Adictiva"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
+            "contador": 2,
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal"
+        },
+        "C:\\Users\\Victor\\Music\\a.mp3": {
+            "contador": 3,
+            "titulo": "a",
+            "artista": "Desconocido",
+            "album": "Desconocido"
+        },
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
+            "contador": 2,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
+            "contador": 3,
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
+        },
+        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
+            "contador": 1,
+            "titulo": "14 De Febrero",
+            "artista": "Feid",
+            "album": "INTER SHIBUYA - LA MAFIA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
+            "contador": 1,
+            "titulo": "Self Love",
+            "artista": "Metro Boomin ft Coi Leray",
+            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
         }
     },
     "artistas_originales": {
-        "Desconocido": 27,
-        "Anuel AA ft Sinfonico, Ñengo Flow": 24,
-        "Daddy Yankee ft Anuel AA": 13
+        "Yan Block ft Panda Black": 2,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 2,
+        "Daddy Yankee ft Anuel AA": 2,
+        "Eladio Carrion ft Bryant Myers": 2,
+        "Desconocido": 3,
+        "Tainy ft Sech, E.VAX": 2,
+        "Bad Bunny": 3,
+        "Feid": 1,
+        "Metro Boomin ft Coi Leray": 1
     }
 }

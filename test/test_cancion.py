@@ -50,7 +50,7 @@ class TestCancionObtenerCaratula(unittest.TestCase):
         self.assertEqual(resultado.height, 100)
 
     def test_obtener_caratula_formato_tk(self):
-        resultado = self.cancion_con_caratula.obtener_caratula_general_cancion(formato="tk")
+        resultado = self.cancion_con_caratula.obtener_caratula_general_cancion(formato="ctk")
         self.assertIsInstance(resultado, ImageTk.PhotoImage)
         self.assertEqual(resultado.width(), 100)
         self.assertEqual(resultado.height(), 100)

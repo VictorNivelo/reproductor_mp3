@@ -15,8 +15,8 @@ class ControladorReproductor:
         # Tiempo de reproducción
         self.tiempo_inicio = None
         self.tiempo_acumulado = 0
-        # Carátula de la canción
-        self.foto_caratula = None
+        # Imagen de carátula vacía
+        self.imagen_vacia = Cancion.crear_imagen_vacia()
         # Etiquetas de la interfaz
         self.etiqueta_nombre = None
         self.etiqueta_artista = None
@@ -78,27 +78,23 @@ class ControladorReproductor:
             if caratula_bytes and self.etiqueta_imagen:
                 # Usar el método de la instancia Cancion
                 foto = self.cancion_actual.obtener_caratula_general_cancion(
-                    formato="tk", ancho=ancho_caratula, alto=alto_caratula
+                    formato="ctk", ancho=ancho_caratula, alto=alto_caratula
                 )
                 if foto:
                     self.etiqueta_imagen.configure(image=foto, text="")
-                    self.foto_caratula = foto
                     return True
                 else:
-                    self.etiqueta_imagen.configure(image="", text="Sin carátula")
-                    self.foto_caratula = None
+                    self.etiqueta_imagen.configure(image=self.imagen_vacia, text="Sin carátula")
             else:
-                self.etiqueta_imagen.configure(image="", text="Sin carátula")
-                self.foto_caratula = None
+                self.etiqueta_imagen.configure(image=self.imagen_vacia, text="Sin carátula")
             return False
         except Exception as e:
             print(f"Error al actualizar carátula: {e}")
             try:
-                self.etiqueta_imagen.configure(image="", text="Sin carátula")
+                self.etiqueta_imagen.configure(image=self.imagen_vacia, text="Sin carátula")
             except Exception as e:
                 print(f"Error al mostrar sin caratula: {e}")
                 pass
-            self.foto_caratula = None
             return False
 
     # Método que actualiza la información de la interfaz

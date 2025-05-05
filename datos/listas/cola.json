@@ -1,15 +1,22 @@
 {
-    "indice_actual": 1,
+    "indice_actual": 7,
     "canciones": [
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "C:\\Users\\Victor\\Music\\M\\120.mp3",
+        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
         "C:\\Users\\Victor\\Music\\a.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3"
+        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\a.mp3",
-        "titulo": "a",
-        "artista": "Desconocido",
-        "album": "Desconocido",
-        "timestamp": "2025-05-03T13:21:18.872427"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "titulo": "Animal",
+        "artista": "Eladio Carrion ft Bryant Myers",
+        "album": "Animal",
+        "timestamp": "2025-05-03T19:18:35.157532"
     }
 }

@@ -104,6 +104,16 @@ class Cancion:
             print(f"Error al procesar el archivo {ruta_archivo}: {str(e)}")
             return cls(ruta=ruta_archivo, titulo=ruta_archivo.stem)
 
+    # Método que crea una imagen vacía para la carátula
+    @staticmethod
+    def crear_imagen_vacia():
+        try:
+            img = Image.new('RGBA', (1, 1), (0, 0, 0, 0))
+            return CTkImage(light_image=img, dark_image=img, size=(1, 1))
+        except Exception as e:
+            print(f"Error al crear imagen vacía: {e}")
+            return None
+
     # Método para obtener la carátula de la canción
     def obtener_caratula_general_cancion(self, formato="bytes", ancho=None, alto=None):
         if not self.caratula_cancion:
@@ -125,16 +135,20 @@ class Cancion:
                     proporcion = alto / imagen_pil.height
                     ancho = int(imagen_pil.width * proporcion)
                 imagen_pil = imagen_pil.resize((ancho, alto), Resampling.LANCZOS)
+            # Devolver el formato solicitado
             if formato == "PIL":
                 return imagen_pil
-            elif formato == "tk":
+            elif formato == "ctk":
+                # Opción específica para CustomTkinter
                 try:
-                    return CTkImage(light_image=imagen_pil, dark_image=imagen_pil, size=(ancho, alto))
+                    return CTkImage(light_image=imagen_pil, dark_image=imagen_pil, size=(ancho or imagen_pil.width, alto or imagen_pil.height))
                 except ImportError:
-                    # Fallback a ImageTk.PhotoImage si no se puede importar CTkImage
-                    return ImageTk.PhotoImage(imagen_pil)
+                    raise ImportError("No se puede importar CTkImage. Asegúrate de tener CustomTkinter instalado.")
+            elif formato == "tk":
+                # Opción específica para Tkinter estándar
+                return ImageTk.PhotoImage(imagen_pil)
             else:
-                raise ValueError(f"Formato '{formato}' no soportado")
+                raise ValueError(f"Formato '{formato}' no soportado. Usa 'bytes', 'PIL', 'ctk' o 'tk'")
         except Exception as e:
             print(f"Error al procesar la carátula: {e}")
             return None

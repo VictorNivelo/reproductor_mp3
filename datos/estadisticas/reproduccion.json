@@ -9,9 +9,9 @@
         "Eladio Carrion": 2,
         "Bryant Myers": 2,
         "Desconocido": 3,
-        "E.VAX": 2,
-        "Tainy": 2,
-        "Sech": 2,
+        "E.VAX": 3,
+        "Tainy": 3,
+        "Sech": 3,
         "Bad Bunny": 3,
         "Feid": 1,
         "Metro Boomin": 1,
@@ -23,19 +23,19 @@
         "Adictiva": 2,
         "Animal": 2,
         "Desconocido": 3,
-        "DATA": 2,
+        "DATA": 3,
         "EL ÚLTIMO TOUR DEL MUNDO": 3,
         "INTER SHIBUYA - LA MAFIA": 1,
         "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1
     },
-    "tiempo_total": 4025.4171428571435,
-    "canciones_escuchadas": 18,
+    "tiempo_total": 4222.432653061225,
+    "canciones_escuchadas": 19,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "titulo": "Animal",
-        "artista": "Eladio Carrion ft Bryant Myers",
-        "album": "Animal",
-        "timestamp": "2025-05-03T19:18:32.415312"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "titulo": "11 Y ONCE",
+        "artista": "Tainy ft Sech, E.VAX",
+        "album": "DATA",
+        "timestamp": "2025-05-05T21:07:15.751901"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\444..mp3": {
@@ -69,7 +69,7 @@
             "album": "Desconocido"
         },
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
@@ -99,7 +99,7 @@
         "Daddy Yankee ft Anuel AA": 2,
         "Eladio Carrion ft Bryant Myers": 2,
         "Desconocido": 3,
-        "Tainy ft Sech, E.VAX": 2,
+        "Tainy ft Sech, E.VAX": 3,
         "Bad Bunny": 3,
         "Feid": 1,
         "Metro Boomin ft Coi Leray": 1

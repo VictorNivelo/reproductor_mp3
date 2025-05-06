@@ -1,5 +1,5 @@
 {
-    "indice_actual": 7,
+    "indice_actual": 0,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -13,10 +13,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "titulo": "Animal",
-        "artista": "Eladio Carrion ft Bryant Myers",
-        "album": "Animal",
-        "timestamp": "2025-05-03T19:18:35.157532"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "titulo": "11 Y ONCE",
+        "artista": "Tainy ft Sech, E.VAX",
+        "album": "DATA",
+        "timestamp": "2025-05-05T21:07:17.338207"
     }
 }

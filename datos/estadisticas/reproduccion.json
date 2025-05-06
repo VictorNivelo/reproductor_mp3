@@ -2,9 +2,9 @@
     "artistas": {
         "Panda Black": 2,
         "Yan Block": 2,
-        "Anuel AA": 4,
-        "Ñengo Flow": 2,
-        "Sinfonico": 2,
+        "Anuel AA": 5,
+        "Ñengo Flow": 3,
+        "Sinfonico": 3,
         "Daddy Yankee": 2,
         "Eladio Carrion": 2,
         "Bryant Myers": 2,
@@ -13,29 +13,29 @@
         "Tainy": 3,
         "Sech": 3,
         "Bad Bunny": 3,
-        "Feid": 1,
+        "Feid": 2,
         "Metro Boomin": 1,
         "Coi Leray": 1
     },
     "albumes": {
         "444": 2,
-        "47 (Remix)": 2,
+        "47 (Remix)": 3,
         "Adictiva": 2,
         "Animal": 2,
         "Desconocido": 3,
         "DATA": 3,
         "EL ÚLTIMO TOUR DEL MUNDO": 3,
-        "INTER SHIBUYA - LA MAFIA": 1,
+        "INTER SHIBUYA - LA MAFIA": 2,
         "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1
     },
-    "tiempo_total": 4222.432653061225,
-    "canciones_escuchadas": 19,
+    "tiempo_total": 4898.847346938775,
+    "canciones_escuchadas": 21,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-05-05T21:07:15.751901"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "titulo": "14 De Febrero",
+        "artista": "Feid",
+        "album": "INTER SHIBUYA - LA MAFIA",
+        "timestamp": "2025-05-06T15:51:13.137308"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\444..mp3": {
@@ -45,7 +45,7 @@
             "album": "444"
         },
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "47 (Remix)",
             "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
             "album": "47 (Remix)"
@@ -81,7 +81,7 @@
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "14 De Febrero",
             "artista": "Feid",
             "album": "INTER SHIBUYA - LA MAFIA"
@@ -95,13 +95,13 @@
     },
     "artistas_originales": {
         "Yan Block ft Panda Black": 2,
-        "Anuel AA ft Sinfonico, Ñengo Flow": 2,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 3,
         "Daddy Yankee ft Anuel AA": 2,
         "Eladio Carrion ft Bryant Myers": 2,
         "Desconocido": 3,
         "Tainy ft Sech, E.VAX": 3,
         "Bad Bunny": 3,
-        "Feid": 1,
+        "Feid": 2,
         "Metro Boomin ft Coi Leray": 1
     }
 }

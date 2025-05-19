@@ -37,12 +37,12 @@ ventana_principal_prototipo.title("Prototipo reproductor de música")
 # ==================================== Contenedor principal =====================================
 
 # contenedor principal
-conenedor_principal_prototipo = tk.Frame(ventana_principal_prototipo)
-conenedor_principal_prototipo.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
-conenedor_principal_prototipo.pack(fill="both", expand=True)
+contenedor_principal_prototipo = tk.Frame(ventana_principal_prototipo)
+contenedor_principal_prototipo.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
+contenedor_principal_prototipo.pack(fill="both", expand=True)
 
 # etiqueta del contenedor principal
-etiqueta = tk.Label(conenedor_principal_prototipo, text="Contenedor principal", font=(letra, 16), bg=claro)
+etiqueta = tk.Label(contenedor_principal_prototipo, text="Contenedor principal", font=(letra, 16), bg=claro)
 etiqueta.pack()
 
 # ===============================================================================================
@@ -51,7 +51,7 @@ etiqueta.pack()
 # ======================================= Panel izquierda =======================================
 
 # contenedor izquierdo
-contenedor_izquierda_prototipo = tk.Frame(conenedor_principal_prototipo)
+contenedor_izquierda_prototipo = tk.Frame(contenedor_principal_prototipo)
 contenedor_izquierda_prototipo.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro)
 contenedor_izquierda_prototipo.pack(side="left", fill="both", expand=True)
 
@@ -176,7 +176,7 @@ etiqueta_volumen_prototipo.pack(expand=True)
 # ======================================== Panel derecha ========================================
 
 # contenedor de panel derecho
-contenedor_derecha_prototipo = tk.Frame(conenedor_principal_prototipo)
+contenedor_derecha_prototipo = tk.Frame(contenedor_principal_prototipo)
 contenedor_derecha_prototipo.configure(padx=10, pady=5, relief="solid", borderwidth=1, bg=claro, width=425)
 contenedor_derecha_prototipo.pack(side="left", fill="both", padx=(10, 0))
 contenedor_derecha_prototipo.pack_propagate(False)

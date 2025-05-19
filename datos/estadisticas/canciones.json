@@ -1,12 +1,26 @@
 {
     "estadisticas": {
-        "total_canciones": 10,
-        "total_artistas": 16,
-        "total_albumes": 10,
-        "me_gusta": 2,
-        "favorito": 1
+        "total_canciones": 11,
+        "total_artistas": 17,
+        "total_albumes": 11,
+        "me_gusta": 4,
+        "favorito": 2
     },
     "canciones": [
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\...And to Those I Love, Thanks for Sticking Around.mp3",
+            "titulo": "...And to Those I Love, Thanks for Sticking Around",
+            "artista": "$uicideboy$",
+            "artista_album": "$uicideboy$",
+            "album": "Stop Staring At the Shadows",
+            "duracion": 168.51591836734693,
+            "duracion_formateada": "02:48",
+            "anio": "2020-02-14",
+            "numero_pista": "12",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": true
+        },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
             "titulo": "11 Y ONCE",
@@ -60,7 +74,7 @@
             "anio": "2024-04-04",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {
@@ -144,7 +158,7 @@
             "anio": "2022-05-26",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         }
     ]

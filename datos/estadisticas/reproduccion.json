@@ -1,51 +1,54 @@
 {
     "artistas": {
-        "Panda Black": 2,
-        "Yan Block": 2,
-        "Anuel AA": 5,
-        "Ñengo Flow": 3,
-        "Sinfonico": 3,
+        "Panda Black": 3,
+        "Yan Block": 3,
+        "Anuel AA": 9,
+        "Ñengo Flow": 5,
+        "Sinfonico": 5,
         "Daddy Yankee": 2,
-        "Eladio Carrion": 2,
-        "Bryant Myers": 2,
+        "Eladio Carrion": 3,
+        "Bryant Myers": 3,
         "Desconocido": 3,
-        "E.VAX": 3,
-        "Tainy": 3,
-        "Sech": 3,
+        "E.VAX": 4,
+        "Tainy": 4,
+        "Sech": 4,
         "Bad Bunny": 3,
         "Feid": 2,
-        "Metro Boomin": 1,
-        "Coi Leray": 1
+        "Metro Boomin": 4,
+        "Coi Leray": 4,
+        "$uicideboy$": 6
     },
     "albumes": {
-        "444": 2,
-        "47 (Remix)": 3,
+        "444": 3,
+        "47 (Remix)": 5,
         "Adictiva": 2,
-        "Animal": 2,
+        "Animal": 3,
         "Desconocido": 3,
-        "DATA": 3,
+        "DATA": 4,
         "EL ÚLTIMO TOUR DEL MUNDO": 3,
         "INTER SHIBUYA - LA MAFIA": 2,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 4,
+        "Stop Staring At the Shadows": 6,
+        "¿Qué Nos Pasó?": 2
     },
-    "tiempo_total": 4898.847346938775,
-    "canciones_escuchadas": 21,
+    "tiempo_total": 8595.879183673469,
+    "canciones_escuchadas": 37,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-        "titulo": "14 De Febrero",
-        "artista": "Feid",
-        "album": "INTER SHIBUYA - LA MAFIA",
-        "timestamp": "2025-05-06T15:51:13.137308"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
+        "titulo": "¿Qué Nos Pasó?",
+        "artista": "Anuel AA",
+        "album": "¿Qué Nos Pasó?",
+        "timestamp": "2025-05-19T18:14:59.045695"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\444..mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
         },
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 3,
+            "contador": 5,
             "titulo": "47 (Remix)",
             "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
             "album": "47 (Remix)"
@@ -57,7 +60,7 @@
             "album": "Adictiva"
         },
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
             "album": "Animal"
@@ -69,7 +72,7 @@
             "album": "Desconocido"
         },
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 3,
+            "contador": 4,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
@@ -87,21 +90,35 @@
             "album": "INTER SHIBUYA - LA MAFIA"
         },
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 1,
+            "contador": 4,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\...And to Those I Love, Thanks for Sticking Around.mp3": {
+            "contador": 6,
+            "titulo": "...And to Those I Love, Thanks for Sticking Around",
+            "artista": "$uicideboy$",
+            "album": "Stop Staring At the Shadows"
+        },
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
+            "contador": 2,
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "album": "¿Qué Nos Pasó?"
         }
     },
     "artistas_originales": {
-        "Yan Block ft Panda Black": 2,
-        "Anuel AA ft Sinfonico, Ñengo Flow": 3,
+        "Yan Block ft Panda Black": 3,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 5,
         "Daddy Yankee ft Anuel AA": 2,
-        "Eladio Carrion ft Bryant Myers": 2,
+        "Eladio Carrion ft Bryant Myers": 3,
         "Desconocido": 3,
-        "Tainy ft Sech, E.VAX": 3,
+        "Tainy ft Sech, E.VAX": 4,
         "Bad Bunny": 3,
         "Feid": 2,
-        "Metro Boomin ft Coi Leray": 1
+        "Metro Boomin ft Coi Leray": 4,
+        "$uicideboy$": 6,
+        "Anuel AA": 2
     }
 }

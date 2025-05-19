@@ -44,6 +44,9 @@ def cargar_icono(tema="claro", tamanio=None):
         "estadistica": "estadistica",
         "agregar_carpeta": "agregar_carpeta",
         "agregar_cancion": "agregar_cancion",
+        "informacion": "informacion",
+        "album": "album",
+        "artista": "artista",
         # Tamaño de la ventana
         "maximizar": "maximizar",
         "minimizar": "minimizar",

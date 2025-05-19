@@ -1,4 +1,4 @@
-# Reproctor de música mp3 usando Python
+# Reproductor de música mp3 usando Python
 
 ## Prototipo
 

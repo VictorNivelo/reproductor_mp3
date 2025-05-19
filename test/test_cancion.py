@@ -32,7 +32,8 @@ class TestCancionObtenerCaratula(unittest.TestCase):
             album="Álbum de prueba",
         )
 
-    def _crear_imagen_test(self, ancho=100, alto=100):
+    @staticmethod
+    def _crear_imagen_test(ancho=100, alto=100):
         image = Image.new("RGB", (ancho, alto), color="red")
         img_bytes = io.BytesIO()
         image.save(img_bytes, format="PNG")

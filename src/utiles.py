@@ -84,12 +84,12 @@ class UtilesGeneral:
 
     # Método para mostrar las dimensiones de un componente
     def mostrar_dimensiones_componente(self, componente):
-        def _mostrar():
+        def mostrar_dimensiones():
             ancho = self.obtener_ancho_componente(componente)
             alto = self.obtener_alto_componente(componente)
             if ancho <= 1 or alto <= 1:
-                componente.after(100, _mostrar)
+                componente.after(100, mostrar_dimensiones)
             else:
                 print(f"Ancho real: {ancho}, Alto real: {alto}")
 
-        componente.after(100, _mostrar)
+        componente.after(100, mostrar_dimensiones)

@@ -1111,7 +1111,7 @@ def ir_al_artista(cancion):
 
 
 # Función para crear una opción de menú en un menú contextual
-def crear_opcion_menu(panel_menu_opciones, texto, funcion, tiene_separador=False):
+def crear_opcion_menu(panel_menu_opciones, texto, funcion, tiene_separador=False, icono_nombre=None):
     if tiene_separador:
         # -------------------------..--- Separador entre opciones -------------------------------
         separador = ctk.CTkFrame(
@@ -1121,8 +1121,12 @@ def crear_opcion_menu(panel_menu_opciones, texto, funcion, tiene_separador=False
             border_width=1,
             height=1,
         )
-        separador.pack(fill="x", padx=2, pady=4)
+        separador.pack(fill="x", padx=2, pady=2)
         # ---------------------------------------------------------------------------------------
+    # Cargar icono si se especifica
+    icono_opcion = None
+    if icono_nombre:
+        icono_opcion = cargar_icono_con_tamanio(icono_nombre, controlador_tema.tema_iconos, (15, 15))
     # ------------------------------------ Botón de opción --------------------------------------
     boton_opcion = ctk.CTkButton(
         panel_menu_opciones,
@@ -1133,7 +1137,9 @@ def crear_opcion_menu(panel_menu_opciones, texto, funcion, tiene_separador=False
         font=(LETRA, TAMANIO_LETRA_BOTON),
         text_color=controlador_tema.color_texto,
         text=texto,
+        image=icono_opcion,
         anchor="w",
+        compound="left",
         command=lambda: [funcion(), panel_menu_opciones.master.destroy()],
     )
     boton_opcion.pack(fill="x", padx=2)
@@ -1171,7 +1177,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
     # Marcar esta ventana como un menú contextual
     menu_ventana.menu_opciones = True
     menu_ventana.title("")
-    menu_ventana.geometry("175x0")
+    menu_ventana.geometry("200x0")
     menu_ventana.overrideredirect(True)
     menu_ventana.configure(fg_color=controlador_tema.color_fondo)
     menu_ventana.attributes("-topmost", True)
@@ -1186,35 +1192,109 @@ def mostrar_menu_opciones(cancion, panel_padre):
     # -------------------------------------------------------------------------------------------
     # Agregar opciones al menú
     # ---------------------------------- Opciones reproducir ------------------------------------
-    crear_opcion_menu(panel_menu_opciones, "Reproducir ahora", lambda: reproducir_desde_lista_vista(cancion))
+    # Verificar si la canción del menú es la canción actual
+    es_cancion_actual = controlador_reproductor.cancion_actual == cancion
+    if es_cancion_actual:
+        # Si es la canción actual, mostrar Pausar o Reproducir según el estado
+        if ESTADO_REPRODUCCION:
+            crear_opcion_menu(
+                panel_menu_opciones, 
+                "Pausar", 
+                lambda: 
+                reproducir_vista(), 
+                False, 
+                "pausa")
+        else:
+            crear_opcion_menu(
+                panel_menu_opciones, 
+                "Reproducir",
+                lambda: reproducir_vista(), 
+                False, 
+                "reproducir"
+            )
+    else:
+        # Si no es la canción actual, mantener "Reproducir"
+        crear_opcion_menu(
+            panel_menu_opciones, 
+            "Reproducir", 
+            lambda: reproducir_desde_lista_vista(cancion), 
+            False, 
+            "reproducir"
+        )
     # -------------------------------------------------------------------------------------------
     # -------------------------------- Opciones de cola de reproducción -------------------------
     crear_opcion_menu(
-        panel_menu_opciones, "Agregar al inicio de la cola", lambda: agregar_inicio_cola_vista(cancion), True
+        panel_menu_opciones, 
+        "Agregar al inicio de la cola", 
+        lambda: agregar_inicio_cola_vista(cancion), 
+        True, 
+        "agregar_cola"
     )
+
     crear_opcion_menu(
-        panel_menu_opciones, "Agregar al final de la cola", lambda: agregar_fin_cola_vista(cancion)
+        panel_menu_opciones,
+        "Agregar al final de la cola",
+        lambda: agregar_fin_cola_vista(cancion),
+        False,
+        "agregar_cola"
     )
     # -------------------------------------------------------------------------------------------
     # ------------------------------------ Opciones de gusto ------------------------------------
     # Separador antes de opciones de Me_gusta/Favorito
     texto_me_gusta = "Quitar de Me gusta" if cancion.me_gusta else "Agregar a Me gusta"
-    crear_opcion_menu(panel_menu_opciones, texto_me_gusta, lambda: cambiar_me_gusta_menu(cancion), True)
+    icono_me_gusta = "me_gusta_rojo" if cancion.me_gusta else "me_gusta"
+    crear_opcion_menu(
+        panel_menu_opciones, 
+        texto_me_gusta, 
+        lambda: cambiar_me_gusta_menu(cancion), 
+        True, 
+        icono_me_gusta
+    )
+
     texto_favorito = "Quitar de Favoritos" if cancion.favorito else "Agregar a Favoritos"
-    crear_opcion_menu(panel_menu_opciones, texto_favorito, lambda: cambiar_favorito_menu(cancion))
+    icono_favorito = "favorito_amarillo" if cancion.favorito else "favorito"
+    crear_opcion_menu(
+        panel_menu_opciones, 
+        texto_favorito, 
+        lambda: cambiar_favorito_menu(cancion), 
+        False, 
+        icono_favorito
+    )
     # -------------------------------------------------------------------------------------------
     # ---------------------------------- Opciones de información --------------------------------
     if cancion.album and cancion.album not in ["", "Unknown Album", "Desconocido"]:
-        crear_opcion_menu(panel_menu_opciones, "Ir al álbum", lambda: ir_al_album(cancion), True)
+        crear_opcion_menu(
+            panel_menu_opciones, 
+            "Ir al álbum", 
+            lambda: ir_al_album(cancion), 
+            True, 
+            "album"
+        )
+
     if cancion.artista and cancion.artista not in ["", "Unknown Artist", "Desconocido"]:
-        crear_opcion_menu(panel_menu_opciones, "Ir al artista", lambda: ir_al_artista(cancion))
+        crear_opcion_menu(
+            panel_menu_opciones, 
+            "Ir al artista", 
+            lambda: ir_al_artista(cancion), 
+            False, 
+            "artista"
+        )
     # -------------------------------------------------------------------------------------------
     # ---------------------------------- Opciones de eliminar -----------------------------------
     crear_opcion_menu(
-        panel_menu_opciones, "Ver información", lambda: print(f"Ver info de: {cancion.titulo_cancion}"), True
+        panel_menu_opciones, 
+        "Ver información", 
+        lambda: print(f"Ver info de: {cancion.titulo_cancion}"), 
+        True,
+        "informacion"
     )
+
     crear_opcion_menu(
-        panel_menu_opciones, "Eliminar de la biblioteca", lambda: eliminar_cancion_vista(cancion)
+        panel_menu_opciones,
+        "Eliminar de la biblioteca",
+        lambda: eliminar_cancion_vista(cancion),
+        False,
+        "eliminar",
     )
     # -------------------------------------------------------------------------------------------
     # Actualizar el panel para obtener su altura real
@@ -1234,7 +1314,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
         y = alto_menu - altura_real - 10
     menu_ventana.update()
     # Establecer la geometría con la altura exacta del contenido
-    menu_ventana.geometry(f"175x{altura_real}+{x}+{y}")
+    menu_ventana.geometry(f"200x{altura_real}+{x}+{y}")
     # Vincular eventos para cerrar el menú
     menu_ventana.bind("<FocusOut>", lambda event: cerrar_menu_al_desenfocar(menu_ventana, event))
     menu_ventana.bind("<Button-1>", lambda e: menu_ventana.destroy())
@@ -1454,12 +1534,12 @@ def mostrar_detalle_cancion(pagina, elemento, funcion_regresar):
 
 
 # Función para crear un canvas con scroll y panel de botones
-def crear_canvas_con_scroll(contenedor_padre, estabview=True, tabviewparent=None):
+def crear_canvas_con_scroll(contenedor_padre, es_pestania=True, es_pestania_padre=None):
     # -------------------------------- Crear canvas con scroll ----------------------------------
     canvas = tk.Canvas(contenedor_padre, highlightthickness=0)
     canvas.pack(fill="both", expand=True)
-    canvas.configure(bg=paginas_canciones.cget("fg_color") if estabview else controlador_tema.color_fondo)
-    controlador_tema.registrar_canvas(canvas, es_tabview=estabview, tabview_parent=tabviewparent)
+    canvas.configure(bg=paginas_canciones.cget("fg_color") if es_pestania else controlador_tema.color_fondo)
+    controlador_tema.registrar_canvas(canvas, es_tabview=es_pestania, tabview_parent=es_pestania_padre)
     # -------------------------------------------------------------------------------------------
     # -------------------------------------- Panel botones --------------------------------------
     # Crear panel para el contenido
@@ -1533,7 +1613,7 @@ def mostrar_canciones_album(album):
     return mostrar_detalle_cancion("Álbumes", album, actualizar_vista_albumes)
 
 
-# Función para actualizar la vista de albunes filtrados
+# Función para actualizar la vista de albumes filtrados
 def mostrar_albumes_filtrados(texto_busqueda):
     canvas_albumes, panel_botones_albumes = configurar_interfaz_albumes()
     # Filtrar álbumes

@@ -27,11 +27,11 @@ class ControladorTema(UtilesGeneral):
         self.mostrar_icono_boton(nombre)
 
     # Registrar botones con iconos de tamaño personalizado
-    def registrar_botones_con_tamano(self, nombre, boton, tamano=None):
+    def registrar_botones_con_tamanio(self, nombre, boton, tamanio=None):
         self.botones[nombre] = boton
-        if tamano:
+        if tamanio:
             # Cargar icono con tamaño personalizado
-            icono = cargar_icono_con_tamanio(nombre, self.tema_iconos, tamano)
+            icono = cargar_icono_con_tamanio(nombre, self.tema_iconos, tamanio)
             if icono:
                 boton.configure(image=icono)
                 # Guardar referencia para evitar el recolector de basura

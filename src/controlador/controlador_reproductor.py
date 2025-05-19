@@ -388,7 +388,7 @@ class ControladorReproductor:
             if self.indice_actual < len(self.lista_reproduccion) - 1:
                 self.indice_actual += 1
             else:
-                # Si estamos en modo repetición todo (2), volver al principio
+                # Sí estamos en modo repetición todo (2), volver al principio
                 if self.modo_repeticion == 2:
                     self.indice_actual = 0
                 else:

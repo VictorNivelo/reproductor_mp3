@@ -250,7 +250,7 @@ class ColaReproduccion(UtilesGeneral):
             )
             boton_limpiar_cola.pack(side="right")
             self.componentes.append(boton_limpiar_cola)
-            # self.controlador_tema.registrar_botones_con_tamano("limpiar", boton_limpiar_cola, (15, 15))
+            # self.controlador_tema.registrar_botones_con_tamanio("limpiar", boton_limpiar_cola, (15, 15))
             # self.controlador_tema.registrar_botones("limpiar", boton_limpiar_cola)
         # ------------------------------------------------------------------------------------------------
 
@@ -692,7 +692,7 @@ class ColaReproduccion(UtilesGeneral):
             )
             boton_quitar.pack(side="right", padx=(0, 3))
             self.componentes.append(boton_quitar)
-            # self.controlador_tema.registrar_botones_con_tamano("quitar", boton_quitar, (15, 15))
+            # self.controlador_tema.registrar_botones_con_tamanio("quitar", boton_quitar, (15, 15))
             # -------------------------------------------------------------------------------------------------
 
             # Añadir efecto hover al panel de canción

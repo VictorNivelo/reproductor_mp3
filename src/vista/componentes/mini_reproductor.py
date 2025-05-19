@@ -541,10 +541,10 @@ class MiniReproductor(UtilesGeneral):
 
     # Mover la ventana del mini reproductor según el movimiento del ratón
     def mover_ventana(self, event):
-        deltax = event.x - self.x
-        deltay = event.y - self.y
-        x = self.ventana_principal_mini_reproductor.winfo_x() + deltax
-        y = self.ventana_principal_mini_reproductor.winfo_y() + deltay
+        delta_x = event.x - self.x
+        delta_y = event.y - self.y
+        x = self.ventana_principal_mini_reproductor.winfo_x() + delta_x
+        y = self.ventana_principal_mini_reproductor.winfo_y() + delta_y
         self.ventana_principal_mini_reproductor.geometry(f"+{x}+{y}")
 
     # Detener el movimiento de la ventana del mini reproductor

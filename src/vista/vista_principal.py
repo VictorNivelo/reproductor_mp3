@@ -1198,37 +1198,37 @@ def mostrar_menu_opciones(cancion, panel_padre):
         # Si es la canción actual, mostrar Pausar o Reproducir según el estado
         if ESTADO_REPRODUCCION:
             crear_opcion_menu(
-                panel_menu_opciones, 
-                "Pausar", 
-                lambda: 
-                reproducir_vista(), 
-                False, 
-                "pausa")
+                panel_menu_opciones,
+                "Pausar",
+                lambda: reproducir_vista(),
+                False,
+                "pausa"
+            )
         else:
             crear_opcion_menu(
-                panel_menu_opciones, 
+                panel_menu_opciones,
                 "Reproducir",
-                lambda: reproducir_vista(), 
-                False, 
+                lambda: reproducir_vista(),
+                False,
                 "reproducir"
             )
     else:
         # Si no es la canción actual, mantener "Reproducir"
         crear_opcion_menu(
-            panel_menu_opciones, 
-            "Reproducir", 
-            lambda: reproducir_desde_lista_vista(cancion), 
-            False, 
+            panel_menu_opciones,
+            "Reproducir",
+            lambda: reproducir_desde_lista_vista(cancion),
+            False,
             "reproducir"
         )
     # -------------------------------------------------------------------------------------------
     # -------------------------------- Opciones de cola de reproducción -------------------------
     crear_opcion_menu(
-        panel_menu_opciones, 
-        "Agregar al inicio de la cola", 
-        lambda: agregar_inicio_cola_vista(cancion), 
-        True, 
-        "agregar_cola"
+        panel_menu_opciones,
+        "Agregar al inicio de la cola",
+        lambda: agregar_inicio_cola_vista(cancion),
+        True,
+        "agregar_cola",
     )
 
     crear_opcion_menu(
@@ -1244,47 +1244,47 @@ def mostrar_menu_opciones(cancion, panel_padre):
     texto_me_gusta = "Quitar de Me gusta" if cancion.me_gusta else "Agregar a Me gusta"
     icono_me_gusta = "me_gusta_rojo" if cancion.me_gusta else "me_gusta"
     crear_opcion_menu(
-        panel_menu_opciones, 
-        texto_me_gusta, 
-        lambda: cambiar_me_gusta_menu(cancion), 
-        True, 
+        panel_menu_opciones,
+        texto_me_gusta,
+        lambda: cambiar_me_gusta_menu(cancion),
+        True,
         icono_me_gusta
     )
 
     texto_favorito = "Quitar de Favoritos" if cancion.favorito else "Agregar a Favoritos"
     icono_favorito = "favorito_amarillo" if cancion.favorito else "favorito"
     crear_opcion_menu(
-        panel_menu_opciones, 
-        texto_favorito, 
-        lambda: cambiar_favorito_menu(cancion), 
-        False, 
+        panel_menu_opciones,
+        texto_favorito,
+        lambda: cambiar_favorito_menu(cancion),
+        False,
         icono_favorito
     )
     # -------------------------------------------------------------------------------------------
     # ---------------------------------- Opciones de información --------------------------------
     if cancion.album and cancion.album not in ["", "Unknown Album", "Desconocido"]:
         crear_opcion_menu(
-            panel_menu_opciones, 
-            "Ir al álbum", 
-            lambda: ir_al_album(cancion), 
-            True, 
+            panel_menu_opciones,
+            "Ir al álbum",
+            lambda: ir_al_album(cancion),
+            True,
             "album"
         )
 
     if cancion.artista and cancion.artista not in ["", "Unknown Artist", "Desconocido"]:
         crear_opcion_menu(
-            panel_menu_opciones, 
-            "Ir al artista", 
-            lambda: ir_al_artista(cancion), 
-            False, 
+            panel_menu_opciones,
+            "Ir al artista",
+            lambda: ir_al_artista(cancion),
+            False,
             "artista"
         )
     # -------------------------------------------------------------------------------------------
     # ---------------------------------- Opciones de eliminar -----------------------------------
     crear_opcion_menu(
         panel_menu_opciones, 
-        "Ver información", 
-        lambda: print(f"Ver info de: {cancion.titulo_cancion}"), 
+        "Ver información",
+        lambda: print(f"Ver info de: {cancion.titulo_cancion}"),
         True,
         "informacion"
     )

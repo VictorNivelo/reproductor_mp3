@@ -1,28 +1,23 @@
 {
-    "indice_actual": 14,
+    "indice_actual": 9,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "C:\\Users\\Victor\\Music\\b.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
         "C:\\Users\\Victor\\Music\\a.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Amanece.mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\BEBE.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Champion.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Good Night.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\I Wonder.mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Verte Ir.mp3",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Verte Ir.mp3",
-        "titulo": "Verte Ir",
-        "artista": "Anuel AA ft Nicky Jam, Darell, Brytiago",
-        "album": "Verte Ir",
-        "timestamp": "2025-05-19T20:09:07.033960"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+        "titulo": "Self Love",
+        "artista": "Metro Boomin ft Coi Leray",
+        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
+        "timestamp": "2025-05-19T21:06:23.850301"
     }
 }

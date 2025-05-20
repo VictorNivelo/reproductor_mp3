@@ -1,32 +1,3 @@
 {
-    "favoritos": [
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "artista_album": "Tainy",
-            "album": "DATA",
-            "duracion": 197.01551020408164,
-            "duracion_formateada": "03:17",
-            "anio": "2023",
-            "numero_pista": "6",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
-            "titulo": "¿Qué Nos Pasó?",
-            "artista": "Anuel AA",
-            "artista_album": "Anuel AA",
-            "album": "¿Qué Nos Pasó?",
-            "duracion": 245.7861224489796,
-            "duracion_formateada": "04:05",
-            "anio": "2022-05-26",
-            "numero_pista": "1/1",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
-        }
-    ]
+    "favoritos": []
 }

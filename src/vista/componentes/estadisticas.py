@@ -318,7 +318,9 @@ class Estadisticas(UtilesGeneral):
         self.animacion_artista = AnimacionGeneral()
         # Iniciar el desplazamiento con longitud máxima adecuada
         self.animacion_artista.configurar_desplazamiento_etiqueta(
-            textos_animados, panel_informacion_cancion, 400
+            panel_informacion_cancion,
+            textos_animados,
+            400
         )
 
         # ------------------------- Etiqueta con reproducciones de cancion -----------------------
@@ -396,7 +398,11 @@ class Estadisticas(UtilesGeneral):
             "nombre": (artista["nombre"], etiqueta_nombre_artista),
         }
         # Iniciar el desplazamiento con longitud máxima adecuada
-        self.animacion.configurar_desplazamiento_etiqueta(textos_animados, panel_informacion_artista, 400)
+        self.animacion.configurar_desplazamiento_etiqueta(
+            panel_informacion_artista,
+            textos_animados,
+            400
+        )
 
         # ------------------------- Etiqueta con album de artista --------------------------
         # Etiqueta con las reproducciones del artista
@@ -523,10 +529,15 @@ class Estadisticas(UtilesGeneral):
         # Crear un diccionario con los textos que pueden necesitar desplazamiento
         textos_animados = {
             "nombre": (album["nombre"], etiqueta_nombre_album),
+            "artista": (album["artista"], etiqueta_artista_album),
         }
         self.animacion_album = AnimacionGeneral()
         # Iniciar el desplazamiento con longitud máxima adecuada
-        self.animacion_album.configurar_desplazamiento_etiqueta(textos_animados, panel_informacion_album, 400)
+        self.animacion_album.configurar_desplazamiento_etiqueta(
+            panel_informacion_album,
+            textos_animados,
+            400
+        )
 
         # ------------------------ Etiqueta con artista de álbum --------------------------
         # Etiqueta con la reproducción del álbum
@@ -673,7 +684,9 @@ class Estadisticas(UtilesGeneral):
         self.animacion_ultima = AnimacionGeneral()
         # Iniciar el desplazamiento con longitud máxima adecuada
         self.animacion_ultima.configurar_desplazamiento_etiqueta(
-            textos_animados, panel_informacion_ultima, 400
+            panel_informacion_ultima,
+            textos_animados,
+            400
         )
 
         # *********************************************************************************

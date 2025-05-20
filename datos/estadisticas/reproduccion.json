@@ -1,130 +1,38 @@
 {
     "artistas": {
-        "Bad Bunny": 2,
-        "Tainy": 2,
-        "Sech": 2,
-        "E.VAX": 2,
-        "Anuel AA": 7,
-        "Daddy Yankee": 1,
-        "Ñengo Flow": 1,
-        "Sinfonico": 1,
-        "Kanye West": 6,
-        "Mos Def": 2,
-        "Albe Back": 2,
-        "Haze": 1,
-        "6ix9ine": 2,
-        "Eladio Carrion": 1,
-        "Bryant Myers": 1,
-        "Nicky Jam": 1,
-        "Darell": 1,
-        "Brytiago": 1
+        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 1,
+        "Coi Leray": 6,
+        "Metro Boomin": 6
     },
     "albumes": {
-        "EL ÚLTIMO TOUR DEL MUNDO": 2,
-        "DATA": 2,
-        "¿Qué Nos Pasó?": 1,
-        "Adictiva": 1,
-        "47 (Remix)": 1,
-        "Graduation": 6,
-        "Amanece": 1,
-        "DUMMY BOY": 2,
-        "Animal": 1,
-        "Verte Ir": 1
+        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 1,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 6
     },
-    "tiempo_total": 3896.6334693877543,
-    "canciones_escuchadas": 18,
+    "tiempo_total": 1334.1257142857144,
+    "canciones_escuchadas": 7,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\Verte Ir.mp3",
-        "titulo": "Verte Ir",
-        "artista": "Anuel AA ft Nicky Jam, Darell, Brytiago",
-        "album": "Verte Ir",
-        "timestamp": "2025-05-19T20:09:07.034795"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+        "titulo": "Self Love",
+        "artista": "Metro Boomin ft Coi Leray",
+        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
+        "timestamp": "2025-05-19T21:06:23.851466"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 2,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 2,
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "album": "DATA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
+        "C:\\Users\\Victor\\Music\\b.mp3": {
             "contador": 1,
-            "titulo": "¿Qué Nos Pasó?",
-            "artista": "Anuel AA",
-            "album": "¿Qué Nos Pasó?"
+            "titulo": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "artista": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2"
         },
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 1,
-            "titulo": "Adictiva",
-            "artista": "Daddy Yankee ft Anuel AA",
-            "album": "Adictiva"
-        },
-        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 1,
-            "titulo": "47 (Remix)",
-            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
-            "album": "47 (Remix)"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Good Night.mp3": {
-            "contador": 2,
-            "titulo": "Good Night",
-            "artista": "Kanye West ft Mos Def, Albe Back",
-            "album": "Graduation"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\I Wonder.mp3": {
-            "contador": 1,
-            "titulo": "I Wonder",
-            "artista": "Kanye West",
-            "album": "Graduation"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Champion.mp3": {
-            "contador": 3,
-            "titulo": "Champion",
-            "artista": "Kanye West",
-            "album": "Graduation"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Amanece.mp3": {
-            "contador": 1,
-            "titulo": "Amanece",
-            "artista": "Anuel AA ft Haze",
-            "album": "Amanece"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\BEBE.mp3": {
-            "contador": 2,
-            "titulo": "BEBE",
-            "artista": "6ix9ine ft Anuel AA",
-            "album": "DUMMY BOY"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
-            "contador": 1,
-            "titulo": "Animal",
-            "artista": "Eladio Carrion ft Bryant Myers",
-            "album": "Animal"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\Verte Ir.mp3": {
-            "contador": 1,
-            "titulo": "Verte Ir",
-            "artista": "Anuel AA ft Nicky Jam, Darell, Brytiago",
-            "album": "Verte Ir"
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
+            "contador": 6,
+            "titulo": "Self Love",
+            "artista": "Metro Boomin ft Coi Leray",
+            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
         }
     },
     "artistas_originales": {
-        "Bad Bunny": 2,
-        "Tainy ft Sech, E.VAX": 2,
-        "Anuel AA": 1,
-        "Daddy Yankee ft Anuel AA": 1,
-        "Anuel AA ft Sinfonico, Ñengo Flow": 1,
-        "Kanye West ft Mos Def, Albe Back": 2,
-        "Kanye West": 4,
-        "Anuel AA ft Haze": 1,
-        "6ix9ine ft Anuel AA": 2,
-        "Eladio Carrion ft Bryant Myers": 1,
-        "Anuel AA ft Nicky Jam, Darell, Brytiago": 1
+        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 1,
+        "Metro Boomin ft Coi Leray": 6
     }
 }

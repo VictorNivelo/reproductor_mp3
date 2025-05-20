@@ -1,8 +1,8 @@
 {
     "artistas": {
         "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 15,
-        "Coi Leray": 14,
-        "Metro Boomin": 14,
+        "Coi Leray": 21,
+        "Metro Boomin": 21,
         "Eladio Carrion": 2,
         "Bryant Myers": 2,
         "Daddy Yankee": 2,
@@ -17,7 +17,7 @@
     },
     "albumes": {
         "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 15,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 14,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 21,
         "Animal": 2,
         "Adictiva": 2,
         "Desconocido": 1,
@@ -26,14 +26,14 @@
         "INTER SHIBUYA - LA MAFIA": 2,
         "EL ÚLTIMO TOUR DEL MUNDO": 1
     },
-    "tiempo_total": 7993.965714285718,
-    "canciones_escuchadas": 40,
+    "tiempo_total": 9320.594285714287,
+    "canciones_escuchadas": 47,
     "ultima_cancion": {
         "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
         "titulo": "Self Love",
         "artista": "Metro Boomin ft Coi Leray",
         "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
-        "timestamp": "2025-05-19T21:59:10.963030"
+        "timestamp": "2025-05-20T17:43:03.868094"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\b.mp3": {
@@ -43,7 +43,7 @@
             "album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2"
         },
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 14,
+            "contador": 21,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
@@ -93,7 +93,7 @@
     },
     "artistas_originales": {
         "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 15,
-        "Metro Boomin ft Coi Leray": 14,
+        "Metro Boomin ft Coi Leray": 21,
         "Eladio Carrion ft Bryant Myers": 2,
         "Daddy Yankee ft Anuel AA": 2,
         "Desconocido": 1,

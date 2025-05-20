@@ -445,11 +445,7 @@ class ColaReproduccion(UtilesGeneral):
                 "album": (cancion_actual.album, etiqueta_album),
             }
             # Iniciar el desplazamiento con longitud máxima adecuada
-            self.animacion.configurar_desplazamiento_etiqueta(
-                panel,
-                self.textos_actual,
-                365
-            )
+            self.animacion.configurar_desplazamiento_etiqueta(panel, self.textos_actual, 365)
 
             # *************************************************************************************************
             # =================================================================================================
@@ -626,7 +622,7 @@ class ColaReproduccion(UtilesGeneral):
                 panel_cola_informacion,
                 height=15,
                 fg_color="transparent",
-                font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION + 2 , "bold"),
+                font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION + 2, "bold"),
                 text_color=self.color_texto,
                 text=cancion.titulo_cancion,
             )
@@ -675,9 +671,7 @@ class ColaReproduccion(UtilesGeneral):
             self.animacion_cancion = AnimacionGeneral()
             # Iniciar animación de desplazamiento para los textos largos de esta canción
             self.animacion_cancion.configurar_desplazamiento_etiqueta(
-                panel_cola_informacion,
-                self.textos_cola,
-                365
+                panel_cola_informacion, self.textos_cola, 365
             )
 
             # ---------------------------------------- Botón quitar -------------------------------------------

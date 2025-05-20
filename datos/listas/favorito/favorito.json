@@ -1,3 +1,18 @@
 {
-    "favoritos": []
+    "favoritos": [
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+            "titulo": "Self Love",
+            "artista": "Metro Boomin ft Coi Leray",
+            "artista_album": "Metro Boomin",
+            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
+            "duracion": 189.5183673469388,
+            "duracion_formateada": "03:09",
+            "anio": "2023-06-02",
+            "numero_pista": "9/13",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
+        }
+    ]
 }

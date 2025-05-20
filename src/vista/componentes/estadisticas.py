@@ -318,9 +318,7 @@ class Estadisticas(UtilesGeneral):
         self.animacion_artista = AnimacionGeneral()
         # Iniciar el desplazamiento con longitud máxima adecuada
         self.animacion_artista.configurar_desplazamiento_etiqueta(
-            panel_informacion_cancion,
-            textos_animados,
-            400
+            panel_informacion_cancion, textos_animados, 400
         )
 
         # ------------------------- Etiqueta con reproducciones de cancion -----------------------
@@ -398,11 +396,7 @@ class Estadisticas(UtilesGeneral):
             "nombre": (artista["nombre"], etiqueta_nombre_artista),
         }
         # Iniciar el desplazamiento con longitud máxima adecuada
-        self.animacion.configurar_desplazamiento_etiqueta(
-            panel_informacion_artista,
-            textos_animados,
-            400
-        )
+        self.animacion.configurar_desplazamiento_etiqueta(panel_informacion_artista, textos_animados, 400)
 
         # ------------------------- Etiqueta con album de artista --------------------------
         # Etiqueta con las reproducciones del artista
@@ -514,13 +508,13 @@ class Estadisticas(UtilesGeneral):
         # ------------------------- Etiqueta con artista de álbum -------------------------
         # Etiqueta con el artista del álbum (NUEVA ETIQUETA)
         etiqueta_artista_album = ctk.CTkLabel(
-                panel_informacion_album,
-                height=15,
-                fg_color="transparent",
-                font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
-                text_color=self.color_texto,
-                text=f"{album['artista']}",
-            )
+            panel_informacion_album,
+            height=15,
+            fg_color="transparent",
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
+            text_color=self.color_texto,
+            text=f"{album['artista']}",
+        )
         etiqueta_artista_album.pack(anchor="w", padx=5)
         self.componentes.append(etiqueta_artista_album)
         self.controlador_tema.registrar_etiqueta(etiqueta_artista_album)
@@ -533,11 +527,7 @@ class Estadisticas(UtilesGeneral):
         }
         self.animacion_album = AnimacionGeneral()
         # Iniciar el desplazamiento con longitud máxima adecuada
-        self.animacion_album.configurar_desplazamiento_etiqueta(
-            panel_informacion_album,
-            textos_animados,
-            400
-        )
+        self.animacion_album.configurar_desplazamiento_etiqueta(panel_informacion_album, textos_animados, 425)
 
         # ------------------------ Etiqueta con artista de álbum --------------------------
         # Etiqueta con la reproducción del álbum
@@ -684,9 +674,7 @@ class Estadisticas(UtilesGeneral):
         self.animacion_ultima = AnimacionGeneral()
         # Iniciar el desplazamiento con longitud máxima adecuada
         self.animacion_ultima.configurar_desplazamiento_etiqueta(
-            panel_informacion_ultima,
-            textos_animados,
-            400
+            panel_informacion_ultima, textos_animados, 400
         )
 
         # *********************************************************************************

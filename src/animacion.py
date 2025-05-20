@@ -129,7 +129,9 @@ class AnimacionGeneral:
         setattr(componente_boton, "posicion_desplazamiento", 0)
         setattr(componente_boton, "id_temporizador", None)
         componente_boton.bind("<Enter>", lambda event: self.iniciar_desplazamiento_boton(componente_boton))
-        componente_boton.bind("<Leave>", lambda event: self.detener_desplazamiento_boton(componente_boton, longitud_maxima))
+        componente_boton.bind(
+            "<Leave>", lambda event: self.detener_desplazamiento_boton(componente_boton, longitud_maxima)
+        )
         componente_boton.configure(text=texto_completo[:longitud_maxima] + "...")
 
     # Método para iniciar el desplazamiento del texto en un botón
@@ -141,14 +143,14 @@ class AnimacionGeneral:
 
     # Método para detener el desplazamiento del texto en un botón
     @staticmethod
-    def detener_desplazamiento_boton(componente_boton, longitud_maxima=55):
+    def detener_desplazamiento_boton(componente_boton, longitud_maxima=50):
         if hasattr(componente_boton, "id_temporizador") and getattr(componente_boton, "id_temporizador"):
             componente_boton.after_cancel(getattr(componente_boton, "id_temporizador"))
         texto_completo = getattr(componente_boton, "texto_completo", "")
         componente_boton.configure(text=texto_completo[:longitud_maxima] + "...")
 
     # Método para animar el texto en un botón
-    def animar_desplazamiento_boton(self, componente_boton, longitud_maxima=55):
+    def animar_desplazamiento_boton(self, componente_boton, longitud_maxima=50):
         if not hasattr(componente_boton, "texto_completo"):
             return
         texto_completo = getattr(componente_boton, "texto_completo")
@@ -194,5 +196,7 @@ class AnimacionGeneral:
         texto_visible = texto_completo[pos : pos + longitud_maxima]
         componente_boton.configure(text=texto_visible)
         setattr(componente_boton, "posicion_desplazamiento", pos + 1)
-        id_temporizador = componente_boton.after(125, lambda: self.animar_desplazamiento_boton(componente_boton, longitud_maxima))
+        id_temporizador = componente_boton.after(
+            125, lambda: self.animar_desplazamiento_boton(componente_boton, longitud_maxima)
+        )
         setattr(componente_boton, "id_temporizador", id_temporizador)

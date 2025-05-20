@@ -1197,20 +1197,10 @@ def mostrar_menu_opciones(cancion, panel_padre):
     if es_cancion_actual:
         # Si es la canción actual, mostrar Pausar o Reproducir según el estado
         if ESTADO_REPRODUCCION:
-            crear_opcion_menu(
-                panel_menu_opciones,
-                "Pausar",
-                lambda: reproducir_vista(),
-                False,
-                "pausa"
-            )
+            crear_opcion_menu(panel_menu_opciones, "Pausar", lambda: reproducir_vista(), False, "pausa")
         else:
             crear_opcion_menu(
-                panel_menu_opciones,
-                "Reproducir",
-                lambda: reproducir_vista(),
-                False,
-                "reproducir"
+                panel_menu_opciones, "Reproducir", lambda: reproducir_vista(), False, "reproducir"
             )
     else:
         # Si no es la canción actual, mantener "Reproducir"
@@ -1219,7 +1209,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
             "Reproducir",
             lambda: reproducir_desde_lista_vista(cancion),
             False,
-            "reproducir"
+            "reproducir",
         )
     # -------------------------------------------------------------------------------------------
     # -------------------------------- Opciones de cola de reproducción -------------------------
@@ -1236,7 +1226,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
         "Agregar al final de la cola",
         lambda: agregar_fin_cola_vista(cancion),
         False,
-        "agregar_cola"
+        "agregar_cola",
     )
     # -------------------------------------------------------------------------------------------
     # ------------------------------------ Opciones de gusto ------------------------------------
@@ -1244,49 +1234,31 @@ def mostrar_menu_opciones(cancion, panel_padre):
     texto_me_gusta = "Quitar de Me gusta" if cancion.me_gusta else "Agregar a Me gusta"
     icono_me_gusta = "me_gusta_rojo" if cancion.me_gusta else "me_gusta"
     crear_opcion_menu(
-        panel_menu_opciones,
-        texto_me_gusta,
-        lambda: cambiar_me_gusta_menu(cancion),
-        True,
-        icono_me_gusta
+        panel_menu_opciones, texto_me_gusta, lambda: cambiar_me_gusta_menu(cancion), True, icono_me_gusta
     )
 
     texto_favorito = "Quitar de Favoritos" if cancion.favorito else "Agregar a Favoritos"
     icono_favorito = "favorito_amarillo" if cancion.favorito else "favorito"
     crear_opcion_menu(
-        panel_menu_opciones,
-        texto_favorito,
-        lambda: cambiar_favorito_menu(cancion),
-        False,
-        icono_favorito
+        panel_menu_opciones, texto_favorito, lambda: cambiar_favorito_menu(cancion), False, icono_favorito
     )
     # -------------------------------------------------------------------------------------------
     # ---------------------------------- Opciones de información --------------------------------
     if cancion.album and cancion.album not in ["", "Unknown Album", "Desconocido"]:
-        crear_opcion_menu(
-            panel_menu_opciones,
-            "Ir al álbum",
-            lambda: ir_al_album(cancion),
-            True,
-            "album"
-        )
+        crear_opcion_menu(panel_menu_opciones, "Ir al álbum", lambda: ir_al_album(cancion), True, "album")
 
     if cancion.artista and cancion.artista not in ["", "Unknown Artist", "Desconocido"]:
         crear_opcion_menu(
-            panel_menu_opciones,
-            "Ir al artista",
-            lambda: ir_al_artista(cancion),
-            False,
-            "artista"
+            panel_menu_opciones, "Ir al artista", lambda: ir_al_artista(cancion), False, "artista"
         )
     # -------------------------------------------------------------------------------------------
     # ---------------------------------- Opciones de eliminar -----------------------------------
     crear_opcion_menu(
-        panel_menu_opciones, 
+        panel_menu_opciones,
         "Ver información",
         lambda: print(f"Ver info de: {cancion.titulo_cancion}"),
         True,
-        "informacion"
+        "informacion",
     )
 
     crear_opcion_menu(
@@ -1827,7 +1799,7 @@ def actualizar_espectro(*args):
 
 # Función para configurar el desplazamiento de texto en botones
 def configurar_desplazamiento_texto(boton, texto_completo):
-    animacion.configurar_desplazamiento_boton(boton, texto_completo, 55)
+    animacion.configurar_desplazamiento_boton(boton, texto_completo, 50)
 
 
 # Función para abrir la ventana de configuración

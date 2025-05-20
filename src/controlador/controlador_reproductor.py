@@ -119,11 +119,7 @@ class ControladorReproductor:
                 "artista": (self.texto_artista, self.etiqueta_artista),
                 "album": (self.texto_album, self.etiqueta_album),
             }
-            self.animacion.configurar_desplazamiento_etiqueta(
-                self.etiqueta_nombre,
-                textos,
-                850
-            )
+            self.animacion.configurar_desplazamiento_etiqueta(self.etiqueta_nombre, textos, 850)
             # Actualizar carátula usando el método centralizado
             self.actualizar_caratula_controlador()
 

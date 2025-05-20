@@ -108,7 +108,7 @@ class Cancion:
     @staticmethod
     def crear_imagen_vacia():
         try:
-            img = Image.new('RGBA', (1, 1), (0, 0, 0, 0))
+            img = Image.new("RGBA", (1, 1), (0, 0, 0, 0))
             return CTkImage(light_image=img, dark_image=img, size=(1, 1))
         except Exception as e:
             print(f"Error al crear imagen vacía: {e}")
@@ -141,9 +141,15 @@ class Cancion:
             elif formato == "ctk":
                 # Opción específica para CustomTkinter
                 try:
-                    return CTkImage(light_image=imagen_pil, dark_image=imagen_pil, size=(ancho or imagen_pil.width, alto or imagen_pil.height))
+                    return CTkImage(
+                        light_image=imagen_pil,
+                        dark_image=imagen_pil,
+                        size=(ancho or imagen_pil.width, alto or imagen_pil.height),
+                    )
                 except ImportError:
-                    raise ImportError("No se puede importar CTkImage. Asegúrate de tener CustomTkinter instalado.")
+                    raise ImportError(
+                        "No se puede importar CTkImage. Asegúrate de tener CustomTkinter instalado."
+                    )
             elif formato == "tk":
                 # Opción específica para Tkinter estándar
                 return ImageTk.PhotoImage(imagen_pil)

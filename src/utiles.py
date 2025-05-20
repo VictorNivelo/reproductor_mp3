@@ -9,6 +9,7 @@ def medir_consumo_memoria(func):
         resultado = func(*args, **kwargs)
         actual, pico = tracemalloc.get_traced_memory()
         print("--------------------------------------------------------------")
+        print("Consumo de memoria:")
         print(f"{func.__name__} - Memoria actual: {actual / 1024:.2f} KB")
         print(f"{func.__name__} - Pico de memoria: {pico / 1024:.2f} KB")
         print("--------------------------------------------------------------")

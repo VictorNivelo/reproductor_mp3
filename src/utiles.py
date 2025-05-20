@@ -8,8 +8,10 @@ def medir_consumo_memoria(func):
         tracemalloc.start()
         resultado = func(*args, **kwargs)
         actual, pico = tracemalloc.get_traced_memory()
+        print("--------------------------------------------------------------")
         print(f"{func.__name__} - Memoria actual: {actual / 1024:.2f} KB")
         print(f"{func.__name__} - Pico de memoria: {pico / 1024:.2f} KB")
+        print("--------------------------------------------------------------")
         tracemalloc.stop()
         return resultado
 
@@ -90,6 +92,9 @@ class UtilesGeneral:
             if ancho <= 1 or alto <= 1:
                 componente.after(100, mostrar_dimensiones)
             else:
-                print(f"Ancho real: {ancho}, Alto real: {alto}")
+                print("---------------------------------------")
+                print("Dimensiones del componente:")
+                print(f"Ancho: {ancho}, Alto: {alto} en px")
+                print("---------------------------------------")
 
         componente.after(100, mostrar_dimensiones)

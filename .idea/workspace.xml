@@ -5,27 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8e4e4cf-2326-4884-9b49-ac3fa6c7cc47" name="Cambios" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/reproductor_mp3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/reproductor_mp3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/estadisticas/canciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/canciones.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/listas/cola.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/cola.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prototipo/prototipo_reproductor.py" beforeDir="false" afterPath="$PROJECT_DIR$/prototipo/prototipo_reproductor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/controlador_reproductor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/controlador_reproductor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/controlador_tema.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/controlador_tema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utiles.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/componentes/cola_reproduccion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/cola_reproduccion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/componentes/mini_reproductor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/mini_reproductor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/utiles/utiles_vista.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/utiles/utiles_vista.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/vista_principal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/vista_principal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_cancion.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_cancion.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +25,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -59,7 +48,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "preferences.language.and.region",
+    "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -81,6 +70,7 @@
       <workItem from="1747687973442" duration="275000" />
       <workItem from="1747688302256" duration="553000" />
       <workItem from="1747694601139" duration="1405000" />
+      <workItem from="1747702401916" duration="306000" />
     </task>
     <servers />
   </component>

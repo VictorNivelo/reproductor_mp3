@@ -95,10 +95,10 @@ class MiniReproductor(UtilesGeneral):
         self.etiqueta_nombre_cancion_mini = ctk.CTkLabel(
             panel_informacion_mini_reproductor,
             height=20,
-            text_color=self.color_texto,
-            text="Sin reproducción",
-            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             fg_color="transparent",
+            text_color=self.color_texto,
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION + 3, "bold"),
+            text="Sin reproducción",
         )
         self.etiqueta_nombre_cancion_mini.pack()
         self.componentes.append(self.etiqueta_nombre_cancion_mini)
@@ -108,10 +108,10 @@ class MiniReproductor(UtilesGeneral):
         self.etiqueta_artista_mini = ctk.CTkLabel(
             panel_informacion_mini_reproductor,
             height=20,
+            fg_color="transparent",
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
             text="",
-            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
-            fg_color="transparent",
         )
         self.etiqueta_artista_mini.pack()
         self.componentes.append(self.etiqueta_artista_mini)
@@ -121,10 +121,10 @@ class MiniReproductor(UtilesGeneral):
         self.etiqueta_album_mini = ctk.CTkLabel(
             panel_informacion_mini_reproductor,
             height=20,
+            fg_color="transparent",
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
             text="",
-            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
-            fg_color="transparent",
         )
         self.etiqueta_album_mini.pack()
         self.componentes.append(self.etiqueta_album_mini)
@@ -161,10 +161,10 @@ class MiniReproductor(UtilesGeneral):
         self.etiqueta_tiempo_inicio_mini = ctk.CTkLabel(
             panel_tiempo_mini_reproductor,
             height=20,
-            text_color=self.color_texto,
-            text="00:00",
-            font=(LETRA, TAMANIO_LETRA_TIEMPO),
             fg_color="transparent",
+            text_color=self.color_texto,
+            font=(LETRA, TAMANIO_LETRA_TIEMPO),
+            text="00:00",
         )
         self.etiqueta_tiempo_inicio_mini.pack(side="left")
         self.componentes.append(self.etiqueta_tiempo_inicio_mini)
@@ -174,10 +174,10 @@ class MiniReproductor(UtilesGeneral):
         self.etiqueta_tiempo_final_mini = ctk.CTkLabel(
             panel_tiempo_mini_reproductor,
             height=20,
-            text_color=self.color_texto,
-            text="00:00",
-            font=(LETRA, TAMANIO_LETRA_TIEMPO),
             fg_color="transparent",
+            text_color=self.color_texto,
+            font=(LETRA, TAMANIO_LETRA_TIEMPO),
+            text="00:00",
         )
         self.etiqueta_tiempo_final_mini.pack(side="right")
         self.componentes.append(self.etiqueta_tiempo_final_mini)
@@ -299,9 +299,9 @@ class MiniReproductor(UtilesGeneral):
         # Crea la imagen de la canción del mini reproductor
         self.imagen_cancion_mini = ctk.CTkLabel(
             panel_izquierda_mini_reproductor,
+            fg_color="transparent",
             text_color=self.color_texto,
             text="Sin carátula",
-            fg_color="transparent",
         )
         self.imagen_cancion_mini.pack(expand=True)
         self.componentes.append(self.imagen_cancion_mini)

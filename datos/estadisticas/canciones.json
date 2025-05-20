@@ -1,26 +1,12 @@
 {
     "estadisticas": {
-        "total_canciones": 11,
-        "total_artistas": 17,
-        "total_albumes": 11,
-        "me_gusta": 4,
+        "total_canciones": 16,
+        "total_artistas": 24,
+        "total_albumes": 14,
+        "me_gusta": 3,
         "favorito": 2
     },
     "canciones": [
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\...And to Those I Love, Thanks for Sticking Around.mp3",
-            "titulo": "...And to Those I Love, Thanks for Sticking Around",
-            "artista": "$uicideboy$",
-            "artista_album": "$uicideboy$",
-            "album": "Stop Staring At the Shadows",
-            "duracion": 168.51591836734693,
-            "duracion_formateada": "02:48",
-            "anio": "2020-02-14",
-            "numero_pista": "12",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": true
-        },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
             "titulo": "11 Y ONCE",
@@ -33,7 +19,7 @@
             "numero_pista": "6",
             "tiene_caratula": true,
             "me_gusta": true,
-            "favorito": false
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -74,7 +60,7 @@
             "anio": "2024-04-04",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
@@ -120,6 +106,20 @@
             "favorito": false
         },
         {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Amanece.mp3",
+            "titulo": "Amanece",
+            "artista": "Anuel AA ft Haze",
+            "artista_album": "Anuel AA",
+            "album": "Amanece",
+            "duracion": 190.0408163265306,
+            "duracion_formateada": "03:10",
+            "anio": "2018-12-14",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
             "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
@@ -131,7 +131,63 @@
             "numero_pista": "1/1",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": true
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\BEBE.mp3",
+            "titulo": "BEBE",
+            "artista": "6ix9ine ft Anuel AA",
+            "artista_album": "6ix9ine",
+            "album": "DUMMY BOY",
+            "duracion": 217.86122448979592,
+            "duracion_formateada": "03:37",
+            "anio": "2018",
+            "numero_pista": "7",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Champion.mp3",
+            "titulo": "Champion",
+            "artista": "Kanye West",
+            "artista_album": "Kanye West",
+            "album": "Graduation",
+            "duracion": 167.13142857142856,
+            "duracion_formateada": "02:47",
+            "anio": "2007-09-11",
+            "numero_pista": "2/14",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Good Night.mp3",
+            "titulo": "Good Night",
+            "artista": "Kanye West ft Mos Def, Albe Back",
+            "artista_album": "Kanye West",
+            "album": "Graduation",
+            "duracion": 186.01795918367347,
+            "duracion_formateada": "03:06",
+            "anio": "2007-09-11",
+            "numero_pista": "14/14",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\I Wonder.mp3",
+            "titulo": "I Wonder",
+            "artista": "Kanye West",
+            "artista_album": "Kanye West",
+            "album": "Graduation",
+            "duracion": 243.48734693877552,
+            "duracion_formateada": "04:03",
+            "anio": "2007-09-11",
+            "numero_pista": "4/14",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
@@ -148,6 +204,20 @@
             "favorito": false
         },
         {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Verte Ir.mp3",
+            "titulo": "Verte Ir",
+            "artista": "Anuel AA ft Nicky Jam, Darell, Brytiago",
+            "artista_album": "Anuel AA",
+            "album": "Verte Ir",
+            "duracion": 267.5461224489796,
+            "duracion_formateada": "04:27",
+            "anio": "2019-03-28",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
             "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
             "titulo": "¿Qué Nos Pasó?",
             "artista": "Anuel AA",
@@ -159,7 +229,7 @@
             "numero_pista": "1/1",
             "tiene_caratula": true,
             "me_gusta": true,
-            "favorito": false
+            "favorito": true
         }
     ]
 }

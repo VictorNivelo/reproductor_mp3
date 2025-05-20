@@ -1,5 +1,5 @@
 {
-    "reproducir_pausar": "space",
+    "reproducir_pausar": "Alt-1",
     "siguiente": "Control-Right",
     "anterior": "Control-Left",
     "aumentar_volumen": "Up",

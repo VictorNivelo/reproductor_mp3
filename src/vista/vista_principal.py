@@ -1448,7 +1448,7 @@ def actualizar_vista_canciones(panel):
 
 
 # Función para mostrar los detalles de las canciones
-def mostrar_detalle_cancion(pagina, elemento, funcion_regresar):
+def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
     # Eliminar tooltip si existe
     eliminar_tooltip()
     # Obtener colores actualizados del tema
@@ -1610,7 +1610,7 @@ def actualizar_vista_albumes():
 
 # Función para mostrar las canciones de un álbum
 def mostrar_canciones_album(album):
-    return mostrar_detalle_cancion("Álbumes", album, actualizar_vista_albumes)
+    return mostrar_detalles_cancion("Álbumes", album, actualizar_vista_albumes)
 
 
 # Función para actualizar la vista de albumes filtrados
@@ -1639,7 +1639,7 @@ def actualizar_vista_artistas():
 
 # Función para mostrar las canciones de un artista
 def mostrar_canciones_artista(artista):
-    return mostrar_detalle_cancion("Artistas", artista, actualizar_vista_artistas)
+    return mostrar_detalles_cancion("Artistas", artista, actualizar_vista_artistas)
 
 
 # Función para mostrar artistas filtrados
@@ -2174,7 +2174,7 @@ etiqueta_nombre_cancion = ctk.CTkLabel(
     contenedor_informacion,
     height=20,
     fg_color="transparent",
-    font=(LETRA, TAMANIO_LETRA_ETIQUETA),
+    font=(LETRA, TAMANIO_LETRA_ETIQUETA + 5, "bold"),
     text_color=controlador_tema.color_texto,
     text="",
 )

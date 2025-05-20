@@ -2,6 +2,7 @@
   <dictionary name="project">
     <words>
       <w>accion</w>
+      <w>actualizacion</w>
       <w>albumartist</w>
       <w>albumes</w>
       <w>animacion</w>
@@ -35,6 +36,7 @@
       <w>pestania</w>
       <w>posicion</w>
       <w>proporcion</w>
+      <w>proximas</w>
       <w>repeticion</w>
       <w>reproduccion</w>
       <w>seccion</w>

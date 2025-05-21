@@ -1,5 +1,5 @@
 {
-    "indice_actual": 9,
+    "indice_actual": 7,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -14,10 +14,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "titulo": "Self Love",
-        "artista": "Metro Boomin ft Coi Leray",
-        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
-        "timestamp": "2025-05-20T17:43:03.867248"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "titulo": "Adictiva",
+        "artista": "Daddy Yankee ft Anuel AA",
+        "album": "Adictiva",
+        "timestamp": "2025-05-21T14:44:28.883279"
     }
 }

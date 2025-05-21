@@ -93,9 +93,48 @@ class UtilesGeneral:
             if ancho <= 1 or alto <= 1:
                 componente.after(100, mostrar_dimensiones)
             else:
-                print("---------------------------------------")
+                print("------------------------------------------")
                 print("Dimensiones del componente:")
                 print(f"Ancho: {ancho}, Alto: {alto} en px")
-                print("---------------------------------------")
+                print("------------------------------------------")
 
         componente.after(100, mostrar_dimensiones)
+
+    # Método para obtener información completa de un componente (tamaño y posición)
+    def obtener_informacion_componente(self, componente):
+        componente.update_idletasks()
+        # Obtener dimensiones
+        ancho = self.obtener_ancho_componente(componente)
+        alto = self.obtener_alto_componente(componente)
+        # Obtener posición absoluta (en la pantalla)
+        x_abs = componente.winfo_rootx()
+        y_abs = componente.winfo_rooty()
+        # Obtener posición relativa al contenedor padre
+        x_rel = componente.winfo_x()
+        y_rel = componente.winfo_y()
+        return {
+            "ancho": ancho,
+            "alto": alto,
+            "x_absoluta": x_abs,
+            "y_absoluta": y_abs,
+            "x_relativa": x_rel,
+            "y_relativa": y_rel,
+        }
+
+    # Método para mostrar la información completa de un componente
+    def mostrar_informacion_componente(self, componente, nombre_componente=None):
+        def mostrar_info():
+            info = self.obtener_informacion_componente(componente)
+            # Si el componente aún no tiene dimensiones, intentamos de nuevo
+            if info["ancho"] <= 1 or info["alto"] <= 1:
+                componente.after(100, mostrar_info)
+            else:
+                print("------------------------------------------")
+                print("Información del componente:")
+                print(f"Nombre: {nombre_componente}")
+                print(f"Dimensiones: {info['ancho']}x{info['alto']} px")
+                print(f"Posición absoluta: ({info['x_absoluta']}, {info['y_absoluta']})")
+                print(f"Posición relativa al padre: ({info['x_relativa']}, {info['y_relativa']})")
+                print("------------------------------------------")
+
+        componente.after(100, mostrar_info)

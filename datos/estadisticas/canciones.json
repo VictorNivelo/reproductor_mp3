@@ -117,7 +117,7 @@
             "numero_pista": "1",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": false
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
@@ -145,7 +145,7 @@
             "numero_pista": "9/13",
             "tiene_caratula": true,
             "me_gusta": true,
-            "favorito": true
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",

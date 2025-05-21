@@ -5,8 +5,8 @@
         "Metro Boomin": 21,
         "Eladio Carrion": 2,
         "Bryant Myers": 2,
-        "Daddy Yankee": 2,
-        "Anuel AA": 3,
+        "Daddy Yankee": 3,
+        "Anuel AA": 4,
         "Desconocido": 1,
         "Ñengo Flow": 1,
         "Sinfonico": 1,
@@ -19,21 +19,21 @@
         "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 15,
         "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 21,
         "Animal": 2,
-        "Adictiva": 2,
+        "Adictiva": 3,
         "Desconocido": 1,
         "47 (Remix)": 1,
         "444": 2,
         "INTER SHIBUYA - LA MAFIA": 2,
         "EL ÚLTIMO TOUR DEL MUNDO": 1
     },
-    "tiempo_total": 9320.594285714287,
-    "canciones_escuchadas": 47,
+    "tiempo_total": 9528.476734693879,
+    "canciones_escuchadas": 48,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "titulo": "Self Love",
-        "artista": "Metro Boomin ft Coi Leray",
-        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
-        "timestamp": "2025-05-20T17:43:03.868094"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "titulo": "Adictiva",
+        "artista": "Daddy Yankee ft Anuel AA",
+        "album": "Adictiva",
+        "timestamp": "2025-05-21T14:41:32.288155"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\b.mp3": {
@@ -55,7 +55,7 @@
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "Adictiva",
             "artista": "Daddy Yankee ft Anuel AA",
             "album": "Adictiva"
@@ -95,7 +95,7 @@
         "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 15,
         "Metro Boomin ft Coi Leray": 21,
         "Eladio Carrion ft Bryant Myers": 2,
-        "Daddy Yankee ft Anuel AA": 2,
+        "Daddy Yankee ft Anuel AA": 3,
         "Desconocido": 1,
         "Anuel AA ft Sinfonico, Ñengo Flow": 1,
         "Yan Block ft Panda Black": 2,

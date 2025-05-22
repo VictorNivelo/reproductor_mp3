@@ -992,15 +992,22 @@ def crear_boton_cancion(cancion, panel):
 
 
 # Función auxiliar para crear botones de álbumes
-def crear_boton_album(albumes, canvas_albumes, panel_botones_albumes):
+def crear_boton_album(albumes, panel_componente):
     # Crear botones para cada álbum
     for album in sorted(albumes):
         # Ignorar álbumes vacíos o sin nombre
         if album == "" or album == "Unknown Album" or album.lower() == "desconocido":
             continue
+
+        # ------------------------------------- Panel de album ----------------------------------
+        panel_lista_album = ctk.CTkFrame(panel_componente, height=28, fg_color="transparent")
+        panel_lista_album.pack(fill="both", expand=True, pady=(0, 2))
+        panel_lista_album.pack_propagate(False)
+        # ---------------------------------------------------------------------------------------
+
         # ------------------------------------ Boton de álbum -----------------------------------
         boton_album = ctk.CTkButton(
-            panel_botones_albumes,
+            panel_lista_album,
             width=ANCHO_BOTON + 8,
             height=ALTO_BOTON + 8,
             fg_color=controlador_tema.color_boton,
@@ -1015,21 +1022,25 @@ def crear_boton_album(albumes, canvas_albumes, panel_botones_albumes):
         # ---------------------------------------------------------------------------------------
         # Configurar desplazamiento si el texto es largo
         configurar_desplazamiento_texto(boton_album, album)
-    panel_botones_albumes.update_idletasks()
-    canvas_albumes.yview_moveto(0)
-    canvas_albumes.configure(scrollregion=canvas_albumes.bbox("all"))
 
 
 # Función auxiliar para crear botones de artistas
-def crear_boton_artista(artistas, canvas_artistas, panel_botones_artistas):
+def crear_boton_artista(artistas, panel_componente):
     # Crear botones para cada artista
     for artista in sorted(artistas):
         # Ignorar artistas sin nombre o desconocidos
         if artista == "" or artista == "Unknown Artist" or artista.lower() == "desconocido":
             continue
+
+        # ------------------------------------- Panel de artista --------------------------------
+        panel_lista_artista = ctk.CTkFrame(panel_componente, height=28, fg_color="transparent")
+        panel_lista_artista.pack(fill="both", expand=True, pady=(0, 2))
+        panel_lista_artista.pack_propagate(False)
+        # ---------------------------------------------------------------------------------------
+
         # ----------------------------------- Boton de artista ----------------------------------
         boton_artista = ctk.CTkButton(
-            panel_botones_artistas,
+            panel_lista_artista,
             width=ANCHO_BOTON + 8,
             height=ALTO_BOTON + 8,
             fg_color=controlador_tema.color_boton,
@@ -1044,9 +1055,6 @@ def crear_boton_artista(artistas, canvas_artistas, panel_botones_artistas):
         # ---------------------------------------------------------------------------------------
         # Configurar desplazamiento si el texto es largo
         configurar_desplazamiento_texto(boton_artista, artista)
-    panel_botones_artistas.update_idletasks()
-    canvas_artistas.yview_moveto(0)
-    canvas_artistas.configure(scrollregion=canvas_artistas.bbox("all"))
 
 
 # Función para navegar al álbum de una canción específica
@@ -1195,7 +1203,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
     # Verificar si la canción del menú es la canción actual
     es_cancion_actual = controlador_reproductor.cancion_actual == cancion
     if es_cancion_actual:
-        # Si es la canción actual, mostrar Pausar o Reproducir según el estado
+        # Sí es la canción actual, mostrar Pausar o Reproducir según el estado
         if ESTADO_REPRODUCCION:
             crear_opcion_menu(panel_menu_opciones, "Pausar", lambda: reproducir_vista(), False, "pausa")
         else:
@@ -1574,10 +1582,10 @@ def configurar_interfaz_albumes():
 
 # Función para actualizar la vista de álbumes
 def actualizar_vista_albumes():
-    canvas_albumes, panel_botones_albumes = configurar_interfaz_albumes()
+    panel_botones_albumes = configurar_interfaz_albumes()[1]
     # Obtener todos los álbumes
     albumes = biblioteca.por_album.keys()
-    crear_boton_album(albumes, canvas_albumes, panel_botones_albumes)
+    crear_boton_album(albumes, panel_botones_albumes)
 
 
 # Función para mostrar las canciones de un álbum
@@ -1592,7 +1600,13 @@ def mostrar_albumes_filtrados(texto_busqueda):
     albumes_filtrados = [
         album for album in biblioteca.por_album.keys() if texto_busqueda.lower() in album.lower()
     ]
-    crear_boton_album(albumes_filtrados, canvas_albumes, panel_botones_albumes)
+    crear_boton_album(albumes_filtrados, panel_botones_albumes)
+    # Forzar actualización del layout
+    panel_botones_albumes.update_idletasks()
+    # Restaurar la posición del scroll a la parte superior
+    canvas_albumes.yview_moveto(0)
+    # Actualizar la región de desplazamiento
+    canvas_albumes.configure(scrollregion=canvas_albumes.bbox("all"))
 
 
 # Función para configurar la interfaz artistas
@@ -1602,11 +1616,11 @@ def configurar_interfaz_artistas():
 
 # Función para actualizar la vista de artistas
 def actualizar_vista_artistas():
-    canvas_artistas, panel_botones_artistas = configurar_interfaz_artistas()
+    panel_botones_artistas = configurar_interfaz_artistas()[1]
     # Obtener todos los artistas
     artistas = biblioteca.por_artista.keys()
     # Usar la función auxiliar para crear botones
-    crear_boton_artista(artistas, canvas_artistas, panel_botones_artistas)
+    crear_boton_artista(artistas, panel_botones_artistas)
 
 
 # Función para mostrar las canciones de un artista
@@ -1622,7 +1636,13 @@ def mostrar_artistas_filtrados(texto_busqueda):
         artista for artista in biblioteca.por_artista.keys() if texto_busqueda.lower() in artista.lower()
     ]
     # Usar la función auxiliar para crear botones
-    crear_boton_artista(artistas_filtrados, canvas_artistas, panel_botones_artistas)
+    crear_boton_artista(artistas_filtrados, panel_botones_artistas)
+    # Forzar actualización del layout
+    panel_botones_artistas.update_idletasks()
+    # Restaurar la posición del scroll a la parte superior
+    canvas_artistas.yview_moveto(0)
+    # Actualizar la región de desplazamiento
+    canvas_artistas.configure(scrollregion=canvas_artistas.bbox("all"))
 
 
 # Función para actualizar la vista de Me_gusta
@@ -2593,28 +2613,45 @@ controlador_tema.registrar_entrada(entrada_busqueda)
 # Vincular el evento de liberación de tecla con la función de búsqueda
 entrada_busqueda.bind("<KeyRelease>", lambda _event: buscar_cancion_vista())
 
-# Opciones de ordenamiento en combobox
-opciones_ordenamiento = ["Nombre", "Artista", "Álbum", "Año", "Duración"]
+# # Botón de buscar
+# boton_buscar = ctk.CTkButton(
+#     panel_elementos,
+#     width=ANCHO_BOTON,
+#     height=ALTO_BOTON,
+#     corner_radius=BORDES_REDONDEADOS_BOTON,
+#     fg_color=controlador_tema.color_boton,
+#     hover_color=controlador_tema.color_hover,
+#     font=(LETRA, TAMANIO_LETRA_BOTON),
+#     text_color=controlador_tema.color_texto,
+#     text="",
+#     command=cambiar_silencio_vista,
+# )
+# boton_buscar.pack(side="left", padx=(5, 0))
+# controlador_tema.registrar_botones("buscar", boton_buscar)
+# crear_tooltip(boton_buscar, "Buscar")
 
-# Combobox de ordenamiento
-combo_ordenamiento = ctk.CTkComboBox(
-    panel_elementos,
-    fg_color=FONDO_CLARO,
-    border_width=1,
-    border_color=FONDO_OSCURO,
-    button_color=FONDO_CLARO,
-    button_hover_color=HOVER_CLARO,
-    dropdown_fg_color=FONDO_CLARO,
-    dropdown_hover_color=HOVER_CLARO,
-    dropdown_text_color=TEXTO_CLARO,
-    font=(LETRA, TAMANIO_LETRA_COMBOBOX),
-    text_color=TEXTO_CLARO,
-    values=opciones_ordenamiento,
-    state="readonly",
-)
-combo_ordenamiento.set("Elija una opcion")
-combo_ordenamiento.pack(side="left", padx=(5, 0))
-controlador_tema.registrar_combobox(combo_ordenamiento)
+# # Opciones de ordenamiento en combobox
+# opciones_ordenamiento = ["Nombre", "Artista", "Álbum", "Año", "Duración"]
+
+# # Combobox de ordenamiento
+# combo_ordenamiento = ctk.CTkComboBox(
+#     panel_elementos,
+#     fg_color=FONDO_CLARO,
+#     border_width=1,
+#     border_color=FONDO_OSCURO,
+#     button_color=FONDO_CLARO,
+#     button_hover_color=HOVER_CLARO,
+#     dropdown_fg_color=FONDO_CLARO,
+#     dropdown_hover_color=HOVER_CLARO,
+#     dropdown_text_color=TEXTO_CLARO,
+#     font=(LETRA, TAMANIO_LETRA_COMBOBOX),
+#     text_color=TEXTO_CLARO,
+#     values=opciones_ordenamiento,
+#     state="readonly",
+# )
+# combo_ordenamiento.set("Elija una opcion")
+# combo_ordenamiento.pack(side="left", padx=(5, 0))
+# controlador_tema.registrar_combobox(combo_ordenamiento)
 
 # -----------------------------------------------------------------------------------------------
 

@@ -11,7 +11,7 @@
             "anio": "2018-11-09",
             "numero_pista": "1",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": true
         }
     ]

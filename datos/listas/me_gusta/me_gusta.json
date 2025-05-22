@@ -13,6 +13,20 @@
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+            "titulo": "Adictiva",
+            "artista": "Daddy Yankee ft Anuel AA",
+            "artista_album": "Daddy Yankee",
+            "album": "Adictiva",
+            "duracion": 207.88244897959183,
+            "duracion_formateada": "03:27",
+            "anio": "2018-11-09",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
         }
     ]
 }

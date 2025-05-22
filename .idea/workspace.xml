@@ -6,12 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b8e4e4cf-2326-4884-9b49-ac3fa6c7cc47" name="Cambios" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/configuracion/ajustes.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/configuracion/ajustes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/estadisticas/canciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/canciones.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/listas/cola.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/cola.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utiles.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/vista_principal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/vista_principal.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,14 +46,13 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-PY-251.25410.159" />
         <option value="bundled-python-sdk-e0ed3721d81e-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.25410.159" />
       </set>
     </attachedChunks>
@@ -73,6 +72,11 @@
       <workItem from="1747776055988" duration="929000" />
       <workItem from="1747848165548" duration="142000" />
       <workItem from="1747856915773" duration="386000" />
+      <workItem from="1747874111201" duration="1855000" />
+      <workItem from="1747877373297" duration="379000" />
+      <workItem from="1747877819397" duration="600000" />
+      <workItem from="1747880559126" duration="134000" />
+      <workItem from="1747880751007" duration="196000" />
     </task>
     <servers />
   </component>

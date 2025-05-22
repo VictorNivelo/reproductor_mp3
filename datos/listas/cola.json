@@ -1,5 +1,5 @@
 {
-    "indice_actual": 7,
+    "indice_actual": 0,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -10,14 +10,24 @@
         "C:\\Users\\Victor\\Music\\a.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Bichiyal.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Ignorantes.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\La Difícil.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\La Santa.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\La Zona.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Pero Ya No.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Que Malo.mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Soliá.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Vete.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Yo Perreo Sola.mp3",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "titulo": "Adictiva",
-        "artista": "Daddy Yankee ft Anuel AA",
-        "album": "Adictiva",
-        "timestamp": "2025-05-21T14:44:28.883279"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "titulo": "11 Y ONCE",
+        "artista": "Tainy ft Sech, E.VAX",
+        "album": "DATA",
+        "timestamp": "2025-05-21T20:59:29.802817"
     }
 }

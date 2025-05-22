@@ -5,35 +5,39 @@
         "Metro Boomin": 21,
         "Eladio Carrion": 2,
         "Bryant Myers": 2,
-        "Daddy Yankee": 3,
-        "Anuel AA": 4,
+        "Daddy Yankee": 4,
+        "Anuel AA": 5,
         "Desconocido": 1,
         "Ñengo Flow": 1,
         "Sinfonico": 1,
         "Panda Black": 2,
         "Yan Block": 2,
         "Feid": 2,
-        "Bad Bunny": 1
+        "Bad Bunny": 3,
+        "E.VAX": 2,
+        "Tainy": 2,
+        "Sech": 2
     },
     "albumes": {
         "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 15,
         "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 21,
         "Animal": 2,
-        "Adictiva": 3,
+        "Adictiva": 4,
         "Desconocido": 1,
         "47 (Remix)": 1,
         "444": 2,
         "INTER SHIBUYA - LA MAFIA": 2,
-        "EL ÚLTIMO TOUR DEL MUNDO": 1
+        "EL ÚLTIMO TOUR DEL MUNDO": 3,
+        "DATA": 2
     },
-    "tiempo_total": 9528.476734693879,
-    "canciones_escuchadas": 48,
+    "tiempo_total": 10433.462857142855,
+    "canciones_escuchadas": 53,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "titulo": "Adictiva",
-        "artista": "Daddy Yankee ft Anuel AA",
-        "album": "Adictiva",
-        "timestamp": "2025-05-21T14:41:32.288155"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "titulo": "11 Y ONCE",
+        "artista": "Tainy ft Sech, E.VAX",
+        "album": "DATA",
+        "timestamp": "2025-05-21T20:59:29.803778"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\b.mp3": {
@@ -55,7 +59,7 @@
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 3,
+            "contador": 4,
             "titulo": "Adictiva",
             "artista": "Daddy Yankee ft Anuel AA",
             "album": "Adictiva"
@@ -85,21 +89,28 @@
             "album": "INTER SHIBUYA - LA MAFIA"
         },
         "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
+        },
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
+            "contador": 2,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
         }
     },
     "artistas_originales": {
         "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 15,
         "Metro Boomin ft Coi Leray": 21,
         "Eladio Carrion ft Bryant Myers": 2,
-        "Daddy Yankee ft Anuel AA": 3,
+        "Daddy Yankee ft Anuel AA": 4,
         "Desconocido": 1,
         "Anuel AA ft Sinfonico, Ñengo Flow": 1,
         "Yan Block ft Panda Black": 2,
         "Feid": 2,
-        "Bad Bunny": 1
+        "Bad Bunny": 3,
+        "Tainy ft Sech, E.VAX": 2
     }
 }

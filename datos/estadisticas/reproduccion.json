@@ -1,116 +1,40 @@
 {
     "artistas": {
-        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 15,
-        "Coi Leray": 21,
-        "Metro Boomin": 21,
-        "Eladio Carrion": 2,
-        "Bryant Myers": 2,
-        "Daddy Yankee": 4,
-        "Anuel AA": 5,
-        "Desconocido": 1,
-        "Ñengo Flow": 1,
-        "Sinfonico": 1,
-        "Panda Black": 2,
-        "Yan Block": 2,
-        "Feid": 2,
-        "Bad Bunny": 3,
-        "E.VAX": 2,
-        "Tainy": 2,
-        "Sech": 2
+        "Sech": 1,
+        "Tainy": 1,
+        "E.VAX": 1,
+        "Panda Black": 1,
+        "Yan Block": 1
     },
     "albumes": {
-        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 15,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 21,
-        "Animal": 2,
-        "Adictiva": 4,
-        "Desconocido": 1,
-        "47 (Remix)": 1,
-        "444": 2,
-        "INTER SHIBUYA - LA MAFIA": 2,
-        "EL ÚLTIMO TOUR DEL MUNDO": 3,
-        "DATA": 2
+        "DATA": 1,
+        "444": 1
     },
-    "tiempo_total": 10433.462857142855,
-    "canciones_escuchadas": 53,
+    "tiempo_total": 372.3232653061225,
+    "canciones_escuchadas": 2,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-05-21T20:59:29.803778"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
+        "titulo": "444",
+        "artista": "Yan Block ft Panda Black",
+        "album": "444",
+        "timestamp": "2025-05-22T14:01:25.896348"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\b.mp3": {
-            "contador": 15,
-            "titulo": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
-            "artista": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
-            "album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 21,
-            "titulo": "Self Love",
-            "artista": "Metro Boomin ft Coi Leray",
-            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
-            "contador": 2,
-            "titulo": "Animal",
-            "artista": "Eladio Carrion ft Bryant Myers",
-            "album": "Animal"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 4,
-            "titulo": "Adictiva",
-            "artista": "Daddy Yankee ft Anuel AA",
-            "album": "Adictiva"
-        },
-        "C:\\Users\\Victor\\Music\\a.mp3": {
-            "contador": 1,
-            "titulo": "a",
-            "artista": "Desconocido",
-            "album": "Desconocido"
-        },
-        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 1,
-            "titulo": "47 (Remix)",
-            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
-            "album": "47 (Remix)"
-        },
-        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
-            "contador": 2,
-            "titulo": "444",
-            "artista": "Yan Block ft Panda Black",
-            "album": "444"
-        },
-        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
-            "contador": 2,
-            "titulo": "14 De Febrero",
-            "artista": "Feid",
-            "album": "INTER SHIBUYA - LA MAFIA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 3,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 2,
+            "contador": 1,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
+            "contador": 1,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
         }
     },
     "artistas_originales": {
-        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 15,
-        "Metro Boomin ft Coi Leray": 21,
-        "Eladio Carrion ft Bryant Myers": 2,
-        "Daddy Yankee ft Anuel AA": 4,
-        "Desconocido": 1,
-        "Anuel AA ft Sinfonico, Ñengo Flow": 1,
-        "Yan Block ft Panda Black": 2,
-        "Feid": 2,
-        "Bad Bunny": 3,
-        "Tainy ft Sech, E.VAX": 2
+        "Tainy ft Sech, E.VAX": 1,
+        "Yan Block ft Panda Black": 1
     }
 }

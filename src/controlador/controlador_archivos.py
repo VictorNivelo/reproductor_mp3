@@ -374,33 +374,15 @@ class ControladorArchivos:
 
     # Cargar los atajos desde un archivo JSON
     def cargar_atajos_json_controlador(self):
-        # Estructura con atajos predeterminados
-        atajos_por_defecto = {
-            "reproducir_pausar": "space",
-            "siguiente": "Control-Right",
-            "anterior": "Control-Left",
-            "aumentar_volumen": "Up",
-            "disminuir_volumen": "Down",
-            "silenciar": "m",
-            "modo_aleatorio": "s",
-            "repeticion": "r",
-            "visibilidad_panel": "l",
-            "me_gusta": "g",
-            "favorito": "f",
-            "cola": "c",
-            "mini_reproductor": "p",
-            "adelantar": "Right",
-            "retroceder": "Left",
-        }
         try:
             # Verificar que exista el archivo
-            self.verificar_archivo_json(RUTA_ATAJOS, atajos_por_defecto)
+            self.verificar_archivo_json(RUTA_ATAJOS, ATAJOS_POR_DEFECTO)
             # Cargar los atajos
             with open(RUTA_ATAJOS, "r", encoding="utf-8") as archivo:
                 return json.load(archivo)
         except Exception as e:
             print(f"Error al cargar los atajos: {str(e)}")
-            return atajos_por_defecto
+            return ATAJOS_POR_DEFECTO
 
     # Obtener las estadísticas de reproducción
     def obtener_estadisticas_json_controlador(self):

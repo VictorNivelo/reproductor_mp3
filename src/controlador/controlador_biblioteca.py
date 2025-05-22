@@ -23,6 +23,26 @@ class ControladorBiblioteca:
             print(f"Error al agregar el directorio: {e}")
             return []
 
+    # Método para obtener todas las canciones de un artista específico
+    def obtener_canciones_artista_controlador(self, nombre_artista):
+        try:
+            if nombre_artista in self.biblioteca.por_artista:
+                return self.biblioteca.por_artista[nombre_artista]
+            return []
+        except Exception as e:
+            print(f"Error al obtener canciones del artista: {e}")
+            return []
+
+    # Método para obtener todas las canciones de un álbum específico
+    def obtener_canciones_album_controlador(self, nombre_album):
+        try:
+            if nombre_album in self.biblioteca.por_album:
+                return self.biblioteca.por_album[nombre_album]
+            return []
+        except Exception as e:
+            print(f"Error al obtener canciones del álbum: {e}")
+            return []
+
     # Método que verifica si una canción está marcada como "Me gusta"
     def verificar_me_gusta_controlador(self, cancion):
         try:

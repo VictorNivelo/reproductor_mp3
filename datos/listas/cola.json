@@ -1,26 +1,21 @@
 {
-    "indice_actual": 4,
+    "indice_actual": 3,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-        "C:\\Users\\Victor\\Music\\b.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
-        "C:\\Users\\Victor\\Music\\a.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Bichiyal.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Ignorantes.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\La Difícil.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\La Santa.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\La Zona.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Pero Ya No.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Que Malo.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\COMO UN BEBÉ.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\CUIDAO POR AHÍ.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\LA CANCIÓN.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\MOJAITA.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\ODIO.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\QUE PRETENDES.mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Soliá.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Vete.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Yo Perreo Sola.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\UN PESO.mp3",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
@@ -28,6 +23,6 @@
         "titulo": "444",
         "artista": "Yan Block ft Panda Black",
         "album": "444",
-        "timestamp": "2025-05-21T22:08:34.600144"
+        "timestamp": "2025-05-22T14:01:25.895596"
     }
 }

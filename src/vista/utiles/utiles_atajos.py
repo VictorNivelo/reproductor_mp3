@@ -5,23 +5,7 @@ from constantes import *
 class GestorAtajos:
     def __init__(self):
         self.ruta_archivo = RUTA_ATAJOS
-        self.atajos_por_defecto = {
-            "reproducir_pausar": "space",
-            "siguiente": "Control-Right",
-            "anterior": "Control-Left",
-            "aumentar_volumen": "Up",
-            "disminuir_volumen": "Down",
-            "silenciar": "m",
-            "modo_aleatorio": "s",
-            "repeticion": "r",
-            "visibilidad_panel": "l",
-            "me_gusta": "g",
-            "favorito": "f",
-            "cola": "c",
-            "mini_reproductor": "p",
-            "adelantar": "Right",
-            "retroceder": "Left",
-        }
+        self.atajos_por_defecto = ATAJOS_POR_DEFECTO
         self.atajos = {}
         self.cargar_atajos()
 

@@ -166,6 +166,26 @@ SEPARADORES = [
 
 # ========================================================================
 
+# ========================= Atajos de teclado ============================
+# Atajos de teclado por defecto
+ATAJOS_POR_DEFECTO = {
+    "reproducir_pausar": "space",
+    "siguiente": "Control-Right",
+    "anterior": "Control-Left",
+    "aumentar_volumen": "Up",
+    "disminuir_volumen": "Down",
+    "silenciar": "m",
+    "modo_aleatorio": "s",
+    "repeticion": "r",
+    "visibilidad_panel": "l",
+    "me_gusta": "g",
+    "favorito": "f",
+    "cola": "c",
+    "mini_reproductor": "p",
+    "adelantar": "Right",
+    "retroceder": "Left",
+}
+
 # =================== Formatos de archivos soportados ====================
 # Formatos de archivos soportados
 FORMATOS_SOPORTADOS = {".mp3", ".flac", ".m4a", ".mp4", ".wav", ".ogg"}

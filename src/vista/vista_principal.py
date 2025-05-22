@@ -1067,8 +1067,14 @@ def ir_al_album(cancion):
     actualizar_vista_albumes()
     # Buscar y mostrar las canciones del álbum específico
     if cancion.album and cancion.album not in ["", "Unknown Album", "Desconocido"]:
-        # Mostrar las canciones del álbum
-        mostrar_canciones_album(cancion.album)
+        # Verificar si el álbum existe y tiene canciones
+        canciones_album = controlador_biblioteca.obtener_canciones_album_controlador(cancion.album)
+        if canciones_album:
+            # Mostrar las canciones del álbum
+            mostrar_canciones_album(cancion.album)
+        else:
+            # Si no hay canciones, mostrar un mensaje
+            print(f"No se encontraron canciones en el álbum: {cancion.album}")
     else:
         # Si no hay información de álbum, mostrar un mensaje
         print(f"No hay información de álbum para: {cancion.titulo_cancion}")
@@ -1111,8 +1117,13 @@ def ir_al_artista(cancion):
                 break
     # Si encontramos un artista que coincide, mostrar sus canciones
     if artista_encontrado:
-        mostrar_canciones_artista(artista_encontrado)
-        print(f"Mostrando canciones del artista: {artista_encontrado}")
+        # Verificar si hay canciones para este artista
+        canciones_artista = controlador_biblioteca.obtener_canciones_artista_controlador(artista_encontrado)
+        if canciones_artista:
+            mostrar_canciones_artista(artista_encontrado)
+            print(f"Mostrando canciones del artista: {artista_encontrado}")
+        else:
+            print(f"No se encontraron canciones del artista: {artista_encontrado}")
     else:
         # Si no hay coincidencia, mostrar mensaje informativo
         print(f"No se encontró el artista principal '{artista_principal}' en la biblioteca")
@@ -1434,9 +1445,9 @@ def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
     # Obtener colores actualizados del tema
     controlador_tema.colores()
     # Obtener la pestaña correspondiente
-    tab = paginas_canciones.tab(pagina)
+    pestania = paginas_canciones.tab(pagina)
     # Limpiar la pestaña
-    for componente in tab.winfo_children():
+    for componente in pestania.winfo_children():
         componente.destroy()
 
     # Método para regresar a la lista de canciones
@@ -1447,7 +1458,7 @@ def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
 
     # -------------------------------------- Panel detalles -------------------------------------
     # Crear contenedor para la visualización del detalle
-    contenedor_detalles = ctk.CTkFrame(tab, fg_color="transparent")
+    contenedor_detalles = ctk.CTkFrame(pestania, fg_color="transparent")
     contenedor_detalles.pack(fill="both", expand=True)
     # -------------------------------------------------------------------------------------------
     # ------------------------------------- Panel superior --------------------------------------
@@ -1501,9 +1512,12 @@ def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
     )
     # Mostrar las canciones del elemento
     if pagina == "Álbumes":
-        canciones = biblioteca.por_album.get(elemento, [])
-    else:  # "Artistas"
-        canciones = biblioteca.por_artista.get(elemento, [])
+        canciones = controlador_biblioteca.obtener_canciones_album_controlador(elemento)
+    elif pagina == "Artistas":
+        canciones = controlador_biblioteca.obtener_canciones_artista_controlador(elemento)
+    else:  # Caso por defecto
+        canciones = []
+    # Crear botones para cada canción en la lista
     for cancion in canciones:
         crear_boton_cancion(cancion, panel_canciones)
     # Actualizar la vista del canvas
@@ -2002,7 +2016,7 @@ mapeo_acciones = {
 }
 
 # Lista de teclas que requieren sintaxis especial en Tkinter
-teclas_especiales = ["space", "Return", "BackSpace", "Tab", "Escape", "Delete"]
+teclas_especiales = ["space", "Return", "BackSpace", "Tab", "Escape", "Delete", "Up", "Down", "Left", "Right"]
 
 # Enlazar los atajos personalizados
 for accion, metodo in mapeo_acciones.items():
@@ -2689,14 +2703,14 @@ paginas_canciones.add("Favoritos")
 paginas_canciones.add("Listas")
 
 # Boton de prueba en canciones
-tab_canciones = paginas_canciones.tab("Canciones")
+pestania_canciones = paginas_canciones.tab("Canciones")
 
 # Usar la función para crear canvas con scroll
-canvas_canciones, panel_botones_canciones, canvas_window = crear_canvas_con_scroll(
-    tab_canciones, True, paginas_canciones
+canvas_canciones, panel_botones_canciones, panel_canvas = crear_canvas_con_scroll(
+    pestania_canciones, True, paginas_canciones
 )
 # Vincular eventos
-gestion_scroll = GestorScroll(canvas_canciones, panel_botones_canciones, canvas_window)
+gestion_scroll = GestorScroll(canvas_canciones, panel_botones_canciones, panel_canvas)
 
 # -----------------------------------------------------------------------------------------------
 

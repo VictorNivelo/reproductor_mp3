@@ -2,7 +2,7 @@
     "apariencia": "claro",
     "nivel_volumen": 50,
     "modo_aleatorio": false,
-    "modo_repeticion": 2,
-    "estado_silenciado": true,
+    "modo_repeticion": 0,
+    "estado_silenciado": false,
     "panel_lateral_visible": true
 }

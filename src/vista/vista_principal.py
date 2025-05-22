@@ -1914,6 +1914,7 @@ biblioteca = Biblioteca()
 # Utilidades
 utiles = UtilesGeneral()
 
+# Animación
 animacion = AnimacionGeneral()
 
 # ===============================================================================================

@@ -25,6 +25,10 @@ class GestorAtajos:
         self.atajos = {}
         self.cargar_atajos()
 
+    # Método para obtener el atajo de una acción
+    def obtener_atajo(self, accion):
+        return self.atajos.get(accion, self.atajos_por_defecto.get(accion, ""))
+
     # Método para cargar los atajos desde el archivo JSON
     def cargar_atajos(self):
         try:
@@ -46,10 +50,6 @@ class GestorAtajos:
             print(f"Error al guardar atajos: {e}")
             return False
 
-    # Método para obtener el atajo de una acción
-    def obtener_atajo(self, accion):
-        return self.atajos.get(accion, self.atajos_por_defecto.get(accion, ""))
-
     # Método para establecer un nuevo atajo
     def establecer_atajo(self, accion, tecla):
         # Verificar si la tecla ya está en uso
@@ -67,6 +67,17 @@ class GestorAtajos:
             self.guardar_atajos()
             return True, f"Atajo para '{accion}' restaurado al valor por defecto"
         return False, "Acción no encontrada"
+
+    # Método para obtener todos los atajos actuales con sus valores
+    def obtener_atajos_actuales(self):
+        return self.atajos.copy()
+
+    # Método para restaurar todos los atajos a sus valores predeterminados
+    def restaurar_atajos_predeterminados(self):
+        self.atajos = self.atajos_por_defecto.copy()
+        if self.guardar_atajos():
+            return True, "Todos los atajos han sido restaurados a sus valores predeterminados"
+        return False, "Error al guardar los atajos predeterminados"
 
     # Método para obtener todos los atajos
     @staticmethod

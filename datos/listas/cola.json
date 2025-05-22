@@ -1,5 +1,5 @@
 {
-    "indice_actual": 0,
+    "indice_actual": 4,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -24,10 +24,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-05-21T20:59:29.802817"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
+        "titulo": "444",
+        "artista": "Yan Block ft Panda Black",
+        "album": "444",
+        "timestamp": "2025-05-21T22:08:34.600144"
     }
 }

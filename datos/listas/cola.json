@@ -1,21 +1,23 @@
 {
-    "indice_actual": 0,
+    "indice_actual": 2,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "C:\\Users\\Victor\\Music\\b.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "C:\\Users\\Victor\\Music\\a.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-05-22T18:34:00.875036"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "titulo": "14 De Febrero",
+        "artista": "Feid",
+        "album": "INTER SHIBUYA - LA MAFIA",
+        "timestamp": "2025-05-23T15:54:03.252260"
     }
 }

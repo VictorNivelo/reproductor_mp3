@@ -1165,23 +1165,6 @@ def crear_opcion_menu(panel_menu_opciones, texto, funcion, tiene_separador=False
     # -------------------------------------------------------------------------------------------
 
 
-# Función para cerrar el menú cuando pierde el foco
-def cerrar_menu_al_desenfocar(menu_ventana, _event=None):
-    # Verificar si el menú sigue existiendo
-    if not menu_ventana.winfo_exists():
-        return
-    # Obtener el componente que tiene el foco ahora
-    componente_enfocado = menu_ventana.focus_get()
-    # Si nada tiene el foco o el foco no está en el menú o sus hijos
-    if not componente_enfocado or not str(componente_enfocado).startswith(str(menu_ventana)):
-        try:
-            # Limpiar el binding adicional antes de destruir
-            ventana_principal.unbind("<Button-1>")
-            menu_ventana.destroy()
-        except Exception as e:
-            print(f"Error al cerrar menú: {e}")
-
-
 # Función para mostrar el menú contextual personalizado de una canción
 def mostrar_menu_opciones(cancion, panel_padre):
     # Verificar si ya existe un menú abierto y cerrarlo
@@ -1307,7 +1290,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
     # Establecer la geometría con la altura exacta del contenido
     menu_ventana.geometry(f"200x{altura_real}+{x}+{y}")
     # Vincular eventos para cerrar el menú
-    menu_ventana.bind("<FocusOut>", lambda event: cerrar_menu_al_desenfocar(menu_ventana, event))
+    menu_ventana.bind("<FocusOut>", lambda event: cerrar_menu_opciones_al_desenfocar(menu_ventana, event))
     menu_ventana.bind("<Button-1>", lambda e: menu_ventana.destroy())
     # Vincular clic en cualquier parte de la pantalla para cerrar el menú
     ventana_principal.bind("<Button-1>", lambda e: menu_ventana.destroy(), add="+")
@@ -1323,6 +1306,23 @@ def mostrar_menu_opciones(cancion, panel_padre):
     menu_ventana.protocol("WM_DELETE_WINDOW", al_cerrar_menu)
     # Dar foco al menú para detectar cuando lo pierde
     menu_ventana.focus_set()
+
+
+# Función para cerrar el menú cuando pierde el foco
+def cerrar_menu_opciones_al_desenfocar(menu_ventana, _event=None):
+    # Verificar si el menú sigue existiendo
+    if not menu_ventana.winfo_exists():
+        return
+    # Obtener el componente que tiene el foco ahora
+    componente_enfocado = menu_ventana.focus_get()
+    # Si nada tiene el foco o el foco no está en el menú o sus hijos
+    if not componente_enfocado or not str(componente_enfocado).startswith(str(menu_ventana)):
+        try:
+            # Limpiar el binding adicional antes de destruir
+            ventana_principal.unbind("<Button-1>")
+            menu_ventana.destroy()
+        except Exception as e:
+            print(f"Error al cerrar menú: {e}")
 
 
 # Función para restablecer el scroll en una pestaña

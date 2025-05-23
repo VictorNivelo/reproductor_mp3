@@ -1,49 +1,96 @@
 {
     "artistas": {
-        "Tainy": 2,
-        "Sech": 2,
-        "E.VAX": 2,
-        "Feid": 1,
-        "Anuel AA": 1,
-        "Daddy Yankee": 1
+        "Feid": 3,
+        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 5,
+        "Desconocido": 3,
+        "Sinfonico": 1,
+        "Anuel AA": 2,
+        "Ñengo Flow": 1,
+        "Tainy": 3,
+        "Sech": 3,
+        "E.VAX": 3,
+        "Metro Boomin": 1,
+        "Coi Leray": 1,
+        "Panda Black": 1,
+        "Yan Block": 1
     },
     "albumes": {
-        "DATA": 2,
-        "INTER SHIBUYA - LA MAFIA": 1,
-        "Adictiva": 1
+        "INTER SHIBUYA - LA MAFIA": 3,
+        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 5,
+        "Desconocido": 3,
+        "47 (Remix)": 1,
+        "¿Qué Nos Pasó?": 1,
+        "DATA": 3,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
+        "444": 1
     },
-    "tiempo_total": 760.4767346938775,
-    "canciones_escuchadas": 4,
+    "tiempo_total": 3771.3240816326534,
+    "canciones_escuchadas": 18,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-05-22T18:34:00.876878"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "titulo": "14 De Febrero",
+        "artista": "Feid",
+        "album": "INTER SHIBUYA - LA MAFIA",
+        "timestamp": "2025-05-23T15:54:03.253133"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 2,
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "album": "DATA"
-        },
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "14 De Febrero",
             "artista": "Feid",
             "album": "INTER SHIBUYA - LA MAFIA"
         },
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
+        "C:\\Users\\Victor\\Music\\b.mp3": {
+            "contador": 5,
+            "titulo": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "artista": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2"
+        },
+        "C:\\Users\\Victor\\Music\\a.mp3": {
+            "contador": 3,
+            "titulo": "a",
+            "artista": "Desconocido",
+            "album": "Desconocido"
+        },
+        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
             "contador": 1,
-            "titulo": "Adictiva",
-            "artista": "Daddy Yankee ft Anuel AA",
-            "album": "Adictiva"
+            "titulo": "47 (Remix)",
+            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+            "album": "47 (Remix)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
+            "contador": 1,
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "album": "¿Qué Nos Pasó?"
+        },
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
+            "contador": 3,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
+            "contador": 1,
+            "titulo": "Self Love",
+            "artista": "Metro Boomin ft Coi Leray",
+            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
+            "contador": 1,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
         }
     },
     "artistas_originales": {
-        "Tainy ft Sech, E.VAX": 2,
-        "Feid": 1,
-        "Daddy Yankee ft Anuel AA": 1
+        "Feid": 3,
+        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 5,
+        "Desconocido": 3,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 1,
+        "Anuel AA": 1,
+        "Tainy ft Sech, E.VAX": 3,
+        "Metro Boomin ft Coi Leray": 1,
+        "Yan Block ft Panda Black": 1
     }
 }

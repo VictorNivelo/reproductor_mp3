@@ -69,7 +69,11 @@ class UtilesGeneral:
         # Verificar si el clic fue en una entrada de texto usando nombres de clase
         nombre_clase = widget_clickeado.__class__.__name__
         componentes_foco = ("CTkEntry", "Entry", "CTkTextbox", "Text")
-        if nombre_clase not in componentes_foco:
+        # Verificar si es un botón de opciones o menú
+        widget_str = str(widget_clickeado)
+        es_componente_menu = any(palabra in widget_str.lower() for palabra in ["opcion", "menu", "button"])
+        # Solo quitar el foco si no es un componente de entrada ni un botón de menú
+        if nombre_clase not in componentes_foco and not es_componente_menu:
             ventana_principal.focus_set()
 
     def configurar_quitar_foco_global(self, ventana_principal):

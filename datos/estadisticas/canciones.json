@@ -1,10 +1,10 @@
 {
     "estadisticas": {
-        "total_canciones": 9,
-        "total_artistas": 15,
-        "total_albumes": 9,
-        "me_gusta": 2,
-        "favorito": 1
+        "total_canciones": 11,
+        "total_artistas": 17,
+        "total_albumes": 11,
+        "me_gusta": 1,
+        "favorito": 0
     },
     "canciones": [
         {
@@ -18,8 +18,8 @@
             "anio": "2023",
             "numero_pista": "6",
             "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
+            "me_gusta": false,
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -50,6 +50,20 @@
             "favorito": false
         },
         {
+            "ruta": "C:\\Users\\Victor\\Music\\b.mp3",
+            "titulo": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "artista": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "artista_album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "duracion": 197.01551020408164,
+            "duracion_formateada": "03:17",
+            "anio": "Desconocido",
+            "numero_pista": "6",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
             "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
@@ -74,6 +88,20 @@
             "anio": "2017-03-31",
             "numero_pista": "1",
             "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\a.mp3",
+            "titulo": "a",
+            "artista": "Desconocido",
+            "artista_album": "Desconocido",
+            "album": "Desconocido",
+            "duracion": 197.01551020408164,
+            "duracion_formateada": "03:17",
+            "anio": "Desconocido",
+            "numero_pista": "6",
+            "tiene_caratula": false,
             "me_gusta": false,
             "favorito": false
         },

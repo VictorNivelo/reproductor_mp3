@@ -1,20 +1,6 @@
 {
     "me_gusta": [
         {
-            "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "artista_album": "Tainy",
-            "album": "DATA",
-            "duracion": 197.01551020408164,
-            "duracion_formateada": "03:17",
-            "anio": "2023",
-            "numero_pista": "6",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
-        },
-        {
             "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
             "titulo": "14 De Febrero",
             "artista": "Feid",

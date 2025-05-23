@@ -1,18 +1,3 @@
 {
-    "me_gusta": [
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-            "titulo": "14 De Febrero",
-            "artista": "Feid",
-            "artista_album": "Feid",
-            "album": "INTER SHIBUYA - LA MAFIA",
-            "duracion": 158.56326530612245,
-            "duracion_formateada": "02:38",
-            "anio": "2021-08-20",
-            "numero_pista": "14",
-            "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": false
-        }
-    ]
+    "me_gusta": []
 }

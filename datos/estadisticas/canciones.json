@@ -1,10 +1,10 @@
 {
     "estadisticas": {
-        "total_canciones": 11,
-        "total_artistas": 17,
-        "total_albumes": 11,
-        "me_gusta": 1,
-        "favorito": 0
+        "total_canciones": 15,
+        "total_artistas": 21,
+        "total_albumes": 13,
+        "me_gusta": 0,
+        "favorito": 1
     },
     "canciones": [
         {
@@ -46,8 +46,8 @@
             "anio": "2021-08-20",
             "numero_pista": "14",
             "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": false
+            "me_gusta": false,
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\b.mp3",
@@ -106,6 +106,20 @@
             "favorito": false
         },
         {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Abuso.mp3",
+            "titulo": "Abuso",
+            "artista": "Brytiago ft Farruko, Lary Over",
+            "artista_album": "Brytiago",
+            "album": "Abuso",
+            "duracion": 285.62285714285713,
+            "duracion_formateada": "04:45",
+            "anio": "2018-02-16",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
             "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
             "titulo": "Adictiva",
             "artista": "Daddy Yankee ft Anuel AA",
@@ -129,6 +143,48 @@
             "duracion_formateada": "03:37",
             "anio": "2019-07-05",
             "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Blinding Lights.mp3",
+            "titulo": "Blinding Lights",
+            "artista": "The Weeknd",
+            "artista_album": "The Weeknd",
+            "album": "After Hours",
+            "duracion": 200.088,
+            "duracion_formateada": "03:20",
+            "anio": "2020",
+            "numero_pista": "9",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\Heartless..mp3",
+            "titulo": "Heartless",
+            "artista": "The Weeknd",
+            "artista_album": "The Weeknd",
+            "album": "After Hours",
+            "duracion": 198.312,
+            "duracion_formateada": "03:18",
+            "anio": "2020",
+            "numero_pista": "7",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\Musica\\In Your Eyes.mp3",
+            "titulo": "In Your Eyes",
+            "artista": "The Weeknd",
+            "artista_album": "The Weeknd",
+            "album": "After Hours",
+            "duracion": 237.576,
+            "duracion_formateada": "03:57",
+            "anio": "2020",
+            "numero_pista": "10",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false

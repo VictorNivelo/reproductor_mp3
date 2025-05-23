@@ -2,7 +2,7 @@
     "artistas": {
         "Feid": 3,
         "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 5,
-        "Desconocido": 3,
+        "Desconocido": 4,
         "Sinfonico": 1,
         "Anuel AA": 2,
         "Ñengo Flow": 1,
@@ -12,26 +12,28 @@
         "Metro Boomin": 1,
         "Coi Leray": 1,
         "Panda Black": 1,
-        "Yan Block": 1
+        "Yan Block": 1,
+        "Bad Bunny": 1
     },
     "albumes": {
         "INTER SHIBUYA - LA MAFIA": 3,
         "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 5,
-        "Desconocido": 3,
+        "Desconocido": 4,
         "47 (Remix)": 1,
         "¿Qué Nos Pasó?": 1,
         "DATA": 3,
         "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
-        "444": 1
+        "444": 1,
+        "EL ÚLTIMO TOUR DEL MUNDO": 1
     },
-    "tiempo_total": 3771.3240816326534,
-    "canciones_escuchadas": 18,
+    "tiempo_total": 4119.875918367347,
+    "canciones_escuchadas": 20,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-        "titulo": "14 De Febrero",
-        "artista": "Feid",
-        "album": "INTER SHIBUYA - LA MAFIA",
-        "timestamp": "2025-05-23T15:54:03.253133"
+        "ruta": "C:\\Users\\Victor\\Music\\a.mp3",
+        "titulo": "a",
+        "artista": "Desconocido",
+        "album": "Desconocido",
+        "timestamp": "2025-05-23T16:15:39.623231"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
@@ -47,7 +49,7 @@
             "album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2"
         },
         "C:\\Users\\Victor\\Music\\a.mp3": {
-            "contador": 3,
+            "contador": 4,
             "titulo": "a",
             "artista": "Desconocido",
             "album": "Desconocido"
@@ -81,16 +83,23 @@
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
+        },
+        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
+            "contador": 1,
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
         }
     },
     "artistas_originales": {
         "Feid": 3,
         "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 5,
-        "Desconocido": 3,
+        "Desconocido": 4,
         "Anuel AA ft Sinfonico, Ñengo Flow": 1,
         "Anuel AA": 1,
         "Tainy ft Sech, E.VAX": 3,
         "Metro Boomin ft Coi Leray": 1,
-        "Yan Block ft Panda Black": 1
+        "Yan Block ft Panda Black": 1,
+        "Bad Bunny": 1
     }
 }

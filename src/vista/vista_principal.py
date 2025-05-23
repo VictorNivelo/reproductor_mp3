@@ -1359,6 +1359,13 @@ def actualizar_pestana_seleccionada():
     pestana_actual = paginas_canciones.get()
     # Si cambiamos de pestaña y estábamos en vista detalle, resetear
     if vista_detalle_activa:
+        # Detener cualquier animación activa
+        if hasattr(animacion, "id_marcador_tiempo") and animacion.id_marcador_tiempo:
+            try:
+                ventana_principal.after_cancel(animacion.id_marcador_tiempo)
+                animacion.id_marcador_tiempo = None
+            except:
+                pass
         vista_detalle_activa = False
         vista_detalle_tipo = None
         vista_detalle_elemento = None
@@ -1464,6 +1471,8 @@ def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
     # Método para regresar a la lista de canciones
     def regresar_con_limpieza():
         global vista_detalle_activa, vista_detalle_tipo, vista_detalle_elemento, vista_detalle_canvas, vista_detalle_panel
+        # Detener animación si está activa
+        animacion.detener_desplazamiento_etiqueta(etiqueta_elemento)
         # Resetear el estado de vista detalle
         vista_detalle_activa = False
         vista_detalle_tipo = None
@@ -1523,6 +1532,10 @@ def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
     )
     etiqueta_elemento.pack()
     controlador_tema.registrar_etiqueta(etiqueta_elemento)
+    # Crear diccionario para la animación con solo este elemento
+    textos_animados = {"titulo": (elemento, etiqueta_elemento)}
+    # Configurar el desplazamiento automático solo para el título
+    animacion.configurar_desplazamiento_etiqueta(etiqueta_elemento, textos_animados, 275)
     # -------------------------------------------------------------------------------------------
     # Usar la función existente para crear el canvas con scroll
     canvas_canciones_general, panel_canciones, _ = crear_canvas_con_scroll(

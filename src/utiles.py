@@ -94,14 +94,14 @@ class UtilesGeneral:
                     componente.bind(
                         "<Button-1>", lambda event: self.quitar_foco_evento(event, ventana_principal), add="+"
                     )
-            except Exception as e:
-                print(f"Error al configurar evento de quitar foco en {componente}: {e}")
+            except Exception as error:
+                print(f"Error al configurar evento de quitar foco en {componente}: {error}")
             # Aplicar recursivamente a todos los hijos
             try:
                 for componente_hijo in componente.winfo_children():
                     aplicar_evento_recursivo(componente_hijo)
-            except Exception as e:
-                print(f"Error al acceder a los hijos de {componente}: {e}")
+            except Exception as error:
+                print(f"Error al acceder a los hijos de {componente}: {error}")
 
         # Aplicar a toda la ventana principal
         try:

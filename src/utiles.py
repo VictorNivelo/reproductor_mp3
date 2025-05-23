@@ -63,6 +63,48 @@ class UtilesGeneral:
         self.color_slider = TEXTO_OSCURO if tema else FONDO_OSCURO
         self.color_barra_progreso = BARRA_PROGRESO_CLARO if tema else BARRA_PROGRESO_OSCURO
 
+    @staticmethod
+    def quitar_foco_evento(event, ventana_principal):
+        widget_clickeado = event.widget
+        # Verificar si el clic fue en una entrada de texto usando nombres de clase
+        nombre_clase = widget_clickeado.__class__.__name__
+        componentes_foco = ("CTkEntry", "Entry", "CTkTextbox", "Text")
+        if nombre_clase not in componentes_foco:
+            ventana_principal.focus_set()
+
+    def configurar_quitar_foco_global(self, ventana_principal):
+        # Componentes que mantienen el foco (usando nombres de clase)
+        componentes_excluidos = ("CTkEntry", "Entry", "CTkTextbox", "Text")
+        # Componentes que no soportan eventos de ratón
+        componentes_sin_eventos = ("CTkTabview",)
+
+        def aplicar_evento_recursivo(componente):
+            # Aplicar evento al componente actual si es válido
+            try:
+                nombre_clase = componente.__class__.__name__
+                if (
+                    nombre_clase not in componentes_excluidos
+                    and nombre_clase not in componentes_sin_eventos
+                    and hasattr(componente, "bind")
+                ):
+                    componente.bind(
+                        "<Button-1>", lambda event: self.quitar_foco_evento(event, ventana_principal), add="+"
+                    )
+            except Exception as e:
+                print(f"Error al configurar evento de quitar foco en {componente}: {e}")
+            # Aplicar recursivamente a todos los hijos
+            try:
+                for componente_hijo in componente.winfo_children():
+                    aplicar_evento_recursivo(componente_hijo)
+            except Exception as e:
+                print(f"Error al acceder a los hijos de {componente}: {e}")
+
+        # Aplicar a toda la ventana principal
+        try:
+            aplicar_evento_recursivo(ventana_principal)
+        except Exception as e:
+            print(f"Error al configurar eventos de quitar foco: {e}")
+
     # Método para obtener el ancho de un componente
     @staticmethod
     def obtener_ancho_componente(componente):

@@ -46,6 +46,11 @@ ANIMACION_ESPECTRO_ACTIVA = False
 # Diccionario para almacenar los botones de canciones
 botones_canciones = {}
 botones_opciones_canciones = {}
+vista_detalle_activa = False
+vista_detalle_tipo = None
+vista_detalle_elemento = None
+vista_detalle_canvas = None
+vista_detalle_panel = None
 pestanas_cargadas = {
     "Me gusta": False,
     "Favoritos": False,
@@ -561,9 +566,8 @@ def actualizar_estado_me_gusta_vista(cancion=None):
                 controlador_tema.registrar_botones("me_gusta_rojo_mini", mini_reproductor.boton_me_gusta_mini)
             else:
                 controlador_tema.registrar_botones("me_gusta_mini", mini_reproductor.boton_me_gusta_mini)
-        # Actualizar la vista "Me gusta" si está cargada
-        if pestanas_cargadas["Me gusta"]:
-            actualizar_vista_me_gusta()
+        # Actualizar la vista "Me gusta" siempre, sin verificar si está cargada
+        actualizar_vista_me_gusta()
     else:
         # Si no hay canción, desactivar los botones
         ME_GUSTA = False
@@ -600,8 +604,7 @@ def cambiar_me_gusta_menu(cancion):
         actualizar_estado_me_gusta_vista()
     else:
         # Si no es la canción actual, solo actualizar la vista
-        if pestanas_cargadas["Me gusta"]:
-            actualizar_vista_me_gusta()
+        actualizar_vista_me_gusta()
     # Marcar la pestaña como cargada
     pestanas_cargadas["Me gusta"] = True
     # Guardar cambios
@@ -625,9 +628,8 @@ def actualizar_estado_favorito_vista(cancion=None):
         else:
             controlador_tema.registrar_botones("favorito", boton_favorito)
             actualizar_texto_tooltip(boton_favorito, "Agregar a favorito")
-        # Actualizar la vista "Favoritos" si está cargada
-        if pestanas_cargadas["Favoritos"]:
-            actualizar_vista_favoritos()
+        # Actualizar la vista "Favoritos" siempre, sin verificar si está cargada
+        actualizar_vista_favoritos()
     else:
         # Si no hay canción, desactivar los botones
         FAVORITO = False
@@ -658,9 +660,7 @@ def cambiar_favorito_menu(cancion):
     if controlador_reproductor.cancion_actual == cancion:
         actualizar_estado_favorito_vista()
     else:
-        # Si no es la canción actual, solo actualizar la vista
-        if pestanas_cargadas["Favoritos"]:
-            actualizar_vista_favoritos()
+        actualizar_vista_favoritos()
     # Marcar la pestaña como cargada
     pestanas_cargadas["Favoritos"] = True
     # Guardar cambios
@@ -1354,8 +1354,18 @@ def actualizar_todas_vistas_canciones():
 
 # Función para manejar cambios de pestaña
 def actualizar_pestana_seleccionada():
+    global vista_detalle_activa, vista_detalle_tipo, vista_detalle_elemento, vista_detalle_canvas, vista_detalle_panel
     # Obtener nombre de la pestaña activa
     pestana_actual = paginas_canciones.get()
+    # Si cambiamos de pestaña y estábamos en vista detalle, resetear
+    if vista_detalle_activa:
+        vista_detalle_activa = False
+        vista_detalle_tipo = None
+        vista_detalle_elemento = None
+        vista_detalle_canvas = None
+        vista_detalle_panel = None
+        # Limpiar la entrada de búsqueda
+        entrada_busqueda.delete(0, "end")
     # Desvincular el scroll wheel de todos los canvas para evitar conflictos
     canvas_canciones.unbind_all("<MouseWheel>")
     # Actualizar solo si no se ha cargado previamente
@@ -1440,6 +1450,7 @@ def actualizar_vista_canciones(panel):
 
 # Función para mostrar los detalles de las canciones
 def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
+    global vista_detalle_activa, vista_detalle_tipo, vista_detalle_elemento, vista_detalle_canvas, vista_detalle_panel
     # Eliminar tooltip si existe
     eliminar_tooltip()
     # Obtener colores actualizados del tema
@@ -1452,6 +1463,13 @@ def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
 
     # Método para regresar a la lista de canciones
     def regresar_con_limpieza():
+        global vista_detalle_activa, vista_detalle_tipo, vista_detalle_elemento, vista_detalle_canvas, vista_detalle_panel
+        # Resetear el estado de vista detalle
+        vista_detalle_activa = False
+        vista_detalle_tipo = None
+        vista_detalle_elemento = None
+        vista_detalle_canvas = None
+        vista_detalle_panel = None
         eliminar_tooltip()
         # Llamar a la función original de regreso
         funcion_regresar()
@@ -1510,21 +1528,56 @@ def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
     canvas_canciones_general, panel_canciones, _ = crear_canvas_con_scroll(
         contenedor_detalles, True, paginas_canciones
     )
-    # Mostrar las canciones del elemento
-    if pagina == "Álbumes":
+    # Configurar el estado de vista detalle
+    vista_detalle_activa = True
+    vista_detalle_tipo = "album" if pagina == "Álbumes" else "artista"
+    vista_detalle_elemento = elemento
+    vista_detalle_canvas = canvas_canciones_general
+    vista_detalle_panel = panel_canciones
+    # Mostrar las canciones del elemento (sin filtro inicialmente)
+    mostrar_canciones_elemento_filtradas(elemento, pagina, "")
+
+
+# Función para mostrar canciones filtradas en vista de detalle (álbum/artista)
+def mostrar_canciones_elemento_filtradas(elemento, tipo_pagina, texto_busqueda):
+    global vista_detalle_activa, vista_detalle_panel, vista_detalle_canvas
+    if not vista_detalle_activa:
+        return
+    # Verificar que el panel existe antes de intentar acceder a sus componentes
+    if not vista_detalle_panel or not vista_detalle_panel.winfo_exists():
+        return
+    # Limpiar el panel actual
+    for componente in vista_detalle_panel.winfo_children():
+        componente.destroy()
+    # Obtener las canciones del elemento
+    if tipo_pagina == "Álbumes":
         canciones = controlador_biblioteca.obtener_canciones_album_controlador(elemento)
-    elif pagina == "Artistas":
+    elif tipo_pagina == "Artistas":
         canciones = controlador_biblioteca.obtener_canciones_artista_controlador(elemento)
-    else:  # Caso por defecto
+    else:
         canciones = []
-    # Crear botones para cada canción en la lista
-    for cancion in canciones:
-        crear_boton_cancion(cancion, panel_canciones)
-    # Actualizar la vista del canvas
-    panel_canciones.update_idletasks()
-    canvas_canciones_general.yview_moveto(0)
-    canvas_canciones_general.configure(scrollregion=canvas_canciones_general.bbox("all"))
-    return canvas_canciones_general, panel_canciones
+    # Filtrar canciones si hay texto de búsqueda
+    if texto_busqueda.strip():
+        canciones_filtradas = [
+            cancion
+            for cancion in canciones
+            if (
+                texto_busqueda.lower() in cancion.titulo_cancion.lower()
+                or texto_busqueda.lower() in cancion.artista.lower()
+                or texto_busqueda.lower() in cancion.album.lower()
+            )
+        ]
+    else:
+        canciones_filtradas = canciones
+    # Crear botones para cada canción filtrada
+    for cancion in canciones_filtradas:
+        crear_boton_cancion(cancion, vista_detalle_panel)
+    # Verificar que el canvas existe antes de actualizar
+    if vista_detalle_canvas and vista_detalle_canvas.winfo_exists():
+        # Actualizar la vista del canvas
+        vista_detalle_panel.update_idletasks()
+        vista_detalle_canvas.yview_moveto(0)
+        vista_detalle_canvas.configure(scrollregion=vista_detalle_canvas.bbox("all"))
 
 
 # Función para crear un canvas con scroll y panel de botones
@@ -1707,10 +1760,16 @@ def mostrar_canciones_filtradas(texto_busqueda):
 
 # Función para buscar canciones según el texto introducido
 def buscar_cancion_vista(_event=None):
+    global vista_detalle_activa, vista_detalle_tipo, vista_detalle_elemento
     # Obtener el texto de búsqueda
     texto_busqueda = entrada_busqueda.get().strip().lower()
     # Obtener la pestaña actual
     pestana_actual = paginas_canciones.get()
+    # Si estamos en una vista de detalle (álbum/artista), buscar dentro de esas canciones
+    if vista_detalle_activa:
+        tipo_pagina = "Álbumes" if vista_detalle_tipo == "album" else "Artistas"
+        mostrar_canciones_elemento_filtradas(vista_detalle_elemento, tipo_pagina, texto_busqueda)
+        return
     # Si no hay texto de búsqueda, restaurar la vista original
     if not texto_busqueda:
         if pestana_actual == "Canciones":
@@ -1996,23 +2055,34 @@ cola_reproduccion = ColaReproduccion(
 # Cargar atajos personalizados
 gestor_atajos = GestorAtajos()
 
+
+# Función para verificar si el foco está en un widget de entrada
+def verificar_foco_entrada():
+    widget_con_foco = ventana_principal.focus_get()
+    if widget_con_foco:
+        # Verificar si es un Entry, Text u otro widget de entrada
+        tipo_widget = widget_con_foco.winfo_class()
+        return tipo_widget in ["Entry", "Text", "CTkEntry"]
+    return False
+
+
 # Mapeo de acciones a funciones
 mapeo_acciones = {
-    "reproducir_pausar": lambda event: reproducir_vista(),
-    "siguiente": lambda event: reproducir_siguiente_vista(),
-    "anterior": lambda event: reproducir_anterior_vista(),
-    "aumentar_volumen": lambda event: aumentar_volumen_vista(),
-    "disminuir_volumen": lambda event: disminuir_volumen_vista(),
-    "silenciar": lambda event: cambiar_silencio_vista(),
-    "modo_aleatorio": lambda event: cambiar_orden_vista(),
-    "repeticion": lambda event: cambiar_repeticion_vista(),
-    "visibilidad_panel": lambda event: cambiar_visibilidad_vista(),
-    "me_gusta": lambda event: cambiar_me_gusta_vista(),
-    "favorito": lambda event: cambiar_favorito_vista(),
-    "cola": lambda event: abrir_cola_reproduccion(),
-    "mini_reproductor": lambda event: abrir_minireproductor(),
-    "adelantar": lambda event: adelantar_reproduccion_vista(),
-    "retroceder": lambda event: retroceder_reproduccion_vista(),
+    "reproducir_pausar": lambda event: reproducir_vista() if not verificar_foco_entrada() else None,
+    "siguiente": lambda event: reproducir_siguiente_vista() if not verificar_foco_entrada() else None,
+    "anterior": lambda event: reproducir_anterior_vista() if not verificar_foco_entrada() else None,
+    "aumentar_volumen": lambda event: aumentar_volumen_vista() if not verificar_foco_entrada() else None,
+    "disminuir_volumen": lambda event: disminuir_volumen_vista() if not verificar_foco_entrada() else None,
+    "silenciar": lambda event: cambiar_silencio_vista() if not verificar_foco_entrada() else None,
+    "modo_aleatorio": lambda event: cambiar_orden_vista() if not verificar_foco_entrada() else None,
+    "repeticion": lambda event: cambiar_repeticion_vista() if not verificar_foco_entrada() else None,
+    "visibilidad_panel": lambda event: cambiar_visibilidad_vista() if not verificar_foco_entrada() else None,
+    "me_gusta": lambda event: cambiar_me_gusta_vista() if not verificar_foco_entrada() else None,
+    "favorito": lambda event: cambiar_favorito_vista() if not verificar_foco_entrada() else None,
+    "cola": lambda event: abrir_cola_reproduccion() if not verificar_foco_entrada() else None,
+    "mini_reproductor": lambda event: abrir_minireproductor() if not verificar_foco_entrada() else None,
+    "adelantar": lambda event: adelantar_reproduccion_vista() if not verificar_foco_entrada() else None,
+    "retroceder": lambda event: retroceder_reproduccion_vista() if not verificar_foco_entrada() else None,
 }
 
 # Lista de teclas que requieren sintaxis especial en Tkinter
@@ -2776,6 +2846,9 @@ cargar_biblioteca_vista()
 
 # Cargar la cola de reproducción al iniciar
 cargar_cola_vista()
+
+# Configurar el foco global para la ventana principal
+utiles.configurar_quitar_foco_global(ventana_principal)
 
 # Mostrar la ventana
 ventana_principal.mainloop()

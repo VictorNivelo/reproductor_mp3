@@ -1,9 +1,9 @@
 {
     "estadisticas": {
-        "total_canciones": 16,
-        "total_artistas": 18,
-        "total_albumes": 10,
-        "me_gusta": 1,
+        "total_canciones": 9,
+        "total_artistas": 15,
+        "total_albumes": 9,
+        "me_gusta": 2,
         "favorito": 1
     },
     "canciones": [
@@ -18,8 +18,8 @@
             "anio": "2023",
             "numero_pista": "6",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
+            "me_gusta": true,
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -46,7 +46,7 @@
             "anio": "2021-08-20",
             "numero_pista": "14",
             "tiene_caratula": true,
-            "me_gusta": false,
+            "me_gusta": true,
             "favorito": false
         },
         {
@@ -102,90 +102,6 @@
             "anio": "2019-07-05",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\COMO UN BEBÉ.mp3",
-            "titulo": "COMO UN BEBÉ",
-            "artista": "J Balvin ft Bad Bunny, Mr Eazi",
-            "artista_album": "J Balvin",
-            "album": "OASIS",
-            "duracion": 218.85387755102042,
-            "duracion_formateada": "03:38",
-            "anio": "2019-06-28",
-            "numero_pista": "8",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\CUIDAO POR AHÍ.mp3",
-            "titulo": "CUIDAO POR AHÍ",
-            "artista": "J Balvin ft Bad Bunny",
-            "artista_album": "J Balvin",
-            "album": "OASIS",
-            "duracion": 198.34775510204082,
-            "duracion_formateada": "03:18",
-            "anio": "2019-06-28",
-            "numero_pista": "3",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\LA CANCIÓN.mp3",
-            "titulo": "LA CANCIÓN",
-            "artista": "J Balvin ft Bad Bunny",
-            "artista_album": "J Balvin",
-            "album": "OASIS",
-            "duracion": 242.625306122449,
-            "duracion_formateada": "04:02",
-            "anio": "2019-06-28",
-            "numero_pista": "5",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\MOJAITA.mp3",
-            "titulo": "MOJAITA",
-            "artista": "J Balvin ft Bad Bunny",
-            "artista_album": "J Balvin",
-            "album": "OASIS",
-            "duracion": 187.37632653061223,
-            "duracion_formateada": "03:07",
-            "anio": "2019-06-28",
-            "numero_pista": "1",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\ODIO.mp3",
-            "titulo": "ODIO",
-            "artista": "J Balvin ft Bad Bunny",
-            "artista_album": "J Balvin",
-            "album": "OASIS",
-            "duracion": 270.4457142857143,
-            "duracion_formateada": "04:30",
-            "anio": "2019",
-            "numero_pista": "7",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\QUE PRETENDES.mp3",
-            "titulo": "QUE PRETENDES",
-            "artista": "J Balvin ft Bad Bunny",
-            "artista_album": "J Balvin",
-            "album": "OASIS",
-            "duracion": 222.38040816326532,
-            "duracion_formateada": "03:42",
-            "anio": "2019-06-28",
-            "numero_pista": "4",
-            "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
         },
@@ -199,20 +115,6 @@
             "duracion_formateada": "03:09",
             "anio": "2023-06-02",
             "numero_pista": "9/13",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\Musica\\UN PESO.mp3",
-            "titulo": "UN PESO",
-            "artista": "J Balvin ft Bad Bunny, Marciano Cantero",
-            "artista_album": "J Balvin",
-            "album": "OASIS",
-            "duracion": 277.1330612244898,
-            "duracion_formateada": "04:37",
-            "anio": "2019-06-28",
-            "numero_pista": "6",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false

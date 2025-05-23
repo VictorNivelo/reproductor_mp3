@@ -314,7 +314,7 @@ class MiniReproductor(UtilesGeneral):
         # Aplicar eventos de movimiento a todos los componentes
         self.aplicar_eventos_movimiento()
 
-    # Métodos para controlar la reproducción desde el mini reproductor
+    # Método para controlar la reproducción desde el mini reproductor
     def reproducir_pausar(self):
         from vista.vista_principal import actualizar_estado_reproduccion_vista
 
@@ -329,7 +329,7 @@ class MiniReproductor(UtilesGeneral):
             # Usar la función centralizada para actualizar todos los estados
             actualizar_estado_reproduccion_vista()
 
-    # Métodos para poner la canción anterior
+    # Método para poner la canción anterior
     def reproducir_anterior(self):
         if self.controlador_reproductor:
             if self.controlador_reproductor.reproducir_anterior_controlador():
@@ -346,7 +346,7 @@ class MiniReproductor(UtilesGeneral):
                 # Actualizar información visual
                 self.actualizar_informacion()
 
-    # Métodos para poner la canción siguiente
+    # Método para poner la canción siguiente
     def reproducir_siguiente(self):
         if self.controlador_reproductor:
             if self.controlador_reproductor.reproducir_siguiente_controlador():

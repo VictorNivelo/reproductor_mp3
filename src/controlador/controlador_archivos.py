@@ -15,6 +15,7 @@ class ControladorArchivos:
         self.ruta_carpeta_favoritos = RUTA_CARPETA_FAVORITOS
         self.ruta_carpeta_estadisticas = RUTA_CARPETA_ESTADISTICAS
         self.ruta_carpeta_configuracion = RUTA_CARPETA_CONFIGURACION
+        self.ruta_carpeta_listas_reproduccion = RUTA_CARPETA_LISTA_REPRODUCCION
         # Rutas de archivos
         self.ruta_canciones = RUTA_CANCIONES
         self.ruta_favoritos = RUTA_FAVORITOS
@@ -59,6 +60,7 @@ class ControladorArchivos:
             self.ruta_carpeta_me_gusta,
             self.ruta_carpeta_favoritos,
             self.ruta_carpeta_configuracion,
+            self.ruta_carpeta_listas_reproduccion,
         ]
         for directorio in directorios:
             if not os.path.exists(directorio):
@@ -69,8 +71,9 @@ class ControladorArchivos:
         try:
             # Guardar todas las canciones
             self.guardar_cancion_json_controlador(biblioteca)
-            # Guardar listas especiales
+            # Guardar la lista de me gusta
             self.guardar_me_gusta_json_controlador(biblioteca)
+            # Guardar la lista de favoritos
             self.guardar_favorito_json_controlador(biblioteca)
             # Guardar la cola de reproducción si se proporciona el reproductor
             if reproductor is not None:

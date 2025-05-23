@@ -75,6 +75,7 @@ RUTA_CARPETA_DATOS = "datos"
 RUTA_CARPETA_LISTAS = os.path.join(RUTA_CARPETA_DATOS, "listas")
 RUTA_CARPETA_FAVORITOS = os.path.join(RUTA_CARPETA_LISTAS, "favorito")
 RUTA_CARPETA_ME_GUSTA = os.path.join(RUTA_CARPETA_LISTAS, "me_gusta")
+RUTA_CARPETA_LISTA_REPRODUCCION = os.path.join(RUTA_CARPETA_LISTAS, "listas_reproduccion")
 RUTA_CARPETA_PERSONALIZADA = os.path.join(RUTA_CARPETA_LISTAS, "personalizada")
 RUTA_CARPETA_ESTADISTICAS = os.path.join(RUTA_CARPETA_DATOS, "estadisticas")
 RUTA_CARPETA_CONFIGURACION = os.path.join(RUTA_CARPETA_DATOS, "configuracion")

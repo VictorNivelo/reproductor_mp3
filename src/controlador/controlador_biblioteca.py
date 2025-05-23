@@ -8,14 +8,14 @@ class ControladorBiblioteca:
         self.biblioteca = biblioteca
         self.cancion_actual = None
 
-    # Métodos que agregan canciones a la biblioteca
+    # Método que agregan canciones a la biblioteca
     def agregar_cancion_controlador(self, ruta: Path) -> Cancion:
         try:
             return self.biblioteca.agregar_cancion_biblioteca(ruta)
         except Exception as e:
             raise ValueError(f"Error al agregar la canción: {e}")
 
-    # Métodos que agregan directorios de canciones a la biblioteca
+    # Método que agregan directorios de canciones a la biblioteca
     def agregar_directorio_controlador(self, ruta: Path) -> list:
         try:
             return self.biblioteca.agregar_directorio_biblioteca(ruta)
@@ -53,7 +53,7 @@ class ControladorBiblioteca:
             print(f"Error al verificar me gusta: {e}")
             return False
 
-    # Métodos que agrega canciones como me gusta
+    # Método que agrega canciones como me gusta
     def agregar_me_gusta_controlador(self, cancion):
         try:
             self.biblioteca.agregar_me_gusta_biblioteca(cancion)
@@ -72,7 +72,7 @@ class ControladorBiblioteca:
             print(f"Error al verificar favorito: {e}")
             return False
 
-    # Métodos que agrega canciones como favoritas
+    # Método que agrega canciones como favoritas
     def agregar_favorito_controlador(self, cancion):
         try:
             self.biblioteca.agregar_favorito_biblioteca(cancion)

@@ -282,7 +282,7 @@ class ControladorReproductor:
         controlador_archivos = ControladorArchivos()
         controlador_archivos.guardar_cola_reproduccion_json_controlador(self)
 
-    # Métodos que controlan la reproducción de la canción
+    # Método que controlan la reproducción de la canción
     def pausar_reproduccion_controlador(self) -> None:
         if self.reproduciendo:
             pygame.mixer.music.pause()

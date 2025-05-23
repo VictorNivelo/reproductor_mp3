@@ -39,7 +39,7 @@ class Estadisticas(UtilesGeneral):
             alto=ALTO_ESTADISTICAS,
             titulo="Estadísticas",
             color_fondo=self.color_fondo,
-            funcion_cierre=self.cerrar_ventana_estadistica,
+            funcion_cierre=self.cerrar_ventana_estadisticas,
             controlador=self.controlador_tema,
         )
         # =================================================================================================
@@ -103,7 +103,7 @@ class Estadisticas(UtilesGeneral):
             font=(LETRA, TAMANIO_LETRA_BOTON),
             text_color=self.color_texto,
             text="Cerrar",
-            command=self.cerrar_ventana_estadistica,
+            command=self.cerrar_ventana_estadisticas,
         )
         boton_cerrar_estadisticas.pack(pady=3)
         self.componentes.append(boton_cerrar_estadisticas)
@@ -700,5 +700,5 @@ class Estadisticas(UtilesGeneral):
                 self.crear_ventana_estadisticas()
 
     # Método para cerrar la ventana de estadisticas
-    def cerrar_ventana_estadistica(self):
+    def cerrar_ventana_estadisticas(self):
         cerrar_ventana_modal(self.ventana_estadisticas, self.componentes, self.controlador_tema)

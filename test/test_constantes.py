@@ -14,7 +14,7 @@ class TestConstantes(unittest.TestCase):
     def setUp(self):
         self.ruta_test = os.path.dirname(os.path.dirname(__file__))
 
-    # Metodo que testea si los directorios existen
+    # Método que testea si los directorios existen
     def test_directorios_existen(self):
         self.assertTrue(os.path.exists(RUTA_BASE), "RUTA_BASE no existe")
         self.assertTrue(os.path.exists(RUTA_RECURSOS), "RUTA_RECURSOS no existe")

@@ -3,8 +3,8 @@
         "total_canciones": 15,
         "total_artistas": 21,
         "total_albumes": 13,
-        "me_gusta": 0,
-        "favorito": 1
+        "me_gusta": 1,
+        "favorito": 2
     },
     "canciones": [
         {
@@ -200,8 +200,8 @@
             "anio": "2023-06-02",
             "numero_pista": "9/13",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
+            "me_gusta": true,
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",

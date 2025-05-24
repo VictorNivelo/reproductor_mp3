@@ -1,27 +1,15 @@
 {
-    "indice_actual": 6,
+    "indice_actual": 2,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "C:\\Users\\Victor\\Music\\M\\120.mp3",
-        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-        "C:\\Users\\Victor\\Music\\b.mp3",
-        "C:\\Users\\Victor\\Music\\M\\444..mp3",
-        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
-        "C:\\Users\\Victor\\Music\\a.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Abuso.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
         "C:\\Users\\Victor\\Music\\Musica\\Blinding Lights.mp3",
         "C:\\Users\\Victor\\Music\\Musica\\Heartless..mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\In Your Eyes.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
+        "C:\\Users\\Victor\\Music\\Musica\\In Your Eyes.mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\a.mp3",
-        "titulo": "a",
-        "artista": "Desconocido",
-        "album": "Desconocido",
-        "timestamp": "2025-05-23T16:15:39.622022"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\In Your Eyes.mp3",
+        "titulo": "In Your Eyes",
+        "artista": "The Weeknd",
+        "album": "After Hours",
+        "timestamp": "2025-05-23T20:31:58.284917"
     }
 }

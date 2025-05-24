@@ -1360,12 +1360,7 @@ def actualizar_pestana_seleccionada():
     # Si cambiamos de pestaña y estábamos en vista detalle, resetear
     if vista_detalle_activa:
         # Detener cualquier animación activa
-        if hasattr(animacion, "id_marcador_tiempo") and animacion.id_marcador_tiempo:
-            try:
-                ventana_principal.after_cancel(animacion.id_marcador_tiempo)
-                animacion.id_marcador_tiempo = None
-            except:
-                pass
+        animacion.detener_desplazamiento_etiqueta()  # Llamar sin argumentos
         vista_detalle_activa = False
         vista_detalle_tipo = None
         vista_detalle_elemento = None
@@ -1472,7 +1467,7 @@ def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
     def regresar_con_limpieza():
         global vista_detalle_activa, vista_detalle_tipo, vista_detalle_elemento, vista_detalle_canvas, vista_detalle_panel
         # Detener animación si está activa
-        animacion.detener_desplazamiento_etiqueta(etiqueta_elemento)
+        animacion.detener_desplazamiento_etiqueta()
         # Resetear el estado de vista detalle
         vista_detalle_activa = False
         vista_detalle_tipo = None

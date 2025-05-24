@@ -1,15 +1,5 @@
 {
-    "indice_actual": 2,
-    "canciones": [
-        "C:\\Users\\Victor\\Music\\Musica\\Blinding Lights.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Heartless..mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\In Your Eyes.mp3"
-    ],
-    "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\In Your Eyes.mp3",
-        "titulo": "In Your Eyes",
-        "artista": "The Weeknd",
-        "album": "After Hours",
-        "timestamp": "2025-05-23T20:31:58.284917"
-    }
+    "indice_actual": -1,
+    "canciones": [],
+    "ultima_cancion": null
 }

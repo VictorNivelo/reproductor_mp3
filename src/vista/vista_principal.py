@@ -279,6 +279,19 @@ def reproducir_vista():
         actualizar_estado_reproduccion_vista()
 
 
+# Función para reproducir un álbum completo
+def reproducir_album_completo(album):
+    canciones_album = controlador_biblioteca.obtener_canciones_album_controlador(album)
+    if canciones_album:
+        # Establecer la cola con todas las canciones del álbum y reproducir la primera
+        controlador_reproductor.establecer_cola_reproduccion_controlador(canciones_album, 0)
+        controlador_reproductor.reproducir_cancion_controlador(canciones_album[0])
+        actualizar_estado_reproduccion_vista()
+        actualizar_estado_botones_gustos()
+        for cancion_item in canciones_album:  # Registrar reproducción de todas
+            controlador_archivos.registrar_reproduccion_json_controlador(cancion_item)
+
+
 # Función para reproducir la canción seleccionada
 def reproducir_desde_lista_vista(cancion):
     global ESTADO_REPRODUCCION, ANIMACION_ESPECTRO_ACTIVA, biblioteca
@@ -582,7 +595,7 @@ def actualizar_estado_me_gusta_vista(cancion=None):
 
 
 # Función para cambiar el estado de boton me gusta
-def cambiar_me_gusta_vista():
+def agregar_me_gusta_vista():
     cancion_actual = controlador_reproductor.cancion_actual
     if cancion_actual:
         # Modificar el estado en la biblioteca
@@ -596,7 +609,7 @@ def cambiar_me_gusta_vista():
 
 
 # Función para cambiar el estado de "me gusta" de una canción desde el menú
-def cambiar_me_gusta_menu(cancion):
+def agregar_me_gusta_menu(cancion):
     # Modificar el estado en la biblioteca
     controlador_biblioteca.agregar_me_gusta_controlador(cancion)
     # Actualizar interfaz si es la canción actual
@@ -639,7 +652,7 @@ def actualizar_estado_favorito_vista(cancion=None):
 
 
 # Función para cambiar el estado de favorito
-def cambiar_favorito_vista():
+def agregar_favorito_vista():
     cancion_actual = controlador_reproductor.cancion_actual
     if cancion_actual:
         # Modificar el estado en la biblioteca
@@ -653,7 +666,7 @@ def cambiar_favorito_vista():
 
 
 # Función para cambiar el estado de "favorito" de una canción desde el menú
-def cambiar_favorito_menu(cancion):
+def agregar_favorito_menu(cancion):
     # Modificar el estado en la biblioteca
     controlador_biblioteca.agregar_favorito_controlador(cancion)
     # Actualizar interfaz si es la canción actual
@@ -741,6 +754,25 @@ def agregar_fin_cola_vista(cancion):
             cola_reproduccion.actualizar_ventana_cola()
     else:
         print(f"No se pudo agregar a la cola: {cancion.titulo_cancion}")
+
+
+# Función para agregar un álbum completo al inicio de la cola
+def agregar_album_inicio_cola(album):
+    canciones_album = controlador_biblioteca.obtener_canciones_album_controlador(album)
+    if canciones_album:
+        # Agregar en orden inverso para que la primera canción del álbum quede después de la actual
+        for cancion_item in reversed(canciones_album):
+            agregar_inicio_cola_vista(cancion_item)
+        print(f"Álbum '{album}' agregado al inicio de la cola.")
+
+
+# Función para agregar un álbum completo al inicio de la cola
+def agregar_album_fin_cola(album):
+    canciones_album = controlador_biblioteca.obtener_canciones_album_controlador(album)
+    if canciones_album:
+        for cancion_item in canciones_album:
+            agregar_fin_cola_vista(cancion_item)
+        print(f"Álbum '{album}' agregado al final de la cola.")
 
 
 # Función para eliminar una canción de la biblioteca
@@ -958,7 +990,10 @@ def crear_boton_cancion(cancion, panel):
         command=lambda c=cancion: reproducir_desde_lista_vista(c),
     )
     boton_cancion.pack(side="left", fill="both", expand=True)
+    controlador_tema.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton_cancion)
     # -------------------------------------------------------------------------------------------
+    # Configurar desplazamiento si el texto es largo
+    configurar_desplazamiento_texto(boton_cancion, texto_cancion)
 
     # ------------------------------------ Boton de opciones ------------------------------------
     # Cargar icono de opciones
@@ -977,15 +1012,12 @@ def crear_boton_cancion(cancion, panel):
         command=lambda c=cancion: mostrar_menu_opciones(c, panel_lista_cancion),
     )
     boton_opciones.pack(side="right", padx=(1, 0))
+    controlador_tema.registrar_botones(f"opciones_{cancion.titulo_cancion}", boton_opciones)
     crear_tooltip(boton_opciones, "Opciones")
     # -------------------------------------------------------------------------------------------
 
     # Registrar botones en el controlador de tema
-    controlador_tema.registrar_botones(f"cancion_{cancion.titulo_cancion}", boton_cancion)
-    controlador_tema.registrar_botones(f"opciones_{cancion.titulo_cancion}", boton_opciones)
     botones_canciones[cancion] = boton_cancion
-    # Configurar desplazamiento si el texto es largo
-    configurar_desplazamiento_texto(boton_cancion, texto_cancion)
     # Vincular clic derecho al botón principal para mostrar el menú
     boton_cancion.bind("<Button-3>", lambda event, c=cancion: mostrar_menu_opciones(c, panel_lista_cancion))
     return panel_lista_cancion
@@ -1017,11 +1049,34 @@ def crear_boton_album(albumes, panel_componente):
             text=album,
             command=lambda a=album: mostrar_canciones_album(a),
         )
-        boton_album.pack(fill="both", pady=(0, 2), expand=True)
+        boton_album.pack(side="left", fill="both", expand=True)
         controlador_tema.registrar_botones(f"album_{album}", boton_album)
         # ---------------------------------------------------------------------------------------
         # Configurar desplazamiento si el texto es largo
         configurar_desplazamiento_texto(boton_album, album)
+
+        # ------------------------------------ Boton de opciones del álbum ----------------------
+        icono_opcion_album = cargar_icono_con_tamanio("opcion", controlador_tema.tema_iconos, (15, 20))
+        # Botón de opciones del álbum
+        boton_opciones_album = ctk.CTkButton(
+            panel_lista_album,
+            width=ANCHO_BOTON + 8,
+            height=ALTO_BOTON + 8,
+            fg_color=controlador_tema.color_boton,
+            hover_color=controlador_tema.color_hover,
+            font=(LETRA, TAMANIO_LETRA_BOTON),
+            text_color=controlador_tema.color_texto,
+            text="",
+            image=icono_opcion_album,
+            command=lambda a=album, p=panel_lista_album: mostrar_menu_opciones_album(a, p),
+        )
+        boton_opciones_album.pack(side="right", padx=(1, 0))
+        controlador_tema.registrar_botones(f"opciones_album_{album}", boton_opciones_album)
+        crear_tooltip(boton_opciones_album, "Opciones del álbum")
+        # ---------------------------------------------------------------------------------------
+        boton_album.bind(
+            "<Button-3>", lambda event, a=album: mostrar_menu_opciones_album(a, panel_lista_album)
+        )
 
 
 # Función auxiliar para crear botones de artistas
@@ -1236,13 +1291,13 @@ def mostrar_menu_opciones(cancion, panel_padre):
     texto_me_gusta = "Quitar de Me gusta" if cancion.me_gusta else "Agregar a Me gusta"
     icono_me_gusta = "me_gusta_rojo" if cancion.me_gusta else "me_gusta"
     crear_opcion_menu(
-        panel_menu_opciones, texto_me_gusta, lambda: cambiar_me_gusta_menu(cancion), True, icono_me_gusta
+        panel_menu_opciones, texto_me_gusta, lambda: agregar_me_gusta_menu(cancion), True, icono_me_gusta
     )
 
     texto_favorito = "Quitar de Favoritos" if cancion.favorito else "Agregar a Favoritos"
     icono_favorito = "favorito_amarillo" if cancion.favorito else "favorito"
     crear_opcion_menu(
-        panel_menu_opciones, texto_favorito, lambda: cambiar_favorito_menu(cancion), False, icono_favorito
+        panel_menu_opciones, texto_favorito, lambda: agregar_favorito_menu(cancion), False, icono_favorito
     )
     # -------------------------------------------------------------------------------------------
     # ---------------------------------- Opciones de información --------------------------------
@@ -1304,6 +1359,154 @@ def mostrar_menu_opciones(cancion, panel_padre):
             pass
 
     menu_ventana.protocol("WM_DELETE_WINDOW", al_cerrar_menu)
+    # Dar foco al menú para detectar cuando lo pierde
+    menu_ventana.focus_set()
+
+
+# Función para mostrar el menú contextual personalizado de un álbum
+def mostrar_menu_opciones_album(album, panel_padre):
+    # Verificar si ya existe un menú abierto y cerrarlo
+    for componente in ventana_principal.winfo_children():
+        if isinstance(componente, ctk.CTkToplevel) and hasattr(
+            componente, "menu_opciones_album"
+        ):  # Atributo específico
+            componente.destroy()
+    # Obtener colores actuales del tema
+    controlador_tema.colores()
+    # ------------------------------------- Ventana de menú álbum -------------------------------
+    menu_ventana = ctk.CTkToplevel(ventana_principal)
+    menu_ventana.menu_opciones_album = True
+    menu_ventana.title("")
+    menu_ventana.geometry("200x0")
+    menu_ventana.overrideredirect(True)
+    menu_ventana.configure(fg_color=controlador_tema.color_fondo)
+    menu_ventana.attributes("-topmost", True)
+    menu_ventana.attributes("-toolwindow", True)
+    # -------------------------------------------------------------------------------------------
+    # ----------------------------------- Panel menu opciones álbum -----------------------------
+    panel_menu_opciones = ctk.CTkFrame(
+        menu_ventana, corner_radius=BORDES_REDONDEADOS_PANEL, fg_color=controlador_tema.color_fondo
+    )
+    panel_menu_opciones.pack(fill="both", expand=True, padx=2, pady=2)
+    # -------------------------------------------------------------------------------------------
+    # Agregar opciones al menú
+    # ---------------------------------- Opciones reproducir álbum ------------------------------
+    crear_opcion_menu(
+        panel_menu_opciones, "Reproducir álbum", lambda: reproducir_album_completo(album), False, "reproducir"
+    )
+    # -------------------------------------------------------------------------------------------
+    # -------------------------------- Opciones de cola de reproducción -------------------------
+    crear_opcion_menu(
+        panel_menu_opciones,
+        "Agregar al final de la cola",
+        lambda: agregar_album_fin_cola(album),
+        True,
+        "agregar_cola",
+    )
+
+    crear_opcion_menu(
+        panel_menu_opciones,
+        "Agregar al inicio de la cola",
+        lambda: agregar_album_inicio_cola(album),
+        False,
+        "agregar_cola",
+    )
+    # -------------------------------------------------------------------------------------------
+    # Obtener todas las canciones del álbum para verificar su estado colectivo
+    canciones_del_album_obj = controlador_biblioteca.obtener_canciones_album_controlador(album)
+
+    # Estado para "Me gusta"
+    album_totalmente_en_me_gusta = False
+    if canciones_del_album_obj:
+        # Se considera que el álbum está en "Me gusta" si todas sus canciones lo están.
+        album_totalmente_en_me_gusta = all(c.me_gusta for c in canciones_del_album_obj)
+
+    texto_album_me_gusta = (
+        "Quitar álbum de Me gusta" if album_totalmente_en_me_gusta else "Agregar álbum a Me gusta"
+    )
+    icono_album_me_gusta = "me_gusta_rojo" if album_totalmente_en_me_gusta else "me_gusta"
+
+    crear_opcion_menu(
+        panel_menu_opciones,
+        texto_album_me_gusta,
+        lambda: print(f"Agregar álbum a Me gusta: {album}"),
+        True,
+        icono_album_me_gusta,
+    )
+
+    # Estado para "Favoritos"
+    album_totalmente_en_favoritos = False
+    if canciones_del_album_obj:
+        # Se considera que el álbum está en "Favoritos" si todas sus canciones lo están.
+        album_totalmente_en_favoritos = all(c.favorito for c in canciones_del_album_obj)
+
+    texto_album_favorito = (
+        "Quitar álbum de Favoritos" if album_totalmente_en_favoritos else "Agregar álbum a Favoritos"
+    )
+    icono_album_favorito = "favorito_amarillo" if album_totalmente_en_favoritos else "favorito"
+
+    crear_opcion_menu(
+        panel_menu_opciones,
+        texto_album_favorito,
+        lambda: print(f"Agregar álbum a Favoritos: {album}"),
+        False,
+        icono_album_favorito,
+    )
+    # ---------------------------------- Opciones de información --------------------------------
+    crear_opcion_menu(
+        panel_menu_opciones,
+        f"Ir a artista(s) del álbum",
+        lambda: print(f"Ir a artista(s) del álbum: {album}"),
+        True,
+        "artista",
+    )
+    # -------------------------------------------------------------------------------------------
+    # ---------------------------------- Opciones de eliminar álbum -----------------------------
+    crear_opcion_menu(
+        panel_menu_opciones,
+        "Ver información",
+        lambda: print(f"Ver info del album"),
+        True,
+        "informacion",
+    )
+
+    crear_opcion_menu(
+        panel_menu_opciones, "Eliminar álbum", lambda: print("Eliminar album"), False, "eliminar"
+    )
+    # -------------------------------------------------------------------------------------------
+
+    # Actualizar el panel para obtener su altura real
+    panel_menu_opciones.update_idletasks()
+    altura_real = panel_menu_opciones.winfo_reqheight() + 5
+    # Posicionar el menú junto al botón
+    x = panel_padre.winfo_rootx() + panel_padre.winfo_width() - 230
+    y = panel_padre.winfo_rooty()
+    # Asegurar que el menú no salga de la pantalla
+    ancho_menu_pantalla = menu_ventana.winfo_screenwidth()
+    alto_menu_pantalla = menu_ventana.winfo_screenheight()
+    # Ajustar la posición horizontal del menú
+    if x + 200 > ancho_menu_pantalla:
+        x = ancho_menu_pantalla - 210
+    if y + altura_real > alto_menu_pantalla:
+        y = alto_menu_pantalla - altura_real - 10
+    menu_ventana.update()
+    # Establecer la geometría con la altura exacta del contenido
+    menu_ventana.geometry(f"200x{altura_real}+{x}+{y}")
+    # Vincular eventos para cerrar el menú
+    menu_ventana.bind("<FocusOut>", lambda event: cerrar_menu_opciones_al_desenfocar(menu_ventana, event))
+    menu_ventana.bind("<Button-1>", lambda e: menu_ventana.destroy())
+    # Vincular clic en cualquier parte de la pantalla para cerrar el menú
+    ventana_principal.bind("<Button-1>", lambda e: menu_ventana.destroy(), add="+")
+
+    # Establecer una función para restablecer el binding cuando el menú se cierre
+    def al_cerrar_menu_album():
+        try:
+            ventana_principal.unbind("<Button-1>")
+        except Exception as e:
+            print(f"Error al restablecer el binding (álbum): {e}")
+            pass
+
+    menu_ventana.protocol("WM_DELETE_WINDOW", al_cerrar_menu_album)
     # Dar foco al menú para detectar cuando lo pierde
     menu_ventana.focus_set()
 
@@ -2085,8 +2288,8 @@ mapeo_acciones = {
     "modo_aleatorio": lambda event: cambiar_orden_vista() if not verificar_foco_entrada() else None,
     "repeticion": lambda event: cambiar_repeticion_vista() if not verificar_foco_entrada() else None,
     "visibilidad_panel": lambda event: cambiar_visibilidad_vista() if not verificar_foco_entrada() else None,
-    "me_gusta": lambda event: cambiar_me_gusta_vista() if not verificar_foco_entrada() else None,
-    "favorito": lambda event: cambiar_favorito_vista() if not verificar_foco_entrada() else None,
+    "me_gusta": lambda event: agregar_me_gusta_vista() if not verificar_foco_entrada() else None,
+    "favorito": lambda event: agregar_favorito_vista() if not verificar_foco_entrada() else None,
     "cola": lambda event: abrir_cola_reproduccion() if not verificar_foco_entrada() else None,
     "mini_reproductor": lambda event: abrir_minireproductor() if not verificar_foco_entrada() else None,
     "adelantar": lambda event: adelantar_reproduccion_vista() if not verificar_foco_entrada() else None,
@@ -2329,7 +2532,7 @@ boton_me_gusta = ctk.CTkButton(
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=controlador_tema.color_texto,
     text="",
-    command=cambiar_me_gusta_vista,
+    command=agregar_me_gusta_vista,
 )
 boton_me_gusta.pack(side="left", padx=(5, 0))
 controlador_tema.registrar_botones("me_gusta", boton_me_gusta)
@@ -2345,7 +2548,7 @@ boton_favorito = ctk.CTkButton(
     font=(LETRA, TAMANIO_LETRA_BOTON),
     text_color=controlador_tema.color_texto,
     text="",
-    command=cambiar_favorito_vista,
+    command=agregar_favorito_vista,
 )
 boton_favorito.pack(side="left", padx=(5, 0))
 controlador_tema.registrar_botones("favorito", boton_favorito)

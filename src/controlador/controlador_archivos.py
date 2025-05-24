@@ -274,7 +274,7 @@ class ControladorArchivos:
                         ruta = Path(cancion_dict.get("ruta"))
                         for cancion in biblioteca.canciones:
                             if cancion.ruta_cancion == ruta:
-                                biblioteca.agregar_me_gusta_biblioteca(cancion)
+                                biblioteca.agregar_cancion_me_gusta_biblioteca(cancion)
                                 break
                     except Exception as e:
                         print(f"Error al actualizar me gusta: {str(e)}")
@@ -287,7 +287,7 @@ class ControladorArchivos:
                         ruta = Path(cancion_dict.get("ruta"))
                         for cancion in biblioteca.canciones:
                             if cancion.ruta_cancion == ruta:
-                                biblioteca.agregar_favorito_biblioteca(cancion)
+                                biblioteca.agregar_cancion_favorito_biblioteca(cancion)
                                 break
                     except Exception as e:
                         print(f"Error al actualizar favoritos: {str(e)}")

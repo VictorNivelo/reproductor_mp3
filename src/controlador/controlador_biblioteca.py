@@ -56,7 +56,7 @@ class ControladorBiblioteca:
     # Método que agrega canciones como me gusta
     def agregar_me_gusta_controlador(self, cancion):
         try:
-            self.biblioteca.agregar_me_gusta_biblioteca(cancion)
+            self.biblioteca.agregar_cancion_me_gusta_biblioteca(cancion)
             return True
         except Exception as e:
             print(f"Error al marcar como me gusta: {e}")
@@ -75,7 +75,7 @@ class ControladorBiblioteca:
     # Método que agrega canciones como favoritas
     def agregar_favorito_controlador(self, cancion):
         try:
-            self.biblioteca.agregar_favorito_biblioteca(cancion)
+            self.biblioteca.agregar_cancion_favorito_biblioteca(cancion)
             return True
         except Exception as e:
             print(f"Error al marcar como favorito: {e}")

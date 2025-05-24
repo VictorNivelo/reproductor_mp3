@@ -180,7 +180,7 @@ class Biblioteca:
         return caratulas
 
     # Método para agregar una canción a la lista de "me gusta"
-    def agregar_me_gusta_biblioteca(self, cancion: Cancion):
+    def agregar_cancion_me_gusta_biblioteca(self, cancion: Cancion):
         if cancion not in self.canciones:
             raise ValueError("La canción no existe en la biblioteca")
         cancion.me_gusta = not cancion.me_gusta
@@ -190,7 +190,7 @@ class Biblioteca:
             self.me_gusta.remove(cancion)
 
     # Método para agregar una canción a la lista de "favoritos"
-    def agregar_favorito_biblioteca(self, cancion: Cancion):
+    def agregar_cancion_favorito_biblioteca(self, cancion: Cancion):
         if cancion not in self.canciones:
             raise ValueError("La canción no existe en la biblioteca")
         cancion.favorito = not cancion.favorito

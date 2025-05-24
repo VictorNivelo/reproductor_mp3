@@ -1,10 +1,10 @@
 {
     "estadisticas": {
-        "total_canciones": 5,
-        "total_artistas": 8,
-        "total_albumes": 5,
-        "me_gusta": 0,
-        "favorito": 0
+        "total_canciones": 4,
+        "total_artistas": 7,
+        "total_albumes": 4,
+        "me_gusta": 1,
+        "favorito": 1
     },
     "canciones": [
         {
@@ -18,8 +18,8 @@
             "anio": "2024-04-04",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
+            "me_gusta": true,
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
@@ -30,20 +30,6 @@
             "duracion": 517.8514285714285,
             "duracion_formateada": "08:37",
             "anio": "2017-03-31",
-            "numero_pista": "1",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-            "titulo": "Adictiva",
-            "artista": "Daddy Yankee ft Anuel AA",
-            "artista_album": "Daddy Yankee",
-            "album": "Adictiva",
-            "duracion": 207.88244897959183,
-            "duracion_formateada": "03:27",
-            "anio": "2018-11-09",
             "numero_pista": "1",
             "tiene_caratula": true,
             "me_gusta": false,

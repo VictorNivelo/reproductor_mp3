@@ -6,21 +6,24 @@
         "Sech": 1,
         "Tainy": 1,
         "E.VAX": 1,
-        "Daddy Yankee": 1
+        "Daddy Yankee": 1,
+        "Yan Block": 1,
+        "Panda Black": 1
     },
     "albumes": {
         "47 (Remix)": 1,
         "DATA": 1,
-        "Adictiva": 1
+        "Adictiva": 1,
+        "444": 1
     },
-    "tiempo_total": 922.7493877551019,
-    "canciones_escuchadas": 3,
+    "tiempo_total": 1098.0571428571427,
+    "canciones_escuchadas": 4,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "titulo": "Adictiva",
-        "artista": "Daddy Yankee ft Anuel AA",
-        "album": "Adictiva",
-        "timestamp": "2025-05-24T13:26:07.341780"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
+        "titulo": "444",
+        "artista": "Yan Block ft Panda Black",
+        "album": "444",
+        "timestamp": "2025-05-24T14:19:11.495451"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
@@ -40,11 +43,18 @@
             "titulo": "Adictiva",
             "artista": "Daddy Yankee ft Anuel AA",
             "album": "Adictiva"
+        },
+        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
+            "contador": 1,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
         }
     },
     "artistas_originales": {
         "Anuel AA ft Sinfonico, Ñengo Flow": 1,
         "Tainy ft Sech, E.VAX": 1,
-        "Daddy Yankee ft Anuel AA": 1
+        "Daddy Yankee ft Anuel AA": 1,
+        "Yan Block ft Panda Black": 1
     }
 }

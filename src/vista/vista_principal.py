@@ -1061,9 +1061,6 @@ def crear_boton_album(albumes, panel_componente):
         controlador_tema.registrar_botones(f"opciones_album_{album}", boton_opciones_album)
         crear_tooltip(boton_opciones_album, "Opciones del álbum")
         # ---------------------------------------------------------------------------------------
-        boton_album.bind(
-            "<Button-3>", lambda event, a=album: mostrar_menu_opciones_album(a, panel_lista_album)
-        )
 
 
 # Función auxiliar para crear botones de artistas
@@ -1092,11 +1089,31 @@ def crear_boton_artista(artistas, panel_componente):
             text=artista,
             command=lambda a=artista: mostrar_canciones_artista(a),
         )
-        boton_artista.pack(fill="both", pady=(0, 2), expand=True)
+        boton_artista.pack(side="left", fill="both", expand=True)
         controlador_tema.registrar_botones(f"artista_{artista}", boton_artista)
         # ---------------------------------------------------------------------------------------
         # Configurar desplazamiento si el texto es largo
         configurar_desplazamiento_texto(boton_artista, artista)
+
+        # ------------------------------------ Boton de opciones del álbum ----------------------
+        icono_opcion_album = cargar_icono_con_tamanio("opcion", controlador_tema.tema_iconos, (15, 20))
+        # Botón de opciones del álbum
+        boton_opciones_artista = ctk.CTkButton(
+            panel_lista_artista,
+            width=ANCHO_BOTON + 8,
+            height=ALTO_BOTON + 8,
+            fg_color=controlador_tema.color_boton,
+            hover_color=controlador_tema.color_hover,
+            font=(LETRA, TAMANIO_LETRA_BOTON),
+            text_color=controlador_tema.color_texto,
+            text="",
+            image=icono_opcion_album,
+            # command=lambda a=artista, p=panel_lista_artista: mostrar_menu_opciones_artista(a, p),
+        )
+        boton_opciones_artista.pack(side="right", padx=(1, 0))
+        controlador_tema.registrar_botones(f"opciones_artista_{artista}", boton_opciones_artista)
+        crear_tooltip(boton_opciones_artista, "Opciones del artista")
+        # ---------------------------------------------------------------------------------------
 
 
 # Función para navegar al álbum de una canción específica
@@ -1362,9 +1379,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
 def mostrar_menu_opciones_album(album, panel_padre):
     # Verificar si ya existe un menú abierto y cerrarlo
     for componente in ventana_principal.winfo_children():
-        if isinstance(componente, ctk.CTkToplevel) and hasattr(
-            componente, "menu_opciones_album"
-        ):  # Atributo específico
+        if isinstance(componente, ctk.CTkToplevel) and hasattr(componente, "menu_opciones_album"):
             componente.destroy()
     # Obtener colores actuales del tema
     controlador_tema.colores()

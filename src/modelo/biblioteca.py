@@ -134,6 +134,36 @@ class Biblioteca:
         except ValueError:
             return False
 
+    # Método para eliminar un álbum completo de la biblioteca
+    def eliminar_album_biblioteca(self, nombre_album: str) -> bool:
+        if nombre_album not in self.por_album:
+            return False
+        try:
+            # Obtener todas las canciones del álbum
+            canciones_album = self.por_album[nombre_album].copy()
+            # Eliminar cada canción del álbum
+            for cancion in canciones_album:
+                self.eliminar_cancion_biblioteca(cancion)
+            return True
+        except Exception as e:
+            print(f"Error al eliminar álbum: {e}")
+            return False
+
+    # Método para eliminar un artista completo de la biblioteca
+    def eliminar_artista_biblioteca(self, nombre_artista: str) -> bool:
+        if nombre_artista not in self.por_artista:
+            return False
+        try:
+            # Obtener todas las canciones del artista
+            canciones_artista = self.por_artista[nombre_artista].copy()
+            # Eliminar cada canción del artista
+            for cancion in canciones_artista:
+                self.eliminar_cancion_biblioteca(cancion)
+            return True
+        except Exception as e:
+            print(f"Error al eliminar artista: {e}")
+            return False
+
     # Método para eliminar todas las canciones de un directorio
     def eliminar_directorio_biblioteca(self, ruta: Path) -> List[Cancion]:
         if not ruta.is_dir():
@@ -189,6 +219,26 @@ class Biblioteca:
         else:
             self.me_gusta.remove(cancion)
 
+    # Método para agregar todas las canciones de un álbum a "me gusta"
+    def agregar_album_me_gusta_biblioteca(self, nombre_album: str):
+        if nombre_album not in self.por_album:
+            raise ValueError("El álbum no existe en la biblioteca")
+        for cancion in self.por_album[nombre_album]:
+            if not cancion.me_gusta:
+                cancion.me_gusta = True
+                if cancion not in self.me_gusta:
+                    self.me_gusta.append(cancion)
+
+    # Método para agregar todas las canciones de un artista a "me gusta"
+    def agregar_artista_me_gusta_biblioteca(self, nombre_artista: str):
+        if nombre_artista not in self.por_artista:
+            raise ValueError("El artista no existe en la biblioteca")
+        for cancion in self.por_artista[nombre_artista]:
+            if not cancion.me_gusta:
+                cancion.me_gusta = True
+                if cancion not in self.me_gusta:
+                    self.me_gusta.append(cancion)
+
     # Método para agregar una canción a la lista de "favoritos"
     def agregar_cancion_favorito_biblioteca(self, cancion: Cancion):
         if cancion not in self.canciones:
@@ -198,6 +248,58 @@ class Biblioteca:
             self.favorito.append(cancion)
         else:
             self.favorito.remove(cancion)
+
+    # Método para agregar todas las canciones de un álbum a "favoritos"
+    def agregar_album_favorito_biblioteca(self, nombre_album: str):
+        if nombre_album not in self.por_album:
+            raise ValueError("El álbum no existe en la biblioteca")
+        for cancion in self.por_album[nombre_album]:
+            if not cancion.favorito:
+                cancion.favorito = True
+                if cancion not in self.favorito:
+                    self.favorito.append(cancion)
+
+    # Método para agregar todas las canciones de un artista a "favoritos"
+    def agregar_artista_favorito_biblioteca(self, nombre_artista: str):
+        if nombre_artista not in self.por_artista:
+            raise ValueError("El artista no existe en la biblioteca")
+        for cancion in self.por_artista[nombre_artista]:
+            if not cancion.favorito:
+                cancion.favorito = True
+                if cancion not in self.favorito:
+                    self.favorito.append(cancion)
+
+    # Método para obtener todos los álbumes de un artista
+    def obtener_albumes_artista_biblioteca(self, nombre_artista: str) -> List[str]:
+        if nombre_artista not in self.por_artista:
+            return []
+        # Obtener álbumes únicos del artista
+        albumes = set()
+        for cancion in self.por_artista[nombre_artista]:
+            albumes.add(cancion.album)
+        return sorted(list(albumes))
+
+    # Método para obtener el artista principal de un álbum
+    def obtener_artista_album_biblioteca(self, nombre_album: str) -> str:
+        if nombre_album not in self.por_album:
+            raise ValueError("El álbum no existe en la biblioteca")
+        canciones_album = self.por_album[nombre_album]
+        # Contar la frecuencia de cada artista en el álbum
+        conteo_artistas = {}
+        for cancion in canciones_album:
+            # Separar múltiples artistas para contar cada uno
+            artistas = self.separar_artistas_biblioteca(cancion.artista)
+            for artista in artistas:
+                if artista in conteo_artistas:
+                    conteo_artistas[artista] += 1
+                else:
+                    conteo_artistas[artista] = 1
+        # Si no hay artistas (caso extraño), devolver el artista de la primera canción
+        if not conteo_artistas:
+            return canciones_album[0].artista
+        # Encontrar el artista con más canciones en el álbum
+        artista_principal = max(conteo_artistas, key=conteo_artistas.get)
+        return artista_principal
 
     # Método para obtener una lista de canciones por titulo, artista o álbum
     def buscar_biblioteca(self, texto: str) -> List[Cancion]:

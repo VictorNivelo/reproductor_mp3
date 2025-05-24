@@ -9,9 +9,9 @@
       <change beforePath="$PROJECT_DIR$/datos/estadisticas/canciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/canciones.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/listas/cola.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/cola.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/animacion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/animacion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controlador/controlador_biblioteca.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/controlador_biblioteca.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/biblioteca.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/biblioteca.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/componentes/mini_reproductor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/mini_reproductor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/vista_principal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/vista_principal.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +59,8 @@
       <workItem from="1747960829658" duration="71000" />
       <workItem from="1748033683395" duration="253000" />
       <workItem from="1748048779459" duration="1336000" />
+      <workItem from="1748110138295" duration="86000" />
+      <workItem from="1748111238058" duration="113000" />
     </task>
     <servers />
   </component>

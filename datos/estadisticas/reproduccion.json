@@ -1,8 +1,50 @@
 {
-    "artistas": {},
-    "albumes": {},
-    "tiempo_total": 0.0,
-    "canciones_escuchadas": 0,
-    "ultima_cancion": null,
-    "canciones": {}
+    "artistas": {
+        "Sinfonico": 1,
+        "Ñengo Flow": 1,
+        "Anuel AA": 2,
+        "Sech": 1,
+        "Tainy": 1,
+        "E.VAX": 1,
+        "Daddy Yankee": 1
+    },
+    "albumes": {
+        "47 (Remix)": 1,
+        "DATA": 1,
+        "Adictiva": 1
+    },
+    "tiempo_total": 922.7493877551019,
+    "canciones_escuchadas": 3,
+    "ultima_cancion": {
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "titulo": "Adictiva",
+        "artista": "Daddy Yankee ft Anuel AA",
+        "album": "Adictiva",
+        "timestamp": "2025-05-24T13:26:07.341780"
+    },
+    "canciones": {
+        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
+            "contador": 1,
+            "titulo": "47 (Remix)",
+            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+            "album": "47 (Remix)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
+            "contador": 1,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
+            "contador": 1,
+            "titulo": "Adictiva",
+            "artista": "Daddy Yankee ft Anuel AA",
+            "album": "Adictiva"
+        }
+    },
+    "artistas_originales": {
+        "Anuel AA ft Sinfonico, Ñengo Flow": 1,
+        "Tainy ft Sech, E.VAX": 1,
+        "Daddy Yankee ft Anuel AA": 1
+    }
 }

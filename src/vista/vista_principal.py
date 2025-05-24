@@ -595,28 +595,21 @@ def actualizar_estado_me_gusta_vista(cancion=None):
 
 
 # Función para cambiar el estado de boton me gusta
-def agregar_me_gusta_vista():
-    cancion_actual = controlador_reproductor.cancion_actual
-    if cancion_actual:
-        # Modificar el estado en la biblioteca
-        controlador_biblioteca.agregar_me_gusta_controlador(cancion_actual)
-        # Actualizar interfaz usando la función centralizada
-        actualizar_estado_me_gusta_vista()
-        # Guardar cambios
-        guardar_biblioteca()
-        # Marcar la pestaña como cargada
-        pestanas_cargadas["Me gusta"] = True
-
-
-# Función para cambiar el estado de "me gusta" de una canción desde el menú
-def agregar_me_gusta_menu(cancion):
+def agregar_me_gusta_vista(cancion=None):
+    # Si no se especifica canción, usar la canción actual
+    if cancion is None:
+        cancion = controlador_reproductor.cancion_actual
+    # Verificar que hay una canción válida
+    if not cancion:
+        return
     # Modificar el estado en la biblioteca
-    controlador_biblioteca.agregar_me_gusta_controlador(cancion)
-    # Actualizar interfaz si es la canción actual
+    controlador_biblioteca.agregar_cancion_me_gusta_controlador(cancion)
+    # Actualizar interfaz según el contexto
     if controlador_reproductor.cancion_actual == cancion:
+        # Es la canción actual, actualizar interfaz completa
         actualizar_estado_me_gusta_vista()
     else:
-        # Si no es la canción actual, solo actualizar la vista
+        # No es la canción actual, solo actualizar la vista de "Me gusta"
         actualizar_vista_me_gusta()
     # Marcar la pestaña como cargada
     pestanas_cargadas["Me gusta"] = True
@@ -652,27 +645,21 @@ def actualizar_estado_favorito_vista(cancion=None):
 
 
 # Función para cambiar el estado de favorito
-def agregar_favorito_vista():
-    cancion_actual = controlador_reproductor.cancion_actual
-    if cancion_actual:
-        # Modificar el estado en la biblioteca
-        controlador_biblioteca.agregar_favorito_controlador(cancion_actual)
-        # Actualizar interfaz usando la función centralizada
-        actualizar_estado_favorito_vista()
-        # Guardar cambios
-        guardar_biblioteca()
-        # Marcar la pestaña como cargada
-        pestanas_cargadas["Favoritos"] = True
-
-
-# Función para cambiar el estado de "favorito" de una canción desde el menú
-def agregar_favorito_menu(cancion):
+def agregar_favorito_vista(cancion=None):
+    # Si no se especifica canción, usar la canción actual
+    if cancion is None:
+        cancion = controlador_reproductor.cancion_actual
+    # Verificar que hay una canción válida
+    if not cancion:
+        return
     # Modificar el estado en la biblioteca
-    controlador_biblioteca.agregar_favorito_controlador(cancion)
-    # Actualizar interfaz si es la canción actual
+    controlador_biblioteca.agregar_cancion_favorito_controlador(cancion)
+    # Actualizar interfaz según el contexto
     if controlador_reproductor.cancion_actual == cancion:
+        # Es la canción actual, actualizar interfaz completa
         actualizar_estado_favorito_vista()
     else:
+        # No es la canción actual, solo actualizar la vista de "Favoritos"
         actualizar_vista_favoritos()
     # Marcar la pestaña como cargada
     pestanas_cargadas["Favoritos"] = True
@@ -1291,13 +1278,21 @@ def mostrar_menu_opciones(cancion, panel_padre):
     texto_me_gusta = "Quitar de Me gusta" if cancion.me_gusta else "Agregar a Me gusta"
     icono_me_gusta = "me_gusta_rojo" if cancion.me_gusta else "me_gusta"
     crear_opcion_menu(
-        panel_menu_opciones, texto_me_gusta, lambda: agregar_me_gusta_menu(cancion), True, icono_me_gusta
+        panel_menu_opciones,
+        texto_me_gusta,
+        lambda: agregar_me_gusta_vista(cancion),
+        True,
+        icono_me_gusta,
     )
 
     texto_favorito = "Quitar de Favoritos" if cancion.favorito else "Agregar a Favoritos"
     icono_favorito = "favorito_amarillo" if cancion.favorito else "favorito"
     crear_opcion_menu(
-        panel_menu_opciones, texto_favorito, lambda: agregar_favorito_menu(cancion), False, icono_favorito
+        panel_menu_opciones,
+        texto_favorito,
+        lambda: agregar_favorito_vista(cancion),
+        False,
+        icono_favorito,
     )
     # -------------------------------------------------------------------------------------------
     # ---------------------------------- Opciones de información --------------------------------
@@ -1455,8 +1450,8 @@ def mostrar_menu_opciones_album(album, panel_padre):
     # ---------------------------------- Opciones de información --------------------------------
     crear_opcion_menu(
         panel_menu_opciones,
-        f"Ir a artista(s) del álbum",
-        lambda: print(f"Ir a artista(s) del álbum: {album}"),
+        f"Ir al artista del álbum",
+        lambda: print(f"Ir al artista del álbum: {album}"),
         True,
         "artista",
     )

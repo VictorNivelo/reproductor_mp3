@@ -373,7 +373,7 @@ class MiniReproductor(UtilesGeneral):
             cancion = self.controlador_reproductor.cancion_actual
             try:
                 # Marcar o desmarcar la canción como "me gusta"
-                controlador_biblioteca.agregar_me_gusta_controlador(cancion)
+                controlador_biblioteca.agregar_cancion_me_gusta_controlador(cancion)
                 # Actualizar el estado visual usando la función centralizada
                 actualizar_estado_me_gusta_vista(cancion)
                 # Guardar los cambios en la biblioteca

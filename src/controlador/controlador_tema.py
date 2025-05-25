@@ -19,7 +19,40 @@ class ControladorTema(UtilesGeneral):
         self.tabviews = []
         self.canvas = []
         # Establecer apariencia global
-        self.establecer_apariencia_global_controlador()
+        self.establecer_tema_global_controlador()
+
+    # Establecer tema global
+    def establecer_tema_global_controlador(self):
+        ctk.set_appearance_mode("dark" if self.tema_interfaz == "oscuro" else "light")
+
+    # Función para obtener el tema de iconos actual
+    def obtener_tema_iconos_actual(self):
+        return self.tema_iconos
+
+    # Función para obtener el tema de la interfaz actual
+    def obtener_apariencia_interfaz_actual(self):
+        return self.tema_interfaz
+
+    # Mostrar icono de botones
+    def mostrar_icono_boton(self, nombre):
+        if nombre in self.botones:
+            boton = self.botones[nombre]
+            nombre_icono = nombre.replace("_mini", "")
+            if nombre_icono in self.iconos and self.iconos[nombre_icono]:
+                boton.configure(image=self.iconos[nombre_icono], compound="left")
+
+    # Eliminar botones del diccionario
+    def eliminar_boton(self, nombre):
+        if nombre in self.botones:
+            try:
+                # Eliminar la referencia al botón sin intentar acceder a él
+                del self.botones[nombre]
+                return True
+            except Exception as e:
+                print(f"Error al eliminar el botón {nombre} del controlador: {e}")
+                return False
+        else:
+            return False
 
     # Registrar botones
     def registrar_botones(self, nombre, boton):
@@ -75,14 +108,6 @@ class ControladorTema(UtilesGeneral):
     # Registrar canvas
     def registrar_canvas(self, canvas, es_tabview=False, tabview_parent=None):
         self.canvas.append((canvas, es_tabview, tabview_parent))
-
-    # Mostrar icono de botones
-    def mostrar_icono_boton(self, nombre):
-        if nombre in self.botones:
-            boton = self.botones[nombre]
-            nombre_icono = nombre.replace("_mini", "")
-            if nombre_icono in self.iconos and self.iconos[nombre_icono]:
-                boton.configure(image=self.iconos[nombre_icono], compound="left")
 
     # Actualizar colores de los paneles
     def actualizar_colores_paneles(self):
@@ -209,28 +234,12 @@ class ControladorTema(UtilesGeneral):
             except Exception as e:
                 print(f"Error al configurar el canvas: {e}")
 
-    # Eliminar botones del diccionario
-    def eliminar_boton(self, nombre):
-        if nombre in self.botones:
-            try:
-                # Eliminar la referencia al botón sin intentar acceder a él
-                del self.botones[nombre]
-                return True
-            except Exception as e:
-                print(f"Error al eliminar el botón {nombre} del controlador: {e}")
-                return False
-        return False
-
-    # Establecer tema global
-    def establecer_apariencia_global_controlador(self):
-        ctk.set_appearance_mode("dark" if self.tema_interfaz == "oscuro" else "light")
-
     # Cambiar tema
     def cambiar_tema_controlador(self):
         self.tema_interfaz = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.tema_iconos = "oscuro" if self.tema_interfaz == "claro" else "claro"
         self.iconos = cargar_icono(self.tema_iconos)
-        self.establecer_apariencia_global_controlador()
+        self.establecer_tema_global_controlador()
         self.colores()
         # Limpiar componentes destruidos antes de actualizar
         self.limpiar_componentes_destruidos()
@@ -264,6 +273,17 @@ class ControladorTema(UtilesGeneral):
         except Exception as e:
             print(f"Error al cambiar el tema: {e}")
 
+    # Método auxiliar para verificar si un componente existe
+    @staticmethod
+    def existe_componente(componente):
+        try:
+            if componente is None:
+                return False
+            return componente.winfo_exists()
+        except Exception as e:
+            print(f"Error al verificar si el componente existe: {e}")
+            return False
+
     # Limpiar componentes destruidos
     def limpiar_componentes_destruidos(self):
         # Limpiar botones destruidos
@@ -282,30 +302,19 @@ class ControladorTema(UtilesGeneral):
         self.paneles = [
             (panel, es_ctk, es_principal)
             for panel, es_ctk, es_principal in self.paneles
-            if self.componente_existe(panel)
+            if self.existe_componente(panel)
         ]
         # Limpiar etiquetas destruidas
-        self.etiquetas = [etiqueta for etiqueta in self.etiquetas if self.componente_existe(etiqueta)]
+        self.etiquetas = [etiqueta for etiqueta in self.etiquetas if self.existe_componente(etiqueta)]
         # Limpiar entradas destruidas
-        self.entradas = [entrada for entrada in self.entradas if self.componente_existe(entrada)]
+        self.entradas = [entrada for entrada in self.entradas if self.existe_componente(entrada)]
         # Limpiar comboboxes destruidos
-        self.comboboxes = [combobox for combobox in self.comboboxes if self.componente_existe(combobox)]
+        self.comboboxes = [combobox for combobox in self.comboboxes if self.existe_componente(combobox)]
         # Limpiar sliders destruidos
-        self.sliders = [slider for slider in self.sliders if self.componente_existe(slider)]
+        self.sliders = [slider for slider in self.sliders if self.existe_componente(slider)]
         # Limpiar progress_bars destruidas
-        self.progress_bars = [bar for bar in self.progress_bars if self.componente_existe(bar)]
+        self.progress_bars = [bar for bar in self.progress_bars if self.existe_componente(bar)]
         # Limpiar tabviews destruidos
-        self.tabviews = [tabview for tabview in self.tabviews if self.componente_existe(tabview)]
+        self.tabviews = [tabview for tabview in self.tabviews if self.existe_componente(tabview)]
         # Limpiar canvas destruidos
-        self.canvas = [canvas_info for canvas_info in self.canvas if self.componente_existe(canvas_info[0])]
-
-    # Método auxiliar para verificar si un componente existe
-    @staticmethod
-    def componente_existe(componente):
-        try:
-            if componente is None:
-                return False
-            return componente.winfo_exists()
-        except Exception as e:
-            print(f"Error al verificar si el componente existe: {e}")
-            return False
+        self.canvas = [canvas_info for canvas_info in self.canvas if self.existe_componente(canvas_info[0])]

@@ -1,38 +1,38 @@
 {
     "artistas": {
-        "Sech": 1,
-        "E.VAX": 1,
-        "Tainy": 1,
+        "Sech": 2,
+        "E.VAX": 2,
+        "Tainy": 2,
         "Eladio Carrion": 3,
         "Bryant Myers": 3,
-        "Coi Leray": 2,
-        "Metro Boomin": 2,
-        "Daddy Yankee": 1,
-        "Anuel AA": 2,
-        "Feid": 1,
-        "Bad Bunny": 1
+        "Coi Leray": 3,
+        "Metro Boomin": 3,
+        "Daddy Yankee": 3,
+        "Anuel AA": 5,
+        "Feid": 2,
+        "Bad Bunny": 2
     },
     "albumes": {
-        "DATA": 1,
+        "DATA": 2,
         "Animal": 3,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 2,
-        "Adictiva": 1,
-        "INTER SHIBUYA - LA MAFIA": 1,
-        "EL ÚLTIMO TOUR DEL MUNDO": 1,
-        "¿Qué Nos Pasó?": 1
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 3,
+        "Adictiva": 3,
+        "INTER SHIBUYA - LA MAFIA": 2,
+        "EL ÚLTIMO TOUR DEL MUNDO": 2,
+        "¿Qué Nos Pasó?": 2
     },
-    "tiempo_total": 1993.168979591837,
-    "canciones_escuchadas": 10,
+    "tiempo_total": 3351.353469387756,
+    "canciones_escuchadas": 17,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "titulo": "Animal",
-        "artista": "Eladio Carrion ft Bryant Myers",
-        "album": "Animal",
-        "timestamp": "2025-05-25T12:04:04.317943"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "titulo": "Adictiva",
+        "artista": "Daddy Yankee ft Anuel AA",
+        "album": "Adictiva",
+        "timestamp": "2025-05-25T17:20:35.818476"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
@@ -44,43 +44,43 @@
             "album": "Animal"
         },
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
         },
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 1,
+            "contador": 3,
             "titulo": "Adictiva",
             "artista": "Daddy Yankee ft Anuel AA",
             "album": "Adictiva"
         },
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "14 De Febrero",
             "artista": "Feid",
             "album": "INTER SHIBUYA - LA MAFIA"
         },
         "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "¿Qué Nos Pasó?",
             "artista": "Anuel AA",
             "album": "¿Qué Nos Pasó?"
         }
     },
     "artistas_originales": {
-        "Tainy ft Sech, E.VAX": 1,
+        "Tainy ft Sech, E.VAX": 2,
         "Eladio Carrion ft Bryant Myers": 3,
-        "Metro Boomin ft Coi Leray": 2,
-        "Daddy Yankee ft Anuel AA": 1,
-        "Feid": 1,
-        "Bad Bunny": 1,
-        "Anuel AA": 1
+        "Metro Boomin ft Coi Leray": 3,
+        "Daddy Yankee ft Anuel AA": 3,
+        "Feid": 2,
+        "Bad Bunny": 2,
+        "Anuel AA": 2
     }
 }

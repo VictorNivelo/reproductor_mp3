@@ -3,8 +3,8 @@
         "total_canciones": 9,
         "total_artistas": 15,
         "total_albumes": 9,
-        "me_gusta": 5,
-        "favorito": 4
+        "me_gusta": 0,
+        "favorito": 0
     },
     "canciones": [
         {
@@ -18,8 +18,8 @@
             "anio": "2023",
             "numero_pista": "6",
             "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
+            "me_gusta": false,
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -32,22 +32,22 @@
             "anio": "2020-11-27",
             "numero_pista": "14",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
-            "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-            "titulo": "14 De Febrero",
-            "artista": "Feid",
-            "artista_album": "Feid",
-            "album": "INTER SHIBUYA - LA MAFIA",
-            "duracion": 158.56326530612245,
-            "duracion_formateada": "02:38",
-            "anio": "2021-08-20",
-            "numero_pista": "14",
+            "ruta": "C:\\Users\\Victor\\Music\\b.mp3",
+            "titulo": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "artista": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "artista_album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "duracion": 197.01551020408164,
+            "duracion_formateada": "03:17",
+            "anio": "Desconocido",
+            "numero_pista": "6",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": true
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
@@ -88,7 +88,7 @@
             "anio": "2018-11-09",
             "numero_pista": "1",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
@@ -102,7 +102,7 @@
             "anio": "2019-07-05",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
@@ -117,7 +117,7 @@
             "numero_pista": "9/13",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": true
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
@@ -130,8 +130,8 @@
             "anio": "2022-05-26",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
+            "me_gusta": false,
+            "favorito": false
         }
     ]
 }

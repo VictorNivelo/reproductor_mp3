@@ -233,6 +233,17 @@ def cargar_ultima_cancion_reproducida():
     return False
 
 
+# Función para verificar el estado de reproducción
+def verificar_estado_reproduccion(*args):
+    global ESTADO_REPRODUCCION
+    # Verificar si la reproducción ha terminado naturalmente
+    if ESTADO_REPRODUCCION and not controlador_reproductor.reproduciendo:
+        ESTADO_REPRODUCCION = False
+        controlador_tema.registrar_botones("reproducir", boton_reproducir)
+    # Llamar a esta función nuevamente después de un breve retraso
+    ventana_principal.after(500, verificar_estado_reproduccion, *args)
+
+
 # Función para actualizar el estado de reproducción en la vista
 def actualizar_estado_reproduccion_vista():
     global ESTADO_REPRODUCCION
@@ -880,17 +891,6 @@ def actualizar_etiqueta_tiempo_vista():
     etiqueta_tiempo_total.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
 
 
-# Función para verificar el estado de reproducción
-def verificar_estado_reproduccion(*args):
-    global ESTADO_REPRODUCCION
-    # Verificar si la reproducción ha terminado naturalmente
-    if ESTADO_REPRODUCCION and not controlador_reproductor.reproduciendo:
-        ESTADO_REPRODUCCION = False
-        controlador_tema.registrar_botones("reproducir", boton_reproducir)
-    # Llamar a esta función nuevamente después de un breve retraso
-    ventana_principal.after(500, verificar_estado_reproduccion, *args)
-
-
 # Función para iniciar el arrastre del progreso de la canción
 def iniciar_arrastre_progreso(event):
     global ARRASTRANDO_PROGRESO
@@ -948,6 +948,78 @@ def cargar_cola_vista():
             actualizar_estado_botones_gustos()
     # También podemos cargar la información de la última canción reproducida
     cargar_ultima_cancion_reproducida()
+
+
+# Función para navegar al álbum de una canción específica
+def ir_al_album(cancion):
+    # Cambiar a la pestaña de álbumes
+    paginas_canciones.set("Álbumes")
+    # Marcar la pestaña como cargada
+    pestanas_cargadas["Álbumes"] = True
+    # Actualizar la vista de álbumes
+    actualizar_vista_albumes()
+    # Buscar y mostrar las canciones del álbum específico
+    if cancion.album and cancion.album not in ["", "Unknown Album", "Desconocido"]:
+        # Verificar si el álbum existe y tiene canciones
+        canciones_album = controlador_biblioteca.obtener_canciones_album_controlador(cancion.album)
+        if canciones_album:
+            # Mostrar las canciones del álbum
+            mostrar_canciones_album(cancion.album)
+        else:
+            # Si no hay canciones, mostrar un mensaje
+            print(f"No se encontraron canciones en el álbum: {cancion.album}")
+    else:
+        # Si no hay información de álbum, mostrar un mensaje
+        print(f"No hay información de álbum para: {cancion.titulo_cancion}")
+
+
+# Función para navegar al artista de una canción específica
+def ir_al_artista(cancion):
+    # Cambiar a la pestaña de artistas
+    paginas_canciones.set("Artistas")
+    # Marcar la pestaña como cargada
+    pestanas_cargadas["Artistas"] = True
+    # Actualizar la vista de artistas
+    actualizar_vista_artistas()
+    # Extraer el artista principal (siempre es el primero antes de cualquier colaboración)
+    artista_completo = cancion.artista
+    # Lista de separadores comunes en nombres de artistas
+    separadores = SEPARADORES
+    # Obtener SIEMPRE el primer artista (antes del primer separador)
+    artista_principal = artista_completo
+    for separador in separadores:
+        if separador.lower() in artista_completo.lower():
+            artista_principal = artista_completo.split(separador, 1)[0].strip()
+            print(f"Artista extraído: '{artista_principal}' de '{artista_completo}'")
+            break
+    # Buscar el artista principal en la biblioteca
+    artista_encontrado = None
+    # Primero buscar coincidencia exacta (sin importar mayúsculas/minúsculas)
+    for artista_key in biblioteca.por_artista.keys():
+        if artista_principal.lower() == artista_key.lower():
+            artista_encontrado = artista_key
+            break
+    # Si no hay coincidencia exacta, buscar coincidencia parcial
+    if not artista_encontrado:
+        for artista_key in biblioteca.por_artista.keys():
+            if (
+                artista_principal.lower() in artista_key.lower()
+                or artista_key.lower() in artista_principal.lower()
+            ):
+                artista_encontrado = artista_key
+                break
+    # Si encontramos un artista que coincide, mostrar sus canciones
+    if artista_encontrado:
+        # Verificar si hay canciones para este artista
+        canciones_artista = controlador_biblioteca.obtener_canciones_artista_controlador(artista_encontrado)
+        if canciones_artista:
+            mostrar_canciones_artista(artista_encontrado)
+            print(f"Mostrando canciones del artista: {artista_encontrado}")
+        else:
+            print(f"No se encontraron canciones del artista: {artista_encontrado}")
+    else:
+        # Si no hay coincidencia, mostrar mensaje informativo
+        print(f"No se encontró el artista principal '{artista_principal}' en la biblioteca")
 
 
 # Función para crear botones para cada canción en la biblioteca
@@ -1114,78 +1186,6 @@ def crear_boton_artista(artistas, panel_componente):
         controlador_tema.registrar_botones(f"opciones_artista_{artista}", boton_opciones_artista)
         crear_tooltip(boton_opciones_artista, "Opciones del artista")
         # ---------------------------------------------------------------------------------------
-
-
-# Función para navegar al álbum de una canción específica
-def ir_al_album(cancion):
-    # Cambiar a la pestaña de álbumes
-    paginas_canciones.set("Álbumes")
-    # Marcar la pestaña como cargada
-    pestanas_cargadas["Álbumes"] = True
-    # Actualizar la vista de álbumes
-    actualizar_vista_albumes()
-    # Buscar y mostrar las canciones del álbum específico
-    if cancion.album and cancion.album not in ["", "Unknown Album", "Desconocido"]:
-        # Verificar si el álbum existe y tiene canciones
-        canciones_album = controlador_biblioteca.obtener_canciones_album_controlador(cancion.album)
-        if canciones_album:
-            # Mostrar las canciones del álbum
-            mostrar_canciones_album(cancion.album)
-        else:
-            # Si no hay canciones, mostrar un mensaje
-            print(f"No se encontraron canciones en el álbum: {cancion.album}")
-    else:
-        # Si no hay información de álbum, mostrar un mensaje
-        print(f"No hay información de álbum para: {cancion.titulo_cancion}")
-
-
-# Función para navegar al artista de una canción específica
-def ir_al_artista(cancion):
-    # Cambiar a la pestaña de artistas
-    paginas_canciones.set("Artistas")
-    # Marcar la pestaña como cargada
-    pestanas_cargadas["Artistas"] = True
-    # Actualizar la vista de artistas
-    actualizar_vista_artistas()
-    # Extraer el artista principal (siempre es el primero antes de cualquier colaboración)
-    artista_completo = cancion.artista
-    # Lista de separadores comunes en nombres de artistas
-    separadores = SEPARADORES
-    # Obtener SIEMPRE el primer artista (antes del primer separador)
-    artista_principal = artista_completo
-    for separador in separadores:
-        if separador.lower() in artista_completo.lower():
-            artista_principal = artista_completo.split(separador, 1)[0].strip()
-            print(f"Artista extraído: '{artista_principal}' de '{artista_completo}'")
-            break
-    # Buscar el artista principal en la biblioteca
-    artista_encontrado = None
-    # Primero buscar coincidencia exacta (sin importar mayúsculas/minúsculas)
-    for artista_key in biblioteca.por_artista.keys():
-        if artista_principal.lower() == artista_key.lower():
-            artista_encontrado = artista_key
-            break
-    # Si no hay coincidencia exacta, buscar coincidencia parcial
-    if not artista_encontrado:
-        for artista_key in biblioteca.por_artista.keys():
-            if (
-                artista_principal.lower() in artista_key.lower()
-                or artista_key.lower() in artista_principal.lower()
-            ):
-                artista_encontrado = artista_key
-                break
-    # Si encontramos un artista que coincide, mostrar sus canciones
-    if artista_encontrado:
-        # Verificar si hay canciones para este artista
-        canciones_artista = controlador_biblioteca.obtener_canciones_artista_controlador(artista_encontrado)
-        if canciones_artista:
-            mostrar_canciones_artista(artista_encontrado)
-            print(f"Mostrando canciones del artista: {artista_encontrado}")
-        else:
-            print(f"No se encontraron canciones del artista: {artista_encontrado}")
-    else:
-        # Si no hay coincidencia, mostrar mensaje informativo
-        print(f"No se encontró el artista principal '{artista_principal}' en la biblioteca")
 
 
 # Función para crear una opción de menú en un menú contextual
@@ -1603,29 +1603,29 @@ def actualizar_pestana_seleccionada():
     if pestana_actual == "Canciones":
         canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
     elif pestana_actual == "Me gusta":
-        tab_me_gusta = paginas_canciones.tab("Me gusta")
-        for componente in tab_me_gusta.winfo_children():
+        pestania_me_gusta = paginas_canciones.tab("Me gusta")
+        for componente in pestania_me_gusta.winfo_children():
             if isinstance(componente, tk.Canvas):
                 componente.bind_all(
                     "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
                 )
     elif pestana_actual == "Favoritos":
-        tab_favoritos = paginas_canciones.tab("Favoritos")
-        for componente in tab_favoritos.winfo_children():
+        pestania_favoritos = paginas_canciones.tab("Favoritos")
+        for componente in pestania_favoritos.winfo_children():
             if isinstance(componente, tk.Canvas):
                 componente.bind_all(
                     "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
                 )
     elif pestana_actual == "Álbumes":
-        tab_albumes = paginas_canciones.tab("Álbumes")
-        for componente in tab_albumes.winfo_children():
+        pestania_albumes = paginas_canciones.tab("Álbumes")
+        for componente in pestania_albumes.winfo_children():
             if isinstance(componente, tk.Canvas):
                 componente.bind_all(
                     "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
                 )
     elif pestana_actual == "Artistas":
-        tab_artistas = paginas_canciones.tab("Artistas")
-        for componente in tab_artistas.winfo_children():
+        pestania_artistas = paginas_canciones.tab("Artistas")
+        for componente in pestania_artistas.winfo_children():
             if isinstance(componente, tk.Canvas):
                 componente.bind_all(
                     "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
@@ -1854,12 +1854,12 @@ def configurar_interfaz_pestania(nombre_pestania):
     # Obtener colores actualizados del tema
     controlador_tema.colores()
     # Obtener la pestaña
-    tab = paginas_canciones.tab(nombre_pestania)
+    pestania = paginas_canciones.tab(nombre_pestania)
     # Limpiar la pestaña
-    for componente in tab.winfo_children():
+    for componente in pestania.winfo_children():
         componente.destroy()
     # Crear canvas con scroll
-    canvas, panel_botones, _ = crear_canvas_con_scroll(tab, True, paginas_canciones)
+    canvas, panel_botones, _ = crear_canvas_con_scroll(pestania, True, paginas_canciones)
     return canvas, panel_botones
 
 

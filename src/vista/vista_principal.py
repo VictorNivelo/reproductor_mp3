@@ -852,10 +852,10 @@ def eliminar_cancion_vista(cancion):
         actualizar_vista_canciones(panel_botones_canciones)
     elif pestana_actual == "Me gusta":
         # Recrear el panel de Me gusta
-        configurar_interfaz_pestania("Me gusta")
+        configurar_interfaz_me_gusta()
     elif pestana_actual == "Favoritos":
         # Recrear el panel de Favoritos
-        configurar_interfaz_pestania("Favoritos")
+        configurar_interfaz_favoritos()
     elif pestana_actual == "Álbumes":
         # Recrear el panel de Álbumes
         configurar_interfaz_albumes()
@@ -1538,131 +1538,6 @@ def cerrar_menu_opciones_al_desenfocar(menu_ventana, _event=None):
             print(f"Error al cerrar menú: {e}")
 
 
-# Función para restablecer el scroll en una pestaña
-def restablecer_scroll_vista1(canvas, panel, ventana_canvas):
-    return GestorScroll.restablecer_scroll(canvas, panel, ventana_canvas)
-
-
-# Función para actualizar todas las vistas de las canciones
-def actualizar_todas_vistas_canciones():
-    pestana_actual = paginas_canciones.get()
-    # Actualizar la vista de canciones
-    actualizar_vista_canciones(panel_botones_canciones)
-    # Actualizar las demás pestañas inmediatamente
-    actualizar_vista_me_gusta()
-    actualizar_vista_favoritos()
-    actualizar_vista_albumes()
-    actualizar_vista_artistas()
-    # Marcar todas las pestañas como cargadas
-    pestanas_cargadas["Me gusta"] = True
-    pestanas_cargadas["Favoritos"] = True
-    pestanas_cargadas["Álbumes"] = True
-    pestanas_cargadas["Artistas"] = True
-    # Restablecer el scroll para la pestaña actual
-    if pestana_actual == "Canciones":
-        canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
-    # Guardar la biblioteca después de las actualizaciones
-    guardar_biblioteca()
-
-
-# Función para manejar cambios de pestaña
-def actualizar_pestana_seleccionada():
-    global vista_detalle_activa, vista_detalle_tipo, vista_detalle_elemento, vista_detalle_canvas, vista_detalle_panel
-    # Obtener nombre de la pestaña activa
-    pestana_actual = paginas_canciones.get()
-    # Si cambiamos de pestaña y estábamos en vista detalle, resetear
-    if vista_detalle_activa:
-        # Detener cualquier animación activa
-        animacion.detener_desplazamiento_etiqueta()  # Llamar sin argumentos
-        vista_detalle_activa = False
-        vista_detalle_tipo = None
-        vista_detalle_elemento = None
-        vista_detalle_canvas = None
-        vista_detalle_panel = None
-        # Limpiar la entrada de búsqueda
-        entrada_busqueda.delete(0, "end")
-    # Desvincular el scroll wheel de todos los canvas para evitar conflictos
-    canvas_canciones.unbind_all("<MouseWheel>")
-    # Actualizar solo si no se ha cargado previamente
-    if pestana_actual == "Me gusta" and not pestanas_cargadas["Me gusta"]:
-        actualizar_vista_me_gusta()
-        pestanas_cargadas["Me gusta"] = True
-    elif pestana_actual == "Favoritos" and not pestanas_cargadas["Favoritos"]:
-        actualizar_vista_favoritos()
-        pestanas_cargadas["Favoritos"] = True
-    elif pestana_actual == "Álbumes" and not pestanas_cargadas["Álbumes"]:
-        actualizar_vista_albumes()
-        pestanas_cargadas["Álbumes"] = True
-    elif pestana_actual == "Artistas" and not pestanas_cargadas["Artistas"]:
-        actualizar_vista_artistas()
-        pestanas_cargadas["Artistas"] = True
-    elif pestana_actual == "Listas" and not pestanas_cargadas["Listas"]:
-        # Implementar cuando sea necesario
-        pestanas_cargadas["Listas"] = True
-    # Restaurar el binding correcto dependiendo de la pestaña activa
-    if pestana_actual == "Canciones":
-        canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
-    elif pestana_actual == "Me gusta":
-        pestania_me_gusta = paginas_canciones.tab("Me gusta")
-        for componente in pestania_me_gusta.winfo_children():
-            if isinstance(componente, tk.Canvas):
-                componente.bind_all(
-                    "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
-                )
-    elif pestana_actual == "Favoritos":
-        pestania_favoritos = paginas_canciones.tab("Favoritos")
-        for componente in pestania_favoritos.winfo_children():
-            if isinstance(componente, tk.Canvas):
-                componente.bind_all(
-                    "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
-                )
-    elif pestana_actual == "Álbumes":
-        pestania_albumes = paginas_canciones.tab("Álbumes")
-        for componente in pestania_albumes.winfo_children():
-            if isinstance(componente, tk.Canvas):
-                componente.bind_all(
-                    "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
-                )
-    elif pestana_actual == "Artistas":
-        pestania_artistas = paginas_canciones.tab("Artistas")
-        for componente in pestania_artistas.winfo_children():
-            if isinstance(componente, tk.Canvas):
-                componente.bind_all(
-                    "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
-                )
-
-
-# Función para actualizar la vista de las canciones en la biblioteca
-def actualizar_vista_canciones(panel):
-    # Limpiar botones existentes
-    for cancion, boton in botones_canciones.items():
-        try:
-            # Eliminar el botón del controlador_tema de tema
-            nombre_boton = f"cancion_{cancion.titulo_cancion}"
-            nombre_opciones = f"opciones_{cancion.titulo_cancion}"
-            controlador_tema.eliminar_boton(nombre_boton)
-            controlador_tema.eliminar_boton(nombre_opciones)
-            # Destruir el frame contenedor (que contiene el botón)
-            if boton and boton.winfo_exists():
-                frame_padre = boton.winfo_parent()
-                if frame_padre:
-                    frame = boton.nametowidget(frame_padre)
-                    if frame and frame.winfo_exists():
-                        frame.destroy()
-        except Exception as e:
-            print(f"Error al destruir el botón {cancion.titulo_cancion}: {e}")
-            pass
-    botones_canciones.clear()
-    # Crear nuevos botones para cada canción
-    for cancion in biblioteca.canciones:
-        crear_boton_cancion(cancion, panel)
-    # Forzar actualización del layout
-    panel.update_idletasks()
-    # Asegurar que el canvas se actualice correctamente y volver al inicio
-    canvas_canciones.yview_moveto(0)
-    canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
-
-
 # Función para mostrar los detalles de las canciones
 def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
     global vista_detalle_activa, vista_detalle_tipo, vista_detalle_elemento, vista_detalle_canvas, vista_detalle_panel
@@ -1759,6 +1634,121 @@ def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
     mostrar_canciones_elemento_filtradas(elemento, pagina, "")
 
 
+# Función para crear un canvas con scroll y panel de botones
+def crear_canvas_con_scroll(contenedor_padre, es_pestania=True, es_pestania_padre=None):
+    # -------------------------------- Crear canvas con scroll ----------------------------------
+    canvas = tk.Canvas(contenedor_padre, highlightthickness=0)
+    canvas.pack(fill="both", expand=True)
+    canvas.configure(bg=paginas_canciones.cget("fg_color") if es_pestania else controlador_tema.color_fondo)
+    controlador_tema.registrar_canvas(canvas, es_tabview=es_pestania, tabview_parent=es_pestania_padre)
+    # -------------------------------------------------------------------------------------------
+    # -------------------------------------- Panel botones --------------------------------------
+    # Crear panel para el contenido
+    panel_botones = ctk.CTkFrame(canvas, fg_color="transparent", corner_radius=0)
+    panel_botones.pack(fill="both")
+    controlador_tema.registrar_panel(panel_botones)
+    # -------------------------------------------------------------------------------------------
+    # Crear ventana en el canvas para el panel
+    canvas_ventana_general = canvas.create_window((0, 0), window=panel_botones)
+    # Configurar scroll
+    GestorScroll(canvas, panel_botones, canvas_ventana_general)
+    return canvas, panel_botones, canvas_ventana_general
+
+
+# Función para actualizar todas las vistas de las canciones
+def actualizar_todas_vistas_canciones():
+    pestana_actual = paginas_canciones.get()
+    # Actualizar la vista de canciones
+    actualizar_vista_canciones(panel_botones_canciones)
+    # Actualizar las demás pestañas inmediatamente
+    actualizar_vista_me_gusta()
+    actualizar_vista_favoritos()
+    actualizar_vista_albumes()
+    actualizar_vista_artistas()
+    # Marcar todas las pestañas como cargadas
+    pestanas_cargadas["Me gusta"] = True
+    pestanas_cargadas["Favoritos"] = True
+    pestanas_cargadas["Álbumes"] = True
+    pestanas_cargadas["Artistas"] = True
+    # Restablecer el scroll para la pestaña actual
+    if pestana_actual == "Canciones":
+        canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
+    # Guardar la biblioteca después de las actualizaciones
+    guardar_biblioteca()
+
+
+# Función para manejar cambios de pestaña
+def actualizar_pestana_seleccionada():
+    global vista_detalle_activa, vista_detalle_tipo, vista_detalle_elemento, vista_detalle_canvas, vista_detalle_panel
+    # Obtener nombre de la pestaña activa
+    pestana_actual = paginas_canciones.get()
+    # Si cambiamos de pestaña y estábamos en vista detalle, resetear
+    if vista_detalle_activa:
+        # Detener cualquier animación activa
+        animacion.detener_desplazamiento_etiqueta()  # Llamar sin argumentos
+        vista_detalle_activa = False
+        vista_detalle_tipo = None
+        vista_detalle_elemento = None
+        vista_detalle_canvas = None
+        vista_detalle_panel = None
+        # Limpiar la entrada de búsqueda
+        entrada_busqueda.delete(0, "end")
+    # Desvincular el scroll wheel de todos los canvas para evitar conflictos
+    canvas_canciones.unbind_all("<MouseWheel>")
+    # Actualizar solo si no se ha cargado previamente
+    if pestana_actual == "Me gusta" and not pestanas_cargadas["Me gusta"]:
+        actualizar_vista_me_gusta()
+        pestanas_cargadas["Me gusta"] = True
+    elif pestana_actual == "Favoritos" and not pestanas_cargadas["Favoritos"]:
+        actualizar_vista_favoritos()
+        pestanas_cargadas["Favoritos"] = True
+    elif pestana_actual == "Álbumes" and not pestanas_cargadas["Álbumes"]:
+        actualizar_vista_albumes()
+        pestanas_cargadas["Álbumes"] = True
+    elif pestana_actual == "Artistas" and not pestanas_cargadas["Artistas"]:
+        actualizar_vista_artistas()
+        pestanas_cargadas["Artistas"] = True
+    elif pestana_actual == "Listas" and not pestanas_cargadas["Listas"]:
+        # Implementar cuando sea necesario
+        pestanas_cargadas["Listas"] = True
+    # Restaurar el binding correcto dependiendo de la pestaña activa
+    if pestana_actual == "Canciones":
+        canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
+    elif pestana_actual == "Me gusta":
+        pestania_me_gusta = paginas_canciones.tab("Me gusta")
+        for componente in pestania_me_gusta.winfo_children():
+            if isinstance(componente, tk.Canvas):
+                componente.bind_all(
+                    "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
+                )
+    elif pestana_actual == "Favoritos":
+        pestania_favoritos = paginas_canciones.tab("Favoritos")
+        for componente in pestania_favoritos.winfo_children():
+            if isinstance(componente, tk.Canvas):
+                componente.bind_all(
+                    "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
+                )
+    elif pestana_actual == "Álbumes":
+        pestania_albumes = paginas_canciones.tab("Álbumes")
+        for componente in pestania_albumes.winfo_children():
+            if isinstance(componente, tk.Canvas):
+                componente.bind_all(
+                    "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
+                )
+    elif pestana_actual == "Artistas":
+        pestania_artistas = paginas_canciones.tab("Artistas")
+        for componente in pestania_artistas.winfo_children():
+            if isinstance(componente, tk.Canvas):
+                componente.bind_all(
+                    "<MouseWheel>", lambda e, canvas=componente: GestorScroll.scroll_simple(canvas, e)
+                )
+
+
+# Función para restablecer el scroll en una pestaña
+def restablecer_scroll_vista1(canvas, panel, ventana_canvas):
+    return GestorScroll.restablecer_scroll(canvas, panel, ventana_canvas)
+
+
 # Función para mostrar canciones filtradas en vista de detalle (álbum/artista)
 def mostrar_canciones_elemento_filtradas(elemento, tipo_pagina, texto_busqueda):
     global vista_detalle_activa, vista_detalle_panel, vista_detalle_canvas
@@ -1801,25 +1791,91 @@ def mostrar_canciones_elemento_filtradas(elemento, tipo_pagina, texto_busqueda):
         vista_detalle_canvas.configure(scrollregion=vista_detalle_canvas.bbox("all"))
 
 
-# Función para crear un canvas con scroll y panel de botones
-def crear_canvas_con_scroll(contenedor_padre, es_pestania=True, es_pestania_padre=None):
-    # -------------------------------- Crear canvas con scroll ----------------------------------
-    canvas = tk.Canvas(contenedor_padre, highlightthickness=0)
-    canvas.pack(fill="both", expand=True)
-    canvas.configure(bg=paginas_canciones.cget("fg_color") if es_pestania else controlador_tema.color_fondo)
-    controlador_tema.registrar_canvas(canvas, es_tabview=es_pestania, tabview_parent=es_pestania_padre)
-    # -------------------------------------------------------------------------------------------
-    # -------------------------------------- Panel botones --------------------------------------
-    # Crear panel para el contenido
-    panel_botones = ctk.CTkFrame(canvas, fg_color="transparent", corner_radius=0)
-    panel_botones.pack(fill="both")
-    controlador_tema.registrar_panel(panel_botones)
-    # -------------------------------------------------------------------------------------------
-    # Crear ventana en el canvas para el panel
-    canvas_ventana_general = canvas.create_window((0, 0), window=panel_botones)
-    # Configurar scroll
-    GestorScroll(canvas, panel_botones, canvas_ventana_general)
-    return canvas, panel_botones, canvas_ventana_general
+# Función genérica para configurar la interfaz de cualquier pestaña
+def configurar_interfaz_pestania(nombre_pestania):
+    # Obtener colores actualizados del tema
+    controlador_tema.colores()
+    # Obtener la pestaña
+    pestania = paginas_canciones.tab(nombre_pestania)
+    # Limpiar la pestaña
+    for componente in pestania.winfo_children():
+        componente.destroy()
+    # Crear canvas con scroll
+    canvas, panel_botones, _ = crear_canvas_con_scroll(pestania, True, paginas_canciones)
+    return canvas, panel_botones
+
+
+# Función para configurar la interfaz de albumes
+def configurar_interfaz_albumes():
+    return configurar_interfaz_pestania("Álbumes")
+
+
+# Función para configurar la interfaz artistas
+def configurar_interfaz_artistas():
+    return configurar_interfaz_pestania("Artistas")
+
+
+# Función para configurar la interfaz de Me_gusta
+def configurar_interfaz_me_gusta():
+    return configurar_interfaz_pestania("Me gusta")
+
+
+# Función para configurar la interfaz de Favoritos
+def configurar_interfaz_favoritos():
+    return configurar_interfaz_pestania("Favoritos")
+
+
+# Función para mostrar las canciones de un álbum
+def mostrar_canciones_album(album):
+    return mostrar_detalles_cancion("Álbumes", album, actualizar_vista_albumes)
+
+
+# Función para actualizar la vista de las canciones en la biblioteca
+def actualizar_vista_canciones(panel):
+    # Limpiar botones existentes
+    for cancion, boton in botones_canciones.items():
+        try:
+            # Eliminar el botón del controlador_tema de tema
+            nombre_boton = f"cancion_{cancion.titulo_cancion}"
+            nombre_opciones = f"opciones_{cancion.titulo_cancion}"
+            controlador_tema.eliminar_boton(nombre_boton)
+            controlador_tema.eliminar_boton(nombre_opciones)
+            # Destruir el frame contenedor (que contiene el botón)
+            if boton and boton.winfo_exists():
+                frame_padre = boton.winfo_parent()
+                if frame_padre:
+                    frame = boton.nametowidget(frame_padre)
+                    if frame and frame.winfo_exists():
+                        frame.destroy()
+        except Exception as e:
+            print(f"Error al destruir el botón {cancion.titulo_cancion}: {e}")
+            pass
+    botones_canciones.clear()
+    # Crear nuevos botones para cada canción
+    for cancion in biblioteca.canciones:
+        crear_boton_cancion(cancion, panel)
+    # Forzar actualización del layout
+    panel.update_idletasks()
+    # Asegurar que el canvas se actualice correctamente y volver al inicio
+    canvas_canciones.yview_moveto(0)
+    canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
+
+
+# Función para actualizar la vista de álbumes
+def actualizar_vista_albumes():
+    panel_botones_albumes = configurar_interfaz_albumes()[1]
+    # Obtener todos los álbumes
+    albumes = biblioteca.por_album.keys()
+    crear_boton_album(albumes, panel_botones_albumes)
+
+
+# Función para actualizar la vista de artistas
+def actualizar_vista_artistas():
+    panel_botones_artistas = configurar_interfaz_artistas()[1]
+    # Obtener todos los artistas
+    artistas = biblioteca.por_artista.keys()
+    # Usar la función auxiliar para crear botones
+    crear_boton_artista(artistas, panel_botones_artistas)
 
 
 # Función genérica para configurar vista de listas de canciones
@@ -1849,103 +1905,9 @@ def configurar_vista_lista_canciones(nombre_pestania, lista_canciones, filtro=No
     return canvas, panel_botones
 
 
-# Función genérica para configurar la interfaz de cualquier pestaña
-def configurar_interfaz_pestania(nombre_pestania):
-    # Obtener colores actualizados del tema
-    controlador_tema.colores()
-    # Obtener la pestaña
-    pestania = paginas_canciones.tab(nombre_pestania)
-    # Limpiar la pestaña
-    for componente in pestania.winfo_children():
-        componente.destroy()
-    # Crear canvas con scroll
-    canvas, panel_botones, _ = crear_canvas_con_scroll(pestania, True, paginas_canciones)
-    return canvas, panel_botones
-
-
-# Función para configurar la interfaz de albumes
-def configurar_interfaz_albumes():
-    return configurar_interfaz_pestania("Álbumes")
-
-
-# Función para actualizar la vista de álbumes
-def actualizar_vista_albumes():
-    panel_botones_albumes = configurar_interfaz_albumes()[1]
-    # Obtener todos los álbumes
-    albumes = biblioteca.por_album.keys()
-    crear_boton_album(albumes, panel_botones_albumes)
-
-
-# Función para mostrar las canciones de un álbum
-def mostrar_canciones_album(album):
-    return mostrar_detalles_cancion("Álbumes", album, actualizar_vista_albumes)
-
-
-# Función para actualizar la vista de albumes filtrados
-def mostrar_albumes_filtrados(texto_busqueda):
-    canvas_albumes, panel_botones_albumes = configurar_interfaz_albumes()
-    # Filtrar álbumes
-    albumes_filtrados = [
-        album for album in biblioteca.por_album.keys() if texto_busqueda.lower() in album.lower()
-    ]
-    crear_boton_album(albumes_filtrados, panel_botones_albumes)
-    # Forzar actualización del layout
-    panel_botones_albumes.update_idletasks()
-    # Restaurar la posición del scroll a la parte superior
-    canvas_albumes.yview_moveto(0)
-    # Actualizar la región de desplazamiento
-    canvas_albumes.configure(scrollregion=canvas_albumes.bbox("all"))
-
-
-# Función para configurar la interfaz artistas
-def configurar_interfaz_artistas():
-    return configurar_interfaz_pestania("Artistas")
-
-
-# Función para actualizar la vista de artistas
-def actualizar_vista_artistas():
-    panel_botones_artistas = configurar_interfaz_artistas()[1]
-    # Obtener todos los artistas
-    artistas = biblioteca.por_artista.keys()
-    # Usar la función auxiliar para crear botones
-    crear_boton_artista(artistas, panel_botones_artistas)
-
-
-# Función para mostrar las canciones de un artista
-def mostrar_canciones_artista(artista):
-    return mostrar_detalles_cancion("Artistas", artista, actualizar_vista_artistas)
-
-
-# Función para mostrar artistas filtrados
-def mostrar_artistas_filtrados(texto_busqueda):
-    canvas_artistas, panel_botones_artistas = configurar_interfaz_artistas()
-    # Filtrar artistas
-    artistas_filtrados = [
-        artista for artista in biblioteca.por_artista.keys() if texto_busqueda.lower() in artista.lower()
-    ]
-    # Usar la función auxiliar para crear botones
-    crear_boton_artista(artistas_filtrados, panel_botones_artistas)
-    # Forzar actualización del layout
-    panel_botones_artistas.update_idletasks()
-    # Restaurar la posición del scroll a la parte superior
-    canvas_artistas.yview_moveto(0)
-    # Actualizar la región de desplazamiento
-    canvas_artistas.configure(scrollregion=canvas_artistas.bbox("all"))
-
-
-# Función para actualizar la vista de Me_gusta
-def actualizar_vista_me_gusta():
-    configurar_vista_lista_canciones("Me gusta", biblioteca.me_gusta)
-
-
 # Función para mostrar las canciones de Me_gusta filtradas
 def mostrar_me_gusta_filtrados(texto_busqueda):
     configurar_vista_lista_canciones("Me gusta", biblioteca.me_gusta, texto_busqueda)
-
-
-# Función para actualizar la vista de favoritos
-def actualizar_vista_favoritos():
-    configurar_vista_lista_canciones("Favoritos", biblioteca.favorito)
 
 
 # Función para mostrar las canciones de favoritos filtradas
@@ -1953,30 +1915,19 @@ def mostrar_favoritos_filtrados(texto_busqueda):
     configurar_vista_lista_canciones("Favoritos", biblioteca.favorito, texto_busqueda)
 
 
-# Función para mostrar las canciones filtradas en la vista de canciones
-def mostrar_canciones_filtradas(texto_busqueda):
-    # Limpiar el panel de canciones
-    for componente in panel_botones_canciones.winfo_children():
-        componente.destroy()
-    # Obtener las canciones filtradas
-    canciones_filtradas = [
-        cancion
-        for cancion in biblioteca.canciones
-        if texto_busqueda.lower() in cancion.titulo_cancion.lower()
-        or texto_busqueda.lower() in cancion.artista.lower()
-        or texto_busqueda.lower() in cancion.album.lower()
-    ]
-    # Mostrar las canciones filtradas
-    for cancion in canciones_filtradas:
-        crear_boton_cancion(cancion, panel_botones_canciones)
-    # Forzar actualización de layout
-    panel_botones_canciones.update_idletasks()
-    # Restaurar la posición del scroll a la parte superior
-    canvas_canciones.yview_moveto(0)
-    # Actualizar la región de desplazamiento
-    canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
-    # Restablecer el scroll
-    canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
+# Función para actualizar la vista de Me_gusta
+def actualizar_vista_me_gusta():
+    configurar_vista_lista_canciones("Me gusta", biblioteca.me_gusta)
+
+
+# Función para actualizar la vista de favoritos
+def actualizar_vista_favoritos():
+    configurar_vista_lista_canciones("Favoritos", biblioteca.favorito)
+
+
+# Función para mostrar las canciones de un artista
+def mostrar_canciones_artista(artista):
+    return mostrar_detalles_cancion("Artistas", artista, actualizar_vista_artistas)
 
 
 # Función para buscar canciones según el texto introducido
@@ -2020,6 +1971,65 @@ def buscar_cancion_vista(_event=None):
         mostrar_artistas_filtrados(texto_busqueda)
     # Asegurarnos de restablecer el scroll para la pestaña actual
     actualizar_pestana_seleccionada()
+
+
+# Función para mostrar las canciones filtradas en la vista de canciones
+def mostrar_canciones_filtradas(texto_busqueda):
+    # Limpiar el panel de canciones
+    for componente in panel_botones_canciones.winfo_children():
+        componente.destroy()
+    # Obtener las canciones filtradas
+    canciones_filtradas = [
+        cancion
+        for cancion in biblioteca.canciones
+        if texto_busqueda.lower() in cancion.titulo_cancion.lower()
+        or texto_busqueda.lower() in cancion.artista.lower()
+        or texto_busqueda.lower() in cancion.album.lower()
+    ]
+    # Mostrar las canciones filtradas
+    for cancion in canciones_filtradas:
+        crear_boton_cancion(cancion, panel_botones_canciones)
+    # Forzar actualización de layout
+    panel_botones_canciones.update_idletasks()
+    # Restaurar la posición del scroll a la parte superior
+    canvas_canciones.yview_moveto(0)
+    # Actualizar la región de desplazamiento
+    canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
+    # Restablecer el scroll
+    canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
+
+
+# Función para mostrar artistas filtrados
+def mostrar_artistas_filtrados(texto_busqueda):
+    canvas_artistas, panel_botones_artistas = configurar_interfaz_artistas()
+    # Filtrar artistas
+    artistas_filtrados = [
+        artista for artista in biblioteca.por_artista.keys() if texto_busqueda.lower() in artista.lower()
+    ]
+    # Usar la función auxiliar para crear botones
+    crear_boton_artista(artistas_filtrados, panel_botones_artistas)
+    # Forzar actualización del layout
+    panel_botones_artistas.update_idletasks()
+    # Restaurar la posición del scroll a la parte superior
+    canvas_artistas.yview_moveto(0)
+    # Actualizar la región de desplazamiento
+    canvas_artistas.configure(scrollregion=canvas_artistas.bbox("all"))
+
+
+# Función para actualizar la vista de albumes filtrados
+def mostrar_albumes_filtrados(texto_busqueda):
+    canvas_albumes, panel_botones_albumes = configurar_interfaz_albumes()
+    # Filtrar álbumes
+    albumes_filtrados = [
+        album for album in biblioteca.por_album.keys() if texto_busqueda.lower() in album.lower()
+    ]
+    crear_boton_album(albumes_filtrados, panel_botones_albumes)
+    # Forzar actualización del layout
+    panel_botones_albumes.update_idletasks()
+    # Restaurar la posición del scroll a la parte superior
+    canvas_albumes.yview_moveto(0)
+    # Actualizar la región de desplazamiento
+    canvas_albumes.configure(scrollregion=canvas_albumes.bbox("all"))
 
 
 # Función para crear las barras iniciales

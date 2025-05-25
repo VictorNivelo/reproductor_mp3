@@ -1,16 +1,21 @@
 {
-    "indice_actual": 0,
+    "indice_actual": 6,
     "canciones": [
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "C:\\Users\\Victor\\Music\\M\\120.mp3",
+        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
-        "titulo": "444",
-        "artista": "Yan Block ft Panda Black",
-        "album": "444",
-        "timestamp": "2025-05-24T19:27:05.856804"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "titulo": "Animal",
+        "artista": "Eladio Carrion ft Bryant Myers",
+        "album": "Animal",
+        "timestamp": "2025-05-25T12:04:09.370865"
     }
 }

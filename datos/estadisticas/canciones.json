@@ -1,12 +1,54 @@
 {
     "estadisticas": {
-        "total_canciones": 4,
-        "total_artistas": 7,
-        "total_albumes": 4,
-        "me_gusta": 1,
-        "favorito": 1
+        "total_canciones": 9,
+        "total_artistas": 15,
+        "total_albumes": 9,
+        "me_gusta": 5,
+        "favorito": 4
     },
     "canciones": [
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "artista_album": "Tainy",
+            "album": "DATA",
+            "duracion": 197.01551020408164,
+            "duracion_formateada": "03:17",
+            "anio": "2023",
+            "numero_pista": "6",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "artista_album": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO",
+            "duracion": 151.53632653061226,
+            "duracion_formateada": "02:31",
+            "anio": "2020-11-27",
+            "numero_pista": "14",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+            "titulo": "14 De Febrero",
+            "artista": "Feid",
+            "artista_album": "Feid",
+            "album": "INTER SHIBUYA - LA MAFIA",
+            "duracion": 158.56326530612245,
+            "duracion_formateada": "02:38",
+            "anio": "2021-08-20",
+            "numero_pista": "14",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": true
+        },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
             "titulo": "444",
@@ -18,8 +60,8 @@
             "anio": "2024-04-04",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
+            "me_gusta": false,
+            "favorito": false
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
@@ -36,6 +78,34 @@
             "favorito": false
         },
         {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+            "titulo": "Adictiva",
+            "artista": "Daddy Yankee ft Anuel AA",
+            "artista_album": "Daddy Yankee",
+            "album": "Adictiva",
+            "duracion": 207.88244897959183,
+            "duracion_formateada": "03:27",
+            "anio": "2018-11-09",
+            "numero_pista": "1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "artista_album": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal",
+            "duracion": 217.78285714285715,
+            "duracion_formateada": "03:37",
+            "anio": "2019-07-05",
+            "numero_pista": "1/1",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
             "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
@@ -47,7 +117,7 @@
             "numero_pista": "9/13",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": false
+            "favorito": true
         },
         {
             "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
@@ -60,8 +130,8 @@
             "anio": "2022-05-26",
             "numero_pista": "1/1",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
+            "me_gusta": true,
+            "favorito": true
         }
     ]
 }

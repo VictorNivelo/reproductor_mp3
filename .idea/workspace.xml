@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7a9c3b1-2f39-4ff6-b624-4183a59858ca" name="Cambios" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/reproductor_mp3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/reproductor_mp3.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/estadisticas/canciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/canciones.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/listas/cola.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/cola.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/controlador_biblioteca.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/controlador_biblioteca.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/biblioteca.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/biblioteca.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/componentes/mini_reproductor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/mini_reproductor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/vista_principal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/vista_principal.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,10 +30,12 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.vista_principal.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable&quot;
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="SharedIndexes">
@@ -61,7 +59,13 @@
       <workItem from="1748048779459" duration="1336000" />
       <workItem from="1748110138295" duration="86000" />
       <workItem from="1748111238058" duration="113000" />
+      <workItem from="1748137738295" duration="957000" />
+      <workItem from="1748139480436" duration="208000" />
+      <workItem from="1748139721436" duration="26000" />
     </task>
     <servers />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/reproductor_mp3$vista_principal.coverage" NAME="Resultados de Cobertura de vista_principal" MODIFIED="1748138288543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/vista" />
   </component>
 </project>

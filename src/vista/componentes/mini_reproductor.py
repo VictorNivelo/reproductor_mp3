@@ -2,6 +2,7 @@ from vista.utiles.utiles_vista import establecer_icono_tema
 from utiles import UtilesGeneral
 import customtkinter as ctk
 from constantes import *
+import tkinter as tk
 
 
 class MiniReproductor(UtilesGeneral):
@@ -62,13 +63,15 @@ class MiniReproductor(UtilesGeneral):
 
         # ======================================= Panel principal =========================================
         # Crea el panel principal del mini reproductor
-        panel_principal_mini_reproductor = ctk.CTkFrame(
+        panel_principal_mini_reproductor = tk.Frame(
             self.ventana_principal_mini_reproductor,
-            fg_color=self.color_fondo_principal,
-            corner_radius=BORDES_REDONDEADOS_PANEL,
+            bg=self.color_fondo_principal,
         )
         # panel_principal_mini_reproductor configure(bg=self.color_fondo_principal)
         panel_principal_mini_reproductor.pack(fill="x", expand=True)
+        self.controlador_tema.registrar_panel(
+            panel_principal_mini_reproductor, es_ctk=True, es_principal=True
+        )
         self.componentes.append(panel_principal_mini_reproductor)
         # =================================================================================================
 
@@ -79,6 +82,7 @@ class MiniReproductor(UtilesGeneral):
         )
         panel_derecha_mini_reproductor.pack(side="right", padx=(0, 5), pady=5)
         panel_derecha_mini_reproductor.pack_propagate(False)
+        self.controlador_tema.registrar_panel(panel_derecha_mini_reproductor, es_ctk=True)
         self.componentes.append(panel_derecha_mini_reproductor)
         # =================================================================================================
 
@@ -101,6 +105,7 @@ class MiniReproductor(UtilesGeneral):
             text="Sin reproducción",
         )
         self.etiqueta_nombre_cancion_mini.pack()
+        self.controlador_tema.registrar_etiqueta(self.etiqueta_nombre_cancion_mini)
         self.componentes.append(self.etiqueta_nombre_cancion_mini)
         # -------------------------------------------------------------------------------------------------
 
@@ -114,6 +119,7 @@ class MiniReproductor(UtilesGeneral):
             text="",
         )
         self.etiqueta_artista_mini.pack()
+        self.controlador_tema.registrar_etiqueta(self.etiqueta_artista_mini)
         self.componentes.append(self.etiqueta_artista_mini)
         # -------------------------------------------------------------------------------------------------
 
@@ -127,6 +133,7 @@ class MiniReproductor(UtilesGeneral):
             text="",
         )
         self.etiqueta_album_mini.pack()
+        self.controlador_tema.registrar_etiqueta(self.etiqueta_album_mini)
         self.componentes.append(self.etiqueta_album_mini)
         # -------------------------------------------------------------------------------------------------
         # =================================================================================================
@@ -167,6 +174,7 @@ class MiniReproductor(UtilesGeneral):
             text="00:00",
         )
         self.etiqueta_tiempo_inicio_mini.pack(side="left")
+        self.controlador_tema.registrar_etiqueta(self.etiqueta_tiempo_inicio_mini)
         self.componentes.append(self.etiqueta_tiempo_inicio_mini)
         # -------------------------------------------------------------------------------------------------
 
@@ -180,6 +188,7 @@ class MiniReproductor(UtilesGeneral):
             text="00:00",
         )
         self.etiqueta_tiempo_final_mini.pack(side="right")
+        self.controlador_tema.registrar_etiqueta(self.etiqueta_tiempo_final_mini)
         self.componentes.append(self.etiqueta_tiempo_final_mini)
         # -------------------------------------------------------------------------------------------------
         # =================================================================================================
@@ -294,6 +303,7 @@ class MiniReproductor(UtilesGeneral):
         panel_izquierda_mini_reproductor.pack(side="left", padx=5, pady=5)
         panel_izquierda_mini_reproductor.pack_propagate(False)
         self.componentes.append(panel_izquierda_mini_reproductor)
+        self.controlador_tema.registrar_panel(panel_izquierda_mini_reproductor, es_ctk=True)
 
         # ------------------------------------- Imagen de la canción ---------------------------------------
         # Crea la imagen de la canción del mini reproductor
@@ -304,6 +314,7 @@ class MiniReproductor(UtilesGeneral):
             text="Sin carátula",
         )
         self.imagen_cancion_mini.pack(expand=True)
+        self.controlador_tema.registrar_etiqueta(self.imagen_cancion_mini)
         self.componentes.append(self.imagen_cancion_mini)
         # -------------------------------------------------------------------------------------------------
         # =================================================================================================
@@ -469,7 +480,6 @@ class MiniReproductor(UtilesGeneral):
                 establecer_icono_tema(
                     self.ventana_principal_mini_reproductor, self.controlador_tema.tema_interfaz
                 )
-                self.actualizar_colores()
             except Exception as e:
                 print(f"Error al mostrar la ventana del mini reproductor: {e}")
                 # Si hay un error al actualizar, recrear la ventana
@@ -615,27 +625,3 @@ class MiniReproductor(UtilesGeneral):
                 self.ventana_principal_mini_reproductor.geometry(f"+{x}+{y}")
         else:
             print(f"Posición no válida: {nueva_posicion}. Las posiciones válidas son: {posiciones_validas}")
-
-    # Método para actualizar los colores de los componentes del mini reproductor
-    def actualizar_colores(self):
-        self.colores()
-        # Actualizar colores de los componentes
-        for componente in self.componentes:
-            try:
-                if isinstance(componente, ctk.CTkFrame):
-                    if componente.winfo_parent() == str(self.ventana_principal_mini_reproductor):
-                        componente.configure(fg_color=self.color_fondo_principal)
-                    else:
-                        componente.configure(fg_color=self.color_fondo)
-                elif isinstance(componente, ctk.CTkLabel):
-                    componente.configure(fg_color=self.color_fondo, text_color=self.color_texto)
-                elif isinstance(componente, ctk.CTkButton):
-                    componente.configure(
-                        fg_color=self.color_boton,
-                        hover_color=self.color_hover,
-                        text_color=self.color_texto,
-                    )
-                elif isinstance(componente, ctk.CTkProgressBar):
-                    componente.configure(progress_color=self.color_barra_progreso)
-            except Exception as e:
-                print(f"Error al actualizar los colores del mini reproductor: {e}")

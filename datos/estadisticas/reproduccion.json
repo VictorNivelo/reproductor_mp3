@@ -1,86 +1,60 @@
 {
     "artistas": {
-        "Sech": 2,
-        "E.VAX": 2,
-        "Tainy": 2,
-        "Eladio Carrion": 3,
-        "Bryant Myers": 3,
-        "Coi Leray": 3,
-        "Metro Boomin": 3,
-        "Daddy Yankee": 3,
-        "Anuel AA": 5,
-        "Feid": 2,
-        "Bad Bunny": 2
+        "Sech": 1,
+        "Tainy": 1,
+        "E.VAX": 1,
+        "Yan Block": 1,
+        "Panda Black": 1,
+        "Ñengo Flow": 2,
+        "Sinfonico": 2,
+        "Anuel AA": 3,
+        "Daddy Yankee": 1
     },
     "albumes": {
-        "DATA": 2,
-        "Animal": 3,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 3,
-        "Adictiva": 3,
-        "INTER SHIBUYA - LA MAFIA": 2,
-        "EL ÚLTIMO TOUR DEL MUNDO": 2,
-        "¿Qué Nos Pasó?": 2
+        "DATA": 1,
+        "444": 1,
+        "47 (Remix)": 2,
+        "Adictiva": 1
     },
-    "tiempo_total": 3351.353469387756,
-    "canciones_escuchadas": 17,
+    "tiempo_total": 1615.9085714285716,
+    "canciones_escuchadas": 5,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "titulo": "Adictiva",
-        "artista": "Daddy Yankee ft Anuel AA",
-        "album": "Adictiva",
-        "timestamp": "2025-05-25T17:20:35.818476"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "titulo": "47 (Remix)",
+        "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+        "album": "47 (Remix)",
+        "timestamp": "2025-05-25T19:19:27.640609"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 2,
+            "contador": 1,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
         },
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
-            "contador": 3,
-            "titulo": "Animal",
-            "artista": "Eladio Carrion ft Bryant Myers",
-            "album": "Animal"
+        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
+            "contador": 1,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
         },
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 3,
-            "titulo": "Self Love",
-            "artista": "Metro Boomin ft Coi Leray",
-            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
+        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
+            "contador": 2,
+            "titulo": "47 (Remix)",
+            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+            "album": "47 (Remix)"
         },
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 3,
+            "contador": 1,
             "titulo": "Adictiva",
             "artista": "Daddy Yankee ft Anuel AA",
             "album": "Adictiva"
-        },
-        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
-            "contador": 2,
-            "titulo": "14 De Febrero",
-            "artista": "Feid",
-            "album": "INTER SHIBUYA - LA MAFIA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 2,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
-            "contador": 2,
-            "titulo": "¿Qué Nos Pasó?",
-            "artista": "Anuel AA",
-            "album": "¿Qué Nos Pasó?"
         }
     },
     "artistas_originales": {
-        "Tainy ft Sech, E.VAX": 2,
-        "Eladio Carrion ft Bryant Myers": 3,
-        "Metro Boomin ft Coi Leray": 3,
-        "Daddy Yankee ft Anuel AA": 3,
-        "Feid": 2,
-        "Bad Bunny": 2,
-        "Anuel AA": 2
+        "Tainy ft Sech, E.VAX": 1,
+        "Yan Block ft Panda Black": 1,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 2,
+        "Daddy Yankee ft Anuel AA": 1
     }
 }

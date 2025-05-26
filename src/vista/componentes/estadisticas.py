@@ -25,6 +25,7 @@ class Estadisticas(UtilesGeneral):
 
     # Función para crear la ventana de estadísticas
     def crear_ventana_estadisticas(self):
+        # Configurar colores
         self.colores()
         # ======================================= Ventana principal =======================================
         # Crear el panel principal de la ventana de estadísticas

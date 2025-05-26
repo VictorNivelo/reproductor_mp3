@@ -3,6 +3,9 @@ from constantes import *
 
 
 class ToolTip:
+    # Variable para almacenar el tooltip activo
+    tooltip_activo = None
+
     def __init__(self, componente, texto_componente):
         self.componente = componente
         self.texto = texto_componente
@@ -35,8 +38,21 @@ class ToolTip:
             self.tooltip.update_idletasks()
             self.actualizar_posicion_tooltip()
 
+    # Método estático para ocultar cualquier tooltip activo
+    @staticmethod
+    def ocultar_tooltip_activo():
+        if ToolTip.tooltip_activo and ToolTip.tooltip_activo.tooltip:
+            try:
+                if ToolTip.tooltip_activo.tooltip.winfo_exists():
+                    ToolTip.tooltip_activo.ocultar_tooltip_forzado()
+            except Exception as e:
+                print(f"Error al ocultar tooltip activo: {e}")
+                ToolTip.tooltip_activo = None
+
     # Método para iniciar el temporizador
     def iniciar_temporizador(self, _event=None):
+        # Ocultar cualquier tooltip activo antes de mostrar este
+        ToolTip.ocultar_tooltip_activo()
         self.cancelar_temporizador()
         self.id_temporizador = self.componente.after(1000, self.mostrar_tooltip)
 
@@ -51,7 +67,13 @@ class ToolTip:
 
     # Método para mostrar el tooltip
     def mostrar_tooltip(self, _event=None):
+        # Asegurarse de que no hay otro tooltip activo
+        ToolTip.ocultar_tooltip_activo()
+        
         if not self.tooltip or not self.tooltip.winfo_exists():
+            # Establecer este tooltip como el activo
+            ToolTip.tooltip_activo = self
+            
             # Obtener el modo de apariencia actual
             modo_apariencia = ctk.get_appearance_mode().lower()
             # Definir colores según el modo de apariencia
@@ -176,6 +198,9 @@ class ToolTip:
                 self.tooltip.destroy()
                 self.tooltip = None
                 self.temporizador_animacion = None
+                # Limpiar la referencia al tooltip activo si es este
+                if ToolTip.tooltip_activo == self:
+                    ToolTip.tooltip_activo = None
 
     # Método para ocultar el tooltip
     def ocultar_tooltip(self, _event=None):
@@ -191,6 +216,11 @@ class ToolTip:
             try:
                 self.tooltip.destroy()
                 self.tooltip = None
+                # Limpiar la referencia al tooltip activo si es este
+                if ToolTip.tooltip_activo == self:
+                    ToolTip.tooltip_activo = None
             except Exception as e:
                 print(f"Error al ocultar el tooltip forzado: {e}")
-                pass
+                # Asegurar que se limpia la referencia
+                if ToolTip.tooltip_activo == self:
+                    ToolTip.tooltip_activo = None

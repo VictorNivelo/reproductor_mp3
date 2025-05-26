@@ -41,11 +41,27 @@ class ControladorTema(UtilesGeneral):
             if nombre_icono in self.iconos and self.iconos[nombre_icono]:
                 boton.configure(image=self.iconos[nombre_icono], compound="left")
 
+    # Registrar botones
+    def registrar_botones(self, nombre, boton, tamanio=None):
+        self.botones[nombre] = boton
+
+        if tamanio:
+            # Cargar icono con tamaño personalizado
+            nombre_icono = nombre.replace("_mini", "")
+            icono = cargar_icono_con_tamanio(nombre_icono, self.tema_iconos, tamanio)
+            if icono:
+                boton.configure(image=icono, compound="left")
+                # Guardar referencia para evitar el recolector de basura
+                boton._icono_personalizado = icono
+        else:
+            # Usar el método estándar para mostrar iconos con tamaño predeterminado
+            self.mostrar_icono_boton(nombre)
+
     # Eliminar botones del diccionario
     def eliminar_boton(self, nombre):
         if nombre in self.botones:
             try:
-                # Eliminar la referencia al botón sin intentar acceder a él
+                # Eliminar la referencia del botón del diccionario
                 del self.botones[nombre]
                 return True
             except Exception as e:
@@ -53,25 +69,6 @@ class ControladorTema(UtilesGeneral):
                 return False
         else:
             return False
-
-    # Registrar botones
-    def registrar_botones(self, nombre, boton):
-        self.botones[nombre] = boton
-        self.mostrar_icono_boton(nombre)
-
-    # Registrar botones con iconos de tamaño personalizado
-    def registrar_botones_con_tamanio(self, nombre, boton, tamanio=None):
-        self.botones[nombre] = boton
-        if tamanio:
-            # Cargar icono con tamaño personalizado
-            icono = cargar_icono_con_tamanio(nombre, self.tema_iconos, tamanio)
-            if icono:
-                boton.configure(image=icono)
-                # Guardar referencia para evitar el recolector de basura
-                boton._icono_personalizado = icono
-        else:
-            # Usar el método estándar para mostrar iconos
-            self.mostrar_icono_boton(nombre)
 
     # Registrar paneles
     def registrar_panel(self, panel, es_ctk=False, es_principal=False):
@@ -108,6 +105,26 @@ class ControladorTema(UtilesGeneral):
     # Registrar canvas
     def registrar_canvas(self, canvas, es_tabview=False, tabview_parent=None):
         self.canvas.append((canvas, es_tabview, tabview_parent))
+
+    # Actualizar colores de los botones
+    def actualizar_colores_botones(self):
+        botones_a_eliminar = []
+        for nombre, boton in self.botones.items():
+            try:
+                if boton.winfo_exists():
+                    boton.configure(
+                        fg_color=self.color_boton,
+                        hover_color=self.color_hover,
+                        text_color=self.color_texto,
+                    )
+                else:
+                    botones_a_eliminar.append(nombre)
+            except Exception as e:
+                print(f"Error al configurar el botón {nombre}: {e}")
+                botones_a_eliminar.append(nombre)
+        # Eliminar los botones que ya no existen
+        for nombre in botones_a_eliminar:
+            self.eliminar_boton(nombre)
 
     # Actualizar colores de los paneles
     def actualizar_colores_paneles(self):
@@ -160,25 +177,6 @@ class ControladorTema(UtilesGeneral):
                 )
             except Exception as e:
                 print(f"Error al configurar el combobox: {e}")
-
-    # Actualizar colores de los botones
-    def actualizar_colores_botones(self):
-        botones_a_eliminar = []
-        for nombre, boton in self.botones.items():
-            try:
-                if boton.winfo_exists():
-                    boton.configure(
-                        fg_color=self.color_boton, text_color=self.color_texto, hover_color=self.color_hover
-                    )
-                else:
-                    botones_a_eliminar.append(nombre)
-            except Exception as e:
-                print(f"Error al configurar el botón {nombre}: {e}")
-                botones_a_eliminar.append(nombre)
-        # Eliminar los botones que ya no existen
-        for nombre in botones_a_eliminar:
-            if nombre in self.botones:
-                del self.botones[nombre]
 
     # Actualizar colores de los sliders
     def actualizar_colores_sliders(self):

@@ -61,15 +61,14 @@ class ColaReproduccion(UtilesGeneral):
                     # Determinar el icono según el estado de reproducción
                     icono_nombre = "pausa" if self.controlador_reproductor.reproduciendo else "reproducir"
                     icono_reproduccion = cargar_icono_con_tamanio(
-                        icono_nombre, self.controlador_tema.tema_iconos, (20, 20)
+                        icono_nombre, self.controlador_tema.tema_iconos, (18, 18)
                     )
                     # Actualizar el icono del botón
                     componente.configure(image=icono_reproduccion)
-                    # Actualizar el tooltip
-                    crear_tooltip(
-                        componente,
-                        "Pausar" if self.controlador_reproductor.reproduciendo else "Reproducir",
-                    )
+                    # Actualizar el tooltip con el texto correcto
+                    from vista.utiles.utiles_vista import actualizar_texto_tooltip
+                    texto_tooltip = "Pausar" if self.controlador_reproductor.reproduciendo else "Reproducir"
+                    actualizar_texto_tooltip(componente, texto_tooltip)
                     # Guardar referencia al icono para evitar que sea recolectado
                     componente.image = icono_reproduccion
                     break
@@ -250,8 +249,6 @@ class ColaReproduccion(UtilesGeneral):
             )
             boton_limpiar_cola.pack(side="right")
             self.componentes.append(boton_limpiar_cola)
-            # self.controlador_tema.registrar_botones_con_tamanio("limpiar", boton_limpiar_cola, (15, 15))
-            # self.controlador_tema.registrar_botones("limpiar", boton_limpiar_cola)
         # ------------------------------------------------------------------------------------------------
 
         # ---------------------------------------- Canvas cola -------------------------------------------
@@ -431,10 +428,9 @@ class ColaReproduccion(UtilesGeneral):
             )
             boton_reproducir_pausar.pack()
             self.componentes.append(boton_reproducir_pausar)
-            crear_tooltip(
-                boton_reproducir_pausar,
-                "Reproducir" if not self.controlador_reproductor.reproduciendo else "Pausar",
-            )
+            texto_tooltip_inicial = "Pausar" if self.controlador_reproductor.reproduciendo else "Reproducir"
+            crear_tooltip(boton_reproducir_pausar, texto_tooltip_inicial)
+
 
             # -------------------------------------------------------------------------------------------------
 
@@ -692,7 +688,6 @@ class ColaReproduccion(UtilesGeneral):
             )
             boton_quitar.pack(side="right", padx=(0, 3))
             self.componentes.append(boton_quitar)
-            # self.controlador_tema.registrar_botones_con_tamanio("quitar", boton_quitar, (15, 15))
             # -------------------------------------------------------------------------------------------------
 
             # Añadir efecto hover al panel de canción

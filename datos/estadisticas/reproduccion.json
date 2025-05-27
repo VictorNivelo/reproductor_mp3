@@ -1,60 +1,8 @@
 {
-    "artistas": {
-        "Sech": 1,
-        "Tainy": 1,
-        "E.VAX": 1,
-        "Yan Block": 1,
-        "Panda Black": 1,
-        "Ñengo Flow": 2,
-        "Sinfonico": 2,
-        "Anuel AA": 3,
-        "Daddy Yankee": 1
-    },
-    "albumes": {
-        "DATA": 1,
-        "444": 1,
-        "47 (Remix)": 2,
-        "Adictiva": 1
-    },
-    "tiempo_total": 1615.9085714285716,
-    "canciones_escuchadas": 5,
-    "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
-        "titulo": "47 (Remix)",
-        "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
-        "album": "47 (Remix)",
-        "timestamp": "2025-05-25T19:19:27.640609"
-    },
-    "canciones": {
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 1,
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "album": "DATA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
-            "contador": 1,
-            "titulo": "444",
-            "artista": "Yan Block ft Panda Black",
-            "album": "444"
-        },
-        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 2,
-            "titulo": "47 (Remix)",
-            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
-            "album": "47 (Remix)"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 1,
-            "titulo": "Adictiva",
-            "artista": "Daddy Yankee ft Anuel AA",
-            "album": "Adictiva"
-        }
-    },
-    "artistas_originales": {
-        "Tainy ft Sech, E.VAX": 1,
-        "Yan Block ft Panda Black": 1,
-        "Anuel AA ft Sinfonico, Ñengo Flow": 2,
-        "Daddy Yankee ft Anuel AA": 1
-    }
+    "artistas": {},
+    "albumes": {},
+    "tiempo_total": 0.0,
+    "canciones_escuchadas": 0,
+    "ultima_cancion": null,
+    "canciones": {}
 }

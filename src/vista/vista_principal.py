@@ -923,7 +923,7 @@ def cargar_biblioteca_vista():
         # Cargar ajustes primero para tener el tema correcto
         cargar_todos_ajustes()
         # Reinicializar la estructura de artistas para separar colaboraciones
-        biblioteca.reinicializar_artistas_biblioteca()
+        biblioteca.reconstruir_indice_artistas_biblioteca()
         # Actualizar vista principal de canciones
         actualizar_vista_canciones(panel_botones_canciones)
         # Configurar eventos para las pestañas (solo cargar cuando se seleccionan)

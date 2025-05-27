@@ -22,6 +22,7 @@ class Cancion:
         duracion: float = 0.0,
         anio: str = "Desconocido",
         numero_pista: str = "0",
+        genero: str = "Desconocido",
         caratula: bytes = None,
     ):
         self.ruta_cancion = ruta
@@ -32,9 +33,11 @@ class Cancion:
         self.duracion = duracion
         self.anio = anio
         self.numero_pista = numero_pista
-        self.caratula_cancion = caratula
+        self.genero = genero
+        self.fecha_agregado = datetime.now()
         self.me_gusta = False
         self.favorito = False
+        self.caratula_cancion = caratula
 
     # Convertir a cadena para mostrar en la consola
     def __str__(self):
@@ -43,6 +46,77 @@ class Cancion:
     # Convertir en cadena un objeto Cancion
     def __repr__(self):
         return self.__str__()
+
+    # Método que devuelve la ruta del archivo de la canción
+    @property
+    def ruta_archivo(self) -> str:
+        return str(self.ruta_cancion)
+
+    # Método que devuelve la ruta del archivo de la canción como objeto Path
+    @property
+    def ruta_path(self) -> Path:
+        return self.ruta_cancion
+
+    # Propiedad que devuelve el tamaño del archivo en bytes
+    @property
+    def tamano_archivo(self) -> int:
+        try:
+            if self.ruta_cancion.exists():
+                return self.ruta_cancion.stat().st_size
+            return 0
+        except Exception as e:
+            print(f"Error al obtener tamaño: {e}")
+            return 0
+
+    # Propiedad que devuelve el tamaño formateado (KB, MB, GB)
+    @property
+    def tamano_formateado(self) -> str:
+        try:
+            tamano = self.tamano_archivo
+            if tamano == 0:
+                return "0 B"
+            unidades = ["B", "KB", "MB", "GB"]
+            i = 0
+            while tamano >= 1024 and i < len(unidades) - 1:
+                tamano /= 1024.0
+                i += 1
+            return f"{tamano:.1f} {unidades[i]}"
+        except Exception as e:
+            print(f"Error al formatear tamaño: {e}")
+            return "Desconocido"
+
+    # Propiedad que devuelve la fecha de creación del archivo
+    @property
+    def fecha_creacion_archivo(self) -> datetime:
+        try:
+            if self.ruta_cancion.exists():
+                timestamp = self.ruta_cancion.stat().st_ctime
+                return datetime.fromtimestamp(timestamp)
+            return None
+        except Exception as e:
+            print(f"Error al obtener fecha de creación: {e}")
+            return None
+
+    # Propiedad que devuelve la fecha de creación formateada
+    @property
+    def fecha_creacion_formateada(self) -> str:
+        try:
+            fecha = self.fecha_creacion_archivo
+            if fecha:
+                return fecha.strftime("%d/%m/%Y %H:%M:%S")
+            return "Desconocido"
+        except Exception as e:
+            print(f"Error al formatear fecha de creación: {e}")
+            return "Desconocido"
+
+    # Propiedad que devuelve la fecha cuando se agregó a la biblioteca
+    @property
+    def fecha_agregado_formateada(self) -> str:
+        try:
+            return self.fecha_agregado.strftime("%d/%m/%Y %H:%M:%S")
+        except Exception as e:
+            print(f"Error al formatear fecha de agregado: {e}")
+            return "Desconocido"
 
     # Propiedad que devuelve la duración de la canción en formato MM:SS
     @property
@@ -163,14 +237,15 @@ class Cancion:
     @staticmethod
     def obtener_informacion_base_cancion(ruta_archivo: Path) -> dict:
         return {
+            "duracion": 0.0,
             "titulo": ruta_archivo.stem,
             "artista": "Desconocido",
             "artista_album": "Desconocido",
             "album": "Desconocido",
             "anio": "Desconocido",
             "numero_pista": "0",
+            "genero": "Desconocido",
             "caratula": None,
-            "duracion": 0.0,
         }
 
     # Método que obtiene la información de un archivo MP3
@@ -179,13 +254,14 @@ class Cancion:
         tags = ID3(ruta_archivo)
         audio = MP3(ruta_archivo)
         info = {
+            "duracion": audio.info.length,
             "titulo": str(tags.get("TIT2", ruta_archivo.stem)),
             "artista": str(tags.get("TPE1", "Desconocido")),
             "artista_album": str(tags.get("TPE2", "Desconocido")),
             "album": str(tags.get("TALB", "Desconocido")),
             "anio": str(tags.get("TDRC", "Desconocido")),
             "numero_pista": str(tags.get("TRCK", "0")),
-            "duracion": audio.info.length,
+            "genero": str(tags.get("TCON", "Desconocido")),
             "caratula": tags["APIC:"].data if "APIC:" in tags else None,
         }
         return info
@@ -194,13 +270,14 @@ class Cancion:
     @staticmethod
     def obtener_informacion_flac(audio: FLAC) -> dict:
         info = {
+            "duracion": audio.info.length,
             "titulo": str(audio.get("title", [""])[0] or audio.filename),
             "artista": str(audio.get("artist", ["Desconocido"])[0]),
             "artista_album": str(audio.get("albumartist", ["Desconocido"])[0]),
             "album": str(audio.get("album", ["Desconocido"])[0]),
             "anio": str(audio.get("date", ["Desconocido"])[0]),
             "numero_pista": str(audio.get("tracknumber", ["0"])[0]),
-            "duracion": audio.info.length,
+            "genero": str(audio.get("genre", ["Desconocido"])[0]),
             "caratula": audio.pictures[0].data if audio.pictures else None,
         }
         return info
@@ -209,13 +286,14 @@ class Cancion:
     @staticmethod
     def obtener_informacion_mp4(audio: MP4) -> dict:
         info = {
+            "duracion": audio.info.length,
             "titulo": str(audio.get("\xa9nam", [""])[0] or audio.filename),
             "artista": str(audio.get("\xa9ART", ["Desconocido"])[0]),
             "artista_album": str(audio.get("aART", ["Desconocido"])[0]),
             "album": str(audio.get("\xa9alb", ["Desconocido"])[0]),
             "anio": str(audio.get("\xa9day", ["Desconocido"])[0]),
             "numero_pista": str(audio.get("trkn", [[0, 0]])[0][0]),
-            "duracion": audio.info.length,
+            "genero": str(audio.get("\xa9gen", ["Desconocido"])[0]),
             "caratula": audio["covr"][0] if "covr" in audio else None,
         }
         return info
@@ -223,15 +301,20 @@ class Cancion:
     # Método que convierte la canción a un diccionario
     def convertir_diccionario_cancion(self) -> dict:
         return {
+            "duracion": self.duracion,
+            "duracion_formateada": self.duracion_formateada,
             "ruta": str(self.ruta_cancion),
             "titulo": self.titulo_cancion,
             "artista": self.artista,
             "artista_album": self.artista_album,
             "album": self.album,
-            "duracion": self.duracion,
-            "duracion_formateada": self.duracion_formateada,
             "anio": self.anio,
             "numero_pista": self.numero_pista,
+            "genero": self.genero,
+            "tamano_archivo": self.tamano_archivo,
+            "tamano_formateado": self.tamano_formateado,
+            "fecha_creacion": self.fecha_creacion_formateada,
+            "fecha_agregado": self.fecha_agregado_formateada,
             "tiene_caratula": self.caratula_cancion is not None,
             "me_gusta": self.me_gusta,
             "favorito": self.favorito,
@@ -239,15 +322,19 @@ class Cancion:
 
 
 # # Ejemplo de uso
-# cancion = Cancion.cargar_cancion(Path("C:/Users/Victor/Music/pm/530.mp3"))
+# cancion = Cancion.cargar_cancion(Path("C:/Users/Victor/Music/M/DÁKITI.mp3"))
 # print(f"Título: {cancion.titulo_cancion}")
 # print(f"Artista: {cancion.artista}")
 # print(f"Artista del Álbum: {cancion.artista_album}")
 # print(f"Álbum: {cancion.album}")
+# print(f"Género: {cancion.genero}")
 # print(f"Año: {cancion.fecha_formateada_anio}")
 # print(f"Lanzamiento: {cancion.anio}")
 # print(f"Fecha formateada: {cancion.fecha_formateada}")
 # print(f"Número de pista: {cancion.numero_pista}")
 # print(f"Duración: {cancion.duracion} segundos")
 # print(f"Duración formateada: {cancion.duracion_formateada}")
-# print(f"Tiene carátula: {cancion.caratula_cancion is not None}"()
+# print(f"Tiene carátula: {cancion.caratula_cancion is not None}")
+# print(f"Tamaño del archivo: {cancion.tamano_formateado}")
+# print(f"Fecha de creación: {cancion.fecha_creacion_formateada}")
+# print(f"Fecha de agregado: {cancion.fecha_agregado_formateada}")

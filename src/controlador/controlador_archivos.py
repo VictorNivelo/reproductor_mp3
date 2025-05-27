@@ -191,7 +191,7 @@ class ControladorArchivos:
             except Exception as e:
                 print(f"Error al cargar canción: {str(e)}")
         # Ordenar todas las colecciones después de cargar
-        biblioteca.ordenar_canciones_biblioteca()
+        biblioteca.organizar_canciones_biblioteca()
         return canciones_cargadas
 
     # Cargar la cola de reproducción desde un archivo JSON

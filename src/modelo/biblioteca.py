@@ -80,8 +80,8 @@ class Biblioteca:
             if cancion.album not in self.por_album:
                 self.por_album[cancion.album] = []
             self.por_album[cancion.album].append(cancion)
-            # Ordenar canciones por título después de agregar
-            self.ordenar_canciones_biblioteca()
+            # Organizar las canciones en la biblioteca
+            self.organizar_canciones_biblioteca()
             return cancion
         except Exception as e:
             print(f"Error al procesar la canción {ruta.name}: {str(e)}")
@@ -154,11 +154,27 @@ class Biblioteca:
         if nombre_artista not in self.por_artista:
             return False
         try:
-            # Obtener todas las canciones del artista
+            # Obtener todas las canciones donde aparece el artista
             canciones_artista = self.por_artista[nombre_artista].copy()
-            # Eliminar cada canción del artista
+            canciones_a_eliminar = []
+            # Verificar para cada canción si el artista es el único o uno de varios
             for cancion in canciones_artista:
+                artistas_cancion = self.separar_artistas_biblioteca(cancion.artista)
+                if len(artistas_cancion) == 1:
+                    # Si es el único artista, eliminar la canción completamente
+                    canciones_a_eliminar.append(cancion)
+                else:
+                    # Si hay múltiples artistas, solo remover este artista de la canción
+                    artistas_actualizados = [
+                        art for art in artistas_cancion if art.lower() != nombre_artista.lower()
+                    ]
+                    cancion.artista = ", ".join(artistas_actualizados)
+            # Eliminar las canciones donde era el único artista
+            for cancion in canciones_a_eliminar:
                 self.eliminar_cancion_biblioteca(cancion)
+            # Reconstruir el índice de artistas para reflejar los cambios
+            if canciones_artista and not canciones_a_eliminar:
+                self.reconstruir_indice_artistas_biblioteca()
             return True
         except Exception as e:
             print(f"Error al eliminar artista: {e}")
@@ -208,6 +224,38 @@ class Biblioteca:
                     if caratula and caratula not in caratulas:
                         caratulas.append(caratula)
         return caratulas
+
+    # Método para obtener todos los álbumes de un artista
+    def obtener_albumes_artista_biblioteca(self, nombre_artista: str) -> List[str]:
+        if nombre_artista not in self.por_artista:
+            return []
+        # Obtener álbumes únicos del artista
+        albumes = set()
+        for cancion in self.por_artista[nombre_artista]:
+            albumes.add(cancion.album)
+        return sorted(list(albumes))
+
+    # Método para obtener el artista principal de un álbum
+    def obtener_artista_album_biblioteca(self, nombre_album: str) -> str:
+        if nombre_album not in self.por_album:
+            raise ValueError("El álbum no existe en la biblioteca")
+        canciones_album = self.por_album[nombre_album]
+        # Contar la frecuencia de cada artista en el álbum
+        conteo_artistas = {}
+        for cancion in canciones_album:
+            # Separar múltiples artistas para contar cada uno
+            artistas = self.separar_artistas_biblioteca(cancion.artista)
+            for artista in artistas:
+                if artista in conteo_artistas:
+                    conteo_artistas[artista] += 1
+                else:
+                    conteo_artistas[artista] = 1
+        # Si no hay artistas (caso extraño), devolver el artista de la primera canción
+        if not conteo_artistas:
+            return canciones_album[0].artista
+        # Encontrar el artista con más canciones en el álbum
+        artista_principal = max(conteo_artistas, key=conteo_artistas.get)
+        return artista_principal
 
     # Método para agregar una canción a la lista de "me gusta"
     def agregar_cancion_me_gusta_biblioteca(self, cancion: Cancion):
@@ -269,38 +317,6 @@ class Biblioteca:
                 if cancion not in self.favorito:
                     self.favorito.append(cancion)
 
-    # Método para obtener todos los álbumes de un artista
-    def obtener_albumes_artista_biblioteca(self, nombre_artista: str) -> List[str]:
-        if nombre_artista not in self.por_artista:
-            return []
-        # Obtener álbumes únicos del artista
-        albumes = set()
-        for cancion in self.por_artista[nombre_artista]:
-            albumes.add(cancion.album)
-        return sorted(list(albumes))
-
-    # Método para obtener el artista principal de un álbum
-    def obtener_artista_album_biblioteca(self, nombre_album: str) -> str:
-        if nombre_album not in self.por_album:
-            raise ValueError("El álbum no existe en la biblioteca")
-        canciones_album = self.por_album[nombre_album]
-        # Contar la frecuencia de cada artista en el álbum
-        conteo_artistas = {}
-        for cancion in canciones_album:
-            # Separar múltiples artistas para contar cada uno
-            artistas = self.separar_artistas_biblioteca(cancion.artista)
-            for artista in artistas:
-                if artista in conteo_artistas:
-                    conteo_artistas[artista] += 1
-                else:
-                    conteo_artistas[artista] = 1
-        # Si no hay artistas (caso extraño), devolver el artista de la primera canción
-        if not conteo_artistas:
-            return canciones_album[0].artista
-        # Encontrar el artista con más canciones en el álbum
-        artista_principal = max(conteo_artistas, key=conteo_artistas.get)
-        return artista_principal
-
     # Método para obtener una lista de canciones por titulo, artista o álbum
     def buscar_biblioteca(self, texto: str) -> List[Cancion]:
         texto = texto.lower()
@@ -360,8 +376,8 @@ class Biblioteca:
         # Eliminar duplicados y devolver lista limpia
         return list(set(artistas))
 
-    # Método para reconstruir la organización de artistas
-    def reinicializar_artistas_biblioteca(self):
+    # Método para reconstruir el índice de artistas
+    def reconstruir_indice_artistas_biblioteca(self):
         # Guardar todas las canciones actuales
         canciones_actuales = self.canciones.copy()
         # Limpiar la estructura de artistas
@@ -377,8 +393,22 @@ class Biblioteca:
                 self.por_artista[artista].append(cancion)
         return True
 
+    # Método para reconstruir el índice de álbumes
+    def reconstruir_indice_albumes_biblioteca(self):
+        # Guardar todas las canciones actuales
+        canciones_actuales = self.canciones.copy()
+        # Limpiar la estructura de álbumes
+        self.por_album.clear()
+        # Volver a procesar cada canción para actualizar la estructura de álbumes
+        for cancion in canciones_actuales:
+            # Agregar a la colección de álbumes actualizada
+            if cancion.album not in self.por_album:
+                self.por_album[cancion.album] = []
+            self.por_album[cancion.album].append(cancion)
+        return True
+
     # Método para ordenar las colecciones de canciones
-    def ordenar_canciones_biblioteca(self):
+    def organizar_canciones_biblioteca(self):
         # Ordenar la lista principal de canciones
         self.canciones.sort(key=lambda x: x.titulo_cancion.lower())
         # Ordenar las listas por artistas

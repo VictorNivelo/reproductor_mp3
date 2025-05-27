@@ -628,6 +628,41 @@ def agregar_me_gusta_vista(cancion=None):
     guardar_biblioteca()
 
 
+# Función para agregar/quitar álbum completo de Me gusta
+def agregar_album_me_gusta_vista(album):
+    try:
+        # Obtener todas las canciones del álbum
+        canciones_album = controlador_biblioteca.obtener_canciones_album_controlador(album)
+        if not canciones_album:
+            print(f"No se encontraron canciones en el álbum: {album}")
+            return False
+        # Verificar el estado actual del álbum
+        album_totalmente_en_me_gusta = all(c.me_gusta for c in canciones_album)
+        if album_totalmente_en_me_gusta:
+            # Si todas las canciones están en "Me gusta", quitarlas
+            for cancion in canciones_album:
+                if cancion.me_gusta:
+                    controlador_biblioteca.agregar_cancion_me_gusta_controlador(cancion)
+            print(f"Álbum quitado de Me gusta: {album}")
+        else:
+            # Si no todas están en "Me gusta", agregarlas todas
+            for cancion in canciones_album:
+                if not cancion.me_gusta:
+                    controlador_biblioteca.agregar_cancion_me_gusta_controlador(cancion)
+            print(f"Álbum agregado a Me gusta: {album}")
+        # Guardar cambios
+        guardar_biblioteca()
+        # Actualizar las vistas si es necesario
+        actualizar_vista_me_gusta()
+        # Si estamos en vista de detalle del álbum, actualizar
+        if vista_detalle_activa and vista_detalle_tipo == "album" and vista_detalle_elemento == album:
+            mostrar_canciones_elemento_filtradas(album, "Álbumes", "")
+        return True
+    except Exception as e:
+        print(f"Error al agregar álbum a Me gusta: {e}")
+        return False
+
+
 # Función centralizada para actualizar el estado de "Favorito" en todas las interfaces
 def actualizar_estado_favorito_vista(cancion=None):
     global FAVORITO
@@ -653,6 +688,41 @@ def actualizar_estado_favorito_vista(cancion=None):
         controlador_tema.registrar_botones("favorito", boton_favorito)
         actualizar_texto_tooltip(boton_favorito, "Agregar a favorito")
     return FAVORITO
+
+
+# Función para agregar/quitar álbum completo de Favoritos
+def agregar_album_favorito_vista(album):
+    try:
+        # Obtener todas las canciones del álbum
+        canciones_album = controlador_biblioteca.obtener_canciones_album_controlador(album)
+        if not canciones_album:
+            print(f"No se encontraron canciones en el álbum: {album}")
+            return False
+        # Verificar el estado actual del álbum
+        album_totalmente_en_favoritos = all(c.favorito for c in canciones_album)
+        if album_totalmente_en_favoritos:
+            # Si todas las canciones están en "Favoritos", quitarlas
+            for cancion in canciones_album:
+                if cancion.favorito:
+                    controlador_biblioteca.agregar_cancion_favorito_controlador(cancion)
+            print(f"Álbum quitado de Favoritos: {album}")
+        else:
+            # Si no todas están en "Favoritos", agregarlas todas
+            for cancion in canciones_album:
+                if not cancion.favorito:
+                    controlador_biblioteca.agregar_cancion_favorito_controlador(cancion)
+            print(f"Álbum agregado a Favoritos: {album}")
+        # Guardar cambios
+        guardar_biblioteca()
+        # Actualizar las vistas si es necesario
+        actualizar_vista_favoritos()
+        # Si estamos en vista de detalle del álbum, actualizar
+        if vista_detalle_activa and vista_detalle_tipo == "album" and vista_detalle_elemento == album:
+            mostrar_canciones_elemento_filtradas(album, "Álbumes", "")
+        return True
+    except Exception as e:
+        print(f"Error al agregar álbum a Favoritos: {e}")
+        return False
 
 
 # Función para cambiar el estado de favorito
@@ -1020,6 +1090,48 @@ def ir_al_artista(cancion):
     else:
         # Si no hay coincidencia, mostrar mensaje informativo
         print(f"No se encontró el artista principal '{artista_principal}' en la biblioteca")
+
+
+# Función para navegar al artista de un álbum específico
+def ir_al_artista_album(album):
+    try:
+        # Cambiar a la pestaña de artistas
+        paginas_canciones.set("Artistas")
+        # Marcar la pestaña como cargada
+        pestanas_cargadas["Artistas"] = True
+        # Actualizar la vista de artistas
+        actualizar_vista_artistas()
+        # Obtener el artista principal del álbum usando el controlador
+        artista_principal = controlador_biblioteca.obtener_artista_album_controlador(album)
+        if artista_principal and artista_principal not in ["", "Unknown Artist", "Desconocido"]:
+            # Buscar el artista en la biblioteca
+            artista_encontrado = None
+            # Primero buscar coincidencia exacta (sin importar mayúsculas/minúsculas)
+            for artista_key in biblioteca.por_artista.keys():
+                if artista_key.lower() == artista_principal.lower():
+                    artista_encontrado = artista_key
+                    break
+            # Si no hay coincidencia exacta, buscar coincidencia parcial
+            if not artista_encontrado:
+                for artista_key in biblioteca.por_artista.keys():
+                    if (
+                        artista_principal.lower() in artista_key.lower()
+                        or artista_key.lower() in artista_principal.lower()
+                    ):
+                        artista_encontrado = artista_key
+                        break
+            # Si encontramos un artista que coincide, mostrar sus canciones
+            if artista_encontrado:
+                mostrar_canciones_artista(artista_encontrado)
+                print(f"Navegando al artista del álbum '{album}': {artista_encontrado}")
+            else:
+                print(
+                    f"No se encontró el artista principal '{artista_principal}' del álbum '{album}' en la biblioteca"
+                )
+        else:
+            print(f"No se pudo determinar el artista principal del álbum '{album}'")
+    except Exception as e:
+        print(f"Error al navegar al artista del álbum '{album}': {e}")
 
 
 # Función para crear botones para cada canción en la biblioteca
@@ -1408,16 +1520,16 @@ def mostrar_menu_opciones_album(album, panel_padre):
     # -------------------------------- Opciones de cola de reproducción -------------------------
     crear_opcion_menu(
         panel_menu_opciones,
-        "Agregar al final de la cola",
-        lambda: agregar_album_fin_cola(album),
+        "Agregar al inicio de la cola",
+        lambda: agregar_album_inicio_cola(album),
         True,
         "agregar_cola",
     )
 
     crear_opcion_menu(
         panel_menu_opciones,
-        "Agregar al inicio de la cola",
-        lambda: agregar_album_inicio_cola(album),
+        "Agregar al final de la cola",
+        lambda: agregar_album_fin_cola(album),
         False,
         "agregar_cola",
     )
@@ -1439,7 +1551,7 @@ def mostrar_menu_opciones_album(album, panel_padre):
     crear_opcion_menu(
         panel_menu_opciones,
         texto_album_me_gusta,
-        lambda: print(f"Agregar álbum a Me gusta: {album}"),
+        lambda: agregar_album_me_gusta_vista(album),
         True,
         icono_album_me_gusta,
     )
@@ -1458,7 +1570,7 @@ def mostrar_menu_opciones_album(album, panel_padre):
     crear_opcion_menu(
         panel_menu_opciones,
         texto_album_favorito,
-        lambda: print(f"Agregar álbum a Favoritos: {album}"),
+        lambda: agregar_album_favorito_vista(album),
         False,
         icono_album_favorito,
     )
@@ -1466,7 +1578,7 @@ def mostrar_menu_opciones_album(album, panel_padre):
     crear_opcion_menu(
         panel_menu_opciones,
         f"Ir al artista del álbum",
-        lambda: print(f"Ir al artista del álbum: {album}"),
+        lambda: ir_al_artista_album(album),
         True,
         "artista",
     )

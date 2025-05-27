@@ -46,6 +46,22 @@ class ControladorBiblioteca:
         except Exception as e:
             print(f"Error al eliminar la canción: {e}")
             return False
+        
+    # Método para eliminar un artista completo
+    def eliminar_artista_controlador(self, nombre_artista: str):
+        try:
+            return self.biblioteca.eliminar_artista_biblioteca(nombre_artista)
+        except Exception as e:
+            print(f"Error al eliminar artista: {e}")
+            return False
+
+    # Método para eliminar un álbum completo
+    def eliminar_album_controlador(self, nombre_album: str):
+        try:
+            return self.biblioteca.eliminar_album_biblioteca(nombre_album)
+        except Exception as e:
+            print(f"Error al eliminar álbum: {e}")
+            return False
 
     # Método para eliminar todas las canciones de un directorio
     def eliminar_directorio_controlador(self, ruta: Path) -> bool:
@@ -73,22 +89,6 @@ class ControladorBiblioteca:
             return False
         except Exception as e:
             print(f"Error al eliminar directorio: {e}")
-            return False
-
-    # Método para eliminar un artista completo
-    def eliminar_artista_controlador(self, nombre_artista: str):
-        try:
-            return self.biblioteca.eliminar_artista_biblioteca(nombre_artista)
-        except Exception as e:
-            print(f"Error al eliminar artista: {e}")
-            return False
-
-    # Método para eliminar un álbum completo
-    def eliminar_album_controlador(self, nombre_album: str):
-        try:
-            return self.biblioteca.eliminar_album_biblioteca(nombre_album)
-        except Exception as e:
-            print(f"Error al eliminar álbum: {e}")
             return False
 
     # Método para obtener todas las canciones de un álbum específico

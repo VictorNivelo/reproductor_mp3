@@ -12,6 +12,8 @@ iconos_generales = {
     # Botones de gustos
     "me_gusta": "me_gusta",
     "favorito": "favorito",
+    "me_gusta_rojo": "me_gusta_rojo",
+    "favorito_amarillo": "favorito_amarillo",
     # Botones de reproducción
     "retroceder": "retroceder",
     "anterior": "anterior",

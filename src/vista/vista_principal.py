@@ -771,7 +771,13 @@ def agregar_cancion_vista():
         if cancion:
             canciones_agregadas.append(cancion)
     if canciones_agregadas:
-        # pestana_actual = paginas_canciones.get()
+        # Limpiar el diccionario de botones para evitar referencias obsoletas
+        botones_canciones.clear()
+        botones_opciones_canciones.clear()
+        # Marcar todas las pestañas como no cargadas para forzar reconstrucción completa
+        for pestana in pestanas_cargadas:
+            pestanas_cargadas[pestana] = False
+        # Actualizar todas las vistas
         actualizar_todas_vistas_canciones()
         guardar_biblioteca()
         # Restaurar el binding de scroll según la pestaña actual
@@ -783,7 +789,13 @@ def agregar_directorio_vista():
     ruta = filedialog.askdirectory(title="Seleccionar directorio de música", initialdir=RUTA_CARPETA_MUSICA)
     if ruta:
         controlador_biblioteca.agregar_directorio_controlador(Path(ruta))
-        # pestana_actual = paginas_canciones.get()
+        # Limpiar el diccionario de botones para evitar referencias obsoletas
+        botones_canciones.clear()
+        botones_opciones_canciones.clear()
+        # Marcar todas las pestañas como no cargadas para forzar reconstrucción completa
+        for pestana in pestanas_cargadas:
+            pestanas_cargadas[pestana] = False
+        # Actualizar todas las vistas
         actualizar_todas_vistas_canciones()
         guardar_biblioteca()
         # Restaurar el binding de scroll según la pestaña actual
@@ -1944,33 +1956,22 @@ def mostrar_canciones_album(album):
 
 # Función para actualizar la vista de las canciones en la biblioteca
 def actualizar_vista_canciones(panel):
-    # Limpiar botones existentes
-    for cancion, boton in botones_canciones.items():
-        try:
-            # Eliminar el botón del controlador_tema de tema
-            nombre_boton = f"cancion_{cancion.titulo_cancion}"
-            nombre_opciones = f"opciones_{cancion.titulo_cancion}"
-            controlador_tema.eliminar_boton(nombre_boton)
-            controlador_tema.eliminar_boton(nombre_opciones)
-            # Destruir el frame contenedor (que contiene el botón)
-            if boton and boton.winfo_exists():
-                frame_padre = boton.winfo_parent()
-                if frame_padre:
-                    frame = boton.nametowidget(frame_padre)
-                    if frame and frame.winfo_exists():
-                        frame.destroy()
-        except Exception as e:
-            print(f"Error al destruir el botón {cancion.titulo_cancion}: {e}")
-            pass
-    botones_canciones.clear()
-    # Crear nuevos botones para cada canción
-    for cancion in biblioteca.canciones:
-        crear_boton_cancion(cancion, panel)
-    # Forzar actualización del layout
-    panel.update_idletasks()
-    # Asegurar que el canvas se actualice correctamente y volver al inicio
-    canvas_canciones.yview_moveto(0)
-    canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
+    try:
+        # Limpiar completamente el panel de botones
+        for componente in panel.winfo_children():
+            componente.destroy()
+        # Limpiar referencias en los diccionarios
+        botones_canciones.clear()
+        botones_opciones_canciones.clear()
+        # Recrear todos los botones de canciones
+        for cancion in biblioteca.canciones:
+            crear_boton_cancion(cancion, panel)
+        # Actualizar el canvas para reflejar los cambios
+        panel.update_idletasks()
+        canvas_canciones.yview_moveto(0)
+        canvas_canciones.configure(scrollregion=canvas_canciones.bbox("all"))
+    except Exception as e:
+        print(f"Error al actualizar vista de canciones: {e}")
 
 
 # Función para actualizar la vista de álbumes

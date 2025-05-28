@@ -76,12 +76,7 @@ def cambiar_tema_vista():
     # Actualizar la variable global APARIENCIA
     APARIENCIA = "oscuro" if APARIENCIA == "claro" else "claro"
     # Actualizar icono de tema
-    if APARIENCIA == "claro":
-        controlador_tema.registrar_botones("modo_oscuro", boton_tema)
-        actualizar_texto_tooltip(boton_tema, "Cambiar a oscuro")
-    else:
-        controlador_tema.registrar_botones("modo_claro", boton_tema)
-        actualizar_texto_tooltip(boton_tema, "Cambiar a claro")
+    cambiar_icono_tema(APARIENCIA)
     # Guardar todos los ajustes
     guardar_todos_ajustes()
     # Actualizar iconos
@@ -92,7 +87,21 @@ def cambiar_tema_vista():
 
 # Función para establecer el icono del tema
 def cambiar_icono_tema(tema="claro"):
-    establecer_icono_tema(ventana_principal, tema)
+    try:
+        # El icono debe ser opuesto al tema de la interfaz
+        if tema == "oscuro":
+            # Si el tema es oscuro, usar icono claro
+            ruta_icono = RUTA_ICONO_APLICACION_CLARO_ICO
+        else:
+            # Si el tema es claro, usar icono oscuro
+            ruta_icono = RUTA_ICONO_APLICACION_OSCURO_ICO
+        # Verificar que el archivo existe
+        if os.path.exists(ruta_icono):
+            ventana_principal.iconbitmap(ruta_icono)
+        else:
+            print(f"Advertencia: No se encontró el icono en {ruta_icono}")
+    except Exception as e:
+        print(f"Error al cambiar el icono de la ventana: {e}")
 
 
 # Función para cambiar el tema de la interfaz
@@ -134,6 +143,12 @@ def actualizar_iconos():
     icono_favorito = "favorito_amarillo" if FAVORITO else "favorito"
     controlador_tema.registrar_botones(icono_me_gusta, boton_me_gusta)
     controlador_tema.registrar_botones(icono_favorito, boton_favorito)
+    # Tema
+    icono_tema = "modo_claro" if APARIENCIA == "oscuro" else "modo_oscuro"
+    controlador_tema.registrar_botones(icono_tema, boton_tema)
+    # Actualizar también el tooltip del botón de tema
+    tooltip_tema = "Cambiar a claro" if APARIENCIA == "oscuro" else "Cambiar a oscuro"
+    actualizar_texto_tooltip(boton_tema, tooltip_tema)
     # Actualizar iconos en botones de opciones para todas las canciones
     for cancion, boton in botones_canciones.items():
         # Buscar el botón de opciones asociado y actualizar su icono
@@ -182,12 +197,8 @@ def cargar_todos_ajustes():
     controlador_tema.tema_interfaz = APARIENCIA
     controlador_tema.tema_iconos = "claro" if APARIENCIA == "oscuro" else "oscuro"
     ctk.set_appearance_mode("dark" if APARIENCIA == "oscuro" else "light")
-    if APARIENCIA == "oscuro":
-        cambiar_icono_tema("oscuro")
-        controlador_tema.registrar_botones("modo_claro", boton_tema)
-    else:
-        cambiar_icono_tema("claro")
-        controlador_tema.registrar_botones("modo_oscuro", boton_tema)
+    # Establecer el icono correcto según el tema cargado
+    cambiar_icono_tema(APARIENCIA)
     # Ajustar volumen
     barra_volumen.set(NIVEL_VOLUMEN)
     etiqueta_porcentaje_volumen.configure(text=f"{NIVEL_VOLUMEN}%")
@@ -198,7 +209,7 @@ def cargar_todos_ajustes():
     controlador_reproductor.modo_repeticion_controlador(MODO_REPETICION)
     # Ajustar panel visible
     if not PANEL_LATERAL_VISIBLE:
-        contenedor_derecha_principal.configure(width=0)
+        cambiar_visibilidad_vista()
     # Actualizar todos los iconos según los estados cargados
     actualizar_iconos()
     # Recargar los colores del tema
@@ -2431,6 +2442,7 @@ def crear_barras_espectro():
         y2 = alto_canvas
         barra = canvas_espectro.create_rectangle(x1, y1, x2, y2, fill=controlador_tema.color_barras, width=0)
         barras_espectro.append(barra)
+    controlador_tema.registrar_barras_espectro(canvas_espectro, barras_espectro)
 
 
 # Función para actualizar la animación del espectro
@@ -2946,7 +2958,7 @@ crear_tooltip(boton_favorito, "Agregar a Favoritos")
 # ------------------------------- Seccion de espectro de audio ----------------------------------
 # Contenedor de espectro de audio
 contenedor_espectro = ctk.CTkFrame(contenedor_izquierda, height=100, fg_color="transparent")
-contenedor_espectro.pack(fill="both", padx=10, pady=3)
+contenedor_espectro.pack(fill="both", padx=10, pady=2)
 contenedor_espectro.pack_propagate(False)
 
 # Canvas para el espectro
@@ -2974,7 +2986,11 @@ panel_progreso.pack(fill="x", expand=True)
 
 # Barra de progreso
 barra_progreso = ctk.CTkProgressBar(
-    panel_progreso, height=7, progress_color=controlador_tema.color_barra_progreso
+    panel_progreso,
+    height=7,
+    bg_color="transparent",
+    fg_color=controlador_tema.color_hover,
+    progress_color=controlador_tema.color_barra_progreso,
 )
 barra_progreso.pack(fill="x", padx=6, pady=(0, 3))
 barra_progreso.set(0)
@@ -3345,7 +3361,7 @@ contenedor_lista_canciones = ctk.CTkFrame(
     height=ALTO_TABVIEW,
     fg_color="transparent",
 )
-contenedor_lista_canciones.pack(fill="both", expand=True, padx=3)
+contenedor_lista_canciones.pack(fill="both", expand=True, padx=2)
 contenedor_lista_canciones.pack_propagate(False)
 
 # Lista de canciones

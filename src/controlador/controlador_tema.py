@@ -18,6 +18,7 @@ class ControladorTema(UtilesGeneral):
         self.progress_bars = []
         self.tabviews = []
         self.canvas = []
+        self.barras = []
         # Establecer apariencia global
         self.establecer_tema_global_controlador()
 
@@ -105,6 +106,9 @@ class ControladorTema(UtilesGeneral):
     # Registrar canvas
     def registrar_canvas(self, canvas, es_tabview=False, tabview_parent=None):
         self.canvas.append((canvas, es_tabview, tabview_parent))
+
+    def registrar_barras_espectro(self, canvas_espectro, barras_espectro):
+        self.barras.append((canvas_espectro, barras_espectro))
 
     # Actualizar colores de los botones
     def actualizar_colores_botones(self):
@@ -195,7 +199,7 @@ class ControladorTema(UtilesGeneral):
     def actualizar_colores_progress_bars(self):
         for progress_bar in self.progress_bars:
             try:
-                progress_bar.configure(progress_color=self.color_barra_progreso)
+                progress_bar.configure(fg_color=self.color_hover, progress_color=self.color_barra_progreso)
             except Exception as e:
                 print(f"Error al configurar la progress bar: {e}")
 
@@ -231,6 +235,16 @@ class ControladorTema(UtilesGeneral):
                     canvas.configure(bg=self.color_fondo)
             except Exception as e:
                 print(f"Error al configurar el canvas: {e}")
+
+    # Actualizar color de las barras del espectro
+    def actualizar_colores_barras_espectro(self):
+        for canvas_espectro, barras_espectro in self.barras:
+            try:
+                if canvas_espectro.winfo_exists() and barras_espectro:
+                    for barra in barras_espectro:
+                        canvas_espectro.itemconfig(barra, fill=self.color_barras)
+            except Exception as e:
+                print(f"Error al actualizar espectro: {e}")
 
     # Cambiar tema
     def cambiar_tema_controlador(self):
@@ -268,6 +282,8 @@ class ControladorTema(UtilesGeneral):
             self.actualizar_colores_tabviews()
             # Actualizar colores de canvas
             self.actualizar_colores_canvas()
+            # Actualizar colores de barras del espectro
+            self.actualizar_colores_barras_espectro()
         except Exception as e:
             print(f"Error al cambiar el tema: {e}")
 

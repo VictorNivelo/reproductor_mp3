@@ -303,6 +303,19 @@ def reproducir_album_completo(album):
             controlador_archivos.registrar_reproduccion_json_controlador(cancion_item)
 
 
+# Función para reproducir un artista completo
+def reproducir_artista_completo(artista):
+    canciones_artista = controlador_biblioteca.obtener_canciones_artista_controlador(artista)
+    if canciones_artista:
+        # Establecer la cola con todas las canciones del artista y reproducir la primera
+        controlador_reproductor.establecer_cola_reproduccion_controlador(canciones_artista, 0)
+        controlador_reproductor.reproducir_cancion_controlador(canciones_artista[0])
+        actualizar_estado_reproduccion_vista()
+        actualizar_estado_botones_gustos()
+        for cancion_item in canciones_artista:  # Registrar reproducción de todas
+            controlador_archivos.registrar_reproduccion_json_controlador(cancion_item)
+
+
 # Función para reproducir la canción seleccionada
 def reproducir_desde_lista_vista(cancion):
     global ESTADO_REPRODUCCION, ANIMACION_ESPECTRO_ACTIVA, biblioteca
@@ -663,6 +676,41 @@ def agregar_album_me_gusta_vista(album):
         return False
 
 
+# Función para agregar/quitar artista completo de Me gusta
+def agregar_artista_me_gusta_vista(artista):
+    try:
+        # Obtener todas las canciones del artista
+        canciones_artista = controlador_biblioteca.obtener_canciones_artista_controlador(artista)
+        if not canciones_artista:
+            print(f"No se encontraron canciones del artista: {artista}")
+            return False
+        # Verificar el estado actual del artista
+        artista_totalmente_en_me_gusta = all(c.me_gusta for c in canciones_artista)
+        if artista_totalmente_en_me_gusta:
+            # Si todas las canciones están en "Me gusta", quitarlas
+            for cancion in canciones_artista:
+                if cancion.me_gusta:
+                    controlador_biblioteca.agregar_cancion_me_gusta_controlador(cancion)
+            print(f"Artista quitado de Me gusta: {artista}")
+        else:
+            # Si no todas están en "Me gusta", agregarlas todas
+            for cancion in canciones_artista:
+                if not cancion.me_gusta:
+                    controlador_biblioteca.agregar_cancion_me_gusta_controlador(cancion)
+            print(f"Artista agregado a Me gusta: {artista}")
+        # Guardar cambios
+        guardar_biblioteca()
+        # Actualizar las vistas si es necesario
+        actualizar_vista_me_gusta()
+        # Si estamos en vista de detalle del artista, actualizar
+        if vista_detalle_activa and vista_detalle_tipo == "artista" and vista_detalle_elemento == artista:
+            mostrar_canciones_elemento_filtradas(artista, "Artistas", "")
+        return True
+    except Exception as e:
+        print(f"Error al agregar artista a Me gusta: {e}")
+        return False
+
+
 # Función centralizada para actualizar el estado de "Favorito" en todas las interfaces
 def actualizar_estado_favorito_vista(cancion=None):
     global FAVORITO
@@ -722,6 +770,41 @@ def agregar_album_favorito_vista(album):
         return True
     except Exception as e:
         print(f"Error al agregar álbum a Favoritos: {e}")
+        return False
+
+
+# Función para agregar/quitar artista completo de Favoritos
+def agregar_artista_favorito_vista(artista):
+    try:
+        # Obtener todas las canciones del artista
+        canciones_artista = controlador_biblioteca.obtener_canciones_artista_controlador(artista)
+        if not canciones_artista:
+            print(f"No se encontraron canciones del artista: {artista}")
+            return False
+        # Verificar el estado actual del artista
+        artista_totalmente_en_favoritos = all(c.favorito for c in canciones_artista)
+        if artista_totalmente_en_favoritos:
+            # Si todas las canciones están en "Favoritos", quitarlas
+            for cancion in canciones_artista:
+                if cancion.favorito:
+                    controlador_biblioteca.agregar_cancion_favorito_controlador(cancion)
+            print(f"Artista quitado de Favoritos: {artista}")
+        else:
+            # Si no todas están en "Favoritos", agregarlas todas
+            for cancion in canciones_artista:
+                if not cancion.favorito:
+                    controlador_biblioteca.agregar_cancion_favorito_controlador(cancion)
+            print(f"Artista agregado a Favoritos: {artista}")
+        # Guardar cambios
+        guardar_biblioteca()
+        # Actualizar las vistas si es necesario
+        actualizar_vista_favoritos()
+        # Si estamos en vista de detalle del artista, actualizar
+        if vista_detalle_activa and vista_detalle_tipo == "artista" and vista_detalle_elemento == artista:
+            mostrar_canciones_elemento_filtradas(artista, "Artistas", "")
+        return True
+    except Exception as e:
+        print(f"Error al agregar artista a Favoritos: {e}")
         return False
 
 
@@ -853,6 +936,25 @@ def agregar_album_fin_cola(album):
         for cancion_item in canciones_album:
             agregar_fin_cola_vista(cancion_item)
         print(f"Álbum '{album}' agregado al final de la cola.")
+
+
+# Función para agregar un artista completo al inicio de la cola
+def agregar_artista_inicio_cola(artista):
+    canciones_artista = controlador_biblioteca.obtener_canciones_artista_controlador(artista)
+    if canciones_artista:
+        # Agregar en orden inverso para que la primera canción del artista quede después de la actual
+        for cancion_item in reversed(canciones_artista):
+            agregar_inicio_cola_vista(cancion_item)
+        print(f"Artista '{artista}' agregado al inicio de la cola.")
+
+
+# Función para agregar un artista completo al final de la cola
+def agregar_artista_fin_cola(artista):
+    canciones_artista = controlador_biblioteca.obtener_canciones_artista_controlador(artista)
+    if canciones_artista:
+        for cancion_item in canciones_artista:
+            agregar_fin_cola_vista(cancion_item)
+        print(f"Artista '{artista}' agregado al final de la cola.")
 
 
 # Función para eliminar una canción de la biblioteca
@@ -1257,6 +1359,9 @@ def crear_boton_album(albumes, panel_componente):
         controlador_tema.registrar_botones(f"opciones_album_{album}", boton_opciones_album)
         crear_tooltip(boton_opciones_album, "Opciones del álbum")
         # ---------------------------------------------------------------------------------------
+        boton_album.bind(
+            "<Button-3>", lambda event, a=album, p=panel_lista_album: mostrar_menu_opciones_album(a, p)
+        )
 
 
 # Función auxiliar para crear botones de artistas
@@ -1304,12 +1409,15 @@ def crear_boton_artista(artistas, panel_componente):
             text_color=controlador_tema.color_texto,
             text="",
             image=icono_opcion_album,
-            # command=lambda a=artista, p=panel_lista_artista: mostrar_menu_opciones_artista(a, p),
+            command=lambda a=artista, p=panel_lista_artista: mostrar_menu_opciones_artista(a, p),
         )
         boton_opciones_artista.pack(side="right", padx=(1, 0))
         controlador_tema.registrar_botones(f"opciones_artista_{artista}", boton_opciones_artista)
         crear_tooltip(boton_opciones_artista, "Opciones del artista")
         # ---------------------------------------------------------------------------------------
+        boton_artista.bind(
+            "<Button-3>", lambda event, a=artista, p=panel_lista_artista: mostrar_menu_opciones_artista(a, p)
+        )
 
 
 # Función para crear una opción de menú en un menú contextual
@@ -1484,7 +1592,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
     menu_ventana.bind("<FocusOut>", lambda event: cerrar_menu_opciones_al_desenfocar(menu_ventana, event))
     menu_ventana.bind("<Button-1>", lambda e: menu_ventana.destroy())
     # Vincular clic en cualquier parte de la pantalla para cerrar el menú
-    ventana_principal.bind("<Button-1>", lambda e: menu_ventana.destroy(), add="+")
+    ventana_principal.bind("<Button-1>", lambda e: menu_ventana.destroy())
 
     # Establecer una función para restablecer el binding cuando el menú se cierre
     def al_cerrar_menu():
@@ -1641,6 +1749,152 @@ def mostrar_menu_opciones_album(album, panel_padre):
             pass
 
     menu_ventana.protocol("WM_DELETE_WINDOW", al_cerrar_menu_album)
+    # Dar foco al menú para detectar cuando lo pierde
+    menu_ventana.focus_set()
+
+
+# Función para mostrar el menú contextual personalizado de un artista
+def mostrar_menu_opciones_artista(artista, panel_padre):
+    # Verificar si ya existe un menú abierto y cerrarlo
+    for componente in ventana_principal.winfo_children():
+        if isinstance(componente, ctk.CTkToplevel) and hasattr(componente, "menu_opciones_artista"):
+            componente.destroy()
+    # Obtener colores actuales del tema
+    controlador_tema.colores()
+    # ------------------------------------- Ventana de menú artista -----------------------------
+    menu_ventana = ctk.CTkToplevel(ventana_principal)
+    menu_ventana.menu_opciones_artista = True
+    menu_ventana.title("")
+    menu_ventana.geometry("200x0")
+    menu_ventana.overrideredirect(True)
+    menu_ventana.configure(fg_color=controlador_tema.color_fondo)
+    menu_ventana.attributes("-topmost", True)
+    menu_ventana.attributes("-toolwindow", True)
+    # -------------------------------------------------------------------------------------------
+    # ----------------------------------- Panel menu opciones artista --------------------------
+    panel_menu_opciones = ctk.CTkFrame(
+        menu_ventana, corner_radius=BORDES_REDONDEADOS_PANEL, fg_color=controlador_tema.color_fondo
+    )
+    panel_menu_opciones.pack(fill="both", expand=True, padx=2, pady=2)
+    # -------------------------------------------------------------------------------------------
+
+    # Agregar opciones al menú
+    # ---------------------------------- Opciones reproducir artista ---------------------------
+    crear_opcion_menu(
+        panel_menu_opciones,
+        "Reproducir artista",
+        lambda: reproducir_artista_completo(artista),
+        False,
+        "reproducir",
+    )
+    # -------------------------------------------------------------------------------------------
+
+    # -------------------------------- Opciones de cola de reproducción -------------------------
+    crear_opcion_menu(
+        panel_menu_opciones,
+        "Agregar al inicio de la cola",
+        lambda: agregar_artista_inicio_cola(artista),
+        True,
+        "agregar_cola",
+    )
+
+    crear_opcion_menu(
+        panel_menu_opciones,
+        "Agregar al final de la cola",
+        lambda: agregar_artista_fin_cola(artista),
+        False,
+        "agregar_cola",
+    )
+    # -------------------------------------------------------------------------------------------
+
+    # Obtener todas las canciones del artista para verificar su estado colectivo
+    canciones_del_artista_obj = controlador_biblioteca.obtener_canciones_artista_controlador(artista)
+
+    # Estado para "Me gusta"
+    artista_totalmente_en_me_gusta = False
+    if canciones_del_artista_obj:
+        # Se considera que el artista está en "Me gusta" si todas sus canciones lo están.
+        artista_totalmente_en_me_gusta = all(c.me_gusta for c in canciones_del_artista_obj)
+
+    texto_artista_me_gusta = (
+        "Quitar artista de Me gusta" if artista_totalmente_en_me_gusta else "Agregar artista a Me gusta"
+    )
+    icono_artista_me_gusta = "me_gusta_rojo" if artista_totalmente_en_me_gusta else "me_gusta"
+
+    crear_opcion_menu(
+        panel_menu_opciones,
+        texto_artista_me_gusta,
+        lambda: agregar_artista_me_gusta_vista(artista),
+        True,
+        icono_artista_me_gusta,
+    )
+
+    # Estado para "Favoritos"
+    artista_totalmente_en_favoritos = False
+    if canciones_del_artista_obj:
+        # Se considera que el artista está en "Favoritos" si todas sus canciones lo están.
+        artista_totalmente_en_favoritos = all(c.favorito for c in canciones_del_artista_obj)
+
+    texto_artista_favorito = (
+        "Quitar artista de Favoritos" if artista_totalmente_en_favoritos else "Agregar artista a Favoritos"
+    )
+    icono_artista_favorito = "favorito_amarillo" if artista_totalmente_en_favoritos else "favorito"
+
+    crear_opcion_menu(
+        panel_menu_opciones,
+        texto_artista_favorito,
+        lambda: agregar_artista_favorito_vista(artista),
+        False,
+        icono_artista_favorito,
+    )
+    # -------------------------------------------------------------------------------------------
+
+    # ---------------------------------- Opciones de información --------------------------------
+    crear_opcion_menu(
+        panel_menu_opciones,
+        "Ver información",
+        lambda: print(f"Ver info del artista: {artista}"),
+        True,
+        "informacion",
+    )
+
+    crear_opcion_menu(
+        panel_menu_opciones, "Eliminar artista", lambda: print("eliminar artista"), False, "eliminar"
+    )
+    # -------------------------------------------------------------------------------------------
+
+    # Actualizar el panel para obtener su altura real
+    panel_menu_opciones.update_idletasks()
+    altura_real = panel_menu_opciones.winfo_reqheight() + 5
+    # Posicionar el menú junto al botón
+    x = panel_padre.winfo_rootx() + panel_padre.winfo_width() - 230
+    y = panel_padre.winfo_rooty()
+    # Asegurar que el menú no salga de la pantalla
+    ancho_menu_pantalla = menu_ventana.winfo_screenwidth()
+    alto_menu_pantalla = menu_ventana.winfo_screenheight()
+    # Ajustar la posición horizontal del menú
+    if x + 200 > ancho_menu_pantalla:
+        x = ancho_menu_pantalla - 210
+    if y + altura_real > alto_menu_pantalla:
+        y = alto_menu_pantalla - altura_real - 10
+    menu_ventana.update()
+    # Establecer la geometría con la altura exacta del contenido
+    menu_ventana.geometry(f"200x{altura_real}+{x}+{y}")
+    # Vincular eventos para cerrar el menú
+    menu_ventana.bind("<FocusOut>", lambda event: cerrar_menu_opciones_al_desenfocar(menu_ventana, event))
+    menu_ventana.bind("<Button-1>", lambda e: menu_ventana.destroy())
+    # Vincular clic en cualquier parte de la pantalla para cerrar el menú
+    ventana_principal.bind("<Button-1>", lambda e: menu_ventana.destroy(), add="+")
+
+    # Establecer una función para restablecer el binding cuando el menú se cierre
+    def al_cerrar_menu_artista():
+        try:
+            ventana_principal.unbind("<Button-1>")
+        except Exception as e:
+            print(f"Error al restablecer el binding (artista): {e}")
+            pass
+
+    menu_ventana.protocol("WM_DELETE_WINDOW", al_cerrar_menu_artista)
     # Dar foco al menú para detectar cuando lo pierde
     menu_ventana.focus_set()
 

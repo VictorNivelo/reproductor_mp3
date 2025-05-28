@@ -1,31 +1,26 @@
 {
-    "indice_actual": 0,
+    "indice_actual": 6,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-        "C:\\Users\\Victor\\Music\\b.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
-        "C:\\Users\\Victor\\Music\\a.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
         "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
         "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
         "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\If I Ruled the World (Imagine That) (ft Lauryn Hill)..mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\N.Y. State of Mind..mp3",
         "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\That Go! (ft T-Shyne)..mp3",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-05-27T14:47:08.990030"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
+        "titulo": "Adicto",
+        "artista": "Tainy ft Anuel AA, Ozuna",
+        "album": "Adicto (ft Anuel AA & Ozuna)",
+        "timestamp": "2025-05-28T12:07:55.925454"
     }
 }

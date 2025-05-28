@@ -1,59 +1,40 @@
 {
     "artistas": {
-        "Bad Bunny": 2,
-        "Desconocido": 1,
-        "Ñengo Flow": 1,
         "Sinfonico": 1,
-        "Anuel AA": 1,
-        "Tainy": 1,
-        "E.VAX": 1,
-        "Sech": 1
+        "Ñengo Flow": 1,
+        "Anuel AA": 2,
+        "Ozuna": 1,
+        "Tainy": 1
     },
     "albumes": {
-        "EL ÚLTIMO TOUR DEL MUNDO": 2,
-        "Desconocido": 1,
         "47 (Remix)": 1,
-        "DATA": 1
+        "Adicto (ft Anuel AA & Ozuna)": 1
     },
-    "tiempo_total": 1214.9551020408164,
-    "canciones_escuchadas": 5,
+    "tiempo_total": 788.6367346938775,
+    "canciones_escuchadas": 2,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-05-27T14:46:52.446839"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
+        "titulo": "Adicto",
+        "artista": "Tainy ft Anuel AA, Ozuna",
+        "album": "Adicto (ft Anuel AA & Ozuna)",
+        "timestamp": "2025-05-28T11:03:50.739250"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 2,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\a.mp3": {
-            "contador": 1,
-            "titulo": "a",
-            "artista": "Desconocido",
-            "album": "Desconocido"
-        },
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
             "contador": 1,
             "titulo": "47 (Remix)",
             "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
             "album": "47 (Remix)"
         },
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
+        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3": {
             "contador": 1,
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "album": "DATA"
+            "titulo": "Adicto",
+            "artista": "Tainy ft Anuel AA, Ozuna",
+            "album": "Adicto (ft Anuel AA & Ozuna)"
         }
     },
     "artistas_originales": {
-        "Bad Bunny": 2,
-        "Desconocido": 1,
         "Anuel AA ft Sinfonico, Ñengo Flow": 1,
-        "Tainy ft Sech, E.VAX": 1
+        "Tainy ft Anuel AA, Ozuna": 1
     }
 }

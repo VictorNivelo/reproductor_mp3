@@ -112,7 +112,6 @@ def cargar_icono(tema="claro"):
 def cargar_icono_con_tamanio(nombre, tema="claro", tamanio=None):
     try:
         # Determinar si el icono requiere tema
-        archivo = None
         if nombre in iconos_generales:
             archivo = iconos_generales[nombre]
         else:

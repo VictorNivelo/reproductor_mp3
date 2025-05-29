@@ -38,7 +38,6 @@ class UtilesGeneral:
         self.color_base = None
         self.color_barras = None
         self.color_borde = None
-        self.color_slider = None
         self.color_hover_oscuro = None
         self.color_barra_progreso = None
         self.color_segundario = None
@@ -60,7 +59,6 @@ class UtilesGeneral:
         self.color_segundario = OSCURO_SEGUNDARIO if tema else CLARO_SEGUNDARIO
         self.color_borde = FONDO_CLARO if tema else FONDO_OSCURO
         self.color_barras = BARRA_OSCURO if tema else BARRA_CLARO
-        self.color_slider = TEXTO_OSCURO if tema else FONDO_OSCURO
         self.color_barra_progreso = BARRA_PROGRESO_CLARO if tema else BARRA_PROGRESO_OSCURO
 
     @staticmethod

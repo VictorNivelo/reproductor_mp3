@@ -2,19 +2,21 @@
     "artistas": {
         "Tainy": 1,
         "E.VAX": 1,
-        "Sech": 1
+        "Sech": 1,
+        "Bad Bunny": 1
     },
     "albumes": {
-        "DATA": 1
+        "DATA": 1,
+        "EL ÚLTIMO TOUR DEL MUNDO": 1
     },
-    "tiempo_total": 197.01551020408164,
-    "canciones_escuchadas": 1,
+    "tiempo_total": 348.5518367346939,
+    "canciones_escuchadas": 2,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-05-28T14:42:12.021885"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
+        "titulo": "120",
+        "artista": "Bad Bunny",
+        "album": "EL ÚLTIMO TOUR DEL MUNDO",
+        "timestamp": "2025-05-28T18:10:54.857535"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
@@ -22,9 +24,16 @@
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
+            "contador": 1,
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
         }
     },
     "artistas_originales": {
-        "Tainy ft Sech, E.VAX": 1
+        "Tainy ft Sech, E.VAX": 1,
+        "Bad Bunny": 1
     }
 }

@@ -1,3 +1,23 @@
 {
-    "me_gusta": []
+    "me_gusta": [
+        {
+            "duracion": 197.01551020408164,
+            "duracion_formateada": "03:17",
+            "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "artista_album": "Tainy",
+            "album": "DATA",
+            "anio": "2023",
+            "numero_pista": "6",
+            "genero": "Desconocido",
+            "tamanio_archivo": 3213442,
+            "tamanio_formateado": "3.1 MB",
+            "fecha_creacion": "09/04/2025 19:17:54",
+            "fecha_agregado": "28/05/2025 18:07:50",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": true
+        }
+    ]
 }

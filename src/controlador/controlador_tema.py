@@ -188,9 +188,8 @@ class ControladorTema(UtilesGeneral):
             try:
                 slider.configure(
                     fg_color=self.color_hover,
-                    progress_color=self.color_slider,
-                    button_color=self.color_slider,
-                    button_hover_color=self.color_hover_oscuro,
+                    progress_color=self.color_barra_progreso,
+                    button_color=self.color_texto,
                 )
             except Exception as e:
                 print(f"Error al configurar el slider: {e}")

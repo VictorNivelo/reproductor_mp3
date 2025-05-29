@@ -59,7 +59,7 @@ class Cancion:
 
     # Propiedad que devuelve el tamaño del archivo en bytes
     @property
-    def tamano_archivo(self) -> int:
+    def tamanio_archivo(self) -> int:
         try:
             if self.ruta_cancion.exists():
                 return self.ruta_cancion.stat().st_size
@@ -70,24 +70,24 @@ class Cancion:
 
     # Propiedad que devuelve el tamaño formateado (KB, MB, GB)
     @property
-    def tamano_formateado(self) -> str:
+    def tamanio_formateado(self) -> str:
         try:
-            tamano = self.tamano_archivo
-            if tamano == 0:
+            tamanio = self.tamanio_archivo
+            if tamanio == 0:
                 return "0 B"
             unidades = ["B", "KB", "MB", "GB"]
             i = 0
-            while tamano >= 1024 and i < len(unidades) - 1:
-                tamano /= 1024.0
+            while tamanio >= 1024 and i < len(unidades) - 1:
+                tamanio /= 1024.0
                 i += 1
-            return f"{tamano:.1f} {unidades[i]}"
+            return f"{tamanio:.1f} {unidades[i]}"
         except Exception as e:
             print(f"Error al formatear tamaño: {e}")
             return "Desconocido"
 
     # Propiedad que devuelve la fecha de creación del archivo
     @property
-    def fecha_creacion_archivo(self) -> datetime:
+    def fecha_creacion_archivo(self) -> datetime | None:
         try:
             if self.ruta_cancion.exists():
                 timestamp = self.ruta_cancion.stat().st_ctime
@@ -311,8 +311,8 @@ class Cancion:
             "anio": self.anio,
             "numero_pista": self.numero_pista,
             "genero": self.genero,
-            "tamano_archivo": self.tamano_archivo,
-            "tamano_formateado": self.tamano_formateado,
+            "tamanio_archivo": self.tamanio_archivo,
+            "tamanio_formateado": self.tamanio_formateado,
             "fecha_creacion": self.fecha_creacion_formateada,
             "fecha_agregado": self.fecha_agregado_formateada,
             "tiene_caratula": self.caratula_cancion is not None,
@@ -335,6 +335,6 @@ class Cancion:
 # print(f"Duración: {cancion.duracion} segundos")
 # print(f"Duración formateada: {cancion.duracion_formateada}")
 # print(f"Tiene carátula: {cancion.caratula_cancion is not None}")
-# print(f"Tamaño del archivo: {cancion.tamano_formateado}")
+# print(f"Tamaño del archivo: {cancion.tamanio_formateado}")
 # print(f"Fecha de creación: {cancion.fecha_creacion_formateada}")
 # print(f"Fecha de agregado: {cancion.fecha_agregado_formateada}")

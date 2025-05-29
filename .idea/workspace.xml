@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7a9c3b1-2f39-4ff6-b624-4183a59858ca" name="Cambios" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/estadisticas/canciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/canciones.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/listas/cola.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/cola.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/controlador_tema.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/controlador_tema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/componentes/cola_reproduccion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/cola_reproduccion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/componentes/estadisticas.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/estadisticas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/componentes/mini_reproductor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/mini_reproductor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/componentes/tooltip.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/tooltip.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/biblioteca.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/biblioteca.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/cancion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/cancion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/utiles/utiles_vista.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/utiles/utiles_vista.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,6 +65,7 @@
       <workItem from="1748139721436" duration="26000" />
       <workItem from="1748213337963" duration="414000" />
       <workItem from="1748219485538" duration="1479000" />
+      <workItem from="1748463358722" duration="461000" />
     </task>
     <servers />
   </component>

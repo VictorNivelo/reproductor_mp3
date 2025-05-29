@@ -164,7 +164,7 @@ class Biblioteca:
                     # Si es el único artista, eliminar la canción completamente
                     canciones_a_eliminar.append(cancion)
                 else:
-                    # Si hay múltiples artistas, solo remover este artista de la canción
+                    # Sí hay múltiples artistas, solo remover este artista de la canción
                     artistas_actualizados = [
                         art for art in artistas_cancion if art.lower() != nombre_artista.lower()
                     ]

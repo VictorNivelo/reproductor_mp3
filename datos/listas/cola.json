@@ -1,5 +1,5 @@
 {
-    "indice_actual": 1,
+    "indice_actual": 10,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -17,10 +17,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
-        "titulo": "120",
-        "artista": "Bad Bunny",
+        "ruta": "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
+        "titulo": "DÁKITI",
+        "artista": "Bad Bunny ft Jhay Cortez",
         "album": "EL ÚLTIMO TOUR DEL MUNDO",
-        "timestamp": "2025-05-28T18:10:54.856759"
+        "timestamp": "2025-05-30T10:37:20.905022"
     }
 }

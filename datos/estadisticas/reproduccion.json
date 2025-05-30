@@ -1,22 +1,27 @@
 {
     "artistas": {
-        "Tainy": 1,
+        "Tainy": 2,
         "E.VAX": 1,
         "Sech": 1,
-        "Bad Bunny": 1
+        "Bad Bunny": 2,
+        "Ñengo Flow": 1,
+        "Sinfonico": 1,
+        "Anuel AA": 1
     },
     "albumes": {
         "DATA": 1,
-        "EL ÚLTIMO TOUR DEL MUNDO": 1
+        "EL ÚLTIMO TOUR DEL MUNDO": 1,
+        "47 (Remix)": 1,
+        "Callaita": 1
     },
-    "tiempo_total": 348.5518367346939,
-    "canciones_escuchadas": 2,
+    "tiempo_total": 1116.9697959183673,
+    "canciones_escuchadas": 4,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
-        "titulo": "120",
-        "artista": "Bad Bunny",
-        "album": "EL ÚLTIMO TOUR DEL MUNDO",
-        "timestamp": "2025-05-28T18:10:54.857535"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
+        "titulo": "Callaita",
+        "artista": "Bad Bunny ft Tainy",
+        "album": "Callaita",
+        "timestamp": "2025-05-29T12:25:01.441195"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
@@ -30,10 +35,24 @@
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
+        },
+        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
+            "contador": 1,
+            "titulo": "47 (Remix)",
+            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+            "album": "47 (Remix)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Callaita.mp3": {
+            "contador": 1,
+            "titulo": "Callaita",
+            "artista": "Bad Bunny ft Tainy",
+            "album": "Callaita"
         }
     },
     "artistas_originales": {
         "Tainy ft Sech, E.VAX": 1,
-        "Bad Bunny": 1
+        "Bad Bunny": 1,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 1,
+        "Bad Bunny ft Tainy": 1
     }
 }

@@ -224,13 +224,11 @@ class ControladorTema(UtilesGeneral):
             try:
                 canvas = canvas_info[0]
                 es_tabview = canvas_info[1]
-                tabview_parent = canvas_info[2] if len(canvas_info) > 2 else None
-                if es_tabview and tabview_parent and tabview_parent.winfo_exists():
-                    # Obtener el color directamente del tabview padre
-                    canvas.configure(bg=tabview_parent.cget("fg_color"))
-                elif es_tabview:
+                if es_tabview:
+                    # Para canvas dentro de tabviews, usar color_base
                     canvas.configure(bg=self.color_base)
                 else:
+                    # Para otros canvas, usar color_fondo
                     canvas.configure(bg=self.color_fondo)
             except Exception as e:
                 print(f"Error al configurar el canvas: {e}")

@@ -14,10 +14,29 @@
             "tamanio_archivo": 3213442,
             "tamanio_formateado": "3.1 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "28/05/2025 18:07:50",
+            "fecha_agregado": "30/05/2025 09:29:44",
             "tiene_caratula": true,
             "me_gusta": true,
             "favorito": true
+        },
+        {
+            "duracion": 250.5665306122449,
+            "duracion_formateada": "04:10",
+            "ruta": "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
+            "titulo": "Callaita",
+            "artista": "Bad Bunny ft Tainy",
+            "artista_album": "Bad Bunny",
+            "album": "Callaita",
+            "anio": "2019-05-31",
+            "numero_pista": "1",
+            "genero": "Desconocido",
+            "tamanio_archivo": 4249538,
+            "tamanio_formateado": "4.1 MB",
+            "fecha_creacion": "26/05/2025 19:14:56",
+            "fecha_agregado": "30/05/2025 09:29:44",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
         }
     ]
 }

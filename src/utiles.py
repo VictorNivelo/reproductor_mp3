@@ -57,7 +57,7 @@ class UtilesGeneral:
         # Colores exclusivos de UtilesControlador
         self.color_base = OSCURO if tema else CLARO
         self.color_segundario = OSCURO_SEGUNDARIO if tema else CLARO_SEGUNDARIO
-        self.color_borde = FONDO_CLARO if tema else FONDO_OSCURO
+        self.color_borde = BORDE_OSCURO if tema else BORDE_CLARO
         self.color_barras = BARRA_OSCURO if tema else BARRA_CLARO
         self.color_barra_progreso = BARRA_PROGRESO_CLARO if tema else BARRA_PROGRESO_OSCURO
 

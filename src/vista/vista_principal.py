@@ -2027,9 +2027,8 @@ def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
 # Función para crear un canvas con scroll y panel de botones
 def crear_canvas_con_scroll(contenedor_padre, es_pestania=True, es_pestania_padre=None):
     # -------------------------------- Crear canvas con scroll ----------------------------------
-    canvas = tk.Canvas(contenedor_padre, highlightthickness=0)
+    canvas = tk.Canvas(contenedor_padre, bg=controlador_tema.color_base, highlightthickness=0)
     canvas.pack(fill="both", expand=True)
-    canvas.configure(bg=paginas_canciones.cget("fg_color") if es_pestania else controlador_tema.color_fondo)
     controlador_tema.registrar_canvas(canvas, es_tabview=es_pestania, tabview_parent=es_pestania_padre)
     # -------------------------------------------------------------------------------------------
     # -------------------------------------- Panel botones --------------------------------------
@@ -2503,6 +2502,8 @@ def resetear_scroll_canvas(canvas, panel):
             # Actualizar la región de desplazamiento
             canvas.configure(scrollregion=canvas.bbox("all"))
             return True
+        else:
+            return False
     except Exception as e:
         print(f"Error al resetear scroll del canvas: {e}")
         return False
@@ -3304,11 +3305,11 @@ entrada_busqueda = ctk.CTkEntry(
     panel_elementos,
     fg_color=controlador_tema.color_fondo,
     border_width=1,
-    border_color=FONDO_OSCURO,
+    border_color=controlador_tema.color_borde,
     font=(LETRA, TAMANIO_LETRA_ENTRADA),
     placeholder_text="Buscar cancion...",
-    placeholder_text_color=TEXTO_CLARO,
-    text_color=TEXTO_CLARO,
+    placeholder_text_color=controlador_tema.color_texto,
+    text_color=controlador_tema.color_texto,
 )
 entrada_busqueda.pack(side="left", fill="x", expand=True)
 controlador_tema.registrar_entrada(entrada_busqueda)
@@ -3339,16 +3340,16 @@ entrada_busqueda.bind("<KeyRelease>", lambda _event: buscar_cancion_vista())
 # # Combobox de ordenamiento
 # combo_ordenamiento = ctk.CTkComboBox(
 #     panel_elementos,
-#     fg_color=FONDO_CLARO,
+#     fg_color=controlador_tema.color_fondo,
 #     border_width=1,
-#     border_color=FONDO_OSCURO,
-#     button_color=FONDO_CLARO,
-#     button_hover_color=HOVER_CLARO,
-#     dropdown_fg_color=FONDO_CLARO,
-#     dropdown_hover_color=HOVER_CLARO,
-#     dropdown_text_color=TEXTO_CLARO,
+#     border_color=controlador_tema.color_borde,
+#     button_color=controlador_tema.color_fondo,
+#     button_hover_color=controlador_tema.color_hover,
+#     dropdown_fg_color=controlador_tema.color_fondo,
+#     dropdown_hover_color=controlador_tema.color_hover,
+#     dropdown_text_color=controlador_tema.color_texto,
 #     font=(LETRA, TAMANIO_LETRA_COMBOBOX),
-#     text_color=TEXTO_CLARO,
+#     text_color=controlador_tema.color_texto,
 #     values=opciones_ordenamiento,
 #     state="readonly",
 # )
@@ -3371,13 +3372,13 @@ contenedor_lista_canciones.pack_propagate(False)
 # Lista de canciones
 paginas_canciones = ctk.CTkTabview(
     contenedor_lista_canciones,
-    fg_color=CLARO,
-    segmented_button_fg_color=CLARO_SEGUNDARIO,
-    segmented_button_selected_color=FONDO_CLARO,
-    segmented_button_selected_hover_color=HOVER_CLARO,
-    segmented_button_unselected_color=HOVER_CLARO,
-    segmented_button_unselected_hover_color=FONDO_CLARO,
-    text_color=TEXTO_CLARO,
+    fg_color=controlador_tema.color_base,
+    segmented_button_fg_color=controlador_tema.color_segundario,
+    segmented_button_selected_color=controlador_tema.color_fondo,
+    segmented_button_selected_hover_color=controlador_tema.color_hover,
+    segmented_button_unselected_color=controlador_tema.color_hover,
+    segmented_button_unselected_hover_color=controlador_tema.color_fondo,
+    text_color=controlador_tema.color_texto,
 )
 paginas_canciones.pack(fill="both", expand=True)
 controlador_tema.registrar_tabview(paginas_canciones)

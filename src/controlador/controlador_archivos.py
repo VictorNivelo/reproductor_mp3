@@ -1,4 +1,4 @@
-from modelo.biblioteca import Biblioteca
+from modelo.cancion import Cancion
 from datetime import datetime
 from pathlib import Path
 from constantes import *
@@ -339,8 +339,8 @@ class ControladorArchivos:
             if cancion.artista not in estadisticas["artistas_originales"]:
                 estadisticas["artistas_originales"][cancion.artista] = 0
             estadisticas["artistas_originales"][cancion.artista] += 1
-            # Procesar artistas individuales usando el método de la biblioteca
-            artistas = Biblioteca.separar_artistas_biblioteca(cancion.artista)
+            # Procesar artistas individuales usando el método de la clase Cancion
+            artistas = Cancion.separar_artistas_cancion(cancion.artista)
             for artista in artistas:
                 if artista not in estadisticas["artistas"]:
                     estadisticas["artistas"][artista] = 0
@@ -432,8 +432,8 @@ class ControladorArchivos:
             for ruta, datos in estadisticas["canciones"].items():
                 nombre_artista_completo = datos["artista"]
                 conteo = datos["contador"]
-                # Separar todos los artistas que aparecen en el nombre
-                artistas_en_cancion = Biblioteca.separar_artistas_biblioteca(nombre_artista_completo)
+                # Separar todos los artistas que aparecen en el nombre usando el método de Cancion
+                artistas_en_cancion = Cancion.separar_artistas_cancion(nombre_artista_completo)
                 # Contar cada aparición de cada artista
                 for artista in artistas_en_cancion:
                     if artista not in artistas_conteo_total:

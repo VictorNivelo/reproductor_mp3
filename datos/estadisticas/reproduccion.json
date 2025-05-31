@@ -1,58 +1,66 @@
 {
     "artistas": {
-        "Tainy": 2,
-        "E.VAX": 1,
-        "Sech": 1,
-        "Bad Bunny": 2,
-        "Ñengo Flow": 1,
+        "Anuel AA": 4,
         "Sinfonico": 1,
-        "Anuel AA": 1
+        "Ñengo Flow": 1,
+        "Tainy": 1,
+        "Ozuna": 1,
+        "Daddy Yankee": 1,
+        "Bad Bunny": 1
     },
     "albumes": {
-        "DATA": 1,
-        "EL ÚLTIMO TOUR DEL MUNDO": 1,
         "47 (Remix)": 1,
-        "Callaita": 1
+        "Adicto (ft Anuel AA & Ozuna)": 1,
+        "¿Qué Nos Pasó?": 1,
+        "Adictiva": 1,
+        "EL ÚLTIMO TOUR DEL MUNDO": 1
     },
-    "tiempo_total": 1116.9697959183673,
-    "canciones_escuchadas": 4,
+    "tiempo_total": 1393.8416326530612,
+    "canciones_escuchadas": 5,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
-        "titulo": "Callaita",
-        "artista": "Bad Bunny ft Tainy",
-        "album": "Callaita",
-        "timestamp": "2025-05-29T12:25:01.441195"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
+        "titulo": "120",
+        "artista": "Bad Bunny",
+        "album": "EL ÚLTIMO TOUR DEL MUNDO",
+        "timestamp": "2025-05-30T20:39:52.956844"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 1,
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "album": "DATA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 1,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
             "contador": 1,
             "titulo": "47 (Remix)",
             "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
             "album": "47 (Remix)"
         },
-        "C:\\Users\\Victor\\Music\\M\\Callaita.mp3": {
+        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3": {
             "contador": 1,
-            "titulo": "Callaita",
-            "artista": "Bad Bunny ft Tainy",
-            "album": "Callaita"
+            "titulo": "Adicto",
+            "artista": "Tainy ft Anuel AA, Ozuna",
+            "album": "Adicto (ft Anuel AA & Ozuna)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
+            "contador": 1,
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "album": "¿Qué Nos Pasó?"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
+            "contador": 1,
+            "titulo": "Adictiva",
+            "artista": "Daddy Yankee ft Anuel AA",
+            "album": "Adictiva"
+        },
+        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
+            "contador": 1,
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
         }
     },
     "artistas_originales": {
-        "Tainy ft Sech, E.VAX": 1,
-        "Bad Bunny": 1,
         "Anuel AA ft Sinfonico, Ñengo Flow": 1,
-        "Bad Bunny ft Tainy": 1
+        "Tainy ft Anuel AA, Ozuna": 1,
+        "Anuel AA": 1,
+        "Daddy Yankee ft Anuel AA": 1,
+        "Bad Bunny": 1
     }
 }

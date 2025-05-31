@@ -180,9 +180,6 @@ def actualizar_texto_tooltip(componente, nuevo_texto):
 
 # Método para eliminar un tooltip existente
 def eliminar_tooltip():
-    # Usar el método estático para ocultar el tooltip activo
-    from vista.componentes.tooltip import ToolTip
-
     ToolTip.ocultar_tooltip_activo()
     # Limpiar también la lista de tooltips si es necesario
     for componente, tooltip_existente in lista_tooltips.items():

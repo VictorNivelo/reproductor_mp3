@@ -969,96 +969,96 @@ def agregar_artista_fin_cola(artista):
         print(f"Artista '{artista}' agregado al final de la cola.")
 
 
-# Función para eliminar una canción de la biblioteca
-def eliminar_cancion_vista(cancion):
-    # Verificar si la canción que se elimina está en reproducción
+# Función para manejar reproducción activa al eliminar canción
+def detener_reproduccion_si_cancion_activa(cancion):
     if controlador_reproductor.cancion_actual == cancion:
-        # Sí está reproduciéndose, detener la reproducción
         controlador_reproductor.detener_reproduccion_controlador()
-        # Limpiar la información en la interfaz
         controlador_reproductor.cancion_actual = None
         controlador_reproductor.actualizar_informacion_controlador()
-    # Eliminar la canción de la cola de reproducción si está en ella
+        return True
+    return False
+
+
+# Función para limpiar canción de cola y colecciones
+def limpiar_cancion_colecciones(cancion):
+    # Eliminar de la cola de reproducción
     if cancion in controlador_reproductor.lista_reproduccion:
-        # Obtener índice actual
         indice_actual = controlador_reproductor.indice_actual
         indice_cancion = controlador_reproductor.lista_reproduccion.index(cancion)
-        # Eliminar la canción de la lista
         controlador_reproductor.lista_reproduccion.remove(cancion)
-        # Ajustar el índice actual si es necesario
+        # Ajustar índices
         if indice_cancion <= indice_actual and indice_actual > 0:
             controlador_reproductor.indice_actual -= 1
         elif len(controlador_reproductor.lista_reproduccion) == 0:
             controlador_reproductor.indice_actual = -1
-        # Guardar la cola actualizada
         controlador_archivos.guardar_cola_reproduccion_json_controlador(controlador_reproductor)
-    # Verificar si la canción está en la lista de "Me gusta" y eliminarla manualmente
+    # Limpiar estados de me_gusta y favorito
     if cancion.me_gusta:
         cancion.me_gusta = False
         if cancion in biblioteca.me_gusta:
             biblioteca.me_gusta.remove(cancion)
-    # Verificar si la canción está en la lista de "Favoritos" y eliminarla manualmente
     if cancion.favorito:
         cancion.favorito = False
         if cancion in biblioteca.favorito:
             biblioteca.favorito.remove(cancion)
-    # Verificar y eliminar de la colección de artistas
+    # Eliminar de colecciones indexadas (artistas, álbumes, títulos)
     for artista, lista_canciones in list(biblioteca.por_artista.items()):
         if cancion in lista_canciones:
             lista_canciones.remove(cancion)
-            # Si quedó vacía, eliminar la clave
             if not lista_canciones:
                 biblioteca.por_artista.pop(artista, None)
-    # Verificar y eliminar de la colección de álbumes
     for album, lista_canciones in list(biblioteca.por_album.items()):
         if cancion in lista_canciones:
             lista_canciones.remove(cancion)
-            # Si quedó vacía, eliminar la clave
             if not lista_canciones:
                 biblioteca.por_album.pop(album, None)
-    # Eliminar de la colección por título
     if cancion.titulo_cancion.lower() in biblioteca.por_titulo:
         biblioteca.por_titulo.pop(cancion.titulo_cancion.lower(), None)
-    # Finalmente, eliminar la canción de la biblioteca principal
+
+
+# Función para actualizar interfaz después de eliminar canción
+def reconstruir_interfaz_despues_eliminar_cancion(cancion):
+    # Limpiar referencias de UI
+    if cancion in botones_canciones:
+        if botones_canciones[cancion].winfo_exists():
+            botones_canciones[cancion].destroy()
+        del botones_canciones[cancion]
+    # Marcar pestañas para reconstrucción
+    for pestana in pestanas_cargadas:
+        pestanas_cargadas[pestana] = False
+    # Reconstruir vista actual
+    pestana_actual = paginas_canciones.get()
+    if pestana_actual == "Canciones":
+        for componente in panel_botones_canciones.winfo_children():
+            componente.destroy()
+        actualizar_vista_canciones(panel_botones_canciones)
+    elif pestana_actual == "Me gusta":
+        configurar_interfaz_me_gusta()
+    elif pestana_actual == "Favoritos":
+        configurar_interfaz_favoritos()
+    elif pestana_actual == "Álbumes":
+        configurar_interfaz_albumes()
+    elif pestana_actual == "Artistas":
+        configurar_interfaz_artistas()
+
+
+# Función principal para eliminar una canción de la biblioteca
+def eliminar_cancion_vista(cancion):
+    # Manejar si está reproduciéndose
+    detener_reproduccion_si_cancion_activa(cancion)
+    # Limpiar de todas las colecciones
+    limpiar_cancion_colecciones(cancion)
+    # Eliminar de la biblioteca principal
     try:
         if cancion in biblioteca.canciones:
             biblioteca.canciones.remove(cancion)
     except Exception as e:
         print(f"Error al eliminar la canción de la lista principal: {e}")
-    # Guardar los cambios en los archivos
+    # Guardar cambios
     guardar_biblioteca()
-    # Limpiar la referencia del botón de esta canción si existe
-    if cancion in botones_canciones:
-        # Destruir el botón físicamente
-        if botones_canciones[cancion].winfo_exists():
-            botones_canciones[cancion].destroy()
-        # Eliminar la referencia del diccionario
-        del botones_canciones[cancion]
-    # Marcar todas las pestañas como no cargadas para forzar su reconstrucción
-    for pestana in pestanas_cargadas:
-        pestanas_cargadas[pestana] = False
-    # Obtener la pestaña actual
-    pestana_actual = paginas_canciones.get()
-    # Reconstruir completamente la vista actual
-    if pestana_actual == "Canciones":
-        # Limpiar el panel de canciones
-        for componente in panel_botones_canciones.winfo_children():
-            componente.destroy()
-        # Reconstruir la vista
-        actualizar_vista_canciones(panel_botones_canciones)
-    elif pestana_actual == "Me gusta":
-        # Recrear el panel de Me gusta
-        configurar_interfaz_me_gusta()
-    elif pestana_actual == "Favoritos":
-        # Recrear el panel de Favoritos
-        configurar_interfaz_favoritos()
-    elif pestana_actual == "Álbumes":
-        # Recrear el panel de Álbumes
-        configurar_interfaz_albumes()
-    elif pestana_actual == "Artistas":
-        # Recrear el panel de Artistas
-        configurar_interfaz_artistas()
-    # Mostrar mensaje de confirmación
+    # Actualizar interfaz
+    reconstruir_interfaz_despues_eliminar_cancion(cancion)
+    # Mensaje de confirmación
     print(f"Se ha eliminado de la biblioteca: {cancion.titulo_cancion}")
 
 

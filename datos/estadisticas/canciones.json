@@ -1,9 +1,9 @@
 {
     "estadisticas": {
-        "total_canciones": 14,
-        "total_artistas": 20,
-        "total_albumes": 11,
-        "me_gusta": 2,
+        "total_canciones": 11,
+        "total_artistas": 15,
+        "total_albumes": 9,
+        "me_gusta": 1,
         "favorito": 1
     },
     "canciones": [
@@ -21,10 +21,10 @@
             "tamanio_archivo": 3213442,
             "tamanio_formateado": "3.1 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "30/05/2025 09:29:44",
+            "fecha_agregado": "31/05/2025 08:34:33",
             "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
+            "me_gusta": false,
+            "favorito": false
         },
         {
             "duracion": 151.53632653061226,
@@ -40,29 +40,10 @@
             "tamanio_archivo": 2594688,
             "tamanio_formateado": "2.5 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "30/05/2025 09:29:44",
+            "fecha_agregado": "31/05/2025 08:34:33",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "duracion": 158.56326530612245,
-            "duracion_formateada": "02:38",
-            "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-            "titulo": "14 De Febrero",
-            "artista": "Feid",
-            "artista_album": "Feid",
-            "album": "INTER SHIBUYA - LA MAFIA",
-            "anio": "2021-08-20",
-            "numero_pista": "14",
-            "genero": "Desconocido",
-            "tamanio_archivo": 2672142,
-            "tamanio_formateado": "2.5 MB",
-            "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "30/05/2025 09:29:44",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
+            "me_gusta": true,
+            "favorito": true
         },
         {
             "duracion": 175.30775510204083,
@@ -78,7 +59,7 @@
             "tamanio_archivo": 2837579,
             "tamanio_formateado": "2.7 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "30/05/2025 09:29:44",
+            "fecha_agregado": "31/05/2025 08:34:33",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -97,7 +78,7 @@
             "tamanio_archivo": 8369054,
             "tamanio_formateado": "8.0 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "30/05/2025 09:29:44",
+            "fecha_agregado": "31/05/2025 08:34:33",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -116,7 +97,7 @@
             "tamanio_archivo": 3468668,
             "tamanio_formateado": "3.3 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "30/05/2025 09:29:44",
+            "fecha_agregado": "31/05/2025 08:34:33",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -135,45 +116,7 @@
             "tamanio_archivo": 4456202,
             "tamanio_formateado": "4.2 MB",
             "fecha_creacion": "26/05/2025 19:14:56",
-            "fecha_agregado": "30/05/2025 09:29:44",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "duracion": 217.78285714285715,
-            "duracion_formateada": "03:37",
-            "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-            "titulo": "Animal",
-            "artista": "Eladio Carrion ft Bryant Myers",
-            "artista_album": "Eladio Carrion ft Bryant Myers",
-            "album": "Animal",
-            "anio": "2019-07-05",
-            "numero_pista": "1/1",
-            "genero": "Desconocido",
-            "tamanio_archivo": 3581874,
-            "tamanio_formateado": "3.4 MB",
-            "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "30/05/2025 09:29:44",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "duracion": 119.14448979591836,
-            "duracion_formateada": "01:59",
-            "ruta": "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
-            "titulo": "BUENOS AIRES",
-            "artista": "Tainy ft Mora, Zion",
-            "artista_album": "Tainy",
-            "album": "DATA",
-            "anio": "2023",
-            "numero_pista": "9",
-            "genero": "Desconocido",
-            "tamanio_archivo": 1967509,
-            "tamanio_formateado": "1.9 MB",
-            "fecha_creacion": "26/05/2025 19:14:56",
-            "fecha_agregado": "30/05/2025 09:29:44",
+            "fecha_agregado": "31/05/2025 08:34:33",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -192,9 +135,9 @@
             "tamanio_archivo": 4249538,
             "tamanio_formateado": "4.1 MB",
             "fecha_creacion": "26/05/2025 19:14:56",
-            "fecha_agregado": "30/05/2025 09:29:44",
+            "fecha_agregado": "31/05/2025 08:34:33",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
@@ -211,7 +154,7 @@
             "tamanio_archivo": 3452374,
             "tamanio_formateado": "3.3 MB",
             "fecha_creacion": "26/05/2025 18:52:11",
-            "fecha_agregado": "30/05/2025 09:29:44",
+            "fecha_agregado": "31/05/2025 08:34:33",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -230,7 +173,7 @@
             "tamanio_archivo": 3233089,
             "tamanio_formateado": "3.1 MB",
             "fecha_creacion": "26/05/2025 19:14:56",
-            "fecha_agregado": "30/05/2025 09:29:44",
+            "fecha_agregado": "31/05/2025 08:34:33",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -249,7 +192,7 @@
             "tamanio_archivo": 3154452,
             "tamanio_formateado": "3.0 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "30/05/2025 09:29:44",
+            "fecha_agregado": "31/05/2025 08:34:33",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -268,7 +211,7 @@
             "tamanio_archivo": 4051603,
             "tamanio_formateado": "3.9 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "30/05/2025 09:29:44",
+            "fecha_agregado": "31/05/2025 08:34:33",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false

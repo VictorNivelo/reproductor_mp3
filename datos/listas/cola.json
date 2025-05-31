@@ -1,15 +1,12 @@
 {
-    "indice_actual": 10,
+    "indice_actual": 1,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
-        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
         "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
         "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
         "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3",
@@ -17,10 +14,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
-        "titulo": "DÁKITI",
-        "artista": "Bad Bunny ft Jhay Cortez",
+        "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
+        "titulo": "120",
+        "artista": "Bad Bunny",
         "album": "EL ÚLTIMO TOUR DEL MUNDO",
-        "timestamp": "2025-05-30T10:37:20.905022"
+        "timestamp": "2025-05-31T08:34:50.852799"
     }
 }

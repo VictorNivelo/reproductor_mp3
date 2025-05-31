@@ -7,6 +7,7 @@ from mutagen.id3 import ID3
 from mutagen.mp3 import MP3
 from mutagen.mp4 import MP4
 from pathlib import Path
+from constantes import *
 import mutagen
 import io
 
@@ -298,6 +299,81 @@ class Cancion:
         }
         return info
 
+    # Método que devuelve el artista principal (el primero en la lista)
+    def obtener_artista_principal(self) -> str:
+        try:
+            # Usar el método estático para separar artistas
+            artistas = self.separar_artistas_cancion(self.artista)
+            # Devolver el primer artista (principal)
+            if artistas:
+                return artistas[0].strip()
+            else:
+                return self.artista.strip()
+        except Exception as e:
+            print(f"Error al obtener artista principal: {e}")
+            return self.artista
+
+    # Método que devuelve todos los artistas separados
+    def obtener_todos_artistas_separados(self) -> list:
+        try:
+            return self.separar_artistas_cancion(self.artista)
+        except Exception as e:
+            print(f"Error al separar artistas: {e}")
+            return [self.artista]
+
+    # Método estático para separar artistas
+    @staticmethod
+    def separar_artistas_cancion(texto_artista: str) -> list:
+        try:
+            # Si el texto está vacío o es None, devolver lista vacía
+            if not texto_artista or texto_artista.strip() == "":
+                return []
+            # Lista de separadores comunes para artistas
+            separadores = SEPARADORES
+            # Convertir a minúsculas para búsqueda insensible a mayúsculas
+            texto_lower = texto_artista.lower()
+            # Identificar separadores presentes
+            separadores_encontrados = []
+            for sep in separadores:
+                if sep in texto_lower:
+                    separadores_encontrados.append(sep)
+            # Si no hay separadores, devolver el artista original
+            if not separadores_encontrados:
+                return [texto_artista.strip()]
+            # Separar artistas según los separadores encontrados
+            artistas = [texto_artista]
+            for sep in separadores_encontrados:
+                nuevos_artistas = []
+                for artista in artistas:
+                    # Buscar el separador de forma insensible a mayúsculas
+                    partes = []
+                    texto_temp = artista
+                    sep_lower = sep.lower()
+                    while sep_lower in texto_temp.lower():
+                        indice = texto_temp.lower().find(sep_lower)
+                        if indice != -1:
+                            partes.append(texto_temp[:indice])
+                            texto_temp = texto_temp[indice + len(sep) :]
+                        else:
+                            break
+                    if texto_temp:
+                        partes.append(texto_temp)
+                    for parte in partes:
+                        # Solo agregar si no está vacío
+                        if parte.strip():
+                            nuevos_artistas.append(parte.strip())
+                if nuevos_artistas:
+                    artistas = nuevos_artistas
+            # Eliminar duplicados manteniendo el orden y devolver lista limpia
+            artistas_unicos = []
+            for artista in artistas:
+                if artista not in artistas_unicos:
+                    artistas_unicos.append(artista)
+            return artistas_unicos
+        except Exception as e:
+            print(f"Error al separar artistas: {e}")
+            return [texto_artista] if texto_artista else []
+
     # Método que convierte la canción a un diccionario
     def convertir_diccionario_cancion(self) -> dict:
         return {
@@ -338,3 +414,4 @@ class Cancion:
 # print(f"Tamaño del archivo: {cancion.tamanio_formateado}")
 # print(f"Fecha de creación: {cancion.fecha_creacion_formateada}")
 # print(f"Fecha de agregado: {cancion.fecha_agregado_formateada}")
+# print(f"Artistas separados: {cancion.obtener_todos_artistas_separados()}")

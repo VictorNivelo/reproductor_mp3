@@ -69,8 +69,8 @@ class Biblioteca:
             # Agregar a las colecciones principales
             self.canciones.append(cancion)
             self.por_titulo[cancion.titulo_cancion] = cancion
-            # Procesar y separar múltiples artistas
-            artistas = self.separar_artistas_biblioteca(cancion.artista)
+            # Procesar y separar múltiples artistas usando el método de Cancion
+            artistas = Cancion.separar_artistas_cancion(cancion.artista)
             # Agregar a la colección de artistas, para cada uno de los artistas detectados
             for artista in artistas:
                 if artista not in self.por_artista:
@@ -159,7 +159,7 @@ class Biblioteca:
             canciones_a_eliminar = []
             # Verificar para cada canción si el artista es el único o uno de varios
             for cancion in canciones_artista:
-                artistas_cancion = self.separar_artistas_biblioteca(cancion.artista)
+                artistas_cancion = Cancion.separar_artistas_cancion(cancion.artista)
                 if len(artistas_cancion) == 1:
                     # Si es el único artista, eliminar la canción completamente
                     canciones_a_eliminar.append(cancion)
@@ -243,8 +243,8 @@ class Biblioteca:
         # Contar la frecuencia de cada artista en el álbum
         conteo_artistas = {}
         for cancion in canciones_album:
-            # Separar múltiples artistas para contar cada uno
-            artistas = self.separar_artistas_biblioteca(cancion.artista)
+            # Separar múltiples artistas para contar cada uno usando el método de Cancion
+            artistas = Cancion.separar_artistas_cancion(cancion.artista)
             for artista in artistas:
                 if artista in conteo_artistas:
                     conteo_artistas[artista] += 1
@@ -347,35 +347,6 @@ class Biblioteca:
             "estadisticas": self.obtener_estadisticas_biblioteca(),
         }
 
-    # Método para separar múltiples artistas de una cadena
-    @staticmethod
-    def separar_artistas_biblioteca(texto_artista: str) -> list:
-        # Lista de separadores comunes para artistas
-        separadores = SEPARADORES
-        # Convertir a minúsculas para búsqueda insensible a mayúsculas
-        texto_lower = texto_artista.lower()
-        # Identificar separadores presentes
-        separadores_encontrados = []
-        for sep in separadores:
-            if sep in texto_lower:
-                separadores_encontrados.append(sep)
-        # Si no hay separadores, devolver el artista original
-        if not separadores_encontrados:
-            return [texto_artista.strip()]
-        # Separar artistas según los separadores encontrados
-        artistas = [texto_artista]
-        for sep in separadores_encontrados:
-            nuevos_artistas = []
-            for artista in artistas:
-                partes = artista.split(sep)
-                for parte in partes:
-                    # Solo agregar si no está vacío
-                    if parte.strip():
-                        nuevos_artistas.append(parte.strip())
-            artistas = nuevos_artistas
-        # Eliminar duplicados y devolver lista limpia
-        return list(set(artistas))
-
     # Método para reconstruir el índice de artistas
     def reconstruir_indice_artistas_biblioteca(self):
         # Guardar todas las canciones actuales
@@ -384,8 +355,8 @@ class Biblioteca:
         self.por_artista.clear()
         # Volver a procesar cada canción para actualizar la estructura de artistas
         for cancion in canciones_actuales:
-            # Procesar y separar múltiples artistas
-            artistas = self.separar_artistas_biblioteca(cancion.artista)
+            # Procesar y separar múltiples artistas usando el método de Cancion
+            artistas = Cancion.separar_artistas_cancion(cancion.artista)
             # Agregar a la colección de artistas actualizada
             for artista in artistas:
                 if artista not in self.por_artista:

@@ -6,15 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="b7a9c3b1-2f39-4ff6-b624-4183a59858ca" name="Cambios" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/estadisticas/canciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/canciones.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/listas/cola.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/cola.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/controlador_archivos.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/controlador_archivos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/biblioteca.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/biblioteca.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/cancion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/cancion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/utiles/utiles_vista.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/utiles/utiles_vista.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/configuracion/ajustes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/configuracion/atajos.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/estadisticas/canciones.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/cola.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +39,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.ApplicationConfigurable&quot;
   }
 }</component>
   <component name="SharedIndexes">
@@ -73,6 +71,8 @@
       <workItem from="1748463358722" duration="461000" />
       <workItem from="1748539609926" duration="271000" />
       <workItem from="1748653696188" duration="899000" />
+      <workItem from="1748709094760" duration="1929000" />
+      <workItem from="1748738587976" duration="59000" />
     </task>
     <servers />
   </component>

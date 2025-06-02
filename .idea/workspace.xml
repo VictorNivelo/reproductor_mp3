@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7a9c3b1-2f39-4ff6-b624-4183a59858ca" name="Cambios" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/componentes/mini_reproductor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/mini_reproductor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +80,7 @@
       <workItem from="1748807566681" duration="452000" />
       <workItem from="1748808088370" duration="152000" />
       <workItem from="1748808336805" duration="1851000" />
+      <workItem from="1748829141136" duration="977000" />
     </task>
     <servers />
   </component>

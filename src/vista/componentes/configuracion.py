@@ -74,6 +74,7 @@ class Configuracion(UtilesGeneral):
             try:
                 boton_seccion = ctk.CTkButton(
                     panel_principal_configuracion,
+                    width=ANCHO_BOTON,
                     height=35,
                     corner_radius=BORDES_REDONDEADOS_BOTON,
                     fg_color=self.color_boton,

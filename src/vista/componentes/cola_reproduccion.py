@@ -237,8 +237,8 @@ class ColaReproduccion(UtilesGeneral):
         if self.controlador_reproductor.lista_reproduccion:
             boton_limpiar_cola = ctk.CTkButton(
                 panel_componentes,
-                width=ANCHO_BOTON + 2,
-                height=ALTO_BOTON + 2,
+                width=ANCHO_BOTON - 4,
+                height=ALTO_BOTON - 4,
                 corner_radius=BORDES_REDONDEADOS_BOTON,
                 fg_color=self.color_boton,
                 hover_color=self.color_hover,
@@ -285,7 +285,7 @@ class ColaReproduccion(UtilesGeneral):
         boton_cerrar_cola = ctk.CTkButton(
             panel_principal_cola,
             width=ANCHO_BOTON,
-            height=ALTO_BOTON + 5,
+            height=ALTO_BOTON,
             corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.color_boton,
             hover_color=self.color_hover,
@@ -673,11 +673,11 @@ class ColaReproduccion(UtilesGeneral):
 
             # ---------------------------------------- Botón quitar -------------------------------------------
             # Botón para quitar de la cola
-            icono_quitar = cargar_icono_con_tamanio("quitar", self.controlador_tema.tema_iconos, (9, 9))
+            icono_quitar = cargar_icono_con_tamanio("quitar", self.controlador_tema.tema_iconos, (10, 10))
             boton_quitar = ctk.CTkButton(
                 panel_cancion,
-                width=ANCHO_BOTON + 4,
-                height=ALTO_BOTON + 4,
+                width=ANCHO_BOTON - 4,
+                height=ALTO_BOTON - 4,
                 corner_radius=BORDES_REDONDEADOS_BOTON,
                 fg_color=self.color_boton,
                 hover_color=self.color_hover,

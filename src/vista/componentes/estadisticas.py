@@ -88,7 +88,7 @@ class Estadisticas(UtilesGeneral):
         boton_cerrar_estadisticas = ctk.CTkButton(
             panel_estadisticas_general,
             width=ANCHO_BOTON,
-            height=ALTO_BOTON + 5,
+            height=ALTO_BOTON,
             corner_radius=BORDES_REDONDEADOS_BOTON,
             fg_color=self.color_boton,
             hover_color=self.color_hover,
@@ -193,7 +193,7 @@ class Estadisticas(UtilesGeneral):
             fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_tarjeta_cancion.pack(fill="x", padx=5, pady=(5, 0))
+        panel_tarjeta_cancion.pack(fill="x", padx=5, pady=(3, 0))
         self.componentes.append(panel_tarjeta_cancion)
 
         # ------------------------------ Etiqueta de título -------------------------------
@@ -343,7 +343,7 @@ class Estadisticas(UtilesGeneral):
             fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_tarjeta_artista.pack(fill="x", padx=5, pady=(5, 0))
+        panel_tarjeta_artista.pack(fill="x", padx=5, pady=(3, 0))
         self.componentes.append(panel_tarjeta_artista)
 
         # ------------------------------- Etiqueta de título ------------------------------
@@ -419,7 +419,7 @@ class Estadisticas(UtilesGeneral):
             fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_tarjeta_album.pack(fill="x", padx=5, pady=(5, 0))
+        panel_tarjeta_album.pack(fill="x", padx=5, pady=(3, 0))
         self.componentes.append(panel_tarjeta_album)
 
         # ------------------------------- Etiqueta de título ------------------------------
@@ -550,7 +550,7 @@ class Estadisticas(UtilesGeneral):
             fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_ultima_escuchada.pack(fill="x", padx=5, pady=(5, 0))
+        panel_ultima_escuchada.pack(fill="x", padx=5, pady=(3, 0))
         self.componentes.append(panel_ultima_escuchada)
 
         # ------------------------------- Etiqueta de título ------------------------------

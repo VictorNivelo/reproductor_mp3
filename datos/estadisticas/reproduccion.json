@@ -1,21 +1,47 @@
 {
     "artistas": {
         "Desconocido": 1,
-        "Eladio Carrion": 2,
-        "Bryant Myers": 2
+        "Eladio Carrion": 3,
+        "Bryant Myers": 3,
+        "Bad Bunny": 1,
+        "Tainy": 10,
+        "Metro Boomin": 1,
+        "Coi Leray": 1,
+        "Canserbero": 2,
+        "Alvaro Diaz": 2,
+        "Yan Block": 1,
+        "Panda Black": 1,
+        "Daddy Yankee": 3,
+        "Anuel AA": 11,
+        "Ozuna": 3,
+        "Sinfonico": 3,
+        "Ñengo Flow": 3,
+        "Sech": 2,
+        "E.VAX": 2,
+        "Mora": 2,
+        "Zion": 2
     },
     "albumes": {
         "Desconocido": 1,
-        "Animal": 2
+        "Animal": 3,
+        "Callaita": 1,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
+        "Na": 2,
+        "DATA": 6,
+        "444": 1,
+        "Adictiva": 3,
+        "Adicto (ft Anuel AA & Ozuna)": 3,
+        "¿Qué Nos Pasó?": 2,
+        "47 (Remix)": 3
     },
-    "tiempo_total": 632.5812244897959,
-    "canciones_escuchadas": 3,
+    "tiempo_total": 6744.1632653061215,
+    "canciones_escuchadas": 26,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "titulo": "Animal",
-        "artista": "Eladio Carrion ft Bryant Myers",
-        "album": "Animal",
-        "timestamp": "2025-06-01T20:10:10.565541"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Na.mp3",
+        "titulo": "Na",
+        "artista": "Canserbero",
+        "album": "Na",
+        "timestamp": "2025-06-01T21:12:10.439336"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\a.mp3": {
@@ -25,14 +51,91 @@
             "album": "Desconocido"
         },
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
             "album": "Animal"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Callaita.mp3": {
+            "contador": 1,
+            "titulo": "Callaita",
+            "artista": "Bad Bunny ft Tainy",
+            "album": "Callaita"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
+            "contador": 1,
+            "titulo": "Self Love",
+            "artista": "Metro Boomin ft Coi Leray",
+            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Na.mp3": {
+            "contador": 2,
+            "titulo": "Na",
+            "artista": "Canserbero",
+            "album": "Na"
+        },
+        "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3": {
+            "contador": 2,
+            "titulo": "PARANORMAL",
+            "artista": "Tainy ft Alvaro Diaz",
+            "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
+            "contador": 1,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
+            "contador": 3,
+            "titulo": "Adictiva",
+            "artista": "Daddy Yankee ft Anuel AA",
+            "album": "Adictiva"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3": {
+            "contador": 3,
+            "titulo": "Adicto",
+            "artista": "Tainy ft Anuel AA, Ozuna",
+            "album": "Adicto (ft Anuel AA & Ozuna)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
+            "contador": 2,
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "album": "¿Qué Nos Pasó?"
+        },
+        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
+            "contador": 3,
+            "titulo": "47 (Remix)",
+            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+            "album": "47 (Remix)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
+            "contador": 2,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3": {
+            "contador": 2,
+            "titulo": "BUENOS AIRES",
+            "artista": "Tainy ft Mora, Zion",
+            "album": "DATA"
         }
     },
     "artistas_originales": {
         "Desconocido": 1,
-        "Eladio Carrion ft Bryant Myers": 2
+        "Eladio Carrion ft Bryant Myers": 3,
+        "Bad Bunny ft Tainy": 1,
+        "Metro Boomin ft Coi Leray": 1,
+        "Canserbero": 2,
+        "Tainy ft Alvaro Diaz": 2,
+        "Yan Block ft Panda Black": 1,
+        "Daddy Yankee ft Anuel AA": 3,
+        "Tainy ft Anuel AA, Ozuna": 3,
+        "Anuel AA": 2,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 3,
+        "Tainy ft Sech, E.VAX": 2,
+        "Tainy ft Mora, Zion": 2
     }
 }

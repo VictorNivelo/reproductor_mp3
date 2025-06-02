@@ -392,7 +392,7 @@ class MiniReproductor(UtilesGeneral):
                 controlador_biblioteca.agregar_cancion_me_gusta_controlador(cancion)
                 # Actualizar el estado visual usando la función centralizada
                 actualizar_estado_me_gusta_vista(cancion)
-                # Actualizar el estado de me gusta específicamente en el mini reproductor
+                # Actualizar el estado de me_gusta específicamente en el mini reproductor
                 self.actualizar_estado_me_gusta()
                 # Guardar los cambios en la biblioteca
                 guardar_biblioteca()

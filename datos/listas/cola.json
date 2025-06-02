@@ -1,9 +1,10 @@
 {
-    "indice_actual": 10,
+    "indice_actual": 15,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "C:\\Users\\Victor\\Music\\b.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
         "C:\\Users\\Victor\\Music\\a.mp3",
@@ -23,10 +24,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
-        "titulo": "Callaita",
-        "artista": "Bad Bunny ft Tainy",
-        "album": "Callaita",
-        "timestamp": "2025-06-01T20:47:14.239728"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Na.mp3",
+        "titulo": "Na",
+        "artista": "Canserbero",
+        "album": "Na",
+        "timestamp": "2025-06-02T10:06:59.650908"
     }
 }

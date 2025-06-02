@@ -39,7 +39,7 @@ class Configuracion(UtilesGeneral):
             ancho=ANCHO_CONFIGURACION,
             alto=ALTO_CONFIGURACION,
             titulo="Configuración",
-            color_fondo=self.color_fondo,
+            color_fondo=self.color_fondo_principal,
             funcion_cierre=self.cerrar_ventana_configuracion,
             controlador=self.controlador_tema,
         )
@@ -48,11 +48,9 @@ class Configuracion(UtilesGeneral):
         # ======================= Panel principal de la ventana de configuración ===================
         # Crear el panel principal de la ventana de configuración
         panel_principal_configuracion = ctk.CTkFrame(
-            self.ventana_configuracion,
-            fg_color=self.color_fondo,
-            corner_radius=BORDES_REDONDEADOS_PANEL,
+            self.ventana_configuracion, fg_color=self.color_fondo, corner_radius=BORDES_REDONDEADOS_PANEL
         )
-        panel_principal_configuracion.pack(fill="both", expand=True)
+        panel_principal_configuracion.pack(fill="both", expand=True, padx=3, pady=3)
         self.componentes.append(panel_principal_configuracion)
         # ==========================================================================================
 
@@ -87,6 +85,7 @@ class Configuracion(UtilesGeneral):
                 )
                 boton_seccion.pack(fill="x", pady=3, padx=5)
                 self.componentes.append(boton_seccion)
+                crear_tooltip(boton_seccion, f"Abrir configuración de {seccion}")
             except Exception as e:
                 print(f"Error al crear el botón de la sección {seccion}: {e}")
         # ---------------------------------------- Botón cerrar ----------------------------------------

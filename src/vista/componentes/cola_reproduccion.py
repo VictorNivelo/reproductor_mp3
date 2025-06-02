@@ -1,7 +1,7 @@
-from vista.componentes.utiles.utiles_componentes import crear_ventana_modal, cerrar_ventana_modal
-from vista.utiles.utiles_vista import cargar_icono_con_tamanio, crear_tooltip
 from controlador.controlador_archivos import ControladorArchivos
+from vista.componentes.utiles.utiles_componentes import *
 from vista.utiles.utiles_scroll import GestorScroll
+from vista.utiles.utiles_vista import *
 from animacion import AnimacionGeneral
 from utiles import UtilesGeneral
 import customtkinter as ctk
@@ -67,6 +67,7 @@ class ColaReproduccion(UtilesGeneral):
                     componente.configure(image=icono_reproduccion)
                     # Actualizar el tooltip con el texto correcto
                     from vista.utiles.utiles_vista import actualizar_texto_tooltip
+
                     texto_tooltip = "Pausar" if self.controlador_reproductor.reproduciendo else "Reproducir"
                     actualizar_texto_tooltip(componente, texto_tooltip)
                     # Guardar referencia al icono para evitar que sea recolectado
@@ -115,14 +116,14 @@ class ColaReproduccion(UtilesGeneral):
         # self.ventana_cola.overrideredirect(True)
         # Configurar la ventana modal
         crear_ventana_modal(
-            self.ventana_principal,
-            self.ventana_cola,
-            ANCHO_COLA_REPRODUCCION,
-            ALTO_COLA_REPRODUCCION,
-            "Cola de reproducción",
-            self.color_fondo_principal,
-            lambda: self.cerrar_ventana_cola(),
-            self.controlador_tema,
+            ventana_principal=self.ventana_principal,
+            ventana_modal=self.ventana_cola,
+            ancho=ANCHO_COLA_REPRODUCCION,
+            alto=ALTO_COLA_REPRODUCCION,
+            titulo="Cola de reproducción",
+            color_fondo=self.color_fondo_principal,
+            funcion_cierre=lambda: self.cerrar_ventana_cola(),
+            controlador=self.controlador_tema,
         )
         # ===================================== Contenedor principal =====================================
         # Contenedor principal con margen reducido
@@ -249,6 +250,7 @@ class ColaReproduccion(UtilesGeneral):
             )
             boton_limpiar_cola.pack(side="right")
             self.componentes.append(boton_limpiar_cola)
+            crear_tooltip(boton_limpiar_cola, "Limpiar toda la cola de reproducción")
         # ------------------------------------------------------------------------------------------------
 
         # ---------------------------------------- Canvas cola -------------------------------------------
@@ -430,7 +432,6 @@ class ColaReproduccion(UtilesGeneral):
             self.componentes.append(boton_reproducir_pausar)
             texto_tooltip_inicial = "Pausar" if self.controlador_reproductor.reproduciendo else "Reproducir"
             crear_tooltip(boton_reproducir_pausar, texto_tooltip_inicial)
-
 
             # -------------------------------------------------------------------------------------------------
 
@@ -688,6 +689,7 @@ class ColaReproduccion(UtilesGeneral):
             )
             boton_quitar.pack(side="right", padx=(0, 3))
             self.componentes.append(boton_quitar)
+            crear_tooltip(boton_quitar, "Quitar de la cola")
             # -------------------------------------------------------------------------------------------------
 
             # Añadir efecto hover al panel de canción

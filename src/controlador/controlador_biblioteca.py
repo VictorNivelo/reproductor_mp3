@@ -23,30 +23,49 @@ class ControladorBiblioteca:
             print(f"Error al agregar el directorio: {e}")
             return []
 
+    # Método para obtener todas las canciones de la biblioteca
+    def obtener_todas_canciones_controlador(self):
+        try:
+            return self.biblioteca.canciones
+        except Exception as e:
+            print(f"Error al obtener todas las canciones: {e}")
+            return []
+
     # Método para eliminar una canción específica
-    def eliminar_cancion_controlador(self, cancion: Cancion) -> bool:
+    def eliminar_cancion_biblioteca_controlador(self, cancion):
         try:
             if cancion is None:
-                print("Error: Canción no válida")
                 return False
-            # Verificar si la canción existe en la biblioteca
-            if cancion not in self.biblioteca.canciones:
-                print("Error: La canción no existe en la biblioteca")
-                return False
-            # Si es la canción actual, limpiar la referencia
-            if self.cancion_actual == cancion:
-                self.cancion_actual = None
-            # Eliminar la canción de la biblioteca
-            resultado = self.biblioteca.eliminar_cancion_biblioteca(cancion)
-            if resultado:
-                print(f"Canción eliminada exitosamente: {cancion.titulo_cancion}")
-            else:
-                print(f"Error al eliminar la canción: {cancion.titulo_cancion}")
-            return resultado
+            # Eliminar de listas especiales
+            if cancion.me_gusta and cancion in self.biblioteca.me_gusta:
+                self.biblioteca.me_gusta.remove(cancion)
+                cancion.me_gusta = False
+            if cancion.favorito and cancion in self.biblioteca.favorito:
+                self.biblioteca.favorito.remove(cancion)
+                cancion.favorito = False
+            # Eliminar de índices de artistas
+            for artista, lista_canciones in list(self.biblioteca.por_artista.items()):
+                if cancion in lista_canciones:
+                    lista_canciones.remove(cancion)
+                    if not lista_canciones:
+                        del self.biblioteca.por_artista[artista]
+            # Eliminar de índices de álbumes
+            for album, lista_canciones in list(self.biblioteca.por_album.items()):
+                if cancion in lista_canciones:
+                    lista_canciones.remove(cancion)
+                    if not lista_canciones:
+                        del self.biblioteca.por_album[album]
+            # Eliminar de índice de títulos
+            if cancion.titulo_cancion.lower() in self.biblioteca.por_titulo:
+                self.biblioteca.por_titulo.pop(cancion.titulo_cancion.lower(), None)
+            # Eliminar de la lista principal
+            if cancion in self.biblioteca.canciones:
+                self.biblioteca.canciones.remove(cancion)
+            return True
         except Exception as e:
-            print(f"Error al eliminar la canción: {e}")
+            print(f"Error al eliminar canción completamente: {e}")
             return False
-        
+
     # Método para eliminar un artista completo
     def eliminar_artista_controlador(self, nombre_artista: str):
         try:
@@ -91,6 +110,14 @@ class ControladorBiblioteca:
             print(f"Error al eliminar directorio: {e}")
             return False
 
+    # Método para obtener todas los albumes
+    def obtener_todos_albumes_controlador(self):
+        try:
+            return list(self.biblioteca.por_album.keys())
+        except Exception as e:
+            print(f"Error al obtener todos los álbumes: {e}")
+            return []
+
     # Método para obtener todas las canciones de un álbum específico
     def obtener_canciones_album_controlador(self, nombre_album):
         try:
@@ -99,6 +126,14 @@ class ControladorBiblioteca:
             return []
         except Exception as e:
             print(f"Error al obtener canciones del álbum: {e}")
+            return []
+
+    # Método para obtener todos los artistas
+    def obtener_todos_artistas_controlador(self):
+        try:
+            return list(self.biblioteca.por_artista.keys())
+        except Exception as e:
+            print(f"Error al obtener todos los artistas: {e}")
             return []
 
     # Método para obtener el artista de un álbum
@@ -137,6 +172,13 @@ class ControladorBiblioteca:
             print(f"Error al verificar me gusta: {e}")
             return False
 
+    def obtener_canciones_me_gusta_controlador(self):
+        try:
+            return self.biblioteca.me_gusta
+        except Exception as e:
+            print(f"Error al obtener canciones me gusta: {e}")
+            return []
+
     # Método que agrega canciones como me gusta
     def agregar_cancion_me_gusta_controlador(self, cancion):
         try:
@@ -173,6 +215,13 @@ class ControladorBiblioteca:
             print(f"Error al verificar favorito: {e}")
             return False
 
+    def obtener_canciones_favorito_controlador(self):
+        try:
+            return self.biblioteca.favorito
+        except Exception as e:
+            print(f"Error al obtener canciones favoritas: {e}")
+            return []
+
     # Método que agrega canciones como favoritas
     def agregar_cancion_favorito_controlador(self, cancion):
         try:
@@ -199,6 +248,15 @@ class ControladorBiblioteca:
         except Exception as e:
             print(f"Error al agregar artista a favoritos: {e}")
             return False
+
+    def buscar_canciones_controlador(self, texto_busqueda):
+        return [
+            cancion
+            for cancion in self.biblioteca.canciones
+            if texto_busqueda.lower() in cancion.titulo_cancion.lower()
+            or texto_busqueda.lower() in cancion.artista.lower()
+            or texto_busqueda.lower() in cancion.album.lower()
+        ]
 
     # Método para obtener la caratula de un album
     def obtener_caratula_album_controlador(self, nombre_album, formato="bytes", ancho=None, alto=None):

@@ -1,4 +1,4 @@
-from vista.utiles.utiles_vista import establecer_icono_tema
+from vista.utiles.utiles_vista import *
 from utiles import UtilesGeneral
 import customtkinter as ctk
 from constantes import *
@@ -224,6 +224,7 @@ class MiniReproductor(UtilesGeneral):
         )
         self.boton_me_gusta_mini.pack(side="left", padx=5)
         self.controlador_tema.registrar_botones("me_gusta_mini", self.boton_me_gusta_mini)
+        crear_tooltip(self.boton_me_gusta_mini, "Agregar a Me Gusta")
         # -------------------------------------------------------------------------------------------------
 
         # ----------------------------------------- Boton anterior ----------------------------------------
@@ -241,6 +242,7 @@ class MiniReproductor(UtilesGeneral):
         )
         self.boton_anterior_mini.pack(side="left", padx=5)
         self.controlador_tema.registrar_botones("anterior_mini", self.boton_anterior_mini)
+        crear_tooltip(self.boton_anterior_mini, "Reproducir anterior")
         # -------------------------------------------------------------------------------------------------
 
         # --------------------------------- Boton reproducir/pausar ---------------------------------------
@@ -258,6 +260,7 @@ class MiniReproductor(UtilesGeneral):
         )
         self.boton_reproducir_mini.pack(side="left", padx=5)
         self.controlador_tema.registrar_botones("reproducir_mini", self.boton_reproducir_mini)
+        crear_tooltip(self.boton_reproducir_mini, "Reproducir")
         # -------------------------------------------------------------------------------------------------
 
         # -------------------------------- Boton siguiente ------------------------------------------------
@@ -275,6 +278,7 @@ class MiniReproductor(UtilesGeneral):
         )
         self.boton_siguiente_mini.pack(side="left", padx=5)
         self.controlador_tema.registrar_botones("siguiente_mini", self.boton_siguiente_mini)
+        crear_tooltip(self.boton_siguiente_mini, "Reproducir siguiente")
         # -------------------------------------------------------------------------------------------------
 
         # -------------------------------- Boton maximizar mini reproductor -------------------------------
@@ -292,6 +296,7 @@ class MiniReproductor(UtilesGeneral):
         )
         boton_maximizar_mini_reproductor.pack(side="left", padx=5)
         self.controlador_tema.registrar_botones("maximizar_mini", boton_maximizar_mini_reproductor)
+        crear_tooltip(boton_maximizar_mini_reproductor, "Maximizar ventana")
         # -------------------------------------------------------------------------------------------------
         # =================================================================================================
 
@@ -387,6 +392,8 @@ class MiniReproductor(UtilesGeneral):
                 controlador_biblioteca.agregar_cancion_me_gusta_controlador(cancion)
                 # Actualizar el estado visual usando la función centralizada
                 actualizar_estado_me_gusta_vista(cancion)
+                # Actualizar el estado de me gusta específicamente en el mini reproductor
+                self.actualizar_estado_me_gusta()
                 # Guardar los cambios en la biblioteca
                 guardar_biblioteca()
             except Exception as e:
@@ -398,8 +405,12 @@ class MiniReproductor(UtilesGeneral):
             # Actualizar el icono del botón de reproducción/pausa
             if self.controlador_reproductor.reproduciendo:
                 self.controlador_tema.registrar_botones("pausa_mini", self.boton_reproducir_mini)
+                # Actualizar tooltip para pausa
+                actualizar_texto_tooltip(self.boton_reproducir_mini, "Pausar")
             else:
                 self.controlador_tema.registrar_botones("reproducir_mini", self.boton_reproducir_mini)
+                # Actualizar tooltip para reproducir
+                actualizar_texto_tooltip(self.boton_reproducir_mini, "Reproducir")
             # Actualizar el icono de me_gusta según el estado de la canción actual
             self.actualizar_estado_me_gusta()
 
@@ -411,9 +422,11 @@ class MiniReproductor(UtilesGeneral):
             if cancion.me_gusta:
                 # Si tiene me gusta, mostrar icono rojo
                 self.controlador_tema.registrar_botones("me_gusta_rojo_mini", self.boton_me_gusta_mini)
+                actualizar_texto_tooltip(self.boton_me_gusta_mini, "Quitar de Me Gusta")
             else:
                 # Si no tiene me gusta, mostrar icono normal
                 self.controlador_tema.registrar_botones("me_gusta_mini", self.boton_me_gusta_mini)
+                actualizar_texto_tooltip(self.boton_me_gusta_mini, "Agregar a Me Gusta")
 
     # Método para actualizar la información de la canción en el mini reproductor
     def actualizar_informacion(self):
@@ -444,6 +457,9 @@ class MiniReproductor(UtilesGeneral):
             ):
                 valor_progreso = self.controlador_reproductor.barra_progreso.get()
                 self.barra_progreso_mini.set(valor_progreso)
+            # Actualizar tooltips según el estado actual
+            self.actualizar_estado_me_gusta()
+            self.actualizar_estado_reproduccion()
         else:
             # No hay canción en reproducción
             self.etiqueta_nombre_cancion_mini.configure(text="Sin reproducción")
@@ -453,6 +469,9 @@ class MiniReproductor(UtilesGeneral):
             self.etiqueta_tiempo_final_mini.configure(text="00:00")
             self.imagen_cancion_mini.configure(image=None, text="Sin carátula")
             self.barra_progreso_mini.set(0)
+            # Resetear tooltips cuando no hay canción
+            actualizar_texto_tooltip(self.boton_me_gusta_mini, "Agregar a Me Gusta")
+            actualizar_texto_tooltip(self.boton_reproducir_mini, "Reproducir")
         self.aplicar_eventos_movimiento()
 
     # Método para mostrar la ventana del mini reproductor

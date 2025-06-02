@@ -1,23 +1,42 @@
 {
     "me_gusta": [
         {
-            "duracion": 197.01551020408164,
-            "duracion_formateada": "03:17",
-            "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
+            "duracion": 217.78285714285715,
+            "duracion_formateada": "03:37",
+            "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "artista_album": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal",
+            "anio": "2019-07-05",
+            "numero_pista": "1/1",
+            "genero": "Desconocido",
+            "tamanio_archivo": 3581874,
+            "tamanio_formateado": "3.4 MB",
+            "fecha_creacion": "09/04/2025 19:17:54",
+            "fecha_agregado": "01/06/2025 20:46:54",
+            "tiene_caratula": true,
+            "me_gusta": true,
+            "favorito": false
+        },
+        {
+            "duracion": 119.14448979591836,
+            "duracion_formateada": "01:59",
+            "ruta": "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
+            "titulo": "BUENOS AIRES",
+            "artista": "Tainy ft Mora, Zion",
             "artista_album": "Tainy",
             "album": "DATA",
             "anio": "2023",
-            "numero_pista": "6",
+            "numero_pista": "9",
             "genero": "Desconocido",
-            "tamanio_archivo": 3213442,
-            "tamanio_formateado": "3.1 MB",
-            "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "01/06/2025 14:46:30",
+            "tamanio_archivo": 1967509,
+            "tamanio_formateado": "1.9 MB",
+            "fecha_creacion": "26/05/2025 19:14:56",
+            "fecha_agregado": "01/06/2025 20:46:54",
             "tiene_caratula": true,
             "me_gusta": true,
-            "favorito": true
+            "favorito": false
         }
     ]
 }

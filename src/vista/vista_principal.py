@@ -225,9 +225,10 @@ def cargar_todos_ajustes():
 def cargar_ultima_cancion_reproducida():
     ultima_cancion_info = controlador_archivos.ultima_reproducida_json_controlador()
     if ultima_cancion_info:
-        # Buscar la canción en la biblioteca
+        # Buscar la canción
         ruta_cancion = Path(ultima_cancion_info["ruta"])
-        for cancion in biblioteca.canciones:
+        todas_canciones = controlador_biblioteca.obtener_todas_canciones_controlador()
+        for cancion in todas_canciones:
             if str(cancion.ruta_cancion) == str(ruta_cancion):
                 # Añadir la canción a la cola sin reproducirla
                 if (
@@ -330,11 +331,11 @@ def reproducir_artista_completo(artista):
 
 # Función para reproducir la canción seleccionada
 def reproducir_desde_lista_vista(cancion):
-    global ESTADO_REPRODUCCION, ANIMACION_ESPECTRO_ACTIVA, biblioteca
+    global ESTADO_REPRODUCCION, ANIMACION_ESPECTRO_ACTIVA
+    todas_canciones = controlador_biblioteca.obtener_todas_canciones_controlador()
+    indice_cancion = todas_canciones.index(cancion)
     # Establecer la lista de reproducción actual
-    controlador_reproductor.establecer_cola_reproduccion_controlador(
-        biblioteca.canciones, biblioteca.canciones.index(cancion)
-    )
+    controlador_reproductor.establecer_cola_reproduccion_controlador(todas_canciones, indice_cancion)
     # Reproducir la canción
     controlador_reproductor.reproducir_cancion_controlador(cancion)
     # Registrar la reproducción en las estadísticas
@@ -355,7 +356,7 @@ def reproducir_desde_cola_vista():
 
 # Función para reproducir la canción siguiente
 def reproducir_siguiente_vista():
-    global ESTADO_REPRODUCCION, ANIMACION_ESPECTRO_ACTIVA, controlador_reproductor
+    global ESTADO_REPRODUCCION, ANIMACION_ESPECTRO_ACTIVA
     resultado = controlador_reproductor.reproducir_siguiente_controlador()
     if resultado:
         # Canción reproducida exitosamente
@@ -369,7 +370,6 @@ def reproducir_siguiente_vista():
 
 # Función para reproducir la canción anterior
 def reproducir_anterior_vista():
-    global controlador_reproductor
     if controlador_reproductor.reproducir_anterior_controlador():
         # Canción reproducida exitosamente
         actualizar_estado_botones_gustos()
@@ -638,7 +638,7 @@ def agregar_me_gusta_vista(cancion=None):
     # Verificar que hay una canción válida
     if not cancion:
         return
-    # Modificar el estado en la biblioteca
+    # Modificar el estado
     controlador_biblioteca.agregar_cancion_me_gusta_controlador(cancion)
     # Actualizar interfaz según el contexto
     if controlador_reproductor.cancion_actual == cancion:
@@ -828,7 +828,7 @@ def agregar_favorito_vista(cancion=None):
     # Verificar que hay una canción válida
     if not cancion:
         return
-    # Modificar el estado en la biblioteca
+    # Modificar el estado
     controlador_biblioteca.agregar_cancion_favorito_controlador(cancion)
     # Actualizar interfaz según el contexto
     if controlador_reproductor.cancion_actual == cancion:
@@ -993,27 +993,7 @@ def limpiar_cancion_colecciones(cancion):
             controlador_reproductor.indice_actual = -1
         controlador_archivos.guardar_cola_reproduccion_json_controlador(controlador_reproductor)
     # Limpiar estados de me_gusta y favorito
-    if cancion.me_gusta:
-        cancion.me_gusta = False
-        if cancion in biblioteca.me_gusta:
-            biblioteca.me_gusta.remove(cancion)
-    if cancion.favorito:
-        cancion.favorito = False
-        if cancion in biblioteca.favorito:
-            biblioteca.favorito.remove(cancion)
-    # Eliminar de colecciones indexadas (artistas, álbumes, títulos)
-    for artista, lista_canciones in list(biblioteca.por_artista.items()):
-        if cancion in lista_canciones:
-            lista_canciones.remove(cancion)
-            if not lista_canciones:
-                biblioteca.por_artista.pop(artista, None)
-    for album, lista_canciones in list(biblioteca.por_album.items()):
-        if cancion in lista_canciones:
-            lista_canciones.remove(cancion)
-            if not lista_canciones:
-                biblioteca.por_album.pop(album, None)
-    if cancion.titulo_cancion.lower() in biblioteca.por_titulo:
-        biblioteca.por_titulo.pop(cancion.titulo_cancion.lower(), None)
+    controlador_biblioteca.eliminar_cancion_biblioteca_controlador(cancion)
 
 
 # Función para actualizar interfaz después de eliminar canción
@@ -1042,24 +1022,18 @@ def reconstruir_interfaz_despues_eliminar_cancion(cancion):
         configurar_interfaz_artistas()
 
 
-# Función principal para eliminar una canción de la biblioteca
+# Función principal para eliminar una canción
 def eliminar_cancion_vista(cancion):
     # Manejar si está reproduciéndose
     detener_reproduccion_si_cancion_activa(cancion)
     # Limpiar de todas las colecciones
     limpiar_cancion_colecciones(cancion)
-    # Eliminar de la biblioteca principal
-    try:
-        if cancion in biblioteca.canciones:
-            biblioteca.canciones.remove(cancion)
-    except Exception as e:
-        print(f"Error al eliminar la canción de la lista principal: {e}")
     # Guardar cambios
     guardar_biblioteca()
     # Actualizar interfaz
     reconstruir_interfaz_despues_eliminar_cancion(cancion)
     # Mensaje de confirmación
-    print(f"Se ha eliminado de la biblioteca: {cancion.titulo_cancion}")
+    print(f"Se ha eliminado: {cancion.titulo_cancion}")
 
 
 # Función para actualizar el progreso de la canción
@@ -1107,19 +1081,16 @@ def finalizar_arrastre_progreso(event):
     actualizar_progreso_vista(event)
 
 
-# Función para guardar la biblioteca cuando ocurren cambios
+# Función para guardar las canciones cuando ocurren cambios
 def guardar_biblioteca():
-    global controlador_archivos, biblioteca, controlador_reproductor
     controlador_archivos.guardar_biblioteca_json_controlador(biblioteca, controlador_reproductor)
 
 
-# Función para cargar la biblioteca al iniciar
+# Función para cargar las canciones al iniciar
 def cargar_biblioteca_vista():
     if controlador_archivos.cargar_biblioteca_json_controlador(biblioteca):
         # Cargar ajustes primero para tener el tema correcto
         cargar_todos_ajustes()
-        # Reinicializar la estructura de artistas para separar colaboraciones
-        biblioteca.reconstruir_indice_artistas_biblioteca()
         # Actualizar vista principal de canciones
         actualizar_vista_canciones(panel_botones_canciones)
         # Configurar eventos para las pestañas (solo cargar cuando se seleccionan)
@@ -1188,16 +1159,17 @@ def ir_al_artista(cancion):
             artista_principal = artista_completo.split(separador, 1)[0].strip()
             print(f"Artista extraído: '{artista_principal}' de '{artista_completo}'")
             break
-    # Buscar el artista principal en la biblioteca
+    # Buscar el artista principal
     artista_encontrado = None
     # Primero buscar coincidencia exacta (sin importar mayúsculas/minúsculas)
-    for artista_key in biblioteca.por_artista.keys():
+    todos_artistas = controlador_biblioteca.obtener_todos_artistas_controlador()
+    for artista_key in todos_artistas:
         if artista_principal.lower() == artista_key.lower():
             artista_encontrado = artista_key
             break
     # Si no hay coincidencia exacta, buscar coincidencia parcial
     if not artista_encontrado:
-        for artista_key in biblioteca.por_artista.keys():
+        for artista_key in todos_artistas:
             if (
                 artista_principal.lower() in artista_key.lower()
                 or artista_key.lower() in artista_principal.lower()
@@ -1215,7 +1187,7 @@ def ir_al_artista(cancion):
             print(f"No se encontraron canciones del artista: {artista_encontrado}")
     else:
         # Si no hay coincidencia, mostrar mensaje informativo
-        print(f"No se encontró el artista principal '{artista_principal}' en la biblioteca")
+        print(f"No se encontró el artista principal '{artista_principal}'")
 
 
 # Función para navegar al artista de un álbum específico
@@ -1230,16 +1202,17 @@ def ir_al_artista_album(album):
         # Obtener el artista principal del álbum usando el controlador
         artista_principal = controlador_biblioteca.obtener_artista_album_controlador(album)
         if artista_principal and artista_principal not in ["", "Unknown Artist", "Desconocido"]:
-            # Buscar el artista en la biblioteca
+            # Buscar el artista
             artista_encontrado = None
             # Primero buscar coincidencia exacta (sin importar mayúsculas/minúsculas)
-            for artista_key in biblioteca.por_artista.keys():
+            todos_artistas = controlador_biblioteca.obtener_todos_artistas_controlador()
+            for artista_key in todos_artistas:
                 if artista_key.lower() == artista_principal.lower():
                     artista_encontrado = artista_key
                     break
             # Si no hay coincidencia exacta, buscar coincidencia parcial
             if not artista_encontrado:
-                for artista_key in biblioteca.por_artista.keys():
+                for artista_key in todos_artistas:
                     if (
                         artista_principal.lower() in artista_key.lower()
                         or artista_key.lower() in artista_principal.lower()
@@ -1251,16 +1224,14 @@ def ir_al_artista_album(album):
                 mostrar_canciones_artista(artista_encontrado)
                 print(f"Navegando al artista del álbum '{album}': {artista_encontrado}")
             else:
-                print(
-                    f"No se encontró el artista principal '{artista_principal}' del álbum '{album}' en la biblioteca"
-                )
+                print(f"No se encontró el artista principal '{artista_principal}' del álbum '{album}'")
         else:
             print(f"No se pudo determinar el artista principal del álbum '{album}'")
     except Exception as e:
         print(f"Error al navegar al artista del álbum '{album}': {e}")
 
 
-# Función para crear botones para cada canción en la biblioteca
+# Función para crear botones para cada canción
 def crear_boton_cancion(cancion, panel):
     # Obtener colores del tema actual
     controlador_tema.colores()
@@ -1576,7 +1547,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
 
     crear_opcion_menu(
         panel_menu_opciones,
-        "Eliminar de la biblioteca",
+        "Eliminar cancion",
         lambda: eliminar_cancion_vista(cancion),
         False,
         "eliminar",
@@ -2062,7 +2033,7 @@ def actualizar_todas_vistas_canciones():
     # Restablecer el scroll para la pestaña actual
     if pestana_actual == "Canciones":
         canvas_canciones.bind_all("<MouseWheel>", lambda e: GestorScroll.scroll_simple(canvas_canciones, e))
-    # Guardar la biblioteca después de las actualizaciones
+    # Guardar después de las actualizaciones
     guardar_biblioteca()
 
 
@@ -2208,7 +2179,7 @@ def mostrar_canciones_album(album):
     return mostrar_detalles_cancion("Álbumes", album, actualizar_vista_albumes)
 
 
-# Función para actualizar la vista de las canciones en la biblioteca
+# Función para actualizar la vista de las canciones
 def actualizar_vista_canciones(panel):
     try:
         # Limpiar completamente el panel de botones
@@ -2218,7 +2189,7 @@ def actualizar_vista_canciones(panel):
         botones_canciones.clear()
         botones_opciones_canciones.clear()
         # Recrear todos los botones de canciones
-        for cancion in biblioteca.canciones:
+        for cancion in controlador_biblioteca.obtener_todas_canciones_controlador():
             crear_boton_cancion(cancion, panel)
         # Resetear el scroll del canvas y panel
         resetear_scroll_canvas(canvas_canciones, panel)
@@ -2230,7 +2201,7 @@ def actualizar_vista_canciones(panel):
 def actualizar_vista_albumes():
     panel_botones_albumes = configurar_interfaz_albumes()[1]
     # Obtener todos los álbumes
-    albumes = biblioteca.por_album.keys()
+    albumes = controlador_biblioteca.obtener_todos_albumes_controlador()
     crear_boton_album(albumes, panel_botones_albumes)
     # Obtener el canvas asociado a esta pestaña
     pestania_albumes = paginas_canciones.tab("Álbumes")
@@ -2245,7 +2216,7 @@ def actualizar_vista_albumes():
 def actualizar_vista_artistas():
     panel_botones_artistas = configurar_interfaz_artistas()[1]
     # Obtener todos los artistas
-    artistas = biblioteca.por_artista.keys()
+    artistas = controlador_biblioteca.obtener_todos_artistas_controlador()
     # Usar la función auxiliar para crear botones
     crear_boton_artista(artistas, panel_botones_artistas)
     # Obtener el canvas asociado a esta pestaña
@@ -2283,22 +2254,26 @@ def configurar_vista_lista_canciones(nombre_pestania, lista_canciones, filtro=No
 
 # Función para mostrar las canciones de Me_gusta filtradas
 def mostrar_me_gusta_filtrados(texto_busqueda):
-    configurar_vista_lista_canciones("Me gusta", biblioteca.me_gusta, texto_busqueda)
+    canciones_me_gusta = controlador_biblioteca.obtener_canciones_me_gusta_controlador()
+    configurar_vista_lista_canciones("Me gusta", canciones_me_gusta, texto_busqueda)
 
 
 # Función para mostrar las canciones de favoritos filtradas
 def mostrar_favoritos_filtrados(texto_busqueda):
-    configurar_vista_lista_canciones("Favoritos", biblioteca.favorito, texto_busqueda)
+    canciones_favoritas = controlador_biblioteca.obtener_canciones_favorito_controlador()
+    configurar_vista_lista_canciones("Favoritos", canciones_favoritas, texto_busqueda)
 
 
 # Función para actualizar la vista de Me_gusta
 def actualizar_vista_me_gusta():
-    configurar_vista_lista_canciones("Me gusta", biblioteca.me_gusta)
+    canciones_me_gusta = controlador_biblioteca.obtener_canciones_me_gusta_controlador()
+    configurar_vista_lista_canciones("Me gusta", canciones_me_gusta)
 
 
 # Función para actualizar la vista de favoritos
 def actualizar_vista_favoritos():
-    configurar_vista_lista_canciones("Favoritos", biblioteca.favorito)
+    canciones_favoritas = controlador_biblioteca.obtener_canciones_favorito_controlador()
+    configurar_vista_lista_canciones("Favoritos", canciones_favoritas)
 
 
 # Función para mostrar las canciones de un artista
@@ -2355,13 +2330,7 @@ def mostrar_canciones_filtradas(texto_busqueda):
     for componente in panel_botones_canciones.winfo_children():
         componente.destroy()
     # Obtener las canciones filtradas
-    canciones_filtradas = [
-        cancion
-        for cancion in biblioteca.canciones
-        if texto_busqueda.lower() in cancion.titulo_cancion.lower()
-        or texto_busqueda.lower() in cancion.artista.lower()
-        or texto_busqueda.lower() in cancion.album.lower()
-    ]
+    canciones_filtradas = controlador_biblioteca.buscar_canciones_controlador(texto_busqueda)
     # Mostrar las canciones filtradas
     for cancion in canciones_filtradas:
         crear_boton_cancion(cancion, panel_botones_canciones)
@@ -2376,7 +2345,9 @@ def mostrar_artistas_filtrados(texto_busqueda):
     canvas_artistas, panel_botones_artistas = configurar_interfaz_artistas()
     # Filtrar artistas
     artistas_filtrados = [
-        artista for artista in biblioteca.por_artista.keys() if texto_busqueda.lower() in artista.lower()
+        artista
+        for artista in controlador_biblioteca.obtener_todos_artistas_controlador()
+        if texto_busqueda.lower() in artista.lower()
     ]
     # Usar la función auxiliar para crear botones
     crear_boton_artista(artistas_filtrados, panel_botones_artistas)
@@ -2389,7 +2360,9 @@ def mostrar_albumes_filtrados(texto_busqueda):
     canvas_albumes, panel_botones_albumes = configurar_interfaz_albumes()
     # Filtrar álbumes
     albumes_filtrados = [
-        album for album in biblioteca.por_album.keys() if texto_busqueda.lower() in album.lower()
+        album
+        for album in controlador_biblioteca.obtener_todos_albumes_controlador()
+        if texto_busqueda.lower() in album.lower()
     ]
     crear_boton_album(albumes_filtrados, panel_botones_albumes)
     # Restablecer el scroll del canvas y panel
@@ -3031,7 +3004,7 @@ etiqueta_tiempo_total = ctk.CTkLabel(
     text_color=controlador_tema.color_texto,
     text="00:00",
 )
-etiqueta_tiempo_total.pack(side=tk.RIGHT)
+etiqueta_tiempo_total.pack(side="right")
 controlador_tema.registrar_etiqueta(etiqueta_tiempo_total)
 
 controlador_reproductor.establecer_etiquetas_tiempo_controlador(etiqueta_tiempo_actual, etiqueta_tiempo_total)
@@ -3460,7 +3433,7 @@ actualizar_iconos()
 # Verificar el estado de la reproducción
 verificar_estado_reproduccion()
 
-# Cargar las canciones de biblioteca al iniciar
+# Cargar las canciones al iniciar
 cargar_biblioteca_vista()
 
 # Cargar la cola de reproducción al iniciar

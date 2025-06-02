@@ -69,11 +69,9 @@ class ToolTip:
     def mostrar_tooltip(self, _event=None):
         # Asegurarse de que no hay otro tooltip activo
         ToolTip.ocultar_tooltip_activo()
-        
         if not self.tooltip or not self.tooltip.winfo_exists():
             # Establecer este tooltip como el activo
             ToolTip.tooltip_activo = self
-            
             # Obtener el modo de apariencia actual
             modo_apariencia = ctk.get_appearance_mode().lower()
             # Definir colores según el modo de apariencia

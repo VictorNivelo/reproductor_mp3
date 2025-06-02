@@ -29,30 +29,22 @@ class Atajos(UtilesGeneral):
             ancho=ANCHO_ATAJOS,
             alto=ALTO_ATAJOS,
             titulo="Atajos",
-            color_fondo=self.color_fondo,
+            color_fondo=self.color_fondo_principal,
             funcion_cierre=self.cerrar_ventana_atajos,
             controlador=self.controlador_tema,
         )
         # =================================================================================================
 
         # ======================================== Panel principal ========================================
-        # Crear el panel principal de la ventana de atajos
-        panel_principal_atajos = ctk.CTkFrame(
-            self.ventana_atajos,
-            fg_color=self.color_fondo_principal,
-            corner_radius=BORDES_REDONDEADOS_PANEL,
-        )
-        panel_principal_atajos.pack(fill="both", expand=True)
-        self.componentes.append(panel_principal_atajos)
 
         # **************************************** Panel de atajos ****************************************
         # Crear el panel de atajos
         panel_atajos_general = ctk.CTkFrame(
-            panel_principal_atajos,
+            self.ventana_atajos,
             fg_color=self.color_fondo,
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_atajos_general.pack(pady=3, padx=3, fill="both", expand=True)
+        panel_atajos_general.pack(fill="both", expand=True, padx=3, pady=3)
 
         # -------------------------------------- Etiquetas de atajos --------------------------------------
         # Crear etiquetas para los atajos

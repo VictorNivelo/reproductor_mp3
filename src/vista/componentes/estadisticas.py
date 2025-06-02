@@ -39,28 +39,19 @@ class Estadisticas(UtilesGeneral):
             ancho=ANCHO_ESTADISTICAS,
             alto=ALTO_ESTADISTICAS,
             titulo="Estadísticas",
-            color_fondo=self.color_fondo,
+            color_fondo=self.color_fondo_principal,
             funcion_cierre=self.cerrar_ventana_estadisticas,
             controlador=self.controlador_tema,
         )
         # =================================================================================================
 
         # ======================================== Panel principal ========================================
-        # Crear el panel principal de la ventana de estadísticas
-        panel_principal_estadisticas = ctk.CTkFrame(
-            self.ventana_estadisticas,
-            fg_color=self.color_fondo_principal,
-            corner_radius=BORDES_REDONDEADOS_PANEL,
-        )
-        panel_principal_estadisticas.pack(fill="both", expand=True)
-        self.componentes.append(panel_principal_estadisticas)
-
         # ************************************* Panel de estadísticas *************************************
         # Panel de estadísticas general
         panel_estadisticas_general = ctk.CTkFrame(
-            panel_principal_estadisticas, fg_color=self.color_fondo, corner_radius=BORDES_REDONDEADOS_PANEL
+            self.ventana_estadisticas, fg_color=self.color_fondo, corner_radius=BORDES_REDONDEADOS_PANEL
         )
-        panel_estadisticas_general.pack(pady=3, padx=3, fill="both", expand=True)
+        panel_estadisticas_general.pack(fill="both", expand=True, padx=3, pady=3)
 
         # -------------------------------------- Etiqueta de título ---------------------------------------
         # Etiqueta de título general
@@ -79,7 +70,7 @@ class Estadisticas(UtilesGeneral):
 
         # Obtener estadísticas de reproducción
         estadisticas = self.controlador_archivos.obtener_estadisticas_json_controlador()
-        if not estadisticas:
+        if not estadisticas or estadisticas.get("canciones_escuchadas", 0) == 0:
             # Mostrar mensaje si no hay estadísticas
             self.mostrar_sin_estadisticas(panel_estadisticas_general)
         else:
@@ -144,7 +135,7 @@ class Estadisticas(UtilesGeneral):
         # Panel para resumen
         panel_resumen = ctk.CTkFrame(
             panel_padre,
-            fg_color=self.color_segundario,
+            fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
         panel_resumen.pack(fill="x", padx=5, pady=(5, 0))
@@ -199,7 +190,7 @@ class Estadisticas(UtilesGeneral):
         # Panel de tarjeta de estadísticas
         panel_tarjeta_cancion = ctk.CTkFrame(
             panel_padre,
-            fg_color=self.color_segundario,
+            fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
         panel_tarjeta_cancion.pack(fill="x", padx=5, pady=(5, 0))
@@ -249,13 +240,13 @@ class Estadisticas(UtilesGeneral):
             if caratula_pil:
                 # Convertir a CTkImage
                 caratula_ctk = CTkImage(light_image=caratula_pil, dark_image=caratula_pil, size=(60, 60))
-                etiqueta_caratula.configure(image=caratula_ctk)
+                etiqueta_caratula.configure(image=caratula_ctk, text="")
                 # Guardar referencia
                 etiqueta_caratula.image = caratula_ctk
             else:
-                etiqueta_caratula.configure(text="Sin\ncarátula", image=None)
+                etiqueta_caratula.configure(width=60, height=60, text="Sin\ncarátula", image=None)
         else:
-            etiqueta_caratula.configure(text="Sin\ncarátula", image=None)
+            etiqueta_caratula.configure(width=60, height=60, text="Sin\ncarátula", image=None)
         # ---------------------------------------------------------------------------------
 
         # ---------------------------- Panel para información de canción ------------------
@@ -349,7 +340,7 @@ class Estadisticas(UtilesGeneral):
         # Panel de tarjeta de estadísticas
         panel_tarjeta_artista = ctk.CTkFrame(
             panel_padre,
-            fg_color=self.color_segundario,
+            fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
         panel_tarjeta_artista.pack(fill="x", padx=5, pady=(5, 0))
@@ -425,7 +416,7 @@ class Estadisticas(UtilesGeneral):
         # Panel de tarjeta de estadísticas
         panel_tarjeta_album = ctk.CTkFrame(
             panel_padre,
-            fg_color=self.color_segundario,
+            fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
         panel_tarjeta_album.pack(fill="x", padx=5, pady=(5, 0))
@@ -475,13 +466,13 @@ class Estadisticas(UtilesGeneral):
             if caratula_pil:
                 # Convertir a CTkImage
                 caratula_ctk = CTkImage(light_image=caratula_pil, dark_image=caratula_pil, size=(60, 60))
-                etiqueta_caratula.configure(image=caratula_ctk)
+                etiqueta_caratula.configure(image=caratula_ctk, text="")
                 # Guardar referencia
                 etiqueta_caratula.image = caratula_ctk
             else:
-                etiqueta_caratula.configure(text="Sin\ncarátula", image=None)
+                etiqueta_caratula.configure(width=60, height=60, text="Sin\ncarátula", image=None)
         else:
-            etiqueta_caratula.configure(text="Sin\ncarátula", image=None)
+            etiqueta_caratula.configure(width=60, height=60, text="Sin\ncarátula", image=None)
         # ---------------------------------------------------------------------------------
 
         # -------------------------- Panel para información del álbum ---------------------
@@ -556,7 +547,7 @@ class Estadisticas(UtilesGeneral):
         # Panel para última reproducción
         panel_ultima_escuchada = ctk.CTkFrame(
             panel_padre,
-            fg_color=self.color_segundario,
+            fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
         panel_ultima_escuchada.pack(fill="x", padx=5, pady=(5, 0))
@@ -606,13 +597,13 @@ class Estadisticas(UtilesGeneral):
             if caratula_pil:
                 # Convertir a CTkImage
                 caratula_ctk = CTkImage(light_image=caratula_pil, dark_image=caratula_pil, size=(60, 60))
-                etiqueta_caratula.configure(image=caratula_ctk)
+                etiqueta_caratula.configure(image=caratula_ctk, text="")
                 # Guardar referencia
                 etiqueta_caratula.image = caratula_ctk
             else:
-                etiqueta_caratula.configure(text="Sin\ncarátula", image=None)
+                etiqueta_caratula.configure(width=60, height=60, text="Sin\ncarátula", image=None)
         else:
-            etiqueta_caratula.configure(text="Sin\ncarátula", image=None)
+            etiqueta_caratula.configure(width=60, height=60, text="Sin\ncarátula", image=None)
         # ---------------------------------------------------------------------------------
 
         # -------------------------- Panel para información de la canción ------------------

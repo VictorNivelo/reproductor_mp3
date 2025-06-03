@@ -1,5 +1,5 @@
 {
-    "indice_actual": 10,
+    "indice_actual": 13,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -22,10 +22,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3",
-        "titulo": "Cloniao",
-        "artista": "Hades66 ft Hanzel La H, YOVNGCHIMI",
-        "album": "Cloniao",
-        "timestamp": "2025-06-02T15:36:23.162165"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Na.mp3",
+        "titulo": "Na",
+        "artista": "Canserbero",
+        "album": "Na",
+        "timestamp": "2025-06-03T14:26:01.231482"
     }
 }

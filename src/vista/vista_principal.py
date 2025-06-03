@@ -1248,8 +1248,8 @@ def crear_boton_cancion(cancion, panel):
     # Crear el botón principal con texto inicial
     boton_cancion = ctk.CTkButton(
         panel_lista_cancion,
-        width=ANCHO_BOTON + 8,
-        height=ALTO_BOTON + 8,
+        width=ANCHO_BOTON,
+        height=ALTO_BOTON,
         fg_color=controlador_tema.color_boton,
         hover_color=controlador_tema.color_hover,
         font=(LETRA, TAMANIO_LETRA_BOTON),
@@ -1269,8 +1269,8 @@ def crear_boton_cancion(cancion, panel):
     # Botón de opciones
     boton_opciones = ctk.CTkButton(
         panel_lista_cancion,
-        width=ANCHO_BOTON + 8,
-        height=ALTO_BOTON + 8,
+        width=ANCHO_BOTON,
+        height=ALTO_BOTON,
         fg_color=controlador_tema.color_boton,
         hover_color=controlador_tema.color_hover,
         font=(LETRA, TAMANIO_LETRA_BOTON),
@@ -1308,8 +1308,8 @@ def crear_boton_album(albumes, panel_componente):
         # ------------------------------------ Boton de álbum -----------------------------------
         boton_album = ctk.CTkButton(
             panel_lista_album,
-            width=ANCHO_BOTON + 8,
-            height=ALTO_BOTON + 8,
+            width=ANCHO_BOTON,
+            height=ALTO_BOTON,
             fg_color=controlador_tema.color_boton,
             hover_color=controlador_tema.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
@@ -1328,8 +1328,8 @@ def crear_boton_album(albumes, panel_componente):
         # Botón de opciones del álbum
         boton_opciones_album = ctk.CTkButton(
             panel_lista_album,
-            width=ANCHO_BOTON + 8,
-            height=ALTO_BOTON + 8,
+            width=ANCHO_BOTON,
+            height=ALTO_BOTON,
             fg_color=controlador_tema.color_boton,
             hover_color=controlador_tema.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
@@ -1364,8 +1364,8 @@ def crear_boton_artista(artistas, panel_componente):
         # ----------------------------------- Boton de artista ----------------------------------
         boton_artista = ctk.CTkButton(
             panel_lista_artista,
-            width=ANCHO_BOTON + 8,
-            height=ALTO_BOTON + 8,
+            width=ANCHO_BOTON,
+            height=ALTO_BOTON,
             fg_color=controlador_tema.color_boton,
             hover_color=controlador_tema.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
@@ -1384,8 +1384,8 @@ def crear_boton_artista(artistas, panel_componente):
         # Botón de opciones del álbum
         boton_opciones_artista = ctk.CTkButton(
             panel_lista_artista,
-            width=ANCHO_BOTON + 8,
-            height=ALTO_BOTON + 8,
+            width=ANCHO_BOTON,
+            height=ALTO_BOTON,
             fg_color=controlador_tema.color_boton,
             hover_color=controlador_tema.color_hover,
             font=(LETRA, TAMANIO_LETRA_BOTON),
@@ -1423,8 +1423,8 @@ def crear_opcion_menu(panel_menu_opciones, texto, funcion, tiene_separador=False
     # ------------------------------------ Botón de opción --------------------------------------
     boton_opcion = ctk.CTkButton(
         panel_menu_opciones,
-        width=ANCHO_BOTON + 5,
-        height=ALTO_BOTON + 5,
+        width=ANCHO_BOTON - 3,
+        height=ALTO_BOTON - 3,
         fg_color="transparent",
         hover_color=controlador_tema.color_hover,
         font=(LETRA, TAMANIO_LETRA_BOTON),
@@ -1435,7 +1435,7 @@ def crear_opcion_menu(panel_menu_opciones, texto, funcion, tiene_separador=False
         compound="left",
         command=lambda: [funcion(), panel_menu_opciones.master.destroy()],
     )
-    boton_opcion.pack(fill="x", padx=2)
+    boton_opcion.pack(fill="x", padx=2, pady=(2, 0))
     # -------------------------------------------------------------------------------------------
 
 
@@ -1455,16 +1455,15 @@ def mostrar_menu_opciones(cancion, panel_padre):
     menu_ventana.title("")
     menu_ventana.geometry("200x0")
     menu_ventana.overrideredirect(True)
-    menu_ventana.configure(fg_color=controlador_tema.color_fondo)
+    menu_ventana.configure(fg_color="green")
     menu_ventana.attributes("-topmost", True)
     menu_ventana.attributes("-toolwindow", True)
+    menu_ventana.attributes("-transparentcolor", "green")
     # -------------------------------------------------------------------------------------------
     # ----------------------------------- Panel menu opciones -----------------------------------
     # Contenedor principal del menú
-    panel_menu_opciones = ctk.CTkFrame(
-        menu_ventana, corner_radius=BORDES_REDONDEADOS_PANEL, fg_color=controlador_tema.color_fondo
-    )
-    panel_menu_opciones.pack(fill="both", expand=True, padx=2, pady=2)
+    panel_menu_opciones = ctk.CTkFrame(menu_ventana, corner_radius=7, fg_color=controlador_tema.color_base)
+    panel_menu_opciones.pack(fill="both", expand=True)
     # -------------------------------------------------------------------------------------------
     # Agregar opciones al menú
     # ---------------------------------- Opciones reproducir ------------------------------------
@@ -1555,7 +1554,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
     # -------------------------------------------------------------------------------------------
     # Actualizar el panel para obtener su altura real
     panel_menu_opciones.update_idletasks()
-    altura_real = panel_menu_opciones.winfo_reqheight() + 5
+    altura_real = panel_menu_opciones.winfo_reqheight() + 2
     # Posicionar el menú junto al botón
     x = panel_padre.winfo_rootx() + panel_padre.winfo_width() - 200
     y = panel_padre.winfo_rooty()
@@ -1604,15 +1603,14 @@ def mostrar_menu_opciones_album(album, panel_padre):
     menu_ventana.title("")
     menu_ventana.geometry("200x0")
     menu_ventana.overrideredirect(True)
-    menu_ventana.configure(fg_color=controlador_tema.color_fondo)
+    menu_ventana.configure(fg_color="green")
     menu_ventana.attributes("-topmost", True)
     menu_ventana.attributes("-toolwindow", True)
+    menu_ventana.attributes("-transparentcolor", "green")
     # -------------------------------------------------------------------------------------------
     # ----------------------------------- Panel menu opciones álbum -----------------------------
-    panel_menu_opciones = ctk.CTkFrame(
-        menu_ventana, corner_radius=BORDES_REDONDEADOS_PANEL, fg_color=controlador_tema.color_fondo
-    )
-    panel_menu_opciones.pack(fill="both", expand=True, padx=2, pady=2)
+    panel_menu_opciones = ctk.CTkFrame(menu_ventana, corner_radius=7, fg_color=controlador_tema.color_base)
+    panel_menu_opciones.pack(fill="both", expand=True)
     # -------------------------------------------------------------------------------------------
     # Agregar opciones al menú
     # ---------------------------------- Opciones reproducir álbum ------------------------------
@@ -1702,9 +1700,9 @@ def mostrar_menu_opciones_album(album, panel_padre):
 
     # Actualizar el panel para obtener su altura real
     panel_menu_opciones.update_idletasks()
-    altura_real = panel_menu_opciones.winfo_reqheight() + 5
+    altura_real = panel_menu_opciones.winfo_reqheight() + 2
     # Posicionar el menú junto al botón
-    x = panel_padre.winfo_rootx() + panel_padre.winfo_width() - 230
+    x = panel_padre.winfo_rootx() + panel_padre.winfo_width() - 200
     y = panel_padre.winfo_rooty()
     # Asegurar que el menú no salga de la pantalla
     ancho_menu_pantalla = menu_ventana.winfo_screenwidth()
@@ -1750,15 +1748,14 @@ def mostrar_menu_opciones_artista(artista, panel_padre):
     menu_ventana.title("")
     menu_ventana.geometry("200x0")
     menu_ventana.overrideredirect(True)
-    menu_ventana.configure(fg_color=controlador_tema.color_fondo)
+    menu_ventana.configure(fg_color="green")
     menu_ventana.attributes("-topmost", True)
     menu_ventana.attributes("-toolwindow", True)
+    menu_ventana.attributes("-transparentcolor", "green")
     # -------------------------------------------------------------------------------------------
     # ----------------------------------- Panel menu opciones artista --------------------------
-    panel_menu_opciones = ctk.CTkFrame(
-        menu_ventana, corner_radius=BORDES_REDONDEADOS_PANEL, fg_color=controlador_tema.color_fondo
-    )
-    panel_menu_opciones.pack(fill="both", expand=True, padx=2, pady=2)
+    panel_menu_opciones = ctk.CTkFrame(menu_ventana, corner_radius=7, fg_color=controlador_tema.color_base)
+    panel_menu_opciones.pack(fill="both", expand=True)
     # -------------------------------------------------------------------------------------------
 
     # Agregar opciones al menú
@@ -1848,9 +1845,9 @@ def mostrar_menu_opciones_artista(artista, panel_padre):
 
     # Actualizar el panel para obtener su altura real
     panel_menu_opciones.update_idletasks()
-    altura_real = panel_menu_opciones.winfo_reqheight() + 5
+    altura_real = panel_menu_opciones.winfo_reqheight() + 2
     # Posicionar el menú junto al botón
-    x = panel_padre.winfo_rootx() + panel_padre.winfo_width() - 230
+    x = panel_padre.winfo_rootx() + panel_padre.winfo_width() - 200
     y = panel_padre.winfo_rooty()
     # Asegurar que el menú no salga de la pantalla
     ancho_menu_pantalla = menu_ventana.winfo_screenwidth()
@@ -1944,8 +1941,8 @@ def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
     # Botón para volver a la lista
     boton_regresar = ctk.CTkButton(
         panel_superior,
-        width=ANCHO_BOTON + 4,
-        height=ALTO_BOTON + 4,
+        width=ANCHO_BOTON - 3,
+        height=ALTO_BOTON - 3,
         fg_color=controlador_tema.color_boton,
         hover_color=controlador_tema.color_hover,
         font=(LETRA, TAMANIO_LETRA_BOTON),

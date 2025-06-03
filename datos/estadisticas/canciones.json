@@ -1,10 +1,10 @@
 {
     "estadisticas": {
-        "total_canciones": 21,
-        "total_artistas": 29,
-        "total_albumes": 16,
-        "me_gusta": 5,
-        "favorito": 4
+        "total_canciones": 19,
+        "total_artistas": 27,
+        "total_albumes": 14,
+        "me_gusta": 0,
+        "favorito": 0
     },
     "canciones": [
         {
@@ -21,7 +21,7 @@
             "tamanio_archivo": 3213442,
             "tamanio_formateado": "3.1 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -40,7 +40,7 @@
             "tamanio_archivo": 2594688,
             "tamanio_formateado": "2.5 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -59,26 +59,7 @@
             "tamanio_archivo": 2672142,
             "tamanio_formateado": "2.5 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "02/06/2025 10:06:46",
-            "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "duracion": 197.01551020408164,
-            "duracion_formateada": "03:17",
-            "ruta": "C:\\Users\\Victor\\Music\\b.mp3",
-            "titulo": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
-            "artista": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
-            "artista_album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
-            "album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
-            "anio": "Desconocido",
-            "numero_pista": "6",
-            "genero": "Desconocido",
-            "tamanio_archivo": 3246548,
-            "tamanio_formateado": "3.1 MB",
-            "fecha_creacion": "19/05/2025 21:00:43",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -97,10 +78,10 @@
             "tamanio_archivo": 2837579,
             "tamanio_formateado": "2.7 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": true
+            "favorito": false
         },
         {
             "duracion": 517.8514285714285,
@@ -116,27 +97,8 @@
             "tamanio_archivo": 8369054,
             "tamanio_formateado": "8.0 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
-            "me_gusta": false,
-            "favorito": false
-        },
-        {
-            "duracion": 197.01551020408164,
-            "duracion_formateada": "03:17",
-            "ruta": "C:\\Users\\Victor\\Music\\a.mp3",
-            "titulo": "a",
-            "artista": "Desconocido",
-            "artista_album": "Desconocido",
-            "album": "Desconocido",
-            "anio": "Desconocido",
-            "numero_pista": "6",
-            "genero": "Desconocido",
-            "tamanio_archivo": 3154984,
-            "tamanio_formateado": "3.0 MB",
-            "fecha_creacion": "03/05/2025 11:54:26",
-            "fecha_agregado": "02/06/2025 10:06:46",
-            "tiene_caratula": false,
             "me_gusta": false,
             "favorito": false
         },
@@ -154,7 +116,7 @@
             "tamanio_archivo": 3468668,
             "tamanio_formateado": "3.3 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -173,9 +135,9 @@
             "tamanio_archivo": 4456202,
             "tamanio_formateado": "4.2 MB",
             "fecha_creacion": "26/05/2025 19:14:56",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
@@ -192,9 +154,9 @@
             "tamanio_archivo": 3581874,
             "tamanio_formateado": "3.4 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
@@ -211,9 +173,9 @@
             "tamanio_archivo": 1967509,
             "tamanio_formateado": "1.9 MB",
             "fecha_creacion": "26/05/2025 19:14:56",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         },
         {
@@ -230,10 +192,10 @@
             "tamanio_archivo": 4249538,
             "tamanio_formateado": "4.1 MB",
             "fecha_creacion": "26/05/2025 19:14:56",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": true
+            "favorito": false
         },
         {
             "duracion": 193.8808163265306,
@@ -249,7 +211,7 @@
             "tamanio_archivo": 3247720,
             "tamanio_formateado": "3.1 MB",
             "fecha_creacion": "31/05/2025 10:15:42",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -268,7 +230,7 @@
             "tamanio_archivo": 3452374,
             "tamanio_formateado": "3.3 MB",
             "fecha_creacion": "26/05/2025 18:52:11",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -287,7 +249,7 @@
             "tamanio_archivo": 3983437,
             "tamanio_formateado": "3.8 MB",
             "fecha_creacion": "31/05/2025 10:15:42",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -306,10 +268,10 @@
             "tamanio_archivo": 6194070,
             "tamanio_formateado": "5.9 MB",
             "fecha_creacion": "31/05/2025 10:15:42",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
-            "me_gusta": true,
-            "favorito": true
+            "me_gusta": false,
+            "favorito": false
         },
         {
             "duracion": 198.24326530612245,
@@ -325,10 +287,10 @@
             "tamanio_archivo": 3233089,
             "tamanio_formateado": "3.1 MB",
             "fecha_creacion": "26/05/2025 19:14:56",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
-            "favorito": true
+            "favorito": false
         },
         {
             "duracion": 189.5183673469388,
@@ -344,7 +306,7 @@
             "tamanio_archivo": 3154452,
             "tamanio_formateado": "3.0 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -363,7 +325,7 @@
             "tamanio_archivo": 3412786,
             "tamanio_formateado": "3.3 MB",
             "fecha_creacion": "31/05/2025 10:15:42",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -382,7 +344,7 @@
             "tamanio_archivo": 3814447,
             "tamanio_formateado": "3.6 MB",
             "fecha_creacion": "31/05/2025 10:15:42",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
             "me_gusta": false,
             "favorito": false
@@ -401,9 +363,9 @@
             "tamanio_archivo": 4051603,
             "tamanio_formateado": "3.9 MB",
             "fecha_creacion": "09/04/2025 19:17:54",
-            "fecha_agregado": "02/06/2025 10:06:46",
+            "fecha_agregado": "02/06/2025 11:43:41",
             "tiene_caratula": true,
-            "me_gusta": true,
+            "me_gusta": false,
             "favorito": false
         }
     ]

@@ -11,7 +11,7 @@ ALTO_CONFIGURACION = 500
 
 # Tamaño de la ventana de atajos
 ANCHO_ATAJOS = 450
-ALTO_ATAJOS = 500
+ALTO_ATAJOS = 535
 
 # Tamaño minireproductor
 ANCHO_MINI_REPRODUCTOR = 390

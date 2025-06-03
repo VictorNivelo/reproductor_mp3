@@ -75,7 +75,7 @@ class Configuracion(UtilesGeneral):
                 boton_seccion = ctk.CTkButton(
                     panel_principal_configuracion,
                     width=ANCHO_BOTON,
-                    height=35,
+                    height=ALTO_BOTON,
                     corner_radius=BORDES_REDONDEADOS_BOTON,
                     fg_color=self.color_boton,
                     hover_color=self.color_hover,

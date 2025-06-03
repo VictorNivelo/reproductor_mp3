@@ -303,9 +303,11 @@ class ColaReproduccion(UtilesGeneral):
         # ================================================================================================
 
     # Método para mostrar la carátula de una canción en un panel
-    def mostrar_caratula(self, panel_contenedor, cancion, ancho=60):
+    def mostrar_caratula(self, panel_contenedor, cancion, ancho_caratula=60, alto_caratula=60):
         if cancion and cancion.caratula_cancion:
-            foto = cancion.obtener_caratula_general_cancion(formato="ctk", ancho=ancho, alto=ancho)
+            foto = cancion.obtener_caratula_general_cancion(
+                formato="ctk", ancho=ancho_caratula, alto=alto_caratula
+            )
             if foto:
                 etiqueta_imagen = ctk.CTkLabel(panel_contenedor, image=foto, text="")
                 etiqueta_imagen.image = foto
@@ -315,7 +317,24 @@ class ColaReproduccion(UtilesGeneral):
                 )
                 self.componentes.append(etiqueta_imagen)
                 return etiqueta_imagen
-        return None
+        # Si no hay carátula, mostrar un placeholder
+        etiqueta_sin_caratula = ctk.CTkLabel(
+            panel_contenedor,
+            width=ancho_caratula,
+            height=alto_caratula,
+            fg_color=self.color_segundario,
+            corner_radius=5,
+            font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
+            text_color=self.color_texto,
+            text="Sin\ncarátula",
+        )
+        etiqueta_sin_caratula.pack(
+            side="left" if panel_contenedor.pack_info().get("side") != "left" else "top",
+            padx=(0, 3),
+        )
+        self.componentes.append(etiqueta_sin_caratula)
+        self.controlador_tema.registrar_etiqueta(etiqueta_sin_caratula)
+        return etiqueta_sin_caratula
 
     # Método para mostrar la información de la canción actual
     def mostrar_cancion_actual(self, panel):
@@ -344,8 +363,7 @@ class ColaReproduccion(UtilesGeneral):
             self.componentes.append(panel_imagen)
             # -------------------------------------------------------------------------------------------------
 
-            if cancion_actual.caratula_cancion:
-                self.mostrar_caratula(panel_imagen, cancion_actual, ancho=60)
+            self.mostrar_caratula(panel_imagen, cancion_actual, ancho_caratula=60, alto_caratula=60)
 
             # *************************************************************************************************
 
@@ -601,8 +619,7 @@ class ColaReproduccion(UtilesGeneral):
             self.controlador_tema.registrar_etiqueta(etiqueta_numero)
             # -------------------------------------------------------------------------------------------------
             # Intentar mostrar la carátula
-            if cancion.caratula_cancion:
-                self.mostrar_caratula(panel_cancion, cancion, ancho=45)
+            self.mostrar_caratula(panel_cancion, cancion, ancho_caratula=45, alto_caratula=45)
             # Información de la canción
             # --------------------------------- Panel información canción -------------------------------------
             panel_cola_informacion = ctk.CTkFrame(
@@ -676,8 +693,8 @@ class ColaReproduccion(UtilesGeneral):
             icono_quitar = cargar_icono_con_tamanio("quitar", self.controlador_tema.tema_iconos, (10, 10))
             boton_quitar = ctk.CTkButton(
                 panel_cancion,
-                width=ANCHO_BOTON - 4,
-                height=ALTO_BOTON - 4,
+                width=ANCHO_BOTON - 5,
+                height=ALTO_BOTON - 5,
                 corner_radius=BORDES_REDONDEADOS_BOTON,
                 fg_color=self.color_boton,
                 hover_color=self.color_hover,

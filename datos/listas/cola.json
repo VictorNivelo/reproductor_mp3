@@ -1,13 +1,11 @@
 {
-    "indice_actual": 15,
+    "indice_actual": 10,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-        "C:\\Users\\Victor\\Music\\b.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
-        "C:\\Users\\Victor\\Music\\a.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
@@ -24,10 +22,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Na.mp3",
-        "titulo": "Na",
-        "artista": "Canserbero",
-        "album": "Na",
-        "timestamp": "2025-06-02T10:06:59.650908"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3",
+        "titulo": "Cloniao",
+        "artista": "Hades66 ft Hanzel La H, YOVNGCHIMI",
+        "album": "Cloniao",
+        "timestamp": "2025-06-02T15:36:23.162165"
     }
 }

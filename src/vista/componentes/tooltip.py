@@ -102,7 +102,7 @@ class ToolTip:
             # Etiqueta del tooltip con el texto
             self.etiqueta_tooltip = ctk.CTkLabel(
                 self.tooltip,
-                corner_radius=7,
+                corner_radius=BORDES_REDONDEADOS_ENTRADAS,
                 bg_color="transparent",
                 fg_color=color_etiqueta,
                 font=(LETRA, TAMANIO_LETRA_ETIQUETA),

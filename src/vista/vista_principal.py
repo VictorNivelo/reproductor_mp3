@@ -1463,7 +1463,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
     # -------------------------------------------------------------------------------------------
     # ----------------------------------- Panel menu opciones -----------------------------------
     # Contenedor principal del menú
-    panel_menu_opciones = ctk.CTkFrame(menu_ventana, corner_radius=7, fg_color=controlador_tema.color_base)
+    panel_menu_opciones = ctk.CTkFrame(menu_ventana, corner_radius=BORDES_REDONDEADOS_ENTRADAS, fg_color=controlador_tema.color_base)
     panel_menu_opciones.pack(fill="both", expand=True)
     # -------------------------------------------------------------------------------------------
     # Agregar opciones al menú
@@ -1610,7 +1610,7 @@ def mostrar_menu_opciones_album(album, panel_padre):
     menu_ventana.attributes("-transparentcolor", "green")
     # -------------------------------------------------------------------------------------------
     # ----------------------------------- Panel menu opciones álbum -----------------------------
-    panel_menu_opciones = ctk.CTkFrame(menu_ventana, corner_radius=7, fg_color=controlador_tema.color_base)
+    panel_menu_opciones = ctk.CTkFrame(menu_ventana, corner_radius=BORDES_REDONDEADOS_ENTRADAS, fg_color=controlador_tema.color_base)
     panel_menu_opciones.pack(fill="both", expand=True)
     # -------------------------------------------------------------------------------------------
     # Agregar opciones al menú
@@ -1755,7 +1755,7 @@ def mostrar_menu_opciones_artista(artista, panel_padre):
     menu_ventana.attributes("-transparentcolor", "green")
     # -------------------------------------------------------------------------------------------
     # ----------------------------------- Panel menu opciones artista --------------------------
-    panel_menu_opciones = ctk.CTkFrame(menu_ventana, corner_radius=7, fg_color=controlador_tema.color_base)
+    panel_menu_opciones = ctk.CTkFrame(menu_ventana, corner_radius=BORDES_REDONDEADOS_ENTRADAS, fg_color=controlador_tema.color_base)
     panel_menu_opciones.pack(fill="both", expand=True)
     # -------------------------------------------------------------------------------------------
 

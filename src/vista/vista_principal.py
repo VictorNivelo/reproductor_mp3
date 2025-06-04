@@ -71,19 +71,20 @@ def actualizar_tooltip_vista():
 
 # Función para cambiar el tema de la interfaz
 def cambiar_tema_vista():
-    global APARIENCIA
-    # Cambiar tema
+    # Ocultar cualquier tooltip activo antes del cambio de tema
+    eliminar_tooltip()
+    # Cambiar el tema
     controlador_tema.cambiar_tema_controlador()
-    # Actualizar la variable global APARIENCIA
-    APARIENCIA = "oscuro" if APARIENCIA == "claro" else "claro"
-    # Actualizar icono de tema
-    cambiar_icono_tema(APARIENCIA)
-    # Guardar todos los ajustes
-    guardar_todos_ajustes()
-    # Actualizar iconos
+    # Actualizar el icono del tema en la ventana
+    cambiar_icono_tema(controlador_tema.tema_interfaz)
+    # Actualizar todos los iconos
     actualizar_iconos()
-    # Actualizar colores de los tooltips
+    # Actualizar tooltips después del cambio de tema
     actualizar_tooltip_vista()
+    # Actualizar tooltips existentes con el nuevo tema
+    actualizar_tooltips_tema()
+    # Guardar configuración
+    guardar_todos_ajustes()
 
 
 # Función para establecer el icono del tema
@@ -3264,7 +3265,7 @@ contenedor_derecha.pack(side="left", fill="both", expand=True, padx=3, pady=3)
 # ------------------------------ Seccion de busqueda y ordenamiento -----------------------------
 # Contenedor de busqueda y ordenamiento
 contenedor_busqueda_ordenamiento = ctk.CTkFrame(contenedor_derecha, fg_color="transparent")
-contenedor_busqueda_ordenamiento.pack(fill="both", padx=5, pady=(5, 0))
+contenedor_busqueda_ordenamiento.pack(fill="both", padx=5, pady=(5, 2))
 
 # Panel de busqueda y ordenamiento
 panel_elementos = ctk.CTkFrame(contenedor_busqueda_ordenamiento, fg_color="transparent")

@@ -157,21 +157,27 @@ class ToolTip:
     def actualizar_colores_tooltip(self):
         if not self.tooltip or not self.tooltip.winfo_exists():
             return
-        # Obtener el modo de apariencia actual
-        modo_apariencia = ctk.get_appearance_mode().lower()
-        # Definir colores según el modo de apariencia
-        if modo_apariencia == "dark":
-            color_fondo = FONDO_OSCURO
-            color_etiqueta = OSCURO
-            texto_color = TEXTO_OSCURO
-        else:
-            color_fondo = FONDO_CLARO
-            color_etiqueta = CLARO
-            texto_color = TEXTO_CLARO
-        # Actualizar los colores
-        self.tooltip.configure(fg_color=color_fondo)
-        self.etiqueta_tooltip.configure(fg_color=color_etiqueta, text_color=texto_color)
-        self.tooltip.attributes("-transparentcolor", color_fondo)
+        try:
+            # Obtener el modo de apariencia actual
+            modo_apariencia = ctk.get_appearance_mode().lower()
+            # Definir colores según el modo de apariencia
+            if modo_apariencia == "dark":
+                color_fondo = FONDO_OSCURO
+                color_etiqueta = OSCURO
+                texto_color = TEXTO_OSCURO
+            else:
+                color_fondo = FONDO_CLARO
+                color_etiqueta = CLARO
+                texto_color = TEXTO_CLARO
+            # Actualizar los colores
+            self.tooltip.configure(fg_color=color_fondo)
+            if self.etiqueta_tooltip and self.etiqueta_tooltip.winfo_exists():
+                self.etiqueta_tooltip.configure(fg_color=color_etiqueta, text_color=texto_color)
+            self.tooltip.attributes("-transparentcolor", color_fondo)
+        except Exception as e:
+            print(f"Error al actualizar colores del tooltip: {e}")
+            # Si hay error, ocultar el tooltip
+            self.ocultar_tooltip_forzado()
 
     # Método para animar la aparición del tooltip
     def animar_aparicion(self, paso):
@@ -210,16 +216,15 @@ class ToolTip:
 
     # Método para ocultar el tooltip forzado (sin animación)
     def ocultar_tooltip_forzado(self, _event=None):
-        self.cancelar_temporizador()
-        if self.tooltip and self.tooltip.winfo_exists():
-            try:
+        try:
+            self.cancelar_temporizador()
+            if self.tooltip and self.tooltip.winfo_exists():
                 self.tooltip.destroy()
-                self.tooltip = None
-                # Limpiar la referencia al tooltip activo si es este
-                if ToolTip.tooltip_activo == self:
-                    ToolTip.tooltip_activo = None
-            except Exception as e:
-                print(f"Error al ocultar el tooltip forzado: {e}")
-                # Asegurar que se limpia la referencia
-                if ToolTip.tooltip_activo == self:
-                    ToolTip.tooltip_activo = None
+        except Exception as e:
+            print(f"Error al destruir tooltip: {e}")
+        finally:
+            # Asegurar que se limpian las referencias
+            self.tooltip = None
+            self.etiqueta_tooltip = None
+            if ToolTip.tooltip_activo == self:
+                ToolTip.tooltip_activo = None

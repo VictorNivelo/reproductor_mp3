@@ -180,14 +180,47 @@ def actualizar_texto_tooltip(componente, nuevo_texto):
 
 # Método para eliminar un tooltip existente
 def eliminar_tooltip():
-    ToolTip.ocultar_tooltip_activo()
-    # Limpiar también la lista de tooltips si es necesario
-    for componente, tooltip_existente in lista_tooltips.items():
-        if tooltip_existente and tooltip_existente.tooltip is not None:
-            try:
-                if tooltip_existente.tooltip.winfo_exists():
-                    tooltip_existente.tooltip.destroy()
-                    tooltip_existente.tooltip = None
-            except Exception as e:
-                print(f"Error al eliminar tooltip: {e}")
-                tooltip_existente.tooltip = None
+    try:
+        # Ocultar tooltip activo
+        ToolTip.ocultar_tooltip_activo()
+        # Limpiar también la lista de tooltips si es necesario
+        tooltips_a_eliminar = []
+        for componente, tooltip_existente in lista_tooltips.items():
+            if tooltip_existente and tooltip_existente.tooltip is not None:
+                try:
+                    # Verificar si el componente padre aún existe
+                    if not componente.winfo_exists():
+                        tooltips_a_eliminar.append(componente)
+                        continue
+                    if tooltip_existente.tooltip.winfo_exists():
+                        tooltip_existente.ocultar_tooltip_forzado()
+                except Exception as e:
+                    print(f"Error al eliminar tooltip: {e}")
+                    tooltips_a_eliminar.append(componente)
+        # Remover tooltips inválidos de la lista
+        for componente in tooltips_a_eliminar:
+            if componente in lista_tooltips:
+                del lista_tooltips[componente]
+    except Exception as e:
+        print(f"Error general al eliminar tooltips: {e}")
+
+
+# Método para actualizar los tooltips de acuerdo al tema actual
+def actualizar_tooltips_tema():
+    try:
+        # Ocultar tooltip activo si existe
+        ToolTip.ocultar_tooltip_activo()
+        # Actualizar los colores de todos los tooltips en la lista
+        for componente, tooltip in lista_tooltips.items():
+            if tooltip and hasattr(tooltip, "actualizar_colores_tooltip"):
+                try:
+                    # Verificar si el componente aún existe
+                    if componente.winfo_exists():
+                        tooltip.actualizar_colores_tooltip()
+                except Exception as e:
+                    print(f"Error al actualizar tooltip: {e}")
+                    # Remover tooltip inválido de la lista
+                    if componente in lista_tooltips:
+                        del lista_tooltips[componente]
+    except Exception as e:
+        print(f"Error al actualizar tooltips del tema: {e}")

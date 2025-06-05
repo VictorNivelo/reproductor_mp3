@@ -1,43 +1,47 @@
 {
     "artistas": {
-        "Canserbero": 4,
+        "Canserbero": 5,
         "Alex Rose": 1,
         "Lyanno": 1,
-        "Bad Bunny": 4,
+        "Bad Bunny": 5,
         "Jhay Cortez": 2,
-        "Tainy": 5,
+        "Tainy": 8,
         "Sech": 3,
         "E.VAX": 3,
-        "Anuel AA": 2,
-        "Ozuna": 1,
-        "Mora": 1,
-        "Zion": 1,
+        "Anuel AA": 3,
+        "Ozuna": 2,
+        "Mora": 2,
+        "Zion": 2,
         "Feid": 1,
         "Yan Block": 1,
-        "Panda Black": 1
+        "Panda Black": 1,
+        "Eladio Carrion": 1,
+        "Bryant Myers": 1
     },
     "albumes": {
-        "Na": 4,
+        "Na": 5,
         "Sexflix": 1,
         "EL ÚLTIMO TOUR DEL MUNDO": 4,
-        "DATA": 4,
-        "Adicto (ft Anuel AA & Ozuna)": 1,
+        "DATA": 5,
+        "Adicto (ft Anuel AA & Ozuna)": 2,
         "INTER SHIBUYA - LA MAFIA": 1,
         "444": 1,
-        "¿Qué Nos Pasó?": 1
+        "¿Qué Nos Pasó?": 1,
+        "Callaita": 1,
+        "Animal": 1
     },
-    "tiempo_total": 4054.0212244897966,
-    "canciones_escuchadas": 17,
+    "tiempo_total": 5296.535510204081,
+    "canciones_escuchadas": 22,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
-        "titulo": "¿Qué Nos Pasó?",
-        "artista": "Anuel AA",
-        "album": "¿Qué Nos Pasó?",
-        "timestamp": "2025-06-03T20:08:46.318872"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
+        "titulo": "Adicto",
+        "artista": "Tainy ft Anuel AA, Ozuna",
+        "album": "Adicto (ft Anuel AA & Ozuna)",
+        "timestamp": "2025-06-05T14:23:21.060114"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\Na.mp3": {
-            "contador": 4,
+            "contador": 5,
             "titulo": "Na",
             "artista": "Canserbero",
             "album": "Na"
@@ -61,7 +65,7 @@
             "album": "DATA"
         },
         "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "Adicto",
             "artista": "Tainy ft Anuel AA, Ozuna",
             "album": "Adicto (ft Anuel AA & Ozuna)"
@@ -73,7 +77,7 @@
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "BUENOS AIRES",
             "artista": "Tainy ft Mora, Zion",
             "album": "DATA"
@@ -95,18 +99,32 @@
             "titulo": "¿Qué Nos Pasó?",
             "artista": "Anuel AA",
             "album": "¿Qué Nos Pasó?"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Callaita.mp3": {
+            "contador": 1,
+            "titulo": "Callaita",
+            "artista": "Bad Bunny ft Tainy",
+            "album": "Callaita"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
+            "contador": 1,
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal"
         }
     },
     "artistas_originales": {
-        "Canserbero": 4,
+        "Canserbero": 5,
         "Alex Rose ft Lyanno": 1,
         "Bad Bunny ft Jhay Cortez": 2,
         "Tainy ft Sech, E.VAX": 3,
-        "Tainy ft Anuel AA, Ozuna": 1,
+        "Tainy ft Anuel AA, Ozuna": 2,
         "Bad Bunny": 2,
-        "Tainy ft Mora, Zion": 1,
+        "Tainy ft Mora, Zion": 2,
         "Feid": 1,
         "Yan Block ft Panda Black": 1,
-        "Anuel AA": 1
+        "Anuel AA": 1,
+        "Bad Bunny ft Tainy": 1,
+        "Eladio Carrion ft Bryant Myers": 1
     }
 }

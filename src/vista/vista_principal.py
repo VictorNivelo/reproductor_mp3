@@ -64,9 +64,13 @@ pestanas_cargadas = {
 # Método para actualizar el tooltip
 def actualizar_tooltip_vista():
     # Actualizar todos los tooltips visibles
-    for _, tooltip_existente in lista_tooltips.items():
-        if tooltip_existente.tooltip and tooltip_existente.tooltip.winfo_exists():
-            tooltip_existente.actualizar_colores_tooltip()
+    for componente, tooltip_existente in lista_tooltips.items():
+        if tooltip_existente and hasattr(tooltip_existente, "actualizar_colores_tooltip"):
+            try:
+                if componente.winfo_exists():
+                    tooltip_existente.actualizar_colores_tooltip()
+            except Exception as e:
+                print(f"Error al actualizar tooltip: {e}")
 
 
 # Función para cambiar el tema de la interfaz

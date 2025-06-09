@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b7a9c3b1-2f39-4ff6-b624-4183a59858ca" name="Cambios" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/componentes/atajos.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/atajos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/vista_principal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/vista_principal.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +23,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -86,6 +84,8 @@
       <workItem from="1748808336805" duration="1851000" />
       <workItem from="1748829141136" duration="977000" />
       <workItem from="1748987665568" duration="670000" />
+      <workItem from="1749437455838" duration="228000" />
+      <workItem from="1749437718052" duration="203000" />
     </task>
     <servers />
   </component>

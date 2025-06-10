@@ -45,7 +45,6 @@ class ControladorTema(UtilesGeneral):
     # Registrar botones
     def registrar_botones(self, nombre, boton, tamanio=None):
         self.botones[nombre] = boton
-
         if tamanio:
             # Cargar icono con tamaño personalizado
             nombre_icono = nombre.replace("_mini", "")

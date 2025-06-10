@@ -684,7 +684,7 @@ def agregar_album_me_gusta_vista(album):
         guardar_biblioteca()
         # Actualizar las vistas si es necesario
         actualizar_vista_me_gusta()
-        # Si estamos en vista de detalle del álbum, actualizar
+        # Sí estamos en vista de detalle del álbum, actualizar
         if vista_detalle_activa and vista_detalle_tipo == "album" and vista_detalle_elemento == album:
             mostrar_canciones_elemento_filtradas(album, "Álbumes", "")
         return True
@@ -781,7 +781,7 @@ def agregar_album_favorito_vista(album):
         guardar_biblioteca()
         # Actualizar las vistas si es necesario
         actualizar_vista_favoritos()
-        # Si estamos en vista de detalle del álbum, actualizar
+        # Sí estamos en vista de detalle del álbum, actualizar
         if vista_detalle_activa and vista_detalle_tipo == "album" and vista_detalle_elemento == album:
             mostrar_canciones_elemento_filtradas(album, "Álbumes", "")
         return True
@@ -2068,7 +2068,7 @@ def actualizar_pestana_seleccionada():
 
 # Diccionario para rastrear si las pestañas han sido cargadas
 def cargar_pestana_si_necesario(nombre_pestana):
-    # Si es la pestaña "Canciones", no hacer nada ya que siempre está cargada
+    # Si es la pestaña "Canciones", no hacer nada porque siempre está cargada
     if nombre_pestana == "Canciones":
         return
     if not pestanas_cargadas[nombre_pestana]:
@@ -2290,7 +2290,7 @@ def buscar_cancion_vista(_event=None):
     texto_busqueda = entrada_busqueda.get().strip().lower()
     # Obtener la pestaña actual
     pestana_actual = paginas_canciones.get()
-    # Si estamos en una vista de detalle (álbum/artista), buscar dentro de esas canciones
+    # Sí estamos en una vista de detalle (álbum/artista), buscar dentro de esas canciones
     if vista_detalle_activa:
         tipo_pagina = "Álbumes" if vista_detalle_tipo == "album" else "Artistas"
         mostrar_canciones_elemento_filtradas(vista_detalle_elemento, tipo_pagina, texto_busqueda)

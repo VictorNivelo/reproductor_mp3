@@ -1,5 +1,5 @@
 {
-    "indice_actual": 6,
+    "indice_actual": 7,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -22,10 +22,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
-        "titulo": "Adicto",
-        "artista": "Tainy ft Anuel AA, Ozuna",
-        "album": "Adicto (ft Anuel AA & Ozuna)",
-        "timestamp": "2025-06-08T22:40:17.704765"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "titulo": "Animal",
+        "artista": "Eladio Carrion ft Bryant Myers",
+        "album": "Animal",
+        "timestamp": "2025-06-12T13:37:07.912887"
     }
 }

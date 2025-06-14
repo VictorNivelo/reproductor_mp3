@@ -296,35 +296,33 @@ class ControladorTema(UtilesGeneral):
 
     # Limpiar componentes destruidos
     def limpiar_componentes_destruidos(self):
-        # Limpiar botones destruidos
-        botones_a_eliminar = []
-        for nombre, boton in self.botones.items():
-            try:
-                if not boton.winfo_exists():
-                    botones_a_eliminar.append(nombre)
-            except Exception as e:
-                print(f"Error al verificar si el botón {nombre} existe: {e}")
-                botones_a_eliminar.append(nombre)
-        for nombre in botones_a_eliminar:
-            if nombre in self.botones:
-                del self.botones[nombre]
-        # Limpiar paneles destruidos
-        self.paneles = [
-            (panel, es_ctk, es_principal)
-            for panel, es_ctk, es_principal in self.paneles
-            if self.existe_componente(panel)
-        ]
-        # Limpiar etiquetas destruidas
-        self.etiquetas = [etiqueta for etiqueta in self.etiquetas if self.existe_componente(etiqueta)]
-        # Limpiar entradas destruidas
-        self.entradas = [entrada for entrada in self.entradas if self.existe_componente(entrada)]
-        # Limpiar comboboxes destruidos
-        self.comboboxes = [combobox for combobox in self.comboboxes if self.existe_componente(combobox)]
-        # Limpiar sliders destruidos
-        self.sliders = [slider for slider in self.sliders if self.existe_componente(slider)]
-        # Limpiar progress_bars destruidas
-        self.progress_bars = [bar for bar in self.progress_bars if self.existe_componente(bar)]
-        # Limpiar tabviews destruidos
-        self.tabviews = [tabview for tabview in self.tabviews if self.existe_componente(tabview)]
-        # Limpiar canvas destruidos
-        self.canvas = [canvas_info for canvas_info in self.canvas if self.existe_componente(canvas_info[0])]
+        # Mapeo de atributos y sus tipos para procesamiento unificado
+        colecciones_lista = {
+            "paneles": lambda item: item[0],
+            "etiquetas": lambda item: item,
+            "entradas": lambda item: item,
+            "comboboxes": lambda item: item,
+            "sliders": lambda item: item,
+            "progress_bars": lambda item: item,
+            "tabviews": lambda item: item,
+            "canvas": lambda item: item[0],
+        }
+        # Limpiar colecciones tipo lista
+        for nombre_attr, extractor_componente in colecciones_lista.items():
+            if hasattr(self, nombre_attr):
+                coleccion_original = getattr(self, nombre_attr)
+                coleccion_filtrada = [
+                    item for item in coleccion_original if self.existe_componente(extractor_componente(item))
+                ]
+                setattr(self, nombre_attr, coleccion_filtrada)
+        # Limpiar diccionario de botones (manejo especial por ser dict)
+        if hasattr(self, "botones"):
+            botones_validos = {}
+            for nombre, boton in self.botones.items():
+                try:
+                    if boton.winfo_exists():
+                        botones_validos[nombre] = boton
+                except Exception as e:
+                    # Si el botón no existe o hay un error, lo eliminamos
+                    print(f"Botón '{nombre}' eliminado: {e}")
+            self.botones = botones_validos

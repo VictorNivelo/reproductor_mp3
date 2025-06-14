@@ -4,9 +4,9 @@
         "Anuel AA": 3,
         "Sinfonico": 1,
         "Ñengo Flow": 1,
-        "Tainy": 3,
-        "Sech": 1,
-        "E.VAX": 1,
+        "Tainy": 4,
+        "Sech": 2,
+        "E.VAX": 2,
         "Feid": 2,
         "Alvaro Diaz": 1,
         "Bad Bunny": 3,
@@ -20,21 +20,21 @@
     "albumes": {
         "Na": 2,
         "47 (Remix)": 1,
-        "DATA": 2,
+        "DATA": 3,
         "INTER SHIBUYA - LA MAFIA": 2,
         "EL ÚLTIMO TOUR DEL MUNDO": 3,
         "Adictiva": 1,
         "Adicto (ft Anuel AA & Ozuna)": 1,
         "Cloniao": 1
     },
-    "tiempo_total": 3179.467755102042,
-    "canciones_escuchadas": 13,
+    "tiempo_total": 3376.4832653061235,
+    "canciones_escuchadas": 14,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3",
-        "titulo": "Cloniao",
-        "artista": "Hades66 ft Hanzel La H, YOVNGCHIMI",
-        "album": "Cloniao",
-        "timestamp": "2025-06-13T15:41:47.107815"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "titulo": "11 Y ONCE",
+        "artista": "Tainy ft Sech, E.VAX",
+        "album": "DATA",
+        "timestamp": "2025-06-14T15:21:45.753489"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\Na.mp3": {
@@ -50,7 +50,7 @@
             "album": "47 (Remix)"
         },
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
@@ -101,7 +101,7 @@
     "artistas_originales": {
         "Canserbero": 2,
         "Anuel AA ft Sinfonico, Ñengo Flow": 1,
-        "Tainy ft Sech, E.VAX": 1,
+        "Tainy ft Sech, E.VAX": 2,
         "Feid": 2,
         "Tainy ft Alvaro Diaz": 1,
         "Bad Bunny": 2,

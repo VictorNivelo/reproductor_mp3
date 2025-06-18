@@ -138,13 +138,13 @@ class Estadisticas(UtilesGeneral):
             fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_resumen.pack(fill="x", padx=5, pady=(5, 0))
+        panel_resumen.pack(fill="x", padx=3, pady=(3, 0))
         self.componentes.append(panel_resumen)
 
         # ---------------------------- Panel para información resumen ---------------------
         # Panel para información de canción
         panel_informacion_resumen = ctk.CTkFrame(panel_resumen, fg_color="transparent")
-        panel_informacion_resumen.pack(fill="x", padx=5, pady=(0, 5))
+        panel_informacion_resumen.pack(fill="x")
         self.componentes.append(panel_informacion_resumen)
         # ------------------------
 
@@ -193,7 +193,7 @@ class Estadisticas(UtilesGeneral):
             fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_tarjeta_cancion.pack(fill="x", padx=5, pady=(3, 0))
+        panel_tarjeta_cancion.pack(fill="x", padx=3, pady=(3, 0))
         self.componentes.append(panel_tarjeta_cancion)
 
         # ------------------------------ Etiqueta de título -------------------------------
@@ -214,14 +214,14 @@ class Estadisticas(UtilesGeneral):
         # ------------------------ Panel para contenido de la tarjeta ---------------------
         # Panel para contenido con imagen y texto
         panel_contenido = ctk.CTkFrame(panel_tarjeta_cancion, fg_color="transparent")
-        panel_contenido.pack(fill="x", padx=5, pady=(0, 3))
+        panel_contenido.pack(fill="x")
         self.componentes.append(panel_contenido)
         # ---------------------------------------------------------------------------------
 
         # ---------------------------- Subpanel para la carátula --------------------------
         # Panel para la carátula (a la izquierda)
         panel_caratula = ctk.CTkFrame(panel_contenido, fg_color="transparent")
-        panel_caratula.pack(side="left", pady=(0, 3))
+        panel_caratula.pack(side="left")
         self.componentes.append(panel_caratula)
         # ---------------------------------------------------------------------------------
 
@@ -235,18 +235,18 @@ class Estadisticas(UtilesGeneral):
         if self.controlador_biblioteca:
             # Primero obtener la carátula como imagen PIL
             caratula_pil = self.controlador_biblioteca.obtener_caratula_album_controlador(
-                cancion["album"], formato="PIL", ancho=60, alto=60
+                cancion["album"], formato="PIL", ancho=75, alto=75
             )
             if caratula_pil:
                 # Convertir a CTkImage
-                caratula_ctk = CTkImage(light_image=caratula_pil, dark_image=caratula_pil, size=(60, 60))
+                caratula_ctk = CTkImage(light_image=caratula_pil, dark_image=caratula_pil, size=(75, 75))
                 etiqueta_caratula.configure(image=caratula_ctk, text="")
                 # Guardar referencia
                 etiqueta_caratula.image = caratula_ctk
             else:
-                etiqueta_caratula.configure(width=60, height=60, text="Sin\ncarátula", image=None)
+                etiqueta_caratula.configure(width=75, height=75, text="Sin\ncarátula", image=None)
         else:
-            etiqueta_caratula.configure(width=60, height=60, text="Sin\ncarátula", image=None)
+            etiqueta_caratula.configure(width=75, height=75, text="Sin\ncarátula", image=None)
         # ---------------------------------------------------------------------------------
 
         # ---------------------------- Panel para información de canción ------------------
@@ -266,7 +266,7 @@ class Estadisticas(UtilesGeneral):
             text_color=self.color_texto,
             text=cancion["titulo"],
         )
-        etiqueta_titulo_cancion.pack(anchor="w", padx=5)
+        etiqueta_titulo_cancion.pack(anchor="w", padx=(5, 0))
         self.componentes.append(etiqueta_titulo_cancion)
         self.controlador_tema.registrar_etiqueta(etiqueta_titulo_cancion)
         # ---------------------------------------------------------------------------------
@@ -281,7 +281,7 @@ class Estadisticas(UtilesGeneral):
             text_color=self.color_texto,
             text=f"{cancion['artista']}",
         )
-        etiqueta_artista_cancion.pack(anchor="w", padx=5)
+        etiqueta_artista_cancion.pack(anchor="w", padx=(5, 0))
         self.componentes.append(etiqueta_artista_cancion)
         self.controlador_tema.registrar_etiqueta(etiqueta_artista_cancion)
         # ---------------------------------------------------------------------------------
@@ -296,7 +296,7 @@ class Estadisticas(UtilesGeneral):
             text_color=self.color_texto,
             text=f"{cancion['album']}",
         )
-        etiqueta_album_cancion.pack(anchor="w", padx=5)
+        etiqueta_album_cancion.pack(anchor="w", padx=(5, 0))
         self.componentes.append(etiqueta_album_cancion)
         self.controlador_tema.registrar_etiqueta(etiqueta_album_cancion)
         # ---------------------------------------------------------------------------------
@@ -307,11 +307,9 @@ class Estadisticas(UtilesGeneral):
             "artista": (cancion["artista"], etiqueta_artista_cancion),
             "album": (cancion["album"], etiqueta_album_cancion),
         }
-        self.animacion_artista = AnimacionGeneral()
+        self.animacion = AnimacionGeneral()
         # Iniciar el desplazamiento con longitud máxima adecuada
-        self.animacion_artista.configurar_desplazamiento_etiqueta(
-            panel_informacion_cancion, textos_animados, 400
-        )
+        self.animacion.configurar_desplazamiento_etiqueta(panel_informacion_cancion, textos_animados, 440)
 
         # ------------------------- Etiqueta con reproducciones de cancion -----------------------
         # Etiqueta con reproducciones de canción
@@ -323,7 +321,7 @@ class Estadisticas(UtilesGeneral):
             text_color=self.color_texto,
             text=f"Reproducciones: {cancion['reproducciones']}",
         )
-        etiqueta_reproducciones_cancion.pack(anchor="w", padx=5)
+        etiqueta_reproducciones_cancion.pack(anchor="w", padx=(5, 0))
         self.componentes.append(etiqueta_reproducciones_cancion)
         self.controlador_tema.registrar_etiqueta(etiqueta_reproducciones_cancion)
         # ---------------------------------------------------------------------------------
@@ -343,7 +341,7 @@ class Estadisticas(UtilesGeneral):
             fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_tarjeta_artista.pack(fill="x", padx=5, pady=(3, 0))
+        panel_tarjeta_artista.pack(fill="x", padx=3, pady=(3, 0))
         self.componentes.append(panel_tarjeta_artista)
 
         # ------------------------------- Etiqueta de título ------------------------------
@@ -364,7 +362,7 @@ class Estadisticas(UtilesGeneral):
         # -------------------------- Panel para información del artista -------------------
         # Panel para información del artista
         panel_informacion_artista = ctk.CTkFrame(panel_tarjeta_artista, fg_color="transparent")
-        panel_informacion_artista.pack(fill="x", padx=5, pady=(0, 5))
+        panel_informacion_artista.pack(fill="x")
         self.componentes.append(panel_informacion_artista)
         # ---------------------------------------------------------------------------------
 
@@ -378,7 +376,7 @@ class Estadisticas(UtilesGeneral):
             text_color=self.color_texto,
             text=artista["nombre"],
         )
-        etiqueta_nombre_artista.pack(anchor="w", padx=5)
+        etiqueta_nombre_artista.pack(anchor="w", padx=(5, 0))
         self.componentes.append(etiqueta_nombre_artista)
         self.controlador_tema.registrar_etiqueta(etiqueta_nombre_artista)
         # ---------------------------------------------------------------------------------
@@ -387,8 +385,11 @@ class Estadisticas(UtilesGeneral):
         textos_animados = {
             "nombre": (artista["nombre"], etiqueta_nombre_artista),
         }
+        self.animacion_artista = AnimacionGeneral()
         # Iniciar el desplazamiento con longitud máxima adecuada
-        self.animacion.configurar_desplazamiento_etiqueta(panel_informacion_artista, textos_animados, 400)
+        self.animacion_artista.configurar_desplazamiento_etiqueta(
+            panel_informacion_artista, textos_animados, 440
+        )
 
         # ------------------------- Etiqueta con album de artista --------------------------
         # Etiqueta con las reproducciones del artista
@@ -400,7 +401,7 @@ class Estadisticas(UtilesGeneral):
             text_color=self.color_texto,
             text=f"Reproducciones: {artista['reproducciones']}",
         )
-        etiqueta_reproducciones_artista.pack(anchor="w", padx=5)
+        etiqueta_reproducciones_artista.pack(anchor="w", padx=(5, 0))
         self.componentes.append(etiqueta_reproducciones_artista)
         self.controlador_tema.registrar_etiqueta(etiqueta_reproducciones_artista)
         # ---------------------------------------------------------------------------------
@@ -419,7 +420,7 @@ class Estadisticas(UtilesGeneral):
             fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_tarjeta_album.pack(fill="x", padx=5, pady=(3, 0))
+        panel_tarjeta_album.pack(fill="x", padx=3, pady=(3, 0))
         self.componentes.append(panel_tarjeta_album)
 
         # ------------------------------- Etiqueta de título ------------------------------
@@ -440,14 +441,14 @@ class Estadisticas(UtilesGeneral):
         # ------------------------ Panel para contenido de la tarjeta ---------------------
         # Panel para contenido con imagen y texto
         panel_contenido = ctk.CTkFrame(panel_tarjeta_album, fg_color="transparent")
-        panel_contenido.pack(fill="x", padx=5, pady=(0, 3))
+        panel_contenido.pack(fill="x")
         self.componentes.append(panel_contenido)
         # ---------------------------------------------------------------------------------
 
         # ---------------------------- Subpanel para la carátula --------------------------
         # Panel para la carátula (a la izquierda)
         panel_caratula = ctk.CTkFrame(panel_contenido, fg_color="transparent")
-        panel_caratula.pack(side="left", pady=(0, 3))
+        panel_caratula.pack(side="left")
         self.componentes.append(panel_caratula)
         # ---------------------------------------------------------------------------------
 
@@ -461,18 +462,18 @@ class Estadisticas(UtilesGeneral):
         if self.controlador_biblioteca:
             # Primero obtener la carátula como imagen PIL
             caratula_pil = self.controlador_biblioteca.obtener_caratula_album_controlador(
-                album["nombre"], formato="PIL", ancho=60, alto=60
+                album["nombre"], formato="PIL", ancho=75, alto=75
             )
             if caratula_pil:
                 # Convertir a CTkImage
-                caratula_ctk = CTkImage(light_image=caratula_pil, dark_image=caratula_pil, size=(60, 60))
+                caratula_ctk = CTkImage(light_image=caratula_pil, dark_image=caratula_pil, size=(75, 75))
                 etiqueta_caratula.configure(image=caratula_ctk, text="")
                 # Guardar referencia
                 etiqueta_caratula.image = caratula_ctk
             else:
-                etiqueta_caratula.configure(width=60, height=60, text="Sin\ncarátula", image=None)
+                etiqueta_caratula.configure(width=75, height=75, text="Sin\ncarátula", image=None)
         else:
-            etiqueta_caratula.configure(width=60, height=60, text="Sin\ncarátula", image=None)
+            etiqueta_caratula.configure(width=75, height=75, text="Sin\ncarátula", image=None)
         # ---------------------------------------------------------------------------------
 
         # -------------------------- Panel para información del álbum ---------------------
@@ -492,7 +493,7 @@ class Estadisticas(UtilesGeneral):
             text_color=self.color_texto,
             text=album["nombre"],
         )
-        etiqueta_nombre_album.pack(anchor="w", padx=5)
+        etiqueta_nombre_album.pack(anchor="w", padx=(5, 0))
         self.componentes.append(etiqueta_nombre_album)
         self.controlador_tema.registrar_etiqueta(etiqueta_nombre_album)
         # ---------------------------------------------------------------------------------
@@ -507,7 +508,7 @@ class Estadisticas(UtilesGeneral):
             text_color=self.color_texto,
             text=f"{album['artista']}",
         )
-        etiqueta_artista_album.pack(anchor="w", padx=5)
+        etiqueta_artista_album.pack(anchor="w", padx=(5, 0))
         self.componentes.append(etiqueta_artista_album)
         self.controlador_tema.registrar_etiqueta(etiqueta_artista_album)
         # ---------------------------------------------------------------------------------
@@ -519,7 +520,7 @@ class Estadisticas(UtilesGeneral):
         }
         self.animacion_album = AnimacionGeneral()
         # Iniciar el desplazamiento con longitud máxima adecuada
-        self.animacion_album.configurar_desplazamiento_etiqueta(panel_informacion_album, textos_animados, 425)
+        self.animacion_album.configurar_desplazamiento_etiqueta(panel_informacion_album, textos_animados, 460)
 
         # ------------------------ Etiqueta con artista de álbum --------------------------
         # Etiqueta con la reproducción del álbum
@@ -531,7 +532,7 @@ class Estadisticas(UtilesGeneral):
             text_color=self.color_texto,
             text=f"Reproducciones: {album['reproducciones']}",
         )
-        etiqueta_reproducciones_album.pack(anchor="w", padx=5)
+        etiqueta_reproducciones_album.pack(anchor="w", padx=(5, 0))
         self.componentes.append(etiqueta_reproducciones_album)
         self.controlador_tema.registrar_etiqueta(etiqueta_reproducciones_album)
         # ---------------------------------------------------------------------------------
@@ -550,7 +551,7 @@ class Estadisticas(UtilesGeneral):
             fg_color="transparent",
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_ultima_escuchada.pack(fill="x", padx=5, pady=(3, 0))
+        panel_ultima_escuchada.pack(fill="x", padx=3, pady=(3, 0))
         self.componentes.append(panel_ultima_escuchada)
 
         # ------------------------------- Etiqueta de título ------------------------------
@@ -571,14 +572,14 @@ class Estadisticas(UtilesGeneral):
         # ------------------------ Panel para contenido de la tarjeta ---------------------
         # Panel para contenido con imagen y texto
         panel_contenido = ctk.CTkFrame(panel_ultima_escuchada, fg_color="transparent")
-        panel_contenido.pack(fill="x", padx=5, pady=(0, 3))
+        panel_contenido.pack(fill="x")
         self.componentes.append(panel_contenido)
         # ---------------------------------------------------------------------------------
 
         # ---------------------------- Subpanel para la carátula --------------------------
         # Panel para la carátula (a la izquierda)
         panel_caratula = ctk.CTkFrame(panel_contenido, fg_color="transparent")
-        panel_caratula.pack(side="left", pady=(0, 3))
+        panel_caratula.pack(side="left")
         self.componentes.append(panel_caratula)
         # ---------------------------------------------------------------------------------
 
@@ -592,18 +593,18 @@ class Estadisticas(UtilesGeneral):
         if self.controlador_biblioteca:
             # Primero obtener la carátula como imagen PIL
             caratula_pil = self.controlador_biblioteca.obtener_caratula_album_controlador(
-                ultima["album"], formato="PIL", ancho=60, alto=60
+                ultima["album"], formato="PIL", ancho=75, alto=75
             )
             if caratula_pil:
                 # Convertir a CTkImage
-                caratula_ctk = CTkImage(light_image=caratula_pil, dark_image=caratula_pil, size=(60, 60))
+                caratula_ctk = CTkImage(light_image=caratula_pil, dark_image=caratula_pil, size=(75, 75))
                 etiqueta_caratula.configure(image=caratula_ctk, text="")
                 # Guardar referencia
                 etiqueta_caratula.image = caratula_ctk
             else:
-                etiqueta_caratula.configure(width=60, height=60, text="Sin\ncarátula", image=None)
+                etiqueta_caratula.configure(width=75, height=75, text="Sin\ncarátula", image=None)
         else:
-            etiqueta_caratula.configure(width=60, height=60, text="Sin\ncarátula", image=None)
+            etiqueta_caratula.configure(width=75, height=75, text="Sin\ncarátula", image=None)
         # ---------------------------------------------------------------------------------
 
         # -------------------------- Panel para información de la canción ------------------
@@ -623,7 +624,7 @@ class Estadisticas(UtilesGeneral):
             text_color=self.color_texto,
             text=ultima["titulo"],
         )
-        etiqueta_titulo_ultima.pack(anchor="w", padx=5)
+        etiqueta_titulo_ultima.pack(anchor="w", padx=(5, 0))
         self.componentes.append(etiqueta_titulo_ultima)
         self.controlador_tema.registrar_etiqueta(etiqueta_titulo_ultima)
         # ---------------------------------------------------------------------------------
@@ -638,7 +639,7 @@ class Estadisticas(UtilesGeneral):
             text_color=self.color_texto,
             text=f"{ultima['artista']}",
         )
-        etiqueta_artista_ultima.pack(anchor="w", padx=5)
+        etiqueta_artista_ultima.pack(anchor="w", padx=(5, 0))
         self.componentes.append(etiqueta_artista_ultima)
         self.controlador_tema.registrar_etiqueta(etiqueta_artista_ultima)
         # ---------------------------------------------------------------------------------
@@ -652,7 +653,7 @@ class Estadisticas(UtilesGeneral):
             text_color=self.color_texto,
             text=f"{ultima['album']}",
         )
-        etiqueta_album_ultima.pack(anchor="w", padx=5)
+        etiqueta_album_ultima.pack(anchor="w", padx=(5, 0))
         self.componentes.append(etiqueta_album_ultima)
         self.controlador_tema.registrar_etiqueta(etiqueta_album_ultima)
         # ---------------------------------------------------------------------------------
@@ -666,7 +667,7 @@ class Estadisticas(UtilesGeneral):
         self.animacion_ultima = AnimacionGeneral()
         # Iniciar el desplazamiento con longitud máxima adecuada
         self.animacion_ultima.configurar_desplazamiento_etiqueta(
-            panel_informacion_ultima, textos_animados, 400
+            panel_informacion_ultima, textos_animados, 440
         )
 
         # *********************************************************************************

@@ -1,5 +1,5 @@
 {
-    "indice_actual": 0,
+    "indice_actual": 15,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -22,10 +22,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-06-14T15:21:45.752440"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+        "titulo": "Self Love",
+        "artista": "Metro Boomin ft Coi Leray",
+        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
+        "timestamp": "2025-06-17T20:55:37.974182"
     }
 }

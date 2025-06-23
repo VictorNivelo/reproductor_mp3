@@ -33,7 +33,7 @@ ALTO_TABVIEW = 400
 
 # Tamaño de los botones
 ANCHO_BOTON = 20
-ALTO_BOTON = 28
+ALTO_BOTON = 35
 
 # Tamaño de las imagenes de los botones
 ANCHO_IMAGEN = 20

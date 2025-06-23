@@ -243,14 +243,24 @@ class Atajos(UtilesGeneral):
         if entry.cget("state") == "disabled":
             # Activar modo edición
             entry.configure(state="normal")
-            boton.configure(text="Guardar")
+            # Cambiar icono a guardar (sin texto)
+            icono_guardar = cargar_icono_con_tamanio("guardar", self.controlador_tema.tema_iconos, (16, 16))
+            boton.configure(text="", image=icono_guardar)
+            # Actualizar tooltip
+            actualizar_texto_tooltip(boton, "Guardar atajo")
             entry.focus_set()
             entry.select_range(0, "end")
         else:
             # Guardar y desactivar modo edición
             self.guardar_atajo_individual(accion)
             entry.configure(state="disabled")
-            boton.configure(text="")
+            # Cambiar icono de vuelta a editar
+            icono_editar = cargar_icono_con_tamanio("editar", self.controlador_tema.tema_iconos, (16, 16))
+            boton.configure(text="", image=icono_editar)
+            # Restaurar tooltip original
+            nombres_atajos = self.gestor_atajos.obtener_nombres_atajos()
+            nombre_accion = nombres_atajos.get(accion, accion)
+            actualizar_texto_tooltip(boton, f"Editar atajo para {nombre_accion}")
 
     # Método para guardar un atajo individual
     def guardar_atajo_individual(self, accion):
@@ -261,9 +271,7 @@ class Atajos(UtilesGeneral):
                 # Verificar si la tecla ya está en uso por otro atajo
                 for otra_accion, otra_entry in self.entradas_atajos.items():
                     if otra_accion != accion and otra_entry.get().strip() == nueva_tecla:
-                        self.mostrar_mensaje_error(
-                            f"La tecla '{nueva_tecla}' ya está en uso por '{otra_accion}'"
-                        )
+                        print(f"La tecla '{nueva_tecla}' ya está en uso por '{otra_accion}'")
                         # Restaurar valor anterior
                         entry.delete(0, "end")
                         entry.insert(0, self.gestor_atajos.obtener_atajo(accion))
@@ -271,9 +279,9 @@ class Atajos(UtilesGeneral):
                 # Guardar el nuevo atajo
                 exito, mensaje = self.gestor_atajos.establecer_atajo(accion, nueva_tecla)
                 if exito:
-                    self.mostrar_mensaje_exito(f"Atajo para '{accion}' guardado correctamente")
+                    print(f"Atajo para '{accion}' guardado correctamente")
                 else:
-                    self.mostrar_mensaje_error(mensaje)
+                    print(mensaje)
                     # Restaurar valor anterior
                     entry.delete(0, "end")
                     entry.insert(0, self.gestor_atajos.obtener_atajo(accion))
@@ -284,7 +292,7 @@ class Atajos(UtilesGeneral):
                 entry.insert(0, valor_predeterminado)
                 self.gestor_atajos.establecer_atajo(accion, valor_predeterminado)
         except Exception as e:
-            self.mostrar_mensaje_error(f"Error al guardar atajo: {e}")
+            print(f"Error al guardar atajo: {e}")
 
     # Método para restablecer un atajo individual
     def restablecer_atajo_individual(self, accion):
@@ -298,18 +306,24 @@ class Atajos(UtilesGeneral):
             entry.configure(state="disabled")
             # Actualizar el botón de edición
             boton = self.botones_editar[accion]
-            boton.configure(text="")
+            icono_editar = cargar_icono_con_tamanio("editar", self.controlador_tema.tema_iconos, (16, 16))
+            boton.configure(text="", image=icono_editar)
+            # Restaurar tooltip original
+            nombres_atajos = self.gestor_atajos.obtener_nombres_atajos()
+            nombre_accion = nombres_atajos.get(accion, accion)
+            actualizar_texto_tooltip(boton, f"Editar atajo para {nombre_accion}")
             # Guardar el cambio
             self.gestor_atajos.establecer_atajo(accion, valor_predeterminado)
-            self.mostrar_mensaje_exito(f"Atajo para '{accion}' restablecido al valor predeterminado")
+            print(f"Atajo para '{accion}' restablecido al valor predeterminado")
         except Exception as e:
-            self.mostrar_mensaje_error(f"Error al restablecer atajo: {e}")
+            print(f"Error al restablecer atajo: {e}")
 
     # Método para restablecer todos los atajos predeterminados
     def restablecer_todos_predeterminados(self):
         try:
             exito, mensaje = self.gestor_atajos.restaurar_atajos_predeterminados()
             if exito:
+                nombres_atajos = self.gestor_atajos.obtener_nombres_atajos()
                 # Actualizar todas las entradas con los valores predeterminados
                 for accion, entry in self.entradas_atajos.items():
                     entry.configure(state="normal")
@@ -318,12 +332,18 @@ class Atajos(UtilesGeneral):
                     entry.configure(state="disabled")
                     # Actualizar botones de edición
                     boton = self.botones_editar[accion]
-                    boton.configure(text="")
-                self.mostrar_mensaje_exito("Todos los atajos han sido restablecidos")
+                    icono_editar = cargar_icono_con_tamanio(
+                        "editar", self.controlador_tema.tema_iconos, (16, 16)
+                    )
+                    boton.configure(text="", image=icono_editar)
+                    # Restaurar tooltip original
+                    nombre_accion = nombres_atajos.get(accion, accion)
+                    actualizar_texto_tooltip(boton, f"Editar atajo para {nombre_accion}")
+                print("Todos los atajos han sido restablecidos")
             else:
-                self.mostrar_mensaje_error("Error al restablecer todos los atajos")
+                print("Error al restablecer todos los atajos")
         except Exception as e:
-            self.mostrar_mensaje_error(f"Error al restablecer atajos: {e}")
+            print(f"Error al restablecer atajos: {e}")
 
     # Método para capturar teclas presionadas
     def capturar_tecla(self, evento, accion):
@@ -391,16 +411,6 @@ class Atajos(UtilesGeneral):
     def seleccionar_texto(self, evento, accion):
         if self.entradas_atajos[accion].cget("state") != "disabled":
             evento.widget.select_range(0, "end")
-
-    # Método para mostrar mensajes de éxito
-    @staticmethod
-    def mostrar_mensaje_exito(mensaje):
-        print(f"✓ {mensaje}")
-
-    @staticmethod
-    # Método para mostrar mensajes de error
-    def mostrar_mensaje_error(mensaje):
-        print(f"✗ {mensaje}")
 
     # Método para mostrar la ventana de atajos
     def mostrar_ventana_atajos(self):

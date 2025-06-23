@@ -1428,8 +1428,8 @@ def crear_opcion_menu(panel_menu_opciones, texto, funcion, tiene_separador=False
     # ------------------------------------ Botón de opción --------------------------------------
     boton_opcion = ctk.CTkButton(
         panel_menu_opciones,
-        width=ANCHO_BOTON - 3,
-        height=ALTO_BOTON - 3,
+        width=ANCHO_BOTON - 10,
+        height=ALTO_BOTON - 10,
         fg_color="transparent",
         hover_color=controlador_tema.color_hover,
         font=(LETRA, TAMANIO_LETRA_BOTON),
@@ -2447,7 +2447,7 @@ def actualizar_espectro(*args):
     for i in range(min(NUMERO_BARRA, len(barras_espectro))):
         # Generar altura con variación según la posición (efecto de onda)
         factor_posicion = 0.5 + 0.5 * abs(math.sin((i / NUMERO_BARRA) * math.pi))
-        altura_base = random.randint(10, int(alto_canvas * 0.9 * factor_posicion))
+        altura_base = random.randint(10, int(alto_canvas * 1.3 * factor_posicion))
         # Suavizar los cambios entre frames para una animación más fluida
         factor_suavizado = 0.7 + 0.3 * random.random()  # Variar ligeramente el factor de suavizado
         altura_objetivo = int(altura_base * factor_posicion)
@@ -2942,7 +2942,7 @@ crear_tooltip(boton_favorito, "Agregar a Favoritos")
 
 # ------------------------------- Seccion de espectro de audio ----------------------------------
 # Contenedor de espectro de audio
-contenedor_espectro = ctk.CTkFrame(contenedor_izquierda, height=100, fg_color="transparent")
+contenedor_espectro = ctk.CTkFrame(contenedor_izquierda, height=75, fg_color="transparent")
 contenedor_espectro.pack(fill="both", padx=10, pady=2)
 contenedor_espectro.pack_propagate(False)
 
@@ -2977,7 +2977,7 @@ barra_progreso = ctk.CTkProgressBar(
     fg_color=controlador_tema.color_hover,
     progress_color=controlador_tema.color_barra_progreso,
 )
-barra_progreso.pack(fill="x", padx=6, pady=(0, 3))
+barra_progreso.pack(fill="x", pady=(0, 3))
 barra_progreso.set(0)
 barra_progreso.bind("<Button-1>", iniciar_arrastre_progreso)
 barra_progreso.bind("<B1-Motion>", durante_arrastre_progreso)
@@ -2996,6 +2996,7 @@ panel_tiempo.pack(fill="x", expand=True)
 # Etiqueta de tiempo actual
 etiqueta_tiempo_actual = ctk.CTkLabel(
     panel_tiempo,
+    height=17,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_TIEMPO),
     text_color=controlador_tema.color_texto,
@@ -3007,6 +3008,7 @@ controlador_tema.registrar_etiqueta(etiqueta_tiempo_actual)
 # Etiqueta de tiempo total
 etiqueta_tiempo_total = ctk.CTkLabel(
     panel_tiempo,
+    height=17,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_TIEMPO),
     text_color=controlador_tema.color_texto,

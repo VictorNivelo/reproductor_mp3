@@ -24,7 +24,10 @@
         "Coi Leray": 11,
         "Dalex": 1,
         "Yan Block": 1,
-        "Panda Black": 1
+        "Panda Black": 1,
+        "¥$": 2,
+        "Kanye West": 2,
+        "Ty Dolla $ign": 2
     },
     "albumes": {
         "Na": 3,
@@ -38,16 +41,17 @@
         "Sexflix": 2,
         "Callaita": 1,
         "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 11,
-        "444": 1
+        "444": 1,
+        "VULTURES 2": 2
     },
-    "tiempo_total": 8439.771428571434,
-    "canciones_escuchadas": 38,
+    "tiempo_total": 9018.853877551026,
+    "canciones_escuchadas": 40,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\444..mp3",
-        "titulo": "444",
-        "artista": "Yan Block ft Panda Black",
-        "album": "444",
-        "timestamp": "2025-06-23T11:20:05.632325"
+        "ruta": "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
+        "titulo": "530",
+        "artista": "¥$ ft Kanye West, Ty Dolla $ign",
+        "album": "VULTURES 2",
+        "timestamp": "2025-06-23T14:00:35.392971"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\Na.mp3": {
@@ -145,6 +149,12 @@
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
+        },
+        "C:\\Users\\Victor\\Music\\Musica\\530.mp3": {
+            "contador": 2,
+            "titulo": "530",
+            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
+            "album": "VULTURES 2"
         }
     },
     "artistas_originales": {
@@ -163,6 +173,7 @@
         "Bad Bunny ft Tainy": 1,
         "Metro Boomin ft Coi Leray": 11,
         "Alex Rose ft Dalex": 1,
-        "Yan Block ft Panda Black": 1
+        "Yan Block ft Panda Black": 1,
+        "¥$ ft Kanye West, Ty Dolla $ign": 2
     }
 }

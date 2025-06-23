@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7a9c3b1-2f39-4ff6-b624-4183a59858ca" name="Cambios" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/reproductor_mp3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/reproductor_mp3.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/configuracion/ajustes.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/configuracion/ajustes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/vista_principal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/vista_principal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/estadisticas/canciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/canciones.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/cola.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/cola.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/componentes/cola_reproduccion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/cola_reproduccion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/componentes/configuracion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/configuracion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/componentes/estadisticas.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/estadisticas.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +110,7 @@
       <workItem from="1750451237883" duration="855000" />
       <workItem from="1750452112119" duration="3000" />
       <workItem from="1750453761484" duration="722000" />
+      <workItem from="1750695861257" duration="854000" />
     </task>
     <servers />
   </component>

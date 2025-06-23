@@ -294,7 +294,7 @@ class ColaReproduccion(UtilesGeneral):
             text="Cerrar",
             command=lambda: self.cerrar_ventana_cola(),
         )
-        boton_cerrar_cola.pack(pady=3)
+        boton_cerrar_cola.pack(side="bottom", pady=3)
         self.componentes.append(boton_cerrar_cola)
         crear_tooltip(boton_cerrar_cola, "Cerrar ventana de cola")
         # ------------------------------------------------------------------------------------------------

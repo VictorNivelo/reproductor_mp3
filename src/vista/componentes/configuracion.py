@@ -103,7 +103,7 @@ class Configuracion(UtilesGeneral):
             text="Cerrar",
             command=self.cerrar_ventana_configuracion,
         )
-        boton_cerrar_configuracion.pack(pady=3)
+        boton_cerrar_configuracion.pack(side="bottom", pady=3)
         self.componentes.append(boton_cerrar_configuracion)
         crear_tooltip(boton_cerrar_configuracion, "Cerrar ventana de configuración")
         # ----------------------------------------------------------------------------------------------

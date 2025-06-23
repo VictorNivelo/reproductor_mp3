@@ -97,7 +97,7 @@ class Estadisticas(UtilesGeneral):
             text="Cerrar",
             command=self.cerrar_ventana_estadisticas,
         )
-        boton_cerrar_estadisticas.pack(pady=3)
+        boton_cerrar_estadisticas.pack(side="bottom", pady=3)
         self.componentes.append(boton_cerrar_estadisticas)
         crear_tooltip(boton_cerrar_estadisticas, "Cerrar ventana de estadísticas")
         # ---------------------------------------------------------------------------------

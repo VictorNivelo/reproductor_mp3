@@ -306,12 +306,15 @@ class MiniReproductor(UtilesGeneral):
         # ======================================== Panel izquierda ========================================
         # Crea el panel izquierdo del mini reproductor
         panel_izquierda_mini_reproductor = ctk.CTkFrame(
-            panel_principal_mini_reproductor, fg_color=self.color_fondo, width=125, height=125
+            panel_principal_mini_reproductor,
+            fg_color="transparent",
+            width=125,
+            height=125,
         )
         panel_izquierda_mini_reproductor.pack(side="left", padx=3, pady=3)
         panel_izquierda_mini_reproductor.pack_propagate(False)
-        self.componentes.append(panel_izquierda_mini_reproductor)
         self.controlador_tema.registrar_panel(panel_izquierda_mini_reproductor, es_ctk=True)
+        self.componentes.append(panel_izquierda_mini_reproductor)
 
         # ------------------------------------- Imagen de la canción ---------------------------------------
         # Crea la imagen de la canción del mini reproductor
@@ -441,7 +444,13 @@ class MiniReproductor(UtilesGeneral):
             self.etiqueta_album_mini.configure(text=cancion.album)
             # Actualizar carátula usando el método de la canción
             if cancion.caratula_cancion:
-                foto = cancion.obtener_caratula_general_cancion(formato="ctk", ancho=125, alto=125)
+                foto = cancion.obtener_caratula_general_cancion(
+                    formato="ctk",
+                    ancho=125,
+                    alto=125,
+                    bordes_redondeados=True,
+                    radio_borde=7,
+                )
                 if foto:
                     self.imagen_cancion_mini.configure(image=foto, text="")
                     self.foto_caratula_mini = foto  # Evitar garbage collector

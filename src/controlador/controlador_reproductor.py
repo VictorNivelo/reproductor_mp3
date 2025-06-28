@@ -76,9 +76,13 @@ class ControladorReproductor:
             if caratula_bytes is None and self.cancion_actual:
                 caratula_bytes = self.cancion_actual.caratula_cancion
             if caratula_bytes and self.etiqueta_imagen:
-                # Usar el método de la instancia Cancion
+                # Usar el método de la instancia Cancion con bordes redondeados
                 foto = self.cancion_actual.obtener_caratula_general_cancion(
-                    formato="ctk", ancho=ancho_caratula, alto=alto_caratula
+                    formato="ctk",
+                    ancho=ancho_caratula,
+                    alto=alto_caratula,
+                    bordes_redondeados=True,
+                    radio_borde=15,
                 )
                 if foto:
                     self.etiqueta_imagen.configure(image=foto, text="")

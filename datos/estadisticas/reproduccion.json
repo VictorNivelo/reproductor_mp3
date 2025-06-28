@@ -1,28 +1,48 @@
 {
     "artistas": {
-        "Canserbero": 1
+        "Canserbero": 2,
+        "Metro Boomin": 1,
+        "Coi Leray": 1,
+        "Eladio Carrion": 1,
+        "Bryant Myers": 1
     },
     "albumes": {
-        "Na": 1
+        "Na": 2,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
+        "Animal": 1
     },
-    "tiempo_total": 384.23510204081634,
-    "canciones_escuchadas": 1,
+    "tiempo_total": 1175.7714285714287,
+    "canciones_escuchadas": 4,
     "ultima_cancion": {
         "ruta": "C:\\Users\\Victor\\Music\\M\\Na.mp3",
         "titulo": "Na",
         "artista": "Canserbero",
         "album": "Na",
-        "timestamp": "2025-06-28T13:54:38.787206"
+        "timestamp": "2025-06-28T17:23:30.450891"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\Na.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "Na",
             "artista": "Canserbero",
             "album": "Na"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
+            "contador": 1,
+            "titulo": "Self Love",
+            "artista": "Metro Boomin ft Coi Leray",
+            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
+            "contador": 1,
+            "titulo": "Animal",
+            "artista": "Eladio Carrion ft Bryant Myers",
+            "album": "Animal"
         }
     },
     "artistas_originales": {
-        "Canserbero": 1
+        "Canserbero": 2,
+        "Metro Boomin ft Coi Leray": 1,
+        "Eladio Carrion ft Bryant Myers": 1
     }
 }

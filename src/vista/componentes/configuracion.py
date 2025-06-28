@@ -84,7 +84,7 @@ class Configuracion(UtilesGeneral):
                     text=seccion,
                     command=lambda s=seccion: self.abrir_seccion(s),
                 )
-                boton_seccion.pack(fill="x", pady=3, padx=5)
+                boton_seccion.pack(fill="x", padx=3, pady=(0,3))
                 self.componentes.append(boton_seccion)
                 crear_tooltip(boton_seccion, f"Abrir configuración de {seccion}")
             except Exception as e:

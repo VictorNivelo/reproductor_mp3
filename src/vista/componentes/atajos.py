@@ -69,7 +69,7 @@ class Atajos(UtilesGeneral):
         # ----------------------------------- Panel contenedor de atajos ----------------------------------
         # Panel que contendrá todos los atajos con scroll
         contenedor_scroll = ctk.CTkFrame(panel_atajos_general, fg_color="transparent")
-        contenedor_scroll.pack(fill="both", expand=True, padx=5, pady=5)
+        contenedor_scroll.pack(fill="both", expand=True, padx=(3, 0), pady=5)
         self.componentes.append(contenedor_scroll)
         # -------------------------------------------------------------------------------------------------
 
@@ -100,7 +100,7 @@ class Atajos(UtilesGeneral):
             text="Restablecer todos",
             command=self.restablecer_todos_predeterminados,
         )
-        boton_restablecer_todos.pack(side="left", padx=3)
+        boton_restablecer_todos.pack(side="left")
         self.componentes.append(boton_restablecer_todos)
         crear_tooltip(boton_restablecer_todos, "Restablecer todos los atajos")
         # -------------------------------------------------------------------------------------------------
@@ -144,14 +144,14 @@ class Atajos(UtilesGeneral):
             # Etiqueta con el nombre del atajo
             etiqueta_nombre = ctk.CTkLabel(
                 panel_atajos,
-                text=nombre,
+                width=130,
+                fg_color="transparent",
                 font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
                 text_color=self.color_texto,
-                fg_color="transparent",
+                text=nombre,
                 anchor="w",
-                width=150,
             )
-            etiqueta_nombre.pack(side="left", padx=3, pady=(0, 2))
+            etiqueta_nombre.pack(side="left", pady=(0, 2))
             self.componentes.append(etiqueta_nombre)
             self.controlador_tema.registrar_etiqueta(etiqueta_nombre)
             # ---------------------------------------------------------------------------------------------
@@ -160,7 +160,7 @@ class Atajos(UtilesGeneral):
             # Entry para mostrar/editar el atajo (inicialmente deshabilitado)
             entrada_atajos = ctk.CTkEntry(
                 panel_atajos,
-                width=175,
+                width=150,
                 height=28,
                 corner_radius=BORDES_REDONDEADOS_ENTRADAS,
                 font=(LETRA, TAMANIO_LETRA_ENTRADA),
@@ -171,7 +171,7 @@ class Atajos(UtilesGeneral):
                 justify="center",
                 state="normal",
             )
-            entrada_atajos.pack(side="left", padx=3, pady=(0, 2))
+            entrada_atajos.pack(side="left", pady=(0, 2))
 
             # Insertar el valor actual del atajo
             valor_actual = atajos_actuales.get(accion, "")
@@ -205,7 +205,7 @@ class Atajos(UtilesGeneral):
                 image=icono_editar_atajo,
                 command=lambda acc=accion: self.alternar_modo_edicion(acc),
             )
-            boton_editar.pack(side="right", padx=3, pady=(0, 2))
+            boton_editar.pack(side="right", pady=(0, 2))
             self.componentes.append(boton_editar)
             crear_tooltip(boton_editar, f"Editar atajo para {nombre}")
             self.botones_editar[accion] = boton_editar
@@ -230,7 +230,7 @@ class Atajos(UtilesGeneral):
                 image=icono_restablecer,
                 command=lambda acc=accion: self.restablecer_atajo_individual(acc),
             )
-            boton_restablecer.pack(side="right", padx=3, pady=(0, 2))
+            boton_restablecer.pack(side="right", pady=(0, 2))
             self.componentes.append(boton_restablecer)
             crear_tooltip(boton_restablecer, f"Restablecer predeterminado")
             self.botones_restablecer[accion] = boton_restablecer

@@ -303,7 +303,11 @@ class ColaReproduccion(UtilesGeneral):
     def mostrar_caratula(self, panel_contenedor, cancion, ancho_caratula=60, alto_caratula=60):
         if cancion and cancion.caratula_cancion:
             foto = cancion.obtener_caratula_general_cancion(
-                formato="ctk", ancho=ancho_caratula, alto=alto_caratula
+                formato="ctk",
+                ancho=ancho_caratula,
+                alto=alto_caratula,
+                bordes_redondeados=True,
+                radio_borde=5,
             )
             if foto:
                 etiqueta_imagen = ctk.CTkLabel(panel_contenedor, image=foto, text="")

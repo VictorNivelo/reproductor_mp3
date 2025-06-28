@@ -1,6 +1,6 @@
 from customtkinter import CTkImage
 from PIL.Image import Resampling
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageDraw
 from datetime import datetime
 from mutagen.flac import FLAC
 from mutagen.id3 import ID3
@@ -189,8 +189,9 @@ class Cancion:
             print(f"Error al crear imagen vacía: {e}")
             return None
 
-    # Método para obtener la carátula de la canción
-    def obtener_caratula_general_cancion(self, formato="bytes", ancho=None, alto=None):
+    def obtener_caratula_general_cancion(
+        self, formato="bytes", ancho=None, alto=None, bordes_redondeados=False, radio_borde=None
+    ):
         if not self.caratula_cancion:
             return None
         try:
@@ -210,6 +211,9 @@ class Cancion:
                     proporcion = alto / imagen_pil.height
                     ancho = int(imagen_pil.width * proporcion)
                 imagen_pil = imagen_pil.resize((ancho, alto), Resampling.LANCZOS)
+            # Aplicar bordes redondeados si se solicita
+            if bordes_redondeados:
+                imagen_pil = self.aplicar_bordes_redondeados(imagen_pil, radio_borde)
             # Devolver el formato solicitado
             if formato == "PIL":
                 return imagen_pil
@@ -233,6 +237,35 @@ class Cancion:
         except Exception as e:
             print(f"Error al procesar la carátula: {e}")
             return None
+
+    # Método privado para aplicar bordes redondeados
+    @staticmethod
+    def aplicar_bordes_redondeados(imagen, radio):
+        try:
+            # Asegurar que la imagen esté en modo RGBA
+            if imagen.mode != "RGBA":
+                imagen = imagen.convert("RGBA")
+            # Crear una máscara con mayor resolución para antialiasing
+            ancho, alto = imagen.size
+            factor_escala = 4  # Factor de escalado para suavizar bordes
+            ancho_escalado = ancho * factor_escala
+            alto_escalado = alto * factor_escala
+            radio_escalado = radio * factor_escala
+            # Crear máscara escalada
+            mascara_escalada = Image.new("L", (ancho_escalado, alto_escalado), 0)
+            draw = ImageDraw.Draw(mascara_escalada)
+            # Dibujar rectángulo redondeado en la máscara escalada
+            draw.rounded_rectangle([(0, 0), (ancho_escalado, alto_escalado)], radius=radio_escalado, fill=255)
+            # Redimensionar la máscara al tamaño original con suavizado
+            mascara = mascara_escalada.resize((ancho, alto), Image.Resampling.LANCZOS)
+            # Crear imagen final con transparencia
+            imagen_redondeada = Image.new("RGBA", (ancho, alto), (0, 0, 0, 0))
+            imagen_redondeada.paste(imagen, (0, 0))
+            imagen_redondeada.putalpha(mascara)
+            return imagen_redondeada
+        except Exception as e:
+            print(f"Error al aplicar bordes redondeados: {e}")
+            return imagen
 
     # Método que obtiene la información base de la canción
     @staticmethod

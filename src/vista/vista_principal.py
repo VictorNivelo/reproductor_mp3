@@ -2445,15 +2445,23 @@ def actualizar_espectro(*args):
         return
     # Generar alturas aleatorias para simular el espectro
     for i in range(min(NUMERO_BARRA, len(barras_espectro))):
-        # Generar altura con variación según la posición (efecto de onda)
+        # Calcular factor de posición para efecto de campana (más alto en el centro)
         factor_posicion = 0.5 + 0.5 * abs(math.sin((i / NUMERO_BARRA) * math.pi))
+        # Generar altura base con el mismo rango que el código original
         altura_base = random.randint(10, int(alto_canvas * 1.3 * factor_posicion))
-        # Suavizar los cambios entre frames para una animación más fluida
-        factor_suavizado = 0.7 + 0.3 * random.random()  # Variar ligeramente el factor de suavizado
+        # Calcular altura objetivo con el factor de posición
         altura_objetivo = int(altura_base * factor_posicion)
+        # Suavizar los cambios entre frames con factor fijo para mayor consistencia
+        factor_suavizado = 0.85  # Mayor suavizado que el original
+        # Aplicar suavizado temporal
         alturas_barras[i] = int(
             alturas_barras[i] * factor_suavizado + altura_objetivo * (1 - factor_suavizado)
         )
+        # Suavizado adicional con barras vecinas para eliminar cambios bruscos
+        if i > 0 and i < NUMERO_BARRA - 1:
+            altura_promedio = (alturas_barras[i - 1] + alturas_barras[i] + alturas_barras[i + 1]) / 3
+            # Mezclar ligeramente con el promedio de vecinos
+            alturas_barras[i] = int(alturas_barras[i] * 0.8 + altura_promedio * 0.2)
         # Actualizar altura de la barra
         try:
             x1, _, x2, _ = canvas_espectro.coords(barras_espectro[i])

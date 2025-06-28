@@ -78,9 +78,9 @@ class MiniReproductor(UtilesGeneral):
         # ========================================= Panel derecho =========================================
         # Crea el panel derecho del mini reproductor
         panel_derecha_mini_reproductor = ctk.CTkFrame(
-            panel_principal_mini_reproductor, fg_color=self.color_fondo, width=250, height=125
+            panel_principal_mini_reproductor, fg_color=self.color_fondo, width=275, height=125
         )
-        panel_derecha_mini_reproductor.pack(side="right", padx=(0, 5), pady=5)
+        panel_derecha_mini_reproductor.pack(side="right", padx=(0, 3), pady=3)
         panel_derecha_mini_reproductor.pack_propagate(False)
         self.controlador_tema.registrar_panel(panel_derecha_mini_reproductor, es_ctk=True)
         self.componentes.append(panel_derecha_mini_reproductor)
@@ -91,14 +91,14 @@ class MiniReproductor(UtilesGeneral):
         panel_informacion_mini_reproductor = ctk.CTkFrame(
             panel_derecha_mini_reproductor, fg_color="transparent"
         )
-        panel_informacion_mini_reproductor.pack(fill="x", padx=5, pady=3)
+        panel_informacion_mini_reproductor.pack(fill="x", padx=3, pady=3)
         self.componentes.append(panel_informacion_mini_reproductor)
 
         # -------------------------------------- Etiqueta de título ---------------------------------------
         # Crea las etiquetas del mini reproductor
         self.etiqueta_nombre_cancion_mini = ctk.CTkLabel(
             panel_informacion_mini_reproductor,
-            height=20,
+            height=19,
             fg_color="transparent",
             text_color=self.color_texto,
             font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION + 3, "bold"),
@@ -112,7 +112,7 @@ class MiniReproductor(UtilesGeneral):
         # ------------------------------------- Etiquetas de artista --------------------------------------
         self.etiqueta_artista_mini = ctk.CTkLabel(
             panel_informacion_mini_reproductor,
-            height=20,
+            height=19,
             fg_color="transparent",
             font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
@@ -126,7 +126,7 @@ class MiniReproductor(UtilesGeneral):
         # -------------------------------------- Etiquetas de álbum ---------------------------------------
         self.etiqueta_album_mini = ctk.CTkLabel(
             panel_informacion_mini_reproductor,
-            height=20,
+            height=19,
             fg_color="transparent",
             font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
             text_color=self.color_texto,
@@ -141,7 +141,7 @@ class MiniReproductor(UtilesGeneral):
         # ======================================== Panel progreso =========================================
         # Crea el panel de progreso del mini reproductor
         panel_progreso_mini_reproductor = ctk.CTkFrame(panel_derecha_mini_reproductor, fg_color="transparent")
-        panel_progreso_mini_reproductor.pack(fill="x", padx=5)
+        panel_progreso_mini_reproductor.pack(fill="x", padx=3)
         self.componentes.append(panel_progreso_mini_reproductor)
 
         # --------------------------------------- Barra de progreso ---------------------------------------
@@ -149,10 +149,13 @@ class MiniReproductor(UtilesGeneral):
         self.barra_progreso_mini = ctk.CTkProgressBar(
             panel_progreso_mini_reproductor,
             height=6,
+            bg_color="transparent",
+            fg_color=self.color_hover,
             progress_color=self.color_barra_progreso,
         )
         self.barra_progreso_mini.pack(fill="x")
         self.barra_progreso_mini.set(0)
+        self.controlador_tema.registrar_progress_bar(self.barra_progreso_mini)
         self.componentes.append(self.barra_progreso_mini)
         # -------------------------------------------------------------------------------------------------
         # =================================================================================================
@@ -167,10 +170,10 @@ class MiniReproductor(UtilesGeneral):
         # Crea las etiquetas de tiempo del mini reproductor
         self.etiqueta_tiempo_inicio_mini = ctk.CTkLabel(
             panel_tiempo_mini_reproductor,
-            height=20,
+            height=18,
             fg_color="transparent",
             text_color=self.color_texto,
-            font=(LETRA, TAMANIO_LETRA_TIEMPO),
+            font=(LETRA, TAMANIO_LETRA_TIEMPO - 1),
             text="00:00",
         )
         self.etiqueta_tiempo_inicio_mini.pack(side="left")
@@ -181,10 +184,10 @@ class MiniReproductor(UtilesGeneral):
         # ----------------------------------- Etiqueta de tiempo final ------------------------------------
         self.etiqueta_tiempo_final_mini = ctk.CTkLabel(
             panel_tiempo_mini_reproductor,
-            height=20,
+            height=18,
             fg_color="transparent",
             text_color=self.color_texto,
-            font=(LETRA, TAMANIO_LETRA_TIEMPO),
+            font=(LETRA, TAMANIO_LETRA_TIEMPO - 1),
             text="00:00",
         )
         self.etiqueta_tiempo_final_mini.pack(side="right")
@@ -196,7 +199,7 @@ class MiniReproductor(UtilesGeneral):
         # ======================================== Panel botones ==========================================
         # Crea el panel de botones del mini reproductor
         panel_botones_mini_reproductor = ctk.CTkFrame(panel_derecha_mini_reproductor, fg_color="transparent")
-        panel_botones_mini_reproductor.pack(fill="x", padx=5, pady=(0, 5))
+        panel_botones_mini_reproductor.pack(fill="x", padx=3, pady=(0, 3))
         self.componentes.append(panel_botones_mini_reproductor)
 
         # ----------------------------------------- Panel botones -----------------------------------------
@@ -222,7 +225,7 @@ class MiniReproductor(UtilesGeneral):
             text="",
             command=self.cambiar_me_gusta,
         )
-        self.boton_me_gusta_mini.pack(side="left", padx=5)
+        self.boton_me_gusta_mini.pack(side="left", padx=3)
         self.controlador_tema.registrar_botones("me_gusta_mini", self.boton_me_gusta_mini)
         crear_tooltip(self.boton_me_gusta_mini, "Agregar a Me Gusta")
         # -------------------------------------------------------------------------------------------------
@@ -240,7 +243,7 @@ class MiniReproductor(UtilesGeneral):
             text="",
             command=self.reproducir_anterior,
         )
-        self.boton_anterior_mini.pack(side="left", padx=5)
+        self.boton_anterior_mini.pack(side="left", padx=3)
         self.controlador_tema.registrar_botones("anterior_mini", self.boton_anterior_mini)
         crear_tooltip(self.boton_anterior_mini, "Reproducir anterior")
         # -------------------------------------------------------------------------------------------------
@@ -258,7 +261,7 @@ class MiniReproductor(UtilesGeneral):
             text="",
             command=self.reproducir_pausar,
         )
-        self.boton_reproducir_mini.pack(side="left", padx=5)
+        self.boton_reproducir_mini.pack(side="left", padx=3)
         self.controlador_tema.registrar_botones("reproducir_mini", self.boton_reproducir_mini)
         crear_tooltip(self.boton_reproducir_mini, "Reproducir")
         # -------------------------------------------------------------------------------------------------
@@ -276,7 +279,7 @@ class MiniReproductor(UtilesGeneral):
             text="",
             command=self.reproducir_siguiente,
         )
-        self.boton_siguiente_mini.pack(side="left", padx=5)
+        self.boton_siguiente_mini.pack(side="left", padx=3)
         self.controlador_tema.registrar_botones("siguiente_mini", self.boton_siguiente_mini)
         crear_tooltip(self.boton_siguiente_mini, "Reproducir siguiente")
         # -------------------------------------------------------------------------------------------------
@@ -294,7 +297,7 @@ class MiniReproductor(UtilesGeneral):
             text="",
             command=self.ocultar,
         )
-        boton_maximizar_mini_reproductor.pack(side="left", padx=5)
+        boton_maximizar_mini_reproductor.pack(side="left", padx=3)
         self.controlador_tema.registrar_botones("maximizar_mini", boton_maximizar_mini_reproductor)
         crear_tooltip(boton_maximizar_mini_reproductor, "Maximizar ventana")
         # -------------------------------------------------------------------------------------------------
@@ -305,7 +308,7 @@ class MiniReproductor(UtilesGeneral):
         panel_izquierda_mini_reproductor = ctk.CTkFrame(
             panel_principal_mini_reproductor, fg_color=self.color_fondo, width=125, height=125
         )
-        panel_izquierda_mini_reproductor.pack(side="left", padx=5, pady=5)
+        panel_izquierda_mini_reproductor.pack(side="left", padx=3, pady=3)
         panel_izquierda_mini_reproductor.pack_propagate(False)
         self.componentes.append(panel_izquierda_mini_reproductor)
         self.controlador_tema.registrar_panel(panel_izquierda_mini_reproductor, es_ctk=True)

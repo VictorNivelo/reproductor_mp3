@@ -1,179 +1,28 @@
 {
     "artistas": {
-        "Canserbero": 3,
-        "Anuel AA": 5,
-        "Sinfonico": 2,
-        "Ñengo Flow": 2,
-        "Tainy": 11,
-        "Sech": 3,
-        "E.VAX": 3,
-        "Feid": 2,
-        "Alvaro Diaz": 2,
-        "Bad Bunny": 5,
-        "Daddy Yankee": 1,
-        "Jhay Cortez": 1,
-        "Ozuna": 2,
-        "Hades66": 1,
-        "Hanzel La H": 1,
-        "YOVNGCHIMI": 1,
-        "Mora": 3,
-        "Zion": 3,
-        "Alex Rose": 2,
-        "Lyanno": 1,
-        "Metro Boomin": 11,
-        "Coi Leray": 11,
-        "Dalex": 1,
-        "Yan Block": 1,
-        "Panda Black": 1,
-        "¥$": 2,
-        "Kanye West": 2,
-        "Ty Dolla $ign": 2
+        "Canserbero": 1
     },
     "albumes": {
-        "Na": 3,
-        "47 (Remix)": 2,
-        "DATA": 8,
-        "INTER SHIBUYA - LA MAFIA": 2,
-        "EL ÚLTIMO TOUR DEL MUNDO": 4,
-        "Adictiva": 1,
-        "Adicto (ft Anuel AA & Ozuna)": 2,
-        "Cloniao": 1,
-        "Sexflix": 2,
-        "Callaita": 1,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 11,
-        "444": 1,
-        "VULTURES 2": 2
+        "Na": 1
     },
-    "tiempo_total": 9018.853877551026,
-    "canciones_escuchadas": 40,
+    "tiempo_total": 384.23510204081634,
+    "canciones_escuchadas": 1,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
-        "titulo": "530",
-        "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-        "album": "VULTURES 2",
-        "timestamp": "2025-06-23T14:00:35.392971"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Na.mp3",
+        "titulo": "Na",
+        "artista": "Canserbero",
+        "album": "Na",
+        "timestamp": "2025-06-28T13:54:38.787206"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\Na.mp3": {
-            "contador": 3,
+            "contador": 1,
             "titulo": "Na",
             "artista": "Canserbero",
             "album": "Na"
-        },
-        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
-            "contador": 2,
-            "titulo": "47 (Remix)",
-            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
-            "album": "47 (Remix)"
-        },
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 3,
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "album": "DATA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
-            "contador": 2,
-            "titulo": "14 De Febrero",
-            "artista": "Feid",
-            "album": "INTER SHIBUYA - LA MAFIA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3": {
-            "contador": 2,
-            "titulo": "PARANORMAL",
-            "artista": "Tainy ft Alvaro Diaz",
-            "album": "DATA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 3,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 1,
-            "titulo": "Adictiva",
-            "artista": "Daddy Yankee ft Anuel AA",
-            "album": "Adictiva"
-        },
-        "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3": {
-            "contador": 1,
-            "titulo": "DÁKITI",
-            "artista": "Bad Bunny ft Jhay Cortez",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3": {
-            "contador": 2,
-            "titulo": "Adicto",
-            "artista": "Tainy ft Anuel AA, Ozuna",
-            "album": "Adicto (ft Anuel AA & Ozuna)"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3": {
-            "contador": 1,
-            "titulo": "Cloniao",
-            "artista": "Hades66 ft Hanzel La H, YOVNGCHIMI",
-            "album": "Cloniao"
-        },
-        "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3": {
-            "contador": 3,
-            "titulo": "BUENOS AIRES",
-            "artista": "Tainy ft Mora, Zion",
-            "album": "DATA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Déjate Llevar.mp3": {
-            "contador": 1,
-            "titulo": "Déjate Llevar",
-            "artista": "Alex Rose ft Lyanno",
-            "album": "Sexflix"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Callaita.mp3": {
-            "contador": 1,
-            "titulo": "Callaita",
-            "artista": "Bad Bunny ft Tainy",
-            "album": "Callaita"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 11,
-            "titulo": "Self Love",
-            "artista": "Metro Boomin ft Coi Leray",
-            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Yo Quisiera.mp3": {
-            "contador": 1,
-            "titulo": "Yo Quisiera",
-            "artista": "Alex Rose ft Dalex",
-            "album": "Sexflix"
-        },
-        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
-            "contador": 1,
-            "titulo": "444",
-            "artista": "Yan Block ft Panda Black",
-            "album": "444"
-        },
-        "C:\\Users\\Victor\\Music\\Musica\\530.mp3": {
-            "contador": 2,
-            "titulo": "530",
-            "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-            "album": "VULTURES 2"
         }
     },
     "artistas_originales": {
-        "Canserbero": 3,
-        "Anuel AA ft Sinfonico, Ñengo Flow": 2,
-        "Tainy ft Sech, E.VAX": 3,
-        "Feid": 2,
-        "Tainy ft Alvaro Diaz": 2,
-        "Bad Bunny": 3,
-        "Daddy Yankee ft Anuel AA": 1,
-        "Bad Bunny ft Jhay Cortez": 1,
-        "Tainy ft Anuel AA, Ozuna": 2,
-        "Hades66 ft Hanzel La H, YOVNGCHIMI": 1,
-        "Tainy ft Mora, Zion": 3,
-        "Alex Rose ft Lyanno": 1,
-        "Bad Bunny ft Tainy": 1,
-        "Metro Boomin ft Coi Leray": 11,
-        "Alex Rose ft Dalex": 1,
-        "Yan Block ft Panda Black": 1,
-        "¥$ ft Kanye West, Ty Dolla $ign": 2
+        "Canserbero": 1
     }
 }

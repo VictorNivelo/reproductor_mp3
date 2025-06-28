@@ -65,9 +65,6 @@ class ColaReproduccion(UtilesGeneral):
                     )
                     # Actualizar el icono del botón
                     componente.configure(image=icono_reproduccion)
-                    # Actualizar el tooltip con el texto correcto
-                    from vista.utiles.utiles_vista import actualizar_texto_tooltip
-
                     texto_tooltip = "Pausar" if self.controlador_reproductor.reproduciendo else "Reproducir"
                     actualizar_texto_tooltip(componente, texto_tooltip)
                     # Guardar referencia al icono para evitar que sea recolectado
@@ -143,7 +140,7 @@ class ColaReproduccion(UtilesGeneral):
             text_color=self.color_texto,
             text="Cola de reproducción",
         )
-        etiqueta_titulo_general.pack(padx=10)
+        etiqueta_titulo_general.pack()
         self.componentes.append(etiqueta_titulo_general)
         self.controlador_tema.registrar_etiqueta(etiqueta_titulo_general)
         # ------------------------------------------------------------------------------------------------
@@ -160,7 +157,7 @@ class ColaReproduccion(UtilesGeneral):
             text_color=self.color_texto,
             text=f"Duración total: {duracion_total}",
         )
-        etiqueta_duracion.pack(padx=10, pady=1)
+        etiqueta_duracion.pack(pady=1)
         self.componentes.append(etiqueta_duracion)
         self.controlador_tema.registrar_etiqueta(etiqueta_duracion)
         # ------------------------------------------------------------------------------------------------
@@ -173,7 +170,7 @@ class ColaReproduccion(UtilesGeneral):
             fg_color=self.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_cancion_actual.pack(fill="both", padx=5, pady=(0, 5))
+        panel_cancion_actual.pack(fill="both", padx=3, pady=(0, 5))
         self.componentes.append(panel_cancion_actual)
         # ------------------------------------------------------------------------------------------------
 
@@ -186,7 +183,7 @@ class ColaReproduccion(UtilesGeneral):
             text_color=self.color_texto,
             text="Reproduciendo ahora:",
         )
-        etiqueta_reproduciendo.pack(anchor="w", padx=5, pady=(3, 0))
+        etiqueta_reproduciendo.pack(anchor="w", padx=3, pady=(3, 0))
         self.componentes.append(etiqueta_reproduciendo)
         self.controlador_tema.registrar_etiqueta(etiqueta_reproduciendo)
         # ------------------------------------------------------------------------------------------------
@@ -203,7 +200,7 @@ class ColaReproduccion(UtilesGeneral):
             fg_color=self.color_segundario,
             corner_radius=BORDES_REDONDEADOS_PANEL,
         )
-        panel_cola_reproduccion.pack(fill="both", expand=True, padx=5, pady=(0, 5))
+        panel_cola_reproduccion.pack(fill="both", expand=True, pady=(0, 5))
         self.componentes.append(panel_cola_reproduccion)
         # ------------------------------------------------------------------------------------------------
 
@@ -213,7 +210,7 @@ class ColaReproduccion(UtilesGeneral):
             panel_cola_reproduccion,
             fg_color="transparent",
         )
-        panel_componentes.pack(fill="both", padx=5, pady=(3, 0))
+        panel_componentes.pack(fill="both", padx=3, pady=(3, 0))
         self.componentes.append(panel_componentes)
         # ------------------------------------------------------------------------------------------------
 
@@ -237,8 +234,8 @@ class ColaReproduccion(UtilesGeneral):
         if self.controlador_reproductor.lista_reproduccion:
             boton_limpiar_cola = ctk.CTkButton(
                 panel_componentes,
-                width=ANCHO_BOTON - 4,
-                height=ALTO_BOTON - 4,
+                width=ANCHO_BOTON - 10,
+                height=ALTO_BOTON - 10,
                 corner_radius=BORDES_REDONDEADOS_BOTON,
                 fg_color=self.color_boton,
                 hover_color=self.color_hover,
@@ -421,7 +418,7 @@ class ColaReproduccion(UtilesGeneral):
             # ------------------------------------------ Panel boton ------------------------------------------
             # Panel para botón de reproducción/pausa
             panel_boton_reproduccion = ctk.CTkFrame(panel_informacion_cancion, fg_color="transparent")
-            panel_boton_reproduccion.pack(side="right", padx=(0, 3))
+            panel_boton_reproduccion.pack(side="right")
             self.componentes.append(panel_boton_reproduccion)
             # -------------------------------------------------------------------------------------------------
 
@@ -693,8 +690,8 @@ class ColaReproduccion(UtilesGeneral):
             icono_quitar = cargar_icono_con_tamanio("quitar", self.controlador_tema.tema_iconos, (10, 10))
             boton_quitar = ctk.CTkButton(
                 panel_cancion,
-                width=ANCHO_BOTON - 5,
-                height=ALTO_BOTON - 5,
+                width=ANCHO_BOTON - 10,
+                height=ALTO_BOTON - 10,
                 corner_radius=BORDES_REDONDEADOS_BOTON,
                 fg_color=self.color_boton,
                 hover_color=self.color_hover,

@@ -1,12 +1,11 @@
 {
-    "indice_actual": 5,
+    "indice_actual": 13,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
@@ -15,22 +14,18 @@
         "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3",
         "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
         "C:\\Users\\Victor\\Music\\M\\Déjate Llevar.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\FOREVER..mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\FOREVER ROLLING.mp3",
         "C:\\Users\\Victor\\Music\\M\\Na.mp3",
         "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Ric Flair Drip (ft Metro Boomin).mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
         "C:\\Users\\Victor\\Music\\M\\Sigues Preguntando.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\SLIDE.mp3",
         "C:\\Users\\Victor\\Music\\M\\Yo Quisiera.mp3",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\Musica\\530.mp3",
-        "titulo": "530",
-        "artista": "¥$ ft Kanye West, Ty Dolla $ign",
-        "album": "VULTURES 2",
-        "timestamp": "2025-06-23T14:00:35.392064"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Na.mp3",
+        "titulo": "Na",
+        "artista": "Canserbero",
+        "album": "Na",
+        "timestamp": "2025-06-28T13:54:46.862334"
     }
 }

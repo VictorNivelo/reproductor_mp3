@@ -14,8 +14,8 @@ ANCHO_ATAJOS = 450
 ALTO_ATAJOS = 535
 
 # Tamaño minireproductor
-ANCHO_MINI_REPRODUCTOR = 390
-ALTO_MINI_REPRODUCTOR = 135
+ANCHO_MINI_REPRODUCTOR = 400
+ALTO_MINI_REPRODUCTOR = 130
 
 # Tamaño de la barra de progreso
 ANCHO_ESTADISTICAS = 425
@@ -32,7 +32,7 @@ ANCHO_PANEL_DERECHA = 435
 ALTO_TABVIEW = 400
 
 # Tamaño de los botones
-ANCHO_BOTON = 20
+ANCHO_BOTON = 35
 ALTO_BOTON = 35
 
 # Tamaño de las imagenes de los botones

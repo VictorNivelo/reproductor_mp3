@@ -1,24 +1,39 @@
 {
     "artistas": {
         "Canserbero": 2,
-        "Metro Boomin": 1,
-        "Coi Leray": 1,
+        "Metro Boomin": 6,
+        "Coi Leray": 6,
         "Eladio Carrion": 1,
-        "Bryant Myers": 1
+        "Bryant Myers": 1,
+        "Tainy": 2,
+        "Alvaro Diaz": 1,
+        "Anuel AA": 6,
+        "Alex Rose": 1,
+        "Dalex": 1,
+        "Yan Block": 1,
+        "Panda Black": 1,
+        "Bad Bunny": 1,
+        "Sech": 1,
+        "E.VAX": 1
     },
     "albumes": {
         "Na": 2,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1,
-        "Animal": 1
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 6,
+        "Animal": 1,
+        "DATA": 2,
+        "¿Qué Nos Pasó?": 6,
+        "Sexflix": 1,
+        "444": 1,
+        "EL ÚLTIMO TOUR DEL MUNDO": 1
     },
-    "tiempo_total": 1175.7714285714287,
-    "canciones_escuchadas": 4,
+    "tiempo_total": 4552.698775510205,
+    "canciones_escuchadas": 20,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Na.mp3",
-        "titulo": "Na",
-        "artista": "Canserbero",
-        "album": "Na",
-        "timestamp": "2025-06-28T17:23:30.450891"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "titulo": "11 Y ONCE",
+        "artista": "Tainy ft Sech, E.VAX",
+        "album": "DATA",
+        "timestamp": "2025-06-29T16:05:34.474642"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\Na.mp3": {
@@ -28,7 +43,7 @@
             "album": "Na"
         },
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 1,
+            "contador": 6,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
@@ -38,11 +53,53 @@
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
             "album": "Animal"
+        },
+        "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3": {
+            "contador": 1,
+            "titulo": "PARANORMAL",
+            "artista": "Tainy ft Alvaro Diaz",
+            "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
+            "contador": 6,
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "album": "¿Qué Nos Pasó?"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Yo Quisiera.mp3": {
+            "contador": 1,
+            "titulo": "Yo Quisiera",
+            "artista": "Alex Rose ft Dalex",
+            "album": "Sexflix"
+        },
+        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
+            "contador": 1,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
+        },
+        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
+            "contador": 1,
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
+        },
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
+            "contador": 1,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
         }
     },
     "artistas_originales": {
         "Canserbero": 2,
-        "Metro Boomin ft Coi Leray": 1,
-        "Eladio Carrion ft Bryant Myers": 1
+        "Metro Boomin ft Coi Leray": 6,
+        "Eladio Carrion ft Bryant Myers": 1,
+        "Tainy ft Alvaro Diaz": 1,
+        "Anuel AA": 6,
+        "Alex Rose ft Dalex": 1,
+        "Yan Block ft Panda Black": 1,
+        "Bad Bunny": 1,
+        "Tainy ft Sech, E.VAX": 1
     }
 }

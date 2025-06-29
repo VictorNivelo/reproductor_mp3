@@ -70,7 +70,7 @@ class ControladorReproductor:
         self.etiqueta_imagen.configure(image=None, text="Sin carátula")
 
     # Método que actualiza la carátula de la canción
-    def actualizar_caratula_controlador(self, caratula_bytes=None, ancho_caratula=300, alto_caratula=300):
+    def actualizar_caratula_controlador(self, caratula_bytes=None):
         try:
             # Si no se proporcionan bytes, usar la carátula de la canción actual
             if caratula_bytes is None and self.cancion_actual:
@@ -79,8 +79,8 @@ class ControladorReproductor:
                 # Usar el método de la instancia Cancion con bordes redondeados
                 foto = self.cancion_actual.obtener_caratula_general_cancion(
                     formato="ctk",
-                    ancho=ancho_caratula,
-                    alto=alto_caratula,
+                    ancho=325,
+                    alto=325,
                     bordes_redondeados=True,
                     radio_borde=15,
                 )

@@ -380,7 +380,7 @@ class ColaReproduccion(UtilesGeneral):
                 informacion_cancion,
                 height=19,
                 fg_color="transparent",
-                font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION + 5, "bold"),
+                font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION + 3, "bold"),
                 text_color=self.color_texto,
                 text=cancion_actual.titulo_cancion,
             )

@@ -1,43 +1,44 @@
 {
     "artistas": {
-        "Canserbero": 2,
+        "Canserbero": 3,
         "Metro Boomin": 6,
         "Coi Leray": 6,
         "Eladio Carrion": 1,
         "Bryant Myers": 1,
-        "Tainy": 2,
+        "Tainy": 3,
         "Alvaro Diaz": 1,
         "Anuel AA": 6,
         "Alex Rose": 1,
         "Dalex": 1,
         "Yan Block": 1,
         "Panda Black": 1,
-        "Bad Bunny": 1,
-        "Sech": 1,
-        "E.VAX": 1
+        "Bad Bunny": 2,
+        "Sech": 2,
+        "E.VAX": 2,
+        "Jhay Cortez": 1
     },
     "albumes": {
-        "Na": 2,
+        "Na": 3,
         "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 6,
         "Animal": 1,
-        "DATA": 2,
+        "DATA": 3,
         "¿Qué Nos Pasó?": 6,
         "Sexflix": 1,
         "444": 1,
-        "EL ÚLTIMO TOUR DEL MUNDO": 1
+        "EL ÚLTIMO TOUR DEL MUNDO": 2
     },
-    "tiempo_total": 4552.698775510205,
-    "canciones_escuchadas": 20,
+    "tiempo_total": 5339.088979591837,
+    "canciones_escuchadas": 23,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "titulo": "11 Y ONCE",
-        "artista": "Tainy ft Sech, E.VAX",
-        "album": "DATA",
-        "timestamp": "2025-06-29T16:05:34.474642"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Na.mp3",
+        "titulo": "Na",
+        "artista": "Canserbero",
+        "album": "Na",
+        "timestamp": "2025-07-05T16:52:48.017671"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\Na.mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "Na",
             "artista": "Canserbero",
             "album": "Na"
@@ -85,14 +86,20 @@
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3": {
+            "contador": 1,
+            "titulo": "DÁKITI",
+            "artista": "Bad Bunny ft Jhay Cortez",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
         }
     },
     "artistas_originales": {
-        "Canserbero": 2,
+        "Canserbero": 3,
         "Metro Boomin ft Coi Leray": 6,
         "Eladio Carrion ft Bryant Myers": 1,
         "Tainy ft Alvaro Diaz": 1,
@@ -100,6 +107,7 @@
         "Alex Rose ft Dalex": 1,
         "Yan Block ft Panda Black": 1,
         "Bad Bunny": 1,
-        "Tainy ft Sech, E.VAX": 1
+        "Tainy ft Sech, E.VAX": 2,
+        "Bad Bunny ft Jhay Cortez": 1
     }
 }

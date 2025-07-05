@@ -170,6 +170,16 @@ def actualizar_iconos():
                             "opcion", controlador_tema.tema_iconos, (15, 20)
                         )
                         componente.configure(image=icono_opcion)
+    # Actualizar icono de búsqueda
+    try:
+        icono_busqueda_actualizado = cargar_icono_con_tamanio(
+            "buscar", controlador_tema.tema_iconos, (15, 15)
+        )
+        etiqueta_icono_busqueda.configure(image=icono_busqueda_actualizado)
+        # Mantener una referencia para evitar que se elimine por el garbage collector
+        etiqueta_icono_busqueda.image = icono_busqueda_actualizado
+    except Exception as e:
+        print(f"Error al actualizar icono de búsqueda: {e}")
     # Actualizar el porcentaje de volumen
     etiqueta_porcentaje_volumen.configure(text=f"{NIVEL_VOLUMEN}%")
 
@@ -1952,8 +1962,8 @@ def mostrar_detalles_cancion(pagina, elemento, funcion_regresar):
     # Botón para volver a la lista
     boton_regresar = ctk.CTkButton(
         panel_superior,
-        width=ANCHO_BOTON - 3,
-        height=ALTO_BOTON - 3,
+        width=ANCHO_BOTON - 6,
+        height=ALTO_BOTON - 6,
         fg_color=controlador_tema.color_boton,
         hover_color=controlador_tema.color_hover,
         font=(LETRA, TAMANIO_LETRA_BOTON),
@@ -2458,7 +2468,7 @@ def actualizar_espectro(*args):
             alturas_barras[i] * factor_suavizado + altura_objetivo * (1 - factor_suavizado)
         )
         # Suavizado adicional con barras vecinas para eliminar cambios bruscos
-        if i > 0 and i < NUMERO_BARRA - 1:
+        if 0 < i < NUMERO_BARRA - 1:
             altura_promedio = (alturas_barras[i - 1] + alturas_barras[i] + alturas_barras[i + 1]) / 3
             # Mezclar ligeramente con el promedio de vecinos
             alturas_barras[i] = int(alturas_barras[i] * 0.8 + altura_promedio * 0.2)
@@ -3261,7 +3271,7 @@ controlador_tema.registrar_etiqueta(etiqueta_porcentaje_volumen)
 
 
 # -----------------------------------------------------------------------------------------------
-# =============================================================================s==================
+# ===============================================================================================
 
 # ======================================== Panel derecha ========================================
 # Contenedor principal de panel derecho
@@ -3291,22 +3301,51 @@ contenedor_busqueda_ordenamiento.pack(fill="both", padx=5, pady=(5, 2))
 panel_elementos = ctk.CTkFrame(contenedor_busqueda_ordenamiento, fg_color="transparent")
 panel_elementos.pack(fill="x", expand=True)
 
-# Entrada de busqueda
-entrada_busqueda = ctk.CTkEntry(
+# ------------------------------------------- Busqueda ------------------------------------------
+# Panel de busqueda
+panel_busqueda = ctk.CTkFrame(
     panel_elementos,
-    fg_color=controlador_tema.color_fondo,
+    height=30,
+    fg_color="transparent",
+    corner_radius=7,
     border_width=1,
     border_color=controlador_tema.color_borde,
+)
+panel_busqueda.pack(side="left", fill="x", expand=True)
+panel_busqueda.pack_propagate(False)
+
+# Cargar icono de búsqueda
+icono_busqueda = cargar_icono_con_tamanio("buscar", controlador_tema.tema_iconos, (15, 15))
+
+# Etiqueta con icono de búsqueda
+etiqueta_icono_busqueda = ctk.CTkLabel(
+    panel_busqueda,
+    width=20,
+    fg_color="transparent",
+    image=icono_busqueda,
+    text="",
+)
+etiqueta_icono_busqueda.pack(side="left", padx=(7, 0))
+
+# Entrada de busqueda
+entrada_busqueda = ctk.CTkEntry(
+    panel_busqueda,
+    height=28,
+    bg_color="transparent",
+    fg_color="transparent",
+    border_width=0,
     font=(LETRA, TAMANIO_LETRA_ENTRADA),
-    placeholder_text="Buscar cancion...",
+    placeholder_text="Buscar en la biblioteca...",
     placeholder_text_color=controlador_tema.color_texto,
     text_color=controlador_tema.color_texto,
 )
-entrada_busqueda.pack(side="left", fill="x", expand=True)
+entrada_busqueda.pack(side="left", fill="x", padx=(0, 4), pady=1, expand=True)
 controlador_tema.registrar_entrada(entrada_busqueda)
 
 # Vincular el evento de liberación de tecla con la función de búsqueda
 entrada_busqueda.bind("<KeyRelease>", lambda _event: buscar_cancion_vista())
+
+# -----------------------------------------------------------------------------------------------
 
 # # Botón de buscar
 # boton_buscar = ctk.CTkButton(

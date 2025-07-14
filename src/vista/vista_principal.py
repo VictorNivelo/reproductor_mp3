@@ -208,7 +208,7 @@ def cargar_todos_ajustes():
     MODO_ALEATORIO = configuracion_cargada.get("modo_aleatorio", False)
     MODO_REPETICION = configuracion_cargada.get("modo_repeticion", 0)
     ESTADO_SILENCIO = configuracion_cargada.get("estado_silenciado", False)
-    PANEL_LATERAL_VISIBLE = configuracion_cargada.get("panel_lateral_visible", True)
+    panel_visible_guardado = configuracion_cargada.get("panel_lateral_visible", True)
     # Ajustar tema
     controlador_tema.tema_interfaz = APARIENCIA
     controlador_tema.tema_iconos = "claro" if APARIENCIA == "oscuro" else "oscuro"
@@ -224,7 +224,7 @@ def cargar_todos_ajustes():
     # Ajustar modo de repetición
     controlador_reproductor.modo_repeticion_controlador(MODO_REPETICION)
     # Ajustar panel visible
-    if not PANEL_LATERAL_VISIBLE:
+    if panel_visible_guardado != PANEL_LATERAL_VISIBLE:
         cambiar_visibilidad_vista()
     # Actualizar todos los iconos según los estados cargados
     actualizar_iconos()
@@ -591,13 +591,18 @@ def cambiar_visibilidad_vista():
     if PANEL_LATERAL_VISIBLE:
         # Mostrar el panel
         contenedor_derecha_principal.configure(width=ANCHO_PANEL_DERECHA + 5)
-        contenedor_derecha_principal.pack(side="left", fill="both", padx=(5, 0))
+        contenedor_derecha_principal.pack(side="left", fill="y", padx=(5, 0))
+        # Ajustar el tamaño de la ventana principal para incluir el panel
+        nueva_anchura = ANCHO_PRINCIPAL
+        ventana_principal.geometry(f"{nueva_anchura}x{ALTO_PRINCIPAL}+{posicion_ancho}+{posicion_alto}")
         controlador_tema.registrar_botones("ocultar", boton_visibilidad)
         actualizar_texto_tooltip(boton_visibilidad, "Ocultar lateral")
     else:
         # Ocultar el panel
-        contenedor_derecha_principal.configure(width=0)
         contenedor_derecha_principal.pack_forget()
+        # Reducir el tamaño de la ventana principal quitando el ancho del panel
+        nueva_anchura = ANCHO_PRINCIPAL - ANCHO_PANEL_DERECHA - 10
+        ventana_principal.geometry(f"{nueva_anchura}x{ALTO_PRINCIPAL}+{posicion_ancho}+{posicion_alto}")
         controlador_tema.registrar_botones("mostrar", boton_visibilidad)
         actualizar_texto_tooltip(boton_visibilidad, "Mostrar lateral")
     # Guardar configuración
@@ -2403,22 +2408,38 @@ def crear_barras_espectro():
     # Obtener dimensiones del canvas
     ancho_canvas = canvas_espectro.winfo_width()
     alto_canvas = canvas_espectro.winfo_height()
+    # Validar que el canvas tenga dimensiones válidas
+    if ancho_canvas <= 1 or alto_canvas <= 1:
+        return
+    # Ancho mínimo por barra (incluyendo espacio) para mantener buena visualización
+    ancho_minimo_por_barra = 4
+    ancho_maximo_por_barra = 8
+    # Calcular número óptimo de barras
+    numero_barras_min = max(20, ancho_canvas // ancho_maximo_por_barra)
+    numero_barras_max = min(200, ancho_canvas // ancho_minimo_por_barra)
+    # Número final de barras (buscar un número que se vea bien)
+    numero_barras = min(numero_barras_max, max(numero_barras_min, ancho_canvas // 6))
+    # Asegurar que sea un número par para mejor simetría
+    if numero_barras % 2 != 0:
+        numero_barras += 1
     # Calcular ancho de barra y espacio entre barras dinámicamente
-    espacio_total = ancho_canvas
-    ancho_barra = max(2, int((espacio_total / NUMERO_BARRA) * 0.7))  # 70% para la barra
-    espacio_entre_barra = (espacio_total / NUMERO_BARRA) * 0.3  # 30% para el espacio
+    espacio_por_barra = ancho_canvas / numero_barras
+    ancho_barra = max(2, int(espacio_por_barra * 0.7))
+    espacio_entre_barra = espacio_por_barra * 0.3
     # Calcular posición inicial para centrar las barras
-    x_inicial = (
-        ancho_canvas - (NUMERO_BARRA * (ancho_barra + espacio_entre_barra) - espacio_entre_barra)
-    ) // 2
+    espacio_total_usado = numero_barras * (ancho_barra + espacio_entre_barra) - espacio_entre_barra
+    x_inicial = (ancho_canvas - espacio_total_usado) // 2
     # Crear barras
-    for i in range(NUMERO_BARRA):
+    for i in range(numero_barras):
         x1 = x_inicial + i * (ancho_barra + espacio_entre_barra)
         x2 = x1 + ancho_barra
         y1 = alto_canvas
         y2 = alto_canvas
         barra = canvas_espectro.create_rectangle(x1, y1, x2, y2, fill=controlador_tema.color_barras, width=0)
         barras_espectro.append(barra)
+    # Actualizar la lista de alturas para que coincida con el número de barras
+    global alturas_barras
+    alturas_barras = [0] * numero_barras
     controlador_tema.registrar_barras_espectro(canvas_espectro, barras_espectro)
 
 
@@ -2433,11 +2454,15 @@ def actualizar_espectro(*args):
         ANIMACION_ESPECTRO_ACTIVA = False
         return
     alto_canvas = canvas_espectro.winfo_height()
+    numero_barras = len(barras_espectro)
+    # Verificar que tenemos barras y alturas consistentes
+    if numero_barras == 0 or len(alturas_barras) != numero_barras:
+        return
     # Si no estamos reproduciendo, ocultar las barras con una animación suave
     if not ESTADO_REPRODUCCION:
-        for i in range(min(NUMERO_BARRA, len(barras_espectro))):
+        for i in range(numero_barras):
             # Reducir gradualmente la altura hasta llegar a cero
-            alturas_barras[i] = max(0, int(alturas_barras[i] * 0.9))
+            alturas_barras[i] = max(0, int(alturas_barras[i] * 0.95))
             try:
                 x1, _, x2, _ = canvas_espectro.coords(barras_espectro[i])
                 canvas_espectro.coords(
@@ -2454,21 +2479,21 @@ def actualizar_espectro(*args):
             ANIMACION_ESPECTRO_ACTIVA = False
         return
     # Generar alturas aleatorias para simular el espectro
-    for i in range(min(NUMERO_BARRA, len(barras_espectro))):
+    for i in range(numero_barras):
         # Calcular factor de posición para efecto de campana (más alto en el centro)
-        factor_posicion = 0.5 + 0.5 * abs(math.sin((i / NUMERO_BARRA) * math.pi))
+        factor_posicion = 0.5 + 0.5 * abs(math.sin((i / numero_barras) * math.pi))
         # Generar altura base con el mismo rango que el código original
         altura_base = random.randint(10, int(alto_canvas * 1.3 * factor_posicion))
-        # Calcular altura objetivo con el factor de posición
+        # Calcular la altura con el factor de posición
         altura_objetivo = int(altura_base * factor_posicion)
         # Suavizar los cambios entre frames con factor fijo para mayor consistencia
-        factor_suavizado = 0.85  # Mayor suavizado que el original
+        factor_suavizado = 0.85
         # Aplicar suavizado temporal
         alturas_barras[i] = int(
             alturas_barras[i] * factor_suavizado + altura_objetivo * (1 - factor_suavizado)
         )
         # Suavizado adicional con barras vecinas para eliminar cambios bruscos
-        if 0 < i < NUMERO_BARRA - 1:
+        if 0 < i < numero_barras - 1:
             altura_promedio = (alturas_barras[i - 1] + alturas_barras[i] + alturas_barras[i + 1]) / 3
             # Mezclar ligeramente con el promedio de vecinos
             alturas_barras[i] = int(alturas_barras[i] * 0.8 + altura_promedio * 0.2)

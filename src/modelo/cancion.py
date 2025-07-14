@@ -361,47 +361,62 @@ class Cancion:
             # Si el texto está vacío o es None, devolver lista vacía
             if not texto_artista or texto_artista.strip() == "":
                 return []
-            # Lista de separadores comunes para artistas
-            separadores = SEPARADORES
+            # Lista de separadores comunes para artistas (sin coma inicialmente)
+            separadores_primarios = SEPARADORES
             # Convertir a minúsculas para búsqueda insensible a mayúsculas
             texto_lower = texto_artista.lower()
-            # Identificar separadores presentes
-            separadores_encontrados = []
-            for sep in separadores:
-                if sep in texto_lower:
-                    separadores_encontrados.append(sep)
-            # Si no hay separadores, devolver el artista original
-            if not separadores_encontrados:
-                return [texto_artista.strip()]
-            # Separar artistas según los separadores encontrados
+            # Primero separar por separadores primarios (no comas)
             artistas = [texto_artista]
-            for sep in separadores_encontrados:
-                nuevos_artistas = []
-                for artista in artistas:
-                    # Buscar el separador de forma insensible a mayúsculas
-                    partes = []
-                    texto_temp = artista
-                    sep_lower = sep.lower()
-                    while sep_lower in texto_temp.lower():
-                        indice = texto_temp.lower().find(sep_lower)
-                        if indice != -1:
-                            partes.append(texto_temp[:indice])
-                            texto_temp = texto_temp[indice + len(sep) :]
-                        else:
-                            break
-                    if texto_temp:
-                        partes.append(texto_temp)
-                    for parte in partes:
-                        # Solo agregar si no está vacío
-                        if parte.strip():
-                            nuevos_artistas.append(parte.strip())
-                if nuevos_artistas:
-                    artistas = nuevos_artistas
-            # Eliminar duplicados manteniendo el orden y devolver lista limpia
-            artistas_unicos = []
+            for sep in separadores_primarios:
+                if sep in texto_lower:
+                    nuevos_artistas = []
+                    for artista in artistas:
+                        partes = []
+                        texto_temp = artista
+                        sep_lower = sep.lower()
+                        while sep_lower in texto_temp.lower():
+                            indice = texto_temp.lower().find(sep_lower)
+                            if indice != -1:
+                                partes.append(texto_temp[:indice])
+                                texto_temp = texto_temp[indice + len(sep) :]
+                            else:
+                                break
+                        if texto_temp:
+                            partes.append(texto_temp)
+                        for parte in partes:
+                            if parte.strip():
+                                nuevos_artistas.append(parte.strip())
+                    if nuevos_artistas:
+                        artistas = nuevos_artistas
+            # Ahora procesar comas de manera inteligente para cada artista
+            artistas_finales = []
             for artista in artistas:
-                if artista not in artistas_unicos:
-                    artistas_unicos.append(artista)
+                if "," in artista:
+                    # Palabras que indican que es parte de un nombre de artista
+                    palabras_nombre = ["the", "a", "an", "de", "la", "el", "los", "las"]
+                    # Separar por comas para analizar
+                    partes_coma = [p.strip() for p in artista.split(",") if p.strip()]
+                    # Si solo hay 2 partes, verificar si la segunda es parte del nombre
+                    if len(partes_coma) == 2:
+                        segunda_parte_lower = partes_coma[1].lower().strip()
+                        # Si la segunda parte empieza con una palabra común de nombres de artistas
+                        if any(segunda_parte_lower.startswith(palabra) for palabra in palabras_nombre):
+                            # Es probable que sea un solo artista
+                            artistas_finales.append(artista.strip())
+                        else:
+                            artistas_finales.extend(partes_coma)
+                    else:
+                        # Más de 2 partes, separar todas por comas
+                        artistas_finales.extend(partes_coma)
+                else:
+                    # No hay comas, agregar tal como está
+                    artistas_finales.append(artista.strip())
+            # Eliminar duplicados manteniendo el orden
+            artistas_unicos = []
+            for artista in artistas_finales:
+                artista_limpio = artista.strip()
+                if artista_limpio and artista_limpio not in artistas_unicos:
+                    artistas_unicos.append(artista_limpio)
             return artistas_unicos
         except Exception as e:
             print(f"Error al separar artistas: {e}")

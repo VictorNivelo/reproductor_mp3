@@ -1,113 +1,37 @@
 {
     "artistas": {
-        "Canserbero": 3,
-        "Metro Boomin": 6,
-        "Coi Leray": 6,
-        "Eladio Carrion": 1,
-        "Bryant Myers": 1,
-        "Tainy": 3,
-        "Alvaro Diaz": 1,
-        "Anuel AA": 6,
-        "Alex Rose": 1,
-        "Dalex": 1,
-        "Yan Block": 1,
-        "Panda Black": 1,
-        "Bad Bunny": 2,
-        "Sech": 2,
-        "E.VAX": 2,
-        "Jhay Cortez": 1
+        "Feid": 1,
+        "Canserbero": 1
     },
     "albumes": {
-        "Na": 3,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 6,
-        "Animal": 1,
-        "DATA": 3,
-        "¿Qué Nos Pasó?": 6,
-        "Sexflix": 1,
-        "444": 1,
-        "EL ÚLTIMO TOUR DEL MUNDO": 2
+        "INTER SHIBUYA - LA MAFIA": 1,
+        "Na": 1
     },
-    "tiempo_total": 5339.088979591837,
-    "canciones_escuchadas": 23,
+    "tiempo_total": 542.7983673469388,
+    "canciones_escuchadas": 2,
     "ultima_cancion": {
         "ruta": "C:\\Users\\Victor\\Music\\M\\Na.mp3",
         "titulo": "Na",
         "artista": "Canserbero",
         "album": "Na",
-        "timestamp": "2025-07-05T16:52:48.017671"
+        "timestamp": "2025-07-13T18:38:02.926042"
     },
     "canciones": {
+        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
+            "contador": 1,
+            "titulo": "14 De Febrero",
+            "artista": "Feid",
+            "album": "INTER SHIBUYA - LA MAFIA"
+        },
         "C:\\Users\\Victor\\Music\\M\\Na.mp3": {
-            "contador": 3,
+            "contador": 1,
             "titulo": "Na",
             "artista": "Canserbero",
             "album": "Na"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 6,
-            "titulo": "Self Love",
-            "artista": "Metro Boomin ft Coi Leray",
-            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
-            "contador": 1,
-            "titulo": "Animal",
-            "artista": "Eladio Carrion ft Bryant Myers",
-            "album": "Animal"
-        },
-        "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3": {
-            "contador": 1,
-            "titulo": "PARANORMAL",
-            "artista": "Tainy ft Alvaro Diaz",
-            "album": "DATA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
-            "contador": 6,
-            "titulo": "¿Qué Nos Pasó?",
-            "artista": "Anuel AA",
-            "album": "¿Qué Nos Pasó?"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Yo Quisiera.mp3": {
-            "contador": 1,
-            "titulo": "Yo Quisiera",
-            "artista": "Alex Rose ft Dalex",
-            "album": "Sexflix"
-        },
-        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
-            "contador": 1,
-            "titulo": "444",
-            "artista": "Yan Block ft Panda Black",
-            "album": "444"
-        },
-        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 1,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 2,
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "album": "DATA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3": {
-            "contador": 1,
-            "titulo": "DÁKITI",
-            "artista": "Bad Bunny ft Jhay Cortez",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
         }
     },
     "artistas_originales": {
-        "Canserbero": 3,
-        "Metro Boomin ft Coi Leray": 6,
-        "Eladio Carrion ft Bryant Myers": 1,
-        "Tainy ft Alvaro Diaz": 1,
-        "Anuel AA": 6,
-        "Alex Rose ft Dalex": 1,
-        "Yan Block ft Panda Black": 1,
-        "Bad Bunny": 1,
-        "Tainy ft Sech, E.VAX": 2,
-        "Bad Bunny ft Jhay Cortez": 1
+        "Feid": 1,
+        "Canserbero": 1
     }
 }

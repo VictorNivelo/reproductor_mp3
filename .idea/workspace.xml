@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7a9c3b1-2f39-4ff6-b624-4183a59858ca" name="Cambios" comment="">
-      <change beforePath="$PROJECT_DIR$/datos/configuracion/ajustes.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/configuracion/ajustes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/estadisticas/canciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/canciones.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/listas/cola.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/cola.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/componentes/cola_reproduccion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/cola_reproduccion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constantes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/constantes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/cancion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/cancion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/vista_principal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/vista_principal.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +63,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-9f8e2b94138c-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26094.141" />
+        <option value="bundled-python-sdk-41e8cd69c857-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26927.90" />
       </set>
     </attachedChunks>
   </component>
@@ -109,6 +113,10 @@
       <workItem from="1750695861257" duration="854000" />
       <workItem from="1751146414619" duration="1966000" />
       <workItem from="1751755127127" duration="216000" />
+      <workItem from="1751764643951" duration="808000" />
+      <workItem from="1751765667896" duration="826000" />
+      <workItem from="1752450192671" duration="404000" />
+      <workItem from="1752450973668" duration="205000" />
     </task>
     <servers />
   </component>

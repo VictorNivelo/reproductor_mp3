@@ -1,5 +1,5 @@
 {
-    "indice_actual": 13,
+    "indice_actual": 15,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -9,15 +9,20 @@
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Bonita.mp3",
         "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
         "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
         "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Como Ñengo (ft Jota Rosa).mp3",
         "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
         "C:\\Users\\Victor\\Music\\M\\Déjate Llevar.mp3",
         "C:\\Users\\Victor\\Music\\M\\Na.mp3",
         "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
         "C:\\Users\\Victor\\Music\\M\\Sigues Preguntando.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Sometimes....mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\WHAT'S GOOD.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\WILSHIRE.mp3",
         "C:\\Users\\Victor\\Music\\M\\Yo Quisiera.mp3",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
@@ -26,6 +31,6 @@
         "titulo": "Na",
         "artista": "Canserbero",
         "album": "Na",
-        "timestamp": "2025-07-05T16:52:48.016273"
+        "timestamp": "2025-07-13T18:38:03.962968"
     }
 }

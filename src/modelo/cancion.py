@@ -105,7 +105,6 @@ class Cancion:
                         "APEv2File": "APE",
                         "WavPack": "WavPack",
                         "TrueAudio": "TTA",
-                        "Musepack": "MPC",
                     }
                     return mapeo_formatos.get(tipo_archivo, tipo_archivo)
                 else:
@@ -119,7 +118,8 @@ class Cancion:
             try:
                 extension = self.ruta_cancion.suffix.upper().lstrip(".")
                 return extension if extension else "Desconocido"
-            except:
+            except Exception as e:
+                print(f"Error al obtener extensión en fallback: {e}")
                 return "Desconocido"
 
     # Propiedad que devuelve el tamaño del archivo en bytes

@@ -2492,7 +2492,7 @@ def actualizar_espectro(*args):
         alturas_barras[i] = int(
             alturas_barras[i] * factor_suavizado + altura_objetivo * (1 - factor_suavizado)
         )
-    # Aplicar múltiples pasadas de suavizado espacial para reducir diferencias drásticas
+    # Aplicar múltiples pasadas de suavizado para reducir diferencias drásticas
     for pasada in range(3):  # Tres pasadas de suavizado
         for i in range(1, numero_barras - 1):
             # Calcular promedio con los vecinos

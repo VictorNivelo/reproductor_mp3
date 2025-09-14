@@ -17,7 +17,8 @@ class CaratulaGeneral:
             imagen_pil = Image.open(imagen_bytes)
             # Verificar que tiene dimensiones válidas
             return imagen_pil.width > 0 and imagen_pil.height > 0
-        except Exception:
+        except Exception as e:
+            print(f"Error al verificar carátula: {e}")
             return False
 
     # Método que obtiene información básica de la carátula

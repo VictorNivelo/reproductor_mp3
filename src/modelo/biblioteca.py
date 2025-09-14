@@ -81,7 +81,7 @@ class Biblioteca:
             self.por_album[cancion.album_cancion] = []
         self.por_album[cancion.album_cancion].append(cancion)
 
-    # Método principal refactorizado para agregar una canción a la biblioteca
+    # Método principal para agregar una canción a la biblioteca
     def agregar_cancion_biblioteca(self, ruta: Path) -> Cancion | None:
         try:
             # Validar la canción

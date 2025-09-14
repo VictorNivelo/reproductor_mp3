@@ -101,7 +101,7 @@ class ControladorBiblioteca:
             print(f"Se eliminaron {len(canciones_eliminadas)} canciones del directorio: {ruta}")
             # Mostrar las canciones eliminadas
             for cancion in canciones_eliminadas:
-                print(f"  - {cancion.titulo_cancion} - {cancion.artista}")
+                print(f"  - {cancion.titulo_cancion} - {cancion.artista_cancion}")
             return len(canciones_eliminadas) > 0
         except NotADirectoryError as e:
             print(f"Error: {e}")
@@ -254,8 +254,8 @@ class ControladorBiblioteca:
             cancion
             for cancion in self.biblioteca.canciones
             if texto_busqueda.lower() in cancion.titulo_cancion.lower()
-            or texto_busqueda.lower() in cancion.artista.lower()
-            or texto_busqueda.lower() in cancion.album.lower()
+            or texto_busqueda.lower() in cancion.artista_cancion.lower()
+            or texto_busqueda.lower() in cancion.album_cancion.lower()
         ]
 
     # Método para obtener la caratula de un album

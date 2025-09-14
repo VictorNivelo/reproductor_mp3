@@ -1,36 +1,32 @@
 {
-    "indice_actual": 15,
+    "indice_actual": 1,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Bonita.mp3",
         "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
         "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
         "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Como Ñengo (ft Jota Rosa).mp3",
         "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
         "C:\\Users\\Victor\\Music\\M\\Déjate Llevar.mp3",
         "C:\\Users\\Victor\\Music\\M\\Na.mp3",
         "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
         "C:\\Users\\Victor\\Music\\M\\Sigues Preguntando.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Sometimes....mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\WHAT'S GOOD.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\WILSHIRE.mp3",
         "C:\\Users\\Victor\\Music\\M\\Yo Quisiera.mp3",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Na.mp3",
-        "titulo": "Na",
-        "artista": "Canserbero",
-        "album": "Na",
-        "timestamp": "2025-07-13T18:38:03.962968"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
+        "titulo": "120",
+        "artista": "Bad Bunny",
+        "album": "EL ÚLTIMO TOUR DEL MUNDO",
+        "timestamp": "2025-09-13T19:17:09.093939"
     }
 }

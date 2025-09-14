@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from vista.vista_principal import *
-from src.constantes import *
+from constantes import *
 import unittest
 
 

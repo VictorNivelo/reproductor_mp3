@@ -1146,15 +1146,15 @@ def ir_al_album(cancion):
     # Actualizar la vista de álbumes
     actualizar_vista_albumes()
     # Buscar y mostrar las canciones del álbum específico
-    if cancion.album and cancion.album not in ["", "Unknown Album", "Desconocido"]:
+    if cancion.album_cancion and cancion.album_cancion not in ["", "Unknown Album", "Desconocido"]:
         # Verificar si el álbum existe y tiene canciones
-        canciones_album = controlador_biblioteca.obtener_canciones_album_controlador(cancion.album)
+        canciones_album = controlador_biblioteca.obtener_canciones_album_controlador(cancion.album_cancion)
         if canciones_album:
             # Mostrar las canciones del álbum
-            mostrar_canciones_album(cancion.album)
+            mostrar_canciones_album(cancion.album_cancion)
         else:
             # Si no hay canciones, mostrar un mensaje
-            print(f"No se encontraron canciones en el álbum: {cancion.album}")
+            print(f"No se encontraron canciones en el álbum: {cancion.album_cancion}")
     else:
         # Si no hay información de álbum, mostrar un mensaje
         print(f"No hay información de álbum para: {cancion.titulo_cancion}")
@@ -1169,7 +1169,7 @@ def ir_al_artista(cancion):
     # Actualizar la vista de artistas
     actualizar_vista_artistas()
     # Extraer el artista principal (siempre es el primero antes de cualquier colaboración)
-    artista_completo = cancion.artista
+    artista_completo = cancion.artista_cancion
     # Lista de separadores comunes en nombres de artistas
     separadores = SEPARADORES
     # Obtener SIEMPRE el primer artista (antes del primer separador)
@@ -1256,7 +1256,7 @@ def crear_boton_cancion(cancion, panel):
     # Obtener colores del tema actual
     controlador_tema.colores()
     # Determinar si el texto es largo y necesita desplazamiento
-    texto_cancion = f"{cancion.titulo_cancion} - {cancion.artista}"
+    texto_cancion = f"{cancion.titulo_cancion} - {cancion.artista_cancion}"
     # Crear frame contenedor para el botón y el menú
     # ------------------------------------- Panel de canción ------------------------------------
     panel_lista_cancion = ctk.CTkFrame(panel, height=28, fg_color="transparent")
@@ -1549,10 +1549,10 @@ def mostrar_menu_opciones(cancion, panel_padre):
     )
     # -------------------------------------------------------------------------------------------
     # ---------------------------------- Opciones de información --------------------------------
-    if cancion.album and cancion.album not in ["", "Unknown Album", "Desconocido"]:
+    if cancion.album_cancion and cancion.album_cancion not in ["", "Unknown Album", "Desconocido"]:
         crear_opcion_menu(panel_menu_opciones, "Ir al álbum", lambda: ir_al_album(cancion), True, "album")
 
-    if cancion.artista and cancion.artista not in ["", "Unknown Artist", "Desconocido"]:
+    if cancion.artista_cancion and cancion.artista_cancion not in ["", "Unknown Artist", "Desconocido"]:
         crear_opcion_menu(
             panel_menu_opciones, "Ir al artista", lambda: ir_al_artista(cancion), False, "artista"
         )
@@ -2150,8 +2150,8 @@ def mostrar_canciones_elemento_filtradas(elemento, tipo_pagina, texto_busqueda):
             for cancion in canciones
             if (
                 texto_busqueda.lower() in cancion.titulo_cancion.lower()
-                or texto_busqueda.lower() in cancion.artista.lower()
-                or texto_busqueda.lower() in cancion.album.lower()
+                or texto_busqueda.lower() in cancion.artista_cancion.lower()
+                or texto_busqueda.lower() in cancion.album_cancion.lower()
             )
         ]
     else:
@@ -2492,12 +2492,32 @@ def actualizar_espectro(*args):
         alturas_barras[i] = int(
             alturas_barras[i] * factor_suavizado + altura_objetivo * (1 - factor_suavizado)
         )
-        # Suavizado adicional con barras vecinas para eliminar cambios bruscos
-        if 0 < i < numero_barras - 1:
+    # Aplicar múltiples pasadas de suavizado espacial para reducir diferencias drásticas
+    for pasada in range(3):  # Tres pasadas de suavizado
+        for i in range(1, numero_barras - 1):
+            # Calcular promedio con los vecinos
             altura_promedio = (alturas_barras[i - 1] + alturas_barras[i] + alturas_barras[i + 1]) / 3
-            # Mezclar ligeramente con el promedio de vecinos
-            alturas_barras[i] = int(alturas_barras[i] * 0.8 + altura_promedio * 0.2)
-        # Actualizar altura de la barra
+            # Aplicar suavizado espacial más agresivo
+            factor_espacial = 0.25 if pasada == 0 else (0.15 if pasada == 1 else 0.10)
+            alturas_barras[i] = int(alturas_barras[i] * (1 - factor_espacial) + altura_promedio * factor_espacial)
+    # Suavizado adicional para las barras de los extremos
+    if numero_barras > 2:
+        # Suavizar primera barra
+        alturas_barras[0] = int(alturas_barras[0] * 0.85 + alturas_barras[1] * 0.15)
+        # Suavizar última barra
+        alturas_barras[-1] = int(alturas_barras[-1] * 0.85 + alturas_barras[-2] * 0.15)
+    # Aplicar límite de diferencia máxima entre barras adyacentes
+    diferencia_maxima = int(alto_canvas * 0.12)  # Máximo 12% del alto del canvas
+    for i in range(1, numero_barras):
+        diferencia = abs(alturas_barras[i] - alturas_barras[i - 1])
+        if diferencia > diferencia_maxima:
+            # Ajustar la altura para que no exceda la diferencia máxima
+            if alturas_barras[i] > alturas_barras[i - 1]:
+                alturas_barras[i] = alturas_barras[i - 1] + diferencia_maxima
+            else:
+                alturas_barras[i] = alturas_barras[i - 1] - diferencia_maxima
+    # Actualizar alturas de las barras
+    for i in range(numero_barras):
         try:
             x1, _, x2, _ = canvas_espectro.coords(barras_espectro[i])
             canvas_espectro.coords(barras_espectro[i], x1, alto_canvas, x2, alto_canvas - alturas_barras[i])
@@ -2866,8 +2886,8 @@ contenedor_imagen.pack(fill="both", expand=True, padx=10, pady=3)
 # Etiqueta de la imagen de la canción
 imagen_cancion = ctk.CTkLabel(
     contenedor_imagen,
-    width=300,
-    height=300,
+    width=325,
+    height=325,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=controlador_tema.color_texto,

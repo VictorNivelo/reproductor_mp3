@@ -1,37 +1,77 @@
 {
     "artistas": {
-        "Feid": 1,
-        "Canserbero": 1
+        "Tainy": 2,
+        "Sech": 1,
+        "E.VAX": 1,
+        "Desconocido": 3,
+        "Anuel AA": 4,
+        "Sinfonico": 1,
+        "Ñengo Flow": 1,
+        "Daddy Yankee": 2,
+        "Ozuna": 1,
+        "Bad Bunny": 5
     },
     "albumes": {
-        "INTER SHIBUYA - LA MAFIA": 1,
-        "Na": 1
+        "DATA": 1,
+        "Desconocido": 3,
+        "47 (Remix)": 1,
+        "Adictiva": 2,
+        "Adicto (ft Anuel AA & Ozuna)": 1,
+        "EL ÚLTIMO TOUR DEL MUNDO": 5
     },
-    "tiempo_total": 542.7983673469388,
-    "canciones_escuchadas": 2,
+    "tiempo_total": 2750.1453061224493,
+    "canciones_escuchadas": 13,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Na.mp3",
-        "titulo": "Na",
-        "artista": "Canserbero",
-        "album": "Na",
-        "timestamp": "2025-07-13T18:38:02.926042"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
+        "titulo": "120",
+        "artista": "Bad Bunny",
+        "album": "EL ÚLTIMO TOUR DEL MUNDO",
+        "timestamp": "2025-09-13T19:17:09.095382"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
             "contador": 1,
-            "titulo": "14 De Febrero",
-            "artista": "Feid",
-            "album": "INTER SHIBUYA - LA MAFIA"
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
         },
-        "C:\\Users\\Victor\\Music\\M\\Na.mp3": {
+        "C:\\Users\\Victor\\Music\\prueba\\a.mp3": {
+            "contador": 3,
+            "titulo": "a",
+            "artista": "Desconocido",
+            "album": "Desconocido"
+        },
+        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
             "contador": 1,
-            "titulo": "Na",
-            "artista": "Canserbero",
-            "album": "Na"
+            "titulo": "47 (Remix)",
+            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+            "album": "47 (Remix)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
+            "contador": 2,
+            "titulo": "Adictiva",
+            "artista": "Daddy Yankee ft Anuel AA",
+            "album": "Adictiva"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3": {
+            "contador": 1,
+            "titulo": "Adicto",
+            "artista": "Tainy ft Anuel AA, Ozuna",
+            "album": "Adicto (ft Anuel AA & Ozuna)"
+        },
+        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
+            "contador": 5,
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
         }
     },
     "artistas_originales": {
-        "Feid": 1,
-        "Canserbero": 1
+        "Tainy ft Sech, E.VAX": 1,
+        "Desconocido": 3,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 1,
+        "Daddy Yankee ft Anuel AA": 2,
+        "Tainy ft Anuel AA, Ozuna": 1,
+        "Bad Bunny": 5
     }
 }

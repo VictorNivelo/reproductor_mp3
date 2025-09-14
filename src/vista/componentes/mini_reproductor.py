@@ -440,8 +440,8 @@ class MiniReproductor(UtilesGeneral):
             cancion = self.controlador_reproductor.cancion_actual
             # Actualizar etiquetas de texto
             self.etiqueta_nombre_cancion_mini.configure(text=cancion.titulo_cancion)
-            self.etiqueta_artista_mini.configure(text=cancion.artista)
-            self.etiqueta_album_mini.configure(text=cancion.album)
+            self.etiqueta_artista_mini.configure(text=cancion.artista_cancion)
+            self.etiqueta_album_mini.configure(text=cancion.album_cancion)
             # Actualizar carátula usando el método de la canción
             if cancion.caratula_cancion:
                 foto = cancion.obtener_caratula_general_cancion(
@@ -459,8 +459,8 @@ class MiniReproductor(UtilesGeneral):
             else:
                 self.imagen_cancion_mini.configure(image=None, text="Sin carátula")
             # Actualizar duración total
-            minutos_total = int(cancion.duracion // 60)
-            segundos_total = int(cancion.duracion % 60)
+            minutos_total = int(cancion.duracion_cancion // 60)
+            segundos_total = int(cancion.duracion_cancion % 60)
             self.etiqueta_tiempo_final_mini.configure(text=f"{minutos_total:02d}:{segundos_total:02d}")
             # Sincronizar la barra de progreso con la principal
             if (

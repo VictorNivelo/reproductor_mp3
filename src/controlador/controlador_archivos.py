@@ -87,7 +87,7 @@ class ControladorArchivos:
     def guardar_cancion_json_controlador(self, biblioteca):
         datos = {
             "estadisticas": biblioteca.obtener_estadisticas_biblioteca(),
-            "canciones": [cancion.convertir_diccionario_cancion() for cancion in biblioteca.canciones],
+            "canciones": [cancion.obtener_informacion_cancion() for cancion in biblioteca.canciones],
         }
         contenido = json.dumps(datos, ensure_ascii=False, indent=4)
         with open(self.ruta_canciones, "w", encoding="utf-8") as archivo:
@@ -107,8 +107,8 @@ class ControladorArchivos:
                     ultima_cancion_info = {
                         "ruta": str(cancion_actual.ruta_cancion),
                         "titulo": cancion_actual.titulo_cancion,
-                        "artista": cancion_actual.artista,
-                        "album": cancion_actual.album,
+                        "artista": cancion_actual.artista_cancion,
+                        "album": cancion_actual.album_cancion,
                         "timestamp": datetime.now().isoformat(),
                     }
                 # Modificación: Guardar las rutas y las posiciones en la cola
@@ -130,14 +130,14 @@ class ControladorArchivos:
 
     # Guardar la lista de me gusta en un archivo JSON
     def guardar_me_gusta_json_controlador(self, biblioteca):
-        datos = {"me_gusta": [cancion.convertir_diccionario_cancion() for cancion in biblioteca.me_gusta]}
+        datos = {"me_gusta": [cancion.obtener_informacion_cancion() for cancion in biblioteca.me_gusta]}
         contenido = json.dumps(datos, ensure_ascii=False, indent=4)
         with open(self.ruta_me_gusta, "w", encoding="utf-8") as archivo:
             archivo.write(contenido)
 
     # Guardar la lista de favoritos en un archivo JSON
     def guardar_favorito_json_controlador(self, biblioteca):
-        datos = {"favoritos": [cancion.convertir_diccionario_cancion() for cancion in biblioteca.favorito]}
+        datos = {"favoritos": [cancion.obtener_informacion_cancion() for cancion in biblioteca.favorito]}
         contenido = json.dumps(datos, ensure_ascii=False, indent=4)
         with open(self.ruta_favoritos, "w", encoding="utf-8") as archivo:
             archivo.write(contenido)
@@ -315,14 +315,14 @@ class ControladorArchivos:
             if "artistas_originales" not in estadisticas:
                 estadisticas["artistas_originales"] = {}
             # Actualizar estadísticas generales
-            estadisticas["tiempo_total"] += cancion.duracion
+            estadisticas["tiempo_total"] += cancion.duracion_cancion
             estadisticas["canciones_escuchadas"] += 1
             # Registrar última canción reproducida
             estadisticas["ultima_cancion"] = {
                 "ruta": str(cancion.ruta_cancion),
                 "titulo": cancion.titulo_cancion,
-                "artista": cancion.artista,
-                "album": cancion.album,
+                "artista": cancion.artista_cancion,
+                "album": cancion.album_cancion,
                 "timestamp": datetime.now().isoformat(),
             }
             # Actualizar contador de la canción
@@ -331,24 +331,24 @@ class ControladorArchivos:
                 estadisticas["canciones"][ruta_str] = {
                     "contador": 0,
                     "titulo": cancion.titulo_cancion,
-                    "artista": cancion.artista,
-                    "album": cancion.album,
+                    "artista": cancion.artista_cancion,
+                    "album": cancion.album_cancion,
                 }
             estadisticas["canciones"][ruta_str]["contador"] += 1
             # Registrar el artista original completo
-            if cancion.artista not in estadisticas["artistas_originales"]:
-                estadisticas["artistas_originales"][cancion.artista] = 0
-            estadisticas["artistas_originales"][cancion.artista] += 1
+            if cancion.artista_cancion not in estadisticas["artistas_originales"]:
+                estadisticas["artistas_originales"][cancion.artista_cancion] = 0
+            estadisticas["artistas_originales"][cancion.artista_cancion] += 1
             # Procesar artistas individuales usando el método de la clase Cancion
-            artistas = Cancion.separar_artistas_cancion(cancion.artista)
+            artistas = Cancion.separar_artistas_cancion(cancion.artista_cancion)
             for artista in artistas:
                 if artista not in estadisticas["artistas"]:
                     estadisticas["artistas"][artista] = 0
                 estadisticas["artistas"][artista] += 1
             # Actualizar contador del álbum
-            if cancion.album not in estadisticas["albumes"]:
-                estadisticas["albumes"][cancion.album] = 0
-            estadisticas["albumes"][cancion.album] += 1
+            if cancion.album_cancion not in estadisticas["albumes"]:
+                estadisticas["albumes"][cancion.album_cancion] = 0
+            estadisticas["albumes"][cancion.album_cancion] += 1
             # Guardar las estadísticas
             contenido = json.dumps(estadisticas, ensure_ascii=False, indent=4)
             with open(self.ruta_reproduccion, "w", encoding="utf-8") as archivo:

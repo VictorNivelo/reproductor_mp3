@@ -27,62 +27,76 @@ class Biblioteca:
                 cancion
                 for cancion in self.canciones
                 if cancion.titulo_cancion.lower() == cancion_temp.titulo_cancion.lower()
-                and cancion.artista.lower() == cancion_temp.artista.lower()
+                and cancion.artista_cancion.lower() == cancion_temp.artista_cancion.lower()
             ]
             return duplicados
         except Exception as e:
             print(f"Error al detectar duplicado: {str(e)}")
             return []
 
-    # Método para agregar una canción a la biblioteca
+    # Método para validar si una canción puede ser agregada
+    def validar_cancion_biblioteca(self, ruta: Path) -> bool:
+        # Verificar si el archivo existe
+        if not ruta.exists():
+            print(f"No se encontró el archivo: {ruta}")
+            return False
+        # Verificar si el formato es soportado
+        if ruta.suffix.lower() not in FORMATOS_SOPORTADOS:
+            print(f"Formato no soportado: {ruta.suffix}")
+            return False
+        # Verificar si la canción ya existe por ruta
+        if self.existe_cancion_biblioteca(ruta):
+            print(f"La canción ya existe en la biblioteca: {ruta.name}")
+            return False
+        return True
+
+    # Método para verificar duplicados por metadatos
+    def verificar_duplicados_metadatos_biblioteca(self, cancion: Cancion) -> bool:
+        duplicados = [
+            c
+            for c in self.canciones
+            if c.titulo_cancion.lower() == cancion.titulo_cancion.lower()
+            and c.artista_cancion.lower() == cancion.artista_cancion.lower()
+            and c.album_cancion.lower() == cancion.album_cancion.lower()
+        ]
+        if duplicados:
+            print(f"Ya existe una canción con el mismo título, artista y álbum: {cancion.titulo_cancion}")
+            return True
+        return False
+
+    # Método para agregar canción a las colecciones
+    def agregar_a_colecciones_biblioteca(self, cancion: Cancion) -> None:
+        # Agregar a las colecciones principales
+        self.canciones.append(cancion)
+        self.por_titulo[cancion.titulo_cancion] = cancion
+        # Procesar y separar múltiples artistas
+        artistas = Cancion.separar_artistas_cancion(cancion.artista_cancion)
+        # Agregar a la colección de artistas
+        for artista in artistas:
+            if artista not in self.por_artista:
+                self.por_artista[artista] = []
+            self.por_artista[artista].append(cancion)
+        # Agregar a la colección de álbumes
+        if cancion.album_cancion not in self.por_album:
+            self.por_album[cancion.album_cancion] = []
+        self.por_album[cancion.album_cancion].append(cancion)
+
+    # Método principal refactorizado para agregar una canción a la biblioteca
     def agregar_cancion_biblioteca(self, ruta: Path) -> Cancion | None:
         try:
-            # Verificar si el archivo existe
-            if not ruta.exists():
-                print(f"No se encontró el archivo: {ruta}")
-                return None
-            # Verificar si el formato es soportado
-            if ruta.suffix.lower() not in FORMATOS_SOPORTADOS:
-                print(f"Formato no soportado: {ruta.suffix}")
-                return None
-            # Verificar si la canción ya existe por ruta
-            if self.existe_cancion_biblioteca(ruta):
-                print(f"La canción ya existe en la biblioteca: {ruta.name}")
+            # Validar la canción
+            if not self.validar_cancion_biblioteca(ruta):
                 return None
             # Crear canción temporal para verificar duplicados por metadatos
             cancion_temp = Cancion.cargar_cancion(ruta)
-            duplicados = [
-                cancion
-                for cancion in self.canciones
-                if cancion.titulo_cancion.lower() == cancion_temp.titulo_cancion.lower()
-                and cancion.artista.lower() == cancion_temp.artista.lower()
-                and cancion.album.lower() == cancion_temp.album.lower()
-            ]
-            # Si hay duplicados, no agregar la canción
-            if duplicados:
-                print(
-                    f"Ya existe una canción con el mismo título, artista y álbum: {cancion_temp.titulo_cancion}"
-                )
+            # Verificar duplicados por metadatos
+            if self.verificar_duplicados_metadatos_biblioteca(cancion_temp):
                 return None
-            # Crear nueva canción
-            cancion = cancion_temp
-            # Agregar a las colecciones principales
-            self.canciones.append(cancion)
-            self.por_titulo[cancion.titulo_cancion] = cancion
-            # Procesar y separar múltiples artistas usando el método de Cancion
-            artistas = Cancion.separar_artistas_cancion(cancion.artista)
-            # Agregar a la colección de artistas, para cada uno de los artistas detectados
-            for artista in artistas:
-                if artista not in self.por_artista:
-                    self.por_artista[artista] = []
-                self.por_artista[artista].append(cancion)
-            # Agregar a la colección de álbumes
-            if cancion.album not in self.por_album:
-                self.por_album[cancion.album] = []
-            self.por_album[cancion.album].append(cancion)
+            # Agregar la canción a las colecciones
+            self.agregar_a_colecciones_biblioteca(cancion_temp)
             # Organizar las canciones en la biblioteca
             self.organizar_canciones_biblioteca()
-            return cancion
+            return cancion_temp
         except Exception as e:
             print(f"Error al procesar la canción {ruta.name}: {str(e)}")
             return None
@@ -111,19 +125,19 @@ class Biblioteca:
             if cancion.titulo_cancion.lower() in self.por_titulo:
                 self.por_titulo.pop(cancion.titulo_cancion.lower(), None)
             # Eliminar del diccionario por artista
-            if cancion.artista in self.por_artista:
-                if cancion in self.por_artista[cancion.artista]:
-                    self.por_artista[cancion.artista].remove(cancion)
+            if cancion.artista_cancion in self.por_artista:
+                if cancion in self.por_artista[cancion.artista_cancion]:
+                    self.por_artista[cancion.artista_cancion].remove(cancion)
                     # Si quedó vacía, eliminar la clave
-                    if not self.por_artista[cancion.artista]:
-                        self.por_artista.pop(cancion.artista, None)
+                    if not self.por_artista[cancion.artista_cancion]:
+                        self.por_artista.pop(cancion.artista_cancion, None)
             # Eliminar del diccionario por álbum
-            if cancion.album in self.por_album:
-                if cancion in self.por_album[cancion.album]:
-                    self.por_album[cancion.album].remove(cancion)
+            if cancion.album_cancion in self.por_album:
+                if cancion in self.por_album[cancion.album_cancion]:
+                    self.por_album[cancion.album_cancion].remove(cancion)
                     # Si quedó vacía, eliminar la clave
-                    if not self.por_album[cancion.album]:
-                        self.por_album.pop(cancion.album, None)
+                    if not self.por_album[cancion.album_cancion]:
+                        self.por_album.pop(cancion.album_cancion, None)
             # Eliminar de la lista de "Me gusta" si está presente
             if cancion in self.me_gusta:
                 self.me_gusta.remove(cancion)
@@ -159,7 +173,7 @@ class Biblioteca:
             canciones_a_eliminar = []
             # Verificar para cada canción si el artista es el único o uno de varios
             for cancion in canciones_artista:
-                artistas_cancion = Cancion.separar_artistas_cancion(cancion.artista)
+                artistas_cancion = Cancion.separar_artistas_cancion(cancion.artista_cancion)
                 if len(artistas_cancion) == 1:
                     # Si es el único artista, eliminar la canción completamente
                     canciones_a_eliminar.append(cancion)
@@ -168,7 +182,7 @@ class Biblioteca:
                     artistas_actualizados = [
                         art for art in artistas_cancion if art.lower() != nombre_artista.lower()
                     ]
-                    cancion.artista = ", ".join(artistas_actualizados)
+                    cancion.artista_cancion = ", ".join(artistas_actualizados)
             # Eliminar las canciones donde era el único artista
             for cancion in canciones_a_eliminar:
                 self.eliminar_cancion_biblioteca(cancion)
@@ -219,7 +233,7 @@ class Biblioteca:
         # Obtener álbumes únicos del artista
         albumes = set()
         for cancion in self.por_artista[nombre_artista]:
-            albumes.add(cancion.album)
+            albumes.add(cancion.album_cancion)
         return sorted(list(albumes))
 
     # Método para obtener el artista principal de un álbum
@@ -231,7 +245,7 @@ class Biblioteca:
         conteo_artistas = {}
         for cancion in canciones_album:
             # Separar múltiples artistas para contar cada uno usando el método de Cancion
-            artistas = Cancion.separar_artistas_cancion(cancion.artista)
+            artistas = Cancion.separar_artistas_cancion(cancion.artista_cancion)
             for artista in artistas:
                 if artista in conteo_artistas:
                     conteo_artistas[artista] += 1
@@ -239,7 +253,7 @@ class Biblioteca:
                     conteo_artistas[artista] = 1
         # Si no hay artistas (caso extraño), devolver el artista de la primera canción
         if not conteo_artistas:
-            return canciones_album[0].artista
+            return canciones_album[0].artista_cancion
         # Encontrar el artista con más canciones en el álbum
         artista_principal = max(conteo_artistas, key=conteo_artistas.get)
         return artista_principal
@@ -311,8 +325,8 @@ class Biblioteca:
             cancion
             for cancion in self.canciones
             if texto in cancion.titulo_cancion.lower()
-            or texto in cancion.artista.lower()
-            or texto in cancion.album.lower()
+            or texto in cancion.artista_cancion.lower()
+            or texto in cancion.album_cancion.lower()
         ]
 
     # Método para ordenar las canciones por un criterio
@@ -320,17 +334,17 @@ class Biblioteca:
         if criterio == "titulo":
             return sorted(self.canciones, key=lambda x: x.titulo_cancion)
         elif criterio == "artista":
-            return sorted(self.canciones, key=lambda x: x.artista)
+            return sorted(self.canciones, key=lambda x: x.artista_cancion)
         elif criterio == "album":
-            return sorted(self.canciones, key=lambda x: x.album)
+            return sorted(self.canciones, key=lambda x: x.album_cancion)
         elif criterio == "duracion":
-            return sorted(self.canciones, key=lambda x: x.duracion)
+            return sorted(self.canciones, key=lambda x: x.duracion_cancion)
         return self.canciones
 
     # Método que convierte la biblioteca a un diccionario
-    def convertir_diccionario_biblioteca(self) -> dict:
+    def obtener_informacion_biblioteca(self) -> dict:
         return {
-            "canciones": [cancion.convertir_diccionario_cancion() for cancion in self.canciones],
+            "canciones": [cancion.obtener_informacion_cancion() for cancion in self.canciones],
             "estadisticas": self.obtener_estadisticas_biblioteca(),
         }
 
@@ -343,7 +357,7 @@ class Biblioteca:
         # Volver a procesar cada canción para actualizar la estructura de artistas
         for cancion in canciones_actuales:
             # Procesar y separar múltiples artistas usando el método de Cancion
-            artistas = Cancion.separar_artistas_cancion(cancion.artista)
+            artistas = Cancion.separar_artistas_cancion(cancion.artista_cancion)
             # Agregar a la colección de artistas actualizada
             for artista in artistas:
                 if artista not in self.por_artista:
@@ -360,9 +374,9 @@ class Biblioteca:
         # Volver a procesar cada canción para actualizar la estructura de álbumes
         for cancion in canciones_actuales:
             # Agregar a la colección de álbumes actualizada
-            if cancion.album not in self.por_album:
-                self.por_album[cancion.album] = []
-            self.por_album[cancion.album].append(cancion)
+            if cancion.album_cancion not in self.por_album:
+                self.por_album[cancion.album_cancion] = []
+            self.por_album[cancion.album_cancion].append(cancion)
         return True
 
     # Método para ordenar las colecciones de canciones

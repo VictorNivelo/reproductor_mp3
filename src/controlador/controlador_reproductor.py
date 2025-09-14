@@ -2,6 +2,7 @@ from controlador.controlador_archivos import ControladorArchivos
 from animacion import AnimacionGeneral
 from modelo.cancion import Cancion
 from utiles import UtilesGeneral
+from caratula import CaratulaGeneral
 from constantes import *
 import pygame
 import random
@@ -16,7 +17,7 @@ class ControladorReproductor:
         self.tiempo_inicio = None
         self.tiempo_acumulado = 0
         # Imagen de carátula vacía
-        self.imagen_vacia = Cancion.crear_imagen_vacia()
+        self.imagen_vacia = CaratulaGeneral.crear_caratula_vacia()
         # Etiquetas de la interfaz
         self.etiqueta_nombre = None
         self.etiqueta_artista = None
@@ -106,13 +107,13 @@ class ControladorReproductor:
         if self.cancion_actual and self.etiqueta_nombre:
             # Guardar información de la canción actual
             self.texto_titulo = self.cancion_actual.titulo_cancion
-            self.texto_artista = self.cancion_actual.artista
-            self.texto_album = self.cancion_actual.album
+            self.texto_artista = self.cancion_actual.artista_cancion
+            self.texto_album = self.cancion_actual.album_cancion
             # Configurar texto inicial (sin desplazamiento aún)
             self.etiqueta_nombre.configure(text=self.texto_titulo)
             self.etiqueta_artista.configure(text=self.texto_artista)
             self.etiqueta_album.configure(text=self.texto_album)
-            self.etiqueta_anio.configure(text=self.cancion_actual.fecha_formateada)
+            self.etiqueta_anio.configure(text=self.cancion_actual.obtener_lanzamiento_anio)
             # Cancelar cualquier tiempo de desplazamiento anterior
             if hasattr(self, "id_marcador_tiempo") and self.id_marcador_tiempo:
                 self.etiqueta_nombre.after_cancel(self.id_marcador_tiempo)
@@ -143,7 +144,7 @@ class ControladorReproductor:
                 tiempo_actual = self.tiempo_acumulado + (time.perf_counter() - self.tiempo_inicio)
             else:
                 tiempo_actual = self.tiempo_acumulado
-            tiempo_total = self.cancion_actual.duracion
+            tiempo_total = self.cancion_actual.duracion_cancion
             # Si el tiempo alcanzó o superó la duración, fijarlo en el total y detener la reproducción.
             if tiempo_actual >= tiempo_total:
                 if self.barra_progreso:
@@ -446,7 +447,7 @@ class ControladorReproductor:
             else:
                 tiempo_actual = self.tiempo_acumulado
             # Calcular nueva posición
-            nuevo_tiempo = max(0, min(tiempo_actual + tiempo_segundos, self.cancion_actual.duracion))
+            nuevo_tiempo = max(0, min(tiempo_actual + tiempo_segundos, self.cancion_actual.duracion_cancion))
             # Detener reproducción actual
             pygame.mixer.music.stop()
             # Cargar y reproducir desde la nueva posición
@@ -457,7 +458,7 @@ class ControladorReproductor:
             self.tiempo_inicio = time.perf_counter()
             # Actualizar interfaz
             if self.barra_progreso:
-                progreso = nuevo_tiempo / self.cancion_actual.duracion
+                progreso = nuevo_tiempo / self.cancion_actual.duracion_cancion
                 self.barra_progreso.set(progreso)
 
     # Método para obtener la posición actual de reproducción en segundos
@@ -476,16 +477,16 @@ class ControladorReproductor:
             # Asegurar que el porcentaje esté entre 0 y 100
             porcentaje = max(0, min(porcentaje, 100))
             # Convertir el porcentaje a segundos
-            posicion_segundos = (porcentaje / 100.0) * self.cancion_actual.duracion
+            posicion_segundos = (porcentaje / 100.0) * self.cancion_actual.duracion_cancion
             # Utilizar el método existente para mover a la posición
             return self.mover_a_posicion_controlador(posicion_segundos)
         return False
 
     # Método para obtener el porcentaje actual de reproducción
     def obtener_porcentaje_actual_controlador(self):
-        if self.cancion_actual and self.cancion_actual.duracion > 0:
+        if self.cancion_actual and self.cancion_actual.duracion_cancion > 0:
             tiempo_actual = self.obtener_posicion_actual_controlador()
-            return (tiempo_actual / self.cancion_actual.duracion) * 100
+            return (tiempo_actual / self.cancion_actual.duracion_cancion) * 100
         return 0
 
     # Método que establece la lista de reproducción actual

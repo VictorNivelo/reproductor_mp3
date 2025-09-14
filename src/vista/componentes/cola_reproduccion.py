@@ -397,7 +397,7 @@ class ColaReproduccion(UtilesGeneral):
                 fg_color="transparent",
                 font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
                 text_color=self.color_texto,
-                text=cancion_actual.artista,
+                text=cancion_actual.artista_cancion,
             )
             etiqueta_artista.pack(anchor="w")
             self.componentes.append(etiqueta_artista)
@@ -412,7 +412,7 @@ class ColaReproduccion(UtilesGeneral):
                 fg_color="transparent",
                 font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION, "italic"),
                 text_color=self.color_texto,
-                text=cancion_actual.album,
+                text=cancion_actual.album_cancion,
             )
             etiqueta_album.pack(anchor="w")
             self.componentes.append(etiqueta_album)
@@ -457,8 +457,8 @@ class ColaReproduccion(UtilesGeneral):
             # Crear un diccionario con los textos que pueden necesitar desplazamiento
             self.textos_actual = {
                 "titulo": (cancion_actual.titulo_cancion, etiqueta_titulo),
-                "artista": (cancion_actual.artista, etiqueta_artista),
-                "album": (cancion_actual.album, etiqueta_album),
+                "artista": (cancion_actual.artista_cancion, etiqueta_artista),
+                "album": (cancion_actual.album_cancion, etiqueta_album),
             }
             # Iniciar el desplazamiento con longitud máxima adecuada
             self.animacion.configurar_desplazamiento_etiqueta(panel, self.textos_actual, 365)
@@ -654,7 +654,7 @@ class ColaReproduccion(UtilesGeneral):
                 fg_color="transparent",
                 font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION),
                 text_color=self.color_texto,
-                text=cancion.artista,
+                text=cancion.artista_cancion,
             )
             etiqueta_artista_cola.pack(anchor="w")
             self.componentes.append(etiqueta_artista_cola)
@@ -669,7 +669,7 @@ class ColaReproduccion(UtilesGeneral):
                 fg_color="transparent",
                 font=(LETRA, TAMANIO_LETRA_ETIQUETA_INFORMACION, "italic"),
                 text_color=self.color_texto,
-                text=cancion.album,
+                text=cancion.album_cancion,
             )
             etiqueta_album_cola.pack(anchor="w")
             self.componentes.append(etiqueta_album_cola)
@@ -679,8 +679,8 @@ class ColaReproduccion(UtilesGeneral):
             # Crear un diccionario para los textos animados de esta canción
             self.textos_cola = {
                 "titulo": (cancion.titulo_cancion, etiqueta_titulo_cola),
-                "artista": (cancion.artista, etiqueta_artista_cola),
-                "album": (cancion.album, etiqueta_album_cola),
+                "artista": (cancion.artista_cancion, etiqueta_artista_cola),
+                "album": (cancion.album_cancion, etiqueta_album_cola),
             }
             # Crear una instancia de animación para esta canción
             self.animacion_cancion = AnimacionGeneral()
@@ -863,17 +863,17 @@ class ColaReproduccion(UtilesGeneral):
         # Caso 1: Repetir una canción (modo 1)
         if modo_repeticion == 1:
             # Calcular duración de la canción actual
-            duracion = cancion_actual.duracion
+            duracion = cancion_actual.duracion_cancion
             minutos = int(duracion // 60)
             segundos = int(duracion % 60)
             return f"{minutos}min {segundos}s (repetición infinita)"
         # Calcular duración de la cola actual
-        duracion_total = cancion_actual.duracion  # Duración de la canción actual
+        duracion_total = cancion_actual.duracion_cancion  # Duración de la canción actual
         # Añadir duración de las canciones en cola
         if indice_actual is not None and indice_actual >= 0:
             for i, cancion in enumerate(lista_reproduccion):
                 if i > indice_actual:  # Solo las canciones que están después de la actual
-                    duracion_total += cancion.duracion
+                    duracion_total += cancion.duracion_cancion
         # Formatear la duración total
         horas = int(duracion_total // 3600)
         minutos = int((duracion_total % 3600) // 60)
@@ -884,7 +884,7 @@ class ColaReproduccion(UtilesGeneral):
             if len(lista_reproduccion) == 1:
                 return f"{minutos}min {segundos}s (repetición infinita)"
             # Sí hay más de una canción
-            duracion_completa = sum(cancion.duracion for cancion in lista_reproduccion)
+            duracion_completa = sum(cancion.duracion_cancion for cancion in lista_reproduccion)
             min_completo = int((duracion_completa % 3600) // 60)
             seg_completo = int(duracion_completa % 60)
             if horas > 0:

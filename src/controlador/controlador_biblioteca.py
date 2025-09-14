@@ -172,6 +172,7 @@ class ControladorBiblioteca:
             print(f"Error al verificar me gusta: {e}")
             return False
 
+    # Método para obtener todas las canciones marcadas como "Me gusta"
     def obtener_canciones_me_gusta_controlador(self):
         try:
             return self.biblioteca.me_gusta
@@ -188,6 +189,7 @@ class ControladorBiblioteca:
             print(f"Error al marcar como me gusta: {e}")
             return False
 
+    # Método para agregar un álbum completo a "me gusta"
     def agregar_album_me_gusta_controlador(self, nombre_album: str):
         try:
             self.biblioteca.agregar_album_me_gusta_biblioteca(nombre_album)
@@ -215,6 +217,7 @@ class ControladorBiblioteca:
             print(f"Error al verificar favorito: {e}")
             return False
 
+    # Método para obtener todas las canciones favoritas
     def obtener_canciones_favorito_controlador(self):
         try:
             return self.biblioteca.favorito
@@ -249,6 +252,7 @@ class ControladorBiblioteca:
             print(f"Error al agregar artista a favoritos: {e}")
             return False
 
+    # Método para buscar canciones por título, artista o álbum
     def buscar_canciones_controlador(self, texto_busqueda):
         return [
             cancion

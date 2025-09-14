@@ -1,5 +1,5 @@
 {
-    "indice_actual": 1,
+    "indice_actual": 9,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -23,10 +23,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
-        "titulo": "120",
-        "artista": "Bad Bunny",
-        "album": "EL ÚLTIMO TOUR DEL MUNDO",
-        "timestamp": "2025-09-13T19:17:09.093939"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
+        "titulo": "BUENOS AIRES",
+        "artista": "Tainy ft Mora, Zion",
+        "album": "DATA",
+        "timestamp": "2025-09-13T21:42:17.499315"
     }
 }

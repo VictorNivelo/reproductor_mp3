@@ -44,8 +44,9 @@ class CaratulaGeneral:
 
     # Método que procesa la carátula y la devuelve en el formato solicitado
     @staticmethod
-    def procesar_caratula(
-        caratula_bytes, formato="bytes", ancho=None, alto=None, bordes_redondeados=False, radio_borde=None
+    def extraer_caratula(
+        caratula_bytes, formato="bytes", ancho=None, alto=None, bordes_redondeados=False, radio_borde=None,
+        etiqueta_calidad=None, estandarte_posicion="sup_der", color_estandarte=None
     ):
         if not caratula_bytes:
             return None
@@ -58,22 +59,25 @@ class CaratulaGeneral:
             # Redimensionar si se especifican dimensiones
             if ancho or alto:
                 if ancho and not alto:
-                    # Mantener proporciones si solo se especifica el ancho
                     proporcion = ancho / imagen_pil.width
                     alto = int(imagen_pil.height * proporcion)
                 elif alto and not ancho:
-                    # Mantener proporciones si solo se especifica el alto
                     proporcion = alto / imagen_pil.height
                     ancho = int(imagen_pil.width * proporcion)
                 imagen_pil = imagen_pil.resize((ancho, alto), Image.Resampling.LANCZOS)
             # Aplicar bordes redondeados si se solicita
             if bordes_redondeados:
                 imagen_pil = CaratulaGeneral.aplicar_bordes_redondeados(imagen_pil, radio_borde)
+            # Superponer estandarte de calidad (opcional)
+            if etiqueta_calidad:
+                bg = color_estandarte or CaratulaGeneral._colores_por_calidad(etiqueta_calidad)
+                imagen_pil = CaratulaGeneral.superponer_estandarte(
+                    imagen_pil, etiqueta_calidad, posicion=estandarte_posicion, color_fondo=bg
+                )
             # Devolver el formato solicitado
             if formato == "PIL":
                 return imagen_pil
             elif formato == "ctk":
-                # Opción específica para CustomTkinter
                 try:
                     return CTkImage(
                         light_image=imagen_pil,
@@ -81,11 +85,8 @@ class CaratulaGeneral:
                         size=(ancho or imagen_pil.width, alto or imagen_pil.height),
                     )
                 except ImportError:
-                    raise ImportError(
-                        "No se puede importar CTkImage. Asegúrate de tener CustomTkinter instalado."
-                    )
+                    raise ImportError("No se puede importar CTkImage. Asegúrate de tener CustomTkinter instalado.")
             elif formato == "tk":
-                # Opción específica para Tkinter estándar
                 return ImageTk.PhotoImage(imagen_pil)
             else:
                 raise ValueError(f"Formato '{formato}' no soportado. Usa 'bytes', 'PIL', 'ctk' o 'tk'")

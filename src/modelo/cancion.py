@@ -374,11 +374,11 @@ class Cancion:
     def obtener_caratula_general_cancion(
         self, formato="bytes", ancho=None, alto=None, bordes_redondeados=False, radio_borde=None
     ):
-        return CaratulaGeneral.procesar_caratula(
+        return CaratulaGeneral.extraer_caratula(
             self.caratula_cancion, formato, ancho, alto, bordes_redondeados, radio_borde
         )
 
-    # Método que devuelve un diccionario con toda la información de la canción
+    # Método que devuelve toda la información de la canción
     def obtener_informacion_cancion(self) -> dict:
         return {
             "duracion": self.duracion_cancion,

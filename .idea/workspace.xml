@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7a9c3b1-2f39-4ff6-b624-4183a59858ca" name="Cambios" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/estadisticas/canciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/canciones.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/listas/cola.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/cola.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/caratula.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/caratula.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/biblioteca.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/biblioteca.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/componentes/cola_reproduccion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/cola_reproduccion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/componentes/mini_reproductor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/componentes/mini_reproductor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +29,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -60,14 +58,14 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.language.and.region&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-c84de207d46e-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.28293.52" />
+        <option value="bundled-python-sdk-ce6832f46686-7b97d883f26b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.25557.178" />
       </set>
     </attachedChunks>
   </component>
@@ -128,6 +126,9 @@
       <workItem from="1757809451219" duration="422000" />
       <workItem from="1757810034738" duration="972000" />
       <workItem from="1757900896062" duration="391000" />
+      <workItem from="1757958961198" duration="877000" />
+      <workItem from="1757965475034" duration="120000" />
+      <workItem from="1757965643376" duration="234000" />
     </task>
     <servers />
   </component>

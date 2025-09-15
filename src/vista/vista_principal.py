@@ -2886,8 +2886,8 @@ contenedor_imagen.pack(fill="both", expand=True, padx=10, pady=3)
 # Etiqueta de la imagen de la canción
 imagen_cancion = ctk.CTkLabel(
     contenedor_imagen,
-    width=325,
-    height=325,
+    width=ANCHO_CARATULA,
+    height=ALTO_CARATULA,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=controlador_tema.color_texto,

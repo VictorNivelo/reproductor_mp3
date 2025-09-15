@@ -1,14 +1,20 @@
 {
-    "indice_actual": 2,
+    "indice_actual": 5,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_alta_256k.mp3",
+        "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_estandar_128k.mp3",
+        "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_hd_320k.mp3",
+        "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_hifi_44k.flac",
+        "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_hires_96k.flac",
         "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
         "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
         "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3",
@@ -18,15 +24,16 @@
         "C:\\Users\\Victor\\Music\\M\\Na.mp3",
         "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3",
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Si No Te Quiere.mp3",
         "C:\\Users\\Victor\\Music\\M\\Sigues Preguntando.mp3",
         "C:\\Users\\Victor\\Music\\M\\Yo Quisiera.mp3",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-        "titulo": "14 De Febrero",
-        "artista": "Feid",
-        "album": "INTER SHIBUYA - LA MAFIA",
-        "timestamp": "2025-09-14T20:54:02.130404"
+        "ruta": "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
+        "titulo": "a",
+        "artista": "Desconocido",
+        "album": "Desconocido",
+        "timestamp": "2025-09-15T16:36:26.531410"
     }
 }

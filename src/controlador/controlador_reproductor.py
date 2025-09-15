@@ -17,7 +17,7 @@ class ControladorReproductor:
         self.tiempo_inicio = None
         self.tiempo_acumulado = 0
         # Imagen de carátula vacía
-        self.imagen_vacia = CaratulaGeneral.crear_caratula_vacia()
+        self.caratula_vacia = CaratulaGeneral.crear_caratula_vacia(ANCHO_CARATULA, ALTO_CARATULA)
         # Etiquetas de la interfaz
         self.etiqueta_nombre = None
         self.etiqueta_artista = None
@@ -80,23 +80,23 @@ class ControladorReproductor:
                 # Usar el método de la instancia Cancion con bordes redondeados
                 foto = self.cancion_actual.obtener_caratula_general_cancion(
                     formato="ctk",
-                    ancho=325,
-                    alto=325,
+                    ancho=ANCHO_CARATULA,
+                    alto=ALTO_CARATULA,
                     bordes_redondeados=True,
-                    radio_borde=15,
+                    radio_borde=BORDES_REDONDEADOS_CARATULA,
                 )
                 if foto:
                     self.etiqueta_imagen.configure(image=foto, text="")
                     return True
                 else:
-                    self.etiqueta_imagen.configure(image=self.imagen_vacia, text="Sin carátula")
+                    self.etiqueta_imagen.configure(image=self.caratula_vacia, text="Sin carátula")
             else:
-                self.etiqueta_imagen.configure(image=self.imagen_vacia, text="Sin carátula")
+                self.etiqueta_imagen.configure(image=self.caratula_vacia, text="Sin carátula")
             return False
         except Exception as e:
             print(f"Error al actualizar carátula: {e}")
             try:
-                self.etiqueta_imagen.configure(image=self.imagen_vacia, text="Sin carátula")
+                self.etiqueta_imagen.configure(image=self.caratula_vacia, text="Sin carátula")
             except Exception as e:
                 print(f"Error al mostrar sin caratula: {e}")
                 pass

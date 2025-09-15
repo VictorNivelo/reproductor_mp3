@@ -1,5 +1,6 @@
 from PIL import Image, ImageDraw, ImageTk, ImageFont
 from customtkinter import CTkImage
+from constantes import *
 
 import io
 
@@ -48,8 +49,8 @@ class CaratulaGeneral:
         try:
             formato_upper = formato.upper()
             # Convertir bitrate de bps a kbps si es necesario
-            if bitrate > 1000:  # Si es mayor a 1000, probablemente está en bps
-                bitrate_kbps = bitrate // 1000
+            if bitrate > 1000:
+                bitrate_kbps = round(bitrate / 1000)
             else:
                 bitrate_kbps = bitrate
             # Hi-Res: FLAC/WAV 24-bit 96kHz+
@@ -63,12 +64,12 @@ class CaratulaGeneral:
                 if bitrate_kbps >= 320:
                     return "HD"
                 elif bitrate_kbps >= 192:
-                    return "Alta"
+                    return "High Quality"
                 else:
                     return "Estándar"
             # Casos especiales para otros formatos sin bitrate específico
             if formato_upper in ["OGG VORBIS", "OGG OPUS"]:
-                return "Alta"
+                return "High Quality"
             return "Estándar"
         except Exception as e:
             print(f"Error al determinar calidad: {e}")
@@ -262,10 +263,33 @@ class CaratulaGeneral:
 
     # Método que crea una caratula vacia
     @staticmethod
-    def crear_caratula_vacia():
+    def crear_caratula_vacia(ancho=None, alto=None):
         try:
-            img = Image.new("RGBA", (1, 1), (0, 0, 0, 0))
-            return CTkImage(light_image=img, dark_image=img, size=(1, 1))
+            # Usar las constantes de carátula por defecto si no se especifican dimensiones
+            if ancho is None:
+                ancho = ANCHO_CARATULA
+            if alto is None:
+                alto = ALTO_CARATULA
+            # Crear imagen con fondo transparente
+            img = Image.new("RGBA", (ancho, alto), (0, 0, 0, 0))
+            dibujo = ImageDraw.Draw(img)
+            # Dibujar rectángulo redondeado con fondo y borde
+            color_fondo = (240, 240, 240, 50)  # Gris muy claro y transparente
+            color_borde = (0, 0, 0, 30)  # Negro muy transparente (color de sombra)
+            # Usar radio de bordes redondeados de las constantes
+            radio = BORDES_REDONDEADOS_CARATULA
+            borde_grosor = 1
+            # Ajustar coordenadas para que todos los bordes sean visibles
+            mitad_borde = borde_grosor / 2
+            # Dibujar rectángulo redondeado
+            dibujo.rounded_rectangle(
+                [(mitad_borde, mitad_borde), (ancho - mitad_borde, alto - mitad_borde)],
+                radius=radio,
+                fill=color_fondo,
+                outline=color_borde,
+                width=borde_grosor,
+            )
+            return CTkImage(light_image=img, dark_image=img, size=(ancho, alto))
         except Exception as e:
             print(f"Error al crear imagen vacía: {e}")
             return None

@@ -212,7 +212,7 @@ class Biblioteca:
             for cancion in self.por_album[nombre_album]:
                 if cancion.caratula_cancion:
                     return cancion.obtener_caratula_general_cancion(
-                        formato, ancho, alto, bordes_redondeados=True, radio_borde=5
+                        formato, ancho, alto, bordes_redondeados=True, radio_borde=5, mostrar_calidad=False,
                     )
         return None
 
@@ -222,7 +222,7 @@ class Biblioteca:
             for cancion in self.por_artista[nombre_artista]:
                 if cancion.caratula_cancion:
                     return cancion.obtener_caratula_general_cancion(
-                        formato, ancho, alto, bordes_redondeados=True, radio_borde=5
+                        formato, ancho, alto, bordes_redondeados=True, radio_borde=5, mostrar_calidad=False,
                     )
         return None
 

@@ -47,30 +47,28 @@ class CaratulaGeneral:
     def determinar_calidad_audio(formato, bitrate, sample_rate=0):
         try:
             formato_upper = formato.upper()
+            # Convertir bitrate de bps a kbps si es necesario
+            if bitrate > 1000:  # Si es mayor a 1000, probablemente está en bps
+                bitrate_kbps = bitrate // 1000
+            else:
+                bitrate_kbps = bitrate
             # Hi-Res: FLAC/WAV 24-bit 96kHz+
             if formato_upper in ["FLAC", "WAV"] and sample_rate >= 96000:
                 return "Hi-Res"
-            # Hi-Fi: FLAC 16-bit 44.1kHz
+            # Hi-Fi: FLAC 16-bit 44.1kHz (cualquier FLAC que no sea Hi-Res)
             if formato_upper == "FLAC":
                 return "Hi-Fi"
-            # HD: MP3 320 kbps
-            if formato_upper == "MP3" and bitrate >= 320:
-                return "HD"
-            # Alta: MP3/AAC 192-256 kbps
-            if formato_upper in ["MP3", "MP4/AAC", "AAC"] and 192 <= bitrate < 320:
-                return "Alta"
-            # Estándar: MP3 128 kbps o menor
-            if bitrate > 0 and bitrate < 192:
-                return "Estándar"
-            # Casos especiales para otros formatos
-            if formato_upper in ["OGG VORBIS", "OGG OPUS"]:
-                if bitrate >= 256:
-                    return "Alta"
-                elif bitrate >= 192:
+            # Para formatos con pérdida (MP3, AAC, etc.)
+            if bitrate_kbps > 0:
+                if bitrate_kbps >= 320:
+                    return "HD"
+                elif bitrate_kbps >= 192:
                     return "Alta"
                 else:
                     return "Estándar"
-            # Por defecto si no se puede determinar
+            # Casos especiales para otros formatos sin bitrate específico
+            if formato_upper in ["OGG VORBIS", "OGG OPUS"]:
+                return "Alta"
             return "Estándar"
         except Exception as e:
             print(f"Error al determinar calidad: {e}")
@@ -83,16 +81,16 @@ class CaratulaGeneral:
             # Configurar fuente con mejor calidad
             try:
                 fuente = ImageFont.truetype("arial.ttf", 10)
-            except:
+            except (OSError, IOError):
                 try:
                     fuente = ImageFont.truetype("segoeui.ttf", 10)
-                except:
+                except (OSError, IOError):
                     try:
                         fuente = ImageFont.truetype("calibri.ttf", 10)
-                    except:
+                    except (OSError, IOError):
                         try:
                             fuente = ImageFont.truetype("C:/Windows/Fonts/arial.ttf", 10)
-                        except:
+                        except (OSError, IOError):
                             fuente = ImageFont.load_default()
             # Crear imagen temporal transparente para medir texto
             img_temp = Image.new("RGBA", (200, 100), (0, 0, 0, 0))
@@ -103,7 +101,7 @@ class CaratulaGeneral:
             texto_alto = bbox[3] - bbox[1]
             # Padding para el estandarte
             padding_x = 8
-            padding_y = 4
+            padding_y = 6
             # Calcular dimensiones del estandarte
             ancho_estandarte = texto_ancho + (padding_x * 2)
             alto_estandarte = texto_alto + (padding_y * 2)
@@ -112,21 +110,21 @@ class CaratulaGeneral:
             alto_estandarte = max(alto_estandarte, 16)
             # Crear imagen del estandarte con alta resolución
             escala = 2
-            ancho_alta_res = ancho_estandarte * escala
-            alto_alta_res = alto_estandarte * escala
+            ancho_alta_res = int(ancho_estandarte * escala)
+            alto_alta_res = int(alto_estandarte * escala)
             # Crear imagen transparente
             estandarte_hd = Image.new("RGBA", (ancho_alta_res, alto_alta_res), (0, 0, 0, 0))
             draw_hd = ImageDraw.Draw(estandarte_hd)
             # Fuente escalada
             try:
                 fuente_hd = ImageFont.truetype("arial.ttf", 10 * escala)
-            except:
+            except (OSError, IOError):
                 try:
                     fuente_hd = ImageFont.truetype("segoeui.ttf", 10 * escala)
-                except:
+                except (OSError, IOError):
                     try:
                         fuente_hd = ImageFont.truetype("calibri.ttf", 10 * escala)
-                    except:
+                    except (OSError, IOError):
                         fuente_hd = ImageFont.load_default()
             # Color de fondo gris semi-transparente
             color_fondo = (80, 80, 80, 200)
@@ -151,7 +149,7 @@ class CaratulaGeneral:
                 (texto_x_hd, texto_y_hd), etiqueta_calidad, fill=(255, 255, 255, 255), font=fuente_hd
             )
             # Redimensionar a tamaño final
-            estandarte = estandarte_hd.resize((ancho_estandarte, alto_estandarte), Image.LANCZOS)
+            estandarte = estandarte_hd.resize((ancho_estandarte, alto_estandarte), Image.Resampling.LANCZOS)
             return estandarte
         except Exception as e:
             print(f"Error al crear estandarte para '{etiqueta_calidad}': {e}")
@@ -173,7 +171,7 @@ class CaratulaGeneral:
             img_ancho, img_alto = imagen_con_estandarte.size
             est_ancho, est_alto = estandarte.size
             # Margen ajustado para bordes redondeados
-            margen_base = 12
+            margen_base = 8
             factor_ajuste = min(img_ancho, img_alto) / 300
             margen_ajustado = max(margen_base, int(margen_base * factor_ajuste))
             # Calcular posición según parámetro

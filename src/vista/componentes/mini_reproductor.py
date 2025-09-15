@@ -450,6 +450,7 @@ class MiniReproductor(UtilesGeneral):
                     alto=125,
                     bordes_redondeados=True,
                     radio_borde=7,
+                    mostrar_calidad=False,
                 )
                 if foto:
                     self.imagen_cancion_mini.configure(image=foto, text="")

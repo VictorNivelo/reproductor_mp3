@@ -1,18 +1,18 @@
 {
-    "indice_actual": 9,
+    "indice_actual": 2,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
-        "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
         "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
         "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
         "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
         "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3",
+        "C:\\Users\\Victor\\Music\\Musica\\Dile Que Tu Me Quieres.mp3",
         "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
         "C:\\Users\\Victor\\Music\\M\\Déjate Llevar.mp3",
         "C:\\Users\\Victor\\Music\\M\\Na.mp3",
@@ -23,10 +23,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
-        "titulo": "BUENOS AIRES",
-        "artista": "Tainy ft Mora, Zion",
-        "album": "DATA",
-        "timestamp": "2025-09-13T21:42:17.499315"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "titulo": "14 De Febrero",
+        "artista": "Feid",
+        "album": "INTER SHIBUYA - LA MAFIA",
+        "timestamp": "2025-09-14T20:54:02.130404"
     }
 }

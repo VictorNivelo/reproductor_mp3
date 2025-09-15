@@ -308,6 +308,7 @@ class ColaReproduccion(UtilesGeneral):
                 alto=alto_caratula,
                 bordes_redondeados=True,
                 radio_borde=5,
+                mostrar_calidad=False,
             )
             if foto:
                 etiqueta_imagen = ctk.CTkLabel(panel_contenedor, image=foto, text="")

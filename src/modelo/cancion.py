@@ -372,10 +372,31 @@ class Cancion:
 
     # Método que devuelve la carátula en el formato solicitado
     def obtener_caratula_general_cancion(
-        self, formato="bytes", ancho=None, alto=None, bordes_redondeados=False, radio_borde=None
+        self,
+        formato="bytes",
+        ancho=None,
+        alto=None,
+        bordes_redondeados=False,
+        radio_borde=None,
+        mostrar_calidad=True,
+        posicion_estandarte="inf_izq",
     ):
+        # Determinar automáticamente la calidad si se solicita mostrarla
+        etiqueta_calidad = None
+        if mostrar_calidad:
+            formato_audio = self.obtener_formato
+            bitrate = self.obtener_tasa_bits
+            sample_rate = self.obtener_frecuencia_muestreo
+            etiqueta_calidad = CaratulaGeneral.determinar_calidad_audio(formato_audio, bitrate, sample_rate)
         return CaratulaGeneral.extraer_caratula(
-            self.caratula_cancion, formato, ancho, alto, bordes_redondeados, radio_borde
+            self.caratula_cancion,
+            formato,
+            ancho,
+            alto,
+            bordes_redondeados,
+            radio_borde,
+            etiqueta_calidad,
+            posicion_estandarte,
         )
 
     # Método que devuelve toda la información de la canción

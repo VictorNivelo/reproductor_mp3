@@ -1,4 +1,4 @@
-from PIL import Image, ImageDraw, ImageTk
+from PIL import Image, ImageDraw, ImageTk, ImageFont
 from customtkinter import CTkImage
 
 import io
@@ -42,11 +42,178 @@ class CaratulaGeneral:
             print(f"Error al obtener información de carátula: {e}")
         return info
 
+    # Método que determina la calidad del audio basado en formato y bitrate
+    @staticmethod
+    def determinar_calidad_audio(formato, bitrate, sample_rate=0):
+        try:
+            formato_upper = formato.upper()
+            # Hi-Res: FLAC/WAV 24-bit 96kHz+
+            if formato_upper in ["FLAC", "WAV"] and sample_rate >= 96000:
+                return "Hi-Res"
+            # Hi-Fi: FLAC 16-bit 44.1kHz
+            if formato_upper == "FLAC":
+                return "Hi-Fi"
+            # HD: MP3 320 kbps
+            if formato_upper == "MP3" and bitrate >= 320:
+                return "HD"
+            # Alta: MP3/AAC 192-256 kbps
+            if formato_upper in ["MP3", "MP4/AAC", "AAC"] and 192 <= bitrate < 320:
+                return "Alta"
+            # Estándar: MP3 128 kbps o menor
+            if bitrate > 0 and bitrate < 192:
+                return "Estándar"
+            # Casos especiales para otros formatos
+            if formato_upper in ["OGG VORBIS", "OGG OPUS"]:
+                if bitrate >= 256:
+                    return "Alta"
+                elif bitrate >= 192:
+                    return "Alta"
+                else:
+                    return "Estándar"
+            # Por defecto si no se puede determinar
+            return "Estándar"
+        except Exception as e:
+            print(f"Error al determinar calidad: {e}")
+            return "Estándar"
+
+    # Método que crea un estandarte de calidad
+    @staticmethod
+    def crear_estandarte_calidad(etiqueta_calidad):
+        try:
+            # Configurar fuente con mejor calidad
+            try:
+                fuente = ImageFont.truetype("arial.ttf", 10)
+            except:
+                try:
+                    fuente = ImageFont.truetype("segoeui.ttf", 10)
+                except:
+                    try:
+                        fuente = ImageFont.truetype("calibri.ttf", 10)
+                    except:
+                        try:
+                            fuente = ImageFont.truetype("C:/Windows/Fonts/arial.ttf", 10)
+                        except:
+                            fuente = ImageFont.load_default()
+            # Crear imagen temporal transparente para medir texto
+            img_temp = Image.new("RGBA", (200, 100), (0, 0, 0, 0))
+            draw_temp = ImageDraw.Draw(img_temp)
+            # Obtener dimensiones del texto
+            bbox = draw_temp.textbbox((0, 0), etiqueta_calidad, font=fuente)
+            texto_ancho = bbox[2] - bbox[0]
+            texto_alto = bbox[3] - bbox[1]
+            # Padding para el estandarte
+            padding_x = 8
+            padding_y = 4
+            # Calcular dimensiones del estandarte
+            ancho_estandarte = texto_ancho + (padding_x * 2)
+            alto_estandarte = texto_alto + (padding_y * 2)
+            # Dimensiones mínimas
+            ancho_estandarte = max(ancho_estandarte, 40)
+            alto_estandarte = max(alto_estandarte, 16)
+            # Crear imagen del estandarte con alta resolución
+            escala = 2
+            ancho_alta_res = ancho_estandarte * escala
+            alto_alta_res = alto_estandarte * escala
+            # Crear imagen transparente
+            estandarte_hd = Image.new("RGBA", (ancho_alta_res, alto_alta_res), (0, 0, 0, 0))
+            draw_hd = ImageDraw.Draw(estandarte_hd)
+            # Fuente escalada
+            try:
+                fuente_hd = ImageFont.truetype("arial.ttf", 10 * escala)
+            except:
+                try:
+                    fuente_hd = ImageFont.truetype("segoeui.ttf", 10 * escala)
+                except:
+                    try:
+                        fuente_hd = ImageFont.truetype("calibri.ttf", 10 * escala)
+                    except:
+                        fuente_hd = ImageFont.load_default()
+            # Color de fondo gris semi-transparente
+            color_fondo = (80, 80, 80, 200)
+            # Radio de borde escalado
+            radio_borde_hd = 6 * escala
+            # Dibujar rectángulo redondeado
+            draw_hd.rounded_rectangle(
+                [(0, 0), (ancho_alta_res, alto_alta_res)], radius=radio_borde_hd, fill=color_fondo
+            )
+            # Medir texto en alta resolución
+            bbox_hd = draw_hd.textbbox((0, 0), etiqueta_calidad, font=fuente_hd)
+            texto_ancho_hd = bbox_hd[2] - bbox_hd[0]
+            texto_alto_hd = bbox_hd[3] - bbox_hd[1]
+            # Calcular posición centrada
+            texto_x_hd = (ancho_alta_res - texto_ancho_hd) // 2
+            texto_y_hd = (alto_alta_res - texto_alto_hd) // 2
+            # Ajuste fino para centrado
+            ajuste_y = bbox_hd[1]
+            texto_y_hd = texto_y_hd - ajuste_y
+            # Dibujar texto en blanco
+            draw_hd.text(
+                (texto_x_hd, texto_y_hd), etiqueta_calidad, fill=(255, 255, 255, 255), font=fuente_hd
+            )
+            # Redimensionar a tamaño final
+            estandarte = estandarte_hd.resize((ancho_estandarte, alto_estandarte), Image.LANCZOS)
+            return estandarte
+        except Exception as e:
+            print(f"Error al crear estandarte para '{etiqueta_calidad}': {e}")
+            return None
+
+    # Método que superpone el estandarte en la carátula
+    @staticmethod
+    def superponer_estandarte_calidad(imagen_pil, etiqueta_calidad, posicion="inf_izq"):
+        try:
+            if not etiqueta_calidad:
+                return imagen_pil
+            # Crear el estandarte
+            estandarte = CaratulaGeneral.crear_estandarte_calidad(etiqueta_calidad)
+            if not estandarte:
+                return imagen_pil
+            # Crear una copia de la imagen para no modificar la original
+            imagen_con_estandarte = imagen_pil.copy()
+            # Obtener dimensiones
+            img_ancho, img_alto = imagen_con_estandarte.size
+            est_ancho, est_alto = estandarte.size
+            # Margen ajustado para bordes redondeados
+            margen_base = 12
+            factor_ajuste = min(img_ancho, img_alto) / 300
+            margen_ajustado = max(margen_base, int(margen_base * factor_ajuste))
+            # Calcular posición según parámetro
+            if posicion == "sup_der":
+                x = img_ancho - est_ancho - margen_ajustado
+                y = margen_ajustado
+            elif posicion == "sup_izq":
+                x = margen_ajustado
+                y = margen_ajustado
+            elif posicion == "inf_der":
+                x = img_ancho - est_ancho - margen_ajustado
+                y = img_alto - est_alto - margen_ajustado
+            elif posicion == "inf_izq":
+                x = margen_ajustado
+                y = img_alto - est_alto - margen_ajustado
+            else:
+                # Por defecto: inferior izquierda
+                x = margen_ajustado
+                y = img_alto - est_alto - margen_ajustado
+            # Asegurar que la imagen esté en modo RGBA para transparencia
+            if imagen_con_estandarte.mode != "RGBA":
+                imagen_con_estandarte = imagen_con_estandarte.convert("RGBA")
+            # Superponer el estandarte usando la transparencia
+            imagen_con_estandarte.paste(estandarte, (x, y), estandarte)
+            return imagen_con_estandarte
+        except Exception as e:
+            print(f"Error al superponer estandarte: {e}")
+            return imagen_pil
+
     # Método que procesa la carátula y la devuelve en el formato solicitado
     @staticmethod
     def extraer_caratula(
-        caratula_bytes, formato="bytes", ancho=None, alto=None, bordes_redondeados=False, radio_borde=None,
-        etiqueta_calidad=None, estandarte_posicion="sup_der", color_estandarte=None
+        caratula_bytes,
+        formato="bytes",
+        ancho=None,
+        alto=None,
+        bordes_redondeados=False,
+        radio_borde=None,
+        etiqueta_calidad=None,
+        posicion_estandarte="inf_izq",
     ):
         if not caratula_bytes:
             return None
@@ -68,11 +235,10 @@ class CaratulaGeneral:
             # Aplicar bordes redondeados si se solicita
             if bordes_redondeados:
                 imagen_pil = CaratulaGeneral.aplicar_bordes_redondeados(imagen_pil, radio_borde)
-            # Superponer estandarte de calidad (opcional)
+            # Superponer estandarte de calidad si se especifica
             if etiqueta_calidad:
-                bg = color_estandarte or CaratulaGeneral._colores_por_calidad(etiqueta_calidad)
-                imagen_pil = CaratulaGeneral.superponer_estandarte(
-                    imagen_pil, etiqueta_calidad, posicion=estandarte_posicion, color_fondo=bg
+                imagen_pil = CaratulaGeneral.superponer_estandarte_calidad(
+                    imagen_pil, etiqueta_calidad, posicion_estandarte
                 )
             # Devolver el formato solicitado
             if formato == "PIL":
@@ -85,7 +251,9 @@ class CaratulaGeneral:
                         size=(ancho or imagen_pil.width, alto or imagen_pil.height),
                     )
                 except ImportError:
-                    raise ImportError("No se puede importar CTkImage. Asegúrate de tener CustomTkinter instalado.")
+                    raise ImportError(
+                        "No se puede importar CTkImage. Asegúrate de tener CustomTkinter instalado."
+                    )
             elif formato == "tk":
                 return ImageTk.PhotoImage(imagen_pil)
             else:

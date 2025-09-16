@@ -263,7 +263,7 @@ class CaratulaGeneral:
 
     # Método que crea una caratula vacia
     @staticmethod
-    def crear_caratula_vacia(ancho=None, alto=None):
+    def crear_caratula_vacia(ancho=None, alto=None, etiqueta_calidad=None):
         try:
             # Usar las constantes de carátula por defecto si no se especifican dimensiones
             if ancho is None:
@@ -289,6 +289,9 @@ class CaratulaGeneral:
                 outline=color_borde,
                 width=borde_grosor,
             )
+            # Superponer estandarte de calidad si se especifica
+            if etiqueta_calidad:
+                img = CaratulaGeneral.superponer_estandarte_calidad(img, etiqueta_calidad, "inf_izq")
             return CTkImage(light_image=img, dark_image=img, size=(ancho, alto))
         except Exception as e:
             print(f"Error al crear imagen vacía: {e}")

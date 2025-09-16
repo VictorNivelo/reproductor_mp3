@@ -70,6 +70,19 @@ class ControladorReproductor:
         self.etiqueta_anio.configure(text="")
         self.etiqueta_imagen.configure(image=None, text="Sin carátula")
 
+    # Método que configura la carátula vacía con calidad de audio si es posible
+    def configurar_caratula_vacia(self):
+        etiqueta_calidad = None
+        if self.cancion_actual:
+            formato_audio = self.cancion_actual.obtener_formato
+            bitrate = self.cancion_actual.obtener_tasa_bits
+            sample_rate = self.cancion_actual.obtener_frecuencia_muestreo
+            etiqueta_calidad = CaratulaGeneral.determinar_calidad_audio(formato_audio, bitrate, sample_rate)
+        caratula_vacia_con_calidad = CaratulaGeneral.crear_caratula_vacia(
+            ANCHO_CARATULA, ALTO_CARATULA, etiqueta_calidad
+        )
+        self.etiqueta_imagen.configure(image=caratula_vacia_con_calidad, text="Sin carátula")
+
     # Método que actualiza la carátula de la canción
     def actualizar_caratula_controlador(self, caratula_bytes=None):
         try:
@@ -89,9 +102,9 @@ class ControladorReproductor:
                     self.etiqueta_imagen.configure(image=foto, text="")
                     return True
                 else:
-                    self.etiqueta_imagen.configure(image=self.caratula_vacia, text="Sin carátula")
+                    self.configurar_caratula_vacia()
             else:
-                self.etiqueta_imagen.configure(image=self.caratula_vacia, text="Sin carátula")
+                self.configurar_caratula_vacia()
             return False
         except Exception as e:
             print(f"Error al actualizar carátula: {e}")

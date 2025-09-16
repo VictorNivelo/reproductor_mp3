@@ -1,66 +1,68 @@
 {
     "artistas": {
-        "Tainy": 17,
-        "Sech": 4,
-        "E.VAX": 4,
-        "Bad Bunny": 9,
+        "Tainy": 22,
+        "Sech": 5,
+        "E.VAX": 5,
+        "Bad Bunny": 13,
         "Jhay Cortez": 5,
-        "Metro Boomin": 2,
-        "Coi Leray": 2,
-        "Mora": 4,
-        "Zion": 4,
+        "Metro Boomin": 3,
+        "Coi Leray": 3,
+        "Mora": 5,
+        "Zion": 5,
         "Canserbero": 4,
         "Yan Block": 2,
         "Panda Black": 2,
         "Alex Rose": 6,
-        "Anuel AA": 46,
+        "Anuel AA": 53,
         "Sinfonico": 7,
         "Ñengo Flow": 7,
-        "Daddy Yankee": 31,
-        "Ozuna": 9,
+        "Daddy Yankee": 35,
+        "Ozuna": 12,
         "Dalex": 2,
         "Alvaro Diaz": 2,
-        "Hades66": 2,
-        "Hanzel La H": 2,
-        "YOVNGCHIMI": 2,
-        "Feid": 5,
-        "Generador Test": 66,
-        "Eladio Carrion": 7,
-        "Bryant Myers": 7,
+        "Hades66": 3,
+        "Hanzel La H": 3,
+        "YOVNGCHIMI": 3,
+        "Feid": 8,
+        "Generador Test": 75,
+        "Eladio Carrion": 9,
+        "Bryant Myers": 9,
         "Lyanno": 1,
-        "Desconocido": 45
+        "Desconocido": 54,
+        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 1
     },
     "albumes": {
-        "DATA": 10,
-        "EL ÚLTIMO TOUR DEL MUNDO": 7,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 2,
+        "DATA": 12,
+        "EL ÚLTIMO TOUR DEL MUNDO": 11,
+        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 3,
         "Na": 4,
         "444": 2,
         "Sexflix": 6,
         "47 (Remix)": 7,
         "¿Qué Nos Pasó?": 3,
-        "Adictiva": 31,
-        "Adicto (ft Anuel AA & Ozuna)": 5,
+        "Adictiva": 35,
+        "Adicto (ft Anuel AA & Ozuna)": 8,
         "Odisea": 4,
-        "Cloniao": 2,
-        "INTER SHIBUYA - LA MAFIA": 5,
-        "Álbum Test": 66,
-        "Animal": 7,
+        "Cloniao": 3,
+        "INTER SHIBUYA - LA MAFIA": 8,
+        "Álbum Test": 75,
+        "Animal": 9,
         "Callaita": 2,
-        "Desconocido": 45
+        "Desconocido": 54,
+        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 1
     },
-    "tiempo_total": 32255.960816326475,
-    "canciones_escuchadas": 208,
+    "tiempo_total": 38159.235918367296,
+    "canciones_escuchadas": 247,
     "ultima_cancion": {
         "ruta": "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
         "titulo": "a",
         "artista": "Desconocido",
         "album": "Desconocido",
-        "timestamp": "2025-09-15T16:36:26.532633"
+        "timestamp": "2025-09-15T20:46:18.149955"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 4,
+            "contador": 5,
             "titulo": "11 Y ONCE",
             "artista": "Tainy ft Sech, E.VAX",
             "album": "DATA"
@@ -72,13 +74,13 @@
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "Self Love",
             "artista": "Metro Boomin ft Coi Leray",
             "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
         },
         "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3": {
-            "contador": 4,
+            "contador": 5,
             "titulo": "BUENOS AIRES",
             "artista": "Tainy ft Mora, Zion",
             "album": "DATA"
@@ -114,13 +116,13 @@
             "album": "¿Qué Nos Pasó?"
         },
         "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
-            "contador": 31,
+            "contador": 35,
             "titulo": "Adictiva",
             "artista": "Daddy Yankee ft Anuel AA",
             "album": "Adictiva"
         },
         "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3": {
-            "contador": 5,
+            "contador": 8,
             "titulo": "Adicto",
             "artista": "Tainy ft Anuel AA, Ozuna",
             "album": "Adicto (ft Anuel AA & Ozuna)"
@@ -144,49 +146,49 @@
             "album": "Odisea"
         },
         "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3": {
-            "contador": 2,
+            "contador": 3,
             "titulo": "Cloniao",
             "artista": "Hades66 ft Hanzel La H, YOVNGCHIMI",
             "album": "Cloniao"
         },
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
-            "contador": 5,
+            "contador": 8,
             "titulo": "14 De Febrero",
             "artista": "Feid",
             "album": "INTER SHIBUYA - LA MAFIA"
         },
         "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_hd_320k.mp3": {
-            "contador": 21,
+            "contador": 24,
             "titulo": "Audio Test HD",
             "artista": "Generador Test",
             "album": "Álbum Test"
         },
         "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_hifi_44k.flac": {
-            "contador": 8,
+            "contador": 9,
             "titulo": "Audio Test Hi-Fi",
             "artista": "Generador Test",
             "album": "Álbum Test"
         },
         "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_hires_96k.flac": {
-            "contador": 6,
+            "contador": 8,
             "titulo": "Audio Test Hi-Res",
             "artista": "Generador Test",
             "album": "Álbum Test"
         },
         "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_estandar_128k.mp3": {
-            "contador": 15,
+            "contador": 17,
             "titulo": "Audio Test Estándar",
             "artista": "Generador Test",
             "album": "Álbum Test"
         },
         "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_alta_256k.mp3": {
-            "contador": 16,
+            "contador": 17,
             "titulo": "Audio Test Alta",
             "artista": "Generador Test",
             "album": "Álbum Test"
         },
         "C:\\Users\\Victor\\Music\\M\\Animal..mp3": {
-            "contador": 7,
+            "contador": 9,
             "titulo": "Animal",
             "artista": "Eladio Carrion ft Bryant Myers",
             "album": "Animal"
@@ -204,40 +206,47 @@
             "album": "Sexflix"
         },
         "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 2,
+            "contador": 6,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
         "C:\\Users\\Victor\\Music\\prueba\\a.mp3": {
-            "contador": 45,
+            "contador": 54,
             "titulo": "a",
             "artista": "Desconocido",
             "album": "Desconocido"
+        },
+        "C:\\Users\\Victor\\Music\\prueba\\b.mp3": {
+            "contador": 1,
+            "titulo": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "artista": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
+            "album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2"
         }
     },
     "artistas_originales": {
-        "Tainy ft Sech, E.VAX": 4,
+        "Tainy ft Sech, E.VAX": 5,
         "Bad Bunny ft Jhay Cortez": 5,
-        "Metro Boomin ft Coi Leray": 2,
-        "Tainy ft Mora, Zion": 4,
+        "Metro Boomin ft Coi Leray": 3,
+        "Tainy ft Mora, Zion": 5,
         "Canserbero": 4,
         "Yan Block ft Panda Black": 2,
         "Alex Rose": 3,
         "Anuel AA ft Sinfonico, Ñengo Flow": 7,
         "Anuel AA": 3,
-        "Daddy Yankee ft Anuel AA": 31,
-        "Tainy ft Anuel AA, Ozuna": 5,
+        "Daddy Yankee ft Anuel AA": 35,
+        "Tainy ft Anuel AA, Ozuna": 8,
         "Alex Rose ft Dalex": 2,
         "Tainy ft Alvaro Diaz": 2,
         "Ozuna": 4,
-        "Hades66 ft Hanzel La H, YOVNGCHIMI": 2,
-        "Feid": 5,
-        "Generador Test": 66,
-        "Eladio Carrion ft Bryant Myers": 7,
+        "Hades66 ft Hanzel La H, YOVNGCHIMI": 3,
+        "Feid": 8,
+        "Generador Test": 75,
+        "Eladio Carrion ft Bryant Myers": 9,
         "Bad Bunny ft Tainy": 2,
         "Alex Rose ft Lyanno": 1,
-        "Bad Bunny": 2,
-        "Desconocido": 45
+        "Bad Bunny": 6,
+        "Desconocido": 54,
+        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 1
     }
 }

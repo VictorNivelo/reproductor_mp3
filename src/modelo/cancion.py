@@ -27,7 +27,7 @@ class Cancion:
         self.artista_album_cancion = artista_album
         self.album_cancion = album
         self.duracion_cancion = duracion
-        self.anio_cancion = anio
+        self.anio_lanzamiento_cancion = anio
         self.numero_pista_cancion = numero_pista
         self.genero_cancion = genero
         self.caratula_cancion = caratula
@@ -35,13 +35,13 @@ class Cancion:
         self.me_gusta = False
         self.favorito = False
 
-    # Convertir a cadena para mostrar en la consola
+    # Convertir a cadena para imprimir en la consola
     def __str__(self):
         return f"\n{self.titulo_cancion} - {self.artista_cancion}"
 
-    # Convertir en cadena un objeto Cancion
+    # Convertir a objeto representable en consola
     def __repr__(self):
-        return self.__str__()
+        return f"Cancion(titulo='{self.titulo_cancion}', artista='{self.artista_cancion}', album='{self.album_cancion}', duracion={self.duracion_cancion}s)"
 
     # Método que crea una instancia de Cancion a partir de un archivo de audio
     @classmethod
@@ -215,16 +215,16 @@ class Cancion:
     @property
     def obtener_lanzamiento_formateada(self) -> str:
         try:
-            if self.anio_cancion == "Desconocido":
+            if self.anio_lanzamiento_cancion == "Desconocido":
                 return "Desconocido"
             formatos = ["%Y", "%Y-%m-%d", "%d/%m/%Y", "%Y/%m/%d"]
             for formato in formatos:
                 try:
-                    fecha = datetime.strptime(str(self.anio_cancion), formato)
+                    fecha = datetime.strptime(str(self.anio_lanzamiento_cancion), formato)
                     return fecha.strftime("%d/%m/%Y")
                 except ValueError:
                     continue
-            return self.anio_cancion
+            return self.anio_lanzamiento_cancion
         except Exception as e:
             print(f"Error al formatear fecha: {e}")
             return "Desconocido"
@@ -233,11 +233,11 @@ class Cancion:
     @property
     def obtener_lanzamiento_anio(self) -> str:
         try:
-            if self.anio_cancion == "Desconocido":
+            if self.anio_lanzamiento_cancion == "Desconocido":
                 return "Desconocido"
-            if str(self.anio_cancion).isdigit() and len(str(self.anio_cancion)) == 4:
-                return str(self.anio_cancion)
-            partes_fecha = str(self.anio_cancion).split("-")[0]
+            if str(self.anio_lanzamiento_cancion).isdigit() and len(str(self.anio_lanzamiento_cancion)) == 4:
+                return str(self.anio_lanzamiento_cancion)
+            partes_fecha = str(self.anio_lanzamiento_cancion).split("-")[0]
             if partes_fecha.isdigit() and len(partes_fecha) == 4:
                 return partes_fecha
             return "Desconocido"
@@ -399,8 +399,23 @@ class Cancion:
             posicion_estandarte,
         )
 
+    # Método que devuelve la información básica de la canción
+    def obtener_informacion_basica_cancion(self) -> dict:
+        return {
+            "ruta": str(self.ruta_cancion),
+            "duracion_formateada": self.obtener_duracion_formateada,
+            "titulo": self.titulo_cancion,
+            "artista": self.artista_cancion,
+            "artista_album": self.artista_album_cancion,
+            "album": self.album_cancion,
+            "anio": self.anio_lanzamiento_cancion,
+            "genero": self.genero_cancion,
+            "nombre_archivo": self.obtener_nombre,
+            "extension_archivo": self.obtener_extension,
+        }
+
     # Método que devuelve toda la información de la canción
-    def obtener_informacion_cancion(self) -> dict:
+    def obtener_informacion_completa_cancion(self) -> dict:
         return {
             "duracion": self.duracion_cancion,
             "duracion_formateada": self.obtener_duracion_formateada,
@@ -411,7 +426,8 @@ class Cancion:
             "artista": self.artista_cancion,
             "artista_album": self.artista_album_cancion,
             "album": self.album_cancion,
-            "anio": self.anio_cancion,
+            "anio": self.anio_lanzamiento_cancion,
+            "fecha_lanzamiento": self.obtener_lanzamiento_formateada,
             "numero_pista": self.numero_pista_cancion,
             "genero": self.genero_cancion,
             "tamanio_archivo": self.obtener_tamanio,
@@ -444,7 +460,7 @@ class Cancion:
 # print(f"Álbum: {cancion.album_cancion}")
 # print(f"Género: {cancion.genero_cancion}")
 # print(f"Año de lanzamiento: {cancion.obtener_lanzamiento_anio}")
-# print(f"Fecha de lanzamiento: {cancion.anio_cancion}")
+# print(f"Fecha de lanzamiento: {cancion.anio_lanzamiento_cancion}")
 # print(f"Fecha de lanzamiento formateada: {cancion.obtener_lanzamiento_formateada}")
 # print(f"Número de pista: {cancion.numero_pista_cancion}")
 # print(f"Duración en segundos: {cancion.duracion_cancion} segundos")

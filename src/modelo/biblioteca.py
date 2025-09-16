@@ -17,23 +17,6 @@ class Biblioteca:
     def existe_cancion_biblioteca(self, ruta: Path) -> bool:
         return any(cancion.ruta_cancion == ruta for cancion in self.canciones)
 
-    # Método adicional para detectar posibles duplicados (mismo título y artista)
-    def detectar_duplicado_biblioteca(self, ruta: Path) -> list:
-        try:
-            # Crear una canción temporal para extraer metadatos
-            cancion_temp = Cancion.cargar_cancion(ruta)
-            # Buscar canciones con el mismo título y artista
-            duplicados = [
-                cancion
-                for cancion in self.canciones
-                if cancion.titulo_cancion.lower() == cancion_temp.titulo_cancion.lower()
-                and cancion.artista_cancion.lower() == cancion_temp.artista_cancion.lower()
-            ]
-            return duplicados
-        except Exception as e:
-            print(f"Error al detectar duplicado: {str(e)}")
-            return []
-
     # Método para validar si una canción puede ser agregada
     def validar_cancion_biblioteca(self, ruta: Path) -> bool:
         # Verificar si el archivo existe
@@ -212,7 +195,12 @@ class Biblioteca:
             for cancion in self.por_album[nombre_album]:
                 if cancion.caratula_cancion:
                     return cancion.obtener_caratula_general_cancion(
-                        formato, ancho, alto, bordes_redondeados=True, radio_borde=5, mostrar_calidad=False,
+                        formato,
+                        ancho,
+                        alto,
+                        bordes_redondeados=True,
+                        radio_borde=5,
+                        mostrar_calidad=False,
                     )
         return None
 
@@ -222,7 +210,12 @@ class Biblioteca:
             for cancion in self.por_artista[nombre_artista]:
                 if cancion.caratula_cancion:
                     return cancion.obtener_caratula_general_cancion(
-                        formato, ancho, alto, bordes_redondeados=True, radio_borde=5, mostrar_calidad=False,
+                        formato,
+                        ancho,
+                        alto,
+                        bordes_redondeados=True,
+                        radio_borde=5,
+                        mostrar_calidad=False,
                     )
         return None
 
@@ -344,7 +337,7 @@ class Biblioteca:
     # Método que convierte la biblioteca a un diccionario
     def obtener_informacion_biblioteca(self) -> dict:
         return {
-            "canciones": [cancion.obtener_informacion_cancion() for cancion in self.canciones],
+            "canciones": [cancion.obtener_informacion_completa_cancion() for cancion in self.canciones],
             "estadisticas": self.obtener_estadisticas_biblioteca(),
         }
 

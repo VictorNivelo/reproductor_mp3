@@ -1,9 +1,10 @@
 {
-    "indice_actual": 5,
+    "indice_actual": 6,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
         "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "C:\\Users\\Victor\\Music\\prueba\\b.mp3",
         "C:\\Users\\Victor\\Music\\M\\444..mp3",
         "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
         "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
@@ -34,6 +35,6 @@
         "titulo": "a",
         "artista": "Desconocido",
         "album": "Desconocido",
-        "timestamp": "2025-09-15T16:36:26.531410"
+        "timestamp": "2025-09-15T20:46:18.148706"
     }
 }

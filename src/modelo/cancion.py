@@ -46,7 +46,7 @@ class Cancion:
     # Método que crea una instancia de Cancion a partir de un archivo de audio
     @classmethod
     def cargar_cancion(cls, ruta_archivo: Path):
-        metadatos = Metadatos.cargar_metadatos_completos(ruta_archivo)
+        metadatos = Metadatos.obtener_metadatos(ruta_archivo)
         return cls(**metadatos)
 
     # Método que devuelve la ruta de la canción como objeto Path

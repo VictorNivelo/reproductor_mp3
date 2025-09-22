@@ -1,40 +1,20 @@
 {
-    "indice_actual": 6,
+    "indice_actual": 7,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "C:\\Users\\Victor\\Music\\M\\120.mp3",
-        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
         "C:\\Users\\Victor\\Music\\prueba\\b.mp3",
-        "C:\\Users\\Victor\\Music\\M\\444..mp3",
-        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
         "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_alta_256k.mp3",
-        "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_estandar_128k.mp3",
-        "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_hd_320k.mp3",
-        "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_hifi_44k.flac",
-        "C:\\Users\\Victor\\Documents\\Proyectos\\generar_audio\\archivos_audio_test\\test_hires_96k.flac",
-        "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Dile Que Tu Me Quieres.mp3",
-        "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Déjate Llevar.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Na.mp3",
-        "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "C:\\Users\\Victor\\Music\\Musica\\Si No Te Quiere.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Sigues Preguntando.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Yo Quisiera.mp3",
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
+        "C:\\Users\\Victor\\Music\\prueba\\test_alta_256k.mp3",
+        "C:\\Users\\Victor\\Music\\prueba\\test_estandar_128k.mp3",
+        "C:\\Users\\Victor\\Music\\prueba\\test_hd_320k.mp3",
+        "C:\\Users\\Victor\\Music\\prueba\\test_hifi_44k.flac",
+        "C:\\Users\\Victor\\Music\\prueba\\test_hires_96k.flac",
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
-        "titulo": "a",
-        "artista": "Desconocido",
-        "album": "Desconocido",
-        "timestamp": "2025-09-15T20:46:18.148706"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+        "titulo": "Self Love",
+        "artista": "Metro Boomin ft Coi Leray",
+        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
+        "timestamp": "2025-09-21T22:37:51.621807"
     }
 }

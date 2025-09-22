@@ -399,6 +399,15 @@ class Cancion:
             posicion_estandarte,
         )
 
+    # Método que devuelve la información mínima de la canción
+    def obtener_informacion_minima_cancion(self) -> dict:
+        return {
+            "ruta": str(self.ruta_cancion),
+            "titulo": self.titulo_cancion,
+            "artista": self.artista_cancion,
+            "album": self.album_cancion,
+        }
+
     # Método que devuelve la información básica de la canción
     def obtener_informacion_basica_cancion(self) -> dict:
         return {

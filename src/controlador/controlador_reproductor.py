@@ -68,7 +68,7 @@ class ControladorReproductor:
         self.etiqueta_artista.configure(text="")
         self.etiqueta_album.configure(text="")
         self.etiqueta_anio.configure(text="")
-        self.etiqueta_imagen.configure(image=None, text="Sin carátula")
+        self.configurar_caratula_vacia()
 
     # Método que configura la carátula vacía con calidad de audio si es posible
     def configurar_caratula_vacia(self):

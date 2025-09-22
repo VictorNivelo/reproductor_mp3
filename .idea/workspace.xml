@@ -6,6 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="b7a9c3b1-2f39-4ff6-b624-4183a59858ca" name="Cambios" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/estadisticas/canciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/canciones.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/cola.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/cola.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controlador/controlador_reproductor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/controlador_reproductor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/cancion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/cancion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/vista_principal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/vista_principal.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,6 +135,8 @@
       <workItem from="1757976569731" duration="1396000" />
       <workItem from="1758112688567" duration="425000" />
       <workItem from="1758155780807" duration="509000" />
+      <workItem from="1758389848134" duration="611000" />
+      <workItem from="1758508894607" duration="132000" />
     </task>
     <servers />
   </component>

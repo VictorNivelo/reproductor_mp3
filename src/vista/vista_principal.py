@@ -2891,7 +2891,7 @@ imagen_cancion = ctk.CTkLabel(
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_ETIQUETA),
     text_color=controlador_tema.color_texto,
-    text="Sin carátula",
+    text="",
 )
 imagen_cancion.pack(expand=True)
 controlador_tema.registrar_etiqueta(imagen_cancion)

@@ -1,20 +1,34 @@
 {
-    "indice_actual": 7,
+    "indice_actual": 5,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\prueba\\b.mp3",
-        "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
-        "C:\\Users\\Victor\\Music\\prueba\\test_alta_256k.mp3",
-        "C:\\Users\\Victor\\Music\\prueba\\test_estandar_128k.mp3",
-        "C:\\Users\\Victor\\Music\\prueba\\test_hd_320k.mp3",
-        "C:\\Users\\Victor\\Music\\prueba\\test_hifi_44k.flac",
-        "C:\\Users\\Victor\\Music\\prueba\\test_hires_96k.flac",
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3"
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "C:\\Users\\Victor\\Music\\M\\120.mp3",
+        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "C:\\Users\\Victor\\Music\\M\\444..mp3",
+        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
+        "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
+        "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3",
+        "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Déjate Llevar.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Na.mp3",
+        "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Sigues Preguntando.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Who Dat Boy ft A$AP Rocky.mp3",
+        "C:\\Users\\Victor\\Music\\M\\WILSHIRE.mp3",
+        "C:\\Users\\Victor\\Music\\M\\WUSYANAME ft Youngboy Never Broke Again, Ty Dolla $ign.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Yo Quisiera.mp3",
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "titulo": "Self Love",
-        "artista": "Metro Boomin ft Coi Leray",
-        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
-        "timestamp": "2025-09-21T22:37:51.621807"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "titulo": "Adictiva",
+        "artista": "Daddy Yankee ft Anuel AA",
+        "album": "Adictiva",
+        "timestamp": "2025-09-28T20:38:57.364085"
     }
 }

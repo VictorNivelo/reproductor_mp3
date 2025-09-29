@@ -9,10 +9,13 @@
       <change beforePath="$PROJECT_DIR$/datos/estadisticas/canciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/canciones.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/estadisticas/reproduccion.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/listas/cola.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/cola.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/favorito/favorito.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" beforeDir="false" afterPath="$PROJECT_DIR$/datos/listas/me_gusta/me_gusta.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controlador/controlador_reproductor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/controlador_reproductor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelo/cancion.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/cancion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controlador/controlador_biblioteca.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/controlador_biblioteca.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/biblioteca.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/biblioteca.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/enums/estado.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/enums/orden.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/enums/repeticion.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vista/vista_principal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/vista_principal.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +34,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -60,14 +63,14 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.language.and.region&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-ce6832f46686-7b97d883f26b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.25557.178" />
+        <option value="bundled-python-sdk-b3d66beaba9a-c6efb3732140-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26199.168" />
       </set>
     </attachedChunks>
   </component>
@@ -137,6 +140,13 @@
       <workItem from="1758155780807" duration="509000" />
       <workItem from="1758389848134" duration="611000" />
       <workItem from="1758508894607" duration="132000" />
+      <workItem from="1759020314998" duration="747000" />
+      <workItem from="1759021270525" duration="1303000" />
+      <workItem from="1759102529317" duration="101000" />
+      <workItem from="1759102677307" duration="2056000" />
+      <workItem from="1759105422834" duration="82000" />
+      <workItem from="1759105568342" duration="208000" />
+      <workItem from="1759109000289" duration="605000" />
     </task>
     <servers />
   </component>

@@ -1,3 +1,31 @@
 {
-    "favoritos": []
+    "favoritos": [
+        {
+            "duracion": 243.09551020408162,
+            "duracion_formateada": "04:03",
+            "ruta": "C:\\Users\\Victor\\Music\\M\\Déjate Llevar.mp3",
+            "nombre_archivo": "Déjate Llevar",
+            "extension_archivo": ".mp3",
+            "titulo": "Déjate Llevar",
+            "artista": "Alex Rose ft Lyanno",
+            "artista_album": "Alex Rose",
+            "album": "Sexflix",
+            "anio": "2018-03-27",
+            "fecha_lanzamiento": "27/03/2018",
+            "numero_pista": "3",
+            "genero": "Desconocido",
+            "tamanio_archivo": 3983437,
+            "tamanio_formateado": "3.8 MB",
+            "fecha_creacion": "31/05/2025 10:15:42",
+            "fecha_agregado": "28/09/2025 20:37:24",
+            "tiene_caratula": true,
+            "me_gusta": false,
+            "favorito": true,
+            "formato_archivo": "MP3",
+            "tasa_bits": 127990,
+            "tasa_bits_formateada": "127990 kbps",
+            "frecuencia_muestreo": 44100,
+            "frecuencia_muestreo_formateada": "44.1 kHz"
+        }
+    ]
 }

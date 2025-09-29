@@ -1,80 +1,112 @@
 {
     "artistas": {
-        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 4,
-        "Desconocido": 4,
-        "Generador Test": 8,
-        "Metro Boomin": 1,
-        "Coi Leray": 1
+        "Bad Bunny": 2,
+        "Tainy": 2,
+        "Canserbero": 2,
+        "Anuel AA": 2,
+        "Tyler, The Creator": 2,
+        "A$AP Rocky": 1,
+        "Sech": 1,
+        "E.VAX": 1,
+        "Alex Rose": 1,
+        "Lyanno": 1,
+        "Yan Block": 1,
+        "Panda Black": 1,
+        "Daddy Yankee": 1
     },
     "albumes": {
-        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 4,
-        "Desconocido": 4,
-        "Álbum Test": 8,
-        "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)": 1
+        "EL ÚLTIMO TOUR DEL MUNDO": 1,
+        "Callaita": 1,
+        "Na": 2,
+        "¿Qué Nos Pasó?": 1,
+        "Flower Boy": 1,
+        "DATA": 1,
+        "Sexflix": 1,
+        "CALL ME IF YOU GET LOST": 1,
+        "444": 1,
+        "Adictiva": 1
     },
-    "tiempo_total": 1829.8710204081635,
-    "canciones_escuchadas": 17,
+    "tiempo_total": 2961.1363265306127,
+    "canciones_escuchadas": 11,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "titulo": "Self Love",
-        "artista": "Metro Boomin ft Coi Leray",
-        "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)",
-        "timestamp": "2025-09-21T22:37:51.622829"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "titulo": "Adictiva",
+        "artista": "Daddy Yankee ft Anuel AA",
+        "album": "Adictiva",
+        "timestamp": "2025-09-28T20:38:57.365067"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\prueba\\b.mp3": {
-            "contador": 4,
-            "titulo": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
-            "artista": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
-            "album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2"
-        },
-        "C:\\Users\\Victor\\Music\\prueba\\a.mp3": {
-            "contador": 4,
-            "titulo": "a",
-            "artista": "Desconocido",
-            "album": "Desconocido"
-        },
-        "C:\\Users\\Victor\\Music\\prueba\\test_alta_256k.mp3": {
-            "contador": 2,
-            "titulo": "Audio Test Alta",
-            "artista": "Generador Test",
-            "album": "Álbum Test"
-        },
-        "C:\\Users\\Victor\\Music\\prueba\\test_hires_96k.flac": {
-            "contador": 2,
-            "titulo": "Audio Test Hi-Res",
-            "artista": "Generador Test",
-            "album": "Álbum Test"
-        },
-        "C:\\Users\\Victor\\Music\\prueba\\test_hd_320k.mp3": {
-            "contador": 2,
-            "titulo": "Audio Test HD",
-            "artista": "Generador Test",
-            "album": "Álbum Test"
-        },
-        "C:\\Users\\Victor\\Music\\prueba\\test_hifi_44k.flac": {
+        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
             "contador": 1,
-            "titulo": "Audio Test Hi-Fi",
-            "artista": "Generador Test",
-            "album": "Álbum Test"
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
         },
-        "C:\\Users\\Victor\\Music\\prueba\\test_estandar_128k.mp3": {
+        "C:\\Users\\Victor\\Music\\M\\Callaita.mp3": {
             "contador": 1,
-            "titulo": "Audio Test Estándar",
-            "artista": "Generador Test",
-            "album": "Álbum Test"
+            "titulo": "Callaita",
+            "artista": "Bad Bunny ft Tainy",
+            "album": "Callaita"
         },
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3": {
+        "C:\\Users\\Victor\\Music\\M\\Na.mp3": {
+            "contador": 2,
+            "titulo": "Na",
+            "artista": "Canserbero",
+            "album": "Na"
+        },
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
             "contador": 1,
-            "titulo": "Self Love",
-            "artista": "Metro Boomin ft Coi Leray",
-            "album": "METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)"
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "album": "¿Qué Nos Pasó?"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Who Dat Boy ft A$AP Rocky.mp3": {
+            "contador": 1,
+            "titulo": "Who Dat Boy",
+            "artista": "Tyler, The Creator ft A$AP Rocky",
+            "album": "Flower Boy"
+        },
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
+            "contador": 1,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Déjate Llevar.mp3": {
+            "contador": 1,
+            "titulo": "Déjate Llevar",
+            "artista": "Alex Rose ft Lyanno",
+            "album": "Sexflix"
+        },
+        "C:\\Users\\Victor\\Music\\M\\WILSHIRE.mp3": {
+            "contador": 1,
+            "titulo": "WILSHIRE",
+            "artista": "Tyler, The Creator",
+            "album": "CALL ME IF YOU GET LOST"
+        },
+        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
+            "contador": 1,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
+        },
+        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
+            "contador": 1,
+            "titulo": "Adictiva",
+            "artista": "Daddy Yankee ft Anuel AA",
+            "album": "Adictiva"
         }
     },
     "artistas_originales": {
-        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 4,
-        "Desconocido": 4,
-        "Generador Test": 8,
-        "Metro Boomin ft Coi Leray": 1
+        "Bad Bunny": 1,
+        "Bad Bunny ft Tainy": 1,
+        "Canserbero": 2,
+        "Anuel AA": 1,
+        "Tyler, The Creator ft A$AP Rocky": 1,
+        "Tainy ft Sech, E.VAX": 1,
+        "Alex Rose ft Lyanno": 1,
+        "Tyler, The Creator": 1,
+        "Yan Block ft Panda Black": 1,
+        "Daddy Yankee ft Anuel AA": 1
     }
 }

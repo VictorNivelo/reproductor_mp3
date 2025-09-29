@@ -903,7 +903,7 @@ def agregar_cancion_vista():
 def agregar_directorio_vista():
     ruta = filedialog.askdirectory(title="Seleccionar directorio de música", initialdir=RUTA_CARPETA_MUSICA)
     if ruta:
-        controlador_biblioteca.agregar_directorio_controlador(Path(ruta))
+        controlador_biblioteca.agregar_carpeta_canciones_controlador(Path(ruta))
         # Limpiar el diccionario de botones para evitar referencias obsoletas
         botones_canciones.clear()
         botones_opciones_canciones.clear()
@@ -1013,7 +1013,7 @@ def limpiar_cancion_colecciones(cancion):
             controlador_reproductor.indice_actual = -1
         controlador_archivos.guardar_cola_reproduccion_json_controlador(controlador_reproductor)
     # Limpiar estados de me_gusta y favorito
-    controlador_biblioteca.eliminar_cancion_biblioteca_controlador(cancion)
+    controlador_biblioteca.eliminar_cancion_controlador(cancion)
 
 
 # Función para actualizar interfaz después de eliminar canción
@@ -1182,7 +1182,7 @@ def ir_al_artista(cancion):
     # Buscar el artista principal
     artista_encontrado = None
     # Primero buscar coincidencia exacta (sin importar mayúsculas/minúsculas)
-    todos_artistas = controlador_biblioteca.obtener_todos_artistas_controlador()
+    todos_artistas = controlador_biblioteca.obtener_artistas_controlador()
     for artista_key in todos_artistas:
         if artista_principal.lower() == artista_key.lower():
             artista_encontrado = artista_key
@@ -1225,7 +1225,7 @@ def ir_al_artista_album(album):
             # Buscar el artista
             artista_encontrado = None
             # Primero buscar coincidencia exacta (sin importar mayúsculas/minúsculas)
-            todos_artistas = controlador_biblioteca.obtener_todos_artistas_controlador()
+            todos_artistas = controlador_biblioteca.obtener_artistas_controlador()
             for artista_key in todos_artistas:
                 if artista_key.lower() == artista_principal.lower():
                     artista_encontrado = artista_key
@@ -2224,7 +2224,7 @@ def actualizar_vista_canciones(panel):
 def actualizar_vista_albumes():
     panel_botones_albumes = configurar_interfaz_albumes()[1]
     # Obtener todos los álbumes
-    albumes = controlador_biblioteca.obtener_todos_albumes_controlador()
+    albumes = controlador_biblioteca.obtener_albumes_controlador()
     crear_boton_album(albumes, panel_botones_albumes)
     # Obtener el canvas asociado a esta pestaña
     pestania_albumes = paginas_canciones.tab("Álbumes")
@@ -2239,7 +2239,7 @@ def actualizar_vista_albumes():
 def actualizar_vista_artistas():
     panel_botones_artistas = configurar_interfaz_artistas()[1]
     # Obtener todos los artistas
-    artistas = controlador_biblioteca.obtener_todos_artistas_controlador()
+    artistas = controlador_biblioteca.obtener_artistas_controlador()
     # Usar la función auxiliar para crear botones
     crear_boton_artista(artistas, panel_botones_artistas)
     # Obtener el canvas asociado a esta pestaña
@@ -2369,7 +2369,7 @@ def mostrar_artistas_filtrados(texto_busqueda):
     # Filtrar artistas
     artistas_filtrados = [
         artista
-        for artista in controlador_biblioteca.obtener_todos_artistas_controlador()
+        for artista in controlador_biblioteca.obtener_artistas_controlador()
         if texto_busqueda.lower() in artista.lower()
     ]
     # Usar la función auxiliar para crear botones
@@ -2384,7 +2384,7 @@ def mostrar_albumes_filtrados(texto_busqueda):
     # Filtrar álbumes
     albumes_filtrados = [
         album
-        for album in controlador_biblioteca.obtener_todos_albumes_controlador()
+        for album in controlador_biblioteca.obtener_albumes_controlador()
         if texto_busqueda.lower() in album.lower()
     ]
     crear_boton_album(albumes_filtrados, panel_botones_albumes)
@@ -2499,7 +2499,9 @@ def actualizar_espectro(*args):
             altura_promedio = (alturas_barras[i - 1] + alturas_barras[i] + alturas_barras[i + 1]) / 3
             # Aplicar suavizado espacial más agresivo
             factor_espacial = 0.25 if pasada == 0 else (0.15 if pasada == 1 else 0.10)
-            alturas_barras[i] = int(alturas_barras[i] * (1 - factor_espacial) + altura_promedio * factor_espacial)
+            alturas_barras[i] = int(
+                alturas_barras[i] * (1 - factor_espacial) + altura_promedio * factor_espacial
+            )
     # Suavizado adicional para las barras de los extremos
     if numero_barras > 2:
         # Suavizar primera barra

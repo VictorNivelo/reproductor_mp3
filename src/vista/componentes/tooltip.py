@@ -1,5 +1,6 @@
-import customtkinter as ctk
 from constantes import *
+
+import customtkinter as ctk
 
 
 class ToolTip:

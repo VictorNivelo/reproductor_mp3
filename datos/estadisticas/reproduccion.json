@@ -1,112 +1,40 @@
 {
     "artistas": {
-        "Bad Bunny": 2,
-        "Tainy": 2,
-        "Canserbero": 2,
-        "Anuel AA": 2,
-        "Tyler, The Creator": 2,
-        "A$AP Rocky": 1,
-        "Sech": 1,
-        "E.VAX": 1,
-        "Alex Rose": 1,
-        "Lyanno": 1,
         "Yan Block": 1,
         "Panda Black": 1,
-        "Daddy Yankee": 1
+        "Tainy": 1,
+        "Anuel AA": 1,
+        "Ozuna": 1
     },
     "albumes": {
-        "EL ÚLTIMO TOUR DEL MUNDO": 1,
-        "Callaita": 1,
-        "Na": 2,
-        "¿Qué Nos Pasó?": 1,
-        "Flower Boy": 1,
-        "DATA": 1,
-        "Sexflix": 1,
-        "CALL ME IF YOU GET LOST": 1,
         "444": 1,
-        "Adictiva": 1
+        "Adicto (ft Anuel AA & Ozuna)": 1
     },
-    "tiempo_total": 2961.1363265306127,
-    "canciones_escuchadas": 11,
+    "tiempo_total": 446.0930612244898,
+    "canciones_escuchadas": 2,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "titulo": "Adictiva",
-        "artista": "Daddy Yankee ft Anuel AA",
-        "album": "Adictiva",
-        "timestamp": "2025-09-28T20:38:57.365067"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
+        "titulo": "Adicto",
+        "artista": "Tainy ft Anuel AA, Ozuna",
+        "album": "Adicto (ft Anuel AA & Ozuna)",
+        "timestamp": "2025-09-30T21:58:08.331123"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 1,
-            "titulo": "120",
-            "artista": "Bad Bunny",
-            "album": "EL ÚLTIMO TOUR DEL MUNDO"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Callaita.mp3": {
-            "contador": 1,
-            "titulo": "Callaita",
-            "artista": "Bad Bunny ft Tainy",
-            "album": "Callaita"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Na.mp3": {
-            "contador": 2,
-            "titulo": "Na",
-            "artista": "Canserbero",
-            "album": "Na"
-        },
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
-            "contador": 1,
-            "titulo": "¿Qué Nos Pasó?",
-            "artista": "Anuel AA",
-            "album": "¿Qué Nos Pasó?"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Who Dat Boy ft A$AP Rocky.mp3": {
-            "contador": 1,
-            "titulo": "Who Dat Boy",
-            "artista": "Tyler, The Creator ft A$AP Rocky",
-            "album": "Flower Boy"
-        },
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
-            "contador": 1,
-            "titulo": "11 Y ONCE",
-            "artista": "Tainy ft Sech, E.VAX",
-            "album": "DATA"
-        },
-        "C:\\Users\\Victor\\Music\\M\\Déjate Llevar.mp3": {
-            "contador": 1,
-            "titulo": "Déjate Llevar",
-            "artista": "Alex Rose ft Lyanno",
-            "album": "Sexflix"
-        },
-        "C:\\Users\\Victor\\Music\\M\\WILSHIRE.mp3": {
-            "contador": 1,
-            "titulo": "WILSHIRE",
-            "artista": "Tyler, The Creator",
-            "album": "CALL ME IF YOU GET LOST"
-        },
         "C:\\Users\\Victor\\Music\\M\\444..mp3": {
             "contador": 1,
             "titulo": "444",
             "artista": "Yan Block ft Panda Black",
             "album": "444"
         },
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3": {
+        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3": {
             "contador": 1,
-            "titulo": "Adictiva",
-            "artista": "Daddy Yankee ft Anuel AA",
-            "album": "Adictiva"
+            "titulo": "Adicto",
+            "artista": "Tainy ft Anuel AA, Ozuna",
+            "album": "Adicto (ft Anuel AA & Ozuna)"
         }
     },
     "artistas_originales": {
-        "Bad Bunny": 1,
-        "Bad Bunny ft Tainy": 1,
-        "Canserbero": 2,
-        "Anuel AA": 1,
-        "Tyler, The Creator ft A$AP Rocky": 1,
-        "Tainy ft Sech, E.VAX": 1,
-        "Alex Rose ft Lyanno": 1,
-        "Tyler, The Creator": 1,
         "Yan Block ft Panda Black": 1,
-        "Daddy Yankee ft Anuel AA": 1
+        "Tainy ft Anuel AA, Ozuna": 1
     }
 }

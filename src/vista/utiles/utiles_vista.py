@@ -1,7 +1,8 @@
 from vista.componentes.tooltip import ToolTip
-import customtkinter as ctk
 from constantes import *
 from PIL import Image
+
+import customtkinter as ctk
 import tkinter as tk
 
 # Diccionario para guardar los tooltips de los componentes

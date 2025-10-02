@@ -2,6 +2,7 @@ from modelo.cancion import Cancion
 from datetime import datetime
 from pathlib import Path
 from constantes import *
+
 import json
 import os
 
@@ -87,7 +88,7 @@ class ControladorArchivos:
     def guardar_cancion_json_controlador(self, biblioteca):
         datos = {
             "estadisticas": biblioteca.obtener_estadisticas_biblioteca(),
-            "canciones": [cancion.obtener_informacion_completa_cancion() for cancion in biblioteca.canciones],
+            "canciones": [cancion.obtener_informacion_minima_cancion() for cancion in biblioteca.canciones],
         }
         contenido = json.dumps(datos, ensure_ascii=False, indent=4)
         with open(self.ruta_canciones, "w", encoding="utf-8") as archivo:
@@ -130,14 +131,18 @@ class ControladorArchivos:
 
     # Guardar la lista de me gusta en un archivo JSON
     def guardar_me_gusta_json_controlador(self, biblioteca):
-        datos = {"me_gusta": [cancion.obtener_informacion_completa_cancion() for cancion in biblioteca.me_gusta]}
+        datos = {
+            "me_gusta": [cancion.obtener_informacion_minima_cancion() for cancion in biblioteca.me_gusta]
+        }
         contenido = json.dumps(datos, ensure_ascii=False, indent=4)
         with open(self.ruta_me_gusta, "w", encoding="utf-8") as archivo:
             archivo.write(contenido)
 
     # Guardar la lista de favoritos en un archivo JSON
     def guardar_favorito_json_controlador(self, biblioteca):
-        datos = {"favoritos": [cancion.obtener_informacion_completa_cancion() for cancion in biblioteca.favorito]}
+        datos = {
+            "favoritos": [cancion.obtener_informacion_minima_cancion() for cancion in biblioteca.favorito]
+        }
         contenido = json.dumps(datos, ensure_ascii=False, indent=4)
         with open(self.ruta_favoritos, "w", encoding="utf-8") as archivo:
             archivo.write(contenido)
@@ -191,7 +196,7 @@ class ControladorArchivos:
             except Exception as e:
                 print(f"Error al cargar canción: {str(e)}")
         # Ordenar todas las colecciones después de cargar
-        biblioteca.organizar_canciones_biblioteca()
+        biblioteca.ordenar_canciones_automaticamente()
         return canciones_cargadas
 
     # Cargar la cola de reproducción desde un archivo JSON

@@ -2,8 +2,9 @@ from vista.componentes.utiles.utiles_componentes import *
 from vista.utiles.utiles_atajos import GestorAtajos
 from vista.utiles.utiles_vista import *
 from utiles import UtilesGeneral
-import customtkinter as ctk
 from constantes import *
+
+import customtkinter as ctk
 
 
 class Atajos(UtilesGeneral):

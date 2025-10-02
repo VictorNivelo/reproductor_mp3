@@ -14,9 +14,11 @@ from vista.utiles.utiles_vista import *
 from animacion import AnimacionGeneral
 from utiles import UtilesGeneral
 from tkinter import filedialog
-import customtkinter as ctk
 from pathlib import Path
 from constantes import *
+
+
+import customtkinter as ctk
 import tkinter as tk
 import random
 import math

@@ -4,6 +4,7 @@ from modelo.cancion import Cancion
 from utiles import UtilesGeneral
 from caratula import CaratulaGeneral
 from constantes import *
+
 import pygame
 import random
 import time

@@ -1,5 +1,6 @@
 from vista.utiles.utiles_vista import cargar_icono_con_tamanio, cargar_icono
 from utiles import UtilesGeneral
+
 import customtkinter as ctk
 
 

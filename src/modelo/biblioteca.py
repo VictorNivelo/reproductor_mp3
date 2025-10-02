@@ -587,27 +587,6 @@ class Biblioteca:
 
     # ==========================================================================================
     # revisar
-    # Método para obtener el artista principal de un álbum
-    def obtener_artista_album_biblioteca(self, nombre_album: str) -> str:
-        if nombre_album not in self.por_album:
-            raise ValueError("El álbum no existe en la biblioteca")
-        canciones_album = self.por_album[nombre_album]
-        # Contar la frecuencia de cada artista en el álbum
-        conteo_artistas = {}
-        for cancion in canciones_album:
-            # Separar múltiples artistas para contar cada uno usando el método de Cancion
-            artistas = Cancion.separar_artistas_cancion(cancion.artista_cancion)
-            for artista in artistas:
-                if artista in conteo_artistas:
-                    conteo_artistas[artista] += 1
-                else:
-                    conteo_artistas[artista] = 1
-        # Si no hay artistas (caso extraño), devolver el artista de la primera canción
-        if not conteo_artistas:
-            return canciones_album[0].artista_cancion
-        # Encontrar el artista con más canciones en el álbum
-        artista_principal = max(conteo_artistas, key=conteo_artistas.get)
-        return artista_principal
 
     # Método para obtener estadísticas de la biblioteca
     def obtener_estadisticas_biblioteca(self) -> Dict[str, int]:
@@ -626,22 +605,6 @@ class Biblioteca:
         self.albums.clear()
         self.me_gusta.clear()
         self.favorito.clear()
-
-    # Método para ordenar las colecciones de canciones
-    def organizar_canciones_biblioteca(self):
-        # Ordenar la lista principal de canciones
-        self.canciones.sort(key=lambda x: x.titulo_cancion.lower())
-        # Ordenar las listas por artistas
-        for artista in self.artistas:
-            self.artistas[artista].sort(key=lambda x: x.titulo_cancion.lower())
-        # Ordenar las listas por álbumes
-        for album in self.albums:
-            self.albums[album].sort(key=lambda x: x.titulo_cancion.lower())
-        # Ordenar listas especiales
-        if hasattr(self, "me_gusta") and self.me_gusta:
-            self.me_gusta.sort(key=lambda x: x.titulo_cancion.lower())
-        if hasattr(self, "favorito") and self.favorito:
-            self.favorito.sort(key=lambda x: x.titulo_cancion.lower())
 
     # Método para obtener la carátula de una canción
     def obtener_caratula_album_biblioteca(self, nombre_album, formato="bytes", ancho=None, alto=None):

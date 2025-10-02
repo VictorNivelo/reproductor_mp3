@@ -1,3 +1,8 @@
+import customtkinter as ctk
+import tkinter as tk
+import random
+import math
+
 from controlador.controlador_reproductor import ControladorReproductor
 from controlador.controlador_biblioteca import ControladorBiblioteca
 from vista.componentes.cola_reproduccion import ColaReproduccion
@@ -18,10 +23,7 @@ from pathlib import Path
 from constantes import *
 
 
-import customtkinter as ctk
-import tkinter as tk
-import random
-import math
+
 
 # FUNCIONES DE LOS BOTONES
 

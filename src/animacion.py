@@ -2,6 +2,7 @@ import tkinter.font as letra
 
 
 class AnimacionGeneral:
+
     def __init__(self):
         # Animaciones
         self.desplazamiento_activo = {}

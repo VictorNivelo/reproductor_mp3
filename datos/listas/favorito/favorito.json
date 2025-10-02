@@ -1,3 +1,10 @@
 {
-    "favoritos": []
+    "favoritos": [
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "album": "¿Qué Nos Pasó?"
+        }
+    ]
 }

@@ -1,3 +1,7 @@
+import pygame
+import random
+import time
+
 from controlador.controlador_archivos import ControladorArchivos
 from animacion import AnimacionGeneral
 from modelo.cancion import Cancion
@@ -5,12 +9,9 @@ from utiles import UtilesGeneral
 from caratula import CaratulaGeneral
 from constantes import *
 
-import pygame
-import random
-import time
-
 
 class ControladorReproductor:
+
     def __init__(self):
         self.cancion_actual = None
         self.reproduciendo = False

@@ -1,10 +1,10 @@
+import mutagen
+
 from mutagen.flac import FLAC
 from mutagen.id3 import ID3
 from mutagen.mp3 import MP3
 from mutagen.mp4 import MP4
 from pathlib import Path
-
-import mutagen
 
 
 class Metadatos:

@@ -1,10 +1,11 @@
+import customtkinter as ctk
+
 from vista.utiles.utiles_vista import cargar_icono_con_tamanio, cargar_icono
 from utiles import UtilesGeneral
 
-import customtkinter as ctk
-
 
 class ControladorTema(UtilesGeneral):
+
     def __init__(self):
         super().__init__()
         # Iconos de la interfaz

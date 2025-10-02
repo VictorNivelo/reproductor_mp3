@@ -1,13 +1,14 @@
+import customtkinter as ctk
+
 from vista.componentes.utiles.utiles_componentes import *
 from vista.utiles.utiles_atajos import GestorAtajos
 from vista.utiles.utiles_vista import *
 from utiles import UtilesGeneral
 from constantes import *
 
-import customtkinter as ctk
-
 
 class Atajos(UtilesGeneral):
+
     def __init__(self, ventana_principal, controlador_tema):
         super().__init__(controlador_externo=controlador_tema)
         self.ventana_atajos = None

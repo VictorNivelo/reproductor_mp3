@@ -1,34 +1,20 @@
 {
-    "indice_actual": 6,
+    "indice_actual": 7,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
-        "C:\\Users\\Victor\\Music\\M\\120.mp3",
-        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
-        "C:\\Users\\Victor\\Music\\M\\444..mp3",
-        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
-        "C:\\Users\\Victor\\Music\\M\\Animal..mp3",
-        "C:\\Users\\Victor\\Music\\M\\BUENOS AIRES.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Callaita.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Cloniao.mp3",
-        "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Déjate Llevar.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Na.mp3",
-        "C:\\Users\\Victor\\Music\\M\\PARANORMAL.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Self Love.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Sigues Preguntando.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Who Dat Boy ft A$AP Rocky.mp3",
-        "C:\\Users\\Victor\\Music\\M\\WILSHIRE.mp3",
-        "C:\\Users\\Victor\\Music\\M\\WUSYANAME ft Youngboy Never Broke Again, Ty Dolla $ign.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Yo Quisiera.mp3",
+        "C:\\Users\\Victor\\Music\\prueba\\b.mp3",
+        "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
+        "C:\\Users\\Victor\\Music\\prueba\\test_alta_256k.mp3",
+        "C:\\Users\\Victor\\Music\\prueba\\test_estandar_128k.mp3",
+        "C:\\Users\\Victor\\Music\\prueba\\test_hd_320k.mp3",
+        "C:\\Users\\Victor\\Music\\prueba\\test_hifi_44k.flac",
+        "C:\\Users\\Victor\\Music\\prueba\\test_hires_96k.flac",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
-        "titulo": "Adicto",
-        "artista": "Tainy ft Anuel AA, Ozuna",
-        "album": "Adicto (ft Anuel AA & Ozuna)",
-        "timestamp": "2025-09-30T21:58:08.330193"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
+        "titulo": "¿Qué Nos Pasó?",
+        "artista": "Anuel AA",
+        "album": "¿Qué Nos Pasó?",
+        "timestamp": "2025-10-01T21:18:48.101079"
     }
 }

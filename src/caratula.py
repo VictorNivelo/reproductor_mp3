@@ -1,8 +1,9 @@
+import io
+
+
 from PIL import Image, ImageDraw, ImageTk, ImageFont
 from customtkinter import CTkImage
 from constantes import *
-
-import io
 
 
 class CaratulaGeneral:

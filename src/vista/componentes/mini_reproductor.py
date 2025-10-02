@@ -1,12 +1,13 @@
+import customtkinter as ctk
+import tkinter as tk
+
 from vista.utiles.utiles_vista import *
 from utiles import UtilesGeneral
 from constantes import *
 
-import customtkinter as ctk
-import tkinter as tk
-
 
 class MiniReproductor(UtilesGeneral):
+
     def __init__(self, ventana_principal, controlador_tema, controlador_reproductor):
         super().__init__(controlador_externo=controlador_tema)
         self.ventana_principal_mini_reproductor = None

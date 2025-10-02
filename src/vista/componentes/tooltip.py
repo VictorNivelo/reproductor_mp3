@@ -1,9 +1,10 @@
-from constantes import *
-
 import customtkinter as ctk
+
+from constantes import *
 
 
 class ToolTip:
+
     # Variable para almacenar el tooltip activo
     tooltip_activo = None
 

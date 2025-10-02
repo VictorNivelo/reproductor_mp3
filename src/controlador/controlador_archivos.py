@@ -1,13 +1,14 @@
+import json
+import os
+
 from modelo.cancion import Cancion
 from datetime import datetime
 from pathlib import Path
 from constantes import *
 
-import json
-import os
-
 
 class ControladorArchivos:
+
     def __init__(self):
         # Directorios base
         self.ruta_carpeta_datos = RUTA_CARPETA_DATOS
@@ -188,7 +189,7 @@ class ControladorArchivos:
             try:
                 ruta_cancion = Path(cancion_dict.get("ruta"))
                 if ruta_cancion.exists():
-                    cancion = biblioteca.agregar_cancion_biblioteca(ruta_cancion)
+                    cancion = biblioteca.cargar_cancion_guardada_biblioteca(ruta_cancion)
                     if cancion:
                         canciones_cargadas += 1
                 else:

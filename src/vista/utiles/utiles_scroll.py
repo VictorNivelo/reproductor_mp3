@@ -1,4 +1,5 @@
 class GestorScroll:
+
     def __init__(self, canvas, panel, ventana_canvas):
         # Identificador único para este gestor de scroll
         self.scroll_id = f"scroll_{id(self)}"

@@ -1,3 +1,6 @@
+import customtkinter as ctk
+import tkinter as tk
+
 from controlador.controlador_archivos import ControladorArchivos
 from vista.componentes.utiles.utiles_componentes import *
 from vista.utiles.utiles_scroll import GestorScroll
@@ -6,11 +9,9 @@ from animacion import AnimacionGeneral
 from utiles import UtilesGeneral
 from constantes import *
 
-import customtkinter as ctk
-import tkinter as tk
-
 
 class ColaReproduccion(UtilesGeneral):
+
     def __init__(
         self, ventana_principal, controlador_tema, controlador_reproductor, llamado_actualizacion=None
     ):

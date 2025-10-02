@@ -1,13 +1,14 @@
+import mutagen
+
 from modelo.metadatos import Metadatos
 from caratula import CaratulaGeneral
 from datetime import datetime
 from pathlib import Path
 from constantes import *
 
-import mutagen
-
 
 class Cancion:
+
     def __init__(
         self,
         ruta: Path,

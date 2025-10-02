@@ -5,6 +5,7 @@ from constantes import *
 
 
 class Biblioteca:
+
     def __init__(self):
         self.canciones = []
         self.listas_reproduccion = []
@@ -107,6 +108,27 @@ class Biblioteca:
             return nueva_cancion
         except Exception as e:
             print(f"Error al agregar canción: {str(e)}")
+            return None
+
+    # Método para cargar una canción guardada
+    def cargar_cancion_guardada_biblioteca(self, ruta: Path) -> Cancion | None:
+        try:
+            # Verificar si el archivo existe
+            if not ruta.exists():
+                print(f"No se encontró el archivo: {ruta}")
+                return None
+            # Verificar si el formato es soportado
+            if ruta.suffix.lower() not in FORMATOS_SOPORTADOS:
+                print(f"Formato no soportado: {ruta.suffix}")
+                return None
+            # Cargar la canción directamente sin validaciones de duplicados
+            cancion_cargada = Cancion.cargar_cancion(ruta)
+            # Agregar la canción a la lista sin verificar duplicados
+            self.canciones.append(cancion_cargada)
+            print(f"Canción guardada: {cancion_cargada.titulo_cancion} de {cancion_cargada.artista_cancion}")
+            return cancion_cargada
+        except Exception as e:
+            print(f"Error al cargar canción guardada: {str(e)}")
             return None
 
     # Método para agregar todas las canciones de una carpeta a la biblioteca

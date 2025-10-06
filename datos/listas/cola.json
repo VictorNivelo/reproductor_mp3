@@ -1,20 +1,13 @@
 {
-    "indice_actual": 7,
+    "indice_actual": 0,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\prueba\\b.mp3",
-        "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
-        "C:\\Users\\Victor\\Music\\prueba\\test_alta_256k.mp3",
-        "C:\\Users\\Victor\\Music\\prueba\\test_estandar_128k.mp3",
-        "C:\\Users\\Victor\\Music\\prueba\\test_hd_320k.mp3",
-        "C:\\Users\\Victor\\Music\\prueba\\test_hifi_44k.flac",
-        "C:\\Users\\Victor\\Music\\prueba\\test_hires_96k.flac",
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
+        "C:\\Users\\Victor\\Music\\prueba\\a.mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
-        "titulo": "¿Qué Nos Pasó?",
-        "artista": "Anuel AA",
-        "album": "¿Qué Nos Pasó?",
-        "timestamp": "2025-10-01T21:18:48.101079"
+        "ruta": "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
+        "titulo": "a",
+        "artista": "Artista desconocido",
+        "album": "Album desconocido",
+        "timestamp": "2025-10-04T21:58:31.774875"
     }
 }

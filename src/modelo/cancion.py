@@ -13,13 +13,13 @@ class Cancion:
         self,
         ruta: Path,
         titulo: str,
-        artista: str = "Desconocido",
-        artista_album: str = "Desconocido",
-        album: str = "Desconocido",
+        artista: str = "Artista desconocido",
+        artista_album: str = "Artista desconocido",
+        album: str = "Album desconocido",
         duracion: float = 0.0,
-        anio: str = "Desconocido",
+        anio: str = "Año desconocido",
         numero_pista: str = "0",
-        genero: str = "Desconocido",
+        genero: str = "Género desconocido",
         caratula: bytes = None,
     ):
         self.ruta_cancion = ruta
@@ -66,7 +66,7 @@ class Cancion:
             return str(self.ruta_cancion)
         except Exception as e:
             print(f"Error al obtener ruta: {e}")
-            return "Desconocido"
+            return "Ruta desconocida"
 
     # Propiedad que devuelve el nombre de la canción sin extensión
     @property
@@ -75,7 +75,7 @@ class Cancion:
             return self.ruta_cancion.stem
         except Exception as e:
             print(f"Error al obtener nombre del archivo: {e}")
-            return "Desconocido"
+            return "Nombre desconocido"
 
     # Propiedad que devuelve solo la extensión del archivo
     @property
@@ -84,7 +84,7 @@ class Cancion:
             return self.ruta_cancion.suffix.lower()
         except Exception as e:
             print(f"Error al obtener extensión del archivo: {e}")
-            return ""
+            return "Extensión desconocida"
 
     # Propiedad que devuelve el formato/códec del archivo
     @property
@@ -111,34 +111,36 @@ class Cancion:
                 else:
                     # Si mutagen no puede identificar, usar extensión
                     extension = self.ruta_cancion.suffix.upper().lstrip(".")
-                    return extension if extension else "Desconocido"
-            return "Desconocido"
+                    return extension if extension else "Extensión desconocida"
+            return "Extensión desconocida"
         except Exception as e:
             print(f"Error al obtener formato: {e}")
             # Fallback a extensión del archivo
             try:
                 extension = self.ruta_cancion.suffix.upper().lstrip(".")
-                return extension if extension else "Desconocido"
+                return extension if extension else "Extensión desconocida"
             except Exception as e:
                 print(f"Error al obtener extensión en fallback: {e}")
-                return "Desconocido"
+                return "Extensión desconocida"
 
     # Propiedad que devuelve el tamaño del archivo en bytes
     @property
-    def obtener_tamanio(self) -> int:
+    def obtener_tamanio(self) -> int | str:
         try:
             if self.ruta_cancion.exists():
                 return self.ruta_cancion.stat().st_size
             return 0
         except Exception as e:
             print(f"Error al obtener tamaño: {e}")
-            return 0
+            return "Tamaño desconocido"
 
     # Propiedad que devuelve el tamaño formateado (KB, MB, GB)
     @property
     def obtener_tamanio_formateado(self) -> str:
         try:
             tamanio = self.obtener_tamanio
+            if isinstance(tamanio, str):
+                return tamanio
             if tamanio == 0:
                 return "0 B"
             unidades = ["B", "KB", "MB", "GB"]
@@ -149,18 +151,22 @@ class Cancion:
             return f"{tamanio:.1f} {unidades[i]}"
         except Exception as e:
             print(f"Error al formatear tamaño: {e}")
-            return "Desconocido"
+            return "Tamaño formateado desconocido"
 
     # Propiedad que devuelve la duración de la canción en formato MM:SS
     @property
     def obtener_duracion_formateada(self) -> str:
-        minutos = int(self.duracion_cancion // 60)
-        segundos = int(self.duracion_cancion % 60)
-        return f"{minutos:02d}:{segundos:02d}"
+        try:
+            minutos = int(self.duracion_cancion // 60)
+            segundos = int(self.duracion_cancion % 60)
+            return f"{minutos:02d}:{segundos:02d}"
+        except Exception as e:
+            print(f"Error al formatear duración: {e}")
+            return "Duración desconocida"
 
     # Propiedad que devuelve la tasa de bits en kbps
     @property
-    def obtener_tasa_bits(self) -> int:
+    def obtener_tasa_bits(self) -> int | str:
         try:
             if self.ruta_cancion.exists():
                 audio = mutagen.File(self.ruta_cancion)
@@ -169,23 +175,25 @@ class Cancion:
             return 0
         except Exception as e:
             print(f"Error al obtener tasa de bits: {e}")
-            return 0
+            return "Tasa de bits desconocida"
 
     # Propiedad que devuelve la tasa de bits formateada
     @property
     def obtener_tasa_bits_formateada(self) -> str:
         try:
             bitrate = self.obtener_tasa_bits
+            if isinstance(bitrate, str):
+                return bitrate
             if bitrate == 0:
-                return "Desconocido"
+                return "Tasa de bits desconocida"
             return f"{bitrate} kbps"
         except Exception as e:
             print(f"Error al formatear tasa de bits: {e}")
-            return "Desconocido"
+            return "Tasa de bits formateada desconocida"
 
     # Propiedad que devuelve la frecuencia de muestreo en Hz
     @property
-    def obtener_frecuencia_muestreo(self) -> int:
+    def obtener_frecuencia_muestreo(self) -> int | str:
         try:
             if self.ruta_cancion.exists():
                 audio = mutagen.File(self.ruta_cancion)
@@ -194,15 +202,17 @@ class Cancion:
             return 0
         except Exception as e:
             print(f"Error al obtener frecuencia de muestreo: {e}")
-            return 0
+            return "Frecuencia de muestreo desconocida"
 
     # Propiedad que devuelve la frecuencia de muestreo formateada
     @property
     def obtener_frecuencia_muestreo_formateada(self) -> str:
         try:
             sample_rate = self.obtener_frecuencia_muestreo
+            if isinstance(sample_rate, str):
+                return sample_rate
             if sample_rate == 0:
-                return "Desconocido"
+                return "Frecuencia de muestreo desconocida"
             # Convertir a kHz si es mayor a 1000 Hz
             if sample_rate >= 1000:
                 return f"{sample_rate / 1000:.1f} kHz"
@@ -210,14 +220,14 @@ class Cancion:
                 return f"{sample_rate} Hz"
         except Exception as e:
             print(f"Error al formatear frecuencia de muestreo: {e}")
-            return "Desconocido"
+            return "Frecuencia de muestreo formateada desconocida"
 
     # Propiedad que devuelve la fecha de la canción en formato DD/MM/YYYY
     @property
     def obtener_lanzamiento_formateada(self) -> str:
         try:
-            if self.anio_lanzamiento_cancion == "Desconocido":
-                return "Desconocido"
+            if self.anio_lanzamiento_cancion == "Fecha de lanzamiento desconocida":
+                return "Fecha de lanzamiento desconocida"
             formatos = ["%Y", "%Y-%m-%d", "%d/%m/%Y", "%Y/%m/%d"]
             for formato in formatos:
                 try:
@@ -228,27 +238,27 @@ class Cancion:
             return self.anio_lanzamiento_cancion
         except Exception as e:
             print(f"Error al formatear fecha: {e}")
-            return "Desconocido"
+            return "Fecha de lanzamiento desconocida"
 
     # Propiedad que devuelve el año de la canción
     @property
     def obtener_lanzamiento_anio(self) -> str:
         try:
-            if self.anio_lanzamiento_cancion == "Desconocido":
-                return "Desconocido"
+            if self.anio_lanzamiento_cancion == "Año de lanzamiento desconocido":
+                return "Año de lanzamiento desconocido"
             if str(self.anio_lanzamiento_cancion).isdigit() and len(str(self.anio_lanzamiento_cancion)) == 4:
                 return str(self.anio_lanzamiento_cancion)
             partes_fecha = str(self.anio_lanzamiento_cancion).split("-")[0]
             if partes_fecha.isdigit() and len(partes_fecha) == 4:
                 return partes_fecha
-            return "Desconocido"
+            return "Año de lanzamiento desconocido"
         except Exception as e:
             print(f"Error al obtener año: {e}")
-            return "Desconocido"
+            return "Año de lanzamiento desconocido"
 
     # Propiedad que devuelve la fecha de creación de la canción
     @property
-    def obtener_fecha_creacion(self) -> datetime | None:
+    def obtener_fecha_creacion(self) -> datetime | None | str:
         try:
             if self.ruta_cancion.exists():
                 timestamp = self.ruta_cancion.stat().st_ctime
@@ -256,19 +266,21 @@ class Cancion:
             return None
         except Exception as e:
             print(f"Error al obtener fecha de creación: {e}")
-            return None
+            return "Fecha de creación desconocida"
 
     # Propiedad que devuelve la fecha de creación formateada
     @property
     def obtener_fecha_creacion_formateada(self) -> str:
         try:
             fecha = self.obtener_fecha_creacion
+            if isinstance(fecha, str):
+                return fecha
             if fecha:
                 return fecha.strftime("%d/%m/%Y %H:%M:%S")
-            return "Desconocido"
+            return "Fecha de creacion desconocido"
         except Exception as e:
             print(f"Error al formatear fecha de creación: {e}")
-            return "Desconocido"
+            return "Fecha de creacion formateada desconocido"
 
     # Propiedad que devuelve la fecha cuando se agregó a la biblioteca
     @property
@@ -277,7 +289,7 @@ class Cancion:
             return self.fecha_agregado_cancion.strftime("%d/%m/%Y %H:%M:%S")
         except Exception as e:
             print(f"Error al formatear fecha de agregado: {e}")
-            return "Desconocido"
+            return "Fecha de agregado desconocida"
 
     # Método estático para separar artistas
     @staticmethod
@@ -455,6 +467,12 @@ class Cancion:
         }
 
 
+# Importar para pruebas
+# import sys
+# import os
+# sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+
 # # Ejemplo de uso
 # cancion = Cancion.cargar_cancion(Path("C:/Users/Victor/Music/M/DÁKITI.mp3"))
 # print("--------------------------------------------------------------------------------")
@@ -463,24 +481,29 @@ class Cancion:
 # print(f"Nombre del archivo: {cancion.obtener_nombre}")
 # print(f"Extensión del archivo: {cancion.obtener_extension}")
 # print(f"Formato: {cancion.obtener_formato}")
+# print(f"Tamaño del archivo en bytes: {cancion.obtener_tamanio}")
 # print(f"Tamaño del archivo: {cancion.obtener_tamanio_formateado}")
 # print(f"Título: {cancion.titulo_cancion}")
 # print(f"Artista: {cancion.artista_cancion}")
 # print(f"Artista del Álbum: {cancion.artista_album_cancion}")
 # print(f"Álbum: {cancion.album_cancion}")
 # print(f"Género: {cancion.genero_cancion}")
-# print(f"Año de lanzamiento: {cancion.obtener_lanzamiento_anio}")
-# print(f"Fecha de lanzamiento: {cancion.anio_lanzamiento_cancion}")
+# print(f"Fecha de lanzamiento: {cancion.obtener_lanzamiento_anio}")
+# print(f"Año de lanzamiento: {cancion.anio_lanzamiento_cancion}")
 # print(f"Fecha de lanzamiento formateada: {cancion.obtener_lanzamiento_formateada}")
 # print(f"Número de pista: {cancion.numero_pista_cancion}")
 # print(f"Duración en segundos: {cancion.duracion_cancion} segundos")
 # print(f"Duración formateada: {cancion.obtener_duracion_formateada}")
 # print(f"Tiene carátula: {cancion.caratula_cancion is not None}")
 # print(f"Informacion de la carátula: {CaratulaGeneral.obtener_informacion_caratula(cancion.caratula_cancion)}")
-# print(f"Fecha de creación: {cancion.obtener_fecha_creacion_formateada}")
-# print(f"Fecha de agregado: {cancion.obtener_fecha_agregado_formateada}")
+# print(f"Fecha de creación: {cancion.obtener_fecha_creacion}")
+# print(f"Fecha de creación formateada: {cancion.obtener_fecha_creacion_formateada}")
+# print(f"Fecha de agregado: {cancion.fecha_agregado_cancion}")
+# print(f"Fecha de agregado formateada: {cancion.obtener_fecha_agregado_formateada}")
 # print(f"Artistas separados: {cancion.obtener_todos_artistas_separados}")
 # print(f"Artista principal: {cancion.obtener_artista_principal}")
-# print(f"Tasa de bits: {cancion.obtener_tasa_bits_formateada}")
-# print(f"Frecuencia: {cancion.obtener_frecuencia_muestreo_formateada}")
+# print(f"Tasa de bits: {cancion.obtener_tasa_bits}")
+# print(f"Tasa de bits formateado: {cancion.obtener_tasa_bits_formateada}")
+# print(f"Frecuencia: {cancion.obtener_frecuencia_muestreo}")
+# print(f"Frecuencia formateada: {cancion.obtener_frecuencia_muestreo_formateada}")
 # print("--------------------------------------------------------------------------------")

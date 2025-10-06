@@ -1,46 +1,28 @@
 {
     "artistas": {
-        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 1,
-        "Generador Test": 2,
-        "Anuel AA": 1
+        "Artista desconocido": 1
     },
     "albumes": {
-        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 1,
-        "Álbum Test": 2,
-        "¿Qué Nos Pasó?": 1
+        "Album desconocido": 1
     },
-    "tiempo_total": 458.80163265306123,
-    "canciones_escuchadas": 4,
+    "tiempo_total": 197.01551020408164,
+    "canciones_escuchadas": 1,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
-        "titulo": "¿Qué Nos Pasó?",
-        "artista": "Anuel AA",
-        "album": "¿Qué Nos Pasó?",
-        "timestamp": "2025-10-01T21:18:14.884024"
+        "ruta": "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
+        "titulo": "a",
+        "artista": "Artista desconocido",
+        "album": "Album desconocido",
+        "timestamp": "2025-10-04T21:58:31.775852"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\prueba\\b.mp3": {
+        "C:\\Users\\Victor\\Music\\prueba\\a.mp3": {
             "contador": 1,
-            "titulo": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
-            "artista": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
-            "album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2"
-        },
-        "C:\\Users\\Victor\\Music\\prueba\\test_hires_96k.flac": {
-            "contador": 2,
-            "titulo": "Audio Test Hi-Res",
-            "artista": "Generador Test",
-            "album": "Álbum Test"
-        },
-        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
-            "contador": 1,
-            "titulo": "¿Qué Nos Pasó?",
-            "artista": "Anuel AA",
-            "album": "¿Qué Nos Pasó?"
+            "titulo": "a",
+            "artista": "Artista desconocido",
+            "album": "Album desconocido"
         }
     },
     "artistas_originales": {
-        "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2": 1,
-        "Generador Test": 2,
-        "Anuel AA": 1
+        "Artista desconocido": 1
     }
 }

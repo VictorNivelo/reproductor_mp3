@@ -171,17 +171,21 @@ class UtilesGeneral:
     # Método para mostrar la información completa de un componente
     def mostrar_informacion_componente(self, componente, nombre_componente=None):
         def mostrar_info():
-            info = self.obtener_informacion_componente(componente)
+            informacion_componente = self.obtener_informacion_componente(componente)
             # Si el componente aún no tiene dimensiones, intentamos de nuevo
-            if info["ancho"] <= 1 or info["alto"] <= 1:
+            if informacion_componente["ancho"] <= 1 or informacion_componente["alto"] <= 1:
                 componente.after(100, mostrar_info)
             else:
-                print("------------------------------------------")
+                print("---------------------------------------------------------")
                 print("Información del componente:")
                 print(f"Nombre: {nombre_componente}")
-                print(f"Dimensiones: {info['ancho']}x{info['alto']} px")
-                print(f"Posición absoluta: ({info['x_absoluta']}, {info['y_absoluta']})")
-                print(f"Posición relativa al padre: ({info['x_relativa']}, {info['y_relativa']})")
-                print("------------------------------------------")
+                print(f"Dimensiones: {informacion_componente['ancho']}x{informacion_componente['alto']} px")
+                print(
+                    f"Posición absoluta: ({informacion_componente['x_absoluta']}, {informacion_componente['y_absoluta']})"
+                )
+                print(
+                    f"Posición relativa al padre: ({informacion_componente['x_relativa']}, {informacion_componente['y_relativa']})"
+                )
+                print("---------------------------------------------------------")
 
         componente.after(100, mostrar_info)

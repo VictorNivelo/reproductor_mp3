@@ -1,59 +1,17 @@
 {
     "estadisticas": {
-        "total_canciones": 8,
-        "total_artistas": 4,
-        "total_albumes": 4,
-        "me_gusta": 1,
-        "favorito": 1
+        "total_canciones": 1,
+        "total_artistas": 1,
+        "total_albumes": 1,
+        "me_gusta": 0,
+        "favorito": 0
     },
     "canciones": [
         {
-            "ruta": "C:\\Users\\Victor\\Music\\prueba\\b.mp3",
-            "titulo": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
-            "artista": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2",
-            "album": "1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2"
-        },
-        {
             "ruta": "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
             "titulo": "a",
-            "artista": "Desconocido",
-            "album": "Desconocido"
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\prueba\\test_alta_256k.mp3",
-            "titulo": "Audio Test Alta",
-            "artista": "Generador Test",
-            "album": "Álbum Test"
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\prueba\\test_estandar_128k.mp3",
-            "titulo": "Audio Test Estándar",
-            "artista": "Generador Test",
-            "album": "Álbum Test"
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\prueba\\test_hd_320k.mp3",
-            "titulo": "Audio Test HD",
-            "artista": "Generador Test",
-            "album": "Álbum Test"
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\prueba\\test_hifi_44k.flac",
-            "titulo": "Audio Test Hi-Fi",
-            "artista": "Generador Test",
-            "album": "Álbum Test"
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\prueba\\test_hires_96k.flac",
-            "titulo": "Audio Test Hi-Res",
-            "artista": "Generador Test",
-            "album": "Álbum Test"
-        },
-        {
-            "ruta": "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3",
-            "titulo": "¿Qué Nos Pasó?",
-            "artista": "Anuel AA",
-            "album": "¿Qué Nos Pasó?"
+            "artista": "Artista desconocido",
+            "album": "Album desconocido"
         }
     ]
 }

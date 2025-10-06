@@ -21,15 +21,11 @@ class ControladorReproductor:
         # Imagen de carátula vacía
         self.caratula_vacia = CaratulaGeneral.crear_caratula_vacia(ANCHO_CARATULA, ALTO_CARATULA)
         # Etiquetas de la interfaz
-        self.etiqueta_nombre = None
+        self.etiqueta_titulo = None
         self.etiqueta_artista = None
         self.etiqueta_album = None
         self.etiqueta_anio = None
         self.etiqueta_imagen = None
-        # Textos de la interfaz
-        self.texto_titulo = None
-        self.texto_artista = None
-        self.texto_album = None
         # Desplazamiento de textos largos
         self.direccion_desplazamiento = None
         self.posicion_desplazamiento = None
@@ -60,16 +56,16 @@ class ControladorReproductor:
 
     # Método que establece las etiquetas de la interfaz
     def establecer_informacion_controlador(self, nombre, artista, album, anio, imagen):
-        self.etiqueta_nombre = nombre
+        self.etiqueta_titulo = nombre
         self.etiqueta_artista = artista
         self.etiqueta_album = album
         self.etiqueta_anio = anio
         self.etiqueta_imagen = imagen
         # Establecer texto inicial
-        self.etiqueta_nombre.configure(text="")
-        self.etiqueta_artista.configure(text="")
-        self.etiqueta_album.configure(text="")
-        self.etiqueta_anio.configure(text="")
+        self.etiqueta_titulo.configure(text="Título desconocido")
+        self.etiqueta_artista.configure(text="Artista desconocido")
+        self.etiqueta_album.configure(text="Álbum desconocido")
+        self.etiqueta_anio.configure(text="Año desconocido")
         self.configurar_caratula_vacia()
 
     # Método que configura la carátula vacía con calidad de audio si es posible
@@ -119,27 +115,24 @@ class ControladorReproductor:
 
     # Método que actualiza la información de la interfaz
     def actualizar_informacion_controlador(self):
-        if self.cancion_actual and self.etiqueta_nombre:
+        if self.cancion_actual and self.etiqueta_titulo:
             # Guardar información de la canción actual
-            self.texto_titulo = self.cancion_actual.titulo_cancion
-            self.texto_artista = self.cancion_actual.artista_cancion
-            self.texto_album = self.cancion_actual.album_cancion
             # Configurar texto inicial (sin desplazamiento aún)
-            self.etiqueta_nombre.configure(text=self.texto_titulo)
-            self.etiqueta_artista.configure(text=self.texto_artista)
-            self.etiqueta_album.configure(text=self.texto_album)
+            self.etiqueta_titulo.configure(text=self.cancion_actual.titulo_cancion)
+            self.etiqueta_artista.configure(text=self.cancion_actual.artista_cancion)
+            self.etiqueta_album.configure(text=self.cancion_actual.album_cancion)
             self.etiqueta_anio.configure(text=self.cancion_actual.obtener_lanzamiento_anio)
             # Cancelar cualquier tiempo de desplazamiento anterior
             if hasattr(self, "id_marcador_tiempo") and self.id_marcador_tiempo:
-                self.etiqueta_nombre.after_cancel(self.id_marcador_tiempo)
+                self.etiqueta_titulo.after_cancel(self.id_marcador_tiempo)
                 self.id_marcador_tiempo = None
             # Iniciar desplazamiento de textos largos si es necesario
             textos = {
-                "titulo": (self.texto_titulo, self.etiqueta_nombre),
-                "artista": (self.texto_artista, self.etiqueta_artista),
-                "album": (self.texto_album, self.etiqueta_album),
+                "titulo": (self.cancion_actual.titulo_cancion, self.etiqueta_titulo),
+                "artista": (self.cancion_actual.artista_cancion, self.etiqueta_artista),
+                "album": (self.cancion_actual.album_cancion, self.etiqueta_album),
             }
-            self.animacion.configurar_desplazamiento_etiqueta(self.etiqueta_nombre, textos, 850)
+            self.animacion.configurar_desplazamiento_etiqueta(self.etiqueta_titulo, textos, 850)
             # Actualizar carátula usando el método centralizado
             self.actualizar_caratula_controlador()
 

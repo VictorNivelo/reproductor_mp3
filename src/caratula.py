@@ -26,23 +26,29 @@ class CaratulaGeneral:
     # Método que obtiene información básica de la carátula
     @staticmethod
     def obtener_informacion_caratula(caratula_bytes) -> dict:
-        info = {"tiene_caratula": False, "ancho": 0, "alto": 0, "formato": "Desconocido", "tamanio_bytes": 0}
+        informacion_caratula = {
+            "tiene_caratula": False,
+            "ancho": 0,
+            "alto": 0,
+            "formato": "Formato desconocido",
+            "tamanio_bytes": 0,
+        }
         try:
             if CaratulaGeneral.tiene_caratula(caratula_bytes):
                 imagen_bytes = io.BytesIO(caratula_bytes)
                 imagen_pil = Image.open(imagen_bytes)
-                info.update(
+                informacion_caratula.update(
                     {
                         "tiene_caratula": True,
                         "ancho": imagen_pil.width,
                         "alto": imagen_pil.height,
-                        "formato": imagen_pil.format or "Desconocido",
+                        "formato": imagen_pil.format or "Formato desconocido",
                         "tamanio_bytes": len(caratula_bytes),
                     }
                 )
         except Exception as e:
             print(f"Error al obtener información de carátula: {e}")
-        return info
+        return informacion_caratula
 
     # Método que determina la calidad del audio basado en formato y bitrate
     @staticmethod

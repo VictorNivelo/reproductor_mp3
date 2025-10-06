@@ -23,8 +23,6 @@ from pathlib import Path
 from constantes import *
 
 
-
-
 # FUNCIONES DE LOS BOTONES
 
 # ========================= Variables de estado ==========================
@@ -1150,7 +1148,7 @@ def ir_al_album(cancion):
     # Actualizar la vista de álbumes
     actualizar_vista_albumes()
     # Buscar y mostrar las canciones del álbum específico
-    if cancion.album_cancion and cancion.album_cancion not in ["", "Unknown Album", "Desconocido"]:
+    if cancion.album_cancion and cancion.album_cancion not in ["", "Unknown Album", "Album desconocido"]:
         # Verificar si el álbum existe y tiene canciones
         canciones_album = controlador_biblioteca.obtener_canciones_album_controlador(cancion.album_cancion)
         if canciones_album:
@@ -1225,7 +1223,7 @@ def ir_al_artista_album(album):
         actualizar_vista_artistas()
         # Obtener el artista principal del álbum usando el controlador
         artista_principal = controlador_biblioteca.obtener_artista_album_controlador(album)
-        if artista_principal and artista_principal not in ["", "Unknown Artist", "Desconocido"]:
+        if artista_principal and artista_principal not in ["", "Unknown Artist", "Artista desconocido"]:
             # Buscar el artista
             artista_encontrado = None
             # Primero buscar coincidencia exacta (sin importar mayúsculas/minúsculas)
@@ -1553,10 +1551,14 @@ def mostrar_menu_opciones(cancion, panel_padre):
     )
     # -------------------------------------------------------------------------------------------
     # ---------------------------------- Opciones de información --------------------------------
-    if cancion.album_cancion and cancion.album_cancion not in ["", "Unknown Album", "Desconocido"]:
+    if cancion.album_cancion and cancion.album_cancion not in ["", "Unknown Album", "Album esconocido"]:
         crear_opcion_menu(panel_menu_opciones, "Ir al álbum", lambda: ir_al_album(cancion), True, "album")
 
-    if cancion.artista_cancion and cancion.artista_cancion not in ["", "Unknown Artist", "Desconocido"]:
+    if cancion.artista_cancion and cancion.artista_cancion not in [
+        "",
+        "Unknown Artist",
+        "Artista esconocido",
+    ]:
         crear_opcion_menu(
             panel_menu_opciones, "Ir al artista", lambda: ir_al_artista(cancion), False, "artista"
         )
@@ -1565,7 +1567,7 @@ def mostrar_menu_opciones(cancion, panel_padre):
     crear_opcion_menu(
         panel_menu_opciones,
         "Ver información",
-        lambda: print(f"Ver info de: {cancion.titulo_cancion}"),
+        lambda: print(f"Ver informacion de: {cancion.titulo_cancion}"),
         True,
         "informacion",
     )
@@ -1716,7 +1718,7 @@ def mostrar_menu_opciones_album(album, panel_padre):
     crear_opcion_menu(
         panel_menu_opciones,
         "Ver información",
-        lambda: print(f"Ver info del album"),
+        lambda: print(f"Ver informacion del album"),
         True,
         "informacion",
     )
@@ -1863,7 +1865,7 @@ def mostrar_menu_opciones_artista(artista, panel_padre):
     crear_opcion_menu(
         panel_menu_opciones,
         "Ver información",
-        lambda: print(f"Ver info del artista: {artista}"),
+        lambda: print(f"Ver informacion del artista: {artista}"),
         True,
         "informacion",
     )

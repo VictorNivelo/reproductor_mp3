@@ -1,13 +1,17 @@
 {
-    "indice_actual": 0,
+    "indice_actual": 1,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3"
+        "C:\\Users\\Victor\\Music\\M\\prueba\\a.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
+        "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
-        "titulo": "Adicto",
-        "artista": "Tainy ft Anuel AA, Ozuna",
-        "album": "Adicto (ft Anuel AA & Ozuna)",
-        "timestamp": "2025-11-12T19:55:11.792076"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
+        "titulo": "Adictiva",
+        "artista": "Daddy Yankee ft Anuel AA",
+        "album": "Adictiva",
+        "timestamp": "2025-11-17T20:52:28.030960"
     }
 }

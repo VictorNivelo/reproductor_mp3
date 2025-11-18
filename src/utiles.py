@@ -1,24 +1,30 @@
 import tracemalloc
 
 
+from functools import wraps
 from constantes import *
 
 
 # Método decorador para medir el consumo de memoria de una función
 def medir_consumo_memoria(func):
-    def wrapper(*args, **kwargs):
-        tracemalloc.start()
-        resultado = func(*args, **kwargs)
-        actual, pico = tracemalloc.get_traced_memory()
-        print("--------------------------------------------------------------")
-        print("Consumo de memoria:")
-        print(f"{func.__name__} - Memoria actual: {actual / 1024:.2f} KB")
-        print(f"{func.__name__} - Pico de memoria: {pico / 1024:.2f} KB")
-        print("--------------------------------------------------------------")
-        tracemalloc.stop()
-        return resultado
+    @wraps(func)
+    def funcion_medida(*args, **kwargs):
+        try:
+            tracemalloc.start()
+            resultado = func(*args, **kwargs)
+            actual, pico = tracemalloc.get_traced_memory()
+            print("--------------------------------------------------------------")
+            print("Consumo de memoria:")
+            print(f"{func.__name__} - Memoria actual: {actual / 1024:.2f} KB")
+            print(f"{func.__name__} - Pico de memoria: {pico / 1024:.2f} KB")
+            print("--------------------------------------------------------------")
+            tracemalloc.stop()
+            return resultado
+        except Exception as e:
+            print(f"Error al medir consumo de memoria en {func.__name__}: {e}")
+            raise
 
-    return wrapper
+    return funcion_medida
 
 
 class UtilesGeneral:

@@ -1,28 +1,30 @@
 {
     "artistas": {
-        "Artista desconocido": 1
+        "Tainy": 1,
+        "Anuel AA": 1,
+        "Ozuna": 1
     },
     "albumes": {
-        "Album desconocido": 1
+        "Adicto (ft Anuel AA & Ozuna)": 1
     },
-    "tiempo_total": 197.01551020408164,
+    "tiempo_total": 270.78530612244896,
     "canciones_escuchadas": 1,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\prueba\\a.mp3",
-        "titulo": "a",
-        "artista": "Artista desconocido",
-        "album": "Album desconocido",
-        "timestamp": "2025-10-04T21:58:31.775852"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
+        "titulo": "Adicto",
+        "artista": "Tainy ft Anuel AA, Ozuna",
+        "album": "Adicto (ft Anuel AA & Ozuna)",
+        "timestamp": "2025-11-12T12:27:02.002425"
     },
     "canciones": {
-        "C:\\Users\\Victor\\Music\\prueba\\a.mp3": {
+        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3": {
             "contador": 1,
-            "titulo": "a",
-            "artista": "Artista desconocido",
-            "album": "Album desconocido"
+            "titulo": "Adicto",
+            "artista": "Tainy ft Anuel AA, Ozuna",
+            "album": "Adicto (ft Anuel AA & Ozuna)"
         }
     },
     "artistas_originales": {
-        "Artista desconocido": 1
+        "Tainy ft Anuel AA, Ozuna": 1
     }
 }

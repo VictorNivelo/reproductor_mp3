@@ -199,13 +199,3 @@ ATAJOS_POR_DEFECTO = {
 FORMATOS_SOPORTADOS = {".mp3", ".flac", ".m4a", ".mp4", ".wav", ".ogg"}
 
 # ========================================================================
-
-
-# Método para obtener la ruta de los iconos según el tema
-def obtener_ruta_iconos(nombre_icono, tema):
-    # Iconos especiales que son independientes del tema
-    iconos_especiales = ["me_gusta_rojo", "favorito_amarillo"]
-    if nombre_icono in iconos_especiales:
-        return os.path.join(RUTA_ICONOS, f"{nombre_icono}.png")
-    # Iconos normales que dependen del tema
-    return os.path.join(RUTA_ICONOS, tema, f"{nombre_icono}_{tema}.png")

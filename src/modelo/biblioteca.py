@@ -131,7 +131,7 @@ class Biblioteca:
             print(f"Error al cargar canción guardada: {str(e)}")
             return None
 
-    # Método para agregar todas las canciones de una carpeta a la biblioteca
+    # Método para agregar canciones solo de la carpeta actual (sin subcarpetas)
     def agregar_carpeta_canciones_biblioteca(self, ruta: Path) -> List[Cancion]:
         try:
             if not ruta.exists():
@@ -141,17 +141,46 @@ class Biblioteca:
                 print(f"La ruta no es una carpeta: {ruta}")
                 return []
             canciones_agregadas = []
-            for archivo in ruta.rglob("*"):
-                if archivo.suffix.lower() in FORMATOS_SOPORTADOS:
+            # Iterar solo en los archivos de la carpeta actual
+            for archivo in ruta.glob("*"):
+                if archivo.is_file() and archivo.suffix.lower() in FORMATOS_SOPORTADOS:
                     cancion = self.agregar_cancion_biblioteca(archivo)
                     if cancion:
                         canciones_agregadas.append(cancion)
             # Ordenar automáticamente si se agregaron canciones
             if canciones_agregadas:
                 self.ordenar_canciones_automaticamente()
+            print(f"Se agregaron {len(canciones_agregadas)} canciones de la carpeta '{ruta.name}'")
             return canciones_agregadas
         except Exception as e:
             print(f"Error al agregar carpeta de canciones: {str(e)}")
+            return []
+
+    # Método para agregar canciones de la carpeta y todas sus subcarpetas
+    def agregar_carpeta_canciones_recursivo_biblioteca(self, ruta: Path) -> List[Cancion]:
+        try:
+            if not ruta.exists():
+                print(f"No se encontró la carpeta: {ruta}")
+                return []
+            if not ruta.is_dir():
+                print(f"La ruta no es una carpeta: {ruta}")
+                return []
+            canciones_agregadas = []
+            # Usar rglob para buscar recursivamente en todas las subcarpetas
+            for archivo in ruta.rglob("*"):
+                if archivo.is_file() and archivo.suffix.lower() in FORMATOS_SOPORTADOS:
+                    cancion = self.agregar_cancion_biblioteca(archivo)
+                    if cancion:
+                        canciones_agregadas.append(cancion)
+            # Ordenar automáticamente si se agregaron canciones
+            if canciones_agregadas:
+                self.ordenar_canciones_automaticamente()
+            print(
+                f"Se agregaron {len(canciones_agregadas)} canciones de la carpeta '{ruta.name}' y sus subcarpetas"
+            )
+            return canciones_agregadas
+        except Exception as e:
+            print(f"Error al agregar carpeta de canciones recursivamente: {str(e)}")
             return []
 
     # Método para eliminar una canción completamente de la biblioteca
@@ -292,6 +321,18 @@ class Biblioteca:
     # Método para obtener las canciones de la biblioteca
     def obtener_canciones_biblioteca(self) -> List[Cancion]:
         return self.canciones
+
+    # Método para obtener los nombres únicos de las carpetas que contienen canciones
+    def obtener_carpetas_biblioteca(self) -> List[str]:
+        try:
+            carpetas = set()
+            for cancion in self.canciones:
+                carpeta = cancion.ruta_cancion.parent.name
+                carpetas.add(carpeta)
+            return sorted(list(carpetas))
+        except Exception as e:
+            print(f"Error al obtener carpetas: {str(e)}")
+            return []
 
     # Método para obtener los me gusta de la biblioteca
     def obtener_me_gusta_biblioteca(self) -> List[Cancion]:

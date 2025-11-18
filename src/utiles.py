@@ -134,6 +134,7 @@ class UtilesGeneral:
 
     # Método para mostrar las dimensiones de un componente
     def mostrar_dimensiones_componente(self, componente):
+        # Función interna para mostrar las dimensiones cuando estén disponibles
         def mostrar_dimensiones():
             ancho = self.obtener_ancho_componente(componente)
             alto = self.obtener_alto_componente(componente)
@@ -170,11 +171,11 @@ class UtilesGeneral:
 
     # Método para mostrar la información completa de un componente
     def mostrar_informacion_componente(self, componente, nombre_componente=None):
-        def mostrar_info():
+        def mostrar_informacion():
             informacion_componente = self.obtener_informacion_componente(componente)
             # Si el componente aún no tiene dimensiones, intentamos de nuevo
             if informacion_componente["ancho"] <= 1 or informacion_componente["alto"] <= 1:
-                componente.after(100, mostrar_info)
+                componente.after(100, mostrar_informacion)
             else:
                 print("---------------------------------------------------------")
                 print("Información del componente:")
@@ -188,4 +189,4 @@ class UtilesGeneral:
                 )
                 print("---------------------------------------------------------")
 
-        componente.after(100, mostrar_info)
+        componente.after(100, mostrar_informacion)

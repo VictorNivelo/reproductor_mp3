@@ -107,7 +107,7 @@ class ControladorReproductor:
         except Exception as e:
             print(f"Error al actualizar carátula: {e}")
             try:
-                self.etiqueta_imagen.configure(image=self.caratula_vacia, text="Sin carátula")
+                self.configurar_caratula_vacia()
             except Exception as e:
                 print(f"Error al mostrar sin caratula: {e}")
                 pass

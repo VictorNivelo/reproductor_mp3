@@ -3040,6 +3040,18 @@ contenedor_progreso.pack(fill="both", padx=10, pady=3)
 panel_progreso = ctk.CTkFrame(contenedor_progreso, fg_color="transparent")
 panel_progreso.pack(fill="x", expand=True)
 
+# Etiqueta de tiempo actual
+etiqueta_tiempo_actual = ctk.CTkLabel(
+    panel_progreso,
+    height=17,
+    fg_color="transparent",
+    font=(LETRA, TAMANIO_LETRA_TIEMPO),
+    text_color=controlador_tema.color_texto,
+    text="00:00",
+)
+etiqueta_tiempo_actual.pack(side="left", padx=(0, 5), pady=(0, 3))
+controlador_tema.registrar_etiqueta(etiqueta_tiempo_actual)
+
 # Barra de progreso
 barra_progreso = ctk.CTkProgressBar(
     panel_progreso,
@@ -3048,7 +3060,7 @@ barra_progreso = ctk.CTkProgressBar(
     fg_color=controlador_tema.color_hover,
     progress_color=controlador_tema.color_barra_progreso,
 )
-barra_progreso.pack(fill="x", pady=(0, 3))
+barra_progreso.pack(side="left", fill="x", expand=True, pady=(0, 3))
 barra_progreso.set(0)
 barra_progreso.bind("<Button-1>", iniciar_arrastre_progreso)
 barra_progreso.bind("<B1-Motion>", durante_arrastre_progreso)
@@ -3057,35 +3069,16 @@ controlador_tema.registrar_progress_bar(barra_progreso)
 
 controlador_reproductor.establecer_barra_progreso_controlador(barra_progreso)
 
-# -----------------------------------------------------------------------------------------------
-
-# ------------------------------- Seccion de tiempo de la canción -------------------------------
-# Panel de tiempo
-panel_tiempo = ctk.CTkFrame(contenedor_progreso, fg_color="transparent")
-panel_tiempo.pack(fill="x", expand=True)
-
-# Etiqueta de tiempo actual
-etiqueta_tiempo_actual = ctk.CTkLabel(
-    panel_tiempo,
-    height=17,
-    fg_color="transparent",
-    font=(LETRA, TAMANIO_LETRA_TIEMPO),
-    text_color=controlador_tema.color_texto,
-    text="00:00",
-)
-etiqueta_tiempo_actual.pack(side="left")
-controlador_tema.registrar_etiqueta(etiqueta_tiempo_actual)
-
 # Etiqueta de tiempo total
 etiqueta_tiempo_total = ctk.CTkLabel(
-    panel_tiempo,
+    panel_progreso,
     height=17,
     fg_color="transparent",
     font=(LETRA, TAMANIO_LETRA_TIEMPO),
     text_color=controlador_tema.color_texto,
     text="00:00",
 )
-etiqueta_tiempo_total.pack(side="right")
+etiqueta_tiempo_total.pack(side="left", padx=(5, 0), pady=(0, 3))
 controlador_tema.registrar_etiqueta(etiqueta_tiempo_total)
 
 controlador_reproductor.establecer_etiquetas_tiempo_controlador(etiqueta_tiempo_actual, etiqueta_tiempo_total)

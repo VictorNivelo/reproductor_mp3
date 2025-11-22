@@ -27,3 +27,11 @@ class Repeticion(Enum):
     # Método para verificar si es repetir todo
     def es_repetir_todo(self) -> bool:
         return self == Repeticion.REPETIR_TODO
+
+    # Método para imprimir todos los nombres de repetición disponibles
+    @classmethod
+    def imprimir_nombre_repeticion(cls):
+        print("---------------- Repeticiones ----------------")
+        for repeticion in cls:
+            print(repeticion.obtener_nombre_repeticion)
+        print("----------------------------------------------")

@@ -17,7 +17,7 @@ class Estado(Enum):
         return nombres[self]
 
     # Método para verificar el estado activo
-    def estado_activo(self) -> bool:
+    def esta_activo(self) -> bool:
         return self in (Estado.REPRODUCIENDO, Estado.PAUSADO)
 
     # Método para verificar si se esta reproduciendo
@@ -31,3 +31,11 @@ class Estado(Enum):
     # Método para verificar si esta detenido
     def esta_detenido(self) -> bool:
         return self == Estado.DETENIDO
+
+    # Método para imprimir todos los nombres de estado disponibles
+    @classmethod
+    def imprimir_nombre_estados(cls):
+        print("---------------- Estados ----------------")
+        for estado in cls:
+            print(estado.obtener_nombre_estado)
+        print("-----------------------------------------")

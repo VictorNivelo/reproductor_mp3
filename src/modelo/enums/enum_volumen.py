@@ -53,3 +53,11 @@ class Volumen(Enum):
     # Método para verificar si el volumen es alto
     def es_alto(self) -> bool:
         return self == Volumen.ALTO
+
+    # Método para imprimir todos los nombres de volumen disponibles
+    @classmethod
+    def imprimir_nombre_volumen(cls):
+        print("---------------- Volúmenes ----------------")
+        for volumen in cls:
+            print(volumen.obtener_nombre_volumen)
+        print("------------------------------------------")

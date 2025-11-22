@@ -21,3 +21,11 @@ class Orden(Enum):
     # Método para verificar si el orden es aleatorio
     def esta_aleatorio(self) -> bool:
         return self == Orden.ALEATORIO
+
+    # Método para imprimir todos los nombres de orden disponibles
+    @classmethod
+    def imprimir_nombre_orden(cls):
+        print("---------------- Órdenes ----------------")
+        for orden in cls:
+            print(orden.obtener_nombre_orden)
+        print("-----------------------------------------")

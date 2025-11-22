@@ -29,6 +29,14 @@ class Tema(Enum):
     def es_sistema(self) -> bool:
         return self == Tema.SISTEMA
 
+    # Método para imprimir todos los nombres de tema disponibles
+    @classmethod
+    def imprimir_nombre_tema(cls):
+        print("---------------- Temas ----------------")
+        for tema in cls:
+            print(tema.obtener_nombre_tema)
+        print("---------------------------------------")
+
     # Método estático para obtener el tema del sistema
     @staticmethod
     def obtener_tema_sistema() -> "Tema":

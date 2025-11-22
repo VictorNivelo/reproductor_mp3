@@ -1,6 +1,5 @@
 import uuid
 
-
 from modelo.cancion import Cancion
 from datetime import datetime
 
@@ -38,7 +37,7 @@ class ListaReproduccion:
             if 0 <= indice_origen < len(self.lista_cancion) and 0 <= indice_destino < len(self.lista_cancion):
                 cancion = self.lista_cancion.pop(indice_origen)
                 self.lista_cancion.insert(indice_destino, cancion)
-                self.fecha_modificacion = datetime.now()
+                self.fecha_modificacion_lista = datetime.now()
                 return True
             return False
         except (IndexError, ValueError):
@@ -55,7 +54,7 @@ class ListaReproduccion:
         return False
 
     # Obtener todas las canciones de la lista
-    def obtener_lista_cancion(self) -> list:
+    def obtener_cancion_lista(self) -> list:
         return self.lista_cancion
 
     # Obtener fecha de agregado de una canción específica
@@ -72,7 +71,10 @@ class ListaReproduccion:
     # Obtener información de la lista
     def obtener_informacion_lista(self) -> dict:
         return {
+            "id": self.id_lista,
             "nombre": self.nombre_lista,
+            "fecha_creacion": self.fecha_creacion_lista.strftime("%d/%m/%Y %H:%M:%S"),
+            "fecha_modificacion": self.fecha_modificacion_lista.strftime("%d/%m/%Y %H:%M:%S"),
             "total_canciones": len(self.lista_cancion),
             "canciones": [
                 {

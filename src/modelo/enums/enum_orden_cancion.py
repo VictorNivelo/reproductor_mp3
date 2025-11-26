@@ -8,7 +8,6 @@ class Orden_Cancion(Enum):
     ANIO = "Añio"
     DURACION = "Duración"
     FECHA_AGREGADO = "Fecha agregado"
-    FECHA_LANZAMIENTO = "Fecha lanzamiento"
 
     # Método para obtener el nombre legible del orden
     @property
@@ -20,7 +19,6 @@ class Orden_Cancion(Enum):
             Orden_Cancion.ANIO: "Año",
             Orden_Cancion.DURACION: "Duración",
             Orden_Cancion.FECHA_AGREGADO: "Fecha que se agrego",
-            Orden_Cancion.FECHA_LANZAMIENTO: "Fecha de lanzamiento",
         }
         return nombres[self]
 
@@ -47,10 +45,6 @@ class Orden_Cancion(Enum):
     # Método para verificar si es orden por fecha agregado
     def es_orden_fecha_agregado(self) -> bool:
         return self == Orden_Cancion.FECHA_AGREGADO
-
-    # Método para verificar si es orden por fecha de lanzamiento
-    def es_orden_fecha_lanzamiento(self) -> bool:
-        return self == Orden_Cancion.FECHA_LANZAMIENTO
 
     # Método para imprimir todos los nombres de orden disponibles
     @classmethod

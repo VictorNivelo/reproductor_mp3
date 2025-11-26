@@ -29,152 +29,7 @@ class ControladorLista:
             print(f"Error al crear lista: {str(e)}")
             return None
 
-    # Eliminar una lista de reproducción
-    def eliminar_lista(self, lista: ListaReproduccion) -> bool:
-        try:
-            if lista not in self.listas_reproduccion:
-                print(f"La lista '{lista.nombre_lista}' no existe")
-                return False
-            # Si es la lista actual, desvincularla
-            if self.lista_actual == lista:
-                self.lista_actual = None
-            self.listas_reproduccion.remove(lista)
-            print(f"Lista de reproducción '{lista.nombre_lista}' eliminada")
-            return True
-        except Exception as e:
-            print(f"Error al eliminar lista: {str(e)}")
-            return False
-
-    # Eliminar una lista por nombre
-    def eliminar_lista_por_nombre(self, nombre: str) -> bool:
-        try:
-            lista = self.obtener_lista_por_nombre(nombre)
-            if lista is None:
-                print(f"No se encontró la lista: {nombre}")
-                return False
-            return self.eliminar_lista(lista)
-        except Exception as e:
-            print(f"Error al eliminar lista por nombre: {str(e)}")
-            return False
-
-    # Verificar si existe una lista con ese nombre
-    def existe_lista(self, nombre: str) -> bool:
-        return any(lista.nombre_lista.lower() == nombre.lower() for lista in self.listas_reproduccion)
-
-    # Obtener una lista por nombre
-    def obtener_lista_por_nombre(self, nombre: str) -> ListaReproduccion | None:
-        for lista in self.listas_reproduccion:
-            if lista.nombre_lista.lower() == nombre.lower():
-                return lista
-        return None
-
-    # Obtener una lista por ID
-    def obtener_lista_por_id(self, id_lista: str) -> ListaReproduccion | None:
-        for lista in self.listas_reproduccion:
-            if lista.id_lista == id_lista:
-                return lista
-        return None
-
-    # Obtener todas las listas de reproducción
-    def obtener_todas_listas(self) -> List[ListaReproduccion]:
-        return self.listas_reproduccion
-
-    # Obtener la lista actual
-    def obtener_lista_actual(self) -> ListaReproduccion | None:
-        return self.lista_actual
-
-    # Agregar una canción a una lista
-    def agregar_cancion_a_lista(self, lista: ListaReproduccion, cancion: Cancion) -> bool:
-        try:
-            if lista not in self.listas_reproduccion:
-                print(f"La lista no existe")
-                return False
-            resultado = lista.agregar_cancion_lista(cancion)
-            if resultado:
-                print(f"Canción '{cancion.titulo_cancion}' agregada a la lista '{lista.nombre_lista}'")
-            else:
-                print(f"La canción ya existe en la lista '{lista.nombre_lista}'")
-            return resultado
-        except Exception as e:
-            print(f"Error al agregar canción a la lista: {str(e)}")
-            return False
-
-    # Agregar múltiples canciones a una lista
-    def agregar_multiples_canciones_a_lista(self, lista: ListaReproduccion, canciones: List[Cancion]) -> int:
-        try:
-            if lista not in self.listas_reproduccion:
-                print(f"La lista no existe")
-                return 0
-            agregadas = 0
-            for cancion in canciones:
-                if lista.agregar_cancion_lista(cancion):
-                    agregadas += 1
-            print(f"Se agregaron {agregadas} de {len(canciones)} canciones a la lista '{lista.nombre_lista}'")
-            return agregadas
-        except Exception as e:
-            print(f"Error al agregar múltiples canciones: {str(e)}")
-            return 0
-
-    # Eliminar una canción de una lista
-    def eliminar_cancion_de_lista(self, lista: ListaReproduccion, cancion: Cancion) -> bool:
-        try:
-            if lista not in self.listas_reproduccion:
-                print(f"La lista no existe")
-                return False
-            resultado = lista.eliminar_cancion_lista(cancion)
-            if resultado:
-                print(f"Canción '{cancion.titulo_cancion}' eliminada de la lista '{lista.nombre_lista}'")
-            else:
-                print(f"La canción no existe en la lista '{lista.nombre_lista}'")
-            return resultado
-        except Exception as e:
-            print(f"Error al eliminar canción de la lista: {str(e)}")
-            return False
-
-    # Mover una canción a otra posición en la lista
-    def mover_cancion_en_lista(
-        self, lista: ListaReproduccion, indice_origen: int, indice_destino: int
-    ) -> bool:
-        try:
-            if lista not in self.listas_reproduccion:
-                print(f"La lista no existe")
-                return False
-            resultado = lista.mover_cancion_lista(indice_origen, indice_destino)
-            if resultado:
-                print(f"Canción movida de posición {indice_origen} a {indice_destino}")
-            else:
-                print(f"No se pudo mover la canción. Verifica los índices")
-            return resultado
-        except Exception as e:
-            print(f"Error al mover canción: {str(e)}")
-            return False
-
-    # Obtener todas las canciones de una lista
-    def obtener_canciones_lista(self, lista: ListaReproduccion) -> List[Cancion]:
-        try:
-            if lista not in self.listas_reproduccion:
-                print(f"La lista no existe")
-                return []
-            canciones = lista.obtener_cancion_lista()
-            if not canciones:
-                print(f"La lista '{lista.nombre_lista}' está vacía")
-                return []
-            return canciones
-        except Exception as e:
-            print(f"Error al obtener canciones: {str(e)}")
-            return []
-
-    # Obtener el total de canciones en una lista
-    def obtener_total_canciones_lista(self, lista: ListaReproduccion) -> int:
-        try:
-            if lista not in self.listas_reproduccion:
-                return 0
-            return len(lista.obtener_cancion_lista())
-        except Exception as e:
-            print(f"Error al obtener total de canciones: {str(e)}")
-            return 0
-
-    # Renombrar una lista
+    # Renombrar una lista de reproducción
     def renombrar_lista(self, lista: ListaReproduccion, nuevo_nombre: str) -> bool:
         try:
             if lista not in self.listas_reproduccion:
@@ -199,18 +54,152 @@ class ControladorLista:
             print(f"Error al renombrar lista: {str(e)}")
             return False
 
-    # Obtener información completa de una lista
-    def obtener_informacion_lista(self, lista: ListaReproduccion) -> dict | None:
+    # Eliminar una lista de reproducción
+    def eliminar_lista(self, lista: ListaReproduccion) -> bool:
+        try:
+            if lista not in self.listas_reproduccion:
+                print(f"La lista '{lista.nombre_lista}' no existe")
+                return False
+            # Si es la lista actual, desvincularla
+            if self.lista_actual == lista:
+                self.lista_actual = None
+            self.listas_reproduccion.remove(lista)
+            print(f"Lista de reproducción '{lista.nombre_lista}' eliminada")
+            return True
+        except Exception as e:
+            print(f"Error al eliminar lista: {str(e)}")
+            return False
+
+    # Eliminar una lista de reproducción por nombre
+    def eliminar_lista_por_nombre(self, nombre: str) -> bool:
+        try:
+            lista = self.obtener_lista_por_nombre(nombre)
+            if lista is None:
+                print(f"No se encontró la lista: {nombre}")
+                return False
+            return self.eliminar_lista(lista)
+        except Exception as e:
+            print(f"Error al eliminar lista por nombre: {str(e)}")
+            return False
+
+    # Agregar una canción a una lista de reproducción
+    def agregar_cancion_a_lista(self, lista: ListaReproduccion, cancion: Cancion) -> bool:
         try:
             if lista not in self.listas_reproduccion:
                 print(f"La lista no existe")
-                return None
-            return lista.obtener_informacion_lista()
+                return False
+            resultado = lista.agregar_cancion_lista(cancion)
+            if resultado:
+                print(f"Canción '{cancion.titulo_cancion}' agregada a la lista '{lista.nombre_lista}'")
+            else:
+                print(f"La canción ya existe en la lista '{lista.nombre_lista}'")
+            return resultado
         except Exception as e:
-            print(f"Error al obtener información de la lista: {str(e)}")
-            return None
+            print(f"Error al agregar canción a la lista: {str(e)}")
+            return False
 
-    # Obtener todas las listas como información
+    # Agregar múltiples canciones a una lista de reproducción
+    def agregar_multiples_canciones_a_lista(self, lista: ListaReproduccion, canciones: List[Cancion]) -> int:
+        try:
+            if lista not in self.listas_reproduccion:
+                print(f"La lista no existe")
+                return 0
+            agregadas = 0
+            for cancion in canciones:
+                if lista.agregar_cancion_lista(cancion):
+                    agregadas += 1
+            print(f"Se agregaron {agregadas} de {len(canciones)} canciones a la lista '{lista.nombre_lista}'")
+            return agregadas
+        except Exception as e:
+            print(f"Error al agregar múltiples canciones: {str(e)}")
+            return 0
+
+    # Eliminar una canción de una lista de reproducción
+    def eliminar_cancion_de_lista(self, lista: ListaReproduccion, cancion: Cancion) -> bool:
+        try:
+            if lista not in self.listas_reproduccion:
+                print(f"La lista no existe")
+                return False
+            resultado = lista.eliminar_cancion_lista(cancion)
+            if resultado:
+                print(f"Canción '{cancion.titulo_cancion}' eliminada de la lista '{lista.nombre_lista}'")
+            else:
+                print(f"La canción no existe en la lista '{lista.nombre_lista}'")
+            return resultado
+        except Exception as e:
+            print(f"Error al eliminar canción de la lista: {str(e)}")
+            return False
+
+    # Mover una canción a otra posición en la lista de reproducción
+    def mover_cancion_en_lista(
+        self, lista: ListaReproduccion, indice_origen: int, indice_destino: int
+    ) -> bool:
+        try:
+            if lista not in self.listas_reproduccion:
+                print(f"La lista no existe")
+                return False
+            resultado = lista.mover_cancion_lista(indice_origen, indice_destino)
+            if resultado:
+                print(f"Canción movida de posición {indice_origen} a {indice_destino}")
+            else:
+                print(f"No se pudo mover la canción. Verifica los índices")
+            return resultado
+        except Exception as e:
+            print(f"Error al mover canción: {str(e)}")
+            return False
+
+    # Verificar si existe una lista de reproducción con ese nombre
+    def existe_lista(self, nombre: str) -> bool:
+        return any(lista.nombre_lista.lower() == nombre.lower() for lista in self.listas_reproduccion)
+
+    # Obtener una lista de reproducción por nombre
+    def obtener_lista_por_nombre(self, nombre: str) -> ListaReproduccion | None:
+        for lista in self.listas_reproduccion:
+            if lista.nombre_lista.lower() == nombre.lower():
+                return lista
+        return None
+
+    # Obtener una lista de reproducción por ID
+    def obtener_lista_por_id(self, id_lista: str) -> ListaReproduccion | None:
+        for lista in self.listas_reproduccion:
+            if lista.id_lista == id_lista:
+                return lista
+        return None
+
+    # Obtener todas las listas de reproducción
+    def obtener_todas_listas(self) -> List[ListaReproduccion]:
+        return self.listas_reproduccion
+
+    # Obtener la lista de reproducción actual
+    def obtener_lista_actual(self) -> ListaReproduccion | None:
+        return self.lista_actual
+
+    # Obtener todas las canciones de una lista de reproducción
+    def obtener_canciones_lista(self, lista: ListaReproduccion) -> List[Cancion]:
+        try:
+            if lista not in self.listas_reproduccion:
+                print(f"La lista no existe")
+                return []
+            canciones = lista.obtener_lista_cancion()
+            if not canciones:
+                print(f"La lista '{lista.nombre_lista}' está vacía")
+                return []
+            return canciones
+        except Exception as e:
+            print(f"Error al obtener canciones: {str(e)}")
+            return []
+
+    # Obtener el total de canciones en una lista de reproducción
+    def obtener_total_canciones_lista(self, lista: ListaReproduccion) -> int:
+        try:
+            if lista not in self.listas_reproduccion:
+                return 0
+            return len(lista.obtener_lista_cancion())
+        except Exception as e:
+            print(f"Error al obtener total de canciones: {str(e)}")
+            return 0
+
+    # Obtener todas las listas de reproducción como información
     def obtener_informacion_todas_listas(self) -> List[Dict]:
         try:
             return [
@@ -226,21 +215,21 @@ class ControladorLista:
             print(f"Error al obtener información de listas: {str(e)}")
             return []
 
-    # Imprimir todas las canciones de una lista en formato JSON
+    # Imprimir todas las canciones de una lista de reproducción
     def imprimir_canciones_lista(self, lista: ListaReproduccion) -> None:
         try:
             if lista not in self.listas_reproduccion:
                 print(f"La lista no existe")
                 return
-            info = lista.obtener_informacion_lista()
-            canciones = info.get("canciones", [])
+            informacion = lista.obtener_informacion_lista()
+            canciones = informacion.get("canciones", [])
             print(f"----------------------- canciones en {lista.nombre_lista} -----------------------")
             print(json.dumps(canciones, indent=2, ensure_ascii=False))
             print("----------------------------------------------------------------------------------")
         except Exception as e:
             print(f"Error al imprimir canciones: {str(e)}")
 
-    # Imprimir todas las listas en formato JSON
+    # Imprimir todas las listas de reproducción
     def imprimir_todas_listas(self) -> None:
         try:
             if not self.listas_reproduccion:
@@ -253,7 +242,7 @@ class ControladorLista:
         except Exception as e:
             print(f"Error al imprimir listas: {str(e)}")
 
-    # Imprimir todas las listas con sus canciones en formato JSON
+    # Imprimir todas las listas de reproducción con sus canciones
     def imprimir_listas_con_canciones(self) -> None:
         try:
             if not self.listas_reproduccion:

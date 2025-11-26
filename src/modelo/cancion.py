@@ -153,13 +153,18 @@ class Cancion:
             print(f"Error al formatear tamaño: {e}")
             return "Tamaño formateado desconocido"
 
-    # Propiedad que devuelve la duración de la canción en formato MM:SS
+    # Propiedad que devuelve la duración de la canción en formato HH:MM:SS o MM:SS
     @property
     def obtener_duracion_formateada(self) -> str:
         try:
-            minutos = int(self.duracion_cancion // 60)
+            horas = int(self.duracion_cancion // 3600)
+            minutos = int((self.duracion_cancion % 3600) // 60)
             segundos = int(self.duracion_cancion % 60)
-            return f"{minutos:02d}:{segundos:02d}"
+            # Si hay horas, usar formato HH:MM:SS, si no MM:SS
+            if horas > 0:
+                return f"{horas:02d}:{minutos:02d}:{segundos:02d}"
+            else:
+                return f"{minutos:02d}:{segundos:02d}"
         except Exception as e:
             print(f"Error al formatear duración: {e}")
             return "Duración desconocida"

@@ -632,20 +632,20 @@ class Biblioteca:
             return []
 
     # Método para ordenar canciones en la biblioteca
-    def ordenar_canciones_biblioteca(self, criterio: Orden_Cancion, asendente: bool = True) -> List[Cancion]:
+    def ordenar_canciones_biblioteca(self, criterio: Orden_Cancion, ascendente: bool = True) -> List[Cancion]:
         try:
             if criterio.es_orden_titulo():
-                return sorted(self.canciones, key=lambda c: c.titulo_cancion.lower(), reverse=asendente)
+                return sorted(self.canciones, key=lambda c: c.titulo_cancion.lower(), reverse=ascendente)
             elif criterio.es_orden_artista():
-                return sorted(self.canciones, key=lambda c: c.artista_cancion.lower(), reverse=asendente)
+                return sorted(self.canciones, key=lambda c: c.artista_cancion.lower(), reverse=ascendente)
             elif criterio.es_orden_album():
-                return sorted(self.canciones, key=lambda c: c.album_cancion.lower(), reverse=asendente)
+                return sorted(self.canciones, key=lambda c: c.album_cancion.lower(), reverse=ascendente)
             elif criterio.es_orden_duracion():
-                return sorted(self.canciones, key=lambda c: c.duracion_cancion, reverse=asendente)
+                return sorted(self.canciones, key=lambda c: c.duracion_cancion, reverse=ascendente)
             elif criterio.es_orden_anio():
-                return sorted(self.canciones, key=lambda c: c.anio_lanzamiento_cancion, reverse=asendente)
+                return sorted(self.canciones, key=lambda c: c.anio_lanzamiento_cancion, reverse=ascendente)
             elif criterio.es_orden_fecha_agregado():
-                return sorted(self.canciones, key=lambda c: c.fecha_agregado_cancion, reverse=asendente)
+                return sorted(self.canciones, key=lambda c: c.fecha_agregado_cancion, reverse=ascendente)
             else:
                 print(f"Criterio de ordenación no válido: {criterio}")
                 return self.canciones

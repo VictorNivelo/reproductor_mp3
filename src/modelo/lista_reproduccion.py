@@ -78,7 +78,7 @@ class ListaReproduccion:
         return cancion in self.lista_cancion
 
     # Obtener el tamaño de la lista de reproducción
-    def obtener_tamaño_lista(self) -> int:
+    def obtener_tamanio_lista(self) -> int:
         return len(self.lista_cancion)
 
     # Obtener todas las canciones de la lista de reproducción

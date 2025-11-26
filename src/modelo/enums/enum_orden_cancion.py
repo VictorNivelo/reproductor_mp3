@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Orden_Cancion(Enum):
+class OrdenCancion(Enum):
     TITULO = "Título"
     ARTISTA = "Artista"
     ALBUM = "Álbum"
@@ -13,38 +13,38 @@ class Orden_Cancion(Enum):
     @property
     def obtener_nombre_orden(self) -> str:
         nombres = {
-            Orden_Cancion.TITULO: "Título",
-            Orden_Cancion.ARTISTA: "Artista",
-            Orden_Cancion.ALBUM: "Álbum",
-            Orden_Cancion.ANIO: "Año",
-            Orden_Cancion.DURACION: "Duración",
-            Orden_Cancion.FECHA_AGREGADO: "Fecha que se agrego",
+            OrdenCancion.TITULO: "Título",
+            OrdenCancion.ARTISTA: "Artista",
+            OrdenCancion.ALBUM: "Álbum",
+            OrdenCancion.ANIO: "Año",
+            OrdenCancion.DURACION: "Duración",
+            OrdenCancion.FECHA_AGREGADO: "Fecha que se agrego",
         }
         return nombres[self]
 
     # Método para verificar si es orden por título
     def es_orden_titulo(self) -> bool:
-        return self == Orden_Cancion.TITULO
+        return self == OrdenCancion.TITULO
 
     # Método para verificar si es orden por artista
     def es_orden_artista(self) -> bool:
-        return self == Orden_Cancion.ARTISTA
+        return self == OrdenCancion.ARTISTA
 
     # Método para verificar si es orden por álbum
     def es_orden_album(self) -> bool:
-        return self == Orden_Cancion.ALBUM
+        return self == OrdenCancion.ALBUM
 
     # Método para verificar si es orden por año
     def es_orden_anio(self) -> bool:
-        return self == Orden_Cancion.ANIO
+        return self == OrdenCancion.ANIO
 
     # Método para verificar si es orden por duración
     def es_orden_duracion(self) -> bool:
-        return self == Orden_Cancion.DURACION
+        return self == OrdenCancion.DURACION
 
     # Método para verificar si es orden por fecha agregado
     def es_orden_fecha_agregado(self) -> bool:
-        return self == Orden_Cancion.FECHA_AGREGADO
+        return self == OrdenCancion.FECHA_AGREGADO
 
     # Método para imprimir todos los nombres de orden disponibles
     @classmethod

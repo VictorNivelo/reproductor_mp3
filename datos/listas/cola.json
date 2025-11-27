@@ -1,17 +1,18 @@
 {
     "indice_actual": 1,
     "canciones": [
-        "C:\\Users\\Victor\\Music\\M\\prueba\\a.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "C:\\Users\\Victor\\Music\\M\\Adicto (ft Anuel AA & Ozuna).mp3",
-        "C:\\Users\\Victor\\Music\\M\\DÁKITI.mp3",
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
+        "C:\\Users\\Victor\\Music\\M\\120.mp3",
+        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3",
+        "C:\\Users\\Victor\\Music\\M\\444..mp3",
+        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\Adictiva.mp3",
-        "titulo": "Adictiva",
-        "artista": "Daddy Yankee ft Anuel AA",
-        "album": "Adictiva",
-        "timestamp": "2025-11-18T22:09:55.426100"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
+        "titulo": "120",
+        "artista": "Bad Bunny",
+        "album": "EL ÚLTIMO TOUR DEL MUNDO",
+        "timestamp": "2025-11-26T19:09:00.640254"
     }
 }

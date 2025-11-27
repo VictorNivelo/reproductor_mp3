@@ -87,8 +87,9 @@ class ControladorArchivos:
 
     # Guardar las canciones en un archivo JSON
     def guardar_cancion_json_controlador(self, biblioteca):
+        informacion_biblioteca = biblioteca.obtener_informacion_biblioteca()
         datos = {
-            "estadisticas": biblioteca.obtener_estadisticas_biblioteca(),
+            "estadisticas": informacion_biblioteca["estadisticas"],
             "canciones": [cancion.obtener_informacion_minima_cancion() for cancion in biblioteca.canciones],
         }
         contenido = json.dumps(datos, ensure_ascii=False, indent=4)

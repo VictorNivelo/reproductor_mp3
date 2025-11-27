@@ -1,3 +1,10 @@
 {
-    "me_gusta": []
+    "me_gusta": [
+        {
+            "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
+            "titulo": "120",
+            "artista": "Bad Bunny",
+            "album": "EL ÚLTIMO TOUR DEL MUNDO"
+        }
+    ]
 }

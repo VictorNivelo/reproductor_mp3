@@ -1,5 +1,7 @@
 import mutagen
 
+from mutagen.oggvorbis import OggVorbis
+from mutagen.wave import WAVE
 from mutagen.flac import FLAC
 from mutagen.id3 import ID3
 from mutagen.mp3 import MP3
@@ -45,6 +47,10 @@ class Metadatos:
                 informacion.update(Metadatos.obtener_metadatos_flac(audio))
             elif isinstance(audio, MP4):
                 informacion.update(Metadatos.obtener_metadatos_mp4(audio))
+            elif isinstance(audio, OggVorbis):
+                informacion.update(Metadatos.obtener_metadatos_ogg(audio))
+            elif isinstance(audio, WAVE):
+                informacion.update(Metadatos.obtener_metadatos_wav(audio))
             informacion["ruta"] = ruta_archivo
             return informacion
         except Exception as e:
@@ -126,4 +132,44 @@ class Metadatos:
             return informacion
         except Exception as e:
             print(f"Error al leer metadatos MP4: {e}")
+            return {}
+
+    # Método que obtiene la información de un archivo OGG
+    @staticmethod
+    def obtener_metadatos_ogg(audio: OggVorbis) -> dict:
+        try:
+            informacion = {
+                "duracion": audio.info.length,
+                "titulo": str(audio.get("title", [""])[0] or audio.filename),
+                "artista": str(audio.get("artist", ["Artista desconocido"])[0]),
+                "artista_album": str(audio.get("albumartist", ["Artista desconocido"])[0]),
+                "album": str(audio.get("album", ["Album desconocido"])[0]),
+                "anio": str(audio.get("date", ["Año desconocido"])[0]),
+                "numero_pista": str(audio.get("tracknumber", ["0"])[0]),
+                "genero": str(audio.get("genre", ["Género desconocido"])[0]),
+                "caratula": None,
+            }
+            return informacion
+        except Exception as e:
+            print(f"Error al leer metadatos OGG: {e}")
+            return {}
+
+    # Método que obtiene la información de un archivo WAV
+    @staticmethod
+    def obtener_metadatos_wav(audio: WAVE) -> dict:
+        try:
+            informacion = {
+                "duracion": audio.info.length,
+                "titulo": str(audio.get("TIT2", [""])[0] or audio.filename),
+                "artista": str(audio.get("TPE1", ["Artista desconocido"])[0]),
+                "artista_album": str(audio.get("TPE2", ["Artista desconocido"])[0]),
+                "album": str(audio.get("TALB", ["Album desconocido"])[0]),
+                "anio": str(audio.get("TDRC", ["Año desconocido"])[0]),
+                "numero_pista": str(audio.get("TRCK", ["0"])[0]),
+                "genero": str(audio.get("TCON", ["Género desconocido"])[0]),
+                "caratula": None,
+            }
+            return informacion
+        except Exception as e:
+            print(f"Error al leer metadatos WAV: {e}")
             return {}

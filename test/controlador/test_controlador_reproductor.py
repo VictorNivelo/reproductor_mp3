@@ -13,11 +13,15 @@ sys.path.insert(0, str(src_path))
 
 from controlador.controlador_reproductor_poo import ControladorReproductor
 from modelo.cancion import Cancion
+from modelo.cola_reproduccion import ColaReproduccion
 
 
 class InterfazGraficaPrueba:
     def __init__(self):
-        self.controlador = ControladorReproductor()
+        # Crear la cola de reproducción primero
+        self.cola_reproduccion = ColaReproduccion()
+        # Pasar la cola al controlador
+        self.controlador = ControladorReproductor(self.cola_reproduccion)
         self.lista_canciones = []
         self.volumen_actual = 50
         self.silenciado = False
@@ -332,21 +336,19 @@ class InterfazGraficaPrueba:
     
     def cancion_anterior(self):
         """Reproducir canción anterior"""
-        if self.lista_canciones:
-            self.controlador.reproducir_anterior(self.lista_canciones)
-            if self.controlador.cancion_actual:
-                titulo = self.obtener_titulo_cancion(self.controlador.cancion_actual)
-                self.var_cancion_actual.set(titulo)
-                self.actualizar_listbox_actual()
+        self.controlador.reproducir_anterior()
+        if self.controlador.cancion_actual:
+            titulo = self.obtener_titulo_cancion(self.controlador.cancion_actual)
+            self.var_cancion_actual.set(titulo)
+            self.actualizar_listbox_actual()
     
     def cancion_siguiente(self):
         """Reproducir canción siguiente"""
-        if self.lista_canciones:
-            self.controlador.reproducir_siguiente(self.lista_canciones)
-            if self.controlador.cancion_actual:
-                titulo = self.obtener_titulo_cancion(self.controlador.cancion_actual)
-                self.var_cancion_actual.set(titulo)
-                self.actualizar_listbox_actual()
+        self.controlador.reproducir_siguiente()
+        if self.controlador.cancion_actual:
+            titulo = self.obtener_titulo_cancion(self.controlador.cancion_actual)
+            self.var_cancion_actual.set(titulo)
+            self.actualizar_listbox_actual()
     
     def retroceder(self):
         """Retroceder 10 segundos"""

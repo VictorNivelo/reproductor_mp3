@@ -1,5 +1,5 @@
 {
-    "indice_actual": 1,
+    "indice_actual": 4,
     "canciones": [
         "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3",
         "C:\\Users\\Victor\\Music\\M\\120.mp3",
@@ -9,10 +9,10 @@
         "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3"
     ],
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
-        "titulo": "120",
-        "artista": "Bad Bunny",
-        "album": "EL ÚLTIMO TOUR DEL MUNDO",
-        "timestamp": "2025-11-26T19:09:00.640254"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "titulo": "47 (Remix)",
+        "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+        "album": "47 (Remix)",
+        "timestamp": "2025-11-27T20:57:48.564834"
     }
 }

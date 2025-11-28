@@ -1,28 +1,77 @@
 {
     "artistas": {
-        "Bad Bunny": 1
+        "Bad Bunny": 2,
+        "Yan Block": 4,
+        "Panda Black": 4,
+        "Anuel AA": 3,
+        "Tainy": 3,
+        "Sech": 3,
+        "E.VAX": 3,
+        "Feid": 2,
+        "Sinfonico": 1,
+        "Ñengo Flow": 1
     },
     "albumes": {
-        "EL ÚLTIMO TOUR DEL MUNDO": 1
+        "EL ÚLTIMO TOUR DEL MUNDO": 2,
+        "444": 4,
+        "¿Qué Nos Pasó?": 2,
+        "DATA": 3,
+        "INTER SHIBUYA - LA MAFIA": 2,
+        "47 (Remix)": 1
     },
-    "tiempo_total": 151.53632653061226,
-    "canciones_escuchadas": 1,
+    "tiempo_total": 2921.9004081632656,
+    "canciones_escuchadas": 14,
     "ultima_cancion": {
-        "ruta": "C:\\Users\\Victor\\Music\\M\\120.mp3",
-        "titulo": "120",
-        "artista": "Bad Bunny",
-        "album": "EL ÚLTIMO TOUR DEL MUNDO",
-        "timestamp": "2025-11-26T19:08:54.533051"
+        "ruta": "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3",
+        "titulo": "47 (Remix)",
+        "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+        "album": "47 (Remix)",
+        "timestamp": "2025-11-27T20:57:48.595079"
     },
     "canciones": {
         "C:\\Users\\Victor\\Music\\M\\120.mp3": {
-            "contador": 1,
+            "contador": 2,
             "titulo": "120",
             "artista": "Bad Bunny",
             "album": "EL ÚLTIMO TOUR DEL MUNDO"
+        },
+        "C:\\Users\\Victor\\Music\\M\\444..mp3": {
+            "contador": 4,
+            "titulo": "444",
+            "artista": "Yan Block ft Panda Black",
+            "album": "444"
+        },
+        "C:\\Users\\Victor\\Music\\M\\¿Qué Nos Pasó..mp3": {
+            "contador": 2,
+            "titulo": "¿Qué Nos Pasó?",
+            "artista": "Anuel AA",
+            "album": "¿Qué Nos Pasó?"
+        },
+        "C:\\Users\\Victor\\Music\\M\\11 Y ONCE.mp3": {
+            "contador": 3,
+            "titulo": "11 Y ONCE",
+            "artista": "Tainy ft Sech, E.VAX",
+            "album": "DATA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\14 De Febrero.mp3": {
+            "contador": 2,
+            "titulo": "14 De Febrero",
+            "artista": "Feid",
+            "album": "INTER SHIBUYA - LA MAFIA"
+        },
+        "C:\\Users\\Victor\\Music\\M\\47 (Remix).mp3": {
+            "contador": 1,
+            "titulo": "47 (Remix)",
+            "artista": "Anuel AA ft Sinfonico, Ñengo Flow",
+            "album": "47 (Remix)"
         }
     },
     "artistas_originales": {
-        "Bad Bunny": 1
+        "Bad Bunny": 2,
+        "Yan Block ft Panda Black": 4,
+        "Anuel AA": 2,
+        "Tainy ft Sech, E.VAX": 3,
+        "Feid": 2,
+        "Anuel AA ft Sinfonico, Ñengo Flow": 1
     }
 }

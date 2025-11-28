@@ -5,7 +5,6 @@ from pathlib import Path
 
 
 class ControladorBiblioteca:
-
     def __init__(self, biblioteca: Biblioteca):
         self.biblioteca = biblioteca
 

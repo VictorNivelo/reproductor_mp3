@@ -28,7 +28,6 @@ def medir_consumo_memoria(func):
 
 
 class UtilesGeneral:
-
     def __init__(self, controlador_externo=None):
         # Si no hay controlador externo, esta instancia actúa como controlador
         self.es_controlador = controlador_externo is None

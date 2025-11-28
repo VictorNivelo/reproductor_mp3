@@ -8,7 +8,6 @@ from constantes import *
 
 
 class ControladorArchivos:
-
     def __init__(self):
         # Directorios base
         self.ruta_carpeta_datos = RUTA_CARPETA_DATOS

@@ -3,7 +3,6 @@ from constantes import *
 
 
 class GestorAtajos:
-
     def __init__(self):
         self.ruta_archivo = RUTA_ATAJOS
         self.atajos_por_defecto = ATAJOS_POR_DEFECTO

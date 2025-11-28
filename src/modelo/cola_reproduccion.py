@@ -7,7 +7,6 @@ from typing import List, Optional
 
 
 class ColaReproduccion:
-
     def __init__(self):
         self.cola_original = []
         self.indice_actual = -1

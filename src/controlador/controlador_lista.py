@@ -6,7 +6,6 @@ from typing import List, Dict
 
 
 class ControladorLista:
-
     def __init__(self):
         self.listas_reproduccion = []
         self.lista_actual = None

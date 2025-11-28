@@ -5,7 +5,6 @@ from utiles import UtilesGeneral
 
 
 class ControladorTema(UtilesGeneral):
-
     def __init__(self):
         super().__init__()
         # Iconos de la interfaz

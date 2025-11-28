@@ -8,7 +8,6 @@ from constantes import *
 
 
 class Atajos(UtilesGeneral):
-
     def __init__(self, ventana_principal, controlador_tema):
         super().__init__(controlador_externo=controlador_tema)
         self.ventana_atajos = None

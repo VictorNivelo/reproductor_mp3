@@ -6,7 +6,6 @@ from constantes import *
 
 
 class Biblioteca:
-
     def __init__(self):
         self.canciones = []
         self.cancion_actual = None

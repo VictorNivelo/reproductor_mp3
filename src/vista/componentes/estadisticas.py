@@ -9,7 +9,6 @@ from constantes import *
 
 
 class Estadisticas(UtilesGeneral):
-
     def __init__(
         self, ventana_principal, controlador_tema, controlador_archivos, controlador_biblioteca=None
     ):

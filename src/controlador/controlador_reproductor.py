@@ -11,7 +11,6 @@ from constantes import *
 
 
 class ControladorReproductor:
-
     def __init__(self):
         self.cancion_actual = None
         self.reproduciendo = False

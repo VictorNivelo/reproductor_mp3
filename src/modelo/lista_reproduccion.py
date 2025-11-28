@@ -6,7 +6,6 @@ from copy import deepcopy
 
 
 class ListaReproduccion:
-
     def __init__(self, nombre: str):
         self.id_lista = str(uuid.uuid4())
         self.nombre_lista = nombre
@@ -31,6 +30,19 @@ class ListaReproduccion:
             self.fecha_modificacion_lista = datetime.now()
             return True
         return False
+
+    # Agregar canción en posición específica
+    def insertar_cancion_lista(self, cancion: Cancion, posicion: int) -> bool:
+        try:
+            if cancion not in self.lista_cancion and 0 <= posicion <= len(self.lista_cancion):
+                self.lista_cancion.insert(posicion, cancion)
+                self.fecha_cancion_agregado[id(cancion)] = datetime.now()
+                self.fecha_modificacion_lista = datetime.now()
+                return True
+            return False
+        except Exception as e:
+            print(f"Error al insertar canción: {str(e)}")
+            return False
 
     # Mover una canción a otra posición
     def mover_cancion_lista(self, indice_origen: int, indice_destino: int) -> bool:

@@ -4,7 +4,6 @@ from constantes import *
 
 
 class ToolTip:
-
     # Variable para almacenar el tooltip activo
     tooltip_activo = None
 

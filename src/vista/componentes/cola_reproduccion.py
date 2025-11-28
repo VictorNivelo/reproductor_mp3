@@ -11,7 +11,6 @@ from constantes import *
 
 
 class ColaReproduccion(UtilesGeneral):
-
     def __init__(
         self, ventana_principal, controlador_tema, controlador_reproductor, llamado_actualizacion=None
     ):

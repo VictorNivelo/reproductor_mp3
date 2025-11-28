@@ -8,7 +8,6 @@ from constantes import *
 
 
 class Cancion:
-
     def __init__(
         self,
         ruta: Path,

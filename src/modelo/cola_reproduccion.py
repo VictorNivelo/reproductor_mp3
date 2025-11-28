@@ -387,7 +387,7 @@ class ColaReproduccion:
             return False
 
     # Método para obtener información de la cola
-    def obtener_info_cola(self) -> dict:
+    def obtener_informacion_cola(self) -> dict:
         return {
             "total_canciones": len(self.cola_actual),
             "indice_actual": self.indice_actual,
